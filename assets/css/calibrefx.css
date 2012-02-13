@@ -1,0 +1,56 @@
+/** A dividing horizontal rule **/
+hr.div {
+	background: #CCC;
+	height: 1px;
+	border: none;
+	margin: 10px 0;
+}
+
+/** Button Style */
+.calibrefx-h2-button {
+	margin: 0 0 0 4px;
+	position: relative;
+	top: -3px;
+}
+
+/** Metabox Styles **/
+.calibrefx-metaboxes{
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+
+.calibrefx-submit-button{
+	margin-top: 10px;
+}
+
+.main-postbox, .side-postbox{
+	width: 48%;
+	float: left;
+	margin: 0 10px;
+}
+
+.calibrefx-layout-selector input {
+	display: none;
+	text-align: center;
+}
+.calibrefx-layout-selector input#default-layout {
+	display: inline;
+}
+.calibrefx-layout-selector label.box {
+	display: block;
+	float: left;
+	margin: 10px 10px 10px 0;
+	text-align: center;
+}
+.calibrefx-layout-selector label.box img {
+	max-width: 85px;
+	border: 3px solid transparent;
+	margin-bottom: 5px;
+}
+.calibrefx-layout-selector label.box img:hover {
+	border: 3px solid #ddd;
+}
+.calibrefx-layout-selector label.box.selected img {
+	border: 3px solid #ccc;
+}
