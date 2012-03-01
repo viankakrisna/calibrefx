@@ -8,7 +8,7 @@
  * @author		CalibreWorks Team
  * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
- * @link		http://calibreworks.com
+ * @link		http://calibrefx.com
  * @since		Version 1.0
  * @filesource 
  *
@@ -59,40 +59,22 @@ function calibrefx_about_page(){
 			<?php _e('CalibreFx - About Framework', 'calibrefx'); ?>
 		</h2>
 		
-		<div class="calibrefx-submit-button">
-			<input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
-			<input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo __('Are you sure you want to reset?', 'calibrefx'); ?>');" />
-		</div>
-		
 		<div class="metabox-holder">
-			<div class="postbox-container" style="width: 99%;">
+			<div class="postbox-container" style="width: 55%;">
 				<?php
 				do_meta_boxes($_calibrefx_about_pagehook, 'main', null);
 				?>
 			</div>
 		</div>
 		
-		<div class="calibrefx-submit-button">
-			<input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
-			<input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo __('Are you sure you want to reset?', 'calibrefx'); ?>');" />
-		</div>
 	</div>
-	<script type="text/javascript">
-		//<![CDATA[
-		jQuery(document).ready( function($) {
-			// close postboxes that should be closed
-			$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-			// postboxes setup
-			postboxes.add_postbox_toggles('<?php echo $_calibrefx_about_pagehook; ?>');
-		});
-		//]]>
-	</script>
+	
 <?php
 }
 
 function calibrefx_about_info_box(){ ?>
 	<p><strong><?php _e('Framework Name: ', 'calibrefx'); ?></strong><?php echo FRAMEWORK_NAME; ?> (<?php _e('Codename: ', 'calibrefx'); echo FRAMEWORK_CODENAME; ?>)</p>
-	<p><strong><?php _e('Version:', 'calibrefx'); ?></strong> <?php calibrefx_option('theme_version'); ?> <?php echo '&middot;'; ?> <strong><?php _e('Released:', 'calibrefx'); ?></strong> <?php echo FRAMEWORK_RELEASE_DATE; ?></p>
-	<p><strong><?php _e('DB Version: ', 'calibrefx'); ?></strong><?php echo FRAMEWORK_DB_VERSION; ?></p>
+	<p><strong><?php _e('Version:', 'calibrefx'); ?></strong> <?php calibrefx_option('calibrefx_version'); ?> <?php echo '&middot;'; ?> <strong><?php _e('Released:', 'calibrefx'); ?></strong> <?php echo FRAMEWORK_RELEASE_DATE; ?></p>
+	<p><strong><?php _e('DB Version: ', 'calibrefx'); ?></strong><?php calibrefx_option('calibrefx_db_version'); ?></p>
 <?php
 }

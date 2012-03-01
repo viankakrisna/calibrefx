@@ -8,7 +8,7 @@
  * @author		CalibreWorks Team
  * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
- * @link		http://calibreworks.com
+ * @link		http://calibrefx.com
  * @since		Version 1.0
  * @filesource 
  *
@@ -56,7 +56,7 @@ function calibrefx_constants() {
 	define( 'FRAMEWORK_CODENAME', 'Pink Gibbon' );
 	define( 'FRAMEWORK_VERSION', '1.0' );
 	define( 'FRAMEWORK_DB_VERSION', '1000' );
-	define( 'FRAMEWORK_URL', 'http://www.calibreworks.com' );
+	define( 'FRAMEWORK_URL', 'http://www.calibrefx.com' );
 	define( 'FRAMEWORK_RELEASE_DATE', date_i18n( 'F j, Y', '1327922947' ) );
 
 	/** Define CALIBREFX Root Directory Constant */
@@ -138,6 +138,7 @@ function calibrefx_load_framework() {
 	require_once( CALIBREFX_FUNCTIONS_DIR . '/widgets.php' );
 	require_once( CALIBREFX_FUNCTIONS_DIR . '/format.php' );
 	require_once( CALIBREFX_FUNCTIONS_DIR . '/images.php' );
+	require_once( CALIBREFX_FUNCTIONS_DIR . '/upgrade.php' );
 	
 	/** Load Shortcodes */
 	require_once( CALIBREFX_SHORTCODES_DIR . '/footer.php' );

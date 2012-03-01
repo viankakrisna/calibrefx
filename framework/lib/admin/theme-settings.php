@@ -8,7 +8,7 @@
  * @author		CalibreWorks Team
  * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
- * @link		http://calibreworks.com
+ * @link		http://calibrefx.com
  * @since		Version 1.0
  * @filesource 
  *
@@ -47,8 +47,8 @@ function calibrefx_theme_settings_defaults() {
 		'posts_nav' => 'older-newer',
 		'header_scripts' => '',
 		'footer_scripts' => '',
-		'theme_version' => FRAMEWORK_VERSION,
-		'db_version' => FRAMEWORK_DB_VERSION,
+		'calibrefx_version' => FRAMEWORK_VERSION,
+		'calibrefx_db_version' => FRAMEWORK_DB_VERSION,
 	);
 
 	return apply_filters('calibrefx_theme_settings_defaults', $defaults);
