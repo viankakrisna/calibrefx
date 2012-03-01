@@ -23,7 +23,9 @@
 /** Include widget class files */
 require_once( CALIBREFX_WIDGETS_DIR . '/subscriber-widget.php' );
 require_once( CALIBREFX_WIDGETS_DIR . '/feature-page-widget.php' );
+require_once( CALIBREFX_WIDGETS_DIR . '/feature-post-widget.php' );
 require_once( CALIBREFX_WIDGETS_DIR . '/latest-tweets-widget.php' );
+require_once( CALIBREFX_WIDGETS_DIR . '/facebook-like-widgets.php' );
 
 //Hook all widgets to WordPress 'widgets_init'
 add_action( 'widgets_init', 'calibrefx_register_widgets' );
@@ -33,5 +35,7 @@ add_action( 'widgets_init', 'calibrefx_register_widgets' );
 function calibrefx_register_widgets() {
 	register_widget( 'Calibrefx_Subscriber_Widget' );
 	register_widget( 'Calibrefx_Feature_Page_Widget' );
+	register_widget( 'Calibrefx_Feature_Post_Widget' );
 	register_widget( 'Calibrefx_Latest_Tweets_Widget' );
+	register_widget( 'Calibrefx_Facebook_Like_Widget' );
 }

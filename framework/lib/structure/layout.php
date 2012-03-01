@@ -28,17 +28,19 @@ add_action('calibrefx_init', 'calibrefx_setup_layout', 0);
  * @return void
  */
 function calibrefx_setup_layout(){
+	
+	calibrefx_register_layout(
+				'content-sidebar', 
+				array(
+					'label' => __('Content Sidebar (default blog)', 'calibrefx'),
+					'img' => CALIBREFX_IMAGES_URL . '/layouts/cs.gif',
+					'default' => true)
+				);
 	calibrefx_register_layout(
 				'full-width-content', 
 				array(
 					'label' => __('Full Width Content (minisite)', 'calibrefx'),
 					'img' => CALIBREFX_IMAGES_URL . '/layouts/c.gif')
-				);
-	calibrefx_register_layout(
-				'content-sidebar', 
-				array(
-					'label' => __('Content Sidebar (default blog)', 'calibrefx'),
-					'img' => CALIBREFX_IMAGES_URL . '/layouts/cs.gif')
 				);
 	calibrefx_register_layout(
 				'sidebar-content', 
@@ -76,7 +78,7 @@ add_filter( 'post_class', 'calibrefx_post_class' );
  */
 function calibrefx_post_class($classes){
 	
-	$classes[] = $row_class = "row".calibrefx_layout_type();
+	$classes[] = $row_class = "row";
 	
 	return $classes;
 }
@@ -98,6 +100,11 @@ function calibrefx_header_body_classes($classes) {
 
 	if ( 'image' == calibrefx_get_option('blog_title') || 'blank' == get_header_textcolor() )
 		$classes[] = 'header-image';
+		
+	if( calibrefx_layout_is_responsive() )
+		$classes[] = 'responsive';
+	else
+		$classes[] = 'fixed';
 
 	// return filtered $classes
 	return $classes;
@@ -107,14 +114,14 @@ function calibrefx_header_body_classes($classes) {
 /**
  * This function/filter adds layout type static/fluid
  */
-function calibrefx_layout_type(){
+/*function calibrefx_layout_type(){
 	
 	$layout_type = calibrefx_get_option('layout_type');
 	if($layout_type == 'fluid') $layout_type = '-fluid';
 	else $layout_type = '';
 	
 	return apply_filters('calibrefx_layout_type', $layout_type);
-}
+}*/
 
 function calibrefx_layout_is_responsive(){
 	return calibrefx_get_option('layout_type') == 'fluid';
@@ -221,7 +228,9 @@ function calibrefx_get_default_layout(){
 		return $default;
 	}
 	
-	return 'content-sidebar';
+	
+	//if no default layout exist, then return the first key in array
+	return key($_calibrefx_layouts);
 }
 
 /**

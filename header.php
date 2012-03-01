@@ -24,10 +24,10 @@ wp_head(); //wp_head funtion for plugins
 </head>
 <body <?php body_class(); ?>>
 <?php do_action( 'calibrefx_before_wrapper' ); ?>
-<div id="wrapper" class="container<?php echo calibrefx_layout_type(); ?>">
+<div id="wrapper" class="container">
 <?php
 do_action('calibrefx_before_header');
 do_action('calibrefx_header');
 do_action('calibrefx_after_header');
 ?>
-<div id="inner" class="row<?php echo calibrefx_layout_type(); ?>">
+<div id="inner" class="row">

@@ -29,7 +29,7 @@ function calibrefx() {
 
 	do_action( 'calibrefx_before_content_wrapper' );
 	?>
-	<div id="content-wrapper" class="row<?php echo calibrefx_layout_type(); ?>" >
+	<div id="content-wrapper" class="row" >
 		<?php do_action( 'calibrefx_before_content' ); ?>
 		<div id="content" class="<?php echo calibrefx_content_span(); ?>">
 			<?php

@@ -58,7 +58,7 @@ function calibrefx_do_footer_widgets(){
 	register_sidebar($sidebar);
 	
 	if ( is_active_sidebar( 'footer-widget' ) ) {
-		echo '<div id="footer-widget" class="row'.calibrefx_layout_type().'">';
+		echo '<div id="footer-widget" class="row">';
 		dynamic_sidebar( 'footer-widget' );
 		echo '</div><!--end #footer-widget-->';
 	}	
@@ -70,7 +70,7 @@ add_action( 'calibrefx_footer', 'calibrefx_do_footer_open', 5 );
  */
 function calibrefx_do_footer_open() {
 
-	echo '<div id="footer" class="row'.calibrefx_layout_type().'">';
+	echo '<div id="footer" class="row">';
 }
 
 add_action( 'calibrefx_footer', 'calibrefx_do_footer_close', 15 );

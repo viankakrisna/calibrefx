@@ -26,7 +26,6 @@ do_action( 'calibrefx_pre' );
 add_action( 'calibrefx_init', 'calibrefx_theme_support' );
 /**
  * This function activates default theme features
- *
  */
 function calibrefx_theme_support() {
 
@@ -34,10 +33,15 @@ function calibrefx_theme_support() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'calibrefx-admin-menu' );
 	add_theme_support( 'calibrefx-custom-header' );
-	add_theme_support( 'calibrefx-footer-widgets' );
 	
-	if ( ! current_theme_supports( 'calibrefx-menus' ) )
-		add_theme_support( 'calibrefx-menus', array( 'primary' => __( 'Primary Navigation Menu', 'calibrefx' ), 'secondary' => __( 'Secondary Navigation Menu', 'calibrefx' ) ) );
+	if ( ! current_theme_supports( 'calibrefx-menus' ) ) {
+		add_theme_support( 'calibrefx-menus', 
+			array( 
+				'primary' => __( 'Primary Navigation Menu', 'calibrefx' ), 
+				'secondary' => __( 'Secondary Navigation Menu', 'calibrefx' ) 
+			) 
+		);
+	}
 }
 
 add_action( 'calibrefx_init', 'calibrefx_constants', 5 );
@@ -106,7 +110,8 @@ function calibrefx_constants() {
 	define( 'CHILD_CSS_URL', CHILD_URL . '/assets/css' );
 }
 
-add_action( 'calibrefx_init', 'calibrefx_load_framework', 10 );
+//We need to run this after all the init
+add_action( 'calibrefx_init', 'calibrefx_load_framework' );
 /**
  * This function loads all the framework files and features
  */
@@ -114,16 +119,22 @@ function calibrefx_load_framework() {
 	/** Run the calibrefx_pre_framework Hook */
 	do_action( 'calibrefx_pre_framework' );
 	
+	//Core Functions
+	require_once( CALIBREFX_FUNCTIONS_DIR . '/debug.php' );
+	
+	/** Load Scripts and Styles */
+	require_once( CALIBREFX_FUNCTIONS_DIR . '/load.php' );
+	
 	/** Load Classes */
 	require_once( CALIBREFX_CLASSES_DIR . '/cache.php' );
 	require_once( CALIBREFX_CLASSES_DIR . '/breadcrumb.php' );
 	require_once( CALIBREFX_CLASSES_DIR . '/menu.php' );
+	require_once( CALIBREFX_CLASSES_DIR . '/admin-bar.php' );
 	
 	/** Load Functions */
-	require_once( CALIBREFX_FUNCTIONS_DIR . '/debug.php' );
+	
 	require_once( CALIBREFX_FUNCTIONS_DIR . '/general.php' );
 	require_once( CALIBREFX_FUNCTIONS_DIR . '/options.php' );
-	require_once( CALIBREFX_FUNCTIONS_DIR . '/load.php' );
 	require_once( CALIBREFX_FUNCTIONS_DIR . '/widgets.php' );
 	require_once( CALIBREFX_FUNCTIONS_DIR . '/format.php' );
 	require_once( CALIBREFX_FUNCTIONS_DIR . '/images.php' );
@@ -150,6 +161,7 @@ function calibrefx_load_framework() {
 	require_once( CALIBREFX_ADMIN_DIR . '/theme-settings.php' );
 	require_once( CALIBREFX_ADMIN_DIR . '/about-page.php' );
 	endif;
+	require_once( CALIBREFX_ADMIN_DIR . '/admin-bar.php' );
 	require_once( CALIBREFX_ADMIN_DIR . '/admin-login.php' );
 	require_once( CALIBREFX_ADMIN_DIR . '/user-meta.php' );
 
@@ -172,5 +184,5 @@ do_action('calibrefx_post_init');
 /** Run the calibrefx_setup hook */
 do_action('calibrefx_setup');
 
- /* End of file init.php */
+/* End of file init.php */
 /* Location: ./calibrefx/lib/init.php */

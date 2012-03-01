@@ -348,7 +348,7 @@ add_action('calibrefx_header', 'calibrefx_do_header_open',5);
  * Open header markup
  */
 function calibrefx_do_header_open(){
-	echo '<div id="header" class="row'.calibrefx_layout_type().'">';
+	echo '<div id="header" class="row">';
 }
 
 add_action('calibrefx_header', 'calibrefx_do_header_close',15);

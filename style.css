@@ -12,7 +12,6 @@
 
 * Import & Reset
 * Typography
-* Body
 * Header
 * Header / Primary / Secondary Navigation
 * Content
@@ -33,47 +32,16 @@
 * Search Form
 * Footer Widgets
 * Footer
-* Utilities
-* Max 480px Media
+* Max 980px Media
+* Max 768px Media
 */
 
-/* Import % Reset
+/* Import & Reset
 ------------------------------------------------------------ */
-@import url("assets/css/bootstrap.min.css");
-@import url("assets/css/bootstrap-responsive.css");
+@import url("assets/css/calibrefx.css");
 
 /* Typography
 ------------------------------------------------------------ */
-h1,h2,h3,h4,h5,h6 {
-	margin: 0 0 5px;
-}
-
-h1,h2,h2 a,h2 a:visited {
-	font-size: 26px;
-	line-height: 30px;
-	color: #333333;
-}
-
-.taxonomy-description h1,
-.widget-area h2 a {
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 20px;
-}
-
-h2 a:hover {
-	color: #25a;
-	text-decoration: none;
-}
-
-h3 {
-	font-size: 20px;
-}
-
-h4 {
-	font-size: 16px;
-}
-
 .widget-area h4 {
 	background-color: #f5f5f5;
 	border-bottom: 1px solid #ddd;
@@ -99,18 +67,6 @@ h4 {
 	text-transform: uppercase;
 }
 
-h5 {
-	font-size: 14px;
-}
-
-h6 {
-	font-size: 12px;
-}
-
-/* Body
------------------------------------------------------------- */
-body {
-}
 
 /* Header
 ------------------------------------------------------------ */
@@ -152,12 +108,13 @@ body {
 ------------------------------------------------------------ */
 
 #content{
+	margin:0;
 }
 
 .sidebar-content #content{
 	float:right;
 	margin-left: 0;
-	margin-right: 30px;
+	margin-right: 0;
 }
 
 .sidebar-content #sidebar{
@@ -181,6 +138,10 @@ body {
 /* Widgets
 ------------------------------------------------------------ */
 .widget-wrap{
+	padding: 0;
+}
+
+#footer-widget .widget-wrap{
 	padding: 10px 20px;
 }
 
@@ -444,49 +405,32 @@ body {
 	margin-right: 10px;
 }
 
-/* Utilities
------------------------------------------------------------- */
-img.centered,
-.aligncenter {
-	display: block;
-	margin: 0 auto 10px;
-}
-
-img.alignnone {
-	display: inline;
-	margin: 0 0 10px;
-}
-
-img.alignleft {
-	display: inline;
-	margin: 0 10px 10px 0;
-}
-
-img.alignright {
-	display: inline;
-	margin: 0 0 10px 10px;
-}
-
-.alignright {
-  float: right;
-}
-.alignleft {
-  float: left;
-}
 
 /* For Media 980px
 ------------------------------------------------------------ */
 @media (max-width: 980px) {
 	.header-right{display:none;overflow:hidden;}
+	#wrapper{
+		width: 960px;
+		margin:auto;
+	}
+	
+	.widget-wrap{
+		padding:0;
+	}
 }
 
 @media (min-width: 980px) {
 	.navbar .brand{display:none;}
+	
 }
 
 /* For Media 768px
 ------------------------------------------------------------ */
 @media (max-width: 768px) {
+	#wrapper{
+		width: auto;
+	}
 	/* Subnav */
 	.subnav {
 		position: static;
@@ -513,5 +457,9 @@ img.alignright {
 		-webkit-border-radius: 4px 4px 0 0;
 			-moz-border-radius: 4px 4px 0 0;
 				border-radius: 4px 4px 0 0;
+	}
+	
+	.widget-wrap{
+		padding:0;
 	}
 }

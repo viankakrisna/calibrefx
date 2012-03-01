@@ -48,3 +48,13 @@ function calibrefx_login_logo() {
 }
 
 add_action('login_head', 'calibrefx_login_logo');
+
+function calibrefx_wp_login_url() {
+	echo apply_filters('calibrefx_wp_login_url', FRAMEWORK_URL);
+}
+add_filter('login_headerurl', calibrefx_wp_login_url);
+
+function calibrefx_wp_login_title() {
+	echo apply_filters('calibrefx_wp_login_title', _e('Powered By ') . FRAMEWORK_NAME . ' ' . FRAMEWORK_VERSION);
+}
+add_filter('login_headertitle', calibrefx_wp_login_title);

@@ -41,7 +41,7 @@ function calibrefx_footer_scrolltop_shortcode( $atts ) {
 
 	$defaults = array( 
 		'text'     => __( 'Return To Top', 'calibrefx' ),
-		'href'     => '#wrap',
+		'href'     => '#wrapper',
 		'nofollow' => true,
 		'before'   => '',
 		'after'    => ''
@@ -100,7 +100,7 @@ function calibrefx_footer_theme_link_shortcode( $atts ) {
 	if ( ! is_child_theme() || ! defined( 'CHILD_THEME_NAME' ) || ! defined( 'CHILD_THEME_URL' ) )
 		return;
 
-	$output = sprintf( '%s<a href="%s" title="%s">%s</a>%s', $atts['before'], esc_url( THEME_URL ), esc_attr( THEME_NAME ), esc_html( THEME_NAME ), $atts['after'] );
+	$output = sprintf( '%s<a href="%s" title="%s">%s</a>%s', $atts['before'], esc_url( CHILD_THEME_URL ), esc_attr( CHILD_THEME_NAME ), esc_html( CHILD_THEME_NAME ), $atts['after'] );
 
 	return apply_filters( 'calibrefx_footer_theme_link_shortcode', $output, $atts );
 

@@ -15,7 +15,7 @@
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
  *
- * This File will show Framework Information and Update
+ * Handle framework about page
  *
  * @package CalibreFx
  */

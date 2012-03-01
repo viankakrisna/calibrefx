@@ -20,10 +20,20 @@
  * @package CalibreFx
  */
  
-register_nav_menus( array(
-	'primary' => __('Primary Navigation Menu', 'calibrefx'),
-	'secondary' => __('Secondary Navigation Menu', 'calibrefx')
-) );
+add_action('after_setup_theme', calibrefx_register_nav_menus);
+/**
+ * Register CalibreFx menus with WordPress menu
+ */
+function calibrefx_register_nav_menus(){
+	if ( ! current_theme_supports( 'calibrefx-menus' ) )
+		return false;
+		
+	$menus = get_theme_support( 'calibrefx-menus' );
+	
+	foreach($menus as $menu){
+		register_nav_menus( $menu );
+	}
+}
 
 /**
  * Check if the nav menu is supported by the child themes
@@ -65,16 +75,16 @@ function calibrefx_do_nav() {
 		}
 
 		$nav_output = sprintf( '
-			<div id="nav" class="navbar row%2$s">
+			<div id="nav" class="navbar row">
 				<div class="navbar-inner">
-					<div class="container%2$s">
+					<div class="container">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
 					<a class="brand" href="#">Project name</a>
-					<div class="nav-collapse">%1$s</div></div></div></div>', $nav, calibrefx_layout_type());
+					<div class="nav-collapse">%1$s</div></div></div></div>', $nav);
 
 		echo apply_filters( 'calibrefx_do_nav', $nav_output, $nav, $args );
 
@@ -105,9 +115,9 @@ function calibrefx_do_subnav() {
 		}
 
 		$subnav_output = sprintf( '
-			<div id="subnav" class="subnav row%2$s">
+			<div id="subnav" class="subnav row">
 				%1$s
-			</div>', $subnav, calibrefx_layout_type());
+			</div>', $subnav);
 
 		echo apply_filters( 'calibrefx_do_subnav', $subnav_output, $subnav, $args );
 	}

@@ -35,7 +35,7 @@ class Calibrefx_Facebook_Like_Widget extends WP_Widget {
 			'facebook_url'     	  	=> '',
 			'facebook_width'      	=> 200,
 			'facebook_height' 		=> 400,
-			'facebook_color'      	=> '',
+			'facebook_color'      	=> 'light',
 			'facebook_show_faces'   => 1,
 			'facebook_border_color' => '',
 			'facebook_show_stream'  => 1,
@@ -48,7 +48,7 @@ class Calibrefx_Facebook_Like_Widget extends WP_Widget {
 		);
 		
 		$control_ops = array(
-			'id_base' => 'latest-tweets',
+			'id_base' => 'facebook-like',
 			'width'   => 200,
 			'height'  => 250,
 		);
@@ -75,7 +75,27 @@ class Calibrefx_Facebook_Like_Widget extends WP_Widget {
 			echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
 
 		//Widget Body Start
+?>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=<?php echo  $instance['facebook_page_id']; ?>";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 		
+		<div class="fb-like-box" 
+			data-href="<?php echo  $instance['facebook_url']; ?>" 
+			data-colorscheme="<?php echo  $instance['facebook_color']; ?>"
+			data-width="<?php echo  $instance['facebook_width']; ?>" 
+			data-border-color="<?php echo  $instance['facebook_border_color']; ?>"
+			data-height="<?php echo  $instance['facebook_height']; ?>" 
+			data-show-faces="<?php echo  ($instance['facebook_show_faces'] == '1')? 'true' : 'false'; ?>" 
+			data-stream="<?php echo  ($instance['facebook_show_stream'] == '1')? 'true' : 'false'; ?>" 
+			data-header="<?php echo  ($instance['facebook_show_header'] == '1')? 'true' : 'false'; ?>">
+		</div>
+<?php
 		//Widget Body Stop
 			
 		echo '</div>' . $after_widget;
@@ -87,6 +107,7 @@ class Calibrefx_Facebook_Like_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 
 		$new_instance['title'] = strip_tags( $new_instance['title'] );
+		$new_instance['facebook_show_stream'] = $new_instance['facebook_show_stream'];
 		return $new_instance;
 
 	}
@@ -101,6 +122,11 @@ class Calibrefx_Facebook_Like_Widget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'calibrefx' ); ?>:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" class="widefat" />
 		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id( 'facebook_page_id' ); ?>"><?php _e( 'Facebook Page ID', 'calibrefx' ); ?>:</label>
+			<input type="text" id="<?php echo $this->get_field_id( 'facebook_page_id' ); ?>" name="<?php echo $this->get_field_name( 'facebook_page_id' ); ?>" value="<?php echo esc_attr( $instance['facebook_page_id'] ); ?>" class="widefat" />
+		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'facebook_url' ); ?>"><?php _e( 'Facebook Url', 'calibrefx' ); ?>:</label>
@@ -110,14 +136,35 @@ class Calibrefx_Facebook_Like_Widget extends WP_Widget {
 		<hr class="div" />
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'facebook_width' ); ?>"><?php _e( 'Facebook Url', 'calibrefx' ); ?>:</label>
+			<label for="<?php echo $this->get_field_id( 'facebook_width' ); ?>"><?php _e( 'Width', 'calibrefx' ); ?>:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'facebook_width' ); ?>" name="<?php echo $this->get_field_name( 'facebook_width' ); ?>" value="<?php echo esc_attr( $instance['facebook_width'] ); ?>" class="widefat" />
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'facebook_url' ); ?>"><?php _e( 'Facebook Url', 'calibrefx' ); ?>:</label>
-			<input type="text" id="<?php echo $this->get_field_id( 'facebook_url' ); ?>" name="<?php echo $this->get_field_name( 'facebook_url' ); ?>" value="<?php echo esc_attr( $instance['facebook_url'] ); ?>" class="widefat" />
+			<label for="<?php echo $this->get_field_id( 'facebook_height' ); ?>"><?php _e( 'Height', 'calibrefx' ); ?>:</label>
+			<input type="text" id="<?php echo $this->get_field_id( 'facebook_height' ); ?>" name="<?php echo $this->get_field_name( 'facebook_height' ); ?>" value="<?php echo esc_attr( $instance['facebook_height'] ); ?>" class="widefat" />
 		</p>
+		
+		<hr class="div" />
+		
+		<p>
+			<label for="<?php echo $this->get_field_id( 'facebook_color' ); ?>"><?php _e( 'Color Scheme', 'calibrefx' ); ?>:</label>
+			<select id="<?php echo $this->get_field_id('facebook_color'); ?>" name="<?php echo $this->get_field_name('facebook_color'); ?>">
+				<option style="padding-right:10px;" value="light" <?php selected('light', $instance['facebook_color']); ?>><?php _e('Light', 'calibrefx'); ?></option>
+				<option style="padding-right:10px;" value="dark" <?php selected('dark', $instance['facebook_color']); ?>><?php _e('Dark', 'calibrefx'); ?></option>
+			</select>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id( 'facebook_border_color' ); ?>"><?php _e( 'Border Color', 'calibrefx' ); ?>:</label>
+			<input type="text" id="<?php echo $this->get_field_id( 'facebook_border_color' ); ?>" name="<?php echo $this->get_field_name( 'facebook_border_color' ); ?>" value="<?php echo esc_attr( $instance['facebook_border_color'] ); ?>" class="widefat" />
+		</p>
+		
+		<hr class="div" />
+		
+		<p><input id="<?php echo $this->get_field_id('facebook_show_faces'); ?>" type="checkbox" name="<?php echo $this->get_field_name('facebook_show_faces'); ?>" value="1" <?php checked(1, $instance['facebook_show_faces']); ?>/> <label for="<?php echo $this->get_field_id('facebook_show_faces'); ?>"><?php _e('Show Faces', 'calibrefx'); ?></label></p>
+		<p><input id="<?php echo $this->get_field_id('facebook_show_stream'); ?>" type="checkbox" name="<?php echo $this->get_field_name('facebook_show_stream'); ?>" value="1" <?php checked(1, $instance['facebook_show_stream']); ?>/> <label for="<?php echo $this->get_field_id('facebook_show_stream'); ?>"><?php _e('Show Stream', 'calibrefx'); ?></label></p>
+		<p><input id="<?php echo $this->get_field_id('facebook_show_header'); ?>" type="checkbox" name="<?php echo $this->get_field_name('facebook_show_header'); ?>" value="1" <?php checked(1, $instance['facebook_show_header']); ?>/> <label for="<?php echo $this->get_field_id('facebook_show_header'); ?>"><?php _e('Show Header', 'calibrefx'); ?></label></p>
 <?php
 	}
 }

@@ -29,6 +29,8 @@ jQuery(document).ready(function($) {
 	    $('input[name="'+tmp+'"]').parent("label").removeClass("selected");
 	    $(this).parent("label").toggleClass("selected", this.selected);      
 	});
+	
+	$('#calibrefx-admin-bar').sticky({topSpacing:0,center:true, className: 'sticky'});
 });
 
 function calibrefx_confirm( text ) {
