@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>File Source for search.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1>Source for file search.php</h1>
+<p>Documentation is available at <a href="../CalibreFx/_framework---lib---structure---search.php.html">search.php</a></p>
+<div class="src-code">
+<div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><a name="a2"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a3"></a><span class="src-doc">&nbsp;*&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a4"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a5"></a><span class="src-doc">&nbsp;*&nbsp;WordPress&nbsp;Themes&nbsp;Framework&nbsp;by&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a6"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a7"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a8"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a9"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@copyright</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;Copyright&nbsp;(c)&nbsp;2012,&nbsp;Suntech&nbsp;Inti&nbsp;Perkasa.</span></div></li>
+<li><div class="src-line"><a name="a10"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@license</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Commercial</span></div></li>
+<li><div class="src-line"><a name="a11"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@link</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://calibrefx.com</span></div></li>
+<li><div class="src-line"><a name="a12"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@since</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version&nbsp;1.0</span></div></li>
+<li><div class="src-line"><a name="a13"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@filesource</span></div></li>
+<li><div class="src-line"><a name="a14"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a15"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;WARNING:&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;the&nbsp;core&nbsp;CalibreFx&nbsp;framework.&nbsp;DO&nbsp;NOT&nbsp;edit</span></div></li>
+<li><div class="src-line"><a name="a16"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;this&nbsp;file&nbsp;under&nbsp;any&nbsp;circumstances.</span></div></li>
+<li><div class="src-line"><a name="a17"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a18"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;This&nbsp;file&nbsp;control&nbsp;search&nbsp;box</span></div></li>
+<li><div class="src-line"><a name="a19"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a20"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a21"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a22"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a23"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a24"></a><span class="src-id">add_filter</span><span class="src-sym">(</span><span class="src-str">'get_search_form'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_search_form'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a25"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a26"></a><span class="src-doc">&nbsp;*&nbsp;Using&nbsp;a&nbsp;filter,&nbsp;we're&nbsp;replacing&nbsp;the&nbsp;default&nbsp;search&nbsp;form&nbsp;structure</span></div></li>
+<li><div class="src-line"><a name="a27"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a28"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---structure---search.php.html#functioncalibrefx_search_form">calibrefx_search_form</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a29"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a30"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$search_text&nbsp;</span>=&nbsp;<span class="src-id">get_search_query</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span>?&nbsp;<span class="src-id">esc_attr</span><span class="src-sym">(&nbsp;</span><span class="src-id">apply_filters</span><span class="src-sym">(&nbsp;</span><span class="src-str">'the_search_query'</span><span class="src-sym">,&nbsp;</span><span class="src-id">get_search_query</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;)&nbsp;)&nbsp;</span>:&nbsp;<span class="src-id">apply_filters</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_search_text'</span><span class="src-sym">,&nbsp;</span><a href="http://www.php.net/sprintf">sprintf</a><span class="src-sym">(&nbsp;</span><span class="src-id">esc_attr__</span><span class="src-sym">(</span><span class="src-str">'Search&nbsp;this&nbsp;website&nbsp;%s'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'&amp;hellip;'</span><span class="src-sym">)&nbsp;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a31"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a32"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$button_text&nbsp;</span>=&nbsp;<span class="src-id">apply_filters</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_search_button_text'</span><span class="src-sym">,&nbsp;</span><span class="src-id">esc_attr__</span><span class="src-sym">(&nbsp;</span><span class="src-str">'Search'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'&nbsp;</span><span class="src-sym">)&nbsp;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a33"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a34"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$onfocus&nbsp;</span>=&nbsp;<span class="src-str">&quot;</span><span class="src-str">&nbsp;onfocus=\&quot;if&nbsp;(this.value&nbsp;==&nbsp;'<span class="src-var">$search_text</span>')&nbsp;{this.value&nbsp;=&nbsp;'';}\&quot;</span><span class="src-str">&quot;</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a35"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$onblur&nbsp;</span>=&nbsp;<span class="src-str">&quot;</span><span class="src-str">&nbsp;onblur=\&quot;if&nbsp;(this.value&nbsp;==&nbsp;'')&nbsp;{this.value&nbsp;=&nbsp;'<span class="src-var">$search_text</span>';}\&quot;</span><span class="src-str">&quot;</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a36"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a37"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$form&nbsp;</span>=&nbsp;<span class="src-str">'</span></div></li>
+<li><div class="src-line"><a name="a38"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;form&nbsp;method=&quot;get&quot;&nbsp;class=&quot;searchform&quot;&nbsp;action=&quot;'&nbsp;</span>.&nbsp;<span class="src-id">home_url</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span>.&nbsp;<span class="src-str">'/&quot;&nbsp;&gt;</span></div></li>
+<li><div class="src-line"><a name="a39"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;value=&quot;'</span>.&nbsp;<span class="src-var">$search_text&nbsp;</span>.<span class="src-str">'&quot;&nbsp;name=&quot;s&quot;&nbsp;class=&quot;s&quot;'</span>.&nbsp;<span class="src-var">$onfocus&nbsp;</span>.&nbsp;<span class="src-var">$onblur&nbsp;</span>.<span class="src-str">'&nbsp;/&gt;</span></div></li>
+<li><div class="src-line"><a name="a40"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;submit&quot;&nbsp;class=&quot;searchsubmit&quot;&nbsp;value=&quot;'</span>.&nbsp;<span class="src-var">$button_text&nbsp;</span>.<span class="src-str">'&quot;&nbsp;/&gt;</span></div></li>
+<li><div class="src-line"><a name="a41"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;</span></div></li>
+<li><div class="src-line"><a name="a42"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a43"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a44"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id">apply_filters</span><span class="src-sym">(</span><span class="src-str">'calibrefx_search_form'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$form</span><span class="src-sym">,&nbsp;</span><span class="src-var">$search_text</span><span class="src-sym">,&nbsp;</span><span class="src-var">$button_text</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a45"></a><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 05 Mar 2012 16:50:48 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

@@ -6,10 +6,10 @@
  *
  * @package		CalibreFx
  * @author		CalibreWorks Team
- * @authorlink	http://calibreworks.com
+ * @authorlink	http://calibrefx.com
  * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
- * @link		http://calibreworks.com
+ * @link		http://calibrefx.com
  * @since		Version 1.0
  * @filesource 
  *

@@ -21,7 +21,7 @@
  */
  
 /**
- * Helper function for to display Genesis BreadCrumb
+ * Helper function for to display Calibrefx BreadCrumb
  *
  */
 function calibrefx_breadcrumb( $args = array() ) {

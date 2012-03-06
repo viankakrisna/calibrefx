@@ -24,7 +24,7 @@
  * This file defines return functions to be used as shortcodes
  * in the site footer.
  * 
- * @package Genesis
+ * @package Calibrefx
  * 
  * @example <code>[footer_something]</code>
  * @example <code>[footer_something before="<em>" after="</em>" foo="bar"]</code>

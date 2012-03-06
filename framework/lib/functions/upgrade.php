@@ -45,8 +45,10 @@ function calibrefx_update_check() {
 			)
 		);
 
-		$response = wp_remote_post( $url, $options );
-		$calibrefx_update = wp_remote_retrieve_body( $response );
+		//$response = wp_remote_post( $url, $options );
+		//$calibrefx_update = wp_remote_retrieve_body( $response );
+                //@TODO: make an API Call and then return the serialize array about the new version
+                $calibrefx_update = serialize(array("new_version" => '1.0', "changelog_url" => '#', "url" => "themes-url", "package"=>"download-url"));
 
 		/** If an error occurred, return FALSE, store for 1 hour */
 		if ( 'error' == $calibrefx_update || is_wp_error( $calibrefx_update ) || ! is_serialized( $calibrefx_update ) ) {
@@ -76,9 +78,9 @@ add_action( 'admin_init', 'calibrefx_upgrade', 25 );
 function calibrefx_upgrade() {
 	
 	/** Don't do anything if we're on the latest version */
-	if ( calibrefx_get_option( 'db_version', null, false ) >= FRAMEWORK_DB_VERSION )
+	if ( calibrefx_get_option( 'calibrefx_db_version', null, false ) >= FRAMEWORK_DB_VERSION )
 		return;
-	
+	//debug_var(calibrefx_get_option( 'calibrefx_db_version'));
 	//Do upgrade time to time here
 	
 	
@@ -93,8 +95,8 @@ function calibrefx_upgrade_redirect() {
 
 	if ( ! is_admin() )
 		return;
-
-	calibrefx_admin_redirect( 'calibrefx', array( 'upgraded' => 'true' ) );
+         
+	calibrefx_admin_redirect( 'calibrefx-about', array( 'upgraded' => 'true' ) );
 	exit;
 
 }
@@ -106,11 +108,11 @@ add_action( 'admin_notices', 'calibrefx_upgraded_notice' );
  */
 function calibrefx_upgraded_notice() {
 
-	if ( ! calibrefx_is_menu_page( 'calibrefx' ) )
+	if ( ! calibrefx_is_menu_page( 'calibrefx-about' ) )
 		return;
 
 	if ( isset( $_REQUEST['upgraded'] ) && 'true' == $_REQUEST['upgraded'] )
-		echo '<div id="message" class="updated highlight" id="message"><p><strong>' . sprintf( __( 'Congratulations! You are now using the latest version of CalibreFx %s', 'calibrefx' ), calibrefx_get_option( 'calibrefx_version' ) ) . '</strong></p></div>';
+		echo '<div id="message" class="updated highlight" id="message"><p>' . sprintf( __( 'Congratulations! You are now using the latest version of Calibrefx v%s', 'calibrefx' ), calibrefx_get_option( 'calibrefx_version' ) ) . '</p></div>';
 
 }
 
@@ -123,7 +125,7 @@ function calibrefx_update_action_links( $actions, $theme ) {
 	if ( 'calibrefx' != $theme )
 		return $actions;
 
-	return sprintf( '<a href="%s">%s</a>', menu_page_url( 'calibrefx', 0 ), __( 'Click here to complete the upgrade', 'calibrefx' ) );
+	return sprintf( '<a href="%s">%s</a>', menu_page_url( 'calibrefx-about', 0 ), __( 'Click here to complete the upgrade', 'calibrefx' ) );
 
 }
  
@@ -135,7 +137,6 @@ add_action( 'admin_notices', 'calibrefx_update_notification' );
 function calibrefx_update_notification() {
 	
 	$calibrefx_update = calibrefx_update_check();
-	//$calibrefx_update = array("new_version" => '1.1', "changelog_url" => '#');
 
 	if ( ! is_super_admin() || ! $calibrefx_update )
 		return false;

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>File Source for menu.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1>Source for file menu.php</h1>
+<p>Documentation is available at <a href="../CalibreFx/_lib---structure---menu.php.html">menu.php</a></p>
+<div class="src-code">
+<div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><a name="a2"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a3"></a><span class="src-doc">&nbsp;*&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a4"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a5"></a><span class="src-doc">&nbsp;*&nbsp;WordPress&nbsp;Themes&nbsp;Framework&nbsp;by&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a6"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a7"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a8"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a9"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@copyright</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;Copyright&nbsp;(c)&nbsp;2012,&nbsp;Suntech&nbsp;Inti&nbsp;Perkasa.</span></div></li>
+<li><div class="src-line"><a name="a10"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@license</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Commercial</span></div></li>
+<li><div class="src-line"><a name="a11"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@link</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://calibrefx.com</span></div></li>
+<li><div class="src-line"><a name="a12"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@since</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version&nbsp;1.0</span></div></li>
+<li><div class="src-line"><a name="a13"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@filesource</span></div></li>
+<li><div class="src-line"><a name="a14"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a15"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;WARNING:&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;the&nbsp;core&nbsp;CalibreFx&nbsp;framework.&nbsp;DO&nbsp;NOT&nbsp;edit</span></div></li>
+<li><div class="src-line"><a name="a16"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;this&nbsp;file&nbsp;under&nbsp;any&nbsp;circumstances.</span></div></li>
+<li><div class="src-line"><a name="a17"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a18"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;This&nbsp;is&nbsp;contain&nbsp;function&nbsp;and&nbsp;register&nbsp;wordpress&nbsp;menu</span></div></li>
+<li><div class="src-line"><a name="a19"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a20"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a21"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a22"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a23"></a><span class="src-id">add_action</span><span class="src-sym">(</span><span class="src-str">'after_setup_theme'</span><span class="src-sym">,&nbsp;</span><a href="../CalibreFx/_lib---structure---menu.php.html#functioncalibrefx_register_nav_menus">calibrefx_register_nav_menus</a><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a24"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a25"></a><span class="src-doc">&nbsp;*&nbsp;Register&nbsp;CalibreFx&nbsp;menus&nbsp;with&nbsp;WordPress&nbsp;menu</span></div></li>
+<li><div class="src-line"><a name="a26"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a27"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_lib---structure---menu.php.html#functioncalibrefx_register_nav_menus">calibrefx_register_nav_menus</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a28"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!&nbsp;</span><span class="src-id">current_theme_supports</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-menus'&nbsp;</span><span class="src-sym">)&nbsp;)</span></div></li>
+<li><div class="src-line"><a name="a29"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id">false</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a30"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a31"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$menus&nbsp;</span>=&nbsp;<span class="src-id">get_theme_support</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-menus'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a32"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a33"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">foreach</span><span class="src-sym">(</span><span class="src-var">$menus&nbsp;</span><span class="src-key">as&nbsp;</span><span class="src-var">$menu</span><span class="src-sym">)</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a34"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">register_nav_menus</span><span class="src-sym">(&nbsp;</span><span class="src-var">$menu&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a35"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a36"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a37"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a38"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a39"></a><span class="src-doc">&nbsp;*&nbsp;Check&nbsp;if&nbsp;the&nbsp;nav&nbsp;menu&nbsp;is&nbsp;supported&nbsp;by&nbsp;the&nbsp;child&nbsp;themes</span></div></li>
+<li><div class="src-line"><a name="a40"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a41"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_lib---structure---menu.php.html#functioncalibrefx_nav_menu_supported">calibrefx_nav_menu_supported</a><span class="src-sym">(&nbsp;</span><span class="src-var">$menu&nbsp;</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a42"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a43"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!&nbsp;</span><span class="src-id">current_theme_supports</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-menus'&nbsp;</span><span class="src-sym">)&nbsp;)</span></div></li>
+<li><div class="src-line"><a name="a44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id">false</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a45"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a46"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$menus&nbsp;</span>=&nbsp;<span class="src-id">get_theme_support</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-menus'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a47"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a48"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><a href="http://www.php.net/array_key_exists">array_key_exists</a><span class="src-sym">(&nbsp;</span><span class="src-var">$menu</span><span class="src-sym">,&nbsp;</span>(array)&nbsp;<span class="src-var">$menus</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]&nbsp;</span><span class="src-sym">)&nbsp;)</span></div></li>
+<li><div class="src-line"><a name="a49"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id">true</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a50"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a51"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id">false</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a52"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a53"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a54"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a55"></a><span class="src-id">add_action</span><span class="src-sym">(</span><span class="src-str">'calibrefx_after_header'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_do_nav'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a56"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a57"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;function&nbsp;is&nbsp;for&nbsp;displaying&nbsp;the&nbsp;&quot;Primary&nbsp;Navigation&quot;&nbsp;bar.</span></div></li>
+<li><div class="src-line"><a name="a58"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a59"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_lib---structure---menu.php.html#functioncalibrefx_do_nav">calibrefx_do_nav</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a60"></a>&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;Do&nbsp;nothing&nbsp;if&nbsp;menu&nbsp;not&nbsp;supported&nbsp;*/</div></li>
+<li><div class="src-line"><a name="a61"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!&nbsp;</span><a href="../CalibreFx/_lib---structure---menu.php.html#functioncalibrefx_nav_menu_supported">calibrefx_nav_menu_supported</a><span class="src-sym">(&nbsp;</span><span class="src-str">'primary'&nbsp;</span><span class="src-sym">)&nbsp;)</span></div></li>
+<li><div class="src-line"><a name="a62"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a63"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a64"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><a href="../CalibreFx/_lib---functions---options.php.html#functioncalibrefx_get_option">calibrefx_get_option</a><span class="src-sym">(</span><span class="src-str">'nav'</span><span class="src-sym">)&nbsp;)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a65"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-id">has_nav_menu</span><span class="src-sym">(&nbsp;</span><span class="src-str">'primary'&nbsp;</span><span class="src-sym">)&nbsp;)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a66"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a67"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$args&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a68"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'theme_location'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'primary'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a69"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'container'&nbsp;</span>=&gt;&nbsp;<span class="src-str">''</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a70"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'menu_class'&nbsp;</span>=&gt;&nbsp;<a href="../CalibreFx/_lib---functions---options.php.html#functioncalibrefx_get_option">calibrefx_get_option</a><span class="src-sym">(</span><span class="src-str">'nav_fixed_top'</span><span class="src-sym">)&nbsp;</span>?&nbsp;<span class="src-str">'navbar&nbsp;navbar-fixed-top&nbsp;menu-primary&nbsp;menu&nbsp;superfish&nbsp;sf-js-enabled'&nbsp;</span>:&nbsp;<span class="src-str">'superfish&nbsp;sf-js-enabled&nbsp;nav&nbsp;menu-primary&nbsp;menu'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a71"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'echo'&nbsp;</span>=&gt;&nbsp;<span class="src-num">0</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a72"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'walker'&nbsp;</span>=&gt;&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../CalibreFx/CalibreFx_Walker_Nav_menu.html">CalibreFx_Walker_Nav_menu</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a73"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a74"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$nav&nbsp;</span>=&nbsp;<span class="src-id">wp_nav_menu</span><span class="src-sym">(&nbsp;</span><span class="src-var">$args&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a75"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a76"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a77"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$nav_output&nbsp;</span>=&nbsp;<a href="http://www.php.net/sprintf">sprintf</a><span class="src-sym">(&nbsp;</span><span class="src-str">'</span></div></li>
+<li><div class="src-line"><a name="a78"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;id=&quot;nav&quot;&nbsp;class=&quot;navbar&nbsp;row&quot;&gt;</span></div></li>
+<li><div class="src-line"><a name="a79"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;navbar-inner&quot;&gt;</span></div></li>
+<li><div class="src-line"><a name="a80"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;container&quot;&gt;</span></div></li>
+<li><div class="src-line"><a name="a81"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class=&quot;btn&nbsp;btn-navbar&quot;&nbsp;data-toggle=&quot;collapse&quot;&nbsp;data-target=&quot;.nav-collapse&quot;&gt;</span></div></li>
+<li><div class="src-line"><a name="a82"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;class=&quot;icon-bar&quot;&gt;&lt;/span&gt;</span></div></li>
+<li><div class="src-line"><a name="a83"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;class=&quot;icon-bar&quot;&gt;&lt;/span&gt;</span></div></li>
+<li><div class="src-line"><a name="a84"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;class=&quot;icon-bar&quot;&gt;&lt;/span&gt;</span></div></li>
+<li><div class="src-line"><a name="a85"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;</span></div></li>
+<li><div class="src-line"><a name="a86"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class=&quot;brand&quot;&nbsp;href=&quot;#&quot;&gt;Project&nbsp;name&lt;/a&gt;</span></div></li>
+<li><div class="src-line"><a name="a87"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;nav-collapse&quot;&gt;%1$s&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$nav</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a88"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a89"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-id">apply_filters</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_do_nav'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$nav_output</span><span class="src-sym">,&nbsp;</span><span class="src-var">$nav</span><span class="src-sym">,&nbsp;</span><span class="src-var">$args&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a90"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a91"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a92"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a93"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a94"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_after_header'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_do_subnav'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a95"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a96"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;function&nbsp;is&nbsp;for&nbsp;displaying&nbsp;the&nbsp;&quot;Secondary&nbsp;Navigation&quot;&nbsp;bar.</span></div></li>
+<li><div class="src-line"><a name="a97"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a98"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_lib---structure---menu.php.html#functioncalibrefx_do_subnav">calibrefx_do_subnav</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a99"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a100"></a>&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;Do&nbsp;nothing&nbsp;if&nbsp;menu&nbsp;not&nbsp;supported&nbsp;*/</div></li>
+<li><div class="src-line"><a name="a101"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!&nbsp;</span><a href="../CalibreFx/_lib---structure---menu.php.html#functioncalibrefx_nav_menu_supported">calibrefx_nav_menu_supported</a><span class="src-sym">(&nbsp;</span><span class="src-str">'secondary'&nbsp;</span><span class="src-sym">)&nbsp;)</span></div></li>
+<li><div class="src-line"><a name="a102"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a103"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a104"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><a href="../CalibreFx/_lib---functions---options.php.html#functioncalibrefx_get_option">calibrefx_get_option</a><span class="src-sym">(&nbsp;</span><span class="src-str">'subnav'&nbsp;</span><span class="src-sym">)&nbsp;)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a105"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-id">has_nav_menu</span><span class="src-sym">(&nbsp;</span><span class="src-str">'secondary'&nbsp;</span><span class="src-sym">)&nbsp;)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a106"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$args&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a107"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'theme_location'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'secondary'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a108"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'container'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">''</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a109"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'menu_class'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">'nav&nbsp;nav-pills&nbsp;menu-secondary&nbsp;menu&nbsp;superfish&nbsp;sf-js-enabled'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a110"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'echo'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-num">0</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a111"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'walker'&nbsp;</span>=&gt;&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../CalibreFx/CalibreFx_Walker_Nav_menu.html">CalibreFx_Walker_Nav_menu</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a112"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a113"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a114"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$subnav&nbsp;</span>=&nbsp;<span class="src-id">wp_nav_menu</span><span class="src-sym">(&nbsp;</span><span class="src-var">$args&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a115"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a116"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a117"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$subnav_output&nbsp;</span>=&nbsp;<a href="http://www.php.net/sprintf">sprintf</a><span class="src-sym">(&nbsp;</span><span class="src-str">'</span></div></li>
+<li><div class="src-line"><a name="a118"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;id=&quot;subnav&quot;&nbsp;class=&quot;subnav&nbsp;row&quot;&gt;</span></div></li>
+<li><div class="src-line"><a name="a119"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1$s</span></div></li>
+<li><div class="src-line"><a name="a120"></a><span class="src-str">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$subnav</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a121"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a122"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-id">apply_filters</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_do_subnav'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$subnav_output</span><span class="src-sym">,&nbsp;</span><span class="src-var">$subnav</span><span class="src-sym">,&nbsp;</span><span class="src-var">$args&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a123"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a124"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a125"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a126"></a><span class="src-id">add_filter</span><span class="src-sym">(</span><span class="src-str">'nav_menu_css_class'&nbsp;</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_nav_menu_css_class'&nbsp;</span><span class="src-sym">,&nbsp;</span><span class="src-num">10&nbsp;</span><span class="src-sym">,&nbsp;</span><span class="src-num">2</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a127"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a128"></a><span class="src-doc">&nbsp;*&nbsp;Add&nbsp;.active&nbsp;class&nbsp;when&nbsp;the&nbsp;current&nbsp;menu&nbsp;is&nbsp;active,&nbsp;not&nbsp;override&nbsp;the&nbsp;current-page-item</span></div></li>
+<li><div class="src-line"><a name="a129"></a><span class="src-doc">&nbsp;*&nbsp;from&nbsp;WordPress</span></div></li>
+<li><div class="src-line"><a name="a130"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a131"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_lib---structure---menu.php.html#functioncalibrefx_nav_menu_css_class">calibrefx_nav_menu_css_class</a><span class="src-sym">(</span><span class="src-var">$classes</span><span class="src-sym">,&nbsp;</span><span class="src-var">$item</span><span class="src-sym">)</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a132"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if</span><span class="src-sym">(</span><a href="http://www.php.net/in_array">in_array</a><span class="src-sym">(</span><span class="src-str">&quot;current-menu-item&quot;</span><span class="src-sym">,&nbsp;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">classes</span><span class="src-sym">)&nbsp;</span>||&nbsp;<a href="http://www.php.net/in_array">in_array</a><span class="src-sym">(</span><span class="src-str">&quot;current-menu-parent&quot;</span><span class="src-sym">,&nbsp;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">classes</span><span class="src-sym">)&nbsp;</span>||&nbsp;<a href="http://www.php.net/in_array">in_array</a><span class="src-sym">(</span><span class="src-str">&quot;current-menu-acestor&quot;</span><span class="src-sym">,&nbsp;</span><span class="src-var">$item</span><span class="src-sym">-&gt;</span><span class="src-id">classes</span><span class="src-sym">))</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a133"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$classes</span><span class="src-sym">[</span><span class="src-sym">]&nbsp;</span>=&nbsp;<span class="src-str">&quot;active&quot;</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a134"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a135"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$classes</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a136"></a><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 05 Mar 2012 16:41:39 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

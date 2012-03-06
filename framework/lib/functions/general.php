@@ -70,3 +70,22 @@ function calibrefx_author_box( $context = '' ) {
 	echo apply_filters( 'calibrefx_author_box', sprintf( $pattern, $gravatar, $title, $description ), $context, $pattern, $gravatar, $title, $description );
 
 }
+
+/**
+ * Helper function used to check that we're targeting a specific Calibrefx admin page.
+ *
+ */
+function calibrefx_is_menu_page( $pagehook = '' ) {
+
+	global $page_hook;
+
+	if ( isset( $page_hook ) && $page_hook == $pagehook )
+		return true;
+
+	/* May be too early for $page_hook */
+	if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == $pagehook )
+		return true;
+
+	return false;
+
+}

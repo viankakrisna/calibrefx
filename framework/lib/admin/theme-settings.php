@@ -19,40 +19,6 @@
  *
  * @package CalibreFx
  */
- 
-/**
- * This function registers the default values for Genesis theme settings
- */
-function calibrefx_theme_settings_defaults() {
-	$defaults = array( // define our defaults
-		'update' => 1,
-		'blog_title' => 'text',
-		'header_right' => 0,
-		'nav' => 1,
-		'layout_type' => 'fluid',
-		'site_layout' => calibrefx_get_default_layout(),
-		'subnav' => 0,
-		'breadcrumb_home' => 1,
-		'breadcrumb_single' => 1,
-		'breadcrumb_page' => 1,
-		'breadcrumb_archive' => 1,
-		'breadcrumb_404' => 1,
-		'comments_pages' => 0,
-		'comments_posts' => 1,
-		'trackbacks_pages' => 0,
-		'trackbacks_posts' => 1,
-		'custom_css' => '',
-		'content_archive' => 'full',
-		'content_archive_limit' => 250,
-		'posts_nav' => 'older-newer',
-		'header_scripts' => '',
-		'footer_scripts' => '',
-		'calibrefx_version' => FRAMEWORK_VERSION,
-		'calibrefx_db_version' => FRAMEWORK_DB_VERSION,
-	);
-
-	return apply_filters('calibrefx_theme_settings_defaults', $defaults);
-}
 
 add_action('admin_init', 'calibrefx_register_theme_settings', 5);
 /**
@@ -145,6 +111,8 @@ function calibrefx_theme_settings_admin(){
 			<?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false ); ?>
 			<?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false ); ?>
 			<?php settings_fields(CALIBREFX_SETTINGS_FIELD); // important! ?>
+                        <input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_version')); ?>" />
+                        <input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_db_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_db_version')); ?>" />
 			
 			<?php screen_icon('options-general'); ?>
 			<h2>

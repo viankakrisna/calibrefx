@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>File Source for widgets.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1>Source for file widgets.php</h1>
+<p>Documentation is available at <a href="../CalibreFx/_lib---functions---widgets.php.html">widgets.php</a></p>
+<div class="src-code">
+<div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><a name="a2"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a3"></a><span class="src-doc">&nbsp;*&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a4"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a5"></a><span class="src-doc">&nbsp;*&nbsp;WordPress&nbsp;Themes&nbsp;Framework&nbsp;by&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a6"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a7"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a8"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a9"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@copyright</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;Copyright&nbsp;(c)&nbsp;2012,&nbsp;Suntech&nbsp;Inti&nbsp;Perkasa.</span></div></li>
+<li><div class="src-line"><a name="a10"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@license</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Commercial</span></div></li>
+<li><div class="src-line"><a name="a11"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@link</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://calibrefx.com</span></div></li>
+<li><div class="src-line"><a name="a12"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@since</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version&nbsp;1.0</span></div></li>
+<li><div class="src-line"><a name="a13"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@filesource</span></div></li>
+<li><div class="src-line"><a name="a14"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a15"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;WARNING:&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;the&nbsp;core&nbsp;CalibreFx&nbsp;framework.&nbsp;DO&nbsp;NOT&nbsp;edit</span></div></li>
+<li><div class="src-line"><a name="a16"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;this&nbsp;file&nbsp;under&nbsp;any&nbsp;circumstances.</span></div></li>
+<li><div class="src-line"><a name="a17"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a18"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;This&nbsp;file&nbsp;control&nbsp;default&nbsp;widgets</span></div></li>
+<li><div class="src-line"><a name="a19"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a20"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a21"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a22"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a23"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a24"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;function&nbsp;expedites&nbsp;the&nbsp;widget&nbsp;area&nbsp;registration&nbsp;process&nbsp;by&nbsp;taking</span></div></li>
+<li><div class="src-line"><a name="a25"></a><span class="src-doc">&nbsp;*&nbsp;common&nbsp;things,&nbsp;before/after_widget,&nbsp;before/after_title,&nbsp;and&nbsp;doing&nbsp;them&nbsp;automatically.</span></div></li>
+<li><div class="src-line"><a name="a26"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a27"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@uses</span><span class="src-doc">&nbsp;wp_parse_args,&nbsp;register_sidebar</span></div></li>
+<li><div class="src-line"><a name="a28"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@since</span><span class="src-doc">&nbsp;1.0.1</span></div></li>
+<li><div class="src-line"><a name="a29"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Charles&nbsp;Clarkson</span></div></li>
+<li><div class="src-line"><a name="a30"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a31"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_lib---functions---widgets.php.html#functioncalibrefx_register_sidebar">calibrefx_register_sidebar</a><span class="src-sym">(</span><span class="src-var">$args</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a32"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$defaults&nbsp;</span>=&nbsp;(array)&nbsp;<span class="src-id">apply_filters</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_register_sidebar_defaults'</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a33"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'before_widget'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'&lt;div&nbsp;id=&quot;%1$s&quot;&nbsp;class=&quot;widget&nbsp;%2$s&quot;&gt;&lt;div&nbsp;class=&quot;widget-wrap&quot;&gt;'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a34"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'after_widget'&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">&quot;&lt;/div&gt;&lt;/div&gt;\n&quot;</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a35"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'before_title'&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">'&lt;h4&nbsp;class=&quot;widgettitle&quot;&gt;'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a36"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'after_title'&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">&quot;&lt;/h4&gt;\n&quot;</span></div></li>
+<li><div class="src-line"><a name="a37"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)&nbsp;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a38"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a39"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$args&nbsp;</span>=&nbsp;<span class="src-id">wp_parse_args</span><span class="src-sym">(</span><span class="src-var">$args</span><span class="src-sym">,&nbsp;</span><span class="src-var">$defaults</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a40"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a41"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id">register_sidebar</span><span class="src-sym">(</span><span class="src-var">$args</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a42"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a43"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a44"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_setup'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_register_default_widget'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a45"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a46"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;function&nbsp;registers&nbsp;all&nbsp;the&nbsp;default&nbsp;CalibreFx&nbsp;widget.</span></div></li>
+<li><div class="src-line"><a name="a47"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a48"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_lib---functions---widgets.php.html#functioncalibrefx_register_default_widget">calibrefx_register_default_widget</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a49"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a50"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../CalibreFx/_lib---functions---widgets.php.html#functioncalibrefx_register_sidebar">calibrefx_register_sidebar</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a51"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'name'&nbsp;</span>=&gt;&nbsp;<span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'Primary&nbsp;Sidebar'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a52"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'description'&nbsp;</span>=&gt;&nbsp;<span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'This&nbsp;is&nbsp;the&nbsp;primary&nbsp;sidebar&nbsp;if&nbsp;you&nbsp;are&nbsp;using&nbsp;a&nbsp;2&nbsp;or&nbsp;3&nbsp;column&nbsp;site&nbsp;layout&nbsp;option'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a53"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'id'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'sidebar'</span></div></li>
+<li><div class="src-line"><a name="a54"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a55"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a56"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../CalibreFx/_lib---functions---widgets.php.html#functioncalibrefx_register_sidebar">calibrefx_register_sidebar</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a57"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'name'&nbsp;</span>=&gt;&nbsp;<span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'Secondary&nbsp;Sidebar'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a58"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'description'&nbsp;</span>=&gt;&nbsp;<span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'This&nbsp;is&nbsp;the&nbsp;secondary&nbsp;sidebar&nbsp;if&nbsp;you&nbsp;are&nbsp;using&nbsp;a&nbsp;3&nbsp;column&nbsp;site&nbsp;layout&nbsp;option'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a59"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'id'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'sidebar-alt'</span></div></li>
+<li><div class="src-line"><a name="a60"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a61"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a62"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a63"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'after_setup_theme'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_register_additional_widget'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a64"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a65"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;function&nbsp;registers&nbsp;additional&nbsp;CalibreFx&nbsp;widget.</span></div></li>
+<li><div class="src-line"><a name="a66"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a67"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_lib---functions---widgets.php.html#functioncalibrefx_register_additional_widget">calibrefx_register_additional_widget</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a68"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$header_right_widget&nbsp;</span>=&nbsp;<span class="src-id">current_theme_supports</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-header-right-widgets'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a69"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a70"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-var">$header_right_widget&nbsp;</span><span class="src-sym">)</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a71"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../CalibreFx/_lib---functions---widgets.php.html#functioncalibrefx_register_sidebar">calibrefx_register_sidebar</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a72"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'name'&nbsp;</span>=&gt;&nbsp;<span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'Header&nbsp;Right'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a73"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'description'&nbsp;</span>=&gt;&nbsp;<span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'This&nbsp;is&nbsp;the&nbsp;right&nbsp;side&nbsp;of&nbsp;the&nbsp;header'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a74"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'id'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'header-right'</span></div></li>
+<li><div class="src-line"><a name="a75"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a76"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a77"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a78"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$footer_widget&nbsp;</span>=&nbsp;<span class="src-id">current_theme_supports</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-footer-widgets'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a79"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a80"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-var">$footer_widget&nbsp;</span><span class="src-sym">)</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a81"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../CalibreFx/_lib---functions---widgets.php.html#functioncalibrefx_register_sidebar">calibrefx_register_sidebar</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a82"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'name'&nbsp;</span>=&gt;&nbsp;<span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'Footer&nbsp;Widget'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a83"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'description'&nbsp;</span>=&gt;&nbsp;<span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'This&nbsp;is&nbsp;the&nbsp;footer&nbsp;widget'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a84"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'id'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'footer-widget'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a85"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a86"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a87"></a><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 05 Mar 2012 16:41:41 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

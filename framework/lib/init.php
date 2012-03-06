@@ -33,6 +33,7 @@ function calibrefx_theme_support() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'calibrefx-admin-menu' );
 	add_theme_support( 'calibrefx-custom-header' );
+        add_theme_support( 'calibrefx-default-styles' );
 	
 	if ( ! current_theme_supports( 'calibrefx-menus' ) ) {
 		add_theme_support( 'calibrefx-menus', 
@@ -110,6 +111,16 @@ function calibrefx_constants() {
 	define( 'CHILD_CSS_URL', CHILD_URL . '/assets/css' );
 }
 
+add_action( 'calibrefx_init', 'calibrefx_post_type_support' );
+/**
+ * Initialize post type support for Calibrefx features such as layout selector & seo setting.
+ */
+function calibrefx_post_type_support() {
+	add_post_type_support( 'post', array( 'calibrefx-seo', 'calibrefx-layouts' ) );
+	add_post_type_support( 'page', array( 'calibrefx-seo', 'calibrefx-layouts' ) );
+}
+
+
 //We need to run this after all the init
 add_action( 'calibrefx_init', 'calibrefx_load_framework' );
 /**
@@ -158,6 +169,7 @@ function calibrefx_load_framework() {
 	
 	/** Load Admin */
 	if ( is_admin() ) :
+	require_once( CALIBREFX_ADMIN_DIR . '/default-settings.php' );
 	require_once( CALIBREFX_ADMIN_DIR . '/menu.php' );
 	require_once( CALIBREFX_ADMIN_DIR . '/theme-settings.php' );
 	require_once( CALIBREFX_ADMIN_DIR . '/about-page.php' );

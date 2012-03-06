@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>File Source for upgrade.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1>Source for file upgrade.php</h1>
+<p>Documentation is available at <a href="../CalibreFx/_framework---lib---functions---upgrade.php.html">upgrade.php</a></p>
+<div class="src-code">
+<div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><a name="a2"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a3"></a><span class="src-doc">&nbsp;*&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a4"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a5"></a><span class="src-doc">&nbsp;*&nbsp;WordPress&nbsp;Themes&nbsp;Framework&nbsp;by&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a6"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a7"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a8"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a9"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@copyright</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;Copyright&nbsp;(c)&nbsp;2012,&nbsp;Suntech&nbsp;Inti&nbsp;Perkasa.</span></div></li>
+<li><div class="src-line"><a name="a10"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@license</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Commercial</span></div></li>
+<li><div class="src-line"><a name="a11"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@link</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://calibrefx.com</span></div></li>
+<li><div class="src-line"><a name="a12"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@since</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version&nbsp;1.0</span></div></li>
+<li><div class="src-line"><a name="a13"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@filesource</span></div></li>
+<li><div class="src-line"><a name="a14"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a15"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;WARNING:&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;the&nbsp;core&nbsp;CalibreFx&nbsp;framework.&nbsp;DO&nbsp;NOT&nbsp;edit</span></div></li>
+<li><div class="src-line"><a name="a16"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;this&nbsp;file&nbsp;under&nbsp;any&nbsp;circumstances.</span></div></li>
+<li><div class="src-line"><a name="a17"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a18"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;This&nbsp;file&nbsp;handle&nbsp;calibrefx&nbsp;update</span></div></li>
+<li><div class="src-line"><a name="a19"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a20"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a21"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a22"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a23"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a24"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;function&nbsp;calibrefx_update_check&nbsp;is&nbsp;to&nbsp;...</span></div></li>
+<li><div class="src-line"><a name="a25"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a26"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---upgrade.php.html#functioncalibrefx_update_check">calibrefx_update_check</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a27"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">global&nbsp;</span><span class="src-var">$wp_version</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a28"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a29"></a>&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;Get&nbsp;time&nbsp;of&nbsp;last&nbsp;update&nbsp;check&nbsp;*/</div></li>
+<li><div class="src-line"><a name="a30"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$calibrefx_update&nbsp;</span>=&nbsp;<span class="src-id">get_transient</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-update'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a31"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//$calibrefx_update&nbsp;=&nbsp;array(&quot;new_version&quot;&nbsp;=&gt;&nbsp;'1.1',&nbsp;&quot;changelog_url&quot;&nbsp;=&gt;&nbsp;'#',&nbsp;&quot;url&quot;&nbsp;=&gt;&nbsp;&quot;themes-url&quot;,&nbsp;&quot;package&quot;=&gt;&quot;download-url&quot;,&nbsp;&quot;&quot;=&gt;&quot;&quot;);</span></div></li>
+<li><div class="src-line"><a name="a32"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a33"></a>&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;If&nbsp;it&nbsp;has&nbsp;expired,&nbsp;do&nbsp;an&nbsp;update&nbsp;check&nbsp;*/</div></li>
+<li><div class="src-line"><a name="a34"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!&nbsp;</span><span class="src-var">$calibrefx_update&nbsp;</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a35"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-str">'http://api.calibrefx.com/themes-update-check'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a36"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$options&nbsp;</span>=&nbsp;<span class="src-id">apply_filters</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a37"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'calibrefx_update_remote_post_options'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a38"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a39"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'body'&nbsp;</span>=&gt;&nbsp;<span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a40"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'theme_version'&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-id">FRAMEWORK_VERSION</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a41"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'wp_version'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-var">$wp_version</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a42"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'php_version'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<a href="http://www.php.net/phpversion">phpversion</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a43"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'uri'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-id">home_url</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'user-agent'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&gt;&nbsp;<span class="src-str">&quot;</span><span class="src-str">WordPress/<span class="src-var">$wp_version</span>;</span><span class="src-str">&quot;</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a45"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a46"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a47"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a48"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a49"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$response&nbsp;</span>=&nbsp;<span class="src-id">wp_remote_post</span><span class="src-sym">(&nbsp;</span><span class="src-var">$url</span><span class="src-sym">,&nbsp;</span><span class="src-var">$options&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a50"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$calibrefx_update&nbsp;</span>=&nbsp;<span class="src-id">wp_remote_retrieve_body</span><span class="src-sym">(&nbsp;</span><span class="src-var">$response&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a51"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a52"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;If&nbsp;an&nbsp;error&nbsp;occurred,&nbsp;return&nbsp;FALSE,&nbsp;store&nbsp;for&nbsp;1&nbsp;hour&nbsp;*/</div></li>
+<li><div class="src-line"><a name="a53"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-str">'error'&nbsp;</span>==&nbsp;<span class="src-var">$calibrefx_update&nbsp;</span>||&nbsp;<span class="src-id">is_wp_error</span><span class="src-sym">(&nbsp;</span><span class="src-var">$calibrefx_update&nbsp;</span><span class="src-sym">)&nbsp;</span>||&nbsp;<span class="src-sym">!&nbsp;</span><span class="src-id">is_serialized</span><span class="src-sym">(&nbsp;</span><span class="src-var">$calibrefx_update&nbsp;</span><span class="src-sym">)&nbsp;)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a54"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">set_transient</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-update'</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(&nbsp;</span><span class="src-str">'new_version'&nbsp;</span>=&gt;&nbsp;<span class="src-id">FRAMEWORK_VERSION&nbsp;</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-num">60&nbsp;</span>*&nbsp;<span class="src-num">60&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a55"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id">false</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a56"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a57"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a58"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;Else,&nbsp;unserialize&nbsp;*/</div></li>
+<li><div class="src-line"><a name="a59"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$calibrefx_update&nbsp;</span>=&nbsp;<span class="src-id">maybe_unserialize</span><span class="src-sym">(&nbsp;</span><span class="src-var">$calibrefx_update&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a60"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a61"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;And&nbsp;store&nbsp;in&nbsp;transient&nbsp;for&nbsp;24&nbsp;hours&nbsp;*/</div></li>
+<li><div class="src-line"><a name="a62"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">set_transient</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-update'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$calibrefx_update</span><span class="src-sym">,&nbsp;</span><span class="src-num">60&nbsp;</span>*&nbsp;<span class="src-num">60&nbsp;</span>*&nbsp;<span class="src-num">24&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a63"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a64"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a65"></a>&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;If&nbsp;we're&nbsp;already&nbsp;using&nbsp;the&nbsp;latest&nbsp;version,&nbsp;return&nbsp;false&nbsp;*/</div></li>
+<li><div class="src-line"><a name="a66"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><a href="http://www.php.net/version_compare">version_compare</a><span class="src-sym">(&nbsp;</span><span class="src-id">FRAMEWORK_VERSION</span><span class="src-sym">,&nbsp;</span><span class="src-var">$calibrefx_update</span><span class="src-sym">[</span><span class="src-str">'new_version'</span><span class="src-sym">]</span><span class="src-sym">,&nbsp;</span><span class="src-str">'&gt;='&nbsp;</span><span class="src-sym">)&nbsp;)</span></div></li>
+<li><div class="src-line"><a name="a67"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id">false</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a68"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a69"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$calibrefx_update</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a70"></a><span class="src-sym">}&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a71"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a72"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a73"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'admin_init'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_upgrade'</span><span class="src-sym">,&nbsp;</span><span class="src-num">25&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a74"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a75"></a><span class="src-doc">&nbsp;*&nbsp;Interatively&nbsp;update&nbsp;calibreFx&nbsp;to&nbsp;the&nbsp;latest&nbsp;version</span></div></li>
+<li><div class="src-line"><a name="a76"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a77"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---upgrade.php.html#functioncalibrefx_upgrade">calibrefx_upgrade</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a78"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a79"></a>&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;Don't&nbsp;do&nbsp;anything&nbsp;if&nbsp;we're&nbsp;on&nbsp;the&nbsp;latest&nbsp;version&nbsp;*/</div></li>
+<li><div class="src-line"><a name="a80"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---options.php.html#functioncalibrefx_get_option">calibrefx_get_option</a><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_db_version'</span><span class="src-sym">,&nbsp;</span><span class="src-id">null</span><span class="src-sym">,&nbsp;</span><span class="src-id">false&nbsp;</span><span class="src-sym">)&nbsp;</span>&gt;=&nbsp;<span class="src-id">FRAMEWORK_DB_VERSION&nbsp;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a81"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a82"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a83"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//Do&nbsp;upgrade&nbsp;time&nbsp;to&nbsp;time&nbsp;here</span></div></li>
+<li><div class="src-line"><a name="a84"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a85"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a86"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">do_action</span><span class="src-sym">(</span><span class="src-str">'calibrefx_upgrade'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a87"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a88"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a89"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_upgrade'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_upgrade_redirect'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a90"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a91"></a><span class="src-doc">&nbsp;*&nbsp;Redirects&nbsp;the&nbsp;user&nbsp;back&nbsp;to&nbsp;the&nbsp;theme&nbsp;settings&nbsp;page</span></div></li>
+<li><div class="src-line"><a name="a92"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a93"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---upgrade.php.html#functioncalibrefx_upgrade_redirect">calibrefx_upgrade_redirect</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a94"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a95"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!&nbsp;</span><span class="src-id">is_admin</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;)</span></div></li>
+<li><div class="src-line"><a name="a96"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a97"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a98"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../CalibreFx/_framework---lib---functions---general.php.html#functioncalibrefx_admin_redirect">calibrefx_admin_redirect</a><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-about'</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(&nbsp;</span><span class="src-str">'upgraded'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'true'&nbsp;</span><span class="src-sym">)&nbsp;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a99"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">exit</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a100"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a101"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a102"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a103"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'admin_notices'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_upgraded_notice'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a104"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a105"></a><span class="src-doc">&nbsp;*&nbsp;Displays&nbsp;the&nbsp;notice&nbsp;that&nbsp;the&nbsp;theme&nbsp;settings&nbsp;were&nbsp;successfully&nbsp;updated&nbsp;to&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a106"></a><span class="src-doc">&nbsp;*&nbsp;latest&nbsp;version.</span></div></li>
+<li><div class="src-line"><a name="a107"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a108"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---upgrade.php.html#functioncalibrefx_upgraded_notice">calibrefx_upgraded_notice</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a109"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a110"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---general.php.html#functioncalibrefx_is_menu_page">calibrefx_is_menu_page</a><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-about'&nbsp;</span><span class="src-sym">)&nbsp;)</span></div></li>
+<li><div class="src-line"><a name="a111"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a112"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a113"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span>isset<span class="src-sym">(&nbsp;</span><span class="src-var">$_REQUEST</span><span class="src-sym">[</span><span class="src-str">'upgraded'</span><span class="src-sym">]&nbsp;</span><span class="src-sym">)&nbsp;</span>&amp;&amp;&nbsp;<span class="src-str">'true'&nbsp;</span>==&nbsp;<span class="src-var">$_REQUEST</span><span class="src-sym">[</span><span class="src-str">'upgraded'</span><span class="src-sym">]&nbsp;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a114"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-str">'&lt;div&nbsp;id=&quot;message&quot;&nbsp;class=&quot;updated&nbsp;highlight&quot;&nbsp;id=&quot;message&quot;&gt;&lt;p&gt;&lt;strong&gt;'&nbsp;</span>.&nbsp;<a href="http://www.php.net/sprintf">sprintf</a><span class="src-sym">(&nbsp;</span><span class="src-id">__</span><span class="src-sym">(&nbsp;</span><span class="src-str">'Congratulations!&nbsp;You&nbsp;are&nbsp;now&nbsp;using&nbsp;the&nbsp;latest&nbsp;version&nbsp;of&nbsp;Calibrefx&nbsp;v%s'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---options.php.html#functioncalibrefx_get_option">calibrefx_get_option</a><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_version'&nbsp;</span><span class="src-sym">)&nbsp;)&nbsp;</span>.&nbsp;<span class="src-str">'&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a115"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a116"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a117"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a118"></a><span class="src-id">add_filter</span><span class="src-sym">(&nbsp;</span><span class="src-str">'update_theme_complete_actions'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_update_action_links'</span><span class="src-sym">,&nbsp;</span><span class="src-num">10</span><span class="src-sym">,&nbsp;</span><span class="src-num">2&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a119"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a120"></a><span class="src-doc">&nbsp;*&nbsp;Filters&nbsp;the&nbsp;action&nbsp;links&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;an&nbsp;update.</span></div></li>
+<li><div class="src-line"><a name="a121"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a122"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---upgrade.php.html#functioncalibrefx_update_action_links">calibrefx_update_action_links</a><span class="src-sym">(&nbsp;</span><span class="src-var">$actions</span><span class="src-sym">,&nbsp;</span><span class="src-var">$theme&nbsp;</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a123"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a124"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx'&nbsp;</span>!=&nbsp;<span class="src-var">$theme&nbsp;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a125"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$actions</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a126"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a127"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><a href="http://www.php.net/sprintf">sprintf</a><span class="src-sym">(&nbsp;</span><span class="src-str">'&lt;a&nbsp;href=&quot;%s&quot;&gt;%s&lt;/a&gt;'</span><span class="src-sym">,&nbsp;</span><span class="src-id">menu_page_url</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-about'</span><span class="src-sym">,&nbsp;</span><span class="src-num">0&nbsp;</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-id">__</span><span class="src-sym">(&nbsp;</span><span class="src-str">'Click&nbsp;here&nbsp;to&nbsp;complete&nbsp;the&nbsp;upgrade'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'&nbsp;</span><span class="src-sym">)&nbsp;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a128"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a129"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a130"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a131"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'admin_notices'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_update_notification'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a132"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a133"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;Displays&nbsp;the&nbsp;update&nbsp;notification&nbsp;at&nbsp;the&nbsp;top&nbsp;of&nbsp;the&nbsp;dashboard&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;Calibrefx</span></div></li>
+<li><div class="src-line"><a name="a134"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;update&nbsp;available.</span></div></li>
+<li><div class="src-line"><a name="a135"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a136"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---upgrade.php.html#functioncalibrefx_update_notification">calibrefx_update_notification</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a137"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a138"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$calibrefx_update&nbsp;</span>=&nbsp;<a href="../CalibreFx/_framework---lib---functions---upgrade.php.html#functioncalibrefx_update_check">calibrefx_update_check</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a139"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a140"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!&nbsp;</span><span class="src-id">is_super_admin</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span>||&nbsp;<span class="src-sym">!&nbsp;</span><span class="src-var">$calibrefx_update&nbsp;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a141"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id">false</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a142"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a143"></a>&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-str">'&lt;div&nbsp;id=&quot;update-nag&quot;&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a144"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.php.net/printf">printf</a><span class="src-sym">(</span></div></li>
+<li><div class="src-line"><a name="a145"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">__</span><span class="src-sym">(&nbsp;</span><span class="src-str">'CalibreFx&nbsp;%s&nbsp;is&nbsp;available.&nbsp;&lt;a&nbsp;href=&quot;%s&quot;&nbsp;class=&quot;thickbox&nbsp;thickbox-preview&quot;&gt;Check&nbsp;out&nbsp;what\'s&nbsp;new&lt;/a&gt;&nbsp;or&nbsp;&lt;a&nbsp;href=&quot;%s&quot;&nbsp;onclick=&quot;return&nbsp;calibrefx_confirm(\'%s\');&quot;&gt;update&nbsp;now&lt;/a&gt;.'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a146"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">esc_html</span><span class="src-sym">(&nbsp;</span><span class="src-var">$calibrefx_update</span><span class="src-sym">[</span><span class="src-str">'new_version'</span><span class="src-sym">]&nbsp;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a147"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">esc_url</span><span class="src-sym">(&nbsp;</span><span class="src-var">$calibrefx_update</span><span class="src-sym">[</span><span class="src-str">'changelog_url'</span><span class="src-sym">]&nbsp;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a148"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">wp_nonce_url</span><span class="src-sym">(&nbsp;</span><span class="src-str">'update.php?action=upgrade-theme&amp;amp;theme=calibrefx'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'upgrade-theme_calibrefx'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a149"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">esc_js</span><span class="src-sym">(&nbsp;</span><span class="src-id">__</span><span class="src-sym">(&nbsp;</span><span class="src-str">'Upgrading&nbsp;CalibreFx&nbsp;will&nbsp;overwrite&nbsp;the&nbsp;current&nbsp;installed&nbsp;version&nbsp;of&nbsp;CalibreFx.&nbsp;Are&nbsp;you&nbsp;sure&nbsp;you&nbsp;want&nbsp;to&nbsp;upgrade?.&nbsp;&quot;Cancel&quot;&nbsp;to&nbsp;stop,&nbsp;&quot;OK&quot;&nbsp;to&nbsp;upgrade.'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'&nbsp;</span><span class="src-sym">)&nbsp;)</span></div></li>
+<li><div class="src-line"><a name="a150"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a151"></a>&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-str">'&lt;/div&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a152"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a153"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a154"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a155"></a><span class="src-id">add_filter</span><span class="src-sym">(&nbsp;</span><span class="src-str">'site_transient_update_themes'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_update_push'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a156"></a><span class="src-id">add_filter</span><span class="src-sym">(&nbsp;</span><span class="src-str">'transient_update_themes'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_update_push'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a157"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a158"></a><span class="src-doc">&nbsp;*&nbsp;Push&nbsp;Calibrefx&nbsp;update&nbsp;check&nbsp;to&nbsp;WordPress&nbsp;update&nbsp;checks.</span></div></li>
+<li><div class="src-line"><a name="a159"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a160"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;function&nbsp;filters&nbsp;the&nbsp;value&nbsp;that&nbsp;is&nbsp;returned&nbsp;when&nbsp;WordPress&nbsp;tries&nbsp;to&nbsp;pull</span></div></li>
+<li><div class="src-line"><a name="a161"></a><span class="src-doc">&nbsp;*&nbsp;theme&nbsp;update&nbsp;transient&nbsp;data.</span></div></li>
+<li><div class="src-line"><a name="a162"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a163"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---upgrade.php.html#functioncalibrefx_update_push">calibrefx_update_push</a><span class="src-sym">(&nbsp;</span><span class="src-var">$value&nbsp;</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a164"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a165"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$calibrefx_update&nbsp;</span>=&nbsp;<a href="../CalibreFx/_framework---lib---functions---upgrade.php.html#functioncalibrefx_update_check">calibrefx_update_check</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a166"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a167"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-var">$calibrefx_update&nbsp;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a168"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$value</span><span class="src-sym">-&gt;</span><span class="src-id">response</span><span class="src-sym">[</span><span class="src-str">'calibrefx'</span><span class="src-sym">]&nbsp;</span>=&nbsp;<span class="src-var">$calibrefx_update</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a169"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a170"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$value</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a171"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a172"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a173"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a174"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'load-update-core.php'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_clear_update_transient'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a175"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'load-themes.php'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_clear_update_transient'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a176"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a177"></a><span class="src-doc">&nbsp;*&nbsp;Delete&nbsp;Calibrefx&nbsp;update&nbsp;transient&nbsp;after&nbsp;updates.</span></div></li>
+<li><div class="src-line"><a name="a178"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a179"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---upgrade.php.html#functioncalibrefx_clear_update_transient">calibrefx_clear_update_transient</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a180"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a181"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">delete_transient</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-update'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a182"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">remove_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'admin_notices'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_update_notification'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a183"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a184"></a><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 05 Mar 2012 16:50:51 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

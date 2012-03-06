@@ -80,7 +80,7 @@ body.admin-bar #wpcontent, body.admin-bar #adminmenu { padding: 0px !important; 
 li.wp-menu-separator{  }
 #wpbody {margin-left: 15px; margin-right: 15px;}
 #wpbody-content .wrap{ margin-right: 0px;}
-#footer				{ margin-left: 146px; margin-right: 0px; border: 0; }
+#footer				{ margin-left: 146px; margin-right: 0px;}
 .folded #footer		{ margin-left: 33px; }
 #footer .alignleft	{ margin-left: 15px; }
 #footer .alignright	{ margin-right: 15px; }

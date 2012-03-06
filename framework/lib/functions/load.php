@@ -37,6 +37,24 @@ function calibrefx_load_scripts() {
 	wp_enqueue_script( 'superfish', CALIBREFX_JS_URL . '/superfish.js', array( 'jquery' ), FRAMEWORK_VERSION, true );
 }
 
+add_action('get_header', 'calibrefx_load_styles');
+/**
+ * Load default calibrefx styles
+ * 
+ * since @1.0
+ */
+function calibrefx_load_styles() {
+    $calibrefx_default_style = get_theme_support( 'calibrefx-default-styles' );
+    
+    wp_register_style( 'calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css', FRAMEWORK_VERSION );
+    
+    /** If not active, do nothing */
+    if ( ! $calibrefx_default_style )
+            return;
+    wp_enqueue_style('calibrefx-style');
+    
+}
+
 add_action( 'admin_init', 'calibrefx_load_admin_scripts' );
 /**
  * This function loads the admin JS files

@@ -11,7 +11,7 @@
  * @link		http://calibrefx.com
  * @since		Version 1.0
  * @filesource 
- * @based on Genesis BreadCrumb with neccessary modifications
+ * @based on Calibrefx BreadCrumb with neccessary modifications
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 

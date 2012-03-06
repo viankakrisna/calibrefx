@@ -48,6 +48,9 @@ function calibrefx_do_footer_widgets(){
 	
 	$all_widgets = wp_get_sidebars_widgets();
 	$count_footer_widgets = count($all_widgets['footer-widget']);
+        
+        if($count_footer_widgets == 0) return;
+        
 	$span = "span". strval(floor((12/$count_footer_widgets)));
 	
 	

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>File Source for footer.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1>Source for file footer.php</h1>
+<p>Documentation is available at <a href="../CalibreFx/_framework---lib---structure---footer.php.html">footer.php</a></p>
+<div class="src-code">
+<div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><a name="a2"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a3"></a><span class="src-doc">&nbsp;*&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a4"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a5"></a><span class="src-doc">&nbsp;*&nbsp;WordPress&nbsp;Themes&nbsp;Framework&nbsp;by&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a6"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a7"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a8"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a9"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@copyright</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;Copyright&nbsp;(c)&nbsp;2012,&nbsp;Suntech&nbsp;Inti&nbsp;Perkasa.</span></div></li>
+<li><div class="src-line"><a name="a10"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@license</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Commercial</span></div></li>
+<li><div class="src-line"><a name="a11"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@link</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://calibrefx.com</span></div></li>
+<li><div class="src-line"><a name="a12"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@since</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version&nbsp;1.0</span></div></li>
+<li><div class="src-line"><a name="a13"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@filesource</span></div></li>
+<li><div class="src-line"><a name="a14"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a15"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;WARNING:&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;the&nbsp;core&nbsp;CalibreFx&nbsp;framework.&nbsp;DO&nbsp;NOT&nbsp;edit</span></div></li>
+<li><div class="src-line"><a name="a16"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;this&nbsp;file&nbsp;under&nbsp;any&nbsp;circumstances.</span></div></li>
+<li><div class="src-line"><a name="a17"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a18"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;This&nbsp;file&nbsp;hold&nbsp;all&nbsp;the&nbsp;function&nbsp;to&nbsp;handle&nbsp;the&nbsp;footers</span></div></li>
+<li><div class="src-line"><a name="a19"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a20"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a21"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a22"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a23"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a24"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'wp_footer'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_footer_scripts'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a25"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a26"></a><span class="src-doc">&nbsp;*&nbsp;Display&nbsp;the&nbsp;footer&nbsp;scripts,&nbsp;defined&nbsp;in&nbsp;Theme&nbsp;Settings.</span></div></li>
+<li><div class="src-line"><a name="a27"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a28"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---structure---footer.php.html#functioncalibrefx_footer_scripts">calibrefx_footer_scripts</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a29"></a>&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-id">apply_filters</span><span class="src-sym">(</span><span class="src-str">'calibrefx_footer_scripts'</span><span class="src-sym">,&nbsp;</span><a href="../CalibreFx/_framework---lib---functions---options.php.html#functioncalibrefx_option">calibrefx_option</a><span class="src-sym">(</span><span class="src-str">'footer_scripts'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a30"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a31"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;If&nbsp;singular,&nbsp;echo&nbsp;scripts&nbsp;from&nbsp;custom&nbsp;field</span></div></li>
+<li><div class="src-line"><a name="a32"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-id">is_singular</span><span class="src-sym">(</span><span class="src-sym">)&nbsp;)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a33"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../CalibreFx/_framework---lib---functions---options.php.html#functioncalibrefx_custom_field">calibrefx_custom_field</a><span class="src-sym">(&nbsp;</span><span class="src-str">'_calibrefx_footer_scripts'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a34"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a35"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a36"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a37"></a><span class="src-id">add_action</span><span class="src-sym">(</span><span class="src-str">'calibrefx_before_footer'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_do_footer_widgets'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a38"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a39"></a><span class="src-doc">&nbsp;*&nbsp;Display&nbsp;the&nbsp;footer&nbsp;widget&nbsp;if&nbsp;the&nbsp;footer&nbsp;widget&nbsp;are&nbsp;active.</span></div></li>
+<li><div class="src-line"><a name="a40"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a41"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---structure---footer.php.html#functioncalibrefx_do_footer_widgets">calibrefx_do_footer_widgets</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a42"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">global&nbsp;</span><span class="src-var">$wp_registered_sidebars</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a43"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a44"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$footer_widgets&nbsp;</span>=&nbsp;<span class="src-id">get_theme_support</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx-footer-widgets'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a45"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a46"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!&nbsp;</span><span class="src-var">$footer_widgets&nbsp;</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a47"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a48"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a49"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$all_widgets&nbsp;</span>=&nbsp;<span class="src-id">wp_get_sidebars_widgets</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a50"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$count_footer_widgets&nbsp;</span>=&nbsp;<a href="http://www.php.net/count">count</a><span class="src-sym">(</span><span class="src-var">$all_widgets</span><span class="src-sym">[</span><span class="src-str">'footer-widget'</span><span class="src-sym">]</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a51"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$span&nbsp;</span>=&nbsp;<span class="src-str">&quot;span&quot;</span>.&nbsp;<a href="http://www.php.net/strval">strval</a><span class="src-sym">(</span><a href="http://www.php.net/floor">floor</a><span class="src-sym">((</span><span class="src-num">12</span>/<span class="src-var">$count_footer_widgets</span><span class="src-sym">)))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a52"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a53"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a54"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$sidebar&nbsp;</span>=&nbsp;<span class="src-var">$wp_registered_sidebars</span><span class="src-sym">[</span><span class="src-str">'footer-widget'</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a55"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$sidebar</span><span class="src-sym">[</span><span class="src-str">'before_widget'</span><span class="src-sym">]&nbsp;</span>=&nbsp;<span class="src-str">'&lt;div&nbsp;id=&quot;%1$s&quot;&nbsp;class=&quot;widget&nbsp;'</span>.<span class="src-var">$span</span>.<span class="src-str">'&nbsp;%2$s&quot;&gt;&lt;div&nbsp;class=&quot;widget-wrap&quot;&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a56"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a57"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">unregister_sidebar</span><span class="src-sym">(</span><span class="src-str">'footer-widget'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a58"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">register_sidebar</span><span class="src-sym">(</span><span class="src-var">$sidebar</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a59"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a60"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-id">is_active_sidebar</span><span class="src-sym">(&nbsp;</span><span class="src-str">'footer-widget'&nbsp;</span><span class="src-sym">)&nbsp;)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a61"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-str">'&lt;div&nbsp;id=&quot;footer-widget&quot;&nbsp;class=&quot;row&quot;&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a62"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">dynamic_sidebar</span><span class="src-sym">(&nbsp;</span><span class="src-str">'footer-widget'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a63"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-str">'&lt;/div&gt;&lt;!--end&nbsp;#footer-widget--&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a64"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}&nbsp;&nbsp;&nbsp;&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a65"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a66"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a67"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_footer'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_do_footer_open'</span><span class="src-sym">,&nbsp;</span><span class="src-num">5&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a68"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a69"></a><span class="src-doc">&nbsp;*&nbsp;Open&nbsp;footer&nbsp;markup</span></div></li>
+<li><div class="src-line"><a name="a70"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a71"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---structure---footer.php.html#functioncalibrefx_do_footer_open">calibrefx_do_footer_open</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a72"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a73"></a>&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-str">'&lt;div&nbsp;id=&quot;footer&quot;&nbsp;class=&quot;row&quot;&gt;'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a74"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a75"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a76"></a><span class="src-id">add_action</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_footer'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_do_footer_close'</span><span class="src-sym">,&nbsp;</span><span class="src-num">15&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a77"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a78"></a><span class="src-doc">&nbsp;*&nbsp;Close&nbsp;footer&nbsp;markup</span></div></li>
+<li><div class="src-line"><a name="a79"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a80"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---structure---footer.php.html#functioncalibrefx_do_footer_close">calibrefx_do_footer_close</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a81"></a>&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-str">'&lt;/div&gt;&lt;!--&nbsp;end&nbsp;#footer&nbsp;--&gt;'&nbsp;</span>.&nbsp;<span class="src-str">&quot;\n&quot;</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a82"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a83"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a84"></a><span class="src-id">add_filter</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_footer_output'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'do_shortcode'</span><span class="src-sym">,&nbsp;</span><span class="src-num">20&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a85"></a><span class="src-id">add_action</span><span class="src-sym">(</span><span class="src-str">'calibrefx_footer'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_do_footer'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a86"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a87"></a><span class="src-doc">&nbsp;*&nbsp;Do&nbsp;Header&nbsp;Callback</span></div></li>
+<li><div class="src-line"><a name="a88"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a89"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---structure---footer.php.html#functioncalibrefx_do_footer">calibrefx_do_footer</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a90"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Build&nbsp;the&nbsp;filterable&nbsp;text&nbsp;strings.&nbsp;Includes&nbsp;shortcodes.</span></div></li>
+<li><div class="src-line"><a name="a91"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$creds_text&nbsp;</span>=&nbsp;<span class="src-id">apply_filters</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_footer_credits'</span><span class="src-sym">,&nbsp;</span><a href="http://www.php.net/sprintf">sprintf</a><span class="src-sym">(&nbsp;</span><span class="src-str">'[footer_copyright&nbsp;before=&quot;%1$s&nbsp;&quot;]&nbsp;[footer_theme_link&nbsp;after=&quot;&nbsp;%2$s&nbsp;&quot;]&nbsp;[footer_calibrefx_link&nbsp;after=&quot;&nbsp;%3$s&nbsp;&quot;]&nbsp;[footer_wordpress_link&nbsp;before=&nbsp;&quot;&nbsp;%4$s&nbsp;&quot;&nbsp;after=&quot;&nbsp;%3$s&nbsp;&quot;]'</span><span class="src-sym">,&nbsp;</span><span class="src-id">__</span><span class="src-sym">(&nbsp;</span><span class="src-str">'Copyright'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-id">__</span><span class="src-sym">(&nbsp;</span><span class="src-str">'on'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'&amp;middot;'</span><span class="src-sym">,&nbsp;</span><span class="src-id">__</span><span class="src-sym">(&nbsp;</span><span class="src-str">'Powered&nbsp;By'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'&nbsp;</span><span class="src-sym">))&nbsp;)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a92"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$backtotop_text&nbsp;</span>=&nbsp;<span class="src-id">apply_filters</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_footer_scrolltop'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'[footer_scrolltop]'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a93"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a94"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$backtotop&nbsp;</span>=&nbsp;<span class="src-var">$backtotop_text&nbsp;</span>?&nbsp;<a href="http://www.php.net/sprintf">sprintf</a><span class="src-sym">(&nbsp;</span><span class="src-str">'&lt;div&nbsp;class=&quot;pull-right&nbsp;&nbsp;scrolltop&quot;&gt;&lt;p&gt;%s&lt;/p&gt;&lt;/div&gt;'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$backtotop_text&nbsp;</span><span class="src-sym">)&nbsp;</span>:&nbsp;<span class="src-str">''</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a95"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$creds&nbsp;</span>=&nbsp;<span class="src-var">$creds_text&nbsp;</span>?&nbsp;<a href="http://www.php.net/sprintf">sprintf</a><span class="src-sym">(&nbsp;</span><span class="src-str">'&lt;div&nbsp;class=&quot;credits&nbsp;pull-left&quot;&gt;&lt;p&gt;%s&lt;/p&gt;&lt;/div&gt;'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$creds_text&nbsp;</span><span class="src-sym">)&nbsp;</span>:&nbsp;<span class="src-str">''</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a96"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a97"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$output&nbsp;</span>=&nbsp;<span class="src-var">$creds&nbsp;</span>.&nbsp;<span class="src-var">$backtotop</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a98"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a99"></a>&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-id">apply_filters</span><span class="src-sym">(&nbsp;</span><span class="src-str">'calibrefx_footer_output'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$output</span><span class="src-sym">,&nbsp;</span><span class="src-var">$backtotop_text</span><span class="src-sym">,&nbsp;</span><span class="src-var">$creds_text&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a100"></a><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 05 Mar 2012 16:50:40 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

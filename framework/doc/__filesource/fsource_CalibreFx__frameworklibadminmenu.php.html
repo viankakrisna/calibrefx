@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>File Source for menu.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1>Source for file menu.php</h1>
+<p>Documentation is available at <a href="../CalibreFx/_framework---lib---admin---menu.php.html">menu.php</a></p>
+<div class="src-code">
+<div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><a name="a2"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a3"></a><span class="src-doc">&nbsp;*&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a4"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a5"></a><span class="src-doc">&nbsp;*&nbsp;WordPress&nbsp;Themes&nbsp;Framework&nbsp;by&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a6"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a7"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a8"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CalibreWorks&nbsp;Team</span></div></li>
+<li><div class="src-line"><a name="a9"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@copyright</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;Copyright&nbsp;(c)&nbsp;2012,&nbsp;Suntech&nbsp;Inti&nbsp;Perkasa.</span></div></li>
+<li><div class="src-line"><a name="a10"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@license</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Commercial</span></div></li>
+<li><div class="src-line"><a name="a11"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@link</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://calibrefx.com</span></div></li>
+<li><div class="src-line"><a name="a12"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@since</span><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version&nbsp;1.0</span></div></li>
+<li><div class="src-line"><a name="a13"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@filesource</span></div></li>
+<li><div class="src-line"><a name="a14"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a15"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;WARNING:&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;the&nbsp;core&nbsp;CalibreFx&nbsp;framework.&nbsp;DO&nbsp;NOT&nbsp;edit</span></div></li>
+<li><div class="src-line"><a name="a16"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;this&nbsp;file&nbsp;under&nbsp;any&nbsp;circumstances.</span></div></li>
+<li><div class="src-line"><a name="a17"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a18"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;This&nbsp;file&nbsp;will&nbsp;handle&nbsp;CalibreFx&nbsp;Themes&nbsp;Menu</span></div></li>
+<li><div class="src-line"><a name="a19"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a20"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;CalibreFx</span></div></li>
+<li><div class="src-line"><a name="a21"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a22"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a23"></a><span class="src-id">add_action</span><span class="src-sym">(</span><span class="src-str">'admin_menu'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_add_admin_menu'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a24"></a><span class="src-comm">//&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;function&nbsp;adds&nbsp;the&nbsp;top-level&nbsp;menu</span></div></li>
+<li><div class="src-line"><a name="a25"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---admin---menu.php.html#functioncalibrefx_add_admin_menu">calibrefx_add_admin_menu</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a26"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a27"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">global&nbsp;</span><span class="src-var">$menu</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a28"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a29"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Disable&nbsp;if&nbsp;programatically&nbsp;disabled</span></div></li>
+<li><div class="src-line"><a name="a30"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!</span><span class="src-id">current_theme_supports</span><span class="src-sym">(</span><span class="src-str">'calibrefx-admin-menu'</span><span class="src-sym">)&nbsp;)&nbsp;</span><span class="src-key">return</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a31"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a32"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Create&nbsp;the&nbsp;new&nbsp;separator</span></div></li>
+<li><div class="src-line"><a name="a33"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$menu</span><span class="src-sym">[</span><span class="src-str">'58.995'</span><span class="src-sym">]&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(&nbsp;</span><span class="src-str">''</span><span class="src-sym">,&nbsp;</span><span class="src-str">'edit_theme_options'</span><span class="src-sym">,&nbsp;</span><span class="src-str">''</span><span class="src-sym">,&nbsp;</span><span class="src-str">''</span><span class="src-sym">,&nbsp;</span><span class="src-str">'wp-menu-separator'&nbsp;</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a34"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a35"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Create&nbsp;the&nbsp;new&nbsp;top-level&nbsp;Menu</span></div></li>
+<li><div class="src-line"><a name="a36"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">add_menu_page</span><span class="src-sym">(</span><span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'Calibre&nbsp;Framework&nbsp;Settings'</span><span class="src-sym">,</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'CalibreFx'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'edit_theme_options'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_theme_settings_admin'</span><span class="src-sym">,&nbsp;</span><span class="src-id">CALIBREFX_IMAGES_URL</span>.<span class="src-str">'/calibrefx.gif'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'58.996'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a37"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a38"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a39"></a><span class="src-id">add_action</span><span class="src-sym">(</span><span class="src-str">'admin_menu'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_add_admin_submenus'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a40"></a><span class="src-comm">//&nbsp;This&nbsp;function&nbsp;adds&nbsp;the&nbsp;submenus</span></div></li>
+<li><div class="src-line"><a name="a41"></a><span class="src-key">function&nbsp;</span><a href="../CalibreFx/_framework---lib---admin---menu.php.html#functioncalibrefx_add_admin_submenus">calibrefx_add_admin_submenus</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a42"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a43"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">global&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="src-var">$_calibrefx_theme_settings_pagehook</span><span class="src-sym">,&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$_calibrefx_about_pagehook</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a45"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a46"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if</span><span class="src-sym">(&nbsp;</span><span class="src-sym">!</span><span class="src-id">current_theme_supports</span><span class="src-sym">(</span><span class="src-str">'calibrefx-admin-menu'</span><span class="src-sym">)&nbsp;)&nbsp;</span><span class="src-key">return</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a47"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a48"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$user&nbsp;</span>=&nbsp;<span class="src-id">wp_get_current_user</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a49"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a50"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Add&nbsp;&quot;Theme&nbsp;Settings&quot;&nbsp;submenu</span></div></li>
+<li><div class="src-line"><a name="a51"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$_calibrefx_theme_settings_pagehook&nbsp;</span>=&nbsp;<span class="src-id">add_submenu_page</span><span class="src-sym">(</span><span class="src-str">'calibrefx'</span><span class="src-sym">,&nbsp;</span><span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'Theme&nbsp;Settings'</span><span class="src-sym">,</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'Theme&nbsp;Settings'</span><span class="src-sym">,</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'edit_theme_options'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_theme_settings_admin'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a52"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a53"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Add&nbsp;&quot;About&quot;&nbsp;submenu</span></div></li>
+<li><div class="src-line"><a name="a54"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$_calibrefx_about_pagehook&nbsp;</span>=&nbsp;<span class="src-id">add_submenu_page</span><span class="src-sym">(</span><span class="src-str">'calibrefx'</span><span class="src-sym">,&nbsp;</span><span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'About'</span><span class="src-sym">,</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-id">__</span><span class="src-sym">(</span><span class="src-str">'About'</span><span class="src-sym">,</span><span class="src-str">'calibrefx'</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-str">'edit_theme_options'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx-about'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'calibrefx_about_page'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a55"></a><span class="src-sym">}</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 05 Mar 2012 16:50:47 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>
