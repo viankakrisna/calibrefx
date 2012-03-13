@@ -45,10 +45,10 @@ function calibrefx_update_check() {
 			)
 		);
 
-		//$response = wp_remote_post( $url, $options );
-		//$calibrefx_update = wp_remote_retrieve_body( $response );
+		$response = wp_remote_post( $url, $options );
+		$calibrefx_update = wp_remote_retrieve_body( $response );
                 //@TODO: make an API Call and then return the serialize array about the new version
-                $calibrefx_update = serialize(array("new_version" => '1.0', "changelog_url" => '#', "url" => "themes-url", "package"=>"download-url"));
+                //$calibrefx_update = serialize(array("new_version" => '1.0', "changelog_url" => '#', "url" => "themes-url", "package"=>"download-url"));
 
 		/** If an error occurred, return FALSE, store for 1 hour */
 		if ( 'error' == $calibrefx_update || is_wp_error( $calibrefx_update ) || ! is_serialized( $calibrefx_update ) ) {

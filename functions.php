@@ -25,6 +25,6 @@ require_once(TEMPLATEPATH.'/framework/calibrefx.php');
 
 /*
  * ===============================================================
- * JUST MODIFIED THE CODE BELOW
+ * STOP!!! NOTHING TO ADD HERE ANYMORE
  * ===============================================================
  */

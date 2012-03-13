@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CalibreFx
  *
@@ -19,7 +20,7 @@
  *
  * @package CalibreFx
  */
- 
+
 /**
  * Get option value based on option key
  *
@@ -29,29 +30,29 @@
  * @return void
  */
 function calibrefx_get_option($key, $setting = null) {
-	global	$_calibrefx_cache;
+    global $_calibrefx_cache;
 
-	if ( !$_calibrefx_cache ) {
-		$_calibrefx_cache = new cfx_cache;
-	}
-	
-	//If setting is null then use the default CalibreFX Setting field
-	$setting = $setting ? $setting : CALIBREFX_SETTINGS_FIELD;
-	
-	$options = $_calibrefx_cache->cache_get($setting, $setting);
-	
-	if($options && isset($options[$key])){
-		return $options[$key];
-	}
-	
-	$options = apply_filters('calibrefx_options', get_option($setting), $setting);
-	$_calibrefx_cache->cache_set($setting, $options);
-	
-	return $options[$key];
+    if (!$_calibrefx_cache) {
+        $_calibrefx_cache = new cfx_cache;
+    }
+
+    //If setting is null then use the default CalibreFX Setting field
+    $setting = $setting ? $setting : CALIBREFX_SETTINGS_FIELD;
+
+    $options = $_calibrefx_cache->cache_get($setting, $setting);
+
+    if ($options && isset($options[$key])) {
+        return $options[$key];
+    }
+
+    $options = apply_filters('calibrefx_options', get_option($setting), $setting);
+    $_calibrefx_cache->cache_set($setting, $options);
+
+    return $options[$key];
 }
 
 function calibrefx_option($key, $setting = null) {
-	echo calibrefx_get_option($key, $setting);
+    echo calibrefx_get_option($key, $setting);
 }
 
 /**
@@ -61,27 +62,38 @@ function calibrefx_option($key, $setting = null) {
  * @param string $field used to indicate the custom field key
  */
 function calibrefx_custom_field($field) {
-	echo calibrefx_get_custom_field($field);
+    echo calibrefx_get_custom_field($field);
 }
+
 function calibrefx_get_custom_field($field) {
 
-	global $id, $post;
+    global $id, $post;
 
-	if ( null === $id && null === $post ) {
-		return false;
-	}
+    if (null === $id && null === $post) {
+        return false;
+    }
 
-	$post_id = null === $id ? $post->ID : $id;
+    $post_id = null === $id ? $post->ID : $id;
 
-	$custom_field = get_post_meta( $post_id, $field, true );
+    $custom_field = get_post_meta($post_id, $field, true);
 
-	if ( $custom_field ) {
-		/** sanitize and return the value of the custom field */
-		return stripslashes( wp_kses_decode_entities( $custom_field ) );
-	}
-	else {
-		/** return false if custom field is empty */
-		return false;
-	}
+    if ($custom_field) {
+        /** sanitize and return the value of the custom field */
+        return stripslashes(wp_kses_decode_entities($custom_field));
+    } else {
+        /** return false if custom field is empty */
+        return false;
+    }
+}
 
+function calibrefx_get_usermeta($user_id, $key, $single = true){
+    //@TODO: user cache mechanism herer
+    
+    $options = apply_filters('calibrefx_usermeta', get_usermeta($user_id, $key, $single));
+    
+    return $options;
+}
+
+function calibrefx_usermeta($user_id, $key){
+    return calibrefx_get_usermeta($user_id, $key);
 }
