@@ -20,7 +20,7 @@
  * @package CalibreFx
  */
  
-add_action('after_setup_theme', calibrefx_register_nav_menus);
+add_action('after_setup_theme', 'calibrefx_register_nav_menus');
 /**
  * Register CalibreFx menus with WordPress menu
  */
