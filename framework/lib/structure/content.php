@@ -82,15 +82,14 @@ function calibrefx_do_before_post() {
     return;
 }
 
-add_action('calibrefx_before_post_title', 'calibrefx_do_before_post_title');
-
+add_action('calibrefx_post_title', 'calibrefx_do_post_title');
 /**
- * calibrefx_do_before_post_title callback
+ * calibrefx_do_post_title callback
  *
- * It outputs content before the post title
+ * It outputs the post title
  *
  */
-function calibrefx_do_before_post_title() {
+function calibrefx_do_post_title() {
     $title = get_the_title();
 
     if (strlen($title) == 0)
@@ -103,17 +102,6 @@ function calibrefx_do_before_post_title() {
     }
 
     echo apply_filters('calibrefx_post_title_output', $title) . "\n";
-}
-
-add_action('calibrefx_post_title', 'calibrefx_do_post_title');
-/**
- * calibrefx_do_post_title callback
- *
- * It outputs the post title
- *
- */
-function calibrefx_do_post_title() {
-    return;
 }
 
 add_action('calibrefx_before_post_content', 'calibrefx_do_before_post_content');
