@@ -22,7 +22,7 @@ do_action('calibrefx_html_header');
 wp_head(); //wp_head funtion for plugins
 ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_onload(); ?> <?php body_class(); ?>>
 <?php do_action( 'calibrefx_before_wrapper' ); ?>
 <div id="wrapper" class="container">
 <?php
