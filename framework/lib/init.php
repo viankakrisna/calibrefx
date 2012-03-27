@@ -33,7 +33,7 @@ function calibrefx_theme_support() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'calibrefx-admin-menu' );
 	add_theme_support( 'calibrefx-custom-header' );
-        add_theme_support( 'calibrefx-default-styles' );
+    add_theme_support( 'calibrefx-default-styles' );
 	
 	if ( ! current_theme_supports( 'calibrefx-menus' ) ) {
 		add_theme_support( 'calibrefx-menus', 

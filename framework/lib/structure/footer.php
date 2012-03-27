@@ -61,7 +61,7 @@ function calibrefx_do_footer_widgets(){
 	register_sidebar($sidebar);
 	
 	if ( is_active_sidebar( 'footer-widget' ) ) {
-		echo '<div id="footer-widget" class="row">';
+		echo '<div id="footer-widget" '.get_footer_widget_class().'>';
 		dynamic_sidebar( 'footer-widget' );
 		echo '</div><!--end #footer-widget-->';
 	}	

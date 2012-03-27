@@ -98,6 +98,8 @@ function calibrefx_theme_settings_boxes() {
 	add_meta_box('calibrefx-theme-settings-content-archive', __('Content Archives', 'calibrefx'), 'calibrefx_theme_settings_content_archive_box', $_calibrefx_theme_settings_pagehook, 'side');
 	add_meta_box('calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), 'calibrefx_theme_settings_breadcrumb_box', $_calibrefx_theme_settings_pagehook, 'side');
 	add_meta_box('calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), 'calibrefx_theme_settings_comment_box', $_calibrefx_theme_settings_pagehook, 'side');
+
+	add_meta_box('calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), 'calibrefx_theme_settings_socials_box', $_calibrefx_theme_settings_pagehook, 'side');
 }
 
 /**
@@ -314,5 +316,28 @@ function calibrefx_theme_settings_comment_box(){ ?>
 	</p>
 	
 	<p><span class="description"><?php _e("You can generally enabled/disabled comments and trackbacks per post/page.", 'calibrefx'); ?></span></p>
+<?php
+}
+
+/**
+ * This function calibrefx_theme_settings_socials_box is to show social settings
+ * Use For Widgets
+ */
+function calibrefx_theme_settings_socials_box() { ?>
+	<h4><?php _e( 'Facebook Settings:', 'calibrefx' ); ?></h4>
+	<p>
+		<label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]"><?php _e('Facebook APP ID:', 'calibrefx'); ?>
+		<input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_app_id'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]">
+	</p>
+	<p>
+		<label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]"><?php _e('Facebook APP Secret:', 'calibrefx'); ?>
+		<input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_app_secret'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]">
+	</p>
+	
+	<h4><?php _e( 'Twitter Settings:', 'calibrefx' ); ?></h4>
+	<p>
+		<label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]"><?php _e('Twiiter Username:', 'calibrefx'); ?>
+		<input type="text" size="30" value="<?php echo calibrefx_get_option('twitter_username'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]">
+	</p>
 <?php
 }

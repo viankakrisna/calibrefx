@@ -37,7 +37,8 @@ function calibrefx_load_scripts() {
 	wp_enqueue_script( 'superfish', CALIBREFX_JS_URL . '/superfish.js', array( 'jquery' ), FRAMEWORK_VERSION, true );
 }
 
-add_action('get_header', 'calibrefx_load_styles');
+//We load calibrefx default styles as earlier as possible, so it can be override
+add_action('calibrefx_meta', 'calibrefx_load_styles', 5); 
 /**
  * Load default calibrefx styles
  * 

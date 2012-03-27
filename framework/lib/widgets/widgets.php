@@ -27,6 +27,7 @@ require_once( CALIBREFX_WIDGETS_DIR . '/feature-post-widget.php' );
 require_once( CALIBREFX_WIDGETS_DIR . '/latest-tweets-widget.php' );
 require_once( CALIBREFX_WIDGETS_DIR . '/facebook-like-widgets.php' );
 require_once( CALIBREFX_WIDGETS_DIR . '/facebook-comment-widget.php' );
+require_once( CALIBREFX_WIDGETS_DIR . '/twitter-widget.php' );
 
 //Hook all widgets to WordPress 'widgets_init'
 add_action( 'widgets_init', 'calibrefx_register_widgets' );
@@ -39,5 +40,6 @@ function calibrefx_register_widgets() {
 	register_widget( 'Calibrefx_Feature_Post_Widget' );
 	register_widget( 'Calibrefx_Latest_Tweets_Widget' );
 	register_widget( 'Calibrefx_Facebook_Like_Widget' );
-        register_widget( 'Calibrefx_Facebook_Comment_Widget' );
+    register_widget( 'Calibrefx_Facebook_Comment_Widget' );
+	register_widget( 'Calibrefx_Twitter_Widget' );
 }
