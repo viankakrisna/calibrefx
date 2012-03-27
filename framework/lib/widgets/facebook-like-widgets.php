@@ -65,35 +65,27 @@ class Calibrefx_Facebook_Like_Widget extends WP_Widget {
         extract($args);
         $instance = wp_parse_args((array) $instance, $this->defaults);
 
-        $featured_page = new WP_Query(array('page_id' => $instance['page_id']));
-
         echo $before_widget . '<div class="facebook-like">';
 
         if (!empty($instance['title']))
             echo $before_title . apply_filters('widget_title', $instance['title'], $instance, $this->id_base) . $after_title;
 
         //Widget Body Start
-        ?>
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=<?php echo $instance['facebook_page_id']; ?>";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-
-        <div class="fb-like-box" 
-             data-href="<?php echo $instance['facebook_url']; ?>" 
-             data-colorscheme="<?php echo $instance['facebook_color']; ?>"
-             data-width="<?php echo $instance['facebook_width']; ?>" 
-             data-border-color="<?php echo $instance['facebook_border_color']; ?>"
-             data-height="<?php echo $instance['facebook_height']; ?>" 
-             data-show-faces="<?php echo ($instance['facebook_show_faces'] == '1') ? 'true' : 'false'; ?>" 
-             data-stream="<?php echo ($instance['facebook_show_stream'] == '1') ? 'true' : 'false'; ?>" 
-             data-header="<?php echo ($instance['facebook_show_header'] == '1') ? 'true' : 'false'; ?>">
-        </div>
-        <?php
+        
+        printf('<iframe
+			src="http://www.facebook.com/plugins/likebox.php?href=%1$s&
+			width=%2$s&height=%3$s&colorscheme=%4$s&show_faces=%5$s&stream=%6$s&header=%7$s" 
+			scrolling="no" frameborder="0" 
+			style="border:none; overflow:hidden; width:%2$spx; height:%3$spx;" allowTransparency="true"></iframe>',
+			$instance['facebook_url'],
+			$instance['facebook_width'],
+			$instance['facebook_height'],
+			$instance['facebook_color'],
+			($instance['facebook_show_faces'] == '1') ? 'true' : 'false',
+			($instance['facebook_show_stream'] == '1') ? 'true' : 'false',
+			($instance['facebook_show_header'] == '1') ? 'true' : 'false'
+			);
+        
         //Widget Body Stop
 
         echo '</div>' . $after_widget;

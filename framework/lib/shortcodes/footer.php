@@ -147,3 +147,24 @@ function calibrefx_footer_wordpress_link_shortcode( $atts ) {
 	return apply_filters( 'calibrefx_footer_wordpress_link_shortcode', $output, $atts );
 
 }
+
+add_shortcode( 'footer_home_link', 'calibrefx_footer_home_link_shortcode' );
+/**
+ * Show Footer Home Name and Link
+ *
+ * @param array $atts Shortcode attributes
+ * @return string
+ */
+function calibrefx_footer_home_link_shortcode( $atts ) {
+
+	$defaults = array( 
+		'before' => '&middot;',
+		'after'  => ''
+	);
+	$atts = shortcode_atts( $defaults, $atts );
+	
+	$output = sprintf( '%s<a href="%s" title="%s">%s</a>%s', $atts['before'], esc_url( home_url() ), esc_attr( get_bloginfo( ) ), esc_html( get_bloginfo( ) ), $atts['after'] );
+
+	return apply_filters( 'calibrefx_footer_home_link_shortcode', $output, $atts );
+
+}

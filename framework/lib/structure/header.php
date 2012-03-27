@@ -418,3 +418,24 @@ function calibrefx_do_header(){
 		echo '</div><!-- end .widget-wrap -->';
 	}
 }
+
+add_action( 'calibrefx_after_header', 'calibrefx_add_socials_script' );
+function calibrefx_add_socials_script() {
+	global $fbappid, $fbsecret;
+	
+	$fbappid = calibrefx_get_option('facebook_app_id');
+	$fbsecret = calibrefx_get_option('facebook_app_secret');
+	
+	if(!empty($fbappid)){
+		echo '<div id="fb-root"></div>';
+		echo '<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>';
+		echo '<script type="text/javascript">FB.init({appId  : \''. $fbappid .'\',status : true, cookie : true, xfbml  : true, oauth: true  });';
+		echo 'FB.Event.subscribe("auth.login", function(response) {
+			  window.location.reload();
+			});
+			FB.Event.subscribe("auth.logout", function(response) {
+			  window.location.reload();
+			});';
+		echo '</script>';
+	}
+}
