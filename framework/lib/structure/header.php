@@ -20,7 +20,6 @@
  * @package CalibreFx
  */
  
- 
 /**
  * Adds header structures.
  *
@@ -82,7 +81,7 @@ add_action('calibrefx_meta', 'calibrefx_do_meta_description');
  * Print meta description, get from blog description
  * Will be override by seo addon later
  */
-function calibrefx_do_meta_description(){	
+function calibrefx_do_meta_description(){
 	$description = get_bloginfo( 'description' );
 	
 	// Add the description, but only if one exists
@@ -189,15 +188,15 @@ function calibrefx_print_media114_icon() {
 
 }
 
-add_action('calibrefx_meta', 'calibrefx_load_stylesheet');
+//always load the child theme stylesheet at the end for overriding
+add_action('calibrefx_meta', 'calibrefx_load_stylesheet'); 
 /**
  * This function loads the stylesheet.
  * If a child theme is active, it loads the child theme's stylesheet.
  *
  */
 function calibrefx_load_stylesheet() {
-
-	echo '<link rel="stylesheet" href="'.get_bloginfo('stylesheet_url').'" type="text/css" media="screen" />'."\n";
+	wp_enqueue_style('calibrefx-child-style', get_bloginfo('stylesheet_url'));
 }
 
 add_action( 'after_setup_theme', 'calibrefx_custom_header' );
@@ -421,10 +420,11 @@ function calibrefx_do_header(){
 
 add_action( 'calibrefx_after_header', 'calibrefx_add_socials_script' );
 function calibrefx_add_socials_script() {
-	global $fbappid, $fbsecret;
+	global $fbappid, $fbsecret, $twitteruser;
 	
 	$fbappid = calibrefx_get_option('facebook_app_id');
 	$fbsecret = calibrefx_get_option('facebook_app_secret');
+	$twitteruser = calibrefx_get_option('twitter_username');
 	
 	if(!empty($fbappid)){
 		echo '<div id="fb-root"></div>';
@@ -437,5 +437,9 @@ function calibrefx_add_socials_script() {
 			  window.location.reload();
 			});';
 		echo '</script>';
+	}
+	
+	if(!empty($twitteruser)){
+		echo '<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>';
 	}
 }

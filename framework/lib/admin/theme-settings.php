@@ -327,17 +327,17 @@ function calibrefx_theme_settings_socials_box() { ?>
 	<h4><?php _e( 'Facebook Settings:', 'calibrefx' ); ?></h4>
 	<p>
 		<label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]"><?php _e('Facebook APP ID:', 'calibrefx'); ?>
-		<input type="text" size="20" value="<?php echo calibrefx_get_option('facebook_app_id'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]">
+		<input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_app_id'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]">
 	</p>
 	<p>
 		<label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]"><?php _e('Facebook APP Secret:', 'calibrefx'); ?>
-		<input type="text" size="20" value="<?php echo calibrefx_get_option('facebook_app_secret'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]">
+		<input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_app_secret'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]">
 	</p>
 	
 	<h4><?php _e( 'Twitter Settings:', 'calibrefx' ); ?></h4>
 	<p>
 		<label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]"><?php _e('Twiiter Username:', 'calibrefx'); ?>
-		<input type="text" size="20" value="<?php echo calibrefx_get_option('twitter_username'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]">
+		<input type="text" size="30" value="<?php echo calibrefx_get_option('twitter_username'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]">
 	</p>
 <?php
 }

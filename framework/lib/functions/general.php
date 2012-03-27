@@ -104,3 +104,47 @@ function calibrefx_get_post_meta_all($post_id) {
     };
     return $data;
 }
+
+/**
+ * Show footer widget css class
+ */
+function footer_widget_class($class = ''){
+	// Separates classes with a single space, collates classes for body element
+	echo 'class="' . join( ' ', get_footer_widget_classes( $class ) ) . '"';
+}
+
+/**
+ * Return footer widget css class
+ */
+function get_footer_widget_class($class = ''){
+	// Separates classes with a single space, collates classes for body element
+	return 'class="' . join( ' ', get_footer_widget_classes( $class ) ) . '"';
+}
+
+/**
+ * Retrieve the classes for the body element as an array.
+ *
+ * @since 2.8.0
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function get_footer_widget_classes( $class = '' ) {
+	
+	$classes = array();
+	
+	$classes[] = 'row'; //Always use row class
+
+	if ( ! empty( $class ) ) {
+		if ( !is_array( $class ) )
+			$class = preg_split( '#\s+#', $class );
+		$classes = array_merge( $classes, $class );
+	} else {
+		// Ensure that we always coerce class to being an array.
+		$class = array();
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	return apply_filters( 'footer_widget_class', $classes, $class );
+}

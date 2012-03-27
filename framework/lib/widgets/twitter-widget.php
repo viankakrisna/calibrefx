@@ -62,10 +62,12 @@ class Calibrefx_Twitter_Widget extends WP_Widget {
      * @param array $instance The settings for the particular instance of the widget
      */
     function widget($args, $instance) {
+		global $twitteruser;
+		
         extract($args);
         $instance = wp_parse_args((array) $instance, $this->defaults);
 		
-		if(calibrefx_get_option('twitter_username')) :
+		if($twitteruser) :
 		
         echo $before_widget . '<div class="twitter-widget">';
 
@@ -103,13 +105,13 @@ class Calibrefx_Twitter_Widget extends WP_Widget {
 			</script>',
 			$instance['interval'],
 			$instance['twitter_width'],
-			$instance['twitter_heigh'],
+			$instance['twitter_height'],
 			$instance['shell_bg'],
 			$instance['shell_color'],
 			$instance['tweets_bg'],
 			$instance['tweets_color'],
 			$instance['tweets_links'],
-			calibrefx_get_option('twitter_username')
+			$twitteruser
 		);
         
         //Widget Body Stop
