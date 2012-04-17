@@ -55,6 +55,14 @@ function calibrefx_option($key, $setting = null) {
     echo calibrefx_get_option($key, $setting);
 }
 
+function calibrefx_get_seo_option($key) {
+    return calibrefx_get_option($key, CALIBREFX_SEO_SETTINGS_FIELD);
+}
+
+function calibrefx_seo_option($key) {
+    calibrefx_option($key, CALIBREFX_SEO_SETTINGS_FIELD);
+}
+
 /**
  * These functions can be used to easily and efficiently pull data from a
  * post/page custom field. Returns FALSE if field is blank or not set.
@@ -86,14 +94,14 @@ function calibrefx_get_custom_field($field) {
     }
 }
 
-function calibrefx_get_usermeta($user_id, $key, $single = true){
+function calibrefx_get_usermeta($user_id, $key, $single = true) {
     //@TODO: user cache mechanism herer
-    
+
     $options = apply_filters('calibrefx_usermeta', get_usermeta($user_id, $key, $single));
-    
+
     return $options;
 }
 
-function calibrefx_usermeta($user_id, $key){
+function calibrefx_usermeta($user_id, $key) {
     return calibrefx_get_usermeta($user_id, $key);
 }

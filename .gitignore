@@ -3,3 +3,4 @@
 .project
 .settings
 framework/docs*
+/framework/doc/

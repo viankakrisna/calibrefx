@@ -261,10 +261,10 @@ function calibrefx_custom_header() {
  */
 function calibrefx_custom_header_style() {
 	/** If no options set, don't waste the output. Do nothing. */
-	if ( HEADER_TEXTCOLOR == get_header_textcolor() && HEADER_IMAGE == get_header_image() )
+	if ( HEADER_TEXTCOLOR == get_header_textcolor() && HEADER_IMAGE == get_header_image())
 		return;
 	
-	$header = sprintf( '#header { background: url(%s) no-repeat; }', esc_url( get_header_image() ) );
+	$header = sprintf( '#header { background: url(%s) no-repeat; width:%d; height: %d}', esc_url( get_header_image() ), HEADER_IMAGE_WIDTH,  HEADER_IMAGE_HEIGHT );
 	$text = sprintf( '#title a, #title a:hover, #description { color: #%s; }', esc_html( get_header_textcolor() ) );
 
 	printf( '<style type="text/css">%1$s %2$s</style>', $header, $text );
