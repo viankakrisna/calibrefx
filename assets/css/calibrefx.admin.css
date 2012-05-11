@@ -757,3 +757,58 @@ li.wp-menu-separator{  }
     width: 64px;
     height: 64px;
 }
+
+/**
+ * Admin Menu Style
+ * @author Hilaladdiyar <hilal@calibrefx.com> 
+*/
+#calibrefx-admin-bar-menu .bottom-bar-left{
+	float: left;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left ul{
+	margin: 0px;
+	padding: 0px;
+	margin-left: -15px;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left li{
+	float: left;
+	border-right: 1px solid #ccc;
+	height: 30px;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left li a{
+	display: block;
+	padding: 0 25px;
+	text-decoration: none;
+	line-height: 30px;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left li a:hover{
+	color: #333;
+	background-color: #fff;
+}
+#calibrefx-admin-bar-menu .bottom-bar-right{
+	float: right;
+}
+#calibrefx-admin-bar-menu .bottom-bar-right .social{
+	margin: 0px;
+	padding: 0px;
+	margin-top: 2px;
+}
+#calibrefx-admin-bar-menu .bottom-bar-right .social li{
+	float: left;
+	margin-right: 8px;
+}
+#calibrefx-admin-bar-menu .bottom-bar-right .social li:last-child{
+	margin-right: 11px;
+}
+#calibrefx-admin-bar-menu .bottom-bar-right .social li a{
+	display: block;
+	width: 25px;
+	height: 25px;
+	background: url(../img/logo2.png) no-repeat -64px -4px;
+}
+#calibrefx-admin-bar-menu .bottom-bar-right .social li .twitter{
+	background-position: -6px -5px;
+}
+#calibrefx-admin-bar-menu .bottom-bar-right .social li .homepage{
+	background-position: -35px -5px;
+}
