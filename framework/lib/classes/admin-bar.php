@@ -455,7 +455,7 @@ class CalibreFx_Admin_Bar {
 						<ul class="social">
 							<li><a href="http://www.facebook.com/calibreworks" class="facebook" title="Calibreworks at Facebook"></a></li>
 							<li><a href="http://twitter.com/calibreworks" class="twitter" title="Calibreworks at Twitter"></a></li>
-							<li><a href="http://www.calibreworks.com/" class="homepage" title="Calibreworks Homepage"></a></li>
+							<li><a href="http://www.calibrefx.com/" class="homepage" title="Calibrefx Homepage"></a></li>
 						</ul>
 					</div>
                 </div>
