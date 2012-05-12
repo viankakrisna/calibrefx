@@ -96,6 +96,8 @@ function calibrefx_constants() {
 
     /** Define Settings Field Constants (for DB storage) */
     define('CALIBREFX_SETTINGS_FIELD', apply_filters('calibrefx_settings_field', 'calibrefx-settings'));
+	define('CALIBREFX_SEO_SETTINGS_FIELD', apply_filters('calibrefx_seo_settings_field', 'calibrefx-seo-settings'));
+	define('CALIBREFX_POST_SETTINGS_FIELD', apply_filters('calibrefx_post_settings_field', 'calibrefx-post-settings'));
 
     /** Define CALIBREFX Child Directory Constant */
     define('CHILD_DIR', get_stylesheet_directory());
@@ -175,6 +177,7 @@ function calibrefx_load_framework() {
         require_once( CALIBREFX_ADMIN_DIR . '/theme-settings.php' );
         require_once( CALIBREFX_ADMIN_DIR . '/seo-settings.php' );
         require_once( CALIBREFX_ADMIN_DIR . '/about-page.php' );
+		require_once( CALIBREFX_ADMIN_DIR . '/inpost-metaboxes.php' );
     endif;
     require_once( CALIBREFX_ADMIN_DIR . '/admin-bar.php' );
     require_once( CALIBREFX_ADMIN_DIR . '/admin-login.php' );

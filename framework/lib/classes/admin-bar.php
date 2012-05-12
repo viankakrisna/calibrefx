@@ -446,8 +446,22 @@ class CalibreFx_Admin_Bar {
 					<?php //TODO: Must be changed using _render_group ?>
 					<div class="bottom-bar-left">
 						<ul>
-							<li><a href="<?php echo admin_url( 'edit.php', 'http' ); ?>">Posts</a></li>
-							<li><a href="<?php echo admin_url( 'edit.php?post_type=page', 'http' ); ?>">Pages</a></li>
+							<li>
+								<a href="<?php echo admin_url( 'edit.php', 'http' ); ?>">Posts</a>
+								<ul class="children">
+									<li><a href="<?php echo admin_url( 'edit.php', 'http' ); ?>">All Posts</a></li>
+									<li><a href="<?php echo admin_url( 'post-new.php', 'http' ); ?>">Add New</a></li>
+									<li><a href="<?php echo admin_url( 'edit-tags.php?taxonomy=category', 'http' ); ?>">Categories</a></li>
+									<li><a href="<?php echo admin_url( 'edit-tags.php?taxonomy=post_tag', 'http' ); ?>">Tags</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="<?php echo admin_url( 'edit.php?post_type=page', 'http' ); ?>">Pages</a>
+								<ul class="children">
+									<li><a href="<?php echo admin_url( 'edit.php?post_type=page', 'http' ); ?>">All Pages</a></li>
+									<li><a href="<?php echo admin_url( 'post-new.php?post_type=page', 'http' ); ?>">Add New</a></li>
+								</ul>
+							</li>
 							<li><a href="<?php echo admin_url( 'nav-menus.php', 'http' ); ?>">Menus</a></li>
 						</ul>
 					</div>
