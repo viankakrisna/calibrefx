@@ -765,25 +765,57 @@ li.wp-menu-separator{  }
 #calibrefx-admin-bar-menu .bottom-bar-left{
 	float: left;
 }
-#calibrefx-admin-bar-menu .bottom-bar-left ul{
+#calibrefx-admin-bar-menu .bottom-bar-left > ul{
 	margin: 0px;
 	padding: 0px;
 	margin-left: -15px;
 }
-#calibrefx-admin-bar-menu .bottom-bar-left li{
+#calibrefx-admin-bar-menu .bottom-bar-left > ul > li{
 	float: left;
 	border-right: 1px solid #ccc;
 	height: 30px;
+	position: relative;
 }
-#calibrefx-admin-bar-menu .bottom-bar-left li a{
+#calibrefx-admin-bar-menu .bottom-bar-left > ul > li > a{
 	display: block;
 	padding: 0 25px;
 	text-decoration: none;
 	line-height: 30px;
 }
-#calibrefx-admin-bar-menu .bottom-bar-left li a:hover{
+#calibrefx-admin-bar-menu .bottom-bar-left > ul > li:hover > a{
 	color: #333;
 	background-color: #fff;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left > ul > li > ul{
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	display: none;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left > ul > li:hover > ul{
+	display: block;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left > ul > li > ul > li{
+	height: 30px;
+	width: 135px;
+	background: #fff;
+	padding: 0px;
+	margin: 0px;
+	padding-left: 10px;
+	border-bottom: 1px solid #ccc;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left > ul > li > ul > li > a{
+	display: block;
+	line-height: 30px;
+	text-decoration: none;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left > ul > li > ul > li:hover{
+	background: #fcfcfc;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left > ul > li > ul > li:hover > a{
+	color: #333;
 }
 #calibrefx-admin-bar-menu .bottom-bar-right{
 	float: right;

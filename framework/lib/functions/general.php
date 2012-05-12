@@ -106,6 +106,21 @@ function calibrefx_get_post_meta_all($post_id) {
 }
 
 /**
+ * Helper function used to get post meta based on the post ID and the meta Key
+ */
+function calibrefx_get_custom_post_meta($post_id,$meta_key) {
+    global $wpdb;
+   
+    $result = $wpdb->get_row("
+        SELECT `meta_value`
+        FROM $wpdb->postmeta
+        WHERE `post_id` = $post_id and `meta_key` = '$meta_key'
+    ");
+   
+    return $result->meta_value;
+}
+
+/**
  * Show footer widget css class
  */
 function footer_widget_class($class = ''){
