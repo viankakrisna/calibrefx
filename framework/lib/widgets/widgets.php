@@ -24,6 +24,8 @@
 require_once( CALIBREFX_WIDGETS_DIR . '/subscriber-widget.php' );
 require_once( CALIBREFX_WIDGETS_DIR . '/feature-page-widget.php' );
 require_once( CALIBREFX_WIDGETS_DIR . '/feature-post-widget.php' );
+require_once( CALIBREFX_WIDGETS_DIR . '/feature-post-slider-widget.php' );
+require_once( CALIBREFX_WIDGETS_DIR . '/feature-page-slider-widget.php' );
 require_once( CALIBREFX_WIDGETS_DIR . '/latest-tweets-widget.php' );
 require_once( CALIBREFX_WIDGETS_DIR . '/facebook-like-widgets.php' );
 require_once( CALIBREFX_WIDGETS_DIR . '/facebook-comment-widget.php' );
@@ -38,8 +40,10 @@ function calibrefx_register_widgets() {
 	register_widget( 'Calibrefx_Subscriber_Widget' );
 	register_widget( 'Calibrefx_Feature_Page_Widget' );
 	register_widget( 'Calibrefx_Feature_Post_Widget' );
+        register_widget( 'Calibrefx_Post_Slider_Widget' );
+        register_widget( 'Calibrefx_Page_Slider_Widget' );
 	register_widget( 'Calibrefx_Latest_Tweets_Widget' );
 	register_widget( 'Calibrefx_Facebook_Like_Widget' );
-    register_widget( 'Calibrefx_Facebook_Comment_Widget' );
+        register_widget( 'Calibrefx_Facebook_Comment_Widget' );
 	register_widget( 'Calibrefx_Twitter_Widget' );
 }

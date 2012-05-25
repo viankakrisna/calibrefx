@@ -246,3 +246,46 @@ add_action('calibrefx_no_post', 'calibrefx_do_no_post');
 function calibrefx_do_no_post() {
     printf('<p>%s</p>', apply_filters('calibrefx_noposts_text', __('Sorry, no posts matched your criteria.', 'calibrefx')));
 }
+
+add_action('calibrefx_blog_loop', 'calibrefx_do_blog_loop');
+/**
+ * CalibreFx Loop for blog bage
+ *
+ * It's just like the default loop except it is used for displaying blog post category
+ *
+ */
+function calibrefx_do_blog_loop() {
+	global $wp_query;
+	
+	$query = new WP_Query( 'category_name=blog&paged='.get_query_var( 'paged' ).'&posts_per_page=5' );
+	
+	$wp_query = $query;
+
+    if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); // the loop
+
+            do_action('calibrefx_before_post');
+            ?>
+            <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
+                <?php do_action('calibrefx_before_post_title'); ?>
+                <?php do_action('calibrefx_post_title'); ?>
+                <?php do_action('calibrefx_after_post_title'); ?>
+
+                <?php do_action('calibrefx_before_post_content'); ?>
+                <div class="entry-content">
+                    <?php do_action('calibrefx_post_content'); ?>
+                </div><!-- end .entry-content -->
+                <?php do_action('calibrefx_after_post_content'); ?>
+
+            </div><!-- end .postclass -->
+            <?php
+            do_action('calibrefx_after_post');
+            $loop_counter++;
+
+        endwhile;/** end of one post * */
+        do_action('calibrefx_after_post_loop');
+
+    else : /** if no posts exist * */
+        do_action('calibrefx_no_post');
+    endif;/** end loop * */
+}

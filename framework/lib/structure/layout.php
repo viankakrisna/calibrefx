@@ -288,7 +288,7 @@ function calibrefx_get_sidebar() {
     get_sidebar();
 }
 
-add_action('calibrefx_before_content_wrapper', 'calibrefx_get_sidebar_alt');
+add_action('calibrefx_before_content', 'calibrefx_get_sidebar_alt');
 
 /**
  * This function will show sidebar after the content
