@@ -76,16 +76,20 @@ function calibrefx_do_nav() {
         }
 
         $nav_output = sprintf('
-			<div id="nav" class="navbar row">
-				<div class="navbar-inner">
-					<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-					<a class="brand" href="#">Project name</a>
-					<div class="nav-collapse">%1$s</div></div></div></div>', $nav);
+            <div id="nav" class="navbar row">
+                %2$s
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                    <div class="nav-collapse">%1$s</div>
+                    </div>
+                %3$s
+                </div>
+            </div>', $nav, calibrefx_put_wrapper('nav','open', false), calibrefx_put_wrapper('nav','close', false));
 
         echo apply_filters('calibrefx_do_nav', $nav_output, $nav, $args);
     }

@@ -38,8 +38,18 @@
 
 /* Import & Reset
 ------------------------------------------------------------ */
-@import url("assets/css/calibrefx.css");
+/*@import url("assets/css/calibrefx.css");*/
 
+#wrapper{
+    padding:0;
+}
+.wrap{
+    width: 980px;
+    margin: 0 auto;
+}
+.wrap:after{
+    clear: both;
+}
 /* Typography
 ------------------------------------------------------------ */
 .widget-area h4 {

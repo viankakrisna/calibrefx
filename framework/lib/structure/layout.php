@@ -20,38 +20,6 @@
  *
  * @package CalibreFx
  */
-add_action('calibrefx_init', 'calibrefx_setup_layout', 0);
-
-/**
- * Register all the available layout
- *
- * @access public
- * @return void
- */
-function calibrefx_setup_layout() {
-
-    calibrefx_register_layout(
-            'content-sidebar', array(
-        'label' => __('Content Sidebar (default blog)', 'calibrefx'),
-        'img' => CALIBREFX_IMAGES_URL . '/layouts/cs.gif',
-        'default' => true)
-    );
-    calibrefx_register_layout(
-            'full-width-content', array(
-        'label' => __('Full Width Content (minisite)', 'calibrefx'),
-        'img' => CALIBREFX_IMAGES_URL . '/layouts/c.gif')
-    );
-    calibrefx_register_layout(
-            'sidebar-content', array(
-        'label' => __('Sidebar Content', 'calibrefx'),
-        'img' => CALIBREFX_IMAGES_URL . '/layouts/sc.gif')
-    );
-    calibrefx_register_layout(
-            'sidebar-content-sidebar', array(
-        'label' => __('Sidebar Content Sidebar', 'calibrefx'),
-        'img' => CALIBREFX_IMAGES_URL . '/layouts/scs.gif')
-    );
-}
 
 add_filter('body_class', 'caibrefx_layout_body_class');
 
@@ -103,26 +71,11 @@ function calibrefx_header_body_classes($classes) {
     if (calibrefx_layout_is_responsive())
         $classes[] = 'responsive';
     else
-        $classes[] = 'fixed';
+        $classes[] = 'responsive'; //Change to use wrappers instead of fixed
+        //$classes[] = 'fixed';
 
     // return filtered $classes
     return $classes;
-}
-
-/**
- * This function/filter adds layout type static/fluid
- */
-/* function calibrefx_layout_type(){
-
-  $layout_type = calibrefx_get_option('layout_type');
-  if($layout_type == 'fluid') $layout_type = '-fluid';
-  else $layout_type = '';
-
-  return apply_filters('calibrefx_layout_type', $layout_type);
-  } */
-
-function calibrefx_layout_is_responsive() {
-    return calibrefx_get_option('layout_type') == 'fluid';
 }
 
 /**
@@ -353,32 +306,4 @@ function calibrefx_get_sidebar_alt() {
 
     // output the primary sidebar
     get_sidebar('alt');
-}
-
-/**
- * Put wrappers into the structure
- *
- * @access public
- * @return string
- */
-function calibrefx_put_wrapper($context = '', $output = '<div class="wrap">', $echo = true) {
-
-    $calibrefx_context_wrappers = get_theme_support('calibrefx-context-wrappers');
-
-    if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
-        return '';
-
-    switch ($output) {
-        case 'open':
-            $output = '<div class="wrap">';
-            break;
-        case 'close':
-            $output = '</div><!-- end .wrap -->';
-            break;
-    }
-
-    if ($echo)
-        echo $output;
-    else
-        return $output;
 }

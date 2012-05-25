@@ -43,6 +43,9 @@ function calibrefx_theme_support() {
             )
         );
     }
+    
+    if ( ! current_theme_supports( 'calibrefx-wraps' ) )
+        add_theme_support( 'calibrefx-wraps', array( 'header', 'nav', 'subnav', 'inner', 'footer' ) );
 }
 
 add_action('calibrefx_init', 'calibrefx_constants', 5);
@@ -148,6 +151,7 @@ function calibrefx_load_framework() {
 
     /** Load Functions */
     require_once( CALIBREFX_FUNCTIONS_DIR . '/general.php' );
+    require_once( CALIBREFX_FUNCTIONS_DIR . '/layout.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/options.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/widgets.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/format.php' );

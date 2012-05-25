@@ -19,6 +19,25 @@
  *
  * @package CalibreFx
  */
+
+add_action('calibrefx_before_content_wrapper', 'calibrefx_do_content_open', 5);
+
+/**
+ * Add wrapper after .inner
+ */
+function calibrefx_do_content_open() {
+    calibrefx_put_wrapper('inner');
+}
+
+add_action('calibrefx_after_content_wrapper', 'calibrefx_do_content_close', 15);
+
+/**
+ * Add close wrapper before .inner close
+ */
+function calibrefx_do_content_close() {
+    calibrefx_put_wrapper('inner', 'close');
+}
+
 add_action('calibrefx_loop', 'calibrefx_do_loop');
 
 /**

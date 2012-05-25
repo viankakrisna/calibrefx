@@ -108,32 +108,32 @@ function calibrefx_get_post_meta_all($post_id) {
 /**
  * Helper function used to get post meta based on the post ID and the meta Key
  */
-function calibrefx_get_custom_post_meta($post_id,$meta_key) {
+function calibrefx_get_custom_post_meta($post_id, $meta_key) {
     global $wpdb;
-   
+
     $result = $wpdb->get_row("
         SELECT `meta_value`
         FROM $wpdb->postmeta
         WHERE `post_id` = $post_id and `meta_key` = '$meta_key'
     ");
-   
+
     return $result->meta_value;
 }
 
 /**
  * Show footer widget css class
  */
-function footer_widget_class($class = ''){
-	// Separates classes with a single space, collates classes for body element
-	echo 'class="' . join( ' ', get_footer_widget_classes( $class ) ) . '"';
+function footer_widget_class($class = '') {
+    // Separates classes with a single space, collates classes for body element
+    echo 'class="' . join(' ', get_footer_widget_classes($class)) . '"';
 }
 
 /**
  * Return footer widget css class
  */
-function get_footer_widget_class($class = ''){
-	// Separates classes with a single space, collates classes for body element
-	return 'class="' . join( ' ', get_footer_widget_classes( $class ) ) . '"';
+function get_footer_widget_class($class = '') {
+    // Separates classes with a single space, collates classes for body element
+    return 'class="' . join(' ', get_footer_widget_classes($class)) . '"';
 }
 
 /**
@@ -144,41 +144,41 @@ function get_footer_widget_class($class = ''){
  * @param string|array $class One or more classes to add to the class list.
  * @return array Array of classes.
  */
-function get_footer_widget_classes( $class = '' ) {
-	
-	$classes = array();
-	
-	$classes[] = 'row'; //Always use row class
+function get_footer_widget_classes($class = '') {
 
-	if ( ! empty( $class ) ) {
-		if ( !is_array( $class ) )
-			$class = preg_split( '#\s+#', $class );
-		$classes = array_merge( $classes, $class );
-	} else {
-		// Ensure that we always coerce class to being an array.
-		$class = array();
-	}
+    $classes = array();
 
-	$classes = array_map( 'esc_attr', $classes );
+    $classes[] = 'row'; //Always use row class
 
-	return apply_filters( 'footer_widget_class', $classes, $class );
+    if (!empty($class)) {
+        if (!is_array($class))
+            $class = preg_split('#\s+#', $class);
+        $classes = array_merge($classes, $class);
+    } else {
+        // Ensure that we always coerce class to being an array.
+        $class = array();
+    }
+
+    $classes = array_map('esc_attr', $classes);
+
+    return apply_filters('footer_widget_class', $classes, $class);
 }
 
-function body_onload($script=''){
-	$scripts = array();
-	
-	if ( ! empty( $script ) ) {
-		if ( !is_array( $script ) )
-			$script = preg_split( '#\s+#', $script );
-		$scripts = array_merge( $scripts, $script );
-	} else {
-		// Ensure that we always coerce class to being an array.
-		$script = array();
-	}
-	
-	$scripts = array_map( 'esc_attr', $scripts );
-	
-	$onload_scripts = apply_filters( 'body_onload_script', $scripts, $script );
-	
-	echo 'onload="' . join( ';', $onload_scripts ) . '"';
+function body_onload($script = '') {
+    $scripts = array();
+
+    if (!empty($script)) {
+        if (!is_array($script))
+            $script = preg_split('#\s+#', $script);
+        $scripts = array_merge($scripts, $script);
+    } else {
+        // Ensure that we always coerce class to being an array.
+        $script = array();
+    }
+
+    $scripts = array_map('esc_attr', $scripts);
+
+    $onload_scripts = apply_filters('body_onload_script', $scripts, $script);
+
+    echo 'onload="' . join(';', $onload_scripts) . '"';
 }
