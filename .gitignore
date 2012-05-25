@@ -4,3 +4,4 @@
 .settings
 framework/docs*
 /framework/doc/
+/nbproject/private/

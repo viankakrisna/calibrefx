@@ -122,6 +122,7 @@ li.wp-menu-separator{  }
     -webkit-box-shadow:rgba(0, 0, 0, 0.3) 0px 0px 4px; 
     -khtml-box-shadow:rgba(0, 0, 0, 0.3) 0px 0px 4px; 
     box-shadow:rgba(0, 0, 0, 0.3) 0px 0px 4px;
+	height: 59px;
 }
 
 #calibrefx-admin-bar-logo{
@@ -137,7 +138,7 @@ li.wp-menu-separator{  }
 
 #calibrefx-admin-bar-logo a{
     display: block;
-    height:60px;
+    height: 59px;
     width: 146px;
     text-decoration:none;
 }
@@ -792,7 +793,13 @@ li.wp-menu-separator{  }
 	padding: 0px;
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
 	display: none;
+	margin-left: -1px;
+}
+#calibrefx-admin-bar-menu .bottom-bar-left > ul > li:first-child > ul{
+	border-left: none;
+	margin-left: 0px;
 }
 #calibrefx-admin-bar-menu .bottom-bar-left > ul > li:hover > ul{
 	display: block;

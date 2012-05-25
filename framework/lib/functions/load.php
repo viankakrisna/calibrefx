@@ -26,21 +26,28 @@ add_action( 'get_header', 'calibrefx_load_scripts' );
  *
  */
 function calibrefx_load_scripts() {
-        wp_deregister_script('jquery');
-        
-        wp_register_script('jquery', CALIBREFX_JS_URL . '/jquery.min.js', false, '1.6.4');
-        wp_register_script( 'modernizr', CALIBREFX_JS_URL . '/modernizr.min.js', false, FRAMEWORK_VERSION );
+	wp_deregister_script('jquery');
+	
+	wp_register_script('jquery', CALIBREFX_JS_URL . '/jquery.min.js', false, '1.6.4');
+	wp_register_script( 'modernizr', CALIBREFX_JS_URL . '/modernizr.min.js', false, FRAMEWORK_VERSION );
 	wp_register_script( 'jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', array('jquery'), FRAMEWORK_VERSION );
 	wp_register_script( 'jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array('jquery'), FRAMEWORK_VERSION );
-	
-        wp_enqueue_script('jquery');
-        wp_enqueue_script('modernizr');
-	wp_enqueue_script('calibrefx_bootstrap',CALIBREFX_JS_URL . '/bootstrap.min.js', array('jquery'), FRAMEWORK_VERSION);
+	wp_register_script( 'nivo-slider', CALIBREFX_JS_URL . '/jquery.nivo.slider.pack.js', array('jquery'), FRAMEWORK_VERSION );
+	wp_register_script( 'shortcode', CALIBREFX_JS_URL . '/shortcode.js', false, FRAMEWORK_VERSION );
+
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'modernizr' );
+	//wp_enqueue_script('calibrefx_bootstrap',CALIBREFX_JS_URL . '/bootstrap.min.js', array('jquery'), FRAMEWORK_VERSION);
 	wp_enqueue_script('calibrefx_script',CALIBREFX_JS_URL . '/calibrefx.js', array('jquery','jquery-validate'), FRAMEWORK_VERSION);
 	if ( is_singular() && get_option( 'thread_comments' ) && comments_open() )
 		wp_enqueue_script( 'comment-reply' );
+        
+	if ( is_active_widget(0,0, 'post-slider') || is_active_widget(0,0, 'page-slider') ){
+		wp_enqueue_script( 'nivo-slider' );
+	}
 		
 	wp_enqueue_script( 'superfish', CALIBREFX_JS_URL . '/superfish.js', array( 'jquery' ), FRAMEWORK_VERSION, true );
+	wp_enqueue_script( 'shortcode' );
 }
 
 //We load calibrefx default styles as earlier as possible, so it can be override
@@ -54,11 +61,18 @@ function calibrefx_load_styles() {
     $calibrefx_default_style = get_theme_support( 'calibrefx-default-styles' );
     
     wp_register_style( 'calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css', FRAMEWORK_VERSION );
+    wp_register_style( 'nivo-slider', CALIBREFX_CSS_URL . '/nivo-slider.css', FRAMEWORK_VERSION );
+	wp_register_style( 'shortcode', CALIBREFX_CSS_URL . '/shortcode.css', FRAMEWORK_VERSION );
     
     /** If not active, do nothing */
     if ( ! $calibrefx_default_style )
             return;
     wp_enqueue_style('calibrefx-style');
+    
+    if ( is_active_widget(0,0, 'post-slider') || is_active_widget(0,0, 'page-slider') ){
+        wp_enqueue_style('nivo-slider');
+    }
+	wp_enqueue_style('shortcode');
     
 }
 

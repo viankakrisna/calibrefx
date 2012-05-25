@@ -51,7 +51,7 @@ function calibrefx_do_sidebar_alt() {
 
 		echo '<div class="widget widget_text"><div class="widget-wrap">';
 			echo '<h4 class="widgettitle">';
-				_e('Secondary Sidebar Widget Area', 'genesis');
+				_e('Secondary Sidebar Widget Area', 'calibrefx');
 			echo '</h4>';
 			echo '<div class="textwidget"><p>';
 				printf(__('This is the Secondary Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'genesis'), admin_url('widgets.php'));

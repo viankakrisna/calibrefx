@@ -163,6 +163,7 @@ function calibrefx_load_framework() {
     /** Load Shortcodes */
     require_once( CALIBREFX_SHORTCODES_DIR . '/footer.php' );
     require_once( CALIBREFX_SHORTCODES_DIR . '/content.php' );
+	require_once( CALIBREFX_SHORTCODES_DIR . '/calibre-shortcodes.php' );
 
     /** Load Structure */
     require_once( CALIBREFX_STRUCTURE_DIR . '/header.php' );
