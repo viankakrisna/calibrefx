@@ -35,7 +35,9 @@
  * @return string
  */
 function calibrefx_truncate_phrase($phrase, $max_characters) {
-
+        // Inline styles/scripts
+	$phrase = trim(preg_replace('#<(s(cript|tyle)).*?</\1>#si', '', $phrase));
+        
 	$phrase = trim( $phrase );
 
 	if ( strlen($phrase) > $max_characters ) {
@@ -61,9 +63,6 @@ function get_the_content_limit($max_char, $more_link_text = '(more...)', $stript
 
 	// Strip tags and shortcodes
 	$content = strip_tags(strip_shortcodes($content), apply_filters('get_the_content_limit_allowedtags', '<script>,<style>'));
-
-	// Inline styles/scripts
-	$content = trim(preg_replace('#<(s(cript|tyle)).*?</\1>#si', '', $content));
 
 	// Truncate $content to $max_char
 	$content = calibrefx_truncate_phrase($content, $max_char);

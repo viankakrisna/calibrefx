@@ -42,6 +42,7 @@ function calibrefx_print_doctype() {
             <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
             <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="viewport" content="width=device-width; initial-scale=1.0" />
     <?php
 }
 
@@ -62,7 +63,7 @@ add_filter('wp_title', 'calibrefx_do_title');
  * Print html title, this will override by seo addon later
  */
 function calibrefx_do_title() {
-    return get_bloginfo('name');
+    return apply_filters('calibrefx_do_title', get_bloginfo('name'));
 }
 
 add_filter('wp_title', 'calibrefx_do_title_wrap', 20);
@@ -84,11 +85,26 @@ add_action('calibrefx_meta', 'calibrefx_do_meta_description');
  * Will be override by seo addon later
  */
 function calibrefx_do_meta_description() {
-    $description = get_bloginfo('description');
+    $description = apply_filters('calibrefx_do_meta_description', get_bloginfo('description'));
 
     // Add the description, but only if one exists
     if (!empty($description)) {
         echo '<meta name="description" content="' . esc_attr($description) . '" />' . "\n";
+    }
+}
+
+add_action('calibrefx_meta', 'calibrefx_do_meta_keywords');
+
+/**
+ * Print meta keywords
+ * Will be override by seo addon later
+ */
+function calibrefx_do_meta_keywords() {
+    $keywords = apply_filters('calibrefx_do_meta_keywords', '');
+
+    // Add the description, but only if one exists
+    if (!empty($keywords)) {
+        echo '<meta name="keywords" content="' . esc_attr($keywords) . '" />' . "\n";
     }
 }
 
@@ -105,15 +121,16 @@ function calibrefx_print_favicon() {
     if ($pre !== false)
         $favicon = $pre;
     elseif (file_exists(CALIBREFX_IMAGES_DIR . '/ico/favicon.ico'))
-        $favicon = CALIBREFX_IMAGES_URL . '/favicon.ico';
+        $favicon = CALIBREFX_IMAGES_URL . '/ico/favicon.ico';
     else
         $favicon = CALIBREFX_IMAGES_URL . '/favicon.ico';
 
     //Check if child themes have the favicon.ico
-    if (file_exists(CALIBREFX_IMAGES_DIR . '/ico/favicon.ico'))
-        $favicon = CALIBREFX_IMAGES_URL . '/favicon.ico';
-    else
-        $favicon = CALIBREFX_IMAGES_URL . '/favicon.ico';
+    if (file_exists(CHILD_DIR . '/favicon.ico'))
+        $favicon = CHILD_URL . '/favicon.ico';
+    
+    if (file_exists(CHILD_IMAGES_DIR . '/favicon.ico'))
+        $favicon = CHILD_IMAGES_URL . '/favicon.ico';
 
     $favicon = apply_filters('calibrefx_favicon_url', $favicon);
 
@@ -268,7 +285,7 @@ function calibrefx_custom_header_style() {
         return;
 
     $header = sprintf('#header-title { background: url(%s) no-repeat; width:%dpx; height: %dpx}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
-    $text = sprintf('#title a, #title a:hover, #description { color: #%s; }', esc_html(get_header_textcolor()));
+    $text = sprintf('#title, #title a, #title a:hover{ display: block; margin: 0; overflow: hidden; padding: 0;text-indent: -9999px; color: #%s; width:%dpx; height: %dpx }', esc_html(get_header_textcolor()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
 
     printf('<style type="text/css">%1$s %2$s</style>', $header, $text);
 }

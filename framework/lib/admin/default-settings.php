@@ -60,7 +60,60 @@ function calibrefx_theme_settings_defaults() {
  */
 function calibrefx_seo_settings_defaults() {
     $defaults = array(// define our defaults
-        'update' => 1,
+        'doc_canonical_url' => 1,
+        'doc_enable_rewrite_title' => 1,
+        
+        'post_rewrite_title' => '%post_title%',
+        'page_rewrite_title' => '%page_title%', 
+        'author_rewrite_title' => '%author_name% Profile &raquo; %site_title%',
+        'category_rewrite_title' => '%category_title% &raquo; %site_title%',
+        'archive_rewrite_title' => 'Archive: %date% &raquo; %site_title%',
+        'tag_rewrite_title' => 'Tags: %tag% &raquo; %site_title%',
+        'search_rewrite_title' => '%search% &raquo; %site_title%',
+        '404_rewrite_title' => 'Nothing found for %request_words% &raquo; %site_title%',
+        
+        'post_description' => '%description%',
+        'page_description' => '%description%',
+        'author_description' => 'Profile Author: %author_name% in %site_title%',
+        'search_description' => 'Search Result %search% in %site_title%',
+        'category_description' => 'Page Category %category_title% for %site_title%',
+        'archive_description' => 'Website Archive %date% for %site_title%',
+        'tag_description' => 'Website Tag %tag% for %site_title%',
+        '404_description' => 'Nothing found for %request_words%',
+        
+        'post_keywords' => '%keywords%',
+        'page_keywords' => '%keywords%',
+        'author_keywords' => '%author_name%',
+        'search_keywords' => '%search%, article %search%, review %search%',
+        'category_keywords' => '%category_title%, %category_title% articles, %category_title% list',
+        'archive_keywords' => '%site_title% archive, %site_title% %date% archive ',
+        'tag_keywords' => '%tag%, article %tag%, review %tag%',
+        '404_keywords' => '%request_words% 404, %request_words% not found, %request_words% not available',
+        
+        'home_title' => '',
+        'home_meta_description' => '',
+        'home_meta_keywords' => '',
+        'home_noindex' => 0,
+        'home_nofollow' => 0,
+        'home_noarchive' => 0,
+        
+        'category_noindex' => 0,
+        'tag_noindex' => 0,
+        'author_noindex' => 0,
+        'date_noindex' => 0,
+        'search_noindex' => 0,
+        
+        'category_noarchive' => 0,
+        'tag_noarchive' => 0,
+        'author_noarchive' => 0,
+        'date_noarchive' => 0,
+        'search_noarchive' => 0,
+        
+        'site_noarchive' => 0,
+        'site_noodp' => 1,
+        'site_noydir' => 1,
+        
+        'archive_canonical' => 1,
     );
     
     return apply_filters('calibrefx_seo_settings_defaults', $defaults);

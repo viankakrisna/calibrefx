@@ -35,18 +35,19 @@ function calibrefx_get_option($key, $setting = null) {
     if (!$_calibrefx_cache) {
         $_calibrefx_cache = new cfx_cache;
     }
-
+    
     //If setting is null then use the default CalibreFX Setting field
     $setting = $setting ? $setting : CALIBREFX_SETTINGS_FIELD;
-
+    
     $options = $_calibrefx_cache->cache_get($setting, $setting);
-
+    
     if ($options && isset($options[$key])) {
         return $options[$key];
     }
-
+    
     $options = apply_filters('calibrefx_options', get_option($setting), $setting);
-    $_calibrefx_cache->cache_set($setting, $options);
+    //if($setting == CALIBREFX_SEO_SETTINGS_FIELD) {debug_var($options);exit;}
+    $_calibrefx_cache->cache_set($setting, $options, $setting);
 
     return $options[$key];
 }
@@ -56,11 +57,12 @@ function calibrefx_option($key, $setting = null) {
 }
 
 function calibrefx_get_seo_option($key) {
+    
     return calibrefx_get_option($key, CALIBREFX_SEO_SETTINGS_FIELD);
 }
 
 function calibrefx_seo_option($key) {
-    calibrefx_option($key, CALIBREFX_SEO_SETTINGS_FIELD);
+    echo calibrefx_get_seo_option($key);
 }
 
 /**

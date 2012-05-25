@@ -99,8 +99,8 @@ function calibrefx_constants() {
 
     /** Define Settings Field Constants (for DB storage) */
     define('CALIBREFX_SETTINGS_FIELD', apply_filters('calibrefx_settings_field', 'calibrefx-settings'));
-	define('CALIBREFX_SEO_SETTINGS_FIELD', apply_filters('calibrefx_seo_settings_field', 'calibrefx-seo-settings'));
-	define('CALIBREFX_POST_SETTINGS_FIELD', apply_filters('calibrefx_post_settings_field', 'calibrefx-post-settings'));
+    define('CALIBREFX_SEO_SETTINGS_FIELD', apply_filters('calibrefx_seo_settings_field', 'calibrefx-seo-settings'));
+    define('CALIBREFX_POST_SETTINGS_FIELD', apply_filters('calibrefx_post_settings_field', 'calibrefx-post-settings'));
 
     /** Define CALIBREFX Child Directory Constant */
     define('CHILD_DIR', get_stylesheet_directory());
@@ -147,10 +147,12 @@ function calibrefx_load_framework() {
     require_once( CALIBREFX_CLASSES_DIR . '/cache.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/breadcrumb.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/menu.php' );
+    require_once( CALIBREFX_CLASSES_DIR . '/replacer.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/admin-bar.php' );
 
     /** Load Functions */
     require_once( CALIBREFX_FUNCTIONS_DIR . '/general.php' );
+    require_once( CALIBREFX_FUNCTIONS_DIR . '/seo.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/layout.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/options.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/widgets.php' );
