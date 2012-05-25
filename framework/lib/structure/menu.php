@@ -121,8 +121,10 @@ function calibrefx_do_subnav() {
 
         $subnav_output = sprintf('
 			<div id="subnav" class="subnav row">
+                                %2$s
 				%1$s
-			</div>', $subnav);
+                                %3$s
+			</div>', $subnav, calibrefx_put_wrapper('subnav','open', false), calibrefx_put_wrapper('subnav','close', false));
 
         echo apply_filters('calibrefx_do_subnav', $subnav_output, $subnav, $args);
     }

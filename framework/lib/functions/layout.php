@@ -69,7 +69,7 @@ function calibrefx_layout_is_responsive() {
  * @access public
  * @return string
  */
-function calibrefx_put_wrapper($context = '', $output = '<div class="wrap">', $echo = true) {
+function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">', $echo = true) {
 
     $calibrefx_context_wrappers = get_theme_support('calibrefx-wraps');
 
@@ -80,7 +80,7 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap">', $e
 
     switch ($output) {
         case 'open':
-            $output = '<div class="wrap">';
+            $output = '<div class="wrap row">';
             break;
         case 'close':
             $output = '</div><!-- end .wrap -->';

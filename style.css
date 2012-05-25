@@ -43,11 +43,11 @@
 #wrapper{
     padding:0;
 }
-.wrap{
+.wrap.row{
     width: 980px;
     margin: 0 auto;
 }
-.wrap:after{
+.wrap.row:after{
     clear: both;
 }
 /* Typography
