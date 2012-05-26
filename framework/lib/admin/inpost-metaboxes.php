@@ -31,7 +31,14 @@ add_action('admin_menu', 'calibrefx_add_inpost_layout_box');
  *
  */
 function calibrefx_add_inpost_layout_box() {
-    add_meta_box('calibrefx-custom-theme-layout', __('Calibrefx Custom Layout', 'calibrefx'), 'calibrefx_inpost_layout_box', 'post', 'normal', 'high');
+    if ( ! current_theme_supports( 'calibrefx-inpost-layouts' ) )
+        return;
+
+    foreach ( (array) get_post_types( array( 'public' => true ) ) as $type ) {
+        if ( post_type_supports( $type, 'calibrefx-layouts' ) )
+            add_meta_box( 'calibrefx_inpost_layout_box', __( 'Calibrefx Custom Layout', 'calibrefx' ), 'calibrefx_inpost_layout_box', $type, 'normal', 'high' );
+    }
+        
 }
 
 /**
