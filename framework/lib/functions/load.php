@@ -66,15 +66,12 @@ function calibrefx_load_styles() {
     
     wp_register_style( 'calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css', FRAMEWORK_VERSION );
     wp_register_style( 'nivo-slider', CALIBREFX_CSS_URL . '/nivo-slider.css', FRAMEWORK_VERSION );
-<<<<<<< HEAD
+	
 	/**
 	 * TO DO: This will change to calibrefx.css later
 	 * Added by hilal
 	**/
 	wp_register_style( 'shortcode', CALIBREFX_CSS_URL . '/shortcode.css', FRAMEWORK_VERSION );
-=======
-    wp_register_style( 'shortcode', CALIBREFX_CSS_URL . '/shortcode.css', FRAMEWORK_VERSION );
->>>>>>> 1bf867a01d61b28557b63e64ec7b84426250dff9
     
     /** If not active, do nothing */
     if ( ! $calibrefx_default_style )
