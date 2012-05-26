@@ -26,6 +26,7 @@ hr.div {
 
 .calibrefx-metaboxes input[type=text], .calibrefx-metaboxes textarea{
     display: block;
+	width: 100%;
 }
 
 .calibrefx-submit-button{
@@ -850,4 +851,39 @@ li.wp-menu-separator{  }
 }
 #calibrefx-admin-bar-menu .bottom-bar-right .social li .homepage{
 	background-position: -35px -5px;
+}
+
+/**
+ * Twitter Latest Tweet Style 
+**/
+ul.twitter-tweets li {
+     margin-bottom: 5px;
+    font-size: 13px
+}
+ul.twitter-tweets li a{
+    font-family: Georgia, arial;
+text-decoration: none;
+}
+ul.twitter-tweets li span a{
+    font-family: arial;
+
+}
+.twitter-logo{
+	background: url(../img/icon-twitter.png) no-repeat;
+	width: 24px;
+	height: 24px;
+	float: left;
+	display: block;
+	margin-top: -3px;
+	margin-right: 8px;
+}
+
+/**
+ * About Page Style
+**/
+#calibrefx-about-page #icon-options-general.icon32{
+	width: 36px;
+	height: 39px;
+	background: url(../img/icon-36.png) no-repeat;
+	margin-top: 5px;
 }
