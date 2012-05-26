@@ -94,7 +94,9 @@ function calibrefx_seo_settings_admin() {
             <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
             <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
             <?php settings_fields(CALIBREFX_SEO_SETTINGS_FIELD); // important! ?>
-            <?php screen_icon('options-general'); ?>
+            <a href="http://www.calibrefx.com/">
+                <div id="calibrefx-icon" style="background: url(<?php echo CALIBREFX_IMAGES_URL; ?>/icon32.png) no-repeat;" class="icon32"><br /></div>
+            </a>
             <h2>
                 <?php _e('CalibreFx - SEO Settings', 'calibrefx'); ?>
             </h2>
