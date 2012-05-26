@@ -33,6 +33,10 @@ function calibrefx_load_scripts() {
 	wp_register_script( 'jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', array('jquery'), FRAMEWORK_VERSION );
 	wp_register_script( 'jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array('jquery'), FRAMEWORK_VERSION );
 	wp_register_script( 'nivo-slider', CALIBREFX_JS_URL . '/jquery.nivo.slider.pack.js', array('jquery'), FRAMEWORK_VERSION );
+	/**
+	 * TO DO: This will change to calibrefx.js later
+	 * Added by hilal
+	**/
 	wp_register_script( 'shortcode', CALIBREFX_JS_URL . '/shortcode.js', false, FRAMEWORK_VERSION );
 
 	wp_enqueue_script( 'jquery' );
@@ -62,6 +66,10 @@ function calibrefx_load_styles() {
     
     wp_register_style( 'calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css', FRAMEWORK_VERSION );
     wp_register_style( 'nivo-slider', CALIBREFX_CSS_URL . '/nivo-slider.css', FRAMEWORK_VERSION );
+	/**
+	 * TO DO: This will change to calibrefx.css later
+	 * Added by hilal
+	**/
 	wp_register_style( 'shortcode', CALIBREFX_CSS_URL . '/shortcode.css', FRAMEWORK_VERSION );
     
     /** If not active, do nothing */

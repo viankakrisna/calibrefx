@@ -110,13 +110,13 @@ function calibrefx_font($atts, $content = '') {
     extract(shortcode_atts(array(
                 'before' => '',
                 'after' => '',
-                'font-family' => '',
+                'family' => '',
                 'color' => '',
                 'size' => 20,
                 'class' => '',
                     ), $atts));
 
-    return $before . '<span class="'.$class.'" style="font-family:'.$font-family.';color:'.$color.';font-size:'.$size.'px;"'. do_shortcode($content) . '</span>' . $after;
+    return $before . '<span class="'.$class.'" style="font-family:'.$family.';color:'.$color.';font-size:'.$size.'px;">	'. do_shortcode($content) . '</span>' . $after;
 }
 
 add_shortcode('bold', 'calibrefx_bold');
@@ -190,12 +190,6 @@ function calibrefx_img($atts, $content = null) {
 
     return $before . '<img src="' . $content . '" title="' . $title . '" width="' . $width . '" height="' . $height . '" class="'.$class.'"/>' . $after;
 }
-
-/**
- * ==============================================================
- * Column Section
- * ==============================================================
- */
 
 
 /**

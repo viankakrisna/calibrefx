@@ -226,7 +226,7 @@ function calibrefx_comment_form_args( $defaults ) {
 	         '</p><!-- #form-section-email .form-section -->';
 
 	$url = '<p class="comment-form-url">' .
-	       '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" placeholder="'.__('Your Website Url statr with http://','calibrefx').'"/>' .
+	       '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" placeholder="'.__('Your Website Url start with http://','calibrefx').'"/>' .
 	       '</p><!-- #form-section-url .form-section -->';
 
 	$comment_field = '<p class="comment-form-comment">' .
