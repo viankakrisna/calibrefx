@@ -62,7 +62,7 @@ function calibrefx_load_styles() {
     
     wp_register_style( 'calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css', FRAMEWORK_VERSION );
     wp_register_style( 'nivo-slider', CALIBREFX_CSS_URL . '/nivo-slider.css', FRAMEWORK_VERSION );
-	wp_register_style( 'shortcode', CALIBREFX_CSS_URL . '/shortcode.css', FRAMEWORK_VERSION );
+    wp_register_style( 'shortcode', CALIBREFX_CSS_URL . '/shortcode.css', FRAMEWORK_VERSION );
     
     /** If not active, do nothing */
     if ( ! $calibrefx_default_style )
@@ -90,7 +90,7 @@ function calibrefx_load_admin_scripts() {
 	wp_enqueue_script( 'calibrefx-admin-bar' );
 	wp_enqueue_script( 'calibrefx_admin_js', CALIBREFX_JS_URL . '/admin.js', array( 'jquery','jquery-sticky' ), FRAMEWORK_VERSION, true );
 	$params = array(
-		'category_checklist_toggle' => __( 'Select / Deselect All', 'genesis' )
+            'category_checklist_toggle' => __( 'Select / Deselect All', 'genesis' )
 	);
 	wp_localize_script( 'calibrefx_admin_js', 'calibrefx', $params );
 }

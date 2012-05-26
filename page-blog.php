@@ -28,8 +28,6 @@ add_action('calibrefx_loop', 'calibrefx_do_blog_loop');
  *
  */
 function calibrefx_do_blog_loop() {
-    global $wp_query;
-
     $query = new WP_Query('category_name=blog&paged=' . get_query_var('paged') . '&posts_per_page=5');
 
     if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); // the loop

@@ -30,7 +30,7 @@ function calibrefx_footer_scripts() {
 
     // If singular, echo scripts from custom field
     if (is_singular()) {
-        calibrefx_custom_field('_calibrefx_footer_scripts');
+        calibrefx_custom_field('_calibrefx_scripts');
     }
 }
 
