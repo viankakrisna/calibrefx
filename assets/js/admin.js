@@ -1,5 +1,6 @@
 var calibrefx_toggles = {
-    "content_archive":["#calibrefx-settings\\[content_archive\\]","#calibrefx_content_limit_setting","full"]
+    "content_archive":["#calibrefx-settings\\[content_archive\\]","#calibrefx_content_limit_setting","full"],
+    "layout_type":["#calibrefx-settings\\[layout_type\\]","#calibrefx_layout_width","static"]
 };
 window['calibrefx'] = {
 
@@ -17,7 +18,7 @@ window['calibrefx'] = {
         var $selector = jQuery(event.data.selector),
             $show_selector = jQuery(event.data.show_selector),
             check_value = event.data.check_value;
-
+        
         if (
             (jQuery.isArray(check_value) && jQuery.inArray($selector.val(), check_value) > -1) ||
                 (check_value === null && $selector.is(':checked')) ||
@@ -35,7 +36,7 @@ window['calibrefx'] = {
         jQuery.each(calibrefx_toggles, function (k, v) {
             // Prepare data
             var data = {selector: v[0], show_selector: v[1], check_value: v[2]};
-
+            
             // Setup toggle binding
             jQuery('div.calibrefx-metaboxes').on('change.calibrefx.calibrefx_toggle', v[0], data, calibrefx.toggle_settings);
 

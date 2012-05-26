@@ -108,6 +108,7 @@ function calibrefx_theme_settings_boxes() {
  */
 function calibrefx_theme_settings_admin() {
     global $_calibrefx_theme_settings_pagehook, $wp_meta_boxes;
+    
     ?>
     <div id="calibrefx-theme-settings-page" class="wrap calibrefx-metaboxes">
         <form method="post" action="options.php">
@@ -196,9 +197,30 @@ function calibrefx_theme_settings_layout_box() {
 
     <p>
         <label>Layout Type:</label>
-        <input type="radio" <?php checked("static", calibrefx_get_option('layout_type')); ?> value="static" id="layout-static" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[layout_type]"><label>Static</label>
-        <input type="radio" <?php checked("fluid", calibrefx_get_option('layout_type')); ?> value="fluid" id="layout-static" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[layout_type]"><label>Fluid/Responsive</label>
+        <select name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[layout_type]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[layout_type]">
+            <?php
+            $layout_type = apply_filters(
+                'calibrefx_layout_type_options', array(
+                    'static' => __('Static Layout', 'calibrefx'),
+                    'fluid' => __('Fluid Layout', 'calibrefx'),
+                )
+            );
+            foreach ((array) $layout_type as $value => $name)
+                echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('layout_type'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";
+            ?>
+        </select>
+        
     </p>
+    
+    <div id="calibrefx_layout_width">
+        <p>
+            <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_layout_width]"><?php _e('Layout Width', 'calibrefx'); ?>
+                <input type="text" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_layout_width]" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_layout_width')); ?>" size="3" />
+        <?php _e('pixels', 'calibrefx'); ?></label>
+        </p>
+
+        <p><span class="description"><?php _e('This option will limit the width in pixels size.', 'calibrefx'); ?></span></p>
+    </div>
 
     <hr class="div" />
 
@@ -247,8 +269,8 @@ function calibrefx_theme_settings_content_archive_box() {
             <?php
             $archive_display = apply_filters(
                     'calibrefx_archive_display_options', array(
-                'full' => __('Display post content', 'calibrefx'),
-                'excerpts' => __('Display post excerpts', 'calibrefx'),
+                        'full' => __('Display post content', 'calibrefx'),
+                        'excerpts' => __('Display post excerpts', 'calibrefx'),
                     )
             );
             foreach ((array) $archive_display as $value => $name)
@@ -275,10 +297,10 @@ function calibrefx_theme_settings_content_archive_box() {
             <?php
             $postnav_display = apply_filters(
                     'calibrefx_post_navigation_options', array(
-                'older-newer' => __('older/Newer', 'calibrefx'),
-                'prev-next' => __('Previous/Next', 'calibrefx'),
-                'numeric' => __('Numeric', 'calibrefx'),
-                    )
+                    'older-newer' => __('older/Newer', 'calibrefx'),
+                    'prev-next' => __('Previous/Next', 'calibrefx'),
+                    'numeric' => __('Numeric', 'calibrefx'),
+                )
             );
             foreach ((array) $postnav_display as $value => $name)
                 echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('posts_nav'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";

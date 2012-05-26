@@ -31,6 +31,7 @@ function calibrefx_theme_settings_defaults() {
         'header_right' => 0,
         'nav' => 1,
         'layout_type' => 'fluid',
+        'calibrefx_layout_width' => 960,
         'site_layout' => calibrefx_get_default_layout(),
         'subnav' => 0,
         'breadcrumb_home' => 1,
