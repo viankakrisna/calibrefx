@@ -1,21 +1,23 @@
 <?php
 /**
- * SalesMaxThemes
+ * CalibreFx
  *
- * WordPress Themes by CalibreWorks Team
+ * WordPress Themes Framework by CalibreWorks Team
  *
- * @package		SalesMaxThemes
+ * @package		CalibreFx
  * @author		CalibreWorks Team
- * @authorlink	http://SalesMaxThemes.com
- * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
+ * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
- * @link		http://SalesMaxThemes.com
+ * @link		http://calibrefx.com
  * @since		Version 1.0
  * @filesource 
  *
- * The WordPress functions.php file. initialize CalibreFx framework and themes.
+ * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
+ * this file under any circumstances. 
  *
- * @package SalesMaxThemes
+ * Footer Page
+ *
+ * @package CalibreFx
  */
  
 echo '</div><!-- end #inner -->';

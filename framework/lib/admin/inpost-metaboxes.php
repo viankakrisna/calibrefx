@@ -151,7 +151,7 @@ function calibrefx_inpost_seo_box() {
     <p><input class="large-text" type="text" name="calibrefx_seo[_calibrefx_canonical_uri]" id="calibrefx_canonical" value="<?php echo esc_url(calibrefx_get_custom_field('_calibrefx_canonical_uri')); ?>" /></p>
 
     <p><label for="calibrefx_redirect"><b><?php _e('Custom Redirect URI', 'calibrefx'); ?></b> <a href="http://www.google.com/support/webmasters/bin/answer.py?hl=en&amp;answer=93633" target="_blank" title="301 Redirect">[?]</a></label></p>
-    <p><input class="large-text" type="text" name="calibrefx_seo[redirect]" id="calibrefx_redirect" value="<?php echo esc_url(calibrefx_get_custom_field('redirect')); ?>" /></p>
+    <p><input class="large-text" type="text" name="calibrefx_seo[_calibrefx_redirect_url]" id="calibrefx_redirect_url" value="<?php echo esc_url(calibrefx_get_custom_field('_calibrefx_redirect_url')); ?>" /></p>
 
     <br />
 
@@ -208,7 +208,7 @@ function calibrefx_inpost_seo_save($post_id, $post) {
         '_calibrefx_description' => '',
         '_calibrefx_keywords' => '',
         '_calibrefx_canonical_uri' => '',
-        'redirect' => '',
+        '_calibrefx_redirect_url' => '',
         '_calibrefx_noindex' => 0,
         '_calibrefx_nofollow' => 0,
         '_calibrefx_noarchive' => 0,
