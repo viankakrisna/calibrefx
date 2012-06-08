@@ -100,6 +100,7 @@ function calibrefx_theme_settings_boxes() {
     add_meta_box('calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), 'calibrefx_theme_settings_breadcrumb_box', $_calibrefx_theme_settings_pagehook, 'side');
     add_meta_box('calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), 'calibrefx_theme_settings_comment_box', $_calibrefx_theme_settings_pagehook, 'side');
 
+    add_meta_box('calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), 'calibrefx_theme_settings_feeds_box', $_calibrefx_theme_settings_pagehook, 'side');
     add_meta_box('calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), 'calibrefx_theme_settings_socials_box', $_calibrefx_theme_settings_pagehook, 'side');
 }
 
@@ -198,6 +199,13 @@ function calibrefx_theme_settings_navigation_box() {
 function calibrefx_theme_settings_layout_box() {
     ?>
 
+    <p><label><?php _e('Enable Bootstrap', 'calibrefx'); ?></label>
+        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" value="1" <?php checked(1, calibrefx_get_option('enable_bootstrap')); ?> /></label>
+        <span class="description"><?php printf(__('This option will use Twitter Bootstrap as css and javascript libraries.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
+    </p>
+    
+    <hr class="div" />
+    
     <p>
         <label>Layout Type:</label>
         <select name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[layout_type]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[layout_type]">
@@ -349,6 +357,20 @@ function calibrefx_theme_settings_comment_box() {
 }
 
 /**
+ * This function calibrefx_theme_settings_socials_box is to show feeds setting
+ */
+function calibrefx_theme_settings_feeds_box() { ?>
+    <p>
+        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[feed_uri]"><?php _e('Main Feed URL:', 'calibrefx'); ?></label>
+        <input type="text" size="30" value="<?php echo calibrefx_get_option('feed_uri'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[feed_uri]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[feed_uri]">
+    </p>
+    <p>
+        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_feed_uri]"><?php _e('Comment Feed URL:', 'calibrefx'); ?></label>
+        <input type="text" size="30" value="<?php echo calibrefx_get_option('comments_feed_uri'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_feed_uri]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_feed_uri]">
+    </p>
+<?php
+}
+/**
  * This function calibrefx_theme_settings_socials_box is to show social settings
  * Use For Widgets
  */
@@ -362,6 +384,36 @@ function calibrefx_theme_settings_socials_box() {
     <p>
         <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]"><?php _e('Facebook APP Secret:', 'calibrefx'); ?></label>
         <input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_app_secret'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]">
+    </p>
+    <p>
+        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_admins]"><?php _e('Facebook Admin ID:', 'calibrefx'); ?></label>
+        <input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_admins'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_admins]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_admins]">
+        <span class="description"><?php _e("This will be used in Facebook open graph meta <code>fb:admins</code>.", 'calibrefx'); ?></span>
+    </p>
+    <p>
+        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_og_type]"><?php _e('Facebook Page Type:', 'calibrefx'); ?></label>
+        <select name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_og_type]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_og_type]">
+            <?php
+            $page_types = apply_filters(
+                    'calibrefx_facebook_og_types', array(
+                        'article' => 'Article',
+                        'website' => 'Website',
+                        'blog' => 'Blog',
+                        'movie' => 'Movie', 
+                        'song' => 'Song',
+                        'product' => 'Product',
+                        'book' => 'Book',
+                        'food' => 'Food',
+                        'drink' => 'Drink',
+                        'activity' => 'Activity',
+                        'sport' => 'Sport',
+                    )
+            );
+            foreach ((array) $page_types as $value => $name)
+                echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('facebook_og_type'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";
+            ?>
+        </select>
+        <span class="description"><?php _e("This will be used in Facebook open graph meta <code>og:type</code>.", 'calibrefx'); ?></span>
     </p>
 
     <h4><?php _e('Twitter Settings:', 'calibrefx'); ?></h4>

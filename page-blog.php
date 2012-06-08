@@ -1,5 +1,7 @@
 <?php
 /**
+ * Template Name: Blog
+ *
  * CalibreFx Framework
  *
  * WordPress Themes by CalibreWorks Team

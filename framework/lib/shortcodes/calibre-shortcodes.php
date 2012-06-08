@@ -104,8 +104,8 @@ function calibrefx_vimeo($atts, $content = null) {
  * Typography Section
  * ==============================================================
  */
-
 add_shortcode('font', 'calibrefx_font');
+
 function calibrefx_font($atts, $content = '') {
     extract(shortcode_atts(array(
                 'before' => '',
@@ -116,59 +116,63 @@ function calibrefx_font($atts, $content = '') {
                 'class' => '',
                     ), $atts));
 
-    return $before . '<span class="'.$class.'" style="font-family:'.$family.';color:'.$color.';font-size:'.$size.'px;">	'. do_shortcode($content) . '</span>' . $after;
+    return $before . '<span class="' . $class . '" style="font-family:' . $family . ';color:' . $color . ';font-size:' . $size . 'px;">	' . do_shortcode($content) . '</span>' . $after;
 }
 
 add_shortcode('bold', 'calibrefx_bold');
+
 function calibrefx_bold($atts, $content = '') {
     extract(shortcode_atts(array(
                 'before' => '',
                 'after' => '',
                     ), $atts));
 
-    return $before . '<strong>'. do_shortcode($content) . '</strong>' . $after;
+    return $before . '<strong>' . do_shortcode($content) . '</strong>' . $after;
 }
 
 add_shortcode('italic', 'calibrefx_italic');
+
 function calibrefx_italic($atts, $content = '') {
     extract(shortcode_atts(array(
                 'before' => '',
                 'after' => '',
                     ), $atts));
 
-    return $before . '<i>'. do_shortcode($content) . '</i>' . $after;
+    return $before . '<i>' . do_shortcode($content) . '</i>' . $after;
 }
 
 add_shortcode('em', 'calibrefx_em');
+
 function calibrefx_em($atts, $content = '') {
     extract(shortcode_atts(array(
                 'before' => '',
                 'after' => '',
                     ), $atts));
 
-    return $before . '<em>'. do_shortcode($content) . '</em>' . $after;
+    return $before . '<em>' . do_shortcode($content) . '</em>' . $after;
 }
 
 add_shortcode('cite', 'calibrefx_cite');
+
 function calibrefx_cite($atts, $content = '') {
     extract(shortcode_atts(array(
                 'before' => '',
                 'after' => '',
                     ), $atts));
 
-    return $before . '<cite>'. do_shortcode($content) . '</cite>' . $after;
+    return $before . '<cite>' . do_shortcode($content) . '</cite>' . $after;
 }
 
 add_shortcode('blockquote', 'calibrefx_blockquote');
+
 function calibrefx_blockquote($atts, $content = '') {
     extract(shortcode_atts(array(
                 'before' => '',
                 'after' => '',
                     ), $atts));
 
-    return $before . '<blockquote>'. do_shortcode($content) . '</blockquote>' . $after;
+    return $before . '<blockquote>' . do_shortcode($content) . '</blockquote>' . $after;
 }
-
 
 /**
  * ==============================================================
@@ -188,9 +192,8 @@ function calibrefx_img($atts, $content = null) {
                 'class' => '',
                     ), $atts));
 
-    return $before . '<img src="' . $content . '" title="' . $title . '" width="' . $width . '" height="' . $height . '" class="'.$class.'"/>' . $after;
+    return $before . '<img src="' . $content . '" title="' . $title . '" width="' . $width . '" height="' . $height . '" class="' . $class . '"/>' . $after;
 }
-
 
 /**
  * ==============================================================
@@ -244,131 +247,152 @@ function calibrefx_user_email($atts, $content = '') {
  * Buttons
  * ==============================================================
  */
- add_shortcode('button', 'calibrefx_button');
- function calibrefx_button($atts, $content = ''){
-	extract(shortcode_atts(array(
-		'before' => '',
-		'after' => '',
-		'class' => '',
-		'url' => '',
-		'type' => '',
-		'color' => '',
-		'size' => '',
-		'icon' => '',
-	), $atts));
-	
-	$classes = 'button';
-	if(!empty($class)) $classes .= ' '.$class;
-	if(!empty($type)) $classes .= ' '.$type;
-	if(!empty($color)) $classes .= ' '.$color;
-	if(!empty($size)) $classes .= ' '.$size;
-	
-	if( !empty($icon) ){
-		return $before.'<a href="'.$url.'" class="'.$classes.' icon"><span class="rightbtn">'.$content.'</span><span class="ico '.$icon.'"></span></a>'.$after;
-	}else{
-		return $before.'<a href="'.$url.'" class="'.$classes.'"><span>'.$content.'</span></a>'.$after;
-	}
- }
- 
+add_shortcode('button', 'calibrefx_button');
+
+function calibrefx_button($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'url' => '',
+                'type' => '',
+                'color' => '',
+                'size' => '',
+                'icon' => '',
+                    ), $atts));
+
+    $classes = 'button';
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($type))
+        $classes .= ' ' . $type;
+    if (!empty($color))
+        $classes .= ' ' . $color;
+    if (!empty($size))
+        $classes .= ' ' . $size;
+
+    if (!empty($icon)) {
+        return $before . '<a href="' . $url . '" class="' . $classes . ' icon"><span class="rightbtn">' . $content . '</span><span class="ico ' . $icon . '"></span></a>' . $after;
+    } else {
+        return $before . '<a href="' . $url . '" class="' . $classes . '"><span>' . $content . '</span></a>' . $after;
+    }
+}
+
 /**
  * ==============================================================
  * Tooltip
  * ==============================================================
  */
- add_shortcode('tooltip', 'calibrefx_tooltip');
- function calibrefx_tooltip($atts, $content = ''){
-	extract(shortcode_atts(array(
-		'before' => '',
-		'after' => '',
-		'class' => '',
-		'color' => '',
-		'text' => ''
-	), $atts));
-	
-	$classes = 'ltt-tooltip';
-	if(!empty($class)) $classes .= ' '.$class;
-	if(!empty($color)) $classes .= ' '.$color;
-	
-	return $before.'<span class="'.$classes.'"><span class="tooltip-content"><span class="tooltip-arr"></span>'.$text.'</span>'.$content.'</span>'.$after;
- }
- 
+add_shortcode('tooltip', 'calibrefx_tooltip');
+
+function calibrefx_tooltip($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'color' => '',
+                'text' => ''
+                    ), $atts));
+
+    $classes = 'ltt-tooltip';
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($color))
+        $classes .= ' ' . $color;
+
+    return $before . '<span class="' . $classes . '"><span class="tooltip-content"><span class="tooltip-arr"></span>' . $text . '</span>' . $content . '</span>' . $after;
+}
+
 /**
  * ==============================================================
  * Dropcap
  * ==============================================================
  */
- add_shortcode('dropcap', 'calibrefx_dropcap');
- function calibrefx_dropcap($atts, $content = ''){
-	extract(shortcode_atts(array(
-		'before' => '',
-		'after' => '',
-		'class' => '',
-		'color' => '',
-		'font' => '',
-		'style' => '',
-		'size' => ''
-	), $atts));
-	
-	$classes = 'dropcap';
-	if(!empty($class)) $classes .= ' '.$class;
-	if(!empty($color)) $classes .= ' '.$color;
-	if(!empty($font)) $classes .= ' font-'.$font;
-	if(!empty($style)) $classes .= ' font-'.$style;
-	if(!empty($size)) $classes .= ' size-'.$size;
-	
-	return $before.'<span class="'.$classes.'">'.$content.'</span>'.$after;
- }
- 
+add_shortcode('dropcap', 'calibrefx_dropcap');
+
+function calibrefx_dropcap($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'color' => '',
+                'font' => '',
+                'style' => '',
+                'size' => ''
+                    ), $atts));
+
+    $classes = 'dropcap';
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($color))
+        $classes .= ' ' . $color;
+    if (!empty($font))
+        $classes .= ' font-' . $font;
+    if (!empty($style))
+        $classes .= ' font-' . $style;
+    if (!empty($size))
+        $classes .= ' size-' . $size;
+
+    return $before . '<span class="' . $classes . '">' . $content . '</span>' . $after;
+}
+
 /**
  * ==============================================================
  * List
  * ==============================================================
  */
- add_shortcode('list', 'calibrefx_list');
- function calibrefx_list($atts, $content = ''){
-	extract(shortcode_atts(array(
-		'before' => '',
-		'after' => '',
-		'class' => '',
-		'style' => ''
-	), $atts));
-	
-	$classes = 'custom';
-	if(!empty($class)) $classes .= ' '.$class;
-	if(!empty($style)) $classes .= ' '.$style;
-	
-	return $before.'<ul class="'.$classes.'">'.$content.'</ul>'.$after;
- }
- 
+add_shortcode('list', 'calibrefx_list');
+
+function calibrefx_list($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'style' => ''
+                    ), $atts));
+
+    $classes = 'custom';
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($style))
+        $classes .= ' ' . $style;
+
+    return $before . '<ul class="' . $classes . '">' . $content . '</ul>' . $after;
+}
+
 /**
  * ==============================================================
  * Column
  * ==============================================================
  */
- add_shortcode('column', 'calibrefx_column');
- function calibrefx_column($atts, $content = ''){
-	extract(shortcode_atts(array(
-		'before' => '',
-		'after' => '',
-		'class' => '',
-		'style' => '',
-		'align' => '',
-		'last' => '',
-	), $atts));
-	
-	$classes = $class;
-	if(!empty($class)) $classes .= ' '.$class;
-	if(!empty($style)) $classes .= ' '.$style;
-	if(!empty($align)) $classes .= ' '.$align;
-	if(!empty($last)){
-		if($last == 'yes'){
-			$classes .= ' last';
-		}
-	}	
-	
-	return $before.'<div class="'.$classes.'">'.$content.'</div>'.$after;
- }
- 
+add_shortcode('column', 'calibrefx_column');
+
+function calibrefx_column($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'style' => '',
+                'align' => '',
+                'last' => '',
+                    ), $atts));
+
+    $classes = $class;
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($style))
+        $classes .= ' ' . $style;
+    if (!empty($align))
+        $classes .= ' ' . $align;
+    if (!empty($last)) {
+        if ($last == 'yes') {
+            $classes .= ' last';
+        }
+    }
+
+    return $before . '<div class="' . $classes . '">' . $content . '</div>' . $after;
+}
+
 /**
  * ==============================================================
  * Google Maps
@@ -440,3 +464,4 @@ class calibrefx_add_shortcode_button
 
 //vytvor instanciu add_Lizatomic_scbuttons_button()
 $tinymce_button = new calibrefx_add_shortcode_button();	
+

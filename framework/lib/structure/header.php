@@ -29,21 +29,20 @@ add_action('calibrefx_doctype', 'calibrefx_print_doctype');
 /**
  * This function handles the doctype. Default HTML5.
  */
-function calibrefx_print_doctype() {
-    ?>
-    <!doctype html>
-    <!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-    <!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-    <!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-    <!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-    <!--[if gt IE 9]><!--><html class="no-js" lang="<?php bloginfo('language'); ?>"><!--<![endif]-->
-        <!-- the "no-js" class is for Modernizr. -->
-        <head id="<?php echo calibrefx_get_site_url(); ?>" data-template-set="html5-reset">
-            <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-            <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
-            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-            <meta name="viewport" content="width=device-width; initial-scale=1.0" />
-    <?php
+function calibrefx_print_doctype() {?>
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="<?php bloginfo('language'); ?>"><!--<![endif]-->
+<!-- the "no-js" class is for Modernizr. -->
+<head id="<?php echo calibrefx_get_site_url(); ?>" data-template-set="html5-reset">
+<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+<?php
 }
 
 add_action('get_header', 'calibrefx_doc_head_control');
@@ -329,6 +328,34 @@ function calibrefx_do_meta_pingback() {
     }
 }
 
+add_action('calibrefx_meta', 'calibrefx_do_dublin_core');
+/**
+ * This function adds dublin core meta in header
+ */
+function calibrefx_do_dublin_core() {
+    echo '<meta name="DC.title" content="'.apply_filters('calibrefx_do_title', get_bloginfo('name')).'">';
+    echo '<meta name="DC.description" content="'.apply_filters('calibrefx_seo_description', get_bloginfo('description')).'">';
+    echo '<meta name="DC.subject" content="'.apply_filters('calibrefx_do_title', get_bloginfo('name')).'">';
+    echo '<meta name="DC.language" content="'.get_bloginfo('language').'">'."\n";
+//    echo '<meta name="DC.creator" content="'.calibrefx_get_author().'">';
+}
+
+add_action('calibrefx_meta', 'calibrefx_do_fb_og');
+/**
+ * This function adds dublin core meta in header
+ */
+function calibrefx_do_fb_og() {
+    echo '<meta property="fb:admins" content="'.calibrefx_get_option('facebook_admins').'"/>';
+    echo '<meta property="og:title" content="'.apply_filters('calibrefx_do_title', get_bloginfo('name')).'"/>';
+    echo '<meta property="og:type" content="'.calibrefx_get_option('facebook_og_type').'"/>';
+    echo '<meta property="og:url" content="' . get_permalink() . '"/>';
+    echo '<meta property="og:site_name" content="'.get_bloginfo('name').'"/>';
+    $image = calibrefx_get_image(array('format' => 'url'));
+    if($image){
+        echo '<meta property="og:image" content="' . $image . '"/>';
+    }
+}
+
 add_action('wp_head', 'calibrefx_header_scripts');
 
 /**
@@ -444,6 +471,9 @@ function calibrefx_do_header() {
 
 add_action('calibrefx_after_header', 'calibrefx_add_socials_script');
 
+/**
+ * Add Social javascript after header
+ */
 function calibrefx_add_socials_script() {
     global $fbappid, $fbsecret, $twitteruser;
 
@@ -467,4 +497,34 @@ function calibrefx_add_socials_script() {
     if (!empty($twitteruser)) {
         echo '<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>';
     }
+}
+
+add_filter( 'feed_link', 'calibrefx_feed_links_filter', 10, 2 );
+/**
+ * Filter the feed URI if the user has input a custom feed URI.
+ */
+function calibrefx_feed_links_filter( $output, $feed ) {
+    $feed_uri = calibrefx_get_option( 'feed_uri' );
+    $comments_feed_uri = calibrefx_get_option( 'comments_feed_uri' );
+
+    if ( $feed_uri && ! strpos( $output, 'comments' ) && ( '' == $feed || 'rss2' == $feed || 'rss' == $feed || 'rdf' == $feed || 'atom' == $feed ) ) {
+        $output = esc_url( $feed_uri );
+    }
+
+    if ( $comments_feed_uri && strpos( $output, 'comments' ) ) {
+        $output = esc_url( $comments_feed_uri );
+    }
+
+    return $output;
+
+}
+
+add_action('wp_head', 'calirbefx_show_feeds_meta');
+/**
+ * Show Feed Meta
+ */
+function calirbefx_show_feeds_meta(){
+    echo '<link rel="alternate" type="application/rss+xml" title="'.get_bloginfo('name') . ' ' . __("RSS Feed", 'calibrefx') .'" href="'. get_bloginfo('rss2_url') .'" />';
+    echo '<link rel="alternate" type="application/atom+xml" title="'.get_bloginfo('name') . ' ' . __("Atom Feed", 'calibrefx') .'" href="'. get_bloginfo('atom_url') .'" />';
+    echo '<link rel="alternate" type="application/rss+xml" title="'.get_bloginfo('name') . ' ' . __("Comment Feed", 'calibrefx') .'" href="'. get_bloginfo('comments_rss2_url') .'" />';
 }
