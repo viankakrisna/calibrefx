@@ -38,7 +38,7 @@ function calibrefx_load_scripts() {
 	 * TO DO: This will change to calibrefx.js later
 	 * Added by hilal
 	**/
-	wp_register_script( 'shortcode', CALIBREFX_JS_URL . '/shortcode.js', false, FRAMEWORK_VERSION );
+	wp_register_script( 'shortcode', CALIBREFX_SHORTCODES_URL . '/assets/shortcode.js', false, FRAMEWORK_VERSION );
 
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'modernizr' );

@@ -452,7 +452,7 @@ class calibrefx_add_shortcode_button
     function add_calibrefx_scbuttons_plugin($plugin_arr)
     {
         //global $lizatomic_sc;
-        $plugin_arr[$this->plugin_name] = CALIBREFX_JS_URL . '/admin.shortcode.js';
+        $plugin_arr[$this->plugin_name] = CALIBREFX_SHORTCODES_URL . '/assets/admin.shortcode.js';
         return $plugin_arr;
     }
     
