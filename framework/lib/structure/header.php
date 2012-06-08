@@ -329,6 +329,18 @@ function calibrefx_do_meta_pingback() {
     }
 }
 
+add_action('calibrefx_meta', 'calibrefx_do_dublin_core');
+/**
+ * This function adds dublin core meta in header
+ */
+function calibrefx_do_dublin_core() {
+    echo '<meta name="DC.title" content="'.apply_filters('calibrefx_do_title', get_bloginfo('name')).'">';
+    echo '<meta name="DC.description" content="'.apply_filters('calibrefx_seo_description', get_bloginfo('description')).'">';
+    echo '<meta name="DC.subject" content="'.apply_filters('calibrefx_do_title', get_bloginfo('name')).'">';
+    echo '<meta name="DC.language" content="'.get_bloginfo('language').'">';
+//    echo '<meta name="DC.creator" content="'.calibrefx_get_author().'">';
+}
+
 add_action('wp_head', 'calibrefx_header_scripts');
 
 /**
@@ -444,6 +456,9 @@ function calibrefx_do_header() {
 
 add_action('calibrefx_after_header', 'calibrefx_add_socials_script');
 
+/**
+ * Add Social javascript after header
+ */
 function calibrefx_add_socials_script() {
     global $fbappid, $fbsecret, $twitteruser;
 

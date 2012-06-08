@@ -160,6 +160,7 @@ function calibrefx_load_framework() {
     require_once( CALIBREFX_FUNCTIONS_DIR . '/format.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/images.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/upgrade.php' );
+    require_once( CALIBREFX_FUNCTIONS_DIR . '/performance.php' );
 
     /** Load Shortcodes */
     require_once( CALIBREFX_SHORTCODES_DIR . '/footer.php' );
