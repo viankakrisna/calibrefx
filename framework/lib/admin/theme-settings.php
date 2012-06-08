@@ -199,6 +199,13 @@ function calibrefx_theme_settings_navigation_box() {
 function calibrefx_theme_settings_layout_box() {
     ?>
 
+    <p><label><?php _e('Enable Bootstrap', 'calibrefx'); ?></label>
+        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" value="1" <?php checked(1, calibrefx_get_option('enable_bootstrap')); ?> /></label>
+        <span class="description"><?php printf(__('This option will use Twitter Bootstrap as css and javascript libraries.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
+    </p>
+    
+    <hr class="div" />
+    
     <p>
         <label>Layout Type:</label>
         <select name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[layout_type]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[layout_type]">

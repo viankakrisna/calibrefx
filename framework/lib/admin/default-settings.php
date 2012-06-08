@@ -27,6 +27,7 @@
 function calibrefx_theme_settings_defaults() {
     $defaults = array(// define our defaults
         'update' => 1,
+        'enable_bootstrap' => 1,
         'blog_title' => 'text',
         'header_right' => 0,
         'nav' => 1,
