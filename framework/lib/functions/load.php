@@ -28,7 +28,7 @@ add_action( 'get_header', 'calibrefx_load_scripts' );
 function calibrefx_load_scripts() {
 	wp_deregister_script('jquery');
 	
-	wp_register_script('jquery', CALIBREFX_JS_URL . '/jquery.min.js', false, '1.6.4');
+	wp_register_script('jquery', CALIBREFX_JS_URL . '/jquery.min.js', false, '1.7.1');
         wp_register_script( 'calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', array('jquery'), FRAMEWORK_VERSION );
 	wp_register_script( 'modernizr', CALIBREFX_JS_URL . '/modernizr.min.js', false, FRAMEWORK_VERSION );
 	wp_register_script( 'jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', array('jquery'), FRAMEWORK_VERSION );
