@@ -387,3 +387,56 @@ function calibrefx_user_email($atts, $content = '') {
 	
 	return $before.'<iframe width="'.$width.'" height="'.$height.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'.$src.'&output=embed" class="'.$class.'"></iframe>'.$after;
  }
+ 
+/* tinyMCE class */
+
+/**
+ * add_Lizatomic_scbuttons_button
+ *  
+ * @access public
+ */
+class calibrefx_add_shortcode_button
+{
+
+    var $plugin_name = "calibrefx_shortcode_buttons";
+
+    function calibrefx_add_shortcode_button()
+    {        
+        add_filter('tiny_mce_version', array(&$this, 'increase_tinymce_version'));        
+        add_action('init', array(&$this, 'add_sc_buttons'));
+    }
+
+    function add_sc_buttons()
+    {
+        // len uzivatel s pravom editovat clanky vidi button
+        if (!current_user_can('edit_posts') && !current_user_can('edit_pages'))
+            return;
+        // rich editor
+        if (get_user_option('rich_editing') == 'true') {
+            // pre wp2.5
+            add_filter("mce_external_plugins", array(&$this, "add_calibrefx_scbuttons_plugin"), 5);
+            add_filter('mce_buttons_3', array(&$this, 'register_calibrefx_scbuttons_button'), 5);
+        }
+    }
+    
+    function register_calibrefx_scbuttons_button($buttons)
+    {
+        array_push($buttons, "", $this->plugin_name);
+        return $buttons;
+    }
+
+    function add_calibrefx_scbuttons_plugin($plugin_arr)
+    {
+        //global $lizatomic_sc;
+        $plugin_arr[$this->plugin_name] = CALIBREFX_JS_URL . '/admin.shortcode.js';
+        return $plugin_arr;
+    }
+    
+    function increase_tinymce_version($version)
+    {
+        return ++$version;
+    }
+}
+
+//vytvor instanciu add_Lizatomic_scbuttons_button()
+$tinymce_button = new calibrefx_add_shortcode_button();	

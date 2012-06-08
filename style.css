@@ -365,7 +365,7 @@
 }
 
 .searchsubmit, #submit {
-    background-image: -moz-linear-gradient(center top , #333333, #222222);
+	background-image: -moz-linear-gradient(center top , #333333, #222222);
     border: 1px solid #7A0000;
     margin-bottom:0;
     border-radius: 2px 2px 2px 2px;
@@ -379,7 +379,7 @@
 }
 
 .searchsubmit:hover, #submit:hover{
-    background-image: -moz-linear-gradient(center top , #6b6b6b, #818181);
+	background-image: -moz-linear-gradient(center top , #6b6b6b, #818181);
 }
 
 /* Footer Widgets

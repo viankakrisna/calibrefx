@@ -222,11 +222,11 @@ function calibrefx_comment_form_args( $defaults ) {
 
 	$email = '<p class="comment-form-email">' .
 	         '<input id="email" name="email" type="text" class="required" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' placeholder="'.__('Your Email (required)','calibrefx').'"/>' .
-	         '<p class="help-block">'.__('Your Email Will be keep safe and not won\'t be shared with third party','calibrefx').'</p>'.
+	         '<p class="help-block">'.__('Your email will be keep safe and won\'t be shared with third party','calibrefx').'</p>'.
 	         '</p><!-- #form-section-email .form-section -->';
 
 	$url = '<p class="comment-form-url">' .
-	       '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" placeholder="'.__('Your Website Url start with http://','calibrefx').'"/>' .
+	       '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" placeholder="'.__('Your Website Url (start with http://)','calibrefx').'"/>' .
 	       '</p><!-- #form-section-url .form-section -->';
 
 	$comment_field = '<p class="comment-form-comment">' .
