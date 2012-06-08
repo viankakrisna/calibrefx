@@ -19,7 +19,8 @@
  */
 do_action('calibrefx_html_header');
 
-wp_head(); //wp_head funtion for plugins
+wp_head();
+
 ?>
 </head>
 <body <?php body_onload(); ?> <?php body_class(); ?>>
