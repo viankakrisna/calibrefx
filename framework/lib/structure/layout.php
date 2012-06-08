@@ -73,10 +73,7 @@ function calibrefx_header_body_classes($classes) {
     if ('image' == calibrefx_get_option('blog_title') || 'blank' == get_header_textcolor())
         $classes[] = 'header-image';
 
-    if (calibrefx_layout_is_responsive())
-        $classes[] = 'responsive';
-    else
-        $classes[] = 'responsive'; 
+    $classes[] = 'responsive';
 
     $custom_body = calibrefx_get_custom_field('_calibrefx_custom_body_class');
     if(!empty($custom_body)){

@@ -43,10 +43,7 @@
 #wrapper{
     padding:0;
 }
-.wrap.row{
-    width: 980px;
-    margin: 0 auto;
-}
+
 .wrap.row:after{
     clear: both;
 }

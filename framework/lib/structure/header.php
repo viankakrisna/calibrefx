@@ -285,7 +285,7 @@ function calibrefx_custom_header_style() {
 
     $header = sprintf('#header-title { background: url(%s) no-repeat; width:%dpx; height: %dpx}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
     $text = sprintf('#title, #title a, #title a:hover{ display: block; margin: 0; overflow: hidden; padding: 0;text-indent: -9999px; color: #%s; width:%dpx; height: %dpx }', esc_html(get_header_textcolor()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
-
+    
     printf('<style type="text/css">%1$s %2$s</style>', $header, $text);
 }
 
@@ -313,6 +313,16 @@ function calibrefx_do_html_header() {
     do_action('calibrefx_doctype');
     do_action('calibrefx_title');
     do_action('calibrefx_meta');
+}
+
+add_action('wp_head', 'calibrefx_print_wrap');
+/**
+ * Print .wrap style
+ */
+function calibrefx_print_wrap(){
+    $wrap = sprintf('.wrap.row{width: %dpx;margin: 0 auto;}', calibrefx_get_option("calibrefx_layout_width"));
+    
+    printf('<style type="text/css">%1$s</style>', $wrap);
 }
 
 add_action('wp_head', 'calibrefx_do_meta_pingback');
