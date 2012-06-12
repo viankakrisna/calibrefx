@@ -70,7 +70,7 @@ function calibrefx_do_nav() {
                 'container' => '',
                 'menu_class' => calibrefx_get_option('nav_fixed_top') ? 'navbar navbar-fixed-top menu-primary menu superfish sf-js-enabled' : 'superfish sf-js-enabled nav menu-primary menu',
                 'echo' => 0,
-                'walker' => new CalibreFx_Walker_Nav_menu(),
+                'walker' => new CFX_Walker_Nav_menu(),
             );
             $nav = wp_nav_menu($args);
         }
@@ -113,7 +113,7 @@ function calibrefx_do_subnav() {
                 'container' => '',
                 'menu_class' => 'nav nav-pills menu-secondary menu superfish sf-js-enabled',
                 'echo' => 0,
-                'walker' => new CalibreFx_Walker_Nav_menu(),
+                'walker' => new CFX_Walker_Nav_menu(),
             );
 
             $subnav = wp_nav_menu($args);

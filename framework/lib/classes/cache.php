@@ -29,7 +29,7 @@
  * @author		Ivan Kristianto
  * @version		1.0
  */
-class cfx_cache {
+class CFX_Cache {
 
     /**
      * Constructor - Initializes

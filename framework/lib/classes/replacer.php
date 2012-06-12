@@ -29,7 +29,7 @@
  * @author		Ivan Kristianto
  * @version		1.0
  */
-class cfx_replacer {
+class CFX_Replacer {
     
     function __construct($arr=array()){
         $this->arr=$arr;

@@ -5,3 +5,4 @@
 framework/docs*
 /framework/doc/
 /nbproject/private/
+/framework/cache/

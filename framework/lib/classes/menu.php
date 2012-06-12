@@ -21,7 +21,7 @@
  *
  * @package CalibreFx
  */
-class CalibreFx_Walker_Nav_menu extends Walker_Nav_Menu {
+class CFX_Walker_Nav_menu extends Walker_Nav_Menu {
 
     function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output) {
         $id_field = $this->db_fields['id'];

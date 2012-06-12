@@ -29,7 +29,7 @@ function calibrefx_breadcrumb( $args = array() ) {
 	global $_calibrefx_breadcrumb;
 
 	if ( !$_calibrefx_breadcrumb ) {
-		$_calibrefx_breadcrumb = new CalibreFx_Breadcrumb;
+		$_calibrefx_breadcrumb = new CFX_Breadcrumb;
 	}
 
 	$_calibrefx_breadcrumb->output( $args );

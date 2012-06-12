@@ -21,7 +21,7 @@
  * @package CalibreFx
  */
 
-class CalibreFx_Breadcrumb {
+class CFX_Breadcrumb {
 
 	/**
 	 * Settings array, a merge of provided values and defaults. Private.
