@@ -21,7 +21,7 @@
  *
  * @package CalibreFx
  */
-class CalibreFx_Admin_Bar {
+class CFX_Admin_Bar {
 
     private $top_nodes = array();
     private $bottom_nodes = array();

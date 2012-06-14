@@ -67,6 +67,7 @@ function calibrefx_constants() {
 
     /** Define CALIBREFX Root Directory Constant */
     define('CALIBREFX_DIR', get_template_directory());
+    define('CALIBREFX_CACHE_DIR', CALIBREFX_DIR . '/cache');
     define('CALIBREFX_LIB_DIR', CALIBREFX_DIR . '/framework/lib');
 
     /** Define Directory Location Constants */
@@ -80,9 +81,11 @@ function calibrefx_constants() {
     define('CALIBREFX_SHORTCODES_DIR', CALIBREFX_LIB_DIR . '/shortcodes');
     define('CALIBREFX_STRUCTURE_DIR', CALIBREFX_LIB_DIR . '/structure');
     define('CALIBREFX_WIDGETS_DIR', CALIBREFX_LIB_DIR . '/widgets');
+    define('CALIBREFX_MODULES_DIR', CALIBREFX_LIB_DIR . '/modules');
 
     /** Define CALIBREFX Root URL Constant */
     define('CALIBREFX_URL', get_template_directory_uri());
+    define('CALIBREFX_CACHE_URL', CALIBREFX_URL . '/cache');
     define('CALIBREFX_LIB_URL', CALIBREFX_URL . '/framework/lib');
 
     /** Define URL Location Constants */
@@ -97,6 +100,7 @@ function calibrefx_constants() {
     define('CALIBREFX_SHORTCODES_URL', CALIBREFX_LIB_URL . '/shortcodes');
     define('CALIBREFX_STRUCTURE_URL', CALIBREFX_LIB_URL . '/structure');
     define('CALIBREFX_WIDGETS_URL', CALIBREFX_LIB_URL . '/widgets');
+    define('CALIBREFX_MODULES_URL', CALIBREFX_LIB_URL . '/modules');
 
     /** Define Settings Field Constants (for DB storage) */
     define('CALIBREFX_SETTINGS_FIELD', apply_filters('calibrefx_settings_field', 'calibrefx-settings'));
@@ -150,6 +154,7 @@ function calibrefx_load_framework() {
     require_once( CALIBREFX_CLASSES_DIR . '/menu.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/replacer.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/admin-bar.php' );
+    require_once( CALIBREFX_CLASSES_DIR . '/minify.php' );
 
     /** Load Functions */
     require_once( CALIBREFX_FUNCTIONS_DIR . '/general.php' );

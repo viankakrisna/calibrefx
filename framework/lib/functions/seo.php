@@ -29,7 +29,7 @@ function calibrefx_seo_title() {
 
     $replace_tags = get_replace_title_tags();
 
-    $cfx_replacer = new cfx_replacer($replace_tags);
+    $cfx_replacer = new CFX_Replacer($replace_tags);
 
     if (is_home()) {
         $home_title = calibrefx_get_seo_option('home_title');

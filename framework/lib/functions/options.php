@@ -33,7 +33,7 @@ function calibrefx_get_option($key, $setting = null) {
     global $_calibrefx_cache;
 
     if (!$_calibrefx_cache) {
-        $_calibrefx_cache = new cfx_cache;
+        $_calibrefx_cache = new CFX_Cache;
     }
     
     //If setting is null then use the default CalibreFX Setting field

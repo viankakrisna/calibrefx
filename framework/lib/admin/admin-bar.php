@@ -39,7 +39,7 @@ function calibrefx_admin_bar_init() {
     global $calibrefx_admin_bar;
 
     /* Instantiate the admin bar */
-    $admin_bar_class = apply_filters('calibrefx_admin_bar_class', 'CalibreFx_Admin_Bar');
+    $admin_bar_class = apply_filters('calibrefx_admin_bar_class', 'CFX_Admin_Bar');
     if (class_exists($admin_bar_class))
         $calibrefx_admin_bar = new $admin_bar_class;
     else

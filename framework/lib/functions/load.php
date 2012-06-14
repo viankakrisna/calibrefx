@@ -65,7 +65,7 @@ add_action('calibrefx_meta', 'calibrefx_load_styles', 5);
  * 
  * since @1.0
  */
-function calibrefx_load_styles() {
+function calibrefx_load_styles() {    
     $calibrefx_default_style = get_theme_support( 'calibrefx-default-styles' );
     
     wp_register_style( 'calibrefx-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css', FRAMEWORK_VERSION );
