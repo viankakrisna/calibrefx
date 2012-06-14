@@ -33,14 +33,11 @@ class Calibrefx_Post_Slider_Widget extends WP_Widget {
             'title' => '',
             'category_id' => '',
             'numberPost' => '5',
-            'effect' => 'random',
-            'slices' => '15',
-            'boxCols' => '8',
-            'boxRows' => '4',
-            'animSpeed' => '500',
-            'pauseTime' => '3000', 
-            'directionNav' => 'true',
-            'controlNav' => 'true',
+            'interval' => '5000',
+			'image_size' => '',
+			'caption' => '1',
+			'text_limit' => '100',
+			'more_text' => 'read more'
         );
 
         $widget_ops = array(
@@ -64,50 +61,50 @@ class Calibrefx_Post_Slider_Widget extends WP_Widget {
 
         $q = new WP_Query(array('cat' => $instance['category_id'], 'posts_per_page' => $instance['numberPost']));
 
-        echo $before_widget . '<div id="post-slider" class="nivoSlider">';
+        echo $before_widget . '<div id="post-slider" class="carousel slide">';
+		
+		echo '<div class="carousel-inner">';
 
+		$loop_counter = 1;
         if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
+			
+			if($loop_counter == 1){
+				echo '<div class="item active">';
+			}else{
+				echo '<div class="item">';
+			}
+			
+			$img = calibrefx_get_image(array( 'format' => 'html', 'size' => $instance['image_size']));
         
-        $img = calibrefx_get_image(array( 'format' => 'html', 'size' => '', 'class' => 'nivo-image'));
-        
-        echo $img;
-        
+			echo $img;
+			
+			if($instance['caption']){
+				echo '<div class="carousel-caption">';
+				echo '<h4>'.get_the_title().'</h4>';
+				
+				the_content_limit( (int) $instance['text_limit'], esc_html( $instance['more_text'] ) );
+				echo '</div><!-- end carousel caption -->';
+			}
+			
+			echo '</div><!-- end carousel item -->';
+			
+			$loop_counter++;
         endwhile;    
         endif;
-
-        echo '</div><!-- end slider -->';
+		
+		echo '</div><!-- end carousel inner -->';
+		echo '<!-- Carousel nav -->
+			<a class="carousel-control left" href="#post-slider" data-slide="prev">&lsaquo;</a>
+			<a class="carousel-control right" href="#post-slider" data-slide="next">&rsaquo;</a>
+		';
+        echo '</div><!-- end carousel slide -->';
         
         echo "
         <script>
             jQuery(document).ready(function(){
-                $('#post-slider').nivoSlider({
-			effect: '".$instance['effect']."', // Specify sets like: 'fold,fade,sliceDown'
-			slices: ".$instance['slices'].", // For slice animations
-			boxCols: ".$instance['boxCols'].", // For box animations
-			boxRows: ".$instance['boxRows'].", // For box animations
-			animSpeed: ".$instance['animSpeed'].", // Slide transition speed
-			pauseTime: ".$instance['pauseTime'].", // How long each slide will show
-			startSlide: 0, // Set starting Slide (0 index)
-			directionNav: ".$instance['directionNav'].", // Next & Prev navigation
-			directionNavHide: true, // Only show on hover
-			controlNav: ".$instance['controlNav'].", // 1,2,3... navigation
-			controlNavThumbs: false, // Use thumbnails for Control Nav
-			controlNavThumbsFromRel: false, // Use image rel for thumbs
-			controlNavThumbsSearch: '.jpg', // Replace this with...
-			controlNavThumbsReplace: '_thumb.jpg', // ...this in thumb Image src
-			keyboardNav: false, // Use left & right arrows
-			pauseOnHover: true, // Stop animation while hovering
-			manualAdvance: false, // Force manual transitions
-			captionOpacity: 0.8, // Universal caption opacity
-			prevText: 'Prev', // Prev directionNav text
-			nextText: 'Next', // Next directionNav text
-			randomStart: false, // Start on a random slide
-			beforeChange: function(){}, // Triggers before a slide transition
-			afterChange: function(){}, // Triggers after a slide transition
-			slideshowEnd: function(){}, // Triggers after all slides have been shown
-			lastSlide: function(){}, // Triggers when last slide is shown
-			afterLoad: function(){} // Triggers when slider has loaded
-		});
+                $('#post-slider').carousel({
+				  interval: ".$instance['interval']."
+				})
             });
         </script>
         ";
@@ -145,67 +142,40 @@ class Calibrefx_Post_Slider_Widget extends WP_Widget {
             <input type="text" id="<?php echo $this->get_field_id('numberPost'); ?>" name="<?php echo $this->get_field_name('numberPost'); ?>" value="<?php echo esc_attr($instance['numberPost']); ?>" class="widefat" />
         </p>
 
-        <p>
-            <label for="<?php echo $this->get_field_id('effect'); ?>"><?php _e('Effect', 'calibrefx'); ?>:</label>
-            <select id="<?php echo $this->get_field_id( 'effect' ); ?>" name="<?php echo $this->get_field_name( 'effect' ); ?>">
-                    <option value="sliceDown" <?php selected( 'sliceDown', $instance['effect'] ); ?>><?php _e( 'Slice Down', 'calibrefx' ); ?></option>
-                    <option value="sliceDownLeft" <?php selected( 'sliceDownLeft', $instance['effect'] ); ?>><?php _e( 'Slice Down Left', 'calibrefx' ); ?></option>
-                    <option value="sliceUp" <?php selected( 'sliceUp', $instance['effect'] ); ?>><?php _e( 'Slice Up', 'calibrefx' ); ?></option>
-                    <option value="sliceUpLeft" <?php selected( 'sliceUpLeft', $instance['effect'] ); ?>><?php _e( 'Slice Up Left', 'calibrefx' ); ?></option>
-                    <option value="sliceUpDown" <?php selected( 'sliceUpDown', $instance['effect'] ); ?>><?php _e( 'Slice Up Down', 'calibrefx' ); ?></option>
-                    <option value="sliceUpDownLeft" <?php selected( 'sliceUpDownLeft', $instance['effect'] ); ?>><?php _e( 'Slice Up Down Left', 'calibrefx' ); ?></option>
-                    <option value="fold" <?php selected( 'fold', $instance['effect'] ); ?>><?php _e( 'Fold', 'calibrefx' ); ?></option>
-                    <option value="fade" <?php selected( 'fade', $instance['effect'] ); ?>><?php _e( 'Fade', 'calibrefx' ); ?></option>
-                    <option value="random" <?php selected( 'random', $instance['effect'] ); ?>><?php _e( 'Random', 'calibrefx' ); ?></option>
-                    <option value="slideInRight" <?php selected( 'slideInRight', $instance['effect'] ); ?>><?php _e( 'Slide In Right', 'calibrefx' ); ?></option>
-                    <option value="slideInLeft" <?php selected( 'slideInLeft', $instance['effect'] ); ?>><?php _e( 'Slide In Left', 'calibrefx' ); ?></option>
-                    <option value="boxRandom" <?php selected( 'boxRandom', $instance['effect'] ); ?>><?php _e( 'Box Random', 'calibrefx' ); ?></option>
-                    <option value="boxRain" <?php selected( 'boxRain', $instance['effect'] ); ?>><?php _e( 'Box Rain', 'calibrefx' ); ?></option>
-                    <option value="boxRainReverse" <?php selected( 'boxRainReverse', $instance['effect'] ); ?>><?php _e( 'Box Rain Reverse', 'calibrefx' ); ?></option>
-                    <option value="boxRainGrow" <?php selected( 'boxRainGrow', $instance['effect'] ); ?>><?php _e( 'Box Rain Grow', 'calibrefx' ); ?></option>
-                    <option value="boxRainGrowReverse" <?php selected( 'boxRainGrowReverse', $instance['effect'] ); ?>><?php _e( 'Box Rain Grow Reverse', 'calibrefx' ); ?></option>
-            </select>
+		<p>
+            <label for="<?php echo $this->get_field_id('interval'); ?>"><?php _e('Interval', 'calibrefx'); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id('interval'); ?>" name="<?php echo $this->get_field_name('interval'); ?>" value="<?php echo esc_attr($instance['interval']); ?>" class="widefat" />
         </p>
-
-        <p>
-            <label for="<?php echo $this->get_field_id('slices'); ?>"><?php _e('Number Of Slices', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('slices'); ?>" name="<?php echo $this->get_field_name('slices'); ?>" value="<?php echo esc_attr($instance['slices']); ?>" class="widefat" />
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('image_size'); ?>"><?php _e('Image Size', 'calibrefx'); ?>:</label>
+			<?php $sizes = calibrefx_get_additional_image_sizes(); ?>
+			<select id="<?php echo $this->get_field_id('image_size'); ?>" name="<?php echo $this->get_field_name('image_size'); ?>">
+				<option style="padding-right:10px;" value="thumbnail">thumbnail (<?php echo get_option('thumbnail_size_w'); ?>x<?php echo get_option('thumbnail_size_h'); ?>)</option>
+				<?php
+				foreach((array)$sizes as $name => $size) :
+				echo '<option style="padding-right: 10px;" value="'.esc_attr($name).'" '.selected($name, $instance['image_size'], FALSE).'>'.esc_html($name).' ('.$size['width'].'x'.$size['height'].')</option>';
+				endforeach;
+				?>
+			</select>
+		</p>	
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('caption'); ?>"><?php _e('Show Caption', 'calibrefx'); ?>:</label>
+			<select id="<?php echo $this->get_field_id('caption'); ?>" name="<?php echo $this->get_field_name('caption'); ?>">
+				<option value="1"<?php if($instance['caption'] == '1') echo ' selected="selected"'?>>Show</option>
+				<option value="0"<?php if($instance['caption'] == '0') echo ' selected="selected"'?>>Hide</option>
+			</select>
+		</p>	
+		
+		<p>
+            <label for="<?php echo $this->get_field_id('text_limit'); ?>"><?php _e('Caption Text Limit', 'calibrefx'); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id('text_limit'); ?>" name="<?php echo $this->get_field_name('text_limit'); ?>" value="<?php echo esc_attr($instance['text_limit']); ?>" class="widefat" />
         </p>
-        
-        <p>
-            <label for="<?php echo $this->get_field_id('boxCols'); ?>"><?php _e('Number Of Columns (For box animations)', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('boxCols'); ?>" name="<?php echo $this->get_field_name('boxCols'); ?>" value="<?php echo esc_attr($instance['boxCols']); ?>" class="widefat" />
-        </p>
-        
-        <p>
-            <label for="<?php echo $this->get_field_id('boxRows'); ?>"><?php _e('Number Of Rows (For box animations)', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('boxRows'); ?>" name="<?php echo $this->get_field_name('boxRows'); ?>" value="<?php echo esc_attr($instance['boxRows']); ?>" class="widefat" />
-        </p>
-        
-        <p>
-            <label for="<?php echo $this->get_field_id('animSpeed'); ?>"><?php _e('Slide Transition Speed', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('animSpeed'); ?>" name="<?php echo $this->get_field_name('animSpeed'); ?>" value="<?php echo esc_attr($instance['animSpeed']); ?>" class="widefat" />
-        </p>
-        
-        <p>
-            <label for="<?php echo $this->get_field_id('pauseTime'); ?>"><?php _e('Slide Transition Pause Time', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('pauseTime'); ?>" name="<?php echo $this->get_field_name('pauseTime'); ?>" value="<?php echo esc_attr($instance['pauseTime']); ?>" class="widefat" />
-        </p>
-        
-        <p>
-            <label for="<?php echo $this->get_field_id('directionNav'); ?>"><?php _e('Show Direction', 'calibrefx'); ?>:</label>
-            <select id="<?php echo $this->get_field_id( 'directionNav' ); ?>" name="<?php echo $this->get_field_name( 'directionNav' ); ?>">
-                    <option value="true" <?php selected( 'true', $instance['directionNav'] ); ?>><?php _e( 'Show', 'calibrefx' ); ?></option>
-                    <option value="false" <?php selected( 'false', $instance['directionNav'] ); ?>><?php _e( 'Hide', 'calibrefx' ); ?></option>
-            </select>
-        </p>  
-        
-        <p>
-            <label for="<?php echo $this->get_field_id('controlNav'); ?>"><?php _e('Show Number Navigation', 'calibrefx'); ?>:</label>
-            <select id="<?php echo $this->get_field_id( 'controlNav' ); ?>" name="<?php echo $this->get_field_name( 'controlNav' ); ?>">
-                    <option value="true" <?php selected( 'true', $instance['controlNav'] ); ?>><?php _e( 'Show', 'calibrefx' ); ?></option>
-                    <option value="false" <?php selected( 'false', $instance['controlNav'] ); ?>><?php _e( 'Hide', 'calibrefx' ); ?></option>
-            </select>
+		
+		<p>
+            <label for="<?php echo $this->get_field_id('more_text'); ?>"><?php _e('Caption Read More Text', 'calibrefx'); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id('more_text'); ?>" name="<?php echo $this->get_field_name('more_text'); ?>" value="<?php echo esc_attr($instance['more_text']); ?>" class="widefat" />
         </p>
 
         <?php

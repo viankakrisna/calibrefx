@@ -48,7 +48,7 @@ function calibrefx_inpost_layout_box() {
 
     wp_nonce_field(plugin_basename(__FILE__), 'calibrefx_inpost_layout_nonce');
 
-    $layout = calibrefx_get_custom_field('_calibrefx_layout');
+    $layout = calibrefx_get_custom_field('site_layout');
     ?>
     <div class="calibrefx-layout-selector">
         <p><input type="radio" name="_calibrefx_layout" id="default-layout" value="" <?php checked($layout, ''); ?> /> <label class="default" for="default-layout"><?php printf(__('Default Layout set in <a href="%s">Theme Settings</a>', 'calibrefx'), menu_page_url('calibrefx', 0)); ?></label></p>
@@ -97,7 +97,7 @@ function calibrefx_inpost_layout_save($post_id, $post) {
         return $post_id;
 
     $calibrefx_post_layout = $_POST['_calibrefx_layout'];
-
+	
     if ($calibrefx_post_layout)
         update_post_meta($post_id, 'site_layout', $calibrefx_post_layout);
     else
