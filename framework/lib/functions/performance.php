@@ -49,7 +49,7 @@ function minify_styles($todo){
     global $cfx_minify, $wp_styles;
     
     if (!current_theme_supports('calibrefx-preformance'))
-        return;
+        return $todo;
     
     $styles = array();
     foreach($todo as $handle){
@@ -66,7 +66,7 @@ function minify_scripts($todo){
     global $cfx_minify, $wp_scripts;
    
     if (!current_theme_supports('calibrefx-preformance'))
-        return;
+        return $todo;
     
     $scripts = array();
     foreach($todo as $handle){
