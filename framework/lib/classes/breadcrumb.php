@@ -42,7 +42,7 @@ class CFX_Breadcrumb {
      *
      * @param array $args
      */
-    function calibrefx_breadcrumb() {
+    function __construct() {
         $this->on_front = get_option('show_on_front');
 
         /** Default arguments * */
@@ -75,10 +75,10 @@ class CFX_Breadcrumb {
      * @return string HTML markup
      */
     function get_output($args = array()) {
-
+        
         /** Merge and Filter user and default arguments * */
         $this->args = apply_filters('calibrefx_breadcrumb_args', wp_parse_args($args, $this->args));
-
+        
         return $this->args['prefix'] . $this->args['labels']['prefix'] . $this->build_crumbs() . $this->args['suffix'];
     }
 

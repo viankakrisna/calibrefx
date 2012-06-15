@@ -31,7 +31,7 @@ function calibrefx_breadcrumb( $args = array() ) {
 	if ( !$_calibrefx_breadcrumb ) {
 		$_calibrefx_breadcrumb = new CFX_Breadcrumb;
 	}
-
+        
 	$_calibrefx_breadcrumb->output( $args );
 
 }
