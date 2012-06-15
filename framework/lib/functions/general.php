@@ -182,3 +182,14 @@ function body_onload($script = '') {
 
     echo 'onload="' . join(';', $onload_scripts) . '"';
 }
+
+function calibrefx_write_cache($file, $data){
+    $fh = fopen($file, 'w');
+    fwrite($fh, $data);
+    fclose($fh);
+    return $file;
+}
+
+function calibrefx_md5sum($string){
+    return md5($string);
+}

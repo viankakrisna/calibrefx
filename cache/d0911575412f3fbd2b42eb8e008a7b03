@@ -1,14 +1,4 @@
 /*
-<<<<<<< HEAD
-	Theme Name: CalibreFx Framework
-	Theme URL: http://www.calibrefx.com/
-	Description: CalibreFx WordPress Themes Framework
-	Author: CalibreFx Team
-	Author URI: http://www.calibrefx.com
-	License: Commercial
-	Version: 1.0
-*/
-=======
         Theme Name: CalibreFx Framework
         Theme URL: http://www.calibreworks.com/
         Description: CalibreFx WordPress Themes Framework
@@ -473,4 +463,3 @@
         padding:0;
     }
 }
->>>>>>> 251462604e48725bd2538fa24f826a754c109bf8
