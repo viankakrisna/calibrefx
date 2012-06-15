@@ -1,0 +1,6 @@
+.navbar .dropdown-menu:after{
+    content:none;
+}
+.navbar .dropdown-menu:before{
+    content:none;
+}

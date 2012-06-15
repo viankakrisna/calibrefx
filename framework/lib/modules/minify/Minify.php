@@ -195,7 +195,7 @@ class Minify {
             // invalid request!
             if (! self::$_options['quiet']) {
                 self::_errorExit(self::$_options['badRequestHeader'], self::URL_DEBUG);
-            } else {
+            } else { 
                 list(,$statusCode) = explode(' ', self::$_options['badRequestHeader']);
                 return array(
                     'success' => false
@@ -207,7 +207,7 @@ class Minify {
         }
         
         self::$_controller = $controller;
-        
+       
         if (self::$_options['debug']) {
             self::_setupDebug($controller->sources);
             self::$_options['maxAge'] = 0;

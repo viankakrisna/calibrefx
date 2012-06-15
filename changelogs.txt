@@ -1,0 +1,10 @@
+Change Logs CalibreFx
+
+version 1.0.0 <15 June 2012> -
+	* tinymce/plugin.js - Fixed shortcode image URL
+	* tinymce/config.php - Fixed shortcode bug
+	* template-contact.php - Fixed bug
+	* functions/theme-shortcodes.php - Tabs now support multiple instances
+	* style.css - Version number change, fixed tab widget bug
+	* functions.php - Fixed enqueue bug
+	* comments.php - translation fix
