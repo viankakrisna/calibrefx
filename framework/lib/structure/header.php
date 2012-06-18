@@ -244,8 +244,8 @@ function calibrefx_custom_header() {
 
     /** Merge defaults with passed arguments */
     $args = wp_parse_args($custom_header, array(
-        'width' => 960,
-        'height' => 80,
+        'width' => 260,
+        'height' => 100,
         'textcolor' => '333333',
         'no_header_text' => false,
         'header_image' => '%s/header.png',
@@ -283,10 +283,12 @@ function calibrefx_custom_header_style() {
     if (HEADER_TEXTCOLOR == get_header_textcolor() && HEADER_IMAGE == get_header_image())
         return;
 
-    $header = sprintf('@media (min-width:961px){#header-title { background: url(%1$s) no-repeat; width:%2$s; height: %3$dpx}} @media (max-width:960px){#header-title {background: url(%1$s) no-repeat; width:%4$s; height: %3$dpx}}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT, '100%');
+    $header = sprintf('@media (min-width:961px){#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}} @media (max-width:960px){#header-title {background: url(%1$s) no-repeat left center; width:%4$s; height: %3$dpx}}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT, '100%');
     $text = sprintf('#title, #title a, #title a:hover{ display: block; margin: 0; overflow: hidden; padding: 0;text-indent: -9999px; color: #%s; width:%dpx; height: %dpx }', esc_html(get_header_textcolor()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
-    
+    $header_ie = sprintf('#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
+	
     printf('<style type="text/css">%1$s %2$s</style>', $header, $text);
+	printf('<!--[if lt IE 9]><style type="text/css">%1$s</style><![endif]-->', $header_ie);
 }
 
 /**
@@ -321,8 +323,10 @@ add_action('wp_head', 'calibrefx_print_wrap');
  */
 function calibrefx_print_wrap(){
     $wrap = sprintf('@media (min-width:960px){.wrap.row{width: %dpx;margin: 0 auto;}}', calibrefx_get_option("calibrefx_layout_width"));
+	$wrap_ie = sprintf('.wrap.row{width: %dpx;margin: 0 auto;}', calibrefx_get_option("calibrefx_layout_width"));
     
     printf('<style type="text/css">%1$s</style>', $wrap);
+	printf('<!--[if lt IE 9]><style type="text/css">%1$s</style><![endif]-->', $wrap_ie);
 }
 
 add_action('wp_head', 'calibrefx_do_meta_pingback');
