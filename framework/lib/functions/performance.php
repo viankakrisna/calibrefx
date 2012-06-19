@@ -47,6 +47,10 @@ add_filter('print_styles_array', 'minify_styles');
 function minify_styles($todo){
     global $cfx_minify, $wp_styles;
     
+    //Disable it in admin area
+    if(is_admin() || calibrefx_get_script() == 'wp-login.php') 
+        return $todo;
+    
     if (!current_theme_supports('calibrefx-preformance'))
         return $todo;
     
@@ -66,7 +70,12 @@ add_filter('print_scripts_array', 'minify_scripts');
  */
 function minify_scripts($todo){
     global $cfx_minify, $wp_scripts;
-   
+    
+    
+    //Disable it in admin area
+    if(is_admin() || calibrefx_get_script() == 'wp-login.php') 
+        return $todo;
+    
     if (!current_theme_supports('calibrefx-preformance'))
         return $todo;
     

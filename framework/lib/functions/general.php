@@ -138,11 +138,6 @@ function get_footer_widget_class($class = '') {
 
 /**
  * Retrieve the classes for the body element as an array.
- *
- * @since 2.8.0
- *
- * @param string|array $class One or more classes to add to the class list.
- * @return array Array of classes.
  */
 function get_footer_widget_classes($class = '') {
 
@@ -183,6 +178,9 @@ function body_onload($script = '') {
     echo 'onload="' . join(';', $onload_scripts) . '"';
 }
 
+/**
+ * Helper function write cache data to files
+ */
 function calibrefx_write_cache($file, $data){
     $fh = fopen($file, 'w');
     fwrite($fh, $data);
@@ -190,6 +188,19 @@ function calibrefx_write_cache($file, $data){
     return $file;
 }
 
+/**
+ * Do md5sum for string given
+ */
 function calibrefx_md5sum($string){
     return md5($string);
+}
+
+/**
+ * Get current script run by the server
+ */
+function calibrefx_get_script(){
+    $file = $_SERVER["SCRIPT_NAME"];
+    $break = Explode('/', $file);
+    $pfile = $break[count($break) - 1]; 
+    return $pfile;
 }
