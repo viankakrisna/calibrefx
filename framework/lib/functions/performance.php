@@ -22,7 +22,9 @@
  */
 
 add_action('init', 'calibrefx_gzip_compression');
-
+/**
+ * Enable GZip Compression
+ */
 function calibrefx_gzip_compression() {
     // don't use on TinyMCE
     if (stripos($_SERVER['REQUEST_URI'], 'wp-includes/js/tinymce') !== false) {
@@ -38,13 +40,10 @@ function calibrefx_gzip_compression() {
     }
 }
 
-//add_action('calibrefx_post_init', 'test_minify');
-//function test_minify(){
-//    global $cfx_minify;
-//    //debug_var($cfx_minify->clear_cache());exit;
-//}
-
 add_filter('print_styles_array', 'minify_styles');
+/**
+ * Minify Styles and cache it
+ */
 function minify_styles($todo){
     global $cfx_minify, $wp_styles;
     
@@ -62,6 +61,9 @@ function minify_styles($todo){
 }
 
 add_filter('print_scripts_array', 'minify_scripts');
+/**
+ * Minify Scripts and cache it
+ */
 function minify_scripts($todo){
     global $cfx_minify, $wp_scripts;
    
@@ -76,4 +78,16 @@ function minify_scripts($todo){
     
     wp_enqueue_script('calibrefx-minified', $cfx_minify->minified_js($styles));
     return array('calibrefx-minified');
+}
+
+
+add_action('calibrefx_post_framework', 'calibrefx_init_third_party');
+/**
+ * After frameworks is initialized we initialize other third party module
+ */
+function calibrefx_init_third_party(){
+    global $oBrowser;
+    
+    $oBrowser = new clsBrowser();
+    $oBrowser->Detect();
 }
