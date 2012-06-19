@@ -489,24 +489,20 @@ add_action('calibrefx_after_header', 'calibrefx_add_socials_script');
  * Add Social javascript after header
  */
 function calibrefx_add_socials_script() {
-    global $fbappid, $fbsecret, $twitteruser;
+    global $twitteruser;
 
-    $fbappid = calibrefx_get_option('facebook_app_id');
-    $fbsecret = calibrefx_get_option('facebook_app_secret');
     $twitteruser = calibrefx_get_option('twitter_username');
 
-    if (!empty($fbappid)) {
-        echo '<div id="fb-root"></div>';
-        echo '<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>';
-        echo '<script type="text/javascript">FB.init({appId  : \'' . $fbappid . '\',status : true, cookie : true, xfbml  : true, oauth: true  });';
-        echo 'FB.Event.subscribe("auth.login", function(response) {
-			  window.location.reload();
-			});
-			FB.Event.subscribe("auth.logout", function(response) {
-			  window.location.reload();
-			});';
-        echo '</script>';
-    }
+    //@TODO: add enable facebook in theme setting
+    echo '
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184690738325056";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, \'script\', \'facebook-jssdk\'));</script>';
 
     if (!empty($twitteruser)) {
         echo '<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>';

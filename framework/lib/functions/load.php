@@ -50,9 +50,7 @@ function calibrefx_load_scripts() {
 	if ( is_singular() && get_option( 'thread_comments' ) && comments_open() )
 		wp_enqueue_script( 'comment-reply' );
         
-	if ( is_active_widget(0,0, 'post-slider') || is_active_widget(0,0, 'page-slider') ){
-		wp_enqueue_script( 'nivo-slider' );
-	}
+	
 		
 	wp_enqueue_script( 'superfish', CALIBREFX_JS_URL . '/superfish.js', array( 'jquery' ), FRAMEWORK_VERSION, true );
 	wp_enqueue_script( 'shortcode' );
@@ -82,10 +80,6 @@ function calibrefx_load_styles() {
     }
     
     wp_enqueue_style('calibrefx-style');
-    
-    if ( is_active_widget(0,0, 'post-slider') || is_active_widget(0,0, 'page-slider') ){
-        wp_enqueue_style('nivo-slider');
-    }
     
     wp_enqueue_style('shortcode');
     

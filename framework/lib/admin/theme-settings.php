@@ -378,14 +378,6 @@ function calibrefx_theme_settings_socials_box() {
     ?>
     <h4><?php _e('Facebook Settings:', 'calibrefx'); ?></h4>
     <p>
-        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]"><?php _e('Facebook APP ID:', 'calibrefx'); ?></label>
-        <input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_app_id'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_id]">
-    </p>
-    <p>
-        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]"><?php _e('Facebook APP Secret:', 'calibrefx'); ?></label>
-        <input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_app_secret'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_app_secret]">
-    </p>
-    <p>
         <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_admins]"><?php _e('Facebook Admin ID:', 'calibrefx'); ?></label>
         <input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_admins'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_admins]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[facebook_admins]">
         <span class="description"><?php _e("This will be used in Facebook open graph meta <code>fb:admins</code>.", 'calibrefx'); ?></span>
