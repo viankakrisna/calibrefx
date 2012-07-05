@@ -31,11 +31,11 @@ add_action('calibrefx_doctype', 'calibrefx_print_doctype');
  */
 function calibrefx_print_doctype() {?>
 <!doctype html>
-<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-<!--[if gt IE 9]><!--><html class="no-js" lang="<?php bloginfo('language'); ?>"><!--<![endif]-->
+<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. -->
 <head id="<?php echo calibrefx_get_site_url(); ?>" data-template-set="html5-reset">
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
