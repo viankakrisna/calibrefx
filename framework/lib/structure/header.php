@@ -322,7 +322,7 @@ add_action('wp_head', 'calibrefx_print_wrap');
  * Print .wrap style
  */
 function calibrefx_print_wrap(){
-    $wrap = sprintf('@media (min-width:960px){.wrap.row{width: %dpx;margin: 0 auto;}}', calibrefx_get_option("calibrefx_layout_width"));
+    $wrap = sprintf('@media (min-width:%dpx){.wrap.row{width: %dpx;margin: 0 auto;}}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
 	$wrap_ie = sprintf('.wrap.row{width: %dpx;margin: 0 auto;}', calibrefx_get_option("calibrefx_layout_width"));
     
     printf('<style type="text/css">%1$s</style>', $wrap);
