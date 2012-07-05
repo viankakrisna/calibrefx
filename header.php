@@ -17,6 +17,8 @@
  *
  * @package SalesVenture
  */
+ 
+ /* Edited By Hilal */
 do_action('calibrefx_html_header');
 
 wp_head();
