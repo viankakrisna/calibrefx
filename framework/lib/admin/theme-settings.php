@@ -205,6 +205,13 @@ function calibrefx_theme_settings_layout_box() {
     </p>
     
     <hr class="div" />
+	
+	<p><label><?php _e('Enable Responsive Layout', 'calibrefx'); ?></label>
+        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" value="1" <?php checked(1, calibrefx_get_option('enable_responsive')); ?> /></label>
+        <span class="description"><?php printf(__('This option will enable responsive layout.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
+    </p>
+    
+    <hr class="div" />
     
     <p>
         <label>Layout Type:</label>
