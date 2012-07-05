@@ -54,6 +54,8 @@ function calibrefx_load_scripts() {
 		
 	wp_enqueue_script( 'superfish', CALIBREFX_JS_URL . '/superfish.js', array( 'jquery' ), FRAMEWORK_VERSION, true );
 	wp_enqueue_script( 'shortcode' );
+        
+        wp_localize_script('calibrefx_script', 'cfx_ajax', array('ajaxurl' => admin_url('admin-ajax.php')));
 }
 
 //We load calibrefx default styles as earlier as possible, so it can be override

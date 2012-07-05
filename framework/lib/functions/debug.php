@@ -32,3 +32,8 @@ function debug_var($var){
 
     echo $after;
 }
+
+function fire_debug($var){
+    $firephp = FirePHP::getInstance();
+    $firephp->log($var);
+}

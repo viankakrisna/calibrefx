@@ -159,6 +159,7 @@ function calibrefx_load_framework() {
     
     /** Load third-party */
     require_once( CALIBREFX_MODULES_DIR . '/browserdetector/clsBrowser.php' );
+    require_once( CALIBREFX_MODULES_DIR . '/firephp/FirePHP.class.php' );
 
     /** Load Functions */
     require_once( CALIBREFX_FUNCTIONS_DIR . '/general.php' );
