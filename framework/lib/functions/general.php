@@ -159,6 +159,21 @@ function get_footer_widget_classes($class = '') {
     return apply_filters('footer_widget_class', $classes, $class);
 }
 
+/**
+ * Output special xmlns on html tags
+ */
+function html_xmlns($xml = '') {
+    $xmls = array();
+    $xmls = array_map('esc_attr', $xmls);
+     
+    $xmlns = apply_filters('html_xmlns', $xmls, $xml);
+    
+    echo join(' ', $xmlns);
+}
+
+/**
+ * Output if any body onload script defined
+ */
 function body_onload($script = '') {
     $scripts = array();
 
