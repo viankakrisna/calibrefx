@@ -101,6 +101,8 @@ li.wp-menu-separator{  }
     padding-top: 60px;
 }
 
+#wpadminbar { display: none; }
+
 #calibrefx-admin-bar-wrapper{
     position: absolute;
     left: 0;
@@ -140,12 +142,20 @@ li.wp-menu-separator{  }
     background-position:right top;
 }
 
+@media (max-width: 900px){
+	#calibrefx-admin-bar-logo{
+		width: 33px;
+		background-position:right top;
+	}
+}
+
 #calibrefx-admin-bar-logo a{
     display: block;
     height: 59px;
     width: 146px;
     text-decoration:none;
 }
+
 .folded #calibrefx-admin-bar-logo a{
     width: 33px;
 }

@@ -82,7 +82,7 @@ function calibrefx_youtube($atts, $content = null) {
                 'title' => '',
                     ), $atts));
 
-    return '<iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . do_shortcode($content) . '" frameborder="0" allowfullscreen></iframe>';
+    return '<iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . $content . '" frameborder="0" allowfullscreen></iframe>';
 }
 
 add_shortcode('vimeo', 'calibrefx_vimeo');
@@ -96,8 +96,10 @@ function calibrefx_vimeo($atts, $content = null) {
                 'title' => '',
                     ), $atts));
 
-    return '<iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://player.vimeo.com/video/' . do_shortcode($content) . '" frameborder="0"></iframe>';
+    return '<iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://player.vimeo.com/video/' . $content . '" frameborder="0"></iframe>';
 }
+
+$tinymce_button = new calibrefx_add_shortcode_button( 'calibrefx_shortcode_video' );
 
 /**
  * ==============================================================
@@ -272,11 +274,12 @@ function calibrefx_button($atts, $content = '') {
         $classes .= ' ' . $size;
 
     if (!empty($icon)) {
-        return $before . '<a href="' . $url . '" class="' . $classes . ' icon"><span class="rightbtn">' . $content . '</span><span class="ico ' . $icon . '"></span></a>' . $after;
+        return $before . '<a href="' . $url . '" class="' . $classes . ' icon"><span class="rightbtn">' . do_shortcode( $content ) . '</span><span class="ico ' . $icon . '"></span></a>' . $after;
     } else {
-        return $before . '<a href="' . $url . '" class="' . $classes . '"><span>' . $content . '</span></a>' . $after;
+        return $before . '<a href="' . $url . '" class="' . $classes . '"><span>' . do_shortcode( $content ) . '</span></a>' . $after;
     }
 }
+$tinymce_button = new calibrefx_add_shortcode_button( 'calibrefx_shortcode_buttons' );	
 
 /**
  * ==============================================================
@@ -300,8 +303,10 @@ function calibrefx_tooltip($atts, $content = '') {
     if (!empty($color))
         $classes .= ' ' . $color;
 
-    return $before . '<span class="' . $classes . '"><span class="tooltip-content"><span class="tooltip-arr"></span>' . $text . '</span>' . $content . '</span>' . $after;
+    return $before . '<span class="' . $classes . '"><span class="tooltip-content"><span class="tooltip-arr"></span>' . $text . '</span>' . do_shortcode( $content ) . '</span>' . $after;
 }
+
+$tinymce_button = new calibrefx_add_shortcode_button( 'calibrefx_shortcode_tooltips' );
 
 /**
  * ==============================================================
@@ -333,8 +338,9 @@ function calibrefx_dropcap($atts, $content = '') {
     if (!empty($size))
         $classes .= ' size-' . $size;
 
-    return $before . '<span class="' . $classes . '">' . $content . '</span>' . $after;
+    return $before . '<span class="' . $classes . '">' . do_shortcode( $content ) . '</span>' . $after;
 }
+$tinymce_button = new calibrefx_add_shortcode_button( 'calibrefx_shortcode_dropcaps' );
 
 /**
  * ==============================================================
@@ -357,7 +363,17 @@ function calibrefx_list($atts, $content = '') {
     if (!empty($style))
         $classes .= ' ' . $style;
 
-    return $before . '<ul class="' . $classes . '">' . $content . '</ul>' . $after;
+    return $before . '<ul class="' . $classes . '">' . do_shortcode( $content ) . '</ul>' . $after;
+}
+$tinymce_button = new calibrefx_add_shortcode_button( 'calibrefx_shortcode_list' );
+
+add_shortcode('li', 'calibrefx_list_item');
+function calibrefx_list_item($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'class' => ''
+                    ), $atts));
+
+    return '<li class="' . $class . '">' . do_shortcode( $content ) . '</li>';
 }
 
 /**
@@ -390,15 +406,16 @@ function calibrefx_column($atts, $content = '') {
         }
     }
 
-    return $before . '<div class="' . $classes . '">' . $content . '</div>' . $after;
+    return $before . '<div class="' . $classes . '">' . do_shortcode( $content ) . '</div>' . $after;
 }
+$tinymce_button = new calibrefx_add_shortcode_button( 'calibrefx_shortcode_column' );
 
 /**
  * ==============================================================
  * Google Maps
  * ==============================================================
  */
- add_shortcode('gmap', 'calibrefx_gmap');
+ add_shortcode('gmaps', 'calibrefx_gmap');
  function calibrefx_gmap($atts, $content = ''){
 	extract(shortcode_atts(array(
 		'before' => '',
@@ -409,59 +426,52 @@ function calibrefx_column($atts, $content = '') {
 		'src' => ''
 	), $atts));	
 	
-	return $before.'<iframe width="'.$width.'" height="'.$height.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'.$src.'&output=embed" class="'.$class.'"></iframe>'.$after;
+	return $before.'<iframe width="'.$width.'" height="'.$height.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'.html_entity_decode($src).'" class="'.$class.'"></iframe>'.$after;
  }
+ $tinymce_button = new calibrefx_add_shortcode_button( 'calibrefx_shortcode_gmaps' );
  
-/* tinyMCE class */
 
 /**
- * add_Lizatomic_scbuttons_button
+ * add shortcode buttons to editor
  *  
  * @access public
+ * @author Hilaladdiyar Muhammad Nur
+ *
  */
-class calibrefx_add_shortcode_button
-{
+class calibrefx_add_shortcode_button{
 
-    var $plugin_name = "calibrefx_shortcode_buttons";
+    var $plugin_name = "";
 
-    function calibrefx_add_shortcode_button()
-    {        
+    function calibrefx_add_shortcode_button( $plugin_name = ''){
+		$this->plugin_name = $plugin_name;
         add_filter('tiny_mce_version', array(&$this, 'increase_tinymce_version'));        
         add_action('init', array(&$this, 'add_sc_buttons'));
     }
 
-    function add_sc_buttons()
-    {
+    function add_sc_buttons(){
         // len uzivatel s pravom editovat clanky vidi button
         if (!current_user_can('edit_posts') && !current_user_can('edit_pages'))
             return;
         // rich editor
         if (get_user_option('rich_editing') == 'true') {
             // pre wp2.5
-            add_filter("mce_external_plugins", array(&$this, "add_calibrefx_scbuttons_plugin"), 5);
-            add_filter('mce_buttons_3', array(&$this, 'register_calibrefx_scbuttons_button'), 5);
+            add_filter("mce_external_plugins", array(&$this, "calibrefx_add_scbuttons_plugin"), 5);
+            add_filter('mce_buttons_3', array(&$this, 'calibrefx_register_scbuttons_plugin'), 5);
         }
     }
     
-    function register_calibrefx_scbuttons_button($buttons)
-    {
+    function calibrefx_register_scbuttons_plugin($buttons){
         array_push($buttons, "", $this->plugin_name);
         return $buttons;
     }
 
-    function add_calibrefx_scbuttons_plugin($plugin_arr)
-    {
-        //global $lizatomic_sc;
-        $plugin_arr[$this->plugin_name] = CALIBREFX_SHORTCODES_URL . '/assets/admin.shortcode.js';
+    function calibrefx_add_scbuttons_plugin($plugin_arr){
+        $plugin_arr[$this->plugin_name] = CALIBREFX_JS_URL . '/calibrefx-admin-shortcode.js';
         return $plugin_arr;
     }
     
-    function increase_tinymce_version($version)
-    {
+    function increase_tinymce_version($version){
         return ++$version;
     }
-}
-
-//vytvor instanciu add_Lizatomic_scbuttons_button()
-$tinymce_button = new calibrefx_add_shortcode_button();	
+}	
 

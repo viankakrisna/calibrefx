@@ -70,8 +70,8 @@ window['calibrefx'] = {
         jQuery('.calibrefx-layout-selector').on('change.calibrefx.calibrefx_layout_selector', 'input[type="radio"]', calibrefx.layout_highlighter);
                 
         jQuery('#calibrefx-admin-bar').sticky({
-            topSpacing:0,
-            center:true, 
+            topSpacing: 0,
+           
             className: 'sticky'
         });
     }

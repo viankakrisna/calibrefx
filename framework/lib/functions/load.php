@@ -34,12 +34,6 @@ function calibrefx_load_scripts() {
 	wp_register_script( 'jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', array('jquery'), FRAMEWORK_VERSION );
 	wp_register_script( 'jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array('jquery'), FRAMEWORK_VERSION );
 	wp_register_script( 'calibrefx-script', CALIBREFX_JS_URL . '/calibrefx.js', array('jquery','jquery-validate'), FRAMEWORK_VERSION);
-	
-	/**
-	 * TO DO: This will change to calibrefx.js later
-	 * Added by hilal
-	**/
-	wp_register_script( 'shortcode', CALIBREFX_SHORTCODES_URL . '/assets/shortcode.js', false, FRAMEWORK_VERSION );
 
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'modernizr' );
@@ -51,7 +45,6 @@ function calibrefx_load_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}  
 	wp_enqueue_script( 'superfish', CALIBREFX_JS_URL . '/superfish.js', array( 'jquery' ), FRAMEWORK_VERSION, true );
-	wp_enqueue_script( 'shortcode' );
     wp_localize_script( 'calibrefx-script', 'cfx_ajax', array('ajaxurl' => admin_url('admin-ajax.php')));
 }
 
@@ -103,7 +96,7 @@ function calibrefx_load_admin_scripts() {
 	wp_enqueue_script( 'calibrefx-admin-bar' );
 	wp_enqueue_script( 'calibrefx_admin_js', CALIBREFX_JS_URL . '/admin.js', array( 'jquery','jquery-sticky' ), FRAMEWORK_VERSION, true );
 	$params = array(
-            'category_checklist_toggle' => __( 'Select / Deselect All', 'genesis' )
+            'category_checklist_toggle' => __( 'Select / Deselect All', 'calibrefx' )
 	);
 	wp_localize_script( 'calibrefx_admin_js', 'calibrefx', $params );
 }

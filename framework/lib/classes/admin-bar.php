@@ -431,7 +431,7 @@ class CFX_Admin_Bar {
         <div id="calibrefx-admin-bar-wrapper" class="<?php echo $class; ?>" role="navigation">
             <div id="calibrefx-admin-bar">
                 <div id="calibrefx-admin-bar-logo">
-                    <a target="_blank" href="<?php echo FRAMEWORK_URL; ?>" title="'<?php echo FRAMEWORK_NAME; ?> v<?php echo FRAMEWORK_NAME; ?>">&nbsp;</a>
+                    <a target="_blank" href="<?php echo FRAMEWORK_URL; ?>" title="<?php echo FRAMEWORK_NAME; ?> v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
                 </div>
                 <div id="calibrefx-admin-bar-top">
                     <div class="quicklinks">

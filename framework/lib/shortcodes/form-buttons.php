@@ -3,10 +3,10 @@
 <head>
 	<title>Button shortcode</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<script language="javascript" type="text/javascript" src="../../../../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
-	<script language="javascript" type="text/javascript" src="../../../../../../../../wp-includes/js/tinymce/utils/mctabs.js"></script>
-	<script language="javascript" type="text/javascript" src="../../../../../../../../wp-includes/js/tinymce/utils/form_utils.js"></script>
-	<script language="javascript" type="text/javascript" src="../../../../../../../../wp-includes/js/jquery/jquery.js?ver=1.4.2"></script>
+	<script language="javascript" type="text/javascript" src="../../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+	<script language="javascript" type="text/javascript" src="../../../../../../wp-includes/js/tinymce/utils/mctabs.js"></script>
+	<script language="javascript" type="text/javascript" src="../../../../../../wp-includes/js/tinymce/utils/form_utils.js"></script>
+	<script language="javascript" type="text/javascript" src="../../../../../../wp-includes/js/jquery/jquery.js?ver=1.4.2"></script>
 	<script language="javascript" type="text/javascript">
 	function lizatomic_zobrazForm() {
 		
@@ -72,11 +72,11 @@
             if(medziShortcodom == '') {
             	
 			if (iconButton_text != '' ) 
-				shortcodeRetazec = '[button_icon icon="'+iconButton_icon+'" color="'+iconButton_color+'" url="'+iconButton_url+'" rel="'+iconButton_rel+'"] '+iconButton_text+' [/button_icon] ';
+				shortcodeRetazec = '[button icon="'+iconButton_icon+'" color="'+iconButton_color+'" url="'+iconButton_url+'" rel="'+iconButton_rel+'"] '+iconButton_text+' [/button] ';
 			else
 				alert('Opps! You have to insert text of the button.');
 		  } else {
-				shortcodeRetazec = '[button_icon icon="'+iconButton_icon+'" color="'+iconButton_color+'" url="'+iconButton_url+'" rel="'+iconButton_rel+'"] '+iconButton_text+' [/button_icon] ';
+				shortcodeRetazec = '[button icon="'+iconButton_icon+'" color="'+iconButton_color+'" url="'+iconButton_url+'" rel="'+iconButton_rel+'"] '+iconButton_text+' [/button] ';
                 }
 				
 			}
