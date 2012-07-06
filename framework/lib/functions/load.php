@@ -28,12 +28,13 @@ add_action( 'get_header', 'calibrefx_load_scripts' );
 function calibrefx_load_scripts() {
 	wp_deregister_script('jquery');
 	
-	wp_register_script('jquery', CALIBREFX_JS_URL . '/jquery.min.js', false, '1.7.1');
-        wp_register_script( 'calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', array('jquery'), FRAMEWORK_VERSION );
+	wp_register_script( 'jquery', CALIBREFX_JS_URL . '/jquery.min.js', false, '1.7.1');
+    wp_register_script( 'calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', array('jquery'), FRAMEWORK_VERSION );
 	wp_register_script( 'modernizr', CALIBREFX_JS_URL . '/modernizr.min.js', false, FRAMEWORK_VERSION );
 	wp_register_script( 'jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', array('jquery'), FRAMEWORK_VERSION );
 	wp_register_script( 'jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array('jquery'), FRAMEWORK_VERSION );
-	wp_register_script( 'nivo-slider', CALIBREFX_JS_URL . '/jquery.nivo.slider.pack.js', array('jquery'), FRAMEWORK_VERSION );
+	wp_register_script( 'calibrefx-script', CALIBREFX_JS_URL . '/calibrefx.js', array('jquery','jquery-validate'), FRAMEWORK_VERSION);
+	
 	/**
 	 * TO DO: This will change to calibrefx.js later
 	 * Added by hilal
@@ -42,20 +43,16 @@ function calibrefx_load_scripts() {
 
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'modernizr' );
-        
-        if(calibrefx_get_option("enable_bootstrap")){
-            wp_enqueue_script('calibrefx-bootstrap');
-        }
-        wp_enqueue_script('calibrefx_script',CALIBREFX_JS_URL . '/calibrefx.js', array('jquery','jquery-validate'), FRAMEWORK_VERSION);
-	if ( is_singular() && get_option( 'thread_comments' ) && comments_open() )
+	wp_enqueue_script( 'calibrefx-script' );
+    if(calibrefx_get_option( 'enable_bootstrap' )){
+        wp_enqueue_script( 'calibrefx-bootstrap' );
+    }
+	if ( is_singular() && get_option( 'thread_comments' ) && comments_open() ){
 		wp_enqueue_script( 'comment-reply' );
-        
-	
-		
+	}  
 	wp_enqueue_script( 'superfish', CALIBREFX_JS_URL . '/superfish.js', array( 'jquery' ), FRAMEWORK_VERSION, true );
 	wp_enqueue_script( 'shortcode' );
-        
-        wp_localize_script('calibrefx_script', 'cfx_ajax', array('ajaxurl' => admin_url('admin-ajax.php')));
+    wp_localize_script( 'calibrefx-script', 'cfx_ajax', array('ajaxurl' => admin_url('admin-ajax.php')));
 }
 
 //We load calibrefx default styles as earlier as possible, so it can be override
@@ -69,7 +66,9 @@ function calibrefx_load_styles() {
     $calibrefx_default_style = get_theme_support( 'calibrefx-default-styles' );
     
     wp_register_style( 'calibrefx-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css', FRAMEWORK_VERSION );
+	wp_register_style( 'calibrefx-bootstrap-responsive', CALIBREFX_CSS_URL . '/bootstrap.responsive.min.css', FRAMEWORK_VERSION );
     wp_register_style( 'calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css', FRAMEWORK_VERSION );
+	wp_register_style( 'calibrefx-responsive-style', CALIBREFX_CSS_URL . '/calibrefx.responsive.css', FRAMEWORK_VERSION );
     wp_register_style( 'nivo-slider', CALIBREFX_CSS_URL . '/nivo-slider.css', FRAMEWORK_VERSION );
     wp_register_style( 'shortcode', CALIBREFX_CSS_URL . '/shortcode.css', FRAMEWORK_VERSION ); //@TODO: This will change to calibrefx.css later
     
@@ -77,14 +76,17 @@ function calibrefx_load_styles() {
     if ( ! $calibrefx_default_style )
             return;
     
-    if(calibrefx_get_option("enable_bootstrap")){
-        wp_enqueue_style('calibrefx-bootstrap');
+    if(calibrefx_get_option( 'enable_bootstrap' )){
+        wp_enqueue_style( 'calibrefx-bootstrap' );
+		
+		if(calibrefx_get_option( 'enable_responsive' )){
+			wp_enqueue_style( 'calibrefx-bootstrap-responsive' );
+			wp_enqueue_style( 'calibrefx-responsive-style' );
+		}
     }
     
-    wp_enqueue_style('calibrefx-style');
-    
-    wp_enqueue_style('shortcode');
-    
+    wp_enqueue_style( 'calibrefx-style' );
+    wp_enqueue_style( 'shortcode' );
 }
 
 add_action( 'admin_init', 'calibrefx_load_admin_scripts' );
