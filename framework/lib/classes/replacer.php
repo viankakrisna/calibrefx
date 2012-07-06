@@ -16,7 +16,7 @@
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
  *
- * This file to handle cache mechanism
+ * This class is to handle string replacer
  *
  * @package CalibreFx
  */
