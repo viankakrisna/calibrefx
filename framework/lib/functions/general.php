@@ -77,7 +77,7 @@ function calibrefx_author_box($context = '') {
 function calibrefx_is_menu_page($pagehook = '') {
 
     global $page_hook;
-
+    
     if (isset($page_hook) && $page_hook == $pagehook)
         return true;
 
@@ -165,9 +165,9 @@ function get_footer_widget_classes($class = '') {
 function html_xmlns($xml = '') {
     $xmls = array();
     $xmls = array_map('esc_attr', $xmls);
-     
+
     $xmlns = apply_filters('html_xmlns', $xmls, $xml);
-    
+
     echo join(' ', $xmlns);
 }
 
@@ -196,7 +196,7 @@ function body_onload($script = '') {
 /**
  * Helper function write cache data to files
  */
-function calibrefx_write_cache($file, $data){
+function calibrefx_write_cache($file, $data) {
     $fh = fopen($file, 'w');
     fwrite($fh, $data);
     fclose($fh);
@@ -206,16 +206,16 @@ function calibrefx_write_cache($file, $data){
 /**
  * Do md5sum for string given
  */
-function calibrefx_md5sum($string){
+function calibrefx_md5sum($string) {
     return md5($string);
 }
 
 /**
  * Get current script run by the server
  */
-function calibrefx_get_script(){
+function calibrefx_get_script() {
     $file = $_SERVER["SCRIPT_NAME"];
     $break = Explode('/', $file);
-    $pfile = $break[count($break) - 1]; 
+    $pfile = $break[count($break) - 1];
     return $pfile;
 }

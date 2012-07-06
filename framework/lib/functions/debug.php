@@ -34,6 +34,10 @@ function debug_var($var){
 }
 
 function fire_debug($var){
-    $firephp = FirePHP::getInstance();
+    $firephp = FirePHP::getInstance(true);
     $firephp->log($var);
+}
+
+function die_dump(){
+    
 }
