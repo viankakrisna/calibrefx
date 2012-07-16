@@ -96,12 +96,12 @@ function calibrefx_theme_settings_boxes() {
     add_meta_box('calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), 'calibrefx_theme_settings_custom_script_box', $_calibrefx_theme_settings_pagehook, 'main');
 
     //Metabox on side postbox
-    add_meta_box('calibrefx-theme-settings-content-archive', __('Content Archives', 'calibrefx'), 'calibrefx_theme_settings_content_archive_box', $_calibrefx_theme_settings_pagehook, 'side');
-    add_meta_box('calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), 'calibrefx_theme_settings_breadcrumb_box', $_calibrefx_theme_settings_pagehook, 'side');
-    add_meta_box('calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), 'calibrefx_theme_settings_comment_box', $_calibrefx_theme_settings_pagehook, 'side');
+    add_meta_box('calibrefx-theme-settings-content-archive', __('Content Archives', 'calibrefx'), 'calibrefx_theme_settings_content_archive_box', $_calibrefx_theme_settings_pagehook, 'main');
+    add_meta_box('calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), 'calibrefx_theme_settings_breadcrumb_box', $_calibrefx_theme_settings_pagehook, 'main');
+    add_meta_box('calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), 'calibrefx_theme_settings_comment_box', $_calibrefx_theme_settings_pagehook, 'main');
 
-    add_meta_box('calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), 'calibrefx_theme_settings_feeds_box', $_calibrefx_theme_settings_pagehook, 'side');
-    add_meta_box('calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), 'calibrefx_theme_settings_socials_box', $_calibrefx_theme_settings_pagehook, 'side');
+    add_meta_box('calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), 'calibrefx_theme_settings_feeds_box', $_calibrefx_theme_settings_pagehook, 'main');
+    add_meta_box('calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), 'calibrefx_theme_settings_socials_box', $_calibrefx_theme_settings_pagehook, 'main');
 }
 
 /**
@@ -111,48 +111,56 @@ function calibrefx_theme_settings_admin() {
     global $_calibrefx_theme_settings_pagehook, $wp_meta_boxes;
     
     ?>
-    <div id="calibrefx-theme-settings-page" class="wrap calibrefx-metaboxes">
-        <form method="post" action="options.php">
-            <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
-            <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
-            <?php settings_fields(CALIBREFX_SETTINGS_FIELD); // important! ?>
-            <input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_version')); ?>" />
-            <input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_db_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_db_version')); ?>" />
+    <div id="framework_wrap" class="wrap">
 
-            <a href="http://www.calibrefx.com/">
-                <div id="calibrefx-icon" style="background: url(<?php echo CALIBREFX_IMAGES_URL; ?>/icon32.png) no-repeat;" class="icon32"><br /></div>
-            </a>
-           
-            <h2>
-                <?php _e('CalibreFx - Theme Settings', 'calibrefx'); ?>
-            </h2>
-
-            <div class="calibrefx-submit-button">
-                <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
-                <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
-            </div>
-
-            <div class="metabox-holder">
-                <div class="postbox-container main-postbox">
-                    <?php
-                    do_meta_boxes($_calibrefx_theme_settings_pagehook, 'main', null);
-                    ?>
+        <div id="header">
+            <h1>OptionTree</h1>
+        </div>
+        <div id="content_wrap">
+            <form method="post" id="the-theme-options">
+                <div class="info top-info is-option-page"></div>
+                <div class="ajax-message">
                 </div>
+                <div id="content">
+                    <div id="options_tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+                        <ul class="options_tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                            <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#option_general_default">General</a><span></span></li>
+							<li class="ui-state-default ui-corner-top"><a href="#option_laytout">Layout</a><span></span></li>
+							<li class="ui-state-default ui-corner-top"><a href="#option_navigation">Navigation</a><span></span></li>          
+                        </ul>
+                        <div id="option_general_default" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
+                            <h2>General</h2>
+                            <input type="hidden" name="general_default" value="General">
 
-                <div class="postbox-container side-postbox">
-                    <?php
-                    do_meta_boxes($_calibrefx_theme_settings_pagehook, 'side', null);
-                    ?>
+                                <div class="metabox-holder">
+                                    <div class="postbox-container main-postbox">
+                                        <?php
+                                        do_meta_boxes($_calibrefx_theme_settings_pagehook, 'main', null);
+                                        ?>
+                                    </div>
+                                    
+                                    <div class="postbox-container side-postbox">
+                                        <?php
+                                        do_meta_boxes($_calibrefx_theme_settings_pagehook, 'side', null);
+                                        ?>
+                                    </div>
+                                </div>
+                            
+                            
+
+                        </div>         
+                        <br class="clear">
+                    </div>
                 </div>
-            </div>
-
-            <div class="clear"></div>
-            <div class="calibrefx-submit-button">
-                <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
-                <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
-            </div>
-        </form>
+                <div class="info bottom">
+                    <input type="submit" value="<?php _e('Reset Settings', 'calibrefx'); ?>" class="button-framework reset" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[reset]" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');">
+                    <input type="submit" value="<?php _e('Save Settings', 'calibrefx') ?>" class="button-framework save-options" name="submit">
+                </div>
+                <input type="hidden" id="_ajax_nonce" name="_ajax_nonce" value="6f9d3fc473">      
+            </form>
+        </div>
     </div>
+            
     <script type="text/javascript">
         //<![CDATA[
         jQuery(document).ready( function($) {
