@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
 	jQuery('#header .menu, .superfish').superfish({
 		delay:       200,								// 0.1 second delay on mouseout 
 		animation:   {opacity:'show',height:'show'},	// fade-in and slide-down animation 
-		dropShadows: false								// disable drop shadows 
+		dropSadows: false							// disable drop shadows 
 	});
 	
 	jQuery('.scrolltop a').click(

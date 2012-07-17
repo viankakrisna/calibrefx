@@ -74,11 +74,14 @@ function calibrefx_load_styles() {
 		
 		if(calibrefx_get_option( 'enable_responsive' )){
 			wp_enqueue_style( 'calibrefx-bootstrap-responsive' );
-			wp_enqueue_style( 'calibrefx-responsive-style' );
 		}
     }
     
     wp_enqueue_style( 'calibrefx-style' );
+	if(calibrefx_get_option( 'enable_responsive' )){
+		wp_enqueue_style( 'calibrefx-responsive-style' );
+	}
+	
     wp_enqueue_style( 'shortcode' );
 }
 

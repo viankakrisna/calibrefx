@@ -443,10 +443,10 @@ function calibrefx_do_site_title() {
     $inside = sprintf('<a href="%s" title="%s">%s</a>', trailingslashit(home_url()), esc_attr(get_bloginfo('name')), get_bloginfo('name'));
 
     // Determine which wrapping tags to use
-    $wrap = is_home() ? 'h1' : 'p';
+    //$wrap = is_home() ? 'h1' : 'p';
 
     // Build the Title
-    $title = sprintf('<%s id="title">%s</%s>', $wrap, $inside, $wrap);
+    $title = sprintf('<h1 id="title">%s</h1>', $inside);
 
     // Echo (filtered)
     echo apply_filters('calibrefx_seo_title', $title, $inside, $wrap);
