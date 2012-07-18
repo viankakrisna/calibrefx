@@ -25,6 +25,7 @@ add_action('admin_init', 'calibrefx_register_theme_settings', 5);
  * This function will save or reset settings
  */
 function calibrefx_register_theme_settings() {
+    //@TODO: Need to fill current & default settings before save
     register_setting(CALIBREFX_SETTINGS_FIELD, CALIBREFX_SETTINGS_FIELD);
     add_option(CALIBREFX_SETTINGS_FIELD, calibrefx_theme_settings_defaults());
 
@@ -89,19 +90,45 @@ function calibrefx_theme_settings_styles() {
  */
 function calibrefx_theme_settings_boxes() {
     global $_calibrefx_theme_settings_pagehook;
-
-    //Metabox on main postbox
-    add_meta_box('calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), 'calibrefx_theme_settings_navigation_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
-    add_meta_box('calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), 'calibrefx_theme_settings_layout_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
-    add_meta_box('calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), 'calibrefx_theme_settings_custom_script_box', $_calibrefx_theme_settings_pagehook, 'main');
-
-    //Metabox on side postbox
-    add_meta_box('calibrefx-theme-settings-content-archive', __('Content Archives', 'calibrefx'), 'calibrefx_theme_settings_content_archive_box', $_calibrefx_theme_settings_pagehook, 'main');
-    add_meta_box('calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), 'calibrefx_theme_settings_breadcrumb_box', $_calibrefx_theme_settings_pagehook, 'main');
-    add_meta_box('calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), 'calibrefx_theme_settings_comment_box', $_calibrefx_theme_settings_pagehook, 'main');
-
-    add_meta_box('calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), 'calibrefx_theme_settings_feeds_box', $_calibrefx_theme_settings_pagehook, 'main');
-    add_meta_box('calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), 'calibrefx_theme_settings_socials_box', $_calibrefx_theme_settings_pagehook, 'main');
+    global $calibrefx_section;
+    global $calibrefx_user_ability;
+    global $current_user;
+    
+    $calibrefx_section = 'general';
+    if(!empty($_GET['section']))
+        $calibrefx_section = sanitize_text_field($_GET['section']);
+    
+    $calibrefx_user_ability = 'general';
+    if(!empty($_GET['ability'])){
+        update_user_meta($current_user->ID, 'ability', $_GET['ability']);
+    }
+    if(get_usermeta( $current_user->ID, 'ability' ) !== '' ){
+        $calibrefx_user_ability = get_usermeta( $current_user->ID, 'ability' );
+    }
+    
+    
+    
+    if($calibrefx_section === "general"){
+        add_meta_box('calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), 'calibrefx_theme_settings_navigation_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
+        
+        //@TODO: Need to separate option depend on user ability
+        if($calibrefx_user_ability === 'professor'){
+            add_meta_box('calibrefx-theme-settings-content-archive', __('Content Archives', 'calibrefx'), 'calibrefx_theme_settings_content_archive_box', $_calibrefx_theme_settings_pagehook, 'side');
+            add_meta_box('calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), 'calibrefx_theme_settings_breadcrumb_box', $_calibrefx_theme_settings_pagehook, 'side');
+            add_meta_box('calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), 'calibrefx_theme_settings_comment_box', $_calibrefx_theme_settings_pagehook, 'side');
+        }
+    }
+    
+    if($calibrefx_section === "design"){
+        add_meta_box('calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), 'calibrefx_theme_settings_layout_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
+        add_meta_box('calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), 'calibrefx_theme_settings_custom_script_box', $_calibrefx_theme_settings_pagehook, 'side');
+    }
+    
+    if($calibrefx_section === "social"){
+        add_meta_box('calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), 'calibrefx_theme_settings_feeds_box', $_calibrefx_theme_settings_pagehook, 'main');
+        add_meta_box('calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), 'calibrefx_theme_settings_socials_box', $_calibrefx_theme_settings_pagehook, 'side');
+    }
+    
 }
 
 /**
@@ -109,58 +136,77 @@ function calibrefx_theme_settings_boxes() {
  */
 function calibrefx_theme_settings_admin() {
     global $_calibrefx_theme_settings_pagehook, $wp_meta_boxes;
+    global $calibrefx_section; 
     
+    $section_header = array(
+        'general' => __('General', 'calibrefx'),
+        'design' => __('Design', 'calibrefx'),
+        'social' => __('Social', 'calibrefx'),
+    );
     ?>
-    <div id="framework_wrap" class="wrap">
-
-        <div id="header">
-            <h1>OptionTree</h1>
-        </div>
-        <div id="content_wrap">
-            <form method="post" id="the-theme-options">
-                <div class="info top-info is-option-page"></div>
-                <div class="ajax-message">
+    <div id="calibrefx-theme-settings-page" class="wrap calibrefx-metaboxes">
+        <form method="post" action="options.php">
+            <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
+            <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
+            <?php settings_fields(CALIBREFX_SETTINGS_FIELD); // important! ?>
+            <input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_version')); ?>" />
+            <input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_db_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_db_version')); ?>" />
+            <div class="calibrefx-header">
+                <div class="calibrefx-option-logo">
+                    <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v1.0">&nbsp;</a>
                 </div>
-                <div id="content">
-                    <div id="options_tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-                        <ul class="options_tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-                            <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#option_general_default">General</a><span></span></li>
-							<li class="ui-state-default ui-corner-top"><a href="#option_laytout">Layout</a><span></span></li>
-							<li class="ui-state-default ui-corner-top"><a href="#option_navigation">Navigation</a><span></span></li>          
+                <div class="calibrefx-version">
+                    <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Codename : <?php echo FRAMEWORK_CODENAME; ?>)</span>
+                </div>
+                <div class="calibrefx-ability">
+                    <a class="calibrefx-general" href="admin.php?page=calibrefx&section=general&ability=general">General</a>
+                    <a class="calibrefx-professor" href="admin.php?page=calibrefx&section=general&ability=professor">Professor</a>
+                </div>
+            </div>
+            <div class="calibrefx-content">
+                <div class="calibrefx-submit-button">
+                    <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
+                    <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
+                </div>
+                <div class="metabox-holder">
+                    <div class="calibrefx-tab">
+                        <ul class="calibrefx-tab-option">
+                            <li <?php if($calibrefx_section==="general") echo 'class="current"';?>>
+                                <a href="admin.php?page=calibrefx&section=general">General</a><span></span>
+                            </li>
+                            <li <?php if($calibrefx_section==="design") echo 'class="current"';?>>
+                                <a href="admin.php?page=calibrefx&section=design">Design</a><span></span>
+                            </li>
+                            <li <?php if($calibrefx_section==="social") echo 'class="current"';?>>
+                                <a href="admin.php?page=calibrefx&section=social">Social</a><span></span>
+                            </li>
                         </ul>
-                        <div id="option_general_default" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
-                            <h2>General</h2>
-                            <input type="hidden" name="general_default" value="General">
+                        <div class="calibrefx-option">
+                            <h2><?php echo $section_header[$calibrefx_section];?></h2>
+                            <div class="postbox-container main-postbox">
+                                <?php
+                                do_meta_boxes($_calibrefx_theme_settings_pagehook, 'main', null);
+                                ?>
+                            </div>
 
-                                <div class="metabox-holder">
-                                    <div class="postbox-container main-postbox">
-                                        <?php
-                                        do_meta_boxes($_calibrefx_theme_settings_pagehook, 'main', null);
-                                        ?>
-                                    </div>
-                                    
-                                    <div class="postbox-container side-postbox">
-                                        <?php
-                                        do_meta_boxes($_calibrefx_theme_settings_pagehook, 'side', null);
-                                        ?>
-                                    </div>
-                                </div>
-                            
-                            
-
-                        </div>         
-                        <br class="clear">
+                            <div class="postbox-container side-postbox">
+                                <?php
+                                do_meta_boxes($_calibrefx_theme_settings_pagehook, 'side', null);
+                                ?>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
                     </div>
                 </div>
-                <div class="info bottom">
-                    <input type="submit" value="<?php _e('Reset Settings', 'calibrefx'); ?>" class="button-framework reset" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[reset]" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');">
-                    <input type="submit" value="<?php _e('Save Settings', 'calibrefx') ?>" class="button-framework save-options" name="submit">
+                <div class="calibrefx-submit-button calibrefx-bottom">
+                    <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
+                    <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
                 </div>
-                <input type="hidden" id="_ajax_nonce" name="_ajax_nonce" value="6f9d3fc473">      
-            </form>
-        </div>
+                
+            </div>
+        </form>
     </div>
-            
     <script type="text/javascript">
         //<![CDATA[
         jQuery(document).ready( function($) {
@@ -168,7 +214,32 @@ function calibrefx_theme_settings_admin() {
             $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
             // postboxes setup
             postboxes.add_postbox_toggles('<?php echo $_calibrefx_theme_settings_pagehook; ?>');
+            
+            postboxes._mark_area = function() {
+                var visible = $('div.postbox:visible').length, side = $('#post-body #side-sortables');
+
+                $('#calibrefx-theme-settings-page .meta-box-sortables:visible').each(function(n, el){
+                    var t = $(this);
+
+                    if ( visible == 1 || t.children('.postbox:visible').length )
+                        t.removeClass('empty-container');
+                    else
+                        t.addClass('empty-container');
+                });
+
+                if ( side.length ) {
+                    if ( side.children('.postbox:visible').length )
+                        side.removeClass('empty-container');
+                    else if ( $('#postbox-container-1').css('width') == '280px' )
+                        side.addClass('empty-container');
+                }
+            };
+            postboxes._mark_area();
+            
         });
+        
+        
+        
         //]]>
     </script>
     <?php
