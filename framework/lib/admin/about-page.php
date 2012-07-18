@@ -38,6 +38,21 @@ function calibrefx_about_init() {
  */
 function calibrefx_about_boxes() {
     global $_calibrefx_about_pagehook;
+    global $calibrefx_section;
+    global $calibrefx_user_ability;
+    global $current_user;
+    
+    $calibrefx_section = 'system';
+    if(!empty($_GET['section']))
+        $calibrefx_section = sanitize_text_field($_GET['section']);
+    
+    $calibrefx_user_ability = 'general';
+    if(!empty($_GET['ability'])){
+        update_user_meta($current_user->ID, 'ability', $_GET['ability']);
+    }
+    if(get_usermeta( $current_user->ID, 'ability' ) !== '' ){
+        $calibrefx_user_ability = get_usermeta( $current_user->ID, 'ability' );
+    }
 
 	//Metabox on main postbox
     add_meta_box('calibrefx-about-version', __('Information', 'calibrefx'), 'calibrefx_about_info_box', $_calibrefx_about_pagehook, 'main', 'high');
@@ -52,33 +67,67 @@ function calibrefx_about_boxes() {
  */
 function calibrefx_about_page() {
     global $_calibrefx_about_pagehook, $wp_meta_boxes;
+    global $calibrefx_section;
+    
+    $section_header = array(
+        'system' => __('System', 'calibrefx'),
+        'team' => __('Team', 'calibrefx'),
+    );
     ?>
     <div id="calibrefx-about-page" class="wrap calibrefx-metaboxes">
         <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
         <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
         <?php settings_fields(CALIBREFX_SETTINGS_FIELD); // important! ?>
 
-        <a href="http://www.calibrefx.com/">
-            <div id="calibrefx-icon" style="background: url(<?php echo CALIBREFX_IMAGES_URL; ?>/icon32.png) no-repeat;" class="icon32"><br /></div>
-        </a>
-        <h2>
-            <?php _e('CalibreFx - About Framework', 'calibrefx'); ?>
-        </h2>
-
-        <div class="metabox-holder">
-            <div class="postbox-container main-postbox">
-                <?php
-                do_meta_boxes($_calibrefx_about_pagehook, 'main', null);
-                ?>
+        <div class="calibrefx-header">
+            <div class="calibrefx-option-logo">
+                <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v1.0">&nbsp;</a>
             </div>
-			
-			<div class="postbox-container side-postbox">
-				<?php
-				do_meta_boxes($_calibrefx_theme_settings_pagehook, 'side', null);
-				?>
+            <div class="calibrefx-version">
+                <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Codename : <?php echo FRAMEWORK_CODENAME; ?>)</span>
+            </div>
+            <div class="calibrefx-ability">
+                <a class="calibrefx-general" href="admin.php?page=calibrefx&section=general&ability=general">General</a>
+                <a class="calibrefx-professor" href="admin.php?page=calibrefx&section=general&ability=professor">Professor</a>
             </div>
         </div>
+        <div class="calibrefx-content">
+            <div class="calibrefx-submit-button">
+                
+            </div>
+            
+            <div class="metabox-holder">
+                <div class="calibrefx-tab">
+                    <ul class="calibrefx-tab-option">
+                        <li <?php if($calibrefx_section==="system") echo 'class="current"';?>>
+                            <a href="admin.php?page=calibrefx-about&section=system"><?php echo __('System', 'calibrefx');?></a><span></span>
+                        </li>
+                        <li <?php if($calibrefx_section==="team") echo 'class="current"';?>>
+                            <a href="admin.php?page=calibrefx-about&section=team"><?php echo __('Team', 'calibrefx');?></a><span></span>
+                        </li>
+                    </ul>
+                    <div class="calibrefx-option">
+                        <h2><?php echo $section_header[$calibrefx_section];?></h2>
+                        <div class="postbox-container main-postbox">
+                            <?php
+                            do_meta_boxes($_calibrefx_about_pagehook, 'main', null);
+                            ?>
+                        </div>
 
+                        <div class="postbox-container side-postbox">
+                            <?php
+                            do_meta_boxes($_calibrefx_theme_settings_pagehook, 'side', null);
+                            ?>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="calibrefx-submit-button calibrefx-bottom">
+                    
+                </div>
+            </div>
+        </div>
     </div>
 	<script type="text/javascript">
         //<![CDATA[
@@ -87,6 +136,26 @@ function calibrefx_about_page() {
             $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
             // postboxes setup
             postboxes.add_postbox_toggles('<?php echo $_calibrefx_theme_settings_pagehook; ?>');
+            postboxes._mark_area = function() {
+                var visible = $('div.postbox:visible').length, side = $('#post-body #side-sortables');
+
+                $('#calibrefx-seo-settings-page .meta-box-sortables:visible').each(function(n, el){
+                    var t = $(this);
+
+                    if ( visible == 1 || t.children('.postbox:visible').length )
+                        t.removeClass('empty-container');
+                    else
+                        t.addClass('empty-container');
+                });
+
+                if ( side.length ) {
+                    if ( side.children('.postbox:visible').length )
+                        side.removeClass('empty-container');
+                    else if ( $('#postbox-container-1').css('width') == '280px' )
+                        side.addClass('empty-container');
+                }
+            };
+            postboxes._mark_area();
         });
         //]]>
     </script>

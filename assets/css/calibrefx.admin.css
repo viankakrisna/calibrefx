@@ -39,7 +39,7 @@ hr.div {
 .main-postbox, .side-postbox{
     width: 48%;
     float: left;
-    margin: 0 10px;
+    margin: 0 1%;
 }
 
 .main-postbox-wider{
@@ -899,4 +899,218 @@ ul.twitter-tweets li span a{
 	height: 39px;
 	background: url(../img/icon-36.png) no-repeat;
 	margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* re-style */
+
+#wpbody-content .wrap {
+
+}
+
+.calibrefx-header{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background: #ECECEC;
+    border: 1px solid #AAA;
+    width: auto;
+    height: 85px;
+    position: relative;
+    
+    margin-top: 40px;
+}
+
+.calibrefx-option-logo{
+    float: left;
+    margin: 13px 0 0 15px;
+    background: url(../img/calibrefx-menu-bar.png) no-repeat left top;
+}
+
+.calibrefx-option-logo a {
+    display: block;
+    height: 59px;
+    width: 145px;
+    text-decoration: none;
+}
+
+.calibrefx-content{
+    border: 1px solid #AAA;
+    border-top: none;
+    background: #fff;
+    position: relative;
+}
+
+.calibrefx-submit-button {
+    margin: 0;
+    background: #EAF2FA;
+    background: #F9F9F9;
+    height: 35px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.calibrefx-submit-button.calibrefx-bottom {
+    border-top: 1px solid white !important;
+    border-bottom: none !important;
+    background: #F1F1F1;
+}
+
+.calibrefx-submit-button .calibrefx-h2-button {
+    cursor: pointer;
+    font-weight: normal;
+    
+    margin: 5px 20px 0 0;
+    padding: 0 5px;
+    margin: 7px 20px 0 0;
+    font-size: 11px;
+    height: 24px;
+    
+    border-radius: 4px;
+    float: right;
+}
+
+.calibrefx-content .metabox-holder{
+    padding: 0;
+    border-bottom: 1px solid #E3E3E3;
+    position: relative;
+}
+
+.calibrefx-content #message{
+    margin: 5px 10px 15px 10px;
+}
+
+.calibrefx-content h2{
+    margin: 0 17px 0 10px;
+    height: 0px;
+    visibility: hidden;
+}
+
+.calibrefx-tab{
+    zoom: 1;
+    background: url(../img/tabs_bg.png) repeat-y 0 0;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option{
+    list-style: none;
+    position: relative;
+    width: 148px;
+    word-wrap: break-word;
+    margin: 0;    
+    float: left;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li{
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li a{
+    text-decoration: none;
+    display: block;
+    width: 127px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #E3E3E3;
+    color: #21759B;
+    text-shadow: 0 1px 0 white;
+    background-image: url(../img/white_px.png);
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    font-size: 11px;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li:hover a{
+    background-color: #EAF2FA;
+    color: #555;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li.current a{
+    background: #fff;
+    color: #D54E45;
+    width: 128px;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li.current span {
+    position: absolute;
+    left: -1px;
+    top: 12px;
+    height: 9px;
+    width: 8px;
+    background: url(../img/icon_arrow.png) no-repeat 0 0;
+}
+
+#wpbody-content .metabox-holder {
+padding-top: 0px;
+}
+
+.calibrefx-option{
+    margin-left: 150px;
+    min-height: 250px;
+    padding-bottom: 13px;
+}
+
+.calibrefx-option .meta-box-sortables{
+    min-height: 55px;
+}
+
+.calibrefx-version{
+    position: absolute;
+    top: 5px;
+    right: 8px;
+}
+
+.calibrefx-ability{
+    position: absolute;
+    top: 30px;
+    right: 5px;
+}
+
+.calibrefx-ability a{
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    text-indent: -999em;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: transparent;
+}
+
+.calibrefx-ability a:hover{
+    box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #999;
+    border-color: #D7D7D7 #C2C2C2 #C2C2C2 #D7D7D7;
+}
+.calibrefx-ability a:hover:active{
+    box-shadow: inset 0px 1px 0px #999;
+    position: relative;
+    top: 1px;
+}
+.calibrefx-ability .calibrefx-general{
+    background: url(../img/general.png) no-repeat;
+}
+.calibrefx-ability .calibrefx-professor{
+    background: url(../img/professor.png) no-repeat;
+}
+
+@media only screen and (max-width: 900px){
+    #wpcontent, #footer {
+        margin-left: 32px;
+    }
+    
+    .main-postbox, .side-postbox {
+        width: 96%;
+        float: left;
+        margin: 0 2%;
+    }
 }

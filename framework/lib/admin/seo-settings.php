@@ -73,14 +73,42 @@ function calibrefx_seo_settings_init() {
  */
 function calibrefx_seo_settings_boxes() {
     global $_calibrefx_seo_settings_pagehook;
-	
-    //Metabox on main postbox
-    add_meta_box('calibrefx-seo-settings-document-settings', __('Document Settings', 'calibrefx'), 'calibrefx_seo_settings_document_box', $_calibrefx_seo_settings_pagehook, 'main', 'high');
+    global $calibrefx_section;
+    global $calibrefx_user_ability;
+    global $current_user;
+    
+    $calibrefx_section = 'document';
+    if(!empty($_GET['section']))
+        $calibrefx_section = sanitize_text_field($_GET['section']);
+    
+    $calibrefx_user_ability = 'general';
+    if(!empty($_GET['ability'])){
+        update_user_meta($current_user->ID, 'ability', $_GET['ability']);
+    }
+    if(get_usermeta( $current_user->ID, 'ability' ) !== '' ){
+        $calibrefx_user_ability = get_usermeta( $current_user->ID, 'ability' );
+    }
 
-    //Metabox on side postbox
-    add_meta_box('calibrefx-seo-settings-home-settings', __('Home Settings', 'calibrefx'), 'calibrefx_seo_settings_home_box', $_calibrefx_seo_settings_pagehook, 'side', 'high');
-    add_meta_box('calibrefx-seo-settings-robot-meta-settings', __('Robot Meta Settings', 'calibrefx'), 'calibrefx_seo_settings_robot_box', $_calibrefx_seo_settings_pagehook, 'side');
-    add_meta_box('calibrefx-seo-settings-archive-settings', __('Archive Settings', 'calibrefx'), 'calibrefx_seo_settings_archive_box', $_calibrefx_seo_settings_pagehook, 'side');
+	if($calibrefx_section === "document"){
+        //add_meta_box('calibrefx-seo-settings-document-settings', __('Document Settings', 'calibrefx'), 'calibrefx_seo_settings_document_box', $_calibrefx_seo_settings_pagehook, 'main', 'high');
+        add_meta_box('calibrefx-seo-settings-document-title-settings', __('Document Title Settings', 'calibrefx'), 'calibrefx_seo_settings_document_title_box', $_calibrefx_seo_settings_pagehook, 'main', 'high');
+        
+        
+        //@TODO: Need to separate option depend on user ability
+        if($calibrefx_user_ability === 'professor'){
+            add_meta_box('calibrefx-seo-settings-document-description-settings', __('Document Description Settings', 'calibrefx'), 'calibrefx_seo_settings_document_description_box', $_calibrefx_seo_settings_pagehook, 'main', 'high');
+            add_meta_box('calibrefx-seo-settings-document-keyword-settings', __('Document Keyword Settings', 'calibrefx'), 'calibrefx_seo_settings_document_description_box', $_calibrefx_seo_settings_pagehook, 'main', 'high');
+        }
+    }
+    if($calibrefx_section === "home"){
+        add_meta_box('calibrefx-seo-settings-home-settings', __('Home Settings', 'calibrefx'), 'calibrefx_seo_settings_home_box', $_calibrefx_seo_settings_pagehook, 'main', 'high');
+    }
+    if($calibrefx_section === "robot"){
+        add_meta_box('calibrefx-seo-settings-robot-meta-settings', __('Robot Meta Settings', 'calibrefx'), 'calibrefx_seo_settings_robot_box', $_calibrefx_seo_settings_pagehook, 'main');
+    }
+    if($calibrefx_section === "archive"){
+        add_meta_box('calibrefx-seo-settings-archive-settings', __('Archive Settings', 'calibrefx'), 'calibrefx_seo_settings_archive_box', $_calibrefx_seo_settings_pagehook, 'main');
+    }
 }
 
 /**
@@ -88,42 +116,75 @@ function calibrefx_seo_settings_boxes() {
  */
 function calibrefx_seo_settings_admin() {
     global $_calibrefx_seo_settings_pagehook, $wp_meta_boxes;
+    global $calibrefx_section;
+    
+    $section_header = array(
+        'document' => __('Document', 'calibrefx'),
+        'home' => __('Home', 'calibrefx'),
+        'robot' => __('Robot', 'calibrefx'),
+        'archive' => __('Archive', 'calibrefx'),
+    );
     ?>
     <div id="calibrefx-seo-settings-page" class="wrap calibrefx-metaboxes">
         <form method="post" action="options.php">
             <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
             <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
             <?php settings_fields(CALIBREFX_SEO_SETTINGS_FIELD); // important! ?>
-            <a href="http://www.calibrefx.com/">
-                <div id="calibrefx-icon" style="background: url(<?php echo CALIBREFX_IMAGES_URL; ?>/icon32.png) no-repeat;" class="icon32"><br /></div>
-            </a>
-            <h2>
-                <?php _e('CalibreFx - SEO Settings', 'calibrefx'); ?>
-            </h2>
-
-            <div class="calibrefx-submit-button">
-                <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
-                <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SEO_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
-            </div>
-
-            <div class="metabox-holder">
-                <div class="postbox-container main-postbox">
-                    <?php
-                    do_meta_boxes($_calibrefx_seo_settings_pagehook, 'main', null);
-                    ?>
+            <div class="calibrefx-header">
+                <div class="calibrefx-option-logo">
+                    <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v1.0">&nbsp;</a>
                 </div>
-
-                <div class="postbox-container side-postbox">
-                    <?php
-                    do_meta_boxes($_calibrefx_seo_settings_pagehook, 'side', null);
-                    ?>
+                <div class="calibrefx-version">
+                    <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Codename : <?php echo FRAMEWORK_CODENAME; ?>)</span>
+                </div>
+                <div class="calibrefx-ability">
+                    <a class="calibrefx-general" href="admin.php?page=calibrefx&section=general&ability=general">General</a>
+                    <a class="calibrefx-professor" href="admin.php?page=calibrefx&section=general&ability=professor">Professor</a>
                 </div>
             </div>
-
-            <div class="clear"></div>
-            <div class="calibrefx-submit-button">
-                <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
-                <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SEO_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
+            <div class="calibrefx-content">
+                <div class="calibrefx-submit-button">
+                    <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
+                    <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SEO_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
+                </div>
+                
+                <div class="metabox-holder">
+                    <div class="calibrefx-tab">
+                        <ul class="calibrefx-tab-option">
+                            <li <?php if($calibrefx_section==="document") echo 'class="current"';?>>
+                                <a href="admin.php?page=calibrefx-seo&section=document">Document</a><span></span>
+                            </li>
+                            <li <?php if($calibrefx_section==="home") echo 'class="current"';?>>
+                                <a href="admin.php?page=calibrefx-seo&section=home">Home</a><span></span>
+                            </li>
+                            <li <?php if($calibrefx_section==="robot") echo 'class="current"';?>>
+                                <a href="admin.php?page=calibrefx-seo&section=robot">Robot</a><span></span>
+                            </li>
+                            <li <?php if($calibrefx_section==="archive") echo 'class="current"';?>>
+                                <a href="admin.php?page=calibrefx-seo&section=archive">Archive</a><span></span>
+                            </li>
+                        </ul>
+                        <div class="calibrefx-option">
+                            <h2><?php echo $section_header[$calibrefx_section];?></h2>
+                            <div class="postbox-container main-postbox">
+                                <?php
+                                do_meta_boxes($_calibrefx_seo_settings_pagehook, 'main', null);
+                                ?>
+                            </div>
+                            <div class="postbox-container side-postbox">
+                                <?php
+                                do_meta_boxes($_calibrefx_seo_settings_pagehook, 'side', null);
+                                ?>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="calibrefx-submit-button calibrefx-bottom">
+                    <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
+                    <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SEO_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
+                </div>
             </div>
         </form>
     </div>
@@ -134,7 +195,28 @@ function calibrefx_seo_settings_admin() {
             $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
             // postboxes setup
             postboxes.add_postbox_toggles('<?php echo $_calibrefx_seo_settings_pagehook; ?>');
+            postboxes._mark_area = function() {
+                var visible = $('div.postbox:visible').length, side = $('#post-body #side-sortables');
+
+                $('#calibrefx-seo-settings-page .meta-box-sortables:visible').each(function(n, el){
+                    var t = $(this);
+
+                    if ( visible == 1 || t.children('.postbox:visible').length )
+                        t.removeClass('empty-container');
+                    else
+                        t.addClass('empty-container');
+                });
+
+                if ( side.length ) {
+                    if ( side.children('.postbox:visible').length )
+                        side.removeClass('empty-container');
+                    else if ( $('#postbox-container-1').css('width') == '280px' )
+                        side.addClass('empty-container');
+                }
+            };
+            postboxes._mark_area();
         });
+        
         //]]>
     </script>
 
@@ -144,7 +226,7 @@ function calibrefx_seo_settings_admin() {
 /**
  * Show document setting box
  */
-function calibrefx_seo_settings_document_box(){ ?>
+function calibrefx_seo_settings_document_title_box(){ ?>
     <span class="description">
         The Document Title is the single most important SEO tag in your document source. It will tell search engines the information contained in the document. The doctitle changes from page to page, but these options will help you control what it looks by default.
     </span>
@@ -196,7 +278,13 @@ function calibrefx_seo_settings_document_box(){ ?>
         <input type="text" size="80" value="<?php echo calibrefx_seo_option('404_rewrite_title'); ?>" id="<?php echo CALIBREFX_SEO_SETTINGS_FIELD; ?>[404_rewrite_title]" name="<?php echo CALIBREFX_SEO_SETTINGS_FIELD; ?>[404_rewrite_title]">
         <span class="description">This option will automatically generate title for your Search page result.</span>
     </p>
-    
+<?php    
+}
+
+/**
+ * Show document setting box
+ */
+function calibrefx_seo_settings_document_description_box(){ ?>    
     <span class="description">
         The Document Description Format. It will tell search engines the information contained in the document.
     </span>
@@ -241,6 +329,13 @@ function calibrefx_seo_settings_document_box(){ ?>
         <input type="text" size="80" value="<?php echo calibrefx_seo_option('404_description'); ?>" id="<?php echo CALIBREFX_SEO_SETTINGS_FIELD; ?>[404_description]" name="<?php echo CALIBREFX_SEO_SETTINGS_FIELD; ?>[404_description]">
         <span class="description">This option will automatically generate description for your 404 page.</span>
     </p>
+<?php    
+}
+
+/**
+ * Show document setting box
+ */
+function calibrefx_seo_settings_document_keyword_box(){ ?>
     
     <span class="description">
         The Document Keywords Format. It will tell search engines the information contained in the document.
