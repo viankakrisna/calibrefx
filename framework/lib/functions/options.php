@@ -46,7 +46,7 @@ function calibrefx_get_option($key, $setting = null) {
     }
     
     $options = apply_filters('calibrefx_options', get_option($setting), $setting);
-    //if($setting == CALIBREFX_SEO_SETTINGS_FIELD) {debug_var($options);exit;}
+    
     $_calibrefx_cache->cache_set($setting, $options, $setting);
 
     return $options[$key];

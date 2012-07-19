@@ -26,6 +26,8 @@ add_action('init', 'calibrefx_gzip_compression');
  * Enable GZip Compression
  */
 function calibrefx_gzip_compression() {
+     if (!current_theme_supports('calibrefx-preformance'))
+         return false;
     // don't use on TinyMCE
     if (stripos($_SERVER['REQUEST_URI'], 'wp-includes/js/tinymce') !== false) {
         return false;
@@ -36,6 +38,7 @@ function calibrefx_gzip_compression() {
     }
 
     if (extension_loaded('zlib')) {
+        ob_end_clean();
         ob_start('ob_gzhandler');
     }
 }
