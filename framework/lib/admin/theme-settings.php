@@ -35,8 +35,9 @@ function calibrefx_update_theme_settings($_newvalue, $_oldvalue ){
     $_newvalue = $_POST[CALIBREFX_SETTINGS_FIELD];
     
     $_newvalue = array_merge($_oldvalue, $_newvalue);
+   
     //We merge with default value too
-    $_newvalue = array_merge($_newvalue, calibrefx_theme_settings_defaults());
+    $_newvalue = array_merge(calibrefx_theme_settings_defaults(), $_newvalue);
     
     return $_newvalue; 
 }

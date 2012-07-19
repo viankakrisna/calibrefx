@@ -28,6 +28,7 @@ add_action('init', 'calibrefx_gzip_compression');
 function calibrefx_gzip_compression() {
      if (!current_theme_supports('calibrefx-preformance'))
          return false;
+     
     // don't use on TinyMCE
     if (stripos($_SERVER['REQUEST_URI'], 'wp-includes/js/tinymce') !== false) {
         return false;
