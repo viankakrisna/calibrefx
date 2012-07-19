@@ -112,24 +112,14 @@ function calibrefx_theme_settings_boxes() {
     global $_calibrefx_theme_settings_pagehook;
     global $calibrefx_section;
     global $calibrefx_user_ability;
-    global $current_user;
     
     $calibrefx_section = 'general';
     if(!empty($_GET['section']))
         $calibrefx_section = sanitize_text_field($_GET['section']);
     
-    $calibrefx_user_ability = 'general';
-    if(!empty($_GET['ability'])){
-        update_user_meta($current_user->ID, 'ability', $_GET['ability']);
-    }
-    if(get_usermeta( $current_user->ID, 'ability' ) !== '' ){
-        $calibrefx_user_ability = get_usermeta( $current_user->ID, 'ability' );
-    }
-    
     if($calibrefx_section === "general"){
         add_meta_box('calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), 'calibrefx_theme_settings_navigation_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
         
-        //@TODO: Need to separate option depend on user ability
         if($calibrefx_user_ability === 'professor'){
             add_meta_box('calibrefx-theme-settings-content-archive', __('Content Archives', 'calibrefx'), 'calibrefx_theme_settings_content_archive_box', $_calibrefx_theme_settings_pagehook, 'side');
             add_meta_box('calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), 'calibrefx_theme_settings_breadcrumb_box', $_calibrefx_theme_settings_pagehook, 'side');
@@ -138,13 +128,19 @@ function calibrefx_theme_settings_boxes() {
     }
     
     if($calibrefx_section === "design"){
+        
         add_meta_box('calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), 'calibrefx_theme_settings_layout_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
-        add_meta_box('calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), 'calibrefx_theme_settings_custom_script_box', $_calibrefx_theme_settings_pagehook, 'side');
+        
+         if($calibrefx_user_ability === 'professor'){
+            add_meta_box('calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), 'calibrefx_theme_settings_custom_script_box', $_calibrefx_theme_settings_pagehook, 'side');
+         }
     }
     
     if($calibrefx_section === "social"){
         add_meta_box('calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), 'calibrefx_theme_settings_feeds_box', $_calibrefx_theme_settings_pagehook, 'main');
-        add_meta_box('calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), 'calibrefx_theme_settings_socials_box', $_calibrefx_theme_settings_pagehook, 'side');
+        if($calibrefx_user_ability === 'professor'){
+            add_meta_box('calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), 'calibrefx_theme_settings_socials_box', $_calibrefx_theme_settings_pagehook, 'side');
+        }
     }
     
 }
@@ -177,8 +173,8 @@ function calibrefx_theme_settings_admin() {
                     <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Code Name : <?php echo FRAMEWORK_CODENAME; ?>)</span>
                 </div>
                 <div class="calibrefx-ability">
-                    <a class="calibrefx-general" href="admin.php?page=calibrefx&section=general&ability=general">General</a>
-                    <a class="calibrefx-professor" href="admin.php?page=calibrefx&section=general&ability=professor">Professor</a>
+                    <a class="calibrefx-general" href="<?php echo admin_url("admin.php?page=calibrefx&ability=general&section=".$calibrefx_section);?>">General</a>
+                    <a class="calibrefx-professor" href="<?php echo admin_url("admin.php?page=calibrefx&ability=professor&section=".$calibrefx_section);?>">Professor</a>
                 </div>
             </div>
             <div class="calibrefx-content">
