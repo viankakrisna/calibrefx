@@ -69,6 +69,7 @@ function calibrefx_constants() {
     /** Define CALIBREFX Root Directory Constant */
     define('CALIBREFX_DIR', get_template_directory());
     define('CALIBREFX_CACHE_DIR', CALIBREFX_DIR . '/cache');
+    define('CALIBREFX_LOG_DIR', CALIBREFX_DIR . '/log');
     define('CALIBREFX_LIB_DIR', CALIBREFX_DIR . '/framework/lib');
 
     /** Define Directory Location Constants */
@@ -145,12 +146,14 @@ function calibrefx_load_framework() {
 
     //Core Functions
     require_once( CALIBREFX_FUNCTIONS_DIR . '/debug.php' );
+    require_once( CALIBREFX_FUNCTIONS_DIR . '/constants.php' );
 
     /** Load Scripts and Styles */
     require_once( CALIBREFX_FUNCTIONS_DIR . '/load.php' );
 
     /** Load Classes */
     require_once( CALIBREFX_CLASSES_DIR . '/cache.php' );
+    require_once( CALIBREFX_CLASSES_DIR . '/logger.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/breadcrumb.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/menu.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/replacer.php' );

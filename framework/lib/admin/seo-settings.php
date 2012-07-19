@@ -19,6 +19,28 @@
  *
  * @package CalibreFx
  */
+
+add_action('pre_update_option_'.CALIBREFX_SEO_SETTINGS_FIELD, 'calibrefx_update_seo_settings', 5, 2);
+/**
+ * When WordPress save the options
+ * it only save the submitted field
+ * This function is to merge with default or current settings in 
+ * serialized data
+ */
+function calibrefx_update_seo_settings($_newvalue, $_oldvalue ){
+    //We merge newvalue and oldvalue
+    if(calibrefx_get_option('reset', CALIBREFX_SEO_SETTINGS_FIELD))
+        return $_newvalue;
+   
+    $_newvalue = $_POST[CALIBREFX_SEO_SETTINGS_FIELD];
+    
+    $_newvalue = array_merge($_oldvalue, $_newvalue);
+    //We merge with default value too
+    $_newvalue = array_merge($_newvalue, calibrefx_seo_settings_defaults());
+    
+    return $_newvalue; 
+}
+
 add_action('admin_init', 'calibrefx_register_seo_settings', 5);
 
 /**

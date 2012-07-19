@@ -8,7 +8,7 @@
  * @author		CalibreWorks Team
  * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  * @since		Version 1.0
  * @filesource 
  *
@@ -19,19 +19,39 @@
  *
  * @package CalibreFx
  */
-add_action('admin_init', 'calibrefx_register_theme_settings', 5);
 
+add_action('pre_update_option_'.CALIBREFX_SETTINGS_FIELD, 'calibrefx_update_theme_settings', 5, 2);
+/**
+ * When WordPress save the options
+ * it only save the submitted field
+ * This function is to merge with default or current settings in 
+ * serialized data
+ */
+function calibrefx_update_theme_settings($_newvalue, $_oldvalue ){
+    //We merge newvalue and oldvalue
+    if(calibrefx_get_option('reset'))
+        return $_newvalue;
+    
+    $_newvalue = $_POST[CALIBREFX_SETTINGS_FIELD];
+    
+    $_newvalue = array_merge($_oldvalue, $_newvalue);
+    //We merge with default value too
+    $_newvalue = array_merge($_newvalue, calibrefx_theme_settings_defaults());
+    
+    return $_newvalue; 
+}
+
+add_action('admin_init', 'calibrefx_register_theme_settings', 5);
 /**
  * This function will save or reset settings
  */
 function calibrefx_register_theme_settings() {
-    //@TODO: Need to fill current & default settings before save
     register_setting(CALIBREFX_SETTINGS_FIELD, CALIBREFX_SETTINGS_FIELD);
     add_option(CALIBREFX_SETTINGS_FIELD, calibrefx_theme_settings_defaults());
-
+    
     if (!isset($_REQUEST['page']) || $_REQUEST['page'] != 'calibrefx')
         return;
-
+    
     if (calibrefx_get_option('reset')) {
         update_option(CALIBREFX_SETTINGS_FIELD, calibrefx_theme_settings_defaults());
 
@@ -106,8 +126,6 @@ function calibrefx_theme_settings_boxes() {
         $calibrefx_user_ability = get_usermeta( $current_user->ID, 'ability' );
     }
     
-    
-    
     if($calibrefx_section === "general"){
         add_meta_box('calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), 'calibrefx_theme_settings_navigation_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
         
@@ -135,7 +153,7 @@ function calibrefx_theme_settings_boxes() {
  * This function will outout the settings layout to wordpress
  */
 function calibrefx_theme_settings_admin() {
-    global $_calibrefx_theme_settings_pagehook, $wp_meta_boxes;
+    global $_calibrefx_theme_settings_pagehook;
     global $calibrefx_section; 
     
     $section_header = array(
@@ -156,7 +174,7 @@ function calibrefx_theme_settings_admin() {
                     <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v1.0">&nbsp;</a>
                 </div>
                 <div class="calibrefx-version">
-                    <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Codename : <?php echo FRAMEWORK_CODENAME; ?>)</span>
+                    <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Code Name : <?php echo FRAMEWORK_CODENAME; ?>)</span>
                 </div>
                 <div class="calibrefx-ability">
                     <a class="calibrefx-general" href="admin.php?page=calibrefx&section=general&ability=general">General</a>

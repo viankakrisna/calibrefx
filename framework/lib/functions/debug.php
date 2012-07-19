@@ -67,3 +67,51 @@ if (!function_exists('die_dump')) {
     }
 
 }
+
+if (!function_exists('debug_file')) {
+
+    function debug_file($var = '', $filename = 'debug.txt') {
+
+        $output = "";
+
+        if (is_array($var)) {
+            $output = print_r($var, TRUE);
+        } elseif (is_object($var)) {
+            ob_start(); //Start buffering
+            var_dump($var); //print the result
+            $output = ob_get_contents(); //get the result from buffer
+            ob_end_clean(); //close buffer
+        } else {
+            ob_start(); //Start buffering
+            var_dump($var); //print the result
+            $output = ob_get_contents(); //get the result from buffer
+            ob_end_clean(); //close buffer
+        }
+
+        $filepath = CALIBREFX_DIR . '/' . $filename;
+        $h = fopen($filepath, 'a+'); //open a file
+        fwrite($h, $output); //write the output text
+        fclose($h); //close file
+    }
+
+}
+
+if (!function_exists('cfx_log_message')) {
+
+    function cfx_log_message($level = 'error', $message, $php_error = FALSE) {
+        global $_log;
+
+        if(!ENABLE_DEBUG) {
+            return;
+        }
+        if (LOG_THRESHOLD == 0) {
+            return;
+        }
+
+        if(!is_object($_log)){
+            $_log = new CFX_Logger();
+        }
+        $_log->write_log($level, $message, $php_error);
+    }
+
+}
