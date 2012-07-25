@@ -16,14 +16,14 @@ window['calibrefx'] = {
 
         // Cache selectors
         var $selector = jQuery(event.data.selector),
-            $show_selector = jQuery(event.data.show_selector),
-            check_value = event.data.check_value;
+        $show_selector = jQuery(event.data.show_selector),
+        check_value = event.data.check_value;
         
         if (
             (jQuery.isArray(check_value) && jQuery.inArray($selector.val(), check_value) > -1) ||
-                (check_value === null && $selector.is(':checked')) ||
-                (check_value !== null && $selector.val() === check_value)
-        ) {
+            (check_value === null && $selector.is(':checked')) ||
+            (check_value !== null && $selector.val() === check_value)
+            ) {
             jQuery($show_selector).slideDown('fast');
         } else {
             jQuery($show_selector).slideUp('fast');
@@ -35,7 +35,11 @@ window['calibrefx'] = {
 
         jQuery.each(calibrefx_toggles, function (k, v) {
             // Prepare data
-            var data = {selector: v[0], show_selector: v[1], check_value: v[2]};
+            var data = {
+                selector: v[0], 
+                show_selector: v[1], 
+                check_value: v[2]
+                };
             
             // Setup toggle binding
             jQuery('div.calibrefx-metaboxes').on('change.calibrefx.calibrefx_toggle', v[0], data, calibrefx.toggle_settings);

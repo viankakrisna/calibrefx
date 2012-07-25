@@ -168,7 +168,7 @@ function calibrefx_theme_settings_admin() {
             <input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_db_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_db_version')); ?>" />
             <div class="calibrefx-header">
                 <div class="calibrefx-option-logo">
-                    <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v1.0">&nbsp;</a>
+                    <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
                 </div>
                 <div class="calibrefx-version">
                     <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Code Name : <?php echo FRAMEWORK_CODENAME; ?>)</span>

@@ -33,11 +33,9 @@ function calibrefx_update_seo_settings($_newvalue, $_oldvalue ){
         return $_newvalue;
    
     $_newvalue = $_POST[CALIBREFX_SEO_SETTINGS_FIELD];
-    
     $_newvalue = array_merge($_oldvalue, $_newvalue);
     //We merge with default value too
-    $_newvalue = array_merge($_newvalue, calibrefx_seo_settings_defaults());
-    
+    $_newvalue = array_merge(calibrefx_seo_settings_defaults(), $_newvalue);
     return $_newvalue; 
 }
 
@@ -154,10 +152,10 @@ function calibrefx_seo_settings_admin() {
             <?php settings_fields(CALIBREFX_SEO_SETTINGS_FIELD); // important! ?>
             <div class="calibrefx-header">
                 <div class="calibrefx-option-logo">
-                    <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v1.0">&nbsp;</a>
+                    <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
                 </div>
                 <div class="calibrefx-version">
-                    <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Codename : <?php echo FRAMEWORK_CODENAME; ?>)</span>
+                    <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Code Name : <?php echo FRAMEWORK_CODENAME; ?>)</span>
                 </div>
                 <div class="calibrefx-ability">
                     <a class="calibrefx-general" href="admin.php?page=calibrefx&section=general&ability=general">General</a>
