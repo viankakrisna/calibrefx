@@ -19,6 +19,11 @@
  * @package CalibreFx
  */
 
+if(file_exists(CHILD_DIR . '/page-blog.php')){
+    include CHILD_DIR . '/page-blog.php';
+    exit;
+}
+
 remove_action( 'calibrefx_loop', 'calibrefx_do_loop' );
 add_action('calibrefx_loop', 'calibrefx_do_blog_loop');
 
@@ -29,8 +34,10 @@ add_action('calibrefx_loop', 'calibrefx_do_blog_loop');
  *
  */
 function calibrefx_do_blog_loop() {
-    $query = new WP_Query('category_name=blog&paged=' . get_query_var('paged') . '&posts_per_page=5');
-
+    global $wp_query;
+    $query = new WP_Query('category_name=blog&paged=' . get_query_var('paged'));
+    $wp_query = $query;
+    
     if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); // the loop
 
             do_action('calibrefx_before_post');

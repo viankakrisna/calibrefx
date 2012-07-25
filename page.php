@@ -17,4 +17,10 @@
  *
  * @package CalibreFx
  */
+
+if(file_exists(CHILD_DIR . '/page.php')){
+    include CHILD_DIR . '/page.php';
+    exit;
+}
+
 calibrefx();

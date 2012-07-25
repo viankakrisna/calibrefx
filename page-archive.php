@@ -19,6 +19,11 @@
  * @package CalibreFx
  */
 
+if(file_exists(CHILD_DIR . '/page-archive.php')){
+    include CHILD_DIR . '/page-archive.php';
+    exit;
+}
+
 remove_action( 'calibrefx_post_content', 'calibrefx_do_post_content' );
 add_action( 'calibrefx_post_content', 'calibrefx_do_archive_content' );
 
