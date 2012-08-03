@@ -7,7 +7,7 @@
  *
  * @package		CalibreFx
  * @author		CalibreWorks Team
- * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
+ * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
  * @link		http://calibreworks.com
  * @since   		Version 1.0
@@ -29,7 +29,7 @@ function calibrefx_theme_settings_defaults() {
         'update' => 1,
         'enable_bootstrap' => 1,
         'blog_title' => 'text',
-        'header_right' => 0, 
+        'header_right' => 0,
         'layout_type' => 'fluid',
         'calibrefx_layout_width' => 960,
         'site_layout' => calibrefx_get_default_layout(),
@@ -61,44 +61,43 @@ add_action('calibrefx_sanitizer_init', 'settings_sanitizer_filters');
 
 function settings_sanitizer_filters() {
     calibrefx_add_option_filter(
-        'one_zero', CALIBREFX_SETTINGS_FIELD, array(
-            'update',
-            'enable_bootstrap',
-            'header_right',
-            'nav',
-            'subnav',
-            'breadcrumb_home',
-            'breadcrumb_single',
-            'breadcrumb_page',
-            'breadcrumb_archive',
-            'breadcrumb_404',
-            'breadcrumb_attachment',
-            'comments_posts',
-            'comments_pages',
-            'trackbacks_posts',
-            'trackbacks_pages',
-            'content_archive_thumbnail',
-        )
+            'one_zero', CALIBREFX_SETTINGS_FIELD, array(
+        'update',
+        'enable_bootstrap',
+        'header_right',
+        'nav',
+        'subnav',
+        'breadcrumb_home',
+        'breadcrumb_single',
+        'breadcrumb_page',
+        'breadcrumb_archive',
+        'breadcrumb_404',
+        'breadcrumb_attachment',
+        'comments_posts',
+        'comments_pages',
+        'trackbacks_posts',
+        'trackbacks_pages',
+        'content_archive_thumbnail',
+            )
     );
-    
+
     calibrefx_add_option_filter(
-        'no_html', CALIBREFX_SETTINGS_FIELD, array(
-            'site_layout',
-            'layout_type',
-            'blog_title',
-            'content_archive',
-            'post_nav',
-            'custom_css'
-        )
+            'no_html', CALIBREFX_SETTINGS_FIELD, array(
+        'site_layout',
+        'layout_type',
+        'blog_title',
+        'content_archive',
+        'post_nav',
+        'custom_css'
+            )
     );
-    
+
     calibrefx_add_option_filter(
-        'requires_unfiltered_html', CALIBREFX_SETTINGS_FIELD, array(
-            'header_scripts',
-            'footer_scripts',
-        )
+            'requires_unfiltered_html', CALIBREFX_SETTINGS_FIELD, array(
+        'header_scripts',
+        'footer_scripts',
+            )
     );
-    
 }
 
 /**
