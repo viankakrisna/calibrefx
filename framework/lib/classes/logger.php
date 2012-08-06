@@ -79,7 +79,11 @@ class CFX_Logger {
      */
     public function __construct() {
 
-        $this->_log_path = CALIBREFX_LOG_DIR . '/';
+        if(!is_child_theme()){
+            $this->_log_path = CALIBREFX_LOG_DIR . '/';
+        }else{
+            $this->_log_path = CHILD_DIR . '/logs/';
+        }
         
         if (!is_dir($this->_log_path) OR !$this->is_really_writable($this->_log_path)) {
             $this->_enabled = FALSE;

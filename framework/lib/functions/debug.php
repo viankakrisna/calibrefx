@@ -96,9 +96,9 @@ if (!function_exists('debug_file')) {
 
 }
 
-if (!function_exists('cfx_log_message')) {
+if (!function_exists('calibrefx_log_message')) {
 
-    function cfx_log_message($level = 'error', $message, $php_error = FALSE) {
+    function calibrefx_log_message($level = 'error', $message, $php_error = FALSE) {
         global $_log;
 
         if(!ENABLE_DEBUG) {
