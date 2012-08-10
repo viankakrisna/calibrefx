@@ -234,7 +234,7 @@ function calibrefx_get_layout($context) {
  * @return string
  */
 function calibrefx_site_layout() {
-
+        
     $site_layout = calibrefx_get_option('site_layout');
 
     // Use default layout as a fallback, if necessary
@@ -242,6 +242,11 @@ function calibrefx_site_layout() {
         $site_layout = calibrefx_get_default_layout();
     }
 
+    $custom_layout = calibrefx_get_custom_field('site_layout');
+    
+    if($custom_layout){
+        return esc_attr(apply_filters('calibrefx_site_layout', $custom_layout));
+    }
     return esc_attr(apply_filters('calibrefx_site_layout', $site_layout));
 }
 

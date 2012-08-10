@@ -31,11 +31,11 @@ add_action('calibrefx_doctype', 'calibrefx_print_doctype');
  */
 function calibrefx_print_doctype() {?>
 <!doctype html>
-<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="<?php bloginfo('language'); ?>"> <![endif]-->
-<!--[if gt IE 9]><!--><html class="no-js" lang="<?php bloginfo('language'); ?>"><!--<![endif]-->
+<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. -->
 <head id="<?php echo calibrefx_get_site_url(); ?>" data-template-set="html5-reset">
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
@@ -244,8 +244,8 @@ function calibrefx_custom_header() {
 
     /** Merge defaults with passed arguments */
     $args = wp_parse_args($custom_header, array(
-        'width' => 960,
-        'height' => 80,
+        'width' => 260,
+        'height' => 100,
         'textcolor' => '333333',
         'no_header_text' => false,
         'header_image' => '%s/header.png',
@@ -283,10 +283,17 @@ function calibrefx_custom_header_style() {
     if (HEADER_TEXTCOLOR == get_header_textcolor() && HEADER_IMAGE == get_header_image())
         return;
 
-    $header = sprintf('@media (min-width:961px){#header-title { background: url(%1$s) no-repeat; width:%2$s; height: %3$dpx}} @media (max-width:960px){#header-title {background: url(%1$s) no-repeat; width:%4$s; height: %3$dpx}}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT, '100%');
+	if( calibrefx_get_option( 'enable_responsive' )){
+		$header = sprintf('@media (min-width:961px){#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}} @media (max-width:960px){#header-title {background: url(%1$s) no-repeat left center; width:%4$s; height: %3$dpx}}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT, '100%');
+	}else{
+		$header = sprintf('#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
+	}
+	
     $text = sprintf('#title, #title a, #title a:hover{ display: block; margin: 0; overflow: hidden; padding: 0;text-indent: -9999px; color: #%s; width:%dpx; height: %dpx }', esc_html(get_header_textcolor()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
-    
-    printf('<style type="text/css">%1$s %2$s</style>', $header, $text);
+    $header_ie = sprintf('#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
+	
+    printf('<style type="text/css">%1$s %2$s</style>'."\n", $header, $text);
+	printf('<!--[if lt IE 9]><style type="text/css">%1$s</style><![endif]-->'."\n", $header_ie);
 }
 
 /**
@@ -320,9 +327,15 @@ add_action('wp_head', 'calibrefx_print_wrap');
  * Print .wrap style
  */
 function calibrefx_print_wrap(){
-    $wrap = sprintf('@media (min-width:960px){.wrap.row{width: %dpx;margin: 0 auto;}}', calibrefx_get_option("calibrefx_layout_width"));
+	if( calibrefx_get_option( 'enable_responsive' )){
+		$wrap = sprintf('@media (min-width:%dpx){.wrap.row{width: %dpx;margin: 0 auto;}}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
+	}else{
+		$wrap = sprintf('.wrap.row{width: %dpx;margin-left:auto;margin-right:auto} @media (max-width:%dpx){ #header.row, #nav.row, #subnav.row, #inner.row, #footer.row{width: %dpx;margin-left:auto;margin-right:auto}}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
+	}
+    $wrap_ie = sprintf('.wrap.row{width: %dpx;margin: 0 auto;}', calibrefx_get_option("calibrefx_layout_width"));
     
     printf('<style type="text/css">%1$s</style>', $wrap);
+	printf('<!--[if lt IE 9]><style type="text/css">%1$s</style><![endif]-->', $wrap_ie);
 }
 
 add_action('wp_head', 'calibrefx_do_meta_pingback');
@@ -430,10 +443,10 @@ function calibrefx_do_site_title() {
     $inside = sprintf('<a href="%s" title="%s">%s</a>', trailingslashit(home_url()), esc_attr(get_bloginfo('name')), get_bloginfo('name'));
 
     // Determine which wrapping tags to use
-    $wrap = is_home() ? 'h1' : 'p';
+    //$wrap = is_home() ? 'h1' : 'p';
 
     // Build the Title
-    $title = sprintf('<%s id="title">%s</%s>', $wrap, $inside, $wrap);
+    $title = sprintf('<h1 id="title">%s</h1>', $inside);
 
     // Echo (filtered)
     echo apply_filters('calibrefx_seo_title', $title, $inside, $wrap);
@@ -485,24 +498,20 @@ add_action('calibrefx_after_header', 'calibrefx_add_socials_script');
  * Add Social javascript after header
  */
 function calibrefx_add_socials_script() {
-    global $fbappid, $fbsecret, $twitteruser;
+    global $twitteruser;
 
-    $fbappid = calibrefx_get_option('facebook_app_id');
-    $fbsecret = calibrefx_get_option('facebook_app_secret');
     $twitteruser = calibrefx_get_option('twitter_username');
 
-    if (!empty($fbappid)) {
-        echo '<div id="fb-root"></div>';
-        echo '<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>';
-        echo '<script type="text/javascript">FB.init({appId  : \'' . $fbappid . '\',status : true, cookie : true, xfbml  : true, oauth: true  });';
-        echo 'FB.Event.subscribe("auth.login", function(response) {
-			  window.location.reload();
-			});
-			FB.Event.subscribe("auth.logout", function(response) {
-			  window.location.reload();
-			});';
-        echo '</script>';
-    }
+    //@TODO: add enable facebook in theme setting
+    echo '
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184690738325056";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, \'script\', \'facebook-jssdk\'));</script>';
 
     if (!empty($twitteruser)) {
         echo '<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>';

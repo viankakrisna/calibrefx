@@ -2,8 +2,7 @@
 .buildpath
 .project
 .settings
-framework/docs*
-/framework/doc/
 /nbproject/private/
-/cache/
-/cache/*
+cache/*
+log/*
+debug.txt

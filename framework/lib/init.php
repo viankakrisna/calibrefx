@@ -7,7 +7,7 @@
  *
  * @package		CalibreFx
  * @author		CalibreWorks Team
- * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
+ * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
  * @link		http://calibrefx.com
  * @since		Version 1.0
@@ -36,7 +36,7 @@ function calibrefx_theme_support() {
     add_theme_support('calibrefx-custom-header');
     add_theme_support('calibrefx-default-styles');
     add_theme_support('calibrefx-inpost-layouts');
-    add_theme_support('calibrefx-preformance');
+    //add_theme_support('calibrefx-preformance');
 
     if (!current_theme_supports('calibrefx-menus')) {
         add_theme_support('calibrefx-menus', array(
@@ -69,6 +69,7 @@ function calibrefx_constants() {
     /** Define CALIBREFX Root Directory Constant */
     define('CALIBREFX_DIR', get_template_directory());
     define('CALIBREFX_CACHE_DIR', CALIBREFX_DIR . '/cache');
+    define('CALIBREFX_LOG_DIR', CALIBREFX_DIR . '/log');
     define('CALIBREFX_LIB_DIR', CALIBREFX_DIR . '/framework/lib');
 
     /** Define Directory Location Constants */
@@ -145,17 +146,24 @@ function calibrefx_load_framework() {
 
     //Core Functions
     require_once( CALIBREFX_FUNCTIONS_DIR . '/debug.php' );
+    require_once( CALIBREFX_FUNCTIONS_DIR . '/constants.php' );
 
     /** Load Scripts and Styles */
     require_once( CALIBREFX_FUNCTIONS_DIR . '/load.php' );
 
     /** Load Classes */
     require_once( CALIBREFX_CLASSES_DIR . '/cache.php' );
+    require_once( CALIBREFX_CLASSES_DIR . '/logger.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/breadcrumb.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/menu.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/replacer.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/admin-bar.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/minify.php' );
+    require_once( CALIBREFX_CLASSES_DIR . '/sanitizer.php' );
+    
+    /** Load third-party */
+    require_once( CALIBREFX_MODULES_DIR . '/browserdetector/clsBrowser.php' );
+    require_once( CALIBREFX_MODULES_DIR . '/firephp/FirePHP.class.php' );
 
     /** Load Functions */
     require_once( CALIBREFX_FUNCTIONS_DIR . '/general.php' );

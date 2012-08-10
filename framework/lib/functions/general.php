@@ -77,7 +77,7 @@ function calibrefx_author_box($context = '') {
 function calibrefx_is_menu_page($pagehook = '') {
 
     global $page_hook;
-
+    
     if (isset($page_hook) && $page_hook == $pagehook)
         return true;
 
@@ -138,11 +138,6 @@ function get_footer_widget_class($class = '') {
 
 /**
  * Retrieve the classes for the body element as an array.
- *
- * @since 2.8.0
- *
- * @param string|array $class One or more classes to add to the class list.
- * @return array Array of classes.
  */
 function get_footer_widget_classes($class = '') {
 
@@ -164,6 +159,21 @@ function get_footer_widget_classes($class = '') {
     return apply_filters('footer_widget_class', $classes, $class);
 }
 
+/**
+ * Output special xmlns on html tags
+ */
+function html_xmlns($xml = '') {
+    $xmls = array();
+    $xmls = array_map('esc_attr', $xmls);
+
+    $xmlns = apply_filters('html_xmlns', $xmls, $xml);
+
+    echo join(' ', $xmlns);
+}
+
+/**
+ * Output if any body onload script defined
+ */
 function body_onload($script = '') {
     $scripts = array();
 
@@ -183,13 +193,29 @@ function body_onload($script = '') {
     echo 'onload="' . join(';', $onload_scripts) . '"';
 }
 
-function calibrefx_write_cache($file, $data){
+/**
+ * Helper function write cache data to files
+ */
+function calibrefx_write_cache($file, $data) {
     $fh = fopen($file, 'w');
     fwrite($fh, $data);
     fclose($fh);
     return $file;
 }
 
-function calibrefx_md5sum($string){
+/**
+ * Do md5sum for string given
+ */
+function calibrefx_md5sum($string) {
     return md5($string);
+}
+
+/**
+ * Get current script run by the server
+ */
+function calibrefx_get_script() {
+    $file = $_SERVER["SCRIPT_NAME"];
+    $break = Explode('/', $file);
+    $pfile = $break[count($break) - 1];
+    return $pfile;
 }

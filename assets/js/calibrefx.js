@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
 	jQuery('#header .menu, .superfish').superfish({
 		delay:       200,								// 0.1 second delay on mouseout 
 		animation:   {opacity:'show',height:'show'},	// fade-in and slide-down animation 
-		dropShadows: false								// disable drop shadows 
+		dropSadows: false							// disable drop shadows 
 	});
 	
 	jQuery('.scrolltop a').click(
@@ -19,4 +19,22 @@ jQuery(document).ready(function($) {
 			$('html, body').animate({scrollTop: '0px'}, 800);
 		}
 	);
+	
+	jQuery.fn.extend({ 	
+		ltttooltip: function() {		
+			var bubble = this;			
+			this.hover(function() {				
+				bubble.children('span').children('span').css({ display: 'block' });
+				bubble.children('span').stop().css({ display: 'block', opacity: 0, bottom: '30px' }).animate({ opacity: 1, bottom: '40px' }, 200);				
+			}, function() {				
+				bubble.children('span').stop().animate({ opacity: 0, bottom: '50px' }, 200, function() {					
+					jQuery(this).hide();					
+				});				
+			});			
+		}
+	});         
+  
+	jQuery('.ltt-tooltip').each(function() {
+		jQuery(this).ltttooltip();
+	});
 });

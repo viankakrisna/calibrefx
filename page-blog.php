@@ -1,17 +1,16 @@
 <?php
-/**
- * Template Name: Blog
+/* Template Name: Blog
  *
  * CalibreFx Framework
  *
- * WordPress Themes by CalibreWorks Team
+ * WordPress Themes by CalibreFx Team
  *
  * @package		CalibreFx
- * @author		CalibreWorks Team
- * @authorlink	http://calibrefx.com
- * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
+ * @author		CalibreFx Team
+ * @authorlink          http://www.calibrefx.com
+ * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  * @since		Version 1.0
  * @filesource 
  *
@@ -19,6 +18,11 @@
  *
  * @package CalibreFx
  */
+
+if(file_exists(CHILD_DIR . '/page-blog.php')){
+    include CHILD_DIR . '/page-blog.php';
+    exit;
+}
 
 remove_action( 'calibrefx_loop', 'calibrefx_do_loop' );
 add_action('calibrefx_loop', 'calibrefx_do_blog_loop');
@@ -30,8 +34,10 @@ add_action('calibrefx_loop', 'calibrefx_do_blog_loop');
  *
  */
 function calibrefx_do_blog_loop() {
-    $query = new WP_Query('category_name=blog&paged=' . get_query_var('paged') . '&posts_per_page=5');
-
+    global $wp_query;
+    $query = new WP_Query('category_name=blog&paged=' . get_query_var('paged'));
+    $wp_query = $query;
+    
     if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); // the loop
 
             do_action('calibrefx_before_post');
@@ -59,6 +65,46 @@ function calibrefx_do_blog_loop() {
     else : /** if no posts exist * */
         do_action('calibrefx_no_post');
     endif;/** end loop * */
+}
+
+remove_action( 'calibrefx_post_title', 'calibrefx_do_post_title' );
+add_action('calibrefx_post_title', 'calibrefx_do_blog_title');
+
+/**
+ * calibrefx_post_title callback
+ *
+ * It outputs the post title in blog post category
+ *
+ */
+function calibrefx_do_blog_title() {
+    $title = get_the_title();
+
+    if (strlen($title) == 0)
+        return;
+
+    $title = sprintf('<h1 class="entry-title"><a href="%s" title="%s" rel="bookmark">%s</a></h1>',  get_permalink(), the_title_attribute('echo=0'),			apply_filters('calibrefx_post_title_text', $title));
+
+    echo apply_filters('calibrefx_post_title_output', $title) . "\n";
+}
+
+remove_action( 'calibrefx_post_content', 'calibrefx_do_post_content' );
+add_action('calibrefx_post_content', 'calibrefx_do_blog_content');
+
+/**
+ * calibrefx_post_content callback
+ *
+ * It outputs the post content for blog page category
+ *
+ */
+function calibrefx_do_blog_content() {
+
+	if (calibrefx_get_option('content_archive_limit'))
+		the_content_limit((int) calibrefx_get_option('content_archive_limit'), __('[Read more...]', 'calibrefx'));
+	else
+		the_content(__('[Read more...]', 'calibrefx'));
+    
+
+    wp_link_pages(array('before' => '<p class="pages">' . __('Pages:', 'calibrefx'), 'after' => '</p>'));
 }
 
 calibrefx();

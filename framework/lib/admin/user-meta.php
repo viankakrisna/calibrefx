@@ -113,3 +113,17 @@ function calibrefx_author_box_single_default_on( $value, $user_id ) {
 		return $value;
 
 }
+
+add_action('init', 'calibrefx_set_user_ability', 15);
+
+function calibrefx_set_user_ability(){
+    global $calibrefx_user_ability, $current_user;
+    
+    //Set general as default
+    $calibrefx_user_ability = 'general';
+    if(!empty($_GET['ability'])){
+        update_user_meta($current_user->ID, 'ability', $_GET['ability']);
+    }
+    
+    $calibrefx_user_ability = get_usermeta( $current_user->ID, 'ability' );
+}
