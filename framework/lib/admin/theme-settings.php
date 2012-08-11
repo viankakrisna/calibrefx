@@ -252,7 +252,8 @@ function calibrefx_theme_settings_navigation_box() {
     <?php if (calibrefx_nav_menu_supported('primary')) : ?>
         <h4><?php _e('Primary Navigation', 'calibrefx'); ?></h4>
         <p>
-            <input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[nav]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[nav]" value="1" <?php checked(1, calibrefx_get_option('nav')); ?> /> <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[nav]"><?php _e("Include Primary Navigation Menu?", 'calibrefx'); ?></label>
+            <input type="checkbox" name="" target="calibrefx-settings-nav" value="1" id="calibrefx-settings-checkbox-nav" class="calibrefx-settings-checkbox" <?php checked(1, calibrefx_get_option('nav')); ?> /> <label for="calibrefx-settings-checkbox-nav"><?php _e("Include Primary Navigation Menu?", 'calibrefx'); ?></label>
+			<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[nav]" id="calibrefx-settings-nav" value="<?php echo calibrefx_get_option('nav'); ?>" />
         </p>
         <hr class="div" />
     <?php endif; ?>
@@ -260,7 +261,8 @@ function calibrefx_theme_settings_navigation_box() {
     <?php if (calibrefx_nav_menu_supported('secondary')) : ?>
         <h4><?php _e('Secondary Navigation', 'calibrefx'); ?></h4>
         <p>
-            <input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[subnav]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[subnav]" value="1" <?php checked(1, calibrefx_get_option('subnav')); ?> /> <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[subnav]"><?php _e("Include Secondary Navigation Menu?", 'calibrefx'); ?></label>
+            <input type="checkbox" name="" target="calibrefx-settings-subnav" id="calibrefx-settings-checkbox-subnav" value="1" class="calibrefx-settings-checkbox" <?php checked(1, calibrefx_get_option('subnav')); ?> /> <label for="calibrefx-settings-checkbox-subnav"><?php _e("Include Secondary Navigation Menu?", 'calibrefx'); ?></label>
+			<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[subnav]" id="calibrefx-settings-subnav" value="<?php echo calibrefx_get_option('subnav'); ?>" />
         </p>
 
         <hr class="div" />
@@ -278,14 +280,20 @@ function calibrefx_theme_settings_layout_box() {
     if ($calibrefx_user_ability === 'professor') {
         ?>
         <p><label><?php _e('Enable Bootstrap', 'calibrefx'); ?></label>
-            <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" value="1" <?php checked(1, calibrefx_get_option('enable_bootstrap')); ?> /></label>
+            <label for="calibrefx-settings-checkbox-enable-bootstrap">
+				<input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-bootstrap" value="1" <?php checked(1, calibrefx_get_option('enable_bootstrap')); ?> target="calibrefx-settings-enable-bootstrap" class="calibrefx-settings-checkbox"  />
+			</label>
+			<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" id="calibrefx-settings-enable-bootstrap" value="<?php echo calibrefx_get_option('enable_bootstrap'); ?>" />
             <span class="description"><?php printf(__('This option will use Twitter Bootstrap as css and javascript libraries.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
         </p>
 
         <hr class="div" />
 
         <p><label><?php _e('Enable Responsive Layout', 'calibrefx'); ?></label>
-            <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" value="1" <?php checked(1, calibrefx_get_option('enable_responsive')); ?> /></label>
+            <label for="calibrefx-settings-checkbox-enable-responsive">
+				<input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-responsive" value="1" <?php checked(1, calibrefx_get_option('enable_responsive')); ?> target="calibrefx-settings-enable-responsive" class="calibrefx-settings-checkbox" />
+			</label>
+			<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" id="calibrefx-settings-enable-responsive" value="<?php echo calibrefx_get_option('enable_responsive'); ?>" />
             <span class="description"><?php printf(__('This option will enable responsive layout.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
         </p>
 
@@ -413,11 +421,33 @@ function calibrefx_theme_settings_breadcrumb_box() {
     ?>
     <p><?php _e("Show Breadcrumb on:", 'calibrefx'); ?></p>
 
-    <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_home]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_home]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_home]" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_home')); ?> /> <?php _e("Front Page", 'calibrefx'); ?></label>
-    <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_single]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_single]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_single]" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_single')); ?> /> <?php _e("Posts", 'calibrefx'); ?></label>
-    <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_page]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_page]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_page]" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_page')); ?> /> <?php _e("Pages", 'calibrefx'); ?></label>
-    <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_archive]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_archive]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_archive]" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_archive')); ?> /> <?php _e("Archives", 'calibrefx'); ?></label>
-    <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_404]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_404]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_404]" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_404')); ?> /> <?php _e("404 Page", 'calibrefx'); ?></label>
+	<!-- breadcrumb breadcrumb_home -->
+    <label for="calibrefx-settings-checkbox-breadcrumb-home">
+	<input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-home" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_home')); ?> target="calibrefx-settings-breadcrumb-home" class="calibrefx-settings-checkbox" /> <?php _e("Front Page", 'calibrefx'); ?>
+	</label>
+	<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_home]" id="calibrefx-settings-breadcrumb-home" value="<?php echo calibrefx_get_option('breadcrumb_home'); ?>" />
+	
+	<!-- breadcrumb breadcrumb_single -->
+    <label for="calibrefx-settings-checkbox-breadcrumb-single">
+	<input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-single" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_single')); ?> target="calibrefx-settings-breadcrumb-single" class="calibrefx-settings-checkbox" /> <?php _e("Posts", 'calibrefx'); ?></label>
+	<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_single]" id="calibrefx-settings-breadcrumb-single" value="<?php echo calibrefx_get_option('breadcrumb_single'); ?>" />
+	
+	<!-- breadcrumb breadcrumb_page -->
+    <label for="calibrefx-settings-checkbox-breadcrumb-page">
+	<input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-page" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_page')); ?> target="calibrefx-settings-breadcrumb-page" class="calibrefx-settings-checkbox" /> <?php _e("Pages", 'calibrefx'); ?></label>
+	<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_page]" id="calibrefx-settings-breadcrumb-page" value="<?php echo calibrefx_get_option('breadcrumb_page'); ?>" />
+	
+	<!-- breadcrumb breadcrumb_archive -->
+    <label for="calibrefx-settings-checkbox-breadcrumb-archive">
+	<input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-archive" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_archive')); ?> target="calibrefx-settings-breadcrumb-archive" class="calibrefx-settings-checkbox" /> <?php _e("Archives", 'calibrefx'); ?></label>
+	<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_archive]" id="calibrefx-settings-breadcrumb-archive" value="<?php echo calibrefx_get_option('breadcrumb_archive'); ?>" />
+	
+	<!-- breadcrumb breadcrumb_404 -->
+    <label for="calibrefx-settings-checkbox-breadcrumb-404">
+	<input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-404" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_404')); ?> target="calibrefx-settings-breadcrumb-404" class="calibrefx-settings-checkbox" /> <?php _e("404 Page", 'calibrefx'); ?></label>
+	<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[breadcrumb_404]" id="calibrefx-settings-breadcrumb-404" value="<?php echo calibrefx_get_option('breadcrumb_404'); ?>" />
+	
+	
     <?php
 }
 
@@ -428,13 +458,31 @@ function calibrefx_theme_settings_comment_box() {
     ?>
 
     <p><label><?php _e('Enable Comments', 'calibrefx'); ?></label>
-        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_posts]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_posts]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_posts]" value="1" <?php checked(1, calibrefx_get_option('comments_posts')); ?> /> <?php _e("on posts?", 'calibrefx'); ?></label>
-        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_pages]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_pages]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_pages]" value="1" <?php checked(1, calibrefx_get_option('comments_pages')); ?> /> <?php _e("on pages?", 'calibrefx'); ?></label>
+		<!-- comment comments_posts -->
+        <label for="calibrefx-settings-checkbox-comments-posts">
+			<input type="checkbox" name="" id="calibrefx-settings-checkbox-comments-posts" value="1" <?php checked(1, calibrefx_get_option('comments_posts')); ?> target="calibrefx-settings-comments-posts" class="calibrefx-settings-checkbox" /> <?php _e("on posts?", 'calibrefx'); ?>
+		</label>
+		<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_posts]" id="calibrefx-settings-comments-posts" value="<?php echo calibrefx_get_option('comments_posts'); ?>" />
+		
+		<!-- comment comments_pages -->
+        <label for="calibrefx-settings-checkbox-comments-pages">
+			<input type="checkbox" name="" id="calibrefx-settings-checkbox-comments-pages" value="1" <?php checked(1, calibrefx_get_option('comments_pages')); ?> target="calibrefx-settings-comments-pages" class="calibrefx-settings-checkbox" /> <?php _e("on pages?", 'calibrefx'); ?>
+		</label>
+		<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_pages]" id="calibrefx-settings-comments-pages" value="<?php echo calibrefx_get_option('comments_pages'); ?>" />
     </p>
 
     <p><label><?php _e('Enable Trackbacks', 'calibrefx'); ?></label>
-        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[trackbacks_posts]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[trackbacks_posts]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[trackbacks_posts]" value="1" <?php checked(1, calibrefx_get_option('trackbacks_posts')); ?> /> <?php _e("on posts?", 'calibrefx'); ?></label>
-        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[trackbacks_pages]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[trackbacks_pages]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[trackbacks_pages]" value="1" <?php checked(1, calibrefx_get_option('trackbacks_pages')); ?> /> <?php _e("on pages?", 'calibrefx'); ?></label>
+        <!-- trackback trackbacks_posts -->
+		<label for="calibrefx-settings-checkbox-trackbacks-posts">
+			<input type="checkbox" name="" id="calibrefx-settings-checkbox-trackbacks-posts" value="1" <?php checked(1, calibrefx_get_option('trackbacks_posts')); ?> target="calibrefx-settings-trackbacks-posts" class="calibrefx-settings-checkbox" /> <?php _e("on posts?", 'calibrefx'); ?>
+		</label>
+		<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[trackbacks_posts]" id="calibrefx-settings-trackbacks-posts" value="<?php echo calibrefx_get_option('trackbacks_posts'); ?>" />
+		
+		<!-- trackback trackbacks_pages -->
+        <label for="calibrefx-settings-checkbox-trackbacks-pages">
+			<input type="checkbox" name="" id="calibrefx-settings-checkbox-trackbacks-pages" value="1" <?php checked(1, calibrefx_get_option('trackbacks_pages')); ?> target="calibrefx-settings-trackbacks-pages" class="calibrefx-settings-checkbox" /> <?php _e("on pages?", 'calibrefx'); ?>
+		</label>
+		<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[trackbacks_pages]" id="calibrefx-settings-trackbacks-pages" value="<?php echo calibrefx_get_option('trackbacks_pages'); ?>" />
     </p>
 
     <p><span class="description"><?php _e("You can generally enabled/disabled comments and trackbacks per post/page.", 'calibrefx'); ?></span></p>

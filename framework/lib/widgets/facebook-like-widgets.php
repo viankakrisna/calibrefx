@@ -98,6 +98,9 @@ class Calibrefx_Facebook_Like_Widget extends WP_Widget {
 
         $new_instance['title'] = strip_tags($new_instance['title']);
         $new_instance['facebook_show_stream'] = $new_instance['facebook_show_stream'];
+		$new_instance['facebook_show_faces'] = $new_instance['facebook_show_faces'];
+		$new_instance['facebook_show_header'] = $new_instance['facebook_show_header'];
+		
         return $new_instance;
     }
 
