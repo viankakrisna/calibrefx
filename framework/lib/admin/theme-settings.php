@@ -114,9 +114,8 @@ function calibrefx_theme_settings_styles() {
  * This function load meta boxes
  */
 function calibrefx_theme_settings_boxes() {
-    global $_calibrefx_theme_settings_pagehook;
-    global $calibrefx_current_section;
-
+    global $_calibrefx_theme_settings_pagehook, $calibrefx_current_section;
+    
     calibrefx_add_meta_section('general', __('General', 'calibrefx'));
     calibrefx_add_meta_section('design', __('Design', 'calibrefx'));
     calibrefx_add_meta_section('social', __('Social', 'calibrefx'));
