@@ -280,14 +280,20 @@ function calibrefx_theme_settings_layout_box() {
     if ($calibrefx_user_ability === 'professor') {
         ?>
         <p><label><?php _e('Enable Bootstrap', 'calibrefx'); ?></label>
-            <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" value="1" <?php checked(1, calibrefx_get_option('enable_bootstrap')); ?> /></label>
+            <label for="calibrefx-settings-checkbox-enable-bootstrap">
+				<input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-bootstrap" value="1" <?php checked(1, calibrefx_get_option('enable_bootstrap')); ?> target="calibrefx-settings-enable-bootstrap" class="calibrefx-settings-checkbox"  />
+			</label>
+			<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" id="calibrefx-settings-enable-bootstrap" value="<?php echo calibrefx_get_option('enable_bootstrap'); ?>" />
             <span class="description"><?php printf(__('This option will use Twitter Bootstrap as css and javascript libraries.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
         </p>
 
         <hr class="div" />
 
         <p><label><?php _e('Enable Responsive Layout', 'calibrefx'); ?></label>
-            <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" value="1" <?php checked(1, calibrefx_get_option('enable_responsive')); ?> /></label>
+            <label for="calibrefx-settings-checkbox-enable-responsive">
+				<input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-responsive" value="1" <?php checked(1, calibrefx_get_option('enable_responsive')); ?> target="calibrefx-settings-enable-responsive" class="calibrefx-settings-checkbox" />
+			</label>
+			<input type="hidden" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" id="calibrefx-settings-enable-responsive" value="<?php echo calibrefx_get_option('enable_responsive'); ?>" />
             <span class="description"><?php printf(__('This option will enable responsive layout.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
         </p>
 
