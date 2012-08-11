@@ -77,18 +77,18 @@ function calibrefx_do_meta_sections($section, $screen, $context, $object) {
 
     $page = $screen2->id;
     $sorted = get_user_option("meta-box-order_$page");
-    //fire_debug($sorted);
-    //fire_debug($screen);
     
-    if (!empty($calibrefx_sections[$section]['basic'])) {
-        foreach ($calibrefx_sections[$section]['basic'] as $metas) {
-            add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
+    if (empty($wp_meta_boxes[$page][$context]['sorted'])) {
+        if (!empty($calibrefx_sections[$section]['basic'])) {
+            foreach ($calibrefx_sections[$section]['basic'] as $metas) {
+                add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
+            }
         }
-    }
 
-    if (!empty($calibrefx_sections[$section]['professor']) && $calibrefx_user_ability === 'professor') {
-        foreach ($calibrefx_sections[$section]['professor'] as $metas) {
-            add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
+        if (!empty($calibrefx_sections[$section]['professor']) && $calibrefx_user_ability === 'professor') {
+            foreach ($calibrefx_sections[$section]['professor'] as $metas) {
+                add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
+            }
         }
     }
 
