@@ -42,12 +42,12 @@ function calibrefx_theme_support() {
         add_theme_support('calibrefx-menus', array(
             'primary' => __('Primary Navigation Menu', 'calibrefx'),
             'secondary' => __('Secondary Navigation Menu', 'calibrefx')
-            )
+                )
         );
     }
-    
-    if ( ! current_theme_supports( 'calibrefx-wraps' ) )
-        add_theme_support( 'calibrefx-wraps', array( 'header', 'nav', 'subnav', 'inner', 'footer' ) );
+
+    if (!current_theme_supports('calibrefx-wraps'))
+        add_theme_support('calibrefx-wraps', array('header', 'nav', 'subnav', 'inner', 'footer'));
 }
 
 add_action('calibrefx_init', 'calibrefx_constants', 5);
@@ -65,10 +65,10 @@ function calibrefx_constants() {
     define('FRAMEWORK_DB_VERSION', '1000');
     define('FRAMEWORK_URL', 'http://www.calibrefx.com');
     define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1327922947'));
-	
-	/** Define Debug Constants */
-	define('CALIBREFX_DEBUG', true);
-	define('LOG_THRESHOLD', 4);
+
+    /** Define Debug Constants */
+    define('CALIBREFX_DEBUG', true);
+    define('LOG_THRESHOLD', 4);
 
     /** Define CALIBREFX Root Directory Constant */
     define('CALIBREFX_DIR', get_template_directory());
@@ -164,7 +164,7 @@ function calibrefx_load_framework() {
     require_once( CALIBREFX_CLASSES_DIR . '/admin-bar.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/minify.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/sanitizer.php' );
-    
+
     /** Load third-party */
     require_once( CALIBREFX_MODULES_DIR . '/browserdetector/clsBrowser.php' );
     require_once( CALIBREFX_MODULES_DIR . '/firephp/FirePHP.class.php' );
@@ -184,7 +184,7 @@ function calibrefx_load_framework() {
     /** Load Shortcodes */
     require_once( CALIBREFX_SHORTCODES_DIR . '/footer.php' );
     require_once( CALIBREFX_SHORTCODES_DIR . '/content.php' );
-	require_once( CALIBREFX_SHORTCODES_DIR . '/calibre-shortcodes.php' );
+    require_once( CALIBREFX_SHORTCODES_DIR . '/calibre-shortcodes.php' );
 
     /** Load Structure */
     require_once( CALIBREFX_STRUCTURE_DIR . '/header.php' );
@@ -205,7 +205,7 @@ function calibrefx_load_framework() {
         require_once( CALIBREFX_ADMIN_DIR . '/theme-settings.php' );
         require_once( CALIBREFX_ADMIN_DIR . '/seo-settings.php' );
         require_once( CALIBREFX_ADMIN_DIR . '/about-page.php' );
-		require_once( CALIBREFX_ADMIN_DIR . '/inpost-metaboxes.php' );
+        require_once( CALIBREFX_ADMIN_DIR . '/inpost-metaboxes.php' );
     endif;
     require_once( CALIBREFX_ADMIN_DIR . '/admin-bar.php' );
     require_once( CALIBREFX_ADMIN_DIR . '/admin-login.php' );
