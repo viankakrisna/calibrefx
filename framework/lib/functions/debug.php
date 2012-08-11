@@ -101,7 +101,7 @@ if (!function_exists('calibrefx_log_message')) {
     function calibrefx_log_message($level = 'error', $message, $php_error = FALSE) {
         global $_log;
 
-        if(!ENABLE_DEBUG) {
+        if(!CALIBREFX_DEBUG) {
             return;
         }
         if (LOG_THRESHOLD == 0) {

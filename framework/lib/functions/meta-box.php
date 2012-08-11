@@ -20,6 +20,13 @@
  *
  * @package CalibreFx
  */
+function calibrefx_clear_meta_section() {
+    global $calibrefx_sections;
+    unset($calibrefx_sections);
+
+    if (!isset($calibrefx_sections))
+        $calibrefx_sections = array();
+}
 
 /**
  * Add Section tab in the Theme Settings
@@ -55,6 +62,7 @@ function calibrefx_add_meta_section($slug, $title) {
 
 function calibrefx_do_meta_sections($section, $screen, $context, $object) {
     global $calibrefx_sections, $calibrefx_user_ability;
+    global $wp_meta_boxes;
 
     if (!isset($calibrefx_sections))
         return;
@@ -62,17 +70,25 @@ function calibrefx_do_meta_sections($section, $screen, $context, $object) {
     if (!isset($calibrefx_user_ability))
         $calibrefx_user_ability = 'basic';
 
+    if (empty($screen))
+        $screen2 = get_current_screen();
+    elseif (is_string($screen))
+        $screen2 = convert_to_screen($screen);
+
+    $page = $screen2->id;
+    $sorted = get_user_option("meta-box-order_$page");
+    //fire_debug($sorted);
+    //fire_debug($screen);
+    
     if (!empty($calibrefx_sections[$section]['basic'])) {
         foreach ($calibrefx_sections[$section]['basic'] as $metas) {
             add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
         }
     }
 
-    if (!empty($calibrefx_sections[$section]['professor'])) {
-        if ($calibrefx_user_ability === 'professor') {
-            foreach ($calibrefx_sections[$section]['professor'] as $metas) {
-                add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
-            }
+    if (!empty($calibrefx_sections[$section]['professor']) && $calibrefx_user_ability === 'professor') {
+        foreach ($calibrefx_sections[$section]['professor'] as $metas) {
+            add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
         }
     }
 

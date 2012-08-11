@@ -32,16 +32,16 @@ function calibrefx_update_theme_settings($_newvalue, $_oldvalue) {
     if (calibrefx_get_option('reset')) {
         return $_newvalue;
     }
-
+    
     //Get the value from post settings
     $_newvalue = $_POST[CALIBREFX_SETTINGS_FIELD];
-
+    
     //merge value from old settings
     $_newvalue = array_merge($_oldvalue, $_newvalue);
-
+    
     //We merge with default value too
     $_newvalue = array_merge(calibrefx_theme_settings_defaults(), $_newvalue);
-
+    
     return $_newvalue;
 }
 
@@ -114,9 +114,10 @@ function calibrefx_theme_settings_styles() {
  * This function load meta boxes
  */
 function calibrefx_theme_settings_boxes() {
-    global $_calibrefx_theme_settings_pagehook;
-    global $calibrefx_current_section;
-
+    global $_calibrefx_theme_settings_pagehook, $calibrefx_current_section;
+    
+    calibrefx_clear_meta_section();
+    
     calibrefx_add_meta_section('general', __('General', 'calibrefx'));
     calibrefx_add_meta_section('design', __('Design', 'calibrefx'));
     calibrefx_add_meta_section('social', __('Social', 'calibrefx'));
@@ -275,6 +276,7 @@ function calibrefx_theme_settings_navigation_box() {
  * Show default layout box
  */
 function calibrefx_theme_settings_layout_box() {
+    global $calibrefx_user_ability;
     if ($calibrefx_user_ability === 'professor') {
         ?>
         <p><label><?php _e('Enable Bootstrap', 'calibrefx'); ?></label>
