@@ -46,7 +46,7 @@ function calibrefx_about_boxes() {
     if(!empty($_GET['section']))
         $calibrefx_section = sanitize_text_field($_GET['section']);
     
-    $calibrefx_user_ability = 'general';
+    $calibrefx_user_ability = 'basic';
     if(!empty($_GET['ability'])){
         update_user_meta($current_user->ID, 'ability', $_GET['ability']);
     }
@@ -84,10 +84,10 @@ function calibrefx_about_page() {
                 <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v1.0">&nbsp;</a>
             </div>
             <div class="calibrefx-version">
-                <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Codename : <?php echo FRAMEWORK_CODENAME; ?>)</span>
+                <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Codename: <?php echo FRAMEWORK_CODENAME; ?>)</span>
             </div>
             <div class="calibrefx-ability">
-                <a class="calibrefx-general" href="admin.php?page=calibrefx&section=general&ability=general">General</a>
+                <a class="calibrefx-general" href="admin.php?page=calibrefx&section=general&ability=basic">Basic</a>
                 <a class="calibrefx-professor" href="admin.php?page=calibrefx&section=general&ability=professor">Professor</a>
             </div>
         </div>

@@ -101,7 +101,7 @@ function calibrefx_seo_settings_boxes() {
     if(!empty($_GET['section']))
         $calibrefx_section = sanitize_text_field($_GET['section']);
     
-    $calibrefx_user_ability = 'general';
+    $calibrefx_user_ability = 'basic';
     if(!empty($_GET['ability'])){
         update_user_meta($current_user->ID, 'ability', $_GET['ability']);
     }
@@ -158,7 +158,7 @@ function calibrefx_seo_settings_admin() {
                     <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Code Name : <?php echo FRAMEWORK_CODENAME; ?>)</span>
                 </div>
                 <div class="calibrefx-ability">
-                    <a class="calibrefx-general" href="admin.php?page=calibrefx&section=general&ability=general">General</a>
+                    <a class="calibrefx-general" href="admin.php?page=calibrefx&section=general&ability=basic">Basic</a>
                     <a class="calibrefx-professor" href="admin.php?page=calibrefx&section=general&ability=professor">Professor</a>
                 </div>
             </div>

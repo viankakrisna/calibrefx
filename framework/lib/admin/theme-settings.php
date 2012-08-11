@@ -6,7 +6,7 @@
  *
  * @package		CalibreFx
  * @author		CalibreWorks Team
- * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
+ * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
  * @link		http://www.calibrefx.com
  * @since		Version 1.0
@@ -19,40 +19,44 @@
  *
  * @package CalibreFx
  */
+add_action('pre_update_option_' . CALIBREFX_SETTINGS_FIELD, 'calibrefx_update_theme_settings', 5, 2);
 
-add_action('pre_update_option_'.CALIBREFX_SETTINGS_FIELD, 'calibrefx_update_theme_settings', 5, 2);
 /**
  * When WordPress save the options
  * it only save the submitted field
  * This function is to merge with default or current settings in 
  * serialized data
  */
-function calibrefx_update_theme_settings($_newvalue, $_oldvalue ){
+function calibrefx_update_theme_settings($_newvalue, $_oldvalue) {
     //We merge newvalue and oldvalue
-    if(calibrefx_get_option('reset'))
+    if (calibrefx_get_option('reset')) {
         return $_newvalue;
-    
+    }
+
+    //Get the value from post settings
     $_newvalue = $_POST[CALIBREFX_SETTINGS_FIELD];
-    
+
+    //merge value from old settings
     $_newvalue = array_merge($_oldvalue, $_newvalue);
-   
+
     //We merge with default value too
     $_newvalue = array_merge(calibrefx_theme_settings_defaults(), $_newvalue);
-    
-    return $_newvalue; 
+
+    return $_newvalue;
 }
 
 add_action('admin_init', 'calibrefx_register_theme_settings', 5);
+
 /**
  * This function will save or reset settings
  */
 function calibrefx_register_theme_settings() {
     register_setting(CALIBREFX_SETTINGS_FIELD, CALIBREFX_SETTINGS_FIELD);
     add_option(CALIBREFX_SETTINGS_FIELD, calibrefx_theme_settings_defaults());
-    
+
     if (!isset($_REQUEST['page']) || $_REQUEST['page'] != 'calibrefx')
         return;
-    
+
     if (calibrefx_get_option('reset')) {
         update_option(CALIBREFX_SETTINGS_FIELD, calibrefx_theme_settings_defaults());
 
@@ -111,53 +115,39 @@ function calibrefx_theme_settings_styles() {
  */
 function calibrefx_theme_settings_boxes() {
     global $_calibrefx_theme_settings_pagehook;
-    global $calibrefx_section;
+    global $calibrefx_current_section;
     global $calibrefx_user_ability;
-    
-    $calibrefx_section = 'general';
-    if(!empty($_GET['section']))
-        $calibrefx_section = sanitize_text_field($_GET['section']);
-    
-    if($calibrefx_section === "general"){
-        add_meta_box('calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), 'calibrefx_theme_settings_navigation_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
-        
-        if($calibrefx_user_ability === 'professor'){
-            add_meta_box('calibrefx-theme-settings-content-archive', __('Content Archives', 'calibrefx'), 'calibrefx_theme_settings_content_archive_box', $_calibrefx_theme_settings_pagehook, 'side');
-            add_meta_box('calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), 'calibrefx_theme_settings_breadcrumb_box', $_calibrefx_theme_settings_pagehook, 'side');
-            add_meta_box('calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), 'calibrefx_theme_settings_comment_box', $_calibrefx_theme_settings_pagehook, 'side');
-        }
+
+    calibrefx_add_meta_section('general', __('General', 'calibrefx'));
+    calibrefx_add_meta_section('design', __('Design', 'calibrefx'));
+    calibrefx_add_meta_section('social', __('Social', 'calibrefx'));
+
+    calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), 'calibrefx_theme_settings_navigation_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
+    calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-content-archive', __('Content Archives', 'calibrefx'), 'calibrefx_theme_settings_content_archive_box', $_calibrefx_theme_settings_pagehook, 'side');
+    calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), 'calibrefx_theme_settings_breadcrumb_box', $_calibrefx_theme_settings_pagehook, 'side');
+    calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), 'calibrefx_theme_settings_comment_box', $_calibrefx_theme_settings_pagehook, 'side');
+
+    calibrefx_add_meta_box('design', 'basic', 'calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), 'calibrefx_theme_settings_layout_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
+    calibrefx_add_meta_box('design', 'professor', 'calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), 'calibrefx_theme_settings_custom_script_box', $_calibrefx_theme_settings_pagehook, 'side');
+
+
+    calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), 'calibrefx_theme_settings_feeds_box', $_calibrefx_theme_settings_pagehook, 'main');
+    calibrefx_add_meta_box('social', 'professor', 'calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), 'calibrefx_theme_settings_socials_box', $_calibrefx_theme_settings_pagehook, 'side');
+
+
+    $calibrefx_current_section = 'general';
+    if (!empty($_GET['section'])) {
+        $calibrefx_current_section = sanitize_text_field($_GET['section']);
     }
-    
-    if($calibrefx_section === "design"){
-        
-        add_meta_box('calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), 'calibrefx_theme_settings_layout_box', $_calibrefx_theme_settings_pagehook, 'main', 'high');
-        
-         if($calibrefx_user_ability === 'professor'){
-            add_meta_box('calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), 'calibrefx_theme_settings_custom_script_box', $_calibrefx_theme_settings_pagehook, 'side');
-         }
-    }
-    
-    if($calibrefx_section === "social"){
-        add_meta_box('calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), 'calibrefx_theme_settings_feeds_box', $_calibrefx_theme_settings_pagehook, 'main');
-        if($calibrefx_user_ability === 'professor'){
-            add_meta_box('calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), 'calibrefx_theme_settings_socials_box', $_calibrefx_theme_settings_pagehook, 'side');
-        }
-    }
-    
 }
 
 /**
  * This function will outout the settings layout to wordpress
  */
 function calibrefx_theme_settings_admin() {
-    global $_calibrefx_theme_settings_pagehook;
-    global $calibrefx_section; 
-    
-    $section_header = array(
-        'general' => __('General', 'calibrefx'),
-        'design' => __('Design', 'calibrefx'),
-        'social' => __('Social', 'calibrefx'),
-    );
+    global $_calibrefx_theme_settings_pagehook,
+    $calibrefx_sections,
+    $calibrefx_current_section;
     ?>
     <div id="calibrefx-theme-settings-page" class="wrap calibrefx-metaboxes">
         <form method="post" action="options.php">
@@ -174,8 +164,8 @@ function calibrefx_theme_settings_admin() {
                     <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Code Name : <?php echo FRAMEWORK_CODENAME; ?>)</span>
                 </div>
                 <div class="calibrefx-ability">
-                    <a class="calibrefx-general" href="<?php echo admin_url("admin.php?page=calibrefx&ability=general&section=".$calibrefx_section);?>">General</a>
-                    <a class="calibrefx-professor" href="<?php echo admin_url("admin.php?page=calibrefx&ability=professor&section=".$calibrefx_section);?>">Professor</a>
+                    <a class="calibrefx-general" href="<?php echo admin_url("admin.php?page=calibrefx&ability=basic&section=" . $calibrefx_current_section); ?>">Basic</a>
+                    <a class="calibrefx-professor" href="<?php echo admin_url("admin.php?page=calibrefx&ability=professor&section=" . $calibrefx_current_section); ?>">Professor</a>
                 </div>
             </div>
             <div class="calibrefx-content">
@@ -186,27 +176,25 @@ function calibrefx_theme_settings_admin() {
                 <div class="metabox-holder">
                     <div class="calibrefx-tab">
                         <ul class="calibrefx-tab-option">
-                            <li <?php if($calibrefx_section==="general") echo 'class="current"';?>>
-                                <a href="admin.php?page=calibrefx&section=general">General</a><span></span>
-                            </li>
-                            <li <?php if($calibrefx_section==="design") echo 'class="current"';?>>
-                                <a href="admin.php?page=calibrefx&section=design">Design</a><span></span>
-                            </li>
-                            <li <?php if($calibrefx_section==="social") echo 'class="current"';?>>
-                                <a href="admin.php?page=calibrefx&section=social">Social</a><span></span>
-                            </li>
+                            <?php
+                            foreach ($calibrefx_sections as $section) {
+                                $current_class = ($calibrefx_current_section === $section['slug']) ? 'class="current"' : '';
+                                $section_link = admin_url('admin.php?page=calibrefx&section=' . $section['slug']);
+                                echo "<li $current_class><a href='$section_link'>" . $section['title'] . "</a><span></span></li>";
+                            }
+                            ?>
                         </ul>
                         <div class="calibrefx-option">
-                            <h2><?php echo $section_header[$calibrefx_section];?></h2>
+                            <h2><?php echo $section_header[$calibrefx_section]; ?></h2>
                             <div class="postbox-container main-postbox">
                                 <?php
-                                do_meta_boxes($_calibrefx_theme_settings_pagehook, 'main', null);
+                                calibrefx_do_meta_sections($calibrefx_current_section, $_calibrefx_theme_settings_pagehook, 'main', null);
                                 ?>
                             </div>
 
                             <div class="postbox-container side-postbox">
                                 <?php
-                                do_meta_boxes($_calibrefx_theme_settings_pagehook, 'side', null);
+                                calibrefx_do_meta_sections($calibrefx_current_section, $_calibrefx_theme_settings_pagehook, 'side', null);
                                 ?>
                             </div>
                             <div class="clear"></div>
@@ -218,7 +206,7 @@ function calibrefx_theme_settings_admin() {
                     <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
                     <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
                 </div>
-                
+
             </div>
         </form>
     </div>
@@ -229,7 +217,7 @@ function calibrefx_theme_settings_admin() {
             $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
             // postboxes setup
             postboxes.add_postbox_toggles('<?php echo $_calibrefx_theme_settings_pagehook; ?>');
-            
+                    
             postboxes._mark_area = function() {
                 var visible = $('div.postbox:visible').length, side = $('#post-body #side-sortables');
 
@@ -250,11 +238,7 @@ function calibrefx_theme_settings_admin() {
                 }
             };
             postboxes._mark_area();
-            
         });
-        
-        
-        
         //]]>
     </script>
     <?php
@@ -270,7 +254,6 @@ function calibrefx_theme_settings_navigation_box() {
         <p>
             <input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[nav]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[nav]" value="1" <?php checked(1, calibrefx_get_option('nav')); ?> /> <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[nav]"><?php _e("Include Primary Navigation Menu?", 'calibrefx'); ?></label>
         </p>
-
         <hr class="div" />
     <?php endif; ?>
 
@@ -291,44 +274,44 @@ function calibrefx_theme_settings_navigation_box() {
  * Show default layout box
  */
 function calibrefx_theme_settings_layout_box() {
-    if($calibrefx_user_ability === 'professor'){
-    ?>
-    <p><label><?php _e('Enable Bootstrap', 'calibrefx'); ?></label>
-        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" value="1" <?php checked(1, calibrefx_get_option('enable_bootstrap')); ?> /></label>
-        <span class="description"><?php printf(__('This option will use Twitter Bootstrap as css and javascript libraries.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
-    </p>
-    
-    <hr class="div" />
-	
-	<p><label><?php _e('Enable Responsive Layout', 'calibrefx'); ?></label>
-        <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" value="1" <?php checked(1, calibrefx_get_option('enable_responsive')); ?> /></label>
-        <span class="description"><?php printf(__('This option will enable responsive layout.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
-    </p>
-    
-    <hr class="div" />
+    if ($calibrefx_user_ability === 'professor') {
+        ?>
+        <p><label><?php _e('Enable Bootstrap', 'calibrefx'); ?></label>
+            <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_bootstrap]" value="1" <?php checked(1, calibrefx_get_option('enable_bootstrap')); ?> /></label>
+            <span class="description"><?php printf(__('This option will use Twitter Bootstrap as css and javascript libraries.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
+        </p>
+
+        <hr class="div" />
+
+        <p><label><?php _e('Enable Responsive Layout', 'calibrefx'); ?></label>
+            <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]"><input type="checkbox" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[enable_responsive]" value="1" <?php checked(1, calibrefx_get_option('enable_responsive')); ?> /></label>
+            <span class="description"><?php printf(__('This option will enable responsive layout.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
+        </p>
+
+        <hr class="div" />
     <?php } ?>
     <p>
         <label>Layout Type:</label>
         <select name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[layout_type]" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[layout_type]">
             <?php
             $layout_type = apply_filters(
-                'calibrefx_layout_type_options', array(
-                    'static' => __('Static Layout', 'calibrefx'),
-                    'fluid' => __('Fluid Layout', 'calibrefx'),
-                )
+                    'calibrefx_layout_type_options', array(
+                'static' => __('Static Layout', 'calibrefx'),
+                'fluid' => __('Fluid Layout', 'calibrefx'),
+                    )
             );
             foreach ((array) $layout_type as $value => $name)
                 echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('layout_type'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";
             ?>
         </select>
-        
+
     </p>
-    
+
     <div id="calibrefx_layout_width">
         <p>
             <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_layout_width]"><?php _e('Layout Width', 'calibrefx'); ?>
                 <input type="text" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[calibrefx_layout_width]" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_layout_width')); ?>" size="3" />
-        <?php _e('pixels', 'calibrefx'); ?></label>
+                <?php _e('pixels', 'calibrefx'); ?></label>
         </p>
 
         <p><span class="description"><?php _e('This option will limit the width in pixels size.', 'calibrefx'); ?></span></p>
@@ -381,8 +364,8 @@ function calibrefx_theme_settings_content_archive_box() {
             <?php
             $archive_display = apply_filters(
                     'calibrefx_archive_display_options', array(
-                        'full' => __('Display post content', 'calibrefx'),
-                        'excerpts' => __('Display post excerpts', 'calibrefx'),
+                'full' => __('Display post content', 'calibrefx'),
+                'excerpts' => __('Display post excerpts', 'calibrefx'),
                     )
             );
             foreach ((array) $archive_display as $value => $name)
@@ -395,7 +378,7 @@ function calibrefx_theme_settings_content_archive_box() {
         <p>
             <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[content_archive_limit]"><?php _e('Limit content to', 'calibrefx'); ?>
                 <input type="text" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[content_archive_limit]" value="<?php echo esc_attr(calibrefx_get_option('content_archive_limit')); ?>" size="3" />
-    <?php _e('characters', 'calibrefx'); ?></label>
+                <?php _e('characters', 'calibrefx'); ?></label>
         </p>
 
         <p><span class="description"><?php _e('This option will limit the text and strip all formatting from the text displayed. Use this option, with "Display post content" in the selected box above.', 'calibrefx'); ?></span></p>
@@ -409,10 +392,10 @@ function calibrefx_theme_settings_content_archive_box() {
             <?php
             $postnav_display = apply_filters(
                     'calibrefx_post_navigation_options', array(
-                    'older-newer' => __('older/Newer', 'calibrefx'),
-                    'prev-next' => __('Previous/Next', 'calibrefx'),
-                    'numeric' => __('Numeric', 'calibrefx'),
-                )
+                'older-newer' => __('older/Newer', 'calibrefx'),
+                'prev-next' => __('Previous/Next', 'calibrefx'),
+                'numeric' => __('Numeric', 'calibrefx'),
+                    )
             );
             foreach ((array) $postnav_display as $value => $name)
                 echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('posts_nav'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";
@@ -460,7 +443,8 @@ function calibrefx_theme_settings_comment_box() {
 /**
  * This function calibrefx_theme_settings_socials_box is to show feeds setting
  */
-function calibrefx_theme_settings_feeds_box() { ?>
+function calibrefx_theme_settings_feeds_box() {
+    ?>
     <p>
         <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[feed_uri]"><?php _e('Main Feed URL:', 'calibrefx'); ?></label>
         <input type="text" size="30" value="<?php echo calibrefx_get_option('feed_uri'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[feed_uri]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[feed_uri]">
@@ -469,8 +453,9 @@ function calibrefx_theme_settings_feeds_box() { ?>
         <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_feed_uri]"><?php _e('Comment Feed URL:', 'calibrefx'); ?></label>
         <input type="text" size="30" value="<?php echo calibrefx_get_option('comments_feed_uri'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_feed_uri]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[comments_feed_uri]">
     </p>
-<?php
+    <?php
 }
+
 /**
  * This function calibrefx_theme_settings_socials_box is to show social settings
  * Use For Widgets
@@ -489,17 +474,17 @@ function calibrefx_theme_settings_socials_box() {
             <?php
             $page_types = apply_filters(
                     'calibrefx_facebook_og_types', array(
-                        'article' => 'Article',
-                        'website' => 'Website',
-                        'blog' => 'Blog',
-                        'movie' => 'Movie', 
-                        'song' => 'Song',
-                        'product' => 'Product',
-                        'book' => 'Book',
-                        'food' => 'Food',
-                        'drink' => 'Drink',
-                        'activity' => 'Activity',
-                        'sport' => 'Sport',
+                'article' => 'Article',
+                'website' => 'Website',
+                'blog' => 'Blog',
+                'movie' => 'Movie',
+                'song' => 'Song',
+                'product' => 'Product',
+                'book' => 'Book',
+                'food' => 'Food',
+                'drink' => 'Drink',
+                'activity' => 'Activity',
+                'sport' => 'Sport',
                     )
             );
             foreach ((array) $page_types as $value => $name)
@@ -514,5 +499,5 @@ function calibrefx_theme_settings_socials_box() {
         <label for="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]"><?php _e('Twiiter Username:', 'calibrefx'); ?></label>
         <input type="text" size="30" value="<?php echo calibrefx_get_option('twitter_username'); ?>" id="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]" name="<?php echo CALIBREFX_SETTINGS_FIELD; ?>[twitter_username]">
     </p>
-<?php
+    <?php
 }

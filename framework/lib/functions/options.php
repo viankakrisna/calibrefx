@@ -97,7 +97,7 @@ function calibrefx_get_custom_field($field) {
 }
 
 function calibrefx_get_usermeta($user_id, $key, $single = true) {
-    //@TODO: user cache mechanism herer
+    //@TODO: user cache mechanism here
 
     $options = apply_filters('calibrefx_usermeta', get_usermeta($user_id, $key, $single));
 

@@ -167,6 +167,7 @@ function calibrefx_load_framework() {
 
     /** Load Functions */
     require_once( CALIBREFX_FUNCTIONS_DIR . '/general.php' );
+    require_once( CALIBREFX_FUNCTIONS_DIR . '/meta-box.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/seo.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/layout.php' );
     require_once( CALIBREFX_FUNCTIONS_DIR . '/options.php' );
