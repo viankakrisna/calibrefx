@@ -116,7 +116,6 @@ function calibrefx_theme_settings_styles() {
 function calibrefx_theme_settings_boxes() {
     global $_calibrefx_theme_settings_pagehook;
     global $calibrefx_current_section;
-    global $calibrefx_user_ability;
 
     calibrefx_add_meta_section('general', __('General', 'calibrefx'));
     calibrefx_add_meta_section('design', __('Design', 'calibrefx'));
@@ -185,7 +184,7 @@ function calibrefx_theme_settings_admin() {
                             ?>
                         </ul>
                         <div class="calibrefx-option">
-                            <h2><?php echo $section_header[$calibrefx_section]; ?></h2>
+                            <h2><?php echo $calibrefx_sections[$calibrefx_current_section]['title']; ?></h2>
                             <div class="postbox-container main-postbox">
                                 <?php
                                 calibrefx_do_meta_sections($calibrefx_current_section, $_calibrefx_theme_settings_pagehook, 'main', null);

@@ -62,13 +62,17 @@ function calibrefx_do_meta_sections($section, $screen, $context, $object) {
     if (!isset($calibrefx_user_ability))
         $calibrefx_user_ability = 'basic';
 
-    foreach ($calibrefx_sections[$section]['basic'] as $metas) {
-        add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
+    if (!empty($calibrefx_sections[$section]['basic'])) {
+        foreach ($calibrefx_sections[$section]['basic'] as $metas) {
+            add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
+        }
     }
 
-    if ($calibrefx_user_ability === 'professor') {
-        foreach ($calibrefx_sections[$section]['professor'] as $metas) {
-            add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
+    if (!empty($calibrefx_sections[$section]['professor'])) {
+        if ($calibrefx_user_ability === 'professor') {
+            foreach ($calibrefx_sections[$section]['professor'] as $metas) {
+                add_meta_box($metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback']);
+            }
         }
     }
 
