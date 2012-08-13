@@ -1234,3 +1234,67 @@ ul.delete li { background: url(../img/shortcode/icons/delete.png) no-repeat left
 .text-align-justify { text-align: justify; }
 .text-align-left    { text-align: left; }
 .text-align-right   { text-align: right; }
+
+/*====================================================================================================
+* S L I D E R                                                                         	   S L I D E R
+====================================================================================================*/
+
+.carousel{
+	line-height: 0px;
+}	
+.carousel-caption {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #fff;
+}
+
+/*====================================================================================================
+* J C Y C L E   VERTICAL  S L I D E R                              J C Y C L E   VERTICAL  S L I D E R 
+====================================================================================================*/
+
+/*vertical slider*/
+.ltt-slider-ver { position: relative; display: block; width: 98%; margin: 20px 0; padding: 5px 0; background: #E2E2E2 url(../img/shortcode/bg-gray.jpg) repeat-x top; border: 1px solid #D4D4D4; -webkit-border-radius: 15px; border-radius: 15px; -moz-border-radius: 15px; font-family: MyriadPro, Myriad Pro, Helvetica Neue, Helvetica, Arial, Geneva, sans-serif; }
+/*nav*/
+ul.ltt-slider-ver-nav { position: relative; display: block; float: left; width: 40%; margin: 0 0 0 0px; padding: 0 0 0 0; list-style-type: none; }
+ul.ltt-slider-ver-nav li { display: block; margin: 5px 0 5px 0; } 
+ul.ltt-slider-ver-nav a { position: relative; width: 100%; height: 46px; line-height: 55px; background: url(../img/shortcode/tab-ver-right.png) no-repeat right; color: #6E6C6D; text-shadow: 1px 1px 0px #FFFFFF; text-decoration: none !important; }
+ul.ltt-slider-ver-nav a span { position: absolute; display: block; width: auto; height: 46px; top: 0px; left: -13px; padding: 0 0 0 20px; background: url(../img/shortcode/tab-ver-left.png) no-repeat left; }
+ul.ltt-slider-ver-nav a.tabvertnav { display: block; }
+/*nav active*/
+ul.ltt-slider-ver-nav a.tabvertnav.activeSlide { color: #353535; background: url(../img/shortcode/tab-ver-right-active.png) no-repeat right; }
+ul.ltt-slider-ver-nav a.tabvertnav.activeSlide span { position: absolute; display: block; width: auto; height: 46px; top: 0px; left: -13px; padding: 0 0 0 20px; background: url(../img/shortcode/tab-ver-left-active.png) no-repeat left; }
+/*content*/
+.ltt-slider-ver-content { position: relative; display: block; float: left; width: 50%; margin: 15px 0 10px 5%; font-size: 13px; text-shadow: 1px 1px 0px #FFFFFF; color: #666; background-color: transparent !important; }
+
+/*====================================================================================================
+* J C Y C L E   HORIZONTAL  S L I D E R                          J C Y C L E   HORIZONTAL  S L I D E R 
+====================================================================================================*/
+
+/*horizontal slider*/
+.ltt-slider-hor { position: relative; display: block; width: 98%; margin: 60px 0 20px 0; height: auto; padding: 0px 0; background: #E2E2E2 url(../img/shortcode/bg-gray.jpg) repeat-x top; border: 1px solid #D4D4D4; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; font-family: MyriadPro, Myriad Pro, Helvetica Neue, Helvetica, Arial, Geneva, sans-serif; }
+/*nav*/
+ul.ltt-slider-hor-nav { position: absolute; display: block; width: auto; top: -30px; left: 5px; padding: 0 0 0 0; list-style-type: none; z-index: 0 !important; }
+ul.ltt-slider-hor-nav li { float: left; display: block; margin: 0px 1px 0px 1px; } 
+ul.ltt-slider-hor-nav a { position: relative; width: auto; height: 27px; padding: 0 20px; line-height: 27px; background: url(../img/shortcode/tab-hor.png) repeat-x; border: 1px solid #D4D4D4; border-bottom: none; color: #6E6C6D; text-decoration: none !important; font-size: 13px; text-shadow: 1px 1px 0px #FFFFFF; 
+-webkit-border-top-left-radius: 10px; -webkit-border-top-right-radius: 10px;
+-moz-border-radius-topleft: 10px; -moz-border-radius-topright: 10px;
+border-top-left-radius: 10px; border-top-right-radius: 10px;
+}
+ul.ltt-slider-hor-nav a span { }
+ul.ltt-slider-hor-nav a.tabvertnav { display: block; clear: both; }
+/*nav active*/
+ul.ltt-slider-hor-nav a.tabvertnav.activeSlide { margin-top: -5px; padding: 3px 20px; background: url(../img/shortcode/tab-hor-active.png) repeat-x; color: #353535; }
+ul.ltt-slider-hor-nav a.tabvertnav.activeSlide span {  }
+/*content*/
+.ltt-slider-hor-content { position: relative; width: auto; display: block; margin: 15px 35px 15px 25px; padding: 0px 0px 0px 0px; z-index: 99 !important; font-size: 13px; color: #666; }
+
+/*====================================================================================================
+* T O G G L E R                                                                         T O G G L E R
+====================================================================================================*/
+
+.ltt-toggler          { position: relative; padding: 10px 15px 10px 15px; margin: 15px 0 15px 0; min-height: 32px; background: #E2E2E2 url(../img/shortcode/bg-gray.jpg) repeat-x top; border: 1px solid #D4D4D4; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; font-family: MyriadPro, Myriad Pro, Helvetica Neue, Helvetica, Arial, Geneva, sans-serif; }
+.ltt-trigger          { position: relative; float: left; width: 100%; min-height: 32px; line-height: 32px; margin-top: -3px !important; background: url(../img/shortcode/toggle-close.png) no-repeat right; }
+.ltt-trigger a        { color: #6E6C6D; text-shadow: 1px 1px 0px #FFFFFF; text-decoration: none !important; font-size: 18px; display: block;}
+.ltt-trigger a:hover  { }
+.ltt-trigger.active   { background: url(../img/shortcode/toggle-open.png) no-repeat right; }
+.ltt-toggle-container {	overflow: hidden; width: 100%; clear: both; display: none; }

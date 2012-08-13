@@ -37,4 +37,14 @@ jQuery(document).ready(function($) {
 	jQuery('.ltt-tooltip').each(function() {
 		jQuery(this).ltttooltip();
 	});
+	
+	jQuery(".ltt-toggler.closed .ltt-toggle-container").hide(); 
+	jQuery(".ltt-toggler.open .ltt-toggle-container").show();
+	jQuery(".ltt-toggler.open .ltt-trigger").addClass("active");
+
+	//Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+	jQuery(".ltt-trigger").click(function(){
+		jQuery(this).toggleClass("active").next().slideToggle("slow");
+		return false; //Prevent the browser jump to the link anchor
+	});
 });
