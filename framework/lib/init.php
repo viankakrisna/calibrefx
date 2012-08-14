@@ -48,6 +48,8 @@ function calibrefx_theme_support() {
 
     if (!current_theme_supports('calibrefx-wraps'))
         add_theme_support('calibrefx-wraps', array('header', 'nav', 'subnav', 'inner', 'footer'));
+    
+    calibrefx_log_message('debug', 'calibrefx_theme_support Run');
 }
 
 add_action('calibrefx_init', 'calibrefx_constants', 5);
@@ -122,6 +124,8 @@ function calibrefx_constants() {
     define('CHILD_IMAGES_URL', CHILD_URL . '/assets/img');
     define('CHILD_JS_URL', CHILD_URL . '/assets/js');
     define('CHILD_CSS_URL', CHILD_URL . '/assets/css');
+    
+    calibrefx_log_message('debug', 'calibrefx_constants Run');
 }
 
 add_action('calibrefx_init', 'calibrefx_post_type_support');
@@ -132,6 +136,8 @@ add_action('calibrefx_init', 'calibrefx_post_type_support');
 function calibrefx_post_type_support() {
     add_post_type_support('post', array('calibrefx-seo', 'calibrefx-layouts'));
     add_post_type_support('page', array('calibrefx-seo', 'calibrefx-layouts'));
+    
+    calibrefx_log_message('debug', 'calibrefx_post_type_support Run');
 }
 
 //We need to run this after all the init
@@ -212,6 +218,8 @@ function calibrefx_load_framework() {
 
     /** Run the calibrefx_post_framework Hook */
     do_action('calibrefx_post_framework');
+    
+    calibrefx_log_message('debug', 'calibrefx_load_framework Run');
 }
 
 /** Run the calibrefx_pre_init hook */
