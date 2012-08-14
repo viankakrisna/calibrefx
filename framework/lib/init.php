@@ -122,6 +122,7 @@ function calibrefx_constants() {
     define('CHILD_IMAGES_URL', CHILD_URL . '/assets/img');
     define('CHILD_JS_URL', CHILD_URL . '/assets/js');
     define('CHILD_CSS_URL', CHILD_URL . '/assets/css');
+    
 }
 
 add_action('calibrefx_init', 'calibrefx_post_type_support');
@@ -212,6 +213,8 @@ function calibrefx_load_framework() {
 
     /** Run the calibrefx_post_framework Hook */
     do_action('calibrefx_post_framework');
+    
+    calibrefx_log_message('debug', 'calibrefx_load_framework Run');
 }
 
 /** Run the calibrefx_pre_init hook */
