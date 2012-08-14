@@ -66,10 +66,6 @@ function calibrefx_constants() {
     define('FRAMEWORK_URL', 'http://www.calibrefx.com');
     define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1327922947'));
 
-    /** Define Debug Constants */
-    define('CALIBREFX_DEBUG', true);
-    define('LOG_THRESHOLD', 4);
-
     /** Define CALIBREFX Root Directory Constant */
     define('CALIBREFX_DIR', get_template_directory());
     define('CALIBREFX_CACHE_DIR', CALIBREFX_DIR . '/cache');

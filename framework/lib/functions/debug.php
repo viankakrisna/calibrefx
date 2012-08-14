@@ -101,14 +101,14 @@ if (!function_exists('calibrefx_log_message')) {
     function calibrefx_log_message($level = 'error', $message, $php_error = FALSE) {
         global $_log;
 
-        if(!CALIBREFX_DEBUG) {
+        if (!CALIBREFX_DEBUG) {
             return;
         }
         if (LOG_THRESHOLD == 0) {
             return;
         }
 
-        if(!is_object($_log)){
+        if (!is_object($_log)) {
             $_log = new CFX_Logger();
         }
         $_log->write_log($level, $message, $php_error);
