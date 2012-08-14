@@ -219,3 +219,18 @@ function calibrefx_get_script() {
     $pfile = $break[count($break) - 1];
     return $pfile;
 }
+
+/**
+ * Correct the wpautop function, so it will not return br tag in our content
+ */
+function calibrefx_wpautop_correction() {	
+	remove_filter( 'the_content', 'wpautop' );
+	remove_filter( 'the_excerpt', 'wpautop' );		
+	add_filter( 'the_content', 'my_wpautop' );		
+	add_filter( 'the_excerpt', 'my_wpautop' );		
+}
+
+function my_wpautop( $pee ) {
+	return wpautop($pee, 0);
+}	
+//add_action('pre_get_posts', 'calibrefx_wpautop_correction');
