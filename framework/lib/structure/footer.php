@@ -77,7 +77,7 @@ add_action('calibrefx_footer', 'calibrefx_do_footer_open', 5);
 function calibrefx_do_footer_open() {
     echo '<div id="footer" class="row">';
     calibrefx_put_wrapper('footer');
-		echo '<div id="footer-wrapper" class="row">';
+    echo '<div id="footer-wrapper" class="row">';
 }
 
 add_action('calibrefx_footer', 'calibrefx_do_footer_close', 15);
@@ -86,8 +86,8 @@ add_action('calibrefx_footer', 'calibrefx_do_footer_close', 15);
  * Close footer markup
  */
 function calibrefx_do_footer_close() {
-		echo '</div><!-- end #footer-wrapper -->';
-    calibrefx_put_wrapper('footer','close');
+    echo '</div><!-- end #footer-wrapper -->';
+    calibrefx_put_wrapper('footer', 'close');
     echo '</div><!-- end #footer -->' . "\n";
 }
 
