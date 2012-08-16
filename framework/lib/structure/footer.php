@@ -64,7 +64,9 @@ function calibrefx_do_footer_widgets() {
 
     if (is_active_sidebar('footer-widget')) {
         echo '<div id="footer-widget" ' . get_footer_widget_class() . '>';
+		calibrefx_put_wrapper('footer-widget');
         dynamic_sidebar('footer-widget');
+		calibrefx_put_wrapper('footer-widget','close');
         echo '</div><!--end #footer-widget-->';
     }
 }

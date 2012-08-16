@@ -1183,14 +1183,14 @@ a.button.icon span.ico.paypal { background: url(../img/shortcode/ico-16x16/paypa
 .font-italic { font-style: italic; }
 .font-oblique { font-style: oblique; }
 /*font size*/
-.size-3em { font-size: 3em; margin-bottom: 4px; margin-right: 10px; }
-.size-4em { font-size: 4em; }
-.size-5em { font-size: 5em; margin-bottom: 0.1em; }
-.size-6em { font-size: 6em; }
-.size-7em { font-size: 7em; margin-bottom: 0.3em; }
-.size-8em { font-size: 8em; }
-.size-9em { font-size: 9em; }
-.size-10em { font-size: 10em; margin-bottom: 0.4em; }
+.size-ltt-3em { font-size: 3em; margin-bottom: 4px; margin-right: 10px; }
+.size-ltt-4em { font-size: 4em; }
+.size-ltt-5em { font-size: 5em; margin-bottom: 0.1em; }
+.size-ltt-6em { font-size: 6em; }
+.size-ltt-7em { font-size: 7em; margin-bottom: 0.3em; }
+.size-ltt-8em { font-size: 8em; }
+.size-ltt-9em { font-size: 9em; }
+.size-ltt-10em { font-size: 10em; margin-bottom: 0.4em; }
 
 /*====================================================================================================
 * L I S T S                                                                                  L I S T S

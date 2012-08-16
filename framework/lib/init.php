@@ -47,7 +47,7 @@ function calibrefx_theme_support() {
     }
 
     if (!current_theme_supports('calibrefx-wraps'))
-        add_theme_support('calibrefx-wraps', array('header', 'nav', 'subnav', 'inner', 'footer'));
+        add_theme_support('calibrefx-wraps', array('header', 'nav', 'subnav', 'inner', 'footer', 'footer-widget'));
 }
 
 add_action('calibrefx_init', 'calibrefx_constants', 5);
