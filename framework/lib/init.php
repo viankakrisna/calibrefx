@@ -161,6 +161,7 @@ function calibrefx_load_framework() {
     require_once( CALIBREFX_CLASSES_DIR . '/admin-bar.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/minify.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/sanitizer.php' );
+    require_once( CALIBREFX_CLASSES_DIR . '/admin.php' );
 
     /** Load third-party */
     require_once( CALIBREFX_MODULES_DIR . '/browserdetector/clsBrowser.php' );

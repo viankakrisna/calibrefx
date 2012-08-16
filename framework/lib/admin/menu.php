@@ -34,9 +34,15 @@ function calibrefx_add_admin_menu() {
 
     // Create the new separator
     $menu['58.995'] = array('', 'edit_theme_options', '', '', 'wp-menu-separator');
+    
+    $calibrefx_theme_settings = new CFX_Theme_Settings;
 
     // Create the new top-level Menu
-    add_menu_page(__('Calibre Framework Settings', 'calibrefx'), 'CalibreFx', 'edit_theme_options', 'calibrefx', 'calibrefx_theme_settings_admin', CALIBREFX_IMAGES_URL . '/calibrefx.gif', '58.996');
+    global $_calibrefx_theme_settings_pagehook;
+    $_calibrefx_theme_settings_pagehook = add_menu_page(__('Calibre Framework Settings', 'calibrefx'), 'CalibreFx', 'edit_theme_options', 'calibrefx', array(&$calibrefx_theme_settings, 'dashboard'), CALIBREFX_IMAGES_URL . '/calibrefx.gif', '58.996');
+    add_submenu_page('calibrefx', __('Theme Settings', 'calibrefx'), __('Theme Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx', array(&$calibrefx_theme_settings, 'dashboard'));
+    
+    $calibrefx_theme_settings->pagehook = $_calibrefx_theme_settings_pagehook;
 }
 
 add_action('admin_menu', 'calibrefx_add_admin_submenus');
@@ -44,22 +50,22 @@ add_action('admin_menu', 'calibrefx_add_admin_submenus');
 // This function adds the submenus
 function calibrefx_add_admin_submenus() {
 
-    global $_calibrefx_theme_settings_pagehook,
-           $_calibrefx_about_pagehook,
+    global $_calibrefx_about_pagehook,
            $_calibrefx_seo_settings_pagehook,
            $calibrefx_user_ability;
 
     if (!current_theme_supports('calibrefx-admin-menu'))
         return;
 
-    $user = wp_get_current_user();
-
-    // Add "Theme Settings" submenu
-    $_calibrefx_theme_settings_pagehook = add_submenu_page('calibrefx', __('Theme Settings', 'calibrefx'), __('Theme Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx', 'calibrefx_theme_settings_admin');
     if($calibrefx_user_ability === 'professor'){
         // Add "Seo Settings" submenu
-        $_calibrefx_seo_settings_pagehook = add_submenu_page('calibrefx', __('Seo Settings', 'calibrefx'), __('Seo Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx-seo', 'calibrefx_seo_settings_admin');
+        $calibrefx_seo_settings = new CFX_SEO_Settings;
+        $_calibrefx_seo_settings_pagehook = add_submenu_page('calibrefx', __('Seo Settings', 'calibrefx'), __('Seo Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx-seo', array(&$calibrefx_seo_settings, 'dashboard'));
+        $calibrefx_seo_settings->pagehook = $_calibrefx_seo_settings_pagehook;
     }
+    
     // Add "About" submenu
-    $_calibrefx_about_pagehook = add_submenu_page('calibrefx', __('About', 'calibrefx'), __('About', 'calibrefx'), 'edit_theme_options', 'calibrefx-about', 'calibrefx_about_page');
+    $calibrefx_about_settings = new CFX_About_Settings;
+    $_calibrefx_about_pagehook = add_submenu_page('calibrefx', __('About', 'calibrefx'), __('About', 'calibrefx'), 'edit_theme_options', 'calibrefx-about', array(&$calibrefx_about_settings, 'dashboard'));
+    $calibrefx_about_settings->pagehook = $_calibrefx_about_pagehook;
 }
