@@ -235,7 +235,7 @@ class CFX_Sanitizer {
  *
  * @uses CFX_Sanitizer::add_filter()
  *
- * @param string $filter The filter to call (see Genesis_Settings_Sanitizer::$available_filters for options)
+ * @param string $filter The filter to call (see CFX_Sanitizer::$available_filters for options)
  * @param string $option The WordPress option name
  * @param string|array $suboption Optional. The suboption or suboptions you want to filter
  *

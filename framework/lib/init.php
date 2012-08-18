@@ -57,15 +57,6 @@ add_action('calibrefx_init', 'calibrefx_constants', 5);
  *
  */
 function calibrefx_constants() {
-
-    /** Define Theme Info Constants */
-    define('FRAMEWORK_NAME', 'CalibreFx');
-    define('FRAMEWORK_CODENAME', 'Pink Gibbon');
-    define('FRAMEWORK_VERSION', '1.0');
-    define('FRAMEWORK_DB_VERSION', '1000');
-    define('FRAMEWORK_URL', 'http://www.calibrefx.com');
-    define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1327922947'));
-
     /** Define CALIBREFX Root Directory Constant */
     define('CALIBREFX_DIR', get_template_directory());
     define('CALIBREFX_CACHE_DIR', CALIBREFX_DIR . '/cache');
@@ -161,7 +152,6 @@ function calibrefx_load_framework() {
     require_once( CALIBREFX_CLASSES_DIR . '/admin-bar.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/minify.php' );
     require_once( CALIBREFX_CLASSES_DIR . '/sanitizer.php' );
-    require_once( CALIBREFX_CLASSES_DIR . '/admin.php' );
 
     /** Load third-party */
     require_once( CALIBREFX_MODULES_DIR . '/browserdetector/clsBrowser.php' );
@@ -196,7 +186,7 @@ function calibrefx_load_framework() {
     require_once( CALIBREFX_STRUCTURE_DIR . '/breadcrumb.php' );
     require_once( CALIBREFX_STRUCTURE_DIR . '/navigation.php' );
 
-    /** Load Admin */
+    /** Load in Admin Area Only*/
     if (is_admin()) :
         require_once( CALIBREFX_ADMIN_DIR . '/default-settings.php' );
         require_once( CALIBREFX_ADMIN_DIR . '/menu.php' );
@@ -204,6 +194,7 @@ function calibrefx_load_framework() {
         require_once( CALIBREFX_ADMIN_DIR . '/seo-settings.php' );
         require_once( CALIBREFX_ADMIN_DIR . '/about-page.php' );
         require_once( CALIBREFX_ADMIN_DIR . '/inpost-metaboxes.php' );
+        require_once( CALIBREFX_CLASSES_DIR . '/admin.php' );
     endif;
     require_once( CALIBREFX_ADMIN_DIR . '/admin-bar.php' );
     require_once( CALIBREFX_ADMIN_DIR . '/admin-login.php' );

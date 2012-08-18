@@ -470,7 +470,7 @@ function calibrefx_do_site_description() {
     $description = $inside ? sprintf('<%s id="description">%s</%s>', $wrap, $inside, $wrap) : '';
 
     // Return (filtered)
-    echo apply_filters('genesis_seo_description', $description, $inside, $wrap);
+    echo apply_filters('calibrefx_seo_description', $description, $inside, $wrap);
 }
 
 add_action('calibrefx_header', 'calibrefx_do_header');
