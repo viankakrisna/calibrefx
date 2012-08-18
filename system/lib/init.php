@@ -57,24 +57,11 @@ add_action('calibrefx_init', 'calibrefx_constants', 5);
  *
  */
 function calibrefx_constants() {
-    /** Define CALIBREFX Root Directory Constant */
-    define('CALIBREFX_DIR', get_template_directory());
-    define('CALIBREFX_CACHE_DIR', CALIBREFX_DIR . '/cache');
-    define('CALIBREFX_LOG_DIR', CALIBREFX_DIR . '/log');
-    define('CALIBREFX_LIB_DIR', CALIBREFX_DIR . '/framework/lib');
+    
 
-    /** Define Directory Location Constants */
-    define('CALIBREFX_IMAGES_DIR', CALIBREFX_DIR . '/assets/img');
-    define('CALIBREFX_JS_DIR', CALIBREFX_DIR . '/assets/js');
-    define('CALIBREFX_CSS_DIR', CALIBREFX_DIR . '/assets/css');
+    
 
-    define('CALIBREFX_ADMIN_DIR', CALIBREFX_LIB_DIR . '/admin');
-    define('CALIBREFX_CLASSES_DIR', CALIBREFX_LIB_DIR . '/classes');
-    define('CALIBREFX_FUNCTIONS_DIR', CALIBREFX_LIB_DIR . '/functions');
-    define('CALIBREFX_SHORTCODES_DIR', CALIBREFX_LIB_DIR . '/shortcodes');
-    define('CALIBREFX_STRUCTURE_DIR', CALIBREFX_LIB_DIR . '/structure');
-    define('CALIBREFX_WIDGETS_DIR', CALIBREFX_LIB_DIR . '/widgets');
-    define('CALIBREFX_MODULES_DIR', CALIBREFX_LIB_DIR . '/modules');
+    
 
     /** Define CALIBREFX Root URL Constant */
     define('CALIBREFX_URL', get_template_directory_uri());

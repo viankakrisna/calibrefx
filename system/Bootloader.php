@@ -6,7 +6,7 @@
  *
  * @package		CalibreFx
  * @author		CalibreWorks Team
- * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
+ * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
  * @license		Commercial
  * @link		http://calibrefx.com
  * @since		Version 1.0
@@ -19,12 +19,43 @@
  *
  * @package CalibreFx
  */
-require_once( dirname(__FILE__) . '/lib/init.php' );
+
+!defined('CALIBREFX_URI') && define('CALIBREFX_URI', get_template_directory());
+!defined('CALIBREFX_URL') && define('CALIBREFX_URL', get_template_directory_uri());
+
+/** Run the calibrefx_pre Hook */
+do_action('calibrefx_pre');
+
+/*
+ * ------------------------------------------------------
+ *  Load the global functions
+ * ------------------------------------------------------
+ */
+require_once( CALIBREFX_URI . '/core/Common.php' );
+
+/*
+ * ------------------------------------------------------
+ *  Load Base Class
+ * ------------------------------------------------------
+ */
+require_once( CALIBREFX_URI . '/core/Calibrefx.php' );
+
+/** Run the calibrefx_pre_init hook */
+do_action('calibrefx_pre_init');
+
+/** Run the calibrefx_init hook */
+do_action('calibrefx_init');
+
+/** Run the calibrefx_post_init hook */
+do_action('calibrefx_post_init');
+
+/** Run the calibrefx_setup hook */
+do_action('calibrefx_setup');
 
 /**
  * Fire everything and display it.
  */
-function calibrefx() {
+/*function calibrefx() {
     get_header();
 
     do_action('calibrefx_before_content_wrapper');
@@ -44,7 +75,7 @@ function calibrefx() {
     do_action('calibrefx_after_content_wrapper');
 
     get_footer();
-}
+}*/
 
 /* End of file calibrefx.php */
 /* Location: ./calibrefx/calibrefx.php */
