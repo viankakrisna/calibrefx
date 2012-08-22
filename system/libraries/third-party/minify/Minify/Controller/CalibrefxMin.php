@@ -43,11 +43,11 @@ class Minify_Controller_CalibrefxMin extends Minify_Controller_Base {
                 continue;
             }
             
-            if(!file_exists(CALIBREFX_CACHE_DIR . '/' . calibrefx_md5sum($file))){
+            if(!file_exists(CALIBREFX_CACHE_URI . '/' . md5($file))){
                 $data = file_get_contents($file);
-                $file = calibrefx_write_cache(CALIBREFX_CACHE_DIR . '/' . calibrefx_md5sum($file),  $data);
+                $file = calibrefx_write_cache(CALIBREFX_CACHE_URI . '/' . md5($file),  $data);
             }else{
-                $file = CALIBREFX_CACHE_DIR . '/' . calibrefx_md5sum($file);
+                $file = CALIBREFX_CACHE_URI . '/' . md5($file);
             }
             
             if (0 === strpos($file, '//')) {
@@ -68,5 +68,6 @@ class Minify_Controller_CalibrefxMin extends Minify_Controller_Base {
         }
         return $options;
     }
+
 }
 

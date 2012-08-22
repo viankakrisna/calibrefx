@@ -21,10 +21,4 @@
 /**
  * Include CalibreFx WordPress Themes Framework
  */
-require_once(TEMPLATEPATH.'/framework/calibrefx.php');
-
-/*
- * ===============================================================
- * STOP!!! NOTHING TO ADD HERE ANYMORE
- * ===============================================================
- */
+require_once(TEMPLATEPATH.'/system/Bootloader.php');

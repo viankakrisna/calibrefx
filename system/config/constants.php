@@ -22,20 +22,43 @@
  */
 
 /** Define CALIBREFX Root Directory Constant */
-!defined('CALIBREFX_CACHE_DIR') && define('CALIBREFX_CACHE_DIR', CALIBREFX_DIR . '/cache');
-!defined('CALIBREFX_LOG_DIR') && define('CALIBREFX_LOG_DIR', CALIBREFX_DIR . '/log');
-!defined('CALIBREFX_SYS_DIR') && define('CALIBREFX_SYS_DIR', CALIBREFX_DIR . '/system');
+!defined('CALIBREFX_CACHE_URI') && define('CALIBREFX_CACHE_URI', CALIBREFX_URICALIBREFX_URI . '/cache');
+!defined('CALIBREFX_LOG_URI') && define('CALIBREFX_LOG_URI', CALIBREFX_URI . '/log');
+!defined('CALIBREFX_SYS_URI') && define('CALIBREFX_SYS_URI', CALIBREFX_URI . '/system');
+
+!defined('CALIBREFX_CONFIG_URI') && define('CALIBREFX_CONFIG_URI', CALIBREFX_SYS_URI . '/config');
+!defined('CALIBREFX_LIBRARY_URI') && define('CALIBREFX_LIBRARY_URI', CALIBREFX_SYS_URI . '/libraries');
+!defined('CALIBREFX_HELPER_URI') && define('CALIBREFX_HELPER_URI', CALIBREFX_SYS_URI . '/helpers');
+!defined('CALIBREFX_SHORTCODE_URI') && define('CALIBREFX_SHORTCODE_URI', CALIBREFX_SYS_URI . '/shortcodes');
+!defined('CALIBREFX_MODEL_URI') && define('CALIBREFX_MODEL_URI', CALIBREFX_SYS_URI . '/models');
+!defined('CALIBREFX_WIDGET_URI') && define('CALIBREFX_WIDGET_URI', CALIBREFX_SYS_URI . '/widgets');
+!defined('CALIBREFX_HOOK_URI') && define('CALIBREFX_HOOK_URI', CALIBREFX_SYS_URI . '/hooks');
 
 /** Define Assets Directory Constants */
-!defined('CALIBREFX_IMAGES_DIR') && define('CALIBREFX_IMAGES_DIR', CALIBREFX_DIR . '/assets/img');
-!defined('CALIBREFX_JS_DIR') && define('CALIBREFX_JS_DIR', CALIBREFX_DIR . '/assets/js');
-!defined('CALIBREFX_CSS_DIR') && define('CALIBREFX_CSS_DIR', CALIBREFX_DIR . '/assets/css');
+!defined('CALIBREFX_IMAGES_URI') && define('CALIBREFX_IMAGES_URI', CALIBREFX_URI . '/assets/img');
+!defined('CALIBREFX_JS_URI') && define('CALIBREFX_JS_URI', CALIBREFX_URI . '/assets/js');
+!defined('CALIBREFX_CSS_URI') && define('CALIBREFX_CSS_URI', CALIBREFX_URI . '/assets/css');
 
-/*define('CALIBREFX_ADMIN_DIR', CALIBREFX_SYS_DIR . '/admin');
-define('CALIBREFX_LIB_DIR', CALIBREFX_SYS_DIR . '/libraries');
-define('CALIBREFX_SHORTCODES_DIR', CALIBREFX_SYS_DIR . '/shortcodes');
-define('CALIBREFX_STRUCTURE_DIR', CALIBREFX_SYS_DIR . '/structure');
-define('CALIBREFX_WIDGETS_DIR', CALIBREFX_SYS_DIR . '/widgets');*/
+/** Define Assets URL Constants */
+!defined('CALIBREFX_IMAGES_URL') && define('CALIBREFX_IMAGES_URL', CALIBREFX_URL . '/assets/img');
+!defined('CALIBREFX_JS_URL') && define('CALIBREFX_JS_URL', CALIBREFX_URL . '/assets/js');
+!defined('CALIBREFX_CSS_URL') && define('CALIBREFX_CSS_URL', CALIBREFX_URL . '/assets/css');
+
+
+ /** Define CALIBREFX Child Directory Constant */
+define('CHILD_DIR', get_stylesheet_directory());
+define('CHILD_CACHE_DIR', CHILD_DIR . '/cache');
+define('CHILD_IMAGES_DIR', CHILD_DIR . '/assets/img');
+define('CHILD_JS_DIR', CHILD_DIR . '/assets/js');
+define('CHILD_CSS_DIR', CHILD_DIR . '/assets/css');
+
+/** Define CALIBREFX Child URL Location Constant */
+define('CHILD_URL', get_stylesheet_directory_uri());
+define('CHILD_CACHE_URL', CHILD_URL . '/cache');
+define('CHILD_IMAGES_URL', CHILD_URL . '/assets/img');
+define('CHILD_JS_URL', CHILD_URL . '/assets/js');
+define('CHILD_CSS_URL', CHILD_URL . '/assets/css');
+
 
 
 /** File and Directory Modes */

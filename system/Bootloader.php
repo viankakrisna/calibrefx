@@ -7,17 +7,18 @@
  * @package		CalibreFx
  * @author		CalibreWorks Team
  * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @license		Commercial
  * @link		http://calibrefx.com
- * @since		Version 1.0
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
- *
- * This file calls the init.php file to initialize the framework
+ * 
  *
  * @package CalibreFx
+ */
+
+/**
+ * This will initialize everything
  */
 
 !defined('CALIBREFX_URI') && define('CALIBREFX_URI', get_template_directory());
@@ -26,19 +27,30 @@
 /** Run the calibrefx_pre Hook */
 do_action('calibrefx_pre');
 
+/** Define Theme Info Constants */
+define('FRAMEWORK_NAME', 'CalibreFx');
+define('FRAMEWORK_CODENAME', 'Pink Gibbon');
+define('FRAMEWORK_VERSION', '1.0');
+define('FRAMEWORK_DB_VERSION', '1000');
+define('FRAMEWORK_URL', 'http://www.calibrefx.com');
+define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1327922947'));
+
 /*
  * ------------------------------------------------------
  *  Load the global functions
  * ------------------------------------------------------
  */
-require_once( CALIBREFX_URI . '/core/Common.php' );
+require_once( CALIBREFX_URI . '/system/core/Common.php' );
 
 /*
  * ------------------------------------------------------
- *  Load Base Class
+ *  Load Core Class
  * ------------------------------------------------------
  */
-require_once( CALIBREFX_URI . '/core/Calibrefx.php' );
+require_once( CALIBREFX_URI . '/system/core/Calibrefx.php' );
+
+global $calibrefx;
+$calibrefx = &calibrefx_get_instance();
 
 /** Run the calibrefx_pre_init hook */
 do_action('calibrefx_pre_init');
@@ -52,30 +64,7 @@ do_action('calibrefx_post_init');
 /** Run the calibrefx_setup hook */
 do_action('calibrefx_setup');
 
-/**
- * Fire everything and display it.
- */
-/*function calibrefx() {
-    get_header();
-
-    do_action('calibrefx_before_content_wrapper');
-    ?>
-    <div id="content-wrapper" class="row" >
-        <?php do_action('calibrefx_before_content'); ?>
-        <div id="content" class="<?php echo calibrefx_content_span(); ?>">
-            <?php
-            do_action('calibrefx_before_loop');
-            do_action('calibrefx_loop');
-            do_action('calibrefx_after_loop');
-            ?>
-        </div><!-- end #content -->
-        <?php do_action('calibrefx_after_content'); ?>
-    </div><!-- end #content-wrapper -->
-    <?php
-    do_action('calibrefx_after_content_wrapper');
-
-    get_footer();
-}*/
+calibrefx_log_message('debug', '--- Output Send to Browser ---');
 
 /* End of file calibrefx.php */
 /* Location: ./calibrefx/calibrefx.php */
