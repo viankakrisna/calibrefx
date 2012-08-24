@@ -45,12 +45,12 @@
 !defined('CALIBREFX_CSS_URL') && define('CALIBREFX_CSS_URL', CALIBREFX_URL . '/assets/css');
 
 
- /** Define CALIBREFX Child Directory Constant */
-define('CHILD_DIR', get_stylesheet_directory());
-define('CHILD_CACHE_DIR', CHILD_DIR . '/cache');
-define('CHILD_IMAGES_DIR', CHILD_DIR . '/assets/img');
-define('CHILD_JS_DIR', CHILD_DIR . '/assets/js');
-define('CHILD_CSS_DIR', CHILD_DIR . '/assets/css');
+/** Define CALIBREFX Child Directory Constant */
+define('CHILD_URI', get_stylesheet_directory());
+define('CHILD_CACHE_URI', CHILD_URI . '/cache');
+define('CHILD_IMAGES_URI', CHILD_URI . '/assets/img');
+define('CHILD_JS_URI', CHILD_URI . '/assets/js');
+define('CHILD_CSS_URI', CHILD_URI . '/assets/css');
 
 /** Define CALIBREFX Child URL Location Constant */
 define('CHILD_URL', get_stylesheet_directory_uri());
