@@ -113,7 +113,6 @@ class CFX_Loader {
         $this->_model_paths = array(CALIBREFX_MODEL_URI);
         $this->_shortcode_paths = array(CALIBREFX_SHORTCODE_URI);
         $this->_widget_paths = array(CALIBREFX_WIDGET_URI);
-        $this->_helper_paths = array(CALIBREFX_HELPER_URI);
         $this->_hook_paths = array(CALIBREFX_HOOK_URI);
 
         $this->initialize();
@@ -579,6 +578,24 @@ class CFX_Loader {
         }
 
         calibrefx_log_message('debug', 'Class loaded: ' . $name);
+    }
+    
+    // --------------------------------------------------------------------
+
+    /**
+     * Child Package Path
+     *
+     * Add child package path
+     *
+     * @return	void
+     */
+    public function add_child_path($path) {
+        $this->_library_paths[] = $path . '/libraries';
+        $this->_helper_paths[] = $path . '/helpers';
+        $this->_model_paths[] = $path . '/models';
+        $this->_shortcode_paths[] = $path . '/shortcodes';
+        $this->_widget_paths[] = $path . '/widgets';
+        $this->_hook_paths[] = $path . '/hooks';
     }
 
     // --------------------------------------------------------------------

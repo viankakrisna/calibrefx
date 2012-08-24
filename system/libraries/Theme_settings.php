@@ -37,34 +37,23 @@ class CFX_Theme_Settings extends CFX_Admin {
      */
     function __construct() {
         $this->page_id = 'calibrefx';
-        $this->settings_field = apply_filters('calibrefx_settings_field', 'calibrefx-settings');
         $this->default_settings = apply_filters('calibrefx_theme_settings_defaults', array(
             'update' => 1,
-            'enable_bootstrap' => 1,
+            'file_handler' => 'filesystem',
+            'download_folder' => 'filesystem',
+            'aws_key'   => '',
+            'aws_secret'   => '',
+            'aws_bucket_name'   => '',
+            'aws_bucket_path'   => '',
             'blog_title' => 'text',
-            'header_right' => 0,
-            'layout_type' => 'fluid',
-            'calibrefx_layout_width' => 960,
-            'site_layout' => calibrefx_get_default_layout(),
-            'nav' => 1,
-            'subnav' => 0,
-            'breadcrumb_home' => 1,
-            'breadcrumb_single' => 1,
-            'breadcrumb_page' => 1,
-            'breadcrumb_archive' => 1,
-            'breadcrumb_404' => 1,
-            'comments_pages' => 0,
-            'comments_posts' => 1,
-            'trackbacks_pages' => 0,
-            'trackbacks_posts' => 1,
-            'custom_css' => '',
-            'content_archive' => 'full',
-            'content_archive_limit' => 250,
-            'posts_nav' => 'older-newer',
-            'header_scripts' => '',
-            'footer_scripts' => '',
-            'calibrefx_version' => FRAMEWORK_VERSION,
-            'calibrefx_db_version' => FRAMEWORK_DB_VERSION)
+            'paypal_email'  => '',
+            'jvzoo_api_key' => '',
+            'wso_api_key' => '',
+            'subscriber' => 'getresponse',
+            'getresponse_api_key' => '',
+            'getresponse_campaigns' => '',
+            'subscriber_form' => '',
+            'cfxshowcase_version' => CHILD_THEME_VERSION)
         );
         
         //we need to initialize the model
@@ -129,7 +118,7 @@ class CFX_Theme_Settings extends CFX_Admin {
     }
 
     public function meta_sections() {
-        global $calibrefx_current_section, $calibrefx_sections;
+        global $calibrefx_current_section;
 
         calibrefx_clear_meta_section();
 

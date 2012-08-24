@@ -38,7 +38,6 @@ class CFX_Seo_Settings extends CFX_Admin {
      */
     function __construct() {
         $this->page_id = 'calibrefx-seo';
-        $this->settings_field = apply_filters('calibrefx_settings_field', 'calibrefx-seo-settings');
         $this->default_settings = apply_filters('calibrefx_seo_settings_defaults', array(
             'doc_canonical_url' => 1,
             'doc_enable_rewrite_title' => 1,
