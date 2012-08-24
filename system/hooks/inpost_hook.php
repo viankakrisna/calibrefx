@@ -39,7 +39,7 @@ add_action('admin_menu', 'calibrefx_add_inpost_layout_box');
 function calibrefx_add_inpost_layout_box() {
     if (!current_theme_supports('calibrefx-inpost-layouts'))
         return;
-
+    
     foreach ((array) get_post_types(array('public' => true)) as $type) {
         if (post_type_supports($type, 'calibrefx-layouts'))
             add_meta_box('calibrefx_inpost_layout_box', __('Calibrefx Custom Layout', 'calibrefx'), 'calibrefx_inpost_layout_box', $type, 'normal', 'high');
@@ -51,7 +51,7 @@ function calibrefx_add_inpost_layout_box() {
  */
 function calibrefx_inpost_layout_box() {
 
-    wp_nonce_field(plugin_basename(__FILE__), 'calibrefx_inpost_layout_nonce');
+    wp_nonce_field('calibrefx_inpost_layout_action', 'calibrefx_inpost_layout_nonce');
 
     $layout = calibrefx_get_custom_field('site_layout');
     ?>
@@ -85,11 +85,13 @@ add_action('save_post', 'calibrefx_inpost_layout_save', 1, 2);
  */
 function calibrefx_inpost_layout_save($post_id, $post) {
 
-    /** 	Verify the nonce */
-    if (!isset($_POST['calibrefx_inpost_layout_nonce']) || !wp_verify_nonce($_POST['calibrefx_inpost_layout_nonce'], plugin_basename(__FILE__)))
+    $CFX = & calibrefx_get_instance();
+    
+    if(!$CFX->security->verify_nonce('calibrefx_inpost_layout_action','calibrefx_inpost_layout_nonce')){    
         return $post_id;
-
-    /*     * Don't try to save the data under autosave, ajax, or future post. */
+    }
+    
+    calibrefx_log_message('debug', 'POST LAYOUT:'.$_POST['_calibrefx_layout']);
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
         return;
     if (defined('DOING_AJAX') && DOING_AJAX)
@@ -97,12 +99,12 @@ function calibrefx_inpost_layout_save($post_id, $post) {
     if (defined('DOING_CRON') && DOING_CRON)
         return;
 
-    /** 	Check capability */
     if (( 'page' == $_POST['post_type'] && !current_user_can('edit_page', $post_id) ) || !current_user_can('edit_post', $post_id))
         return $post_id;
 
     $calibrefx_post_layout = $_POST['_calibrefx_layout'];
-
+    
+    
     if ($calibrefx_post_layout)
         update_post_meta($post_id, 'site_layout', $calibrefx_post_layout);
     else
@@ -130,7 +132,6 @@ add_action('admin_menu', 'calibrefx_add_inpost_seo_box');
  * set SEO options on a per-post or per-page basis.
  */
 function calibrefx_add_inpost_seo_box() {
-
     foreach ((array) get_post_types(array('public' => true)) as $type) {
         if (post_type_supports($type, 'calibrefx-seo'))
             add_meta_box('calibrefx_inpost_seo_box', __('CalibreFx SEO Settings', 'calibrefx'), 'calibrefx_inpost_seo_box', $type, 'normal', 'high');
@@ -141,8 +142,8 @@ function calibrefx_add_inpost_seo_box() {
  * Show inpost seo box
  */
 function calibrefx_inpost_seo_box() {
+    wp_nonce_field('calibrefx_inpost_seo_action', 'calibrefx_inpost_seo_nonce');
     ?>
-    <input type="hidden" name="calibrefx_inpost_seo_nonce" value="<?php echo wp_create_nonce(plugin_basename(__FILE__)); ?>" />
 
     <p><label for="calibrefx_title"><b><?php _e('Custom Document Title', 'calibrefx'); ?></b> <abbr title="&lt;title&gt; Tag">[?]</abbr> <span class="hide-if-no-js"><?php printf(__('Characters Used: %s', 'calibrefx'), '<span id="calibrefx_title_chars">' . strlen(calibrefx_get_custom_field('_calibrefx_title')) . '</span>'); ?></span></label></p>
     <p><input class="large-text" type="text" name="calibrefx_seo[_calibrefx_title]" id="calibrefx_title" value="<?php echo esc_attr(calibrefx_get_custom_field('_calibrefx_title')); ?>" /></p>
@@ -188,11 +189,12 @@ add_action('save_post', 'calibrefx_inpost_seo_save', 1, 2);
  */
 function calibrefx_inpost_seo_save($post_id, $post) {
 
-    /*     * Verify the nonce */
-    if (!isset($_POST['calibrefx_inpost_seo_nonce']) || !wp_verify_nonce($_POST['calibrefx_inpost_seo_nonce'], plugin_basename(__FILE__)))
-        return $post->ID;
+    $CFX = & calibrefx_get_instance();
+    
+    if(!$CFX->security->verify_nonce('calibrefx_inpost_seo_action','calibrefx_inpost_seo_nonce')){    
+        return $post_id;
+    }
 
-    /*     * Don't try to save the data under autosave, ajax, or future post */
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
         return;
     if (defined('DOING_AJAX') && DOING_AJAX)
@@ -200,7 +202,6 @@ function calibrefx_inpost_seo_save($post_id, $post) {
     if (defined('DOING_CRON') && DOING_CRON)
         return;
 
-    /*     * Check user is allowed to edit the post or page */
     if (( 'page' == $_POST['post_type'] && !current_user_can('edit_page', $post->ID) ) || !current_user_can('edit_post', $post->ID))
         return $post->ID;
 

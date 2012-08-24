@@ -421,7 +421,7 @@ class CFX_Loader {
                 include_once($filepath);
 
                 $this->_loaded_files[] = $filepath;
-                calibrefx_log_message('debug', 'Shortcode loaded: ' . $hook);
+                calibrefx_log_message('debug', 'Shortcode loaded: ' . $shortcode);
                 break;
             }
         }

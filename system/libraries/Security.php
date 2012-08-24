@@ -196,4 +196,13 @@ class CFX_Security {
         return wp_kses_post($new_value);
     }
 
+    /**
+     * Verify Nonce key
+     * 
+     * @uses wp_verify_nonce
+     * @param string $nonce_key
+     */
+    public function verify_nonce($action, $nonce_key){
+        return (isset($_POST[$nonce_key]) || wp_verify_nonce($_POST[$nonce_key], $action));
+    }
 }

@@ -8,7 +8,7 @@
  * @package		CalibreFx
  * @author		CalibreWorks Team
  * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
@@ -24,7 +24,7 @@
  * @subpackage          Hook
  * @author		CalibreWorks Team
  * @since		Version 1.0
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  */
 /**
  * Adds header structures.

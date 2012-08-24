@@ -7,7 +7,7 @@
  * @package		CalibreFx
  * @author		CalibreWorks Team
  * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
@@ -23,7 +23,7 @@
  * @subpackage          Core
  * @author		CalibreWorks Team
  * @since		Version 1.0
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  */
 
 final class Calibrefx {
@@ -95,5 +95,9 @@ final class Calibrefx {
 
         if (!current_theme_supports('calibrefx-wraps'))
             add_theme_support('calibrefx-wraps', array('header', 'nav', 'subnav', 'inner', 'footer', 'footer-widget'));
+        
+        //@TODO: Will do in better ways for custom post type
+        add_post_type_support('post', array('calibrefx-seo', 'calibrefx-layouts'));
+        add_post_type_support('page', array('calibrefx-seo', 'calibrefx-layouts'));
     }
 }
