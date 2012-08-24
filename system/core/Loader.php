@@ -99,7 +99,7 @@ class CFX_Loader {
      * @var array
      */
     protected $_helpers = array();
-    
+
     /**
      * Constructor
      *
@@ -149,10 +149,13 @@ class CFX_Loader {
      *
      * @return 	void
      */
-    public function do_autoload() {
-
+    public function do_autoload($autoload_file = '') {
         if (file_exists(CALIBREFX_CONFIG_URI . '/autoload.php')) {
             include(CALIBREFX_CONFIG_URI . '/autoload.php');
+        }
+
+        if (!empty($autoload_file) && file_exists($autoload_file)) {
+            include($autoload_file);
         }
 
         if (!isset($autoload)) {
@@ -579,7 +582,7 @@ class CFX_Loader {
 
         calibrefx_log_message('debug', 'Class loaded: ' . $name);
     }
-    
+
     // --------------------------------------------------------------------
 
     /**
