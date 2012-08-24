@@ -13,22 +13,22 @@
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
  * 
- *
  * @package CalibreFx
  */
- 
-do_action('calibrefx_html_header');
 
-wp_head();
+/**
+ * Themes Settings Model Class
+ *
+ * @package		Calibrefx
+ * @subpackage          Model
+ * @author		CalibreWorks Team
+ * @since		Version 1.0
+ * @link		http://calibrefx.com
+ */
 
-?>
-</head>
-<body <?php body_onload(); ?> <?php body_class(); ?>>
-<?php do_action( 'calibrefx_before_wrapper' ); ?>
-<div id="wrapper" class="container">
-<?php
-do_action('calibrefx_before_header');
-do_action('calibrefx_header');
-do_action('calibrefx_after_header');
-?>
-<div id="inner" class="row">
+class Theme_settings_m extends CFX_Model{
+    
+    public function __construct() {
+        parent::__construct(apply_filters('calibrefx_settings_field', 'calibrefx-settings'));
+    }
+}
