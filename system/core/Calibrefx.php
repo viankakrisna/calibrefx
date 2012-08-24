@@ -44,6 +44,7 @@ final class Calibrefx {
         if(self::$instance === null){
             self::$instance = new Calibrefx();
         }
+        
         return self::$instance;
     }
 

@@ -9,7 +9,7 @@
  * @author		CalibreWorks Team
  * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
  * @license		Commercial
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  * @since		Version 1.0
  * @filesource 
  *

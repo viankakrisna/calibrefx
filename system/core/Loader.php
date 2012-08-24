@@ -99,7 +99,7 @@ class CFX_Loader {
      * @var array
      */
     protected $_helpers = array();
-
+    
     /**
      * Constructor
      *
@@ -389,10 +389,10 @@ class CFX_Loader {
      */
     public function shortcodes($shortcodes = array()) {
         foreach ($this->_prep_filename($shortcodes, '_shortcode') as $shortcode) {
-           $this->shortcode($shortcode);
+            $this->shortcode($shortcode);
         }
     }
-    
+
     // --------------------------------------------------------------------
 
     /**
@@ -404,11 +404,12 @@ class CFX_Loader {
      * @return	void
      */
     public function shortcode($shortcode) {
-        if(!isset($shortcode)) return;
-        if(strpos($shortcode,'_shortcode')===FALSE){
+        if (!isset($shortcode))
+            return;
+        if (strpos($shortcode, '_shortcode') === FALSE) {
             $shortcode = $this->_prep_filename($shortcode, '_shortcode');
         }
-        
+
         foreach ($this->_shortcode_paths as $path) {
             $filepath = $path . '/' . $shortcode . '.php';
 
@@ -439,7 +440,7 @@ class CFX_Loader {
      */
     public function files($files = array()) {
         foreach ($files as $file) {
-           $this->file($file);
+            $this->file($file);
         }
     }
 
@@ -454,8 +455,9 @@ class CFX_Loader {
      * @return	void
      */
     public function file($file) {
-        if(!isset($file)) return;
-        
+        if (!isset($file))
+            return;
+
         if (isset($this->_loaded_files[$file])) {
             //File loaded
             return;

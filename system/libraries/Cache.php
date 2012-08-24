@@ -46,7 +46,7 @@ class CFX_Cache {
      * @access	public
      * @param	string cache key
      * @param	mixed data to store to the cache
-     * @param 	string group name, default CALIBREFX_SETTINGS_FIELD
+     * @param 	string group name
      * @return	void
      */
     public function cache_set($key, $data, $group, $expire = 0) {
@@ -58,7 +58,7 @@ class CFX_Cache {
      *
      * @access	public
      * @param	string cache key
-     * @param 	string group name, default CALIBREFX_SETTINGS_FIELD
+     * @param 	string group name
      * @return	mixed data from the cache
      */
     public function cache_get($key, $group) {
@@ -70,7 +70,7 @@ class CFX_Cache {
      *
      * @access	public
      * @param	string cache key
-     * @param 	string group name, default CALIBREFX_SETTINGS_FIELD
+     * @param 	string group name
      * @return	bool
      */
     public function cache_delete($key) {
