@@ -36,7 +36,7 @@ class CFX_Loader {
      * @var array
      */
     public $_config_paths = array();
-    
+
     /**
      * List of paths to load libraries from
      *
@@ -169,7 +169,7 @@ class CFX_Loader {
         if (!isset($autoload)) {
             return FALSE;
         }
-        
+
         // Load Configs
         if (isset($autoload['config']) && count($autoload['config']) > 0) {
             $this->config($autoload['config']);
@@ -223,7 +223,7 @@ class CFX_Loader {
     public function is_loaded($class) {
         return isset($this->_classes[$class]) ? $this->_classes[$class] : FALSE;
     }
-    
+
     // --------------------------------------------------------------------
 
     /**
@@ -515,6 +515,39 @@ class CFX_Loader {
             $this->_loaded_files[] = $file;
             calibrefx_log_message('debug', 'File loaded: ' . $file);
         }
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Driver Loader
+     *
+     * This function lets users load and instantiate driver.
+     *
+     * @param	string	the name of the class
+     * @param	mixed	the optional parameters
+     * @param	string	an optional object name
+     * @return	void
+     */
+    public function driver($library = '', $params = NULL) {
+        if (is_array($library)) {
+            foreach ($library as $driver) {
+                $this->driver($driver);
+            }
+            return FALSE;
+        }
+
+        if ($library === '') {
+            return FALSE;
+        }
+
+        // Drivers always in a subfolder,
+        // and typically identically named to the library
+        if (!strpos($library, '/')) {
+            $library = ucfirst($library) . '/' . $library;
+        }
+
+        return $this->library($library, $params);
     }
 
     // --------------------------------------------------------------------
