@@ -30,6 +30,7 @@ class CFX_Adapter {
 
     protected $valid_adapters = array();
     protected static $lib_name;
+    protected $_adapter;
     
     public $driver_paths = array();
 
@@ -74,6 +75,23 @@ class CFX_Adapter {
         // The requested adapter isn't valid!
         calibrefx_log_message('error', "Invalid adapter requested: " . $child_class);
         return null;
+    }
+    
+    /**
+     * load Function
+     *
+     * Load the specified driver.
+     * @access public
+     * @author Ivan Kristianto (ivan@ivankristianto.com)
+     * @param string $driver
+     * @return bool
+     */
+    public function load($adapter, $prefix='') {
+        if (!in_array($prefix . $adapter, $this->valid_drivers))
+            return FALSE;
+
+        $this->_adapter = $adapter;
+        return TRUE;
     }
 
 }

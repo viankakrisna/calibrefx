@@ -596,17 +596,28 @@ class CFX_Loader {
      * @return	void
      */
     protected function _load_class($class, $params = NULL) {
-        // Get the class name, and while we're at it trim any slashes.
-        // The directory path can be included as part of the class name,
-        // but we don't want a leading slash
+        // We clean the $class to get the filename
         $class = str_replace('.php', '', trim($class, '/'));
+
+        // We look for a slash to determine subfolder
+        $subdir = '';
+        if (($last_slash = strrpos($class, '/')) !== FALSE) {
+            // Extract the path
+            $subdir = substr($class, 0, ++$last_slash);
+
+            // Get the filename from the path
+            $class = substr($class, $last_slash);
+        }
 
         // We'll test for both lowercase and capitalized versions of the file name
         foreach (array(ucfirst($class), strtolower($class)) as $class) {
             // Lets search for the requested library file and load it.
             $is_duplicate = FALSE;
             foreach ($this->_library_paths as $path) {
-                $filepath = $path . '/' . $class . '.php';
+                if ($subdir === '')
+                    $filepath = $path . '/' . $class . '.php';
+                else
+                    $filepath = $path . '/' . $subdir . $class . '.php';
 
                 // Does the file exist? No? Bummer...
                 if (!file_exists($filepath)) {

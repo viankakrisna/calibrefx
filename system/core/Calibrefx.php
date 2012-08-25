@@ -59,6 +59,7 @@ final class Calibrefx {
         //Since admin is abstract we don't instantiate
         calibrefx_load_class('Admin', 'core');
         calibrefx_load_class('Adapter', 'core');
+        calibrefx_load_class('Driver', 'core');
         
         //We fire the engine
         $this->intialize();
