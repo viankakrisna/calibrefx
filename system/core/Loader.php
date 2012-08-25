@@ -35,6 +35,13 @@ class CFX_Loader {
      *
      * @var array
      */
+    public $_config_paths = array();
+    
+    /**
+     * List of paths to load libraries from
+     *
+     * @var array
+     */
     public $_library_paths = array();
 
     /**
@@ -108,6 +115,7 @@ class CFX_Loader {
      * @return	void
      */
     public function __construct() {
+        $this->_config_paths = array(CALIBREFX_CONFIG_URI);
         $this->_library_paths = array(CALIBREFX_LIBRARY_URI);
         $this->_helper_paths = array(CALIBREFX_HELPER_URI);
         $this->_model_paths = array(CALIBREFX_MODEL_URI);
@@ -161,6 +169,11 @@ class CFX_Loader {
         if (!isset($autoload)) {
             return FALSE;
         }
+        
+        // Load Configs
+        if (isset($autoload['config']) && count($autoload['config']) > 0) {
+            $this->config($autoload['config']);
+        }
 
         // Load libraries
         if (isset($autoload['libraries']) && count($autoload['libraries']) > 0) {
@@ -209,6 +222,38 @@ class CFX_Loader {
      */
     public function is_loaded($class) {
         return isset($this->_classes[$class]) ? $this->_classes[$class] : FALSE;
+    }
+    
+    // --------------------------------------------------------------------
+
+    /**
+     * Load Hook
+     *
+     * This function loads the specified hook file.
+     *
+     * @param	mixed
+     * @return	void
+     */
+    public function config($configs = array()) {
+        foreach ($configs as $config) {
+            // Try to load the helper
+            foreach ($this->_config_paths as $path) {
+                $filepath = $path . '/' . $config . '.php';
+
+                if (isset($this->_loaded_files[$filepath])) {
+                    //File loaded
+                    return;
+                }
+
+                if (file_exists($filepath)) {
+                    include_once($filepath);
+
+                    $this->_loaded_files[] = $filepath;
+                    calibrefx_log_message('debug', 'Config loaded: ' . $config);
+                    break;
+                }
+            }
+        }
     }
 
     // --------------------------------------------------------------------
