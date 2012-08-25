@@ -40,6 +40,7 @@ define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1327922947'));
  *  Load the global functions
  * ------------------------------------------------------
  */
+require_once( CALIBREFX_URI . '/system/config/constants.php');
 require_once( CALIBREFX_URI . '/system/core/Common.php' );
 
 /*

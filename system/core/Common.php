@@ -26,8 +26,6 @@
  * ------------------------------------------------------
  */
 
-require(CALIBREFX_URI . '/system/config/constants.php');
-
 // function to replace wp_die if it doesn't exist
 if (!function_exists('wp_die')) {
 

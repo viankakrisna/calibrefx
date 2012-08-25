@@ -638,6 +638,7 @@ class CFX_Loader {
      * @return	void
      */
     public function add_child_path($path) {
+        $this->_config_paths[] = $path . '/config';
         $this->_library_paths[] = $path . '/libraries';
         $this->_helper_paths[] = $path . '/helpers';
         $this->_model_paths[] = $path . '/models';
