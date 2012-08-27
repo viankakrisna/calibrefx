@@ -48,6 +48,8 @@ if (!function_exists('debug_var')) {
 if (!function_exists('fire_debug')) {
 
     function fire_debug($var) {
+        $CFX = & calibrefx_get_instance();
+        $CFX->load->file(CALIBREFX_LIBRARY_URI . '/third-party/firephp/FirePHP.class.php');
         $firephp = FirePHP::getInstance(true);
         $firephp->log($var);
     }
