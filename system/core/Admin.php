@@ -111,7 +111,6 @@ abstract class CFX_Admin {
         //Get the value from post settings
         $_newvalue = $_POST[$this->settings_field];
         
-        
         //merge value from old settings
         $_newvalue = array_merge($_oldvalue, $_newvalue);
         
