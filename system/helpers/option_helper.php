@@ -77,8 +77,11 @@ function calibrefx_get_custom_field($field) {
     $custom_field = get_post_meta($post_id, $field, true);
 
     if ($custom_field) {
-        /** sanitize and return the value of the custom field */
-        return stripslashes(wp_kses_decode_entities($custom_field));
+        if(!is_array($custom_field)){
+            /** sanitize and return the value of the custom field */
+            return stripslashes(wp_kses_decode_entities($custom_field));
+        }
+        return $custom_field;
     } else {
         /** return false if custom field is empty */
         return false;
