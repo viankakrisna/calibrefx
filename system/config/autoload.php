@@ -38,26 +38,28 @@ $autoload['helpers'] = array('debug','format', 'image', 'html', 'url', 'widget',
 /*
  *  Auto-load Config files
  */
-$autoload['config'] = array();
+$autoload['configs'] = array();
 
 /*
  *  Auto-load Config files
  */
-$autoload['widget'] = array();
+$autoload['widgets'] = array('Facebook_Comment', 'Facebook_Like', 'Feature_Page_Slider', 
+                            'Feature_Page', 'Feature_Post_Slider', 'Feature_Post',
+                            'Latest_Tweets', 'Subscriber', 'Twitter');
 
 /*
  *  Auto-load Config files
  */
-$autoload['model'] = array('theme_settings_m', 'seo_settings_m');
+$autoload['models'] = array('theme_settings_m', 'seo_settings_m');
 
 /*
  *  Auto-load Config files
  */
-$autoload['hook'] = array('header', 'logo', 'script', 'widget','layout', 'menu', 
+$autoload['hooks'] = array('header', 'logo', 'script', 'widget','layout', 'menu', 
                           'login','user','admin_bar','post','inpost','comments', 'footer',
                           'sidebar','seo','performance','search','third_party','upgrade');
 
 /*
  *  Auto-load Shortcode files
  */
-$autoload['shortcode'] = array('header','post','footer');
+$autoload['shortcodes'] = array('header','post','footer');

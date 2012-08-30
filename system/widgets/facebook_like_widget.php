@@ -20,7 +20,7 @@
  *
  * @package CalibreFx
  */
-class Calibrefx_Facebook_Like_Widget extends WP_Widget {
+class CFX_Facebook_Like_Widget extends WP_Widget {
 
     protected $defaults;
 
