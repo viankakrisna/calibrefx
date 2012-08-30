@@ -56,13 +56,6 @@ class CFX_List_Table extends WP_List_Table {
      * @var array
      */
     protected $_settings;
-    
-    /**
-     * Action allowed
-     * 
-     * @var mixed
-     */
-    protected $_actions;
 
     /**
      * Constructor
@@ -118,24 +111,8 @@ class CFX_List_Table extends WP_List_Table {
      * 
      * @return type
      */
-    function get_sortable_columns() {
-        return $this->_columns;
-    }
-
-    /**
-     * Set the bulk actions
-     * 
-     * @param array $actions
-     */
-    function set_bulk_actions($actions = array()){
-        if(!empty($actions)){
-            $this->_actions = $actions;
-        }else{
-            $actions = array(
-                'delete'    => 'Delete'
-            );
-            $this->_actions = $actions;
-        }
+    function get_sortable_columns($sortable_columns = array()) {
+        return $sortable_columns;
     }
     
     /**
@@ -143,13 +120,13 @@ class CFX_List_Table extends WP_List_Table {
      * 
      * @return array
      */
-    function get_bulk_actions() {
-        return $this->_actions;
+    function get_bulk_actions($actions = array()) {
+        return $actions;
     }
 
     /**
      * Process bulk actions
-     * will override in child
+     * will override in child class
      */
     function process_bulk_action() {}
 
@@ -184,44 +161,13 @@ class CFX_List_Table extends WP_List_Table {
          */
         $per_page = $this->_settings['items_per_page'];
 
-
-        /**
-         * REQUIRED. Now we need to define our column headers. This includes a complete
-         * array of columns to be displayed (slugs & titles), a list of columns
-         * to keep hidden, and a list of columns that are sortable. Each of these
-         * can be defined in another method (as we've done here) before being
-         * used to build the value for our _column_headers property.
-         */
         $columns = $this->get_columns();
         $hidden = array();
         $sortable = $this->get_sortable_columns();
 
-
-        /**
-         * REQUIRED. Finally, we build an array to be used by the class for column 
-         * headers. The $this->_column_headers property takes an array which contains
-         * 3 other arrays. One for all columns, one for hidden columns, and one
-         * for sortable columns.
-         */
         $this->_column_headers = array($columns, $hidden, $sortable);
-
-
-        /**
-         * Optional. You can handle your bulk actions however you see fit. In this
-         * case, we'll handle them within our package just to keep things clean.
-         */
         $this->process_bulk_action();
-
-
-        /**
-         * Instead of querying a database, we're going to fetch the example data
-         * property we created for use in this plugin. This makes this example 
-         * package slightly different than one you might build on your own. In 
-         * this example, we'll be using array manipulation to sort and paginate 
-         * our data. In a real-world implementation, you will probably want to 
-         * use sort and pagination data to build a custom query instead, as you'll
-         * be able to use your precisely-queried data immediately.
-         */
+        
         $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'id'; //If no sort, default to title
         $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'asc'; //If no order, default to asc
         $current_page = $this->get_pagenum();
@@ -229,25 +175,10 @@ class CFX_List_Table extends WP_List_Table {
         
         $data = $this->get_data($search, $orderby, $order, $current_page, $per_page);
 
-        
-        /**
-         * REQUIRED for pagination. Let's check how many items are in our data array. 
-         * In real-world use, this would be the total number of items in your database, 
-         * without filtering. We'll need this later, so you should always include it 
-         * in your own package classes.
-         */
         $total_items = $this->count_data($search);
 
-        /**
-         * REQUIRED. Now we can add our *sorted* data to the items property, where 
-         * it can be used by the rest of the class.
-         */
         $this->items = $data;
 
-
-        /**
-         * REQUIRED. We also have to register our pagination options & calculations.
-         */
         $this->set_pagination_args(array(
             'total_items' => $total_items, //WE have to calculate the total number of items
             'per_page' => $per_page, //WE have to determine how many items to show on a page
