@@ -56,13 +56,6 @@ class CFX_List_Table extends WP_List_Table {
      * @var array
      */
     protected $_settings;
-    
-    /**
-     * Action allowed
-     * 
-     * @var mixed
-     */
-    protected $_actions;
 
     /**
      * Constructor
@@ -118,24 +111,8 @@ class CFX_List_Table extends WP_List_Table {
      * 
      * @return type
      */
-    function get_sortable_columns() {
-        return $this->_columns;
-    }
-
-    /**
-     * Set the bulk actions
-     * 
-     * @param array $actions
-     */
-    function set_bulk_actions($actions = array()){
-        if(!empty($actions)){
-            $this->_actions = $actions;
-        }else{
-            $actions = array(
-                'delete'    => 'Delete'
-            );
-            $this->_actions = $actions;
-        }
+    function get_sortable_columns($sortable_columns = array()) {
+        return $sortable_columns;
     }
     
     /**
@@ -143,13 +120,13 @@ class CFX_List_Table extends WP_List_Table {
      * 
      * @return array
      */
-    function get_bulk_actions() {
-        return $this->_actions;
+    function get_bulk_actions($actions = array()) {
+        return $actions;
     }
 
     /**
      * Process bulk actions
-     * will override in child
+     * will override in child class
      */
     function process_bulk_action() {}
 
