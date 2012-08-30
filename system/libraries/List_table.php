@@ -28,8 +28,12 @@
  * @subpackage          Library
  * @author		CalibreWorks Team
  * @since		Version 1.0
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  */
+
+if(!class_exists('WP_List_Table')) :
+    require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
+endif;
 class CFX_List_Table extends WP_List_Table {
 
     /**
