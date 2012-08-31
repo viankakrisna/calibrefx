@@ -193,7 +193,7 @@ abstract class CFX_Admin {
         global $calibrefx_sections, $calibrefx_current_section;
         
         ?>
-        <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes">
+        <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes <?php echo $calibrefx_current_section; ?>">
             <form method="post" action="options.php">
                 <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
                 <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
