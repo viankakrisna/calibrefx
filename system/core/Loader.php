@@ -313,7 +313,7 @@ class CFX_Loader {
         }
 
         $model = strtolower($model);
-
+        $model = ucfirst($model);
         foreach ($this->_model_paths as $mod_path) {
             if (!file_exists($mod_path . '/' . $path . $model . '.php')) {
                 continue;
@@ -325,7 +325,6 @@ class CFX_Loader {
 
             require_once($mod_path . '/' . $path . $model . '.php');
 
-            $model = ucfirst($model);
             $CFX->$name = new $model();
             $this->_loaded_models[] = $name;
             calibrefx_log_message('debug', 'Model loaded: ' . $name);
