@@ -27,30 +27,34 @@
  * @link		http://calibrefx.com
  */
 
-add_action('calibrefx_setup', 'calibrefx_register_scripts');
+add_action('init', 'calibrefx_register_scripts');
 /**
  * This function register our style and script files
  */
-function calibrefx_register_scripts(){
-    wp_deregister_script('jquery');
-
-    wp_register_script('jquery', CALIBREFX_JS_URL . '/jquery.min.js', false, '1.7.1');
+function calibrefx_register_scripts(){   
     wp_register_script('calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', array('jquery'), FRAMEWORK_VERSION);
     wp_register_script('modernizr', CALIBREFX_JS_URL . '/modernizr.min.js', false, FRAMEWORK_VERSION);
     wp_register_script('jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', array('jquery'), FRAMEWORK_VERSION);
     wp_register_script('jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array('jquery'), FRAMEWORK_VERSION);
     wp_register_script('calibrefx-script', CALIBREFX_JS_URL . '/calibrefx.js', array('jquery', 'jquery-validate'), FRAMEWORK_VERSION);
     wp_register_script('jquery.cycle', CALIBREFX_JS_URL . '/jquery.cycle.all.js', array('jquery'), FRAMEWORK_VERSION);
+    wp_register_script('jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array('jquery'), FRAMEWORK_VERSION);
+    wp_register_script('calibrefx-admin-bar', CALIBREFX_JS_URL . '/calibrefx-admin-bar.js', array('jquery'), FRAMEWORK_VERSION);
+    
+    wp_register_style('calibrefx-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css', FRAMEWORK_VERSION);
+    wp_register_style('calibrefx-bootstrap-responsive', CALIBREFX_CSS_URL . '/bootstrap.responsive.min.css', FRAMEWORK_VERSION);
+    wp_register_style('calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css', FRAMEWORK_VERSION);
+    wp_register_style('calibrefx-responsive-style', CALIBREFX_CSS_URL . '/calibrefx.responsive.css', FRAMEWORK_VERSION);
+    wp_register_style('nivo-slider', CALIBREFX_CSS_URL . '/nivo-slider.css', FRAMEWORK_VERSION);
 }
 
-add_action('calibrefx_meta', 'calibrefx_load_scripts', 5);
+add_action('wp_enqueue_scripts', 'calibrefx_load_scripts');
 /**
  * Load default calibrefx scripts
  * 
  * since @1.0
  */
 function calibrefx_load_scripts() {
-    wp_enqueue_script('jquery');
     wp_enqueue_script('modernizr');
     wp_enqueue_script('calibrefx-script');
     if (calibrefx_get_option('enable_bootstrap')) {
@@ -64,7 +68,7 @@ function calibrefx_load_scripts() {
     wp_localize_script('calibrefx-script', 'cfx_ajax', array('ajaxurl' => admin_url('admin-ajax.php')));
 }
 
-add_action('calibrefx_meta', 'calibrefx_load_styles', 5);
+add_action('wp_enqueue_scripts', 'calibrefx_load_styles');
 
 /**
  * Load default calibrefx styles
@@ -73,12 +77,6 @@ add_action('calibrefx_meta', 'calibrefx_load_styles', 5);
  */
 function calibrefx_load_styles() {
     $calibrefx_default_style = get_theme_support('calibrefx-default-styles');
-
-    wp_register_style('calibrefx-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css', FRAMEWORK_VERSION);
-    wp_register_style('calibrefx-bootstrap-responsive', CALIBREFX_CSS_URL . '/bootstrap.responsive.min.css', FRAMEWORK_VERSION);
-    wp_register_style('calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css', FRAMEWORK_VERSION);
-    wp_register_style('calibrefx-responsive-style', CALIBREFX_CSS_URL . '/calibrefx.responsive.css', FRAMEWORK_VERSION);
-    wp_register_style('nivo-slider', CALIBREFX_CSS_URL . '/nivo-slider.css', FRAMEWORK_VERSION);
 
     /** If not active, do nothing */
     if (!$calibrefx_default_style)
@@ -105,9 +103,6 @@ add_action('admin_init', 'calibrefx_load_admin_scripts');
  *
  */
 function calibrefx_load_admin_scripts() {
-    wp_register_script('jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array('jquery'), FRAMEWORK_VERSION);
-    wp_register_script('calibrefx-admin-bar', CALIBREFX_JS_URL . '/calibrefx-admin-bar.js', array('jquery'), FRAMEWORK_VERSION);
-
     add_thickbox();
     wp_enqueue_script('theme-preview');
     wp_enqueue_script('calibrefx-admin-bar');
