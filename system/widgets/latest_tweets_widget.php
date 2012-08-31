@@ -21,7 +21,7 @@
  * @package CalibreFx
  */
  
- class Calibrefx_Latest_Tweets_Widget extends WP_Widget {
+ class CFX_Latest_Tweets_Widget extends WP_Widget {
 	
 	protected $defaults;
 	

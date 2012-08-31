@@ -21,7 +21,7 @@
  * @package CalibreFx
  */
  
-class Calibrefx_Subscriber_Widget extends WP_Widget {
+class CFX_Subscriber_Widget extends WP_Widget {
 	
 	protected $defaults;
 	

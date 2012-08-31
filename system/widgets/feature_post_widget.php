@@ -15,13 +15,13 @@
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
  *
- * Contain feature page widgets class
+ * Contain feature post widgets class
  * extend from WP_Widget Class
  *
  * @package CalibreFx
  */
  
-class Calibrefx_Feature_Page_Widget extends WP_Widget {
+class CFX_Feature_Post_Widget extends WP_Widget {
 	
 	protected $defaults;
 	
@@ -32,7 +32,8 @@ class Calibrefx_Feature_Page_Widget extends WP_Widget {
 
 		$this->defaults = array(
 			'title'       	  => '',
-			'page_id'     	  => '',
+			'posts_cat'       => '',
+			'post_num'        => '',
 			'show_image'      => 0,
 			'image_alignment' => 'alignleft',
 			'image_size'      => '',
@@ -43,11 +44,11 @@ class Calibrefx_Feature_Page_Widget extends WP_Widget {
 		);
 
 		$widget_ops = array(
-			'classname'   => 'feature-page-widget',
-			'description' => __( 'Display feature page with thumbnail', 'calibrefx' ),
+			'classname'   => 'feature-post-widget',
+			'description' => __( 'Display feature post with thumbnail', 'calibrefx' ),
 		);
 
-		$this->WP_Widget( 'feature-page', __( 'CalibreFx - Feature Page', 'calibrefx' ), $widget_ops );
+		$this->WP_Widget( 'feature-post', __( 'CalibreFx - Feature Post', 'calibrefx' ), $widget_ops );
 
 	}
 	
@@ -61,14 +62,20 @@ class Calibrefx_Feature_Page_Widget extends WP_Widget {
 		extract( $args );
 		$instance = wp_parse_args( (array) $instance, $this->defaults );
 		
-		$featured_page = new WP_Query( array( 'page_id' => $instance['page_id'] ) );
+		//$featured_page = new WP_Query( array( 'page_id' => $instance['page_id'] ) );
+		$query_args = array(
+			'post_type' => 'post',
+			'cat'       => $instance['posts_cat'],
+			'showposts' => $instance['posts_num'],
+		);
+		$featured_posts = new WP_Query( $query_args );
 		
-		echo $before_widget . '<div class="feature-page">';
+		echo $before_widget . '<div class="feature-post">';
 
 			if ( ! empty( $instance['title'] ) )
 				echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
 
-			if ( $featured_page->have_posts() ) : while ( $featured_page->have_posts() ) : $featured_page->the_post();
+			if ( $featured_posts->have_posts() ) : while ( $featured_posts->have_posts() ) : $featured_posts->the_post();
 				echo '<div class="' . implode( ' ', get_post_class() ) . '">';
 			
 				//Show image
@@ -123,8 +130,22 @@ class Calibrefx_Feature_Page_Widget extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'page_id' ); ?>"><?php _e( 'Page', 'calibrefx' ); ?>:</label>
-			<?php wp_dropdown_pages( array( 'name' => $this->get_field_name( 'page_id' ), 'selected' => $instance['page_id'] ) ); ?>
+			<label for="<?php echo $this->get_field_id( 'posts_cat' ); ?>"><?php _e( 'Category', 'calibrefx' ); ?>:</label>
+			<?php
+			$categories_args = array(
+				'name'            => $this->get_field_name( 'posts_cat' ),
+				'selected'        => $instance['posts_cat'],
+				'orderby'         => 'Name',
+				'hierarchical'    => 1,
+				'show_option_all' => __( 'All Categories', 'calibrefx' ),
+				'hide_empty'      => '0',
+			);
+			wp_dropdown_categories( $categories_args ); ?>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id( 'posts_num' ); ?>"><?php _e( 'Number of Posts to Show', 'calibrefx' ); ?>:</label>
+			<input type="text" id="<?php echo $this->get_field_id( 'posts_num' ); ?>" name="<?php echo $this->get_field_name( 'posts_num' ); ?>" value="<?php echo esc_attr( $instance['posts_num'] ); ?>" size="2" />
 		</p>
 
 		<hr class="div" />

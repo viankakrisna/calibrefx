@@ -101,6 +101,13 @@ class CFX_Loader {
     protected $_loaded_models = array();
 
     /**
+     * List of loaded widgets
+     *
+     * @var array
+     */
+    protected $_loaded_widgets = array();
+
+    /**
      * List of loaded helpers
      *
      * @var array
@@ -171,8 +178,8 @@ class CFX_Loader {
         }
 
         // Load Configs
-        if (isset($autoload['config']) && count($autoload['config']) > 0) {
-            $this->config($autoload['config']);
+        if (isset($autoload['configs']) && count($autoload['configs']) > 0) {
+            $this->config($autoload['configs']);
         }
 
         // Load libraries
@@ -183,8 +190,8 @@ class CFX_Loader {
         }
 
         // Autoload models
-        if (isset($autoload['model'])) {
-            $this->model($autoload['model']);
+        if (isset($autoload['models'])) {
+            $this->model($autoload['models']);
         }
 
         // Load Helpers
@@ -193,18 +200,18 @@ class CFX_Loader {
         }
 
         // Load Hooks
-        if (isset($autoload['hook']) && count($autoload['hook']) > 0) {
-            $this->hook($autoload['hook']);
+        if (isset($autoload['hooks']) && count($autoload['hooks']) > 0) {
+            $this->hook($autoload['hooks']);
         }
 
         // Load Widgets
-        if (isset($autoload['widget']) && count($autoload['widget']) > 0) {
-            $this->widget($autoload['widget']);
+        if (isset($autoload['widgets']) && count($autoload['widgets']) > 0) {
+            $this->widget($autoload['widgets']);
         }
 
         // Load Hooks
-        if (isset($autoload['shortcode']) && count($autoload['shortcode']) > 0) {
-            $this->shortcodes($autoload['shortcode']);
+        if (isset($autoload['shortcodes']) && count($autoload['shortcodes']) > 0) {
+            $this->shortcodes($autoload['shortcodes']);
         }
     }
 
@@ -306,7 +313,7 @@ class CFX_Loader {
         }
 
         $model = strtolower($model);
-
+        $model = ucfirst($model);
         foreach ($this->_model_paths as $mod_path) {
             if (!file_exists($mod_path . '/' . $path . $model . '.php')) {
                 continue;
@@ -318,7 +325,6 @@ class CFX_Loader {
 
             require_once($mod_path . '/' . $path . $model . '.php');
 
-            $model = ucfirst($model);
             $CFX->$name = new $model();
             $this->_loaded_models[] = $name;
             calibrefx_log_message('debug', 'Model loaded: ' . $name);
@@ -375,19 +381,22 @@ class CFX_Loader {
      */
     public function widget($widgets = array()) {
         foreach ($widgets as $widget) {
-            $filepath = $path . '/' . $widget . '.php';
-
-            if (isset($this->_loaded_files[$filepath])) {
-                //File loaded
-                return;
+            $widget_name = 'CFX_' . $widget . '_Widget';
+            if (isset($this->_loaded_widgets[$widget_name])) {
+                continue;
             }
 
-            if (file_exists($filepath)) {
-                include_once($filepath);
+            foreach ($this->_widget_paths as $path) {
+                $filepath = $path . '/' . strtolower($widget). '_widget' . '.php';
+                if (file_exists($filepath)) {
+                    
+                    include_once($filepath);
 
-                $this->_loaded_files[] = $filepath;
-                calibrefx_log_message('debug', 'Widget loaded: ' . $widget);
-                break;
+                    $this->_loaded_widgets[] = $widget_name;
+                    register_widget($widget_name);
+                    calibrefx_log_message('debug', 'Widget loaded: ' . $widget_name);
+                    break;
+                }
             }
         }
     }
@@ -683,7 +692,7 @@ class CFX_Loader {
      */
     public function add_child_path($path) {
         $CFX = & calibrefx_get_instance();
-        $CFX->config->_config_paths[] = $path .  '/config';
+        $CFX->config->_config_paths[] = $path . '/config';
         $this->_config_paths[] = $path . '/config';
         $this->_library_paths[] = $path . '/libraries';
         $this->_helper_paths[] = $path . '/helpers';
