@@ -94,16 +94,16 @@ function calibrefx_print_favicon() {
 
     if ($pre !== false)
         $favicon = $pre;
-    elseif (file_exists(CALIBREFX_IMAGES_DIR . '/ico/favicon.ico'))
+    elseif (file_exists(CALIBREFX_IMAGES_URI . '/ico/favicon.ico'))
         $favicon = CALIBREFX_IMAGES_URL . '/ico/favicon.ico';
     else
         $favicon = CALIBREFX_IMAGES_URL . '/favicon.ico';
 
     //Check if child themes have the favicon.ico
-    if (file_exists(CHILD_DIR . '/favicon.ico'))
+    if (file_exists(CHILD_URI . '/favicon.ico'))
         $favicon = CHILD_URL . '/favicon.ico';
 
-    if (file_exists(CHILD_IMAGES_DIR . '/favicon.ico'))
+    if (file_exists(CHILD_IMAGES_URI . '/favicon.ico'))
         $favicon = CHILD_IMAGES_URL . '/favicon.ico';
 
     $favicon = apply_filters('calibrefx_favicon_url', $favicon);
