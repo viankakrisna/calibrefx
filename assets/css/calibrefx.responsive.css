@@ -47,7 +47,7 @@
         width: auto;
     }
 
-	#nav,#subnav,#inner,#header,#footer{
+	#nav,#subnav,#inner,#header,#footer,#footer-widget{
 		padding-left: 0px;
 		padding-right: 0px;
 	}
