@@ -124,7 +124,7 @@ function calibrefx_print_media57_icon() {
 
     if ($pre !== false)
         $media57 = $pre;
-    elseif (file_exists(CALIBREFX_IMAGES_DIR . '/ico/media-57x57.png'))
+    elseif (file_exists(CALIBREFX_IMAGES_URI . '/ico/media-57x57.png'))
         $media57 = CALIBREFX_IMAGES_URL . '/ico/media-57x57.png';
     else
         $media57 = CALIBREFX_IMAGES_URL . '/media-57x57.png';
@@ -147,7 +147,7 @@ function calibrefx_print_media72_icon() {
 
     if ($pre !== false)
         $media72 = $pre;
-    elseif (file_exists(CALIBREFX_IMAGES_DIR . '/ico/media-72x72.png'))
+    elseif (file_exists(CALIBREFX_IMAGES_URI . '/ico/media-72x72.png'))
         $media72 = CALIBREFX_IMAGES_URL . '/ico/media-72x72.png';
     else
         $media72 = CALIBREFX_IMAGES_URL . '/media-72x72.png';
@@ -170,7 +170,7 @@ function calibrefx_print_media114_icon() {
 
     if ($pre !== false)
         $media114 = $pre;
-    elseif (file_exists(CALIBREFX_IMAGES_DIR . '/ico/media-72x72.png'))
+    elseif (file_exists(CALIBREFX_IMAGES_URI . '/ico/media-72x72.png'))
         $media114 = CALIBREFX_IMAGES_URL . '/ico/media-72x72.png';
     else
         $media114 = CALIBREFX_IMAGES_URL . '/media-72x72.png';
