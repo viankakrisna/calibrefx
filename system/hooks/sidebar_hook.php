@@ -35,14 +35,16 @@ function calibrefx_do_sidebar() {
 
     if (!dynamic_sidebar('sidebar')) {
 
-        echo '<div class="widget widget_text"><div class="widget-wrap">';
-        echo '<h4 class="widgettitle">';
-        _e('Primary Sidebar Widget Area', 'calibrefx');
-        echo '</h4>';
-        echo '<div class="textwidget"><p>';
-        printf(__('This is the Primary Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'calibrefx'), admin_url('widgets.php'));
-        echo '</p></div>';
-        echo '</div></div>';
+        $output = '<div class="widget widget_text"><div class="widget-wrap">';
+        $output .= '<h4 class="widgettitle">';
+        $output .= __('Primary Sidebar Widget Area', 'calibrefx');
+        $output .= '</h4>';
+        $output .= '<div class="textwidget"><p>';
+        $output .= sprintf(__('This is the Primary Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'calibrefx'), admin_url('widgets.php'));
+        $output .= '</p></div>';
+        $output .= '</div></div>';
+        
+        echo apply_filters('calibrefx_sidebar_default', $output);
     }
 }
 
@@ -55,13 +57,15 @@ function calibrefx_do_sidebar_alt() {
 
     if (!dynamic_sidebar('sidebar-alt')) {
 
-        echo '<div class="widget widget_text"><div class="widget-wrap">';
-        echo '<h4 class="widgettitle">';
-        _e('Secondary Sidebar Widget Area', 'calibrefx');
-        echo '</h4>';
-        echo '<div class="textwidget"><p>';
-        printf(__('This is the Secondary Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'calibrefx'), admin_url('widgets.php'));
-        echo '</p></div>';
-        echo '</div></div>';
+        $output = '<div class="widget widget_text"><div class="widget-wrap">';
+        $output .=  '<h4 class="widgettitle">';
+        $output .= __('Secondary Sidebar Widget Area', 'calibrefx');
+        $output .=  '</h4>';
+        $output .=  '<div class="textwidget"><p>';
+        $output .= sprintf(__('This is the Secondary Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'calibrefx'), admin_url('widgets.php'));
+        $output .=  '</p></div>';
+        $output .=  '</div></div>';
+        
+        echo apply_filters('calibrefx_sidebar_alt_default', $output);
     }
 }
