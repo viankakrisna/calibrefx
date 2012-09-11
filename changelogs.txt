@@ -1,5 +1,16 @@
 Change Logs CalibreFx
 
+version 1.0.3<11 September 2012> - 
+    * Use Bootloader
+    * No more complicated init.php
+    * Using Loader to include helpers, library, widgets, config, etc
+	* Enable to load child path
+	* Add Curl Library
+	* Driver Module
+	* Fix Some Styles and JQuery crash
+	* Patch for *nix environment
+	* Compatible With WP List Table
+
 version 1.0.2 <10 August 2012> -
     * update bootstrap to version 2.0
     * simplified settings

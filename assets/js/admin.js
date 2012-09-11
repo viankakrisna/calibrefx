@@ -83,6 +83,21 @@ window['calibrefx'] = {
 
 jQuery(calibrefx.ready);
 
+jQuery(document).ready(function($){
+	$('input.calibrefx-settings-checkbox').click(function(){
+		var id = $(this).attr('target');
+		
+		if($(this).is(':checked')){
+			$('#' + id).val('1');
+			
+			console.info($('#' + id));
+		}else{
+			console.info('unchecked');
+		
+			$('#' + id).val('0');
+		}
+	});
+});
 
 function calibrefx_confirm( text ) {
     var answer = confirm( text );

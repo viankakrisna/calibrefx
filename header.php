@@ -1,21 +1,20 @@
 <?php
 /**
- * CalibreFx Framework
+ * CalibreFx
  *
- * WordPress Themes by CalibreWorks Team
+ * WordPress Themes Framework by CalibreWorks Team
  *
  * @package		CalibreFx
  * @author		CalibreWorks Team
- * @authorlink	http://calibrefx.com
- * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
- * @license		Commercial
+ * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
  * @link		http://calibrefx.com
- * @since		Version 1.0
  * @filesource 
  *
- * SalesVenture Header file
+ * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
+ * this file under any circumstances. 
+ * 
  *
- * @package SalesVenture
+ * @package CalibreFx
  */
  
 do_action('calibrefx_html_header');
