@@ -70,7 +70,7 @@ class CFX_List_Table extends WP_List_Table {
             'ajax'  => false,
         );
         
-        $this->_settings = array_merge($settings, $this->_default);
+        $this->_settings = $settings + $this->_default;
 
         //Set parent defaults
         parent::__construct($this->_settings);

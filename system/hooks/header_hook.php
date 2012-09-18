@@ -408,32 +408,6 @@ function calibrefx_do_header() {
     }
 }
 
-add_action('calibrefx_after_header', 'calibrefx_add_socials_script');
-
-/**
- * Add Social javascript after header
- */
-function calibrefx_add_socials_script() {
-    global $twitteruser;
-
-    $twitteruser = calibrefx_get_option('twitter_username');
-
-    //@TODO: add enable facebook in theme setting
-    echo '
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184690738325056";
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, \'script\', \'facebook-jssdk\'));</script>';
-
-    if (!empty($twitteruser)) {
-        echo '<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>';
-    }
-}
-
 add_filter('feed_link', 'calibrefx_feed_links_filter', 10, 2);
 
 /**
