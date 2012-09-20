@@ -116,11 +116,6 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('facebook_page_id'); ?>"><?php _e('Facebook Page ID', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('facebook_page_id'); ?>" name="<?php echo $this->get_field_name('facebook_page_id'); ?>" value="<?php echo esc_attr($instance['facebook_page_id']); ?>" class="widefat" />
-        </p>
-
-        <p>
             <label for="<?php echo $this->get_field_id('facebook_url'); ?>"><?php _e('Facebook Url', 'calibrefx'); ?>:</label>
             <input type="text" id="<?php echo $this->get_field_id('facebook_url'); ?>" name="<?php echo $this->get_field_name('facebook_url'); ?>" value="<?php echo esc_attr($instance['facebook_url']); ?>" class="widefat" />
         </p>
