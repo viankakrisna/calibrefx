@@ -86,6 +86,7 @@ final class Calibrefx {
         add_theme_support('calibrefx-custom-header');
         add_theme_support('calibrefx-default-styles');
         add_theme_support('calibrefx-inpost-layouts');
+        add_theme_support('calibrefx-seo');
         //add_theme_support('calibrefx-preformance');
 
         if (!current_theme_supports('calibrefx-menus')) {

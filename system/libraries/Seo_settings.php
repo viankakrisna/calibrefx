@@ -102,10 +102,68 @@ class CFX_Seo_Settings extends CFX_Admin {
      */
     public function security_filters(){
         $CFX = & calibrefx_get_instance();
+        
+        $CFX->security->add_sanitize_filter(
+                'one_zero', 
+                $this->settings_field,
+                array(
+                    'doc_canonical_url',
+                    'doc_enable_rewrite_title',
+                    'home_noindex',
+                    'home_nofollow',
+                    'home_noarchive',
+                    'category_noindex',
+                    'tag_noindex',
+                    'author_noindex',
+                    'date_noindex',
+                    'search_noindex',
+                    'category_noarchive',
+                    'tag_noarchive',
+                    'author_noarchive',
+                    'date_noarchive',
+                    'search_noarchive',
+                    'site_noarchive',
+                    'site_noodp',
+                    'site_noydir',
+                    'archive_canonical')
+        );
+        
+        $CFX->security->add_sanitize_filter(
+                'safe_text', 
+                $this->settings_field,
+                array(
+                    'post_rewrite_title',
+                    'page_rewrite_title',
+                    'author_rewrite_title',
+                    'category_rewrite_title',
+                    'archive_rewrite_title',
+                    'tag_rewrite_title',
+                    'search_rewrite_title',
+                    '404_rewrite_title',
+                    'post_description',
+                    'page_description',
+                    'author_description',
+                    'search_description',
+                    'category_description',
+                    'archive_description',
+                    'tag_description',
+                    '404_description',
+                    'post_keywords',
+                    'page_keywords',
+                    'author_keywords',
+                    'search_keywords',
+                    'category_keywords',
+                    'archive_keywords',
+                    'tag_keywords',
+                    '404_keywords',
+                    'home_title',
+                    'home_meta_description',
+                    'home_meta_keywords')
+        );
     }
 
     public function meta_sections() {
-        global $calibrefx_current_section, $calibrefx_sections;
+        global $calibrefx_current_section;
 
         calibrefx_clear_meta_section();
 

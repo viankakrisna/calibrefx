@@ -26,7 +26,20 @@
  * @link		http://calibrefx.com
  */
 
-add_filter('calibrefx_do_title', 'calibrefx_seo_title');
+//developer can deactivate this from the functions.php
+if(current_theme_supports('calibrefx-seo')){
+    init_seo_feature_hook();
+}
+
+function init_seo_feature_hook(){
+    add_filter('calibrefx_do_title', 'calibrefx_seo_title');
+    add_filter('calibrefx_do_meta_description', 'calibrefx_seo_description');
+    add_filter('calibrefx_do_meta_keywords', 'calibrefx_seo_keywords');
+    add_action('calibrefx_meta', 'calibrefx_do_meta_robot');
+    add_action('wp_head', 'calibrefx_canonical', 5);
+    add_action('template_redirect', 'calibrefx_custom_redirect', 5);
+}
+
 
 /**
  * Generate SEO title based on the format given
@@ -80,8 +93,6 @@ function calibrefx_seo_title() {
     }
 }
 
-add_filter('calibrefx_do_meta_description', 'calibrefx_seo_description');
-
 /**
  * Generate SEO description based on the format given
  */
@@ -132,8 +143,6 @@ function calibrefx_seo_description() {
     }
 }
 
-add_filter('calibrefx_do_meta_keywords', 'calibrefx_seo_keywords');
-
 /**
  * Generate SEO keywords based on the format given
  */
@@ -179,8 +188,6 @@ function calibrefx_seo_keywords() {
         return $cfx_replacer->get(calibrefx_get_option('404_keywords', $CFX->seo_settings_m));
     }
 }
-
-add_action('calibrefx_meta', 'calibrefx_do_meta_robot');
 
 /**
  * This function generates the index / follow / noodp / noydir / noarchive code
@@ -291,8 +298,6 @@ function calibrefx_do_meta_robot() {
         printf('<meta name="robots" content="%s" />' . "\n", implode(',', $meta));
 }
 
-add_action('wp_head', 'calibrefx_canonical', 5);
-
 /**
  * Echo custom canonical link tag.
  *
@@ -341,7 +346,6 @@ function calibrefx_canonical() {
         printf('<link rel="canonical" href="%s" />' . "\n", esc_url(apply_filters('calibrefx_canonical', $canonical)));
 }
 
-add_action('template_redirect', 'calibrefx_custom_redirect', 5);
 /**
  * Redirect to another post with permanent redirect 
  */
