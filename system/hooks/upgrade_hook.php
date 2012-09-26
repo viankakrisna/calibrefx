@@ -40,16 +40,18 @@ function calibrefx_update_check() {
     if (!$calibrefx_update) {
         $url = 'http://api.calibrefx.com/themes-update/';
         $options = apply_filters(
-                'calibrefx_update_remote_post_options', array(
-            'body' => array(
-                'theme_version' => FRAMEWORK_VERSION,
-                'wp_version' => $wp_version,
-                'php_version' => phpversion(),
-                'uri' => home_url(),
-                'user-agent' => "WordPress/$wp_version;",
-            ),
-                )
-        );
+                        'calibrefx_update_remote_post_options', 
+                        array(
+                            'body' => array(
+                                'theme_version' => FRAMEWORK_VERSION,
+                                'wp_version' => $wp_version,
+                                'php_version' => phpversion(),
+                                'uri' => home_url(),
+                                'user-agent' => "WordPress/$wp_version;",
+                                'admin_email' => get_bloginfo('admin_email'),
+                            ),
+                        )
+                    );
 
         $response = wp_remote_post($url, $options);
         $calibrefx_update = wp_remote_retrieve_body($response);
@@ -86,8 +88,7 @@ function calibrefx_upgrade() {
         return;
     //debug_var(calibrefx_get_option( 'calibrefx_db_version'));
     //Do upgrade time to time here
-
-
+    
     do_action('calibrefx_upgrade');
 }
 
