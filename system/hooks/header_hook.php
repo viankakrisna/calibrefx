@@ -400,11 +400,22 @@ function calibrefx_do_header() {
     do_action('calibrefx_site_description');
     echo '</div><!-- end #header-title -->';
 
+    $header_right_widget = current_theme_supports('calibrefx-header-right-widgets');
+
+    if ($header_right_widget) {
+       echo '<div class="pull-right header-right">';
+       do_action('calibrefx_header_right_widget');
+       echo '</div><!-- end .widget-wrap -->';
+    }
+}
+
+/**
+ * Print header right widget
+ */
+add_action('calibrefx_header_right_widget','calibrefx_do_header_right_widget');
+function calibrefx_do_header_right_widget(){
     if (is_active_sidebar('header-right')) {
-        echo '<div class="pull-right header-right">';
-        do_action('calibrefx_header_right_widget');
         dynamic_sidebar('header-right');
-        echo '</div><!-- end .widget-wrap -->';
     }
 }
 
