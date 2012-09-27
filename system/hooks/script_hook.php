@@ -108,9 +108,11 @@ function calibrefx_load_admin_scripts() {
     wp_enqueue_script('calibrefx-admin-bar');
     wp_enqueue_script('calibrefx_admin_js', CALIBREFX_JS_URL . '/admin.js', array('jquery', 'jquery-sticky'), FRAMEWORK_VERSION, true);
     $params = array(
-        'category_checklist_toggle' => __('Select / Deselect All', 'calibrefx')
+        'category_checklist_toggle' => __('Select / Deselect All', 'calibrefx'),
+        'shortcode_url' => CALIBREFX_SHORTCODE_URL,
+        'assets_img_url' => CALIBREFX_IMAGES_URL
     );
-    wp_localize_script('calibrefx_admin_js', 'calibrefx', $params);
+    wp_localize_script('calibrefx_admin_js', 'calibrefx_local', $params);
 }
 
 add_action('admin_init', 'calibrefx_load_admin_styles');
