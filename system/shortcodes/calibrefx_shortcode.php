@@ -501,10 +501,10 @@ function calibrefx_tabs($atts, $content = null) {
     $i = 0;
     //iterate through tabs headings 
     foreach ($ltt_tabs as $ltt_tab) {
-        echo '            jQuery("#' . $tabid . '-goto' . $i . '").click(function() { ' . "\n";
-        echo '				jQuery("#' . $tabid . '").cycle(' . $i . ');    ' . "\n";
-        echo '				return false; ' . "\n";
-        echo '		    });' . "\n";
+        echo 'jQuery("#' . $tabid . '-goto' . $i . '").click(function() { ' . "\n";
+        echo '	jQuery("#' . $tabid . '").cycle(' . $i . ');    ' . "\n";
+        echo '	return false; ' . "\n";
+        echo '});' . "\n";
         $i++;
     }
 
@@ -551,16 +551,16 @@ function tabs_js() {
     $i = 0;
     //iterate through tabs headings 
     foreach ($ltt_tabs as $ltt_tab) {
-        echo '            jQuery("#' . $tabid . '-goto' . $i . '").click(function() { ' . "\n";
-        echo '				jQuery("#' . $tabid . '").cycle(' . $i . ');    ' . "\n";
-        echo '				return false; ' . "\n";
-        echo '		    });' . "\n";
+        echo 'jQuery("#' . $tabid . '-goto' . $i . '").click(function() { ' . "\n";
+        echo '  jQuery("#' . $tabid . '").cycle(' . $i . ');    ' . "\n";
+        echo '	return false; ' . "\n";
+        echo '});' . "\n";
         $i++;
     }
 
-    echo '			' . "\n";
-    echo '		});' . "\n";
-    echo '  </script>' . "\n";
+    echo "\n";
+    echo '});' . "\n";
+    echo ' </script>' . "\n";
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_tabs');
