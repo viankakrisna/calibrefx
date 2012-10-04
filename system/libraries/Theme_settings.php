@@ -121,9 +121,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                 array(
                     'calibrefx_layout_width',
                     'content_archive_limit',
-                    'calibrefx_db_version',
-                    'posts_nav',
-                    'content_archive')
+                    'calibrefx_db_version')
         );
     }
 
@@ -316,8 +314,9 @@ class CFX_Theme_Settings extends CFX_Admin {
                     'older-newer' => __('older/Newer', 'calibrefx'),
                     'prev-next' => __('Previous/Next', 'calibrefx'),
                     'numeric' => __('Numeric', 'calibrefx'),
-                        )
+                        ) 
                 );
+
                 foreach ((array) $postnav_display as $value => $name)
                     echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('posts_nav'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";
                 ?>
