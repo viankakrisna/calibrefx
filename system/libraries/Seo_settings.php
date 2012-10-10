@@ -456,7 +456,7 @@ class CFX_Seo_Settings extends CFX_Admin {
     function archive_box() {
         ?>
         <p>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[archive_canonical]" id="<?php echo $this->settings_field; ?>[category_noarchive]" value="1" <?php checked(1, calibrefx_get_option('category_noarchive', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[category_noarchive]"><?php _e("Canonical Paginated Archives", 'calibrefx'); ?></label><br/>
+            <input type="checkbox" name="<?php echo $this->settings_field; ?>[archive_canonical]" id="<?php echo $this->settings_field; ?>[archive_canonical]" value="1" <?php checked(1, calibrefx_get_option('archive_canonical', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[archive_canonical]"><?php _e("Canonical Paginated Archives", 'calibrefx'); ?></label><br/>
         </p>
         <?php
     }
