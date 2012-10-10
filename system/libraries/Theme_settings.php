@@ -121,9 +121,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                 array(
                     'calibrefx_layout_width',
                     'content_archive_limit',
-                    'calibrefx_db_version',
-                    'posts_nav',
-                    'content_archive')
+                    'calibrefx_db_version')
         );
     }
 
@@ -231,9 +229,8 @@ class CFX_Theme_Settings extends CFX_Admin {
 
         <div id="calibrefx_layout_width">
             <p>
-                <label for="<?php echo $this->settings_field; ?>[calibrefx_layout_width]"><?php _e('Layout Width', 'calibrefx'); ?>
-                    <input type="text" name="<?php echo $this->settings_field; ?>[calibrefx_layout_width]" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_layout_width')); ?>" size="3" />
-                    <?php _e('pixels', 'calibrefx'); ?></label>
+                <label for="<?php echo $this->settings_field; ?>[calibrefx_layout_width]"><?php _e('Layout Width', 'calibrefx'); ?></label>
+                <input type="text" name="<?php echo $this->settings_field; ?>[calibrefx_layout_width]" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_layout_width')); ?>" size="3" /><?php _e('pixels', 'calibrefx'); ?>
             </p>
 
             <p><span class="description"><?php _e('This option will limit the width in pixels size.', 'calibrefx'); ?></span></p>
@@ -317,8 +314,9 @@ class CFX_Theme_Settings extends CFX_Admin {
                     'older-newer' => __('older/Newer', 'calibrefx'),
                     'prev-next' => __('Previous/Next', 'calibrefx'),
                     'numeric' => __('Numeric', 'calibrefx'),
-                        )
+                        ) 
                 );
+
                 foreach ((array) $postnav_display as $value => $name)
                     echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('posts_nav'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";
                 ?>
