@@ -39,11 +39,24 @@ class CFX_Security {
      * @var	array
      */
     protected $options = array();
+    
+    /**
+     * Safe value for text
+     *
+     * @var	array
+     */
+    protected $safe_value = array(
+        '%description%',
+        '%post_title%',
+        '%page_title%',
+        '%keywords%',
+    );
 
     /**
      * Constructor
      */
     function __construct() {
+        
     }
 
     /**
@@ -181,7 +194,10 @@ class CFX_Security {
      * @return string safe text
      */
     function safe_text($new_value) {
-
+        //If in safe text don't filter
+        if(in_array($new_value, $this->safe_value)){
+            return $new_value;
+        }
         return sanitize_text_field($new_value);
     }
 

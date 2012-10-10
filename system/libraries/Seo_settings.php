@@ -39,6 +39,7 @@ class CFX_Seo_Settings extends CFX_Admin {
     function __construct() {
         $this->page_id = 'calibrefx-seo';
         $this->default_settings = apply_filters('calibrefx_seo_settings_defaults', array(
+            'enable_seo' => 1,
             'doc_canonical_url' => 1,
             'doc_enable_rewrite_title' => 1,
             'post_rewrite_title' => '%post_title%',
@@ -107,6 +108,7 @@ class CFX_Seo_Settings extends CFX_Admin {
                 'one_zero', 
                 $this->settings_field,
                 array(
+                    'enable_seo',
                     'doc_canonical_url',
                     'doc_enable_rewrite_title',
                     'home_noindex',
@@ -179,6 +181,7 @@ class CFX_Seo_Settings extends CFX_Admin {
     }
 
     public function meta_boxes() {
+        calibrefx_add_meta_box('document', 'professor', 'calibrefx-seo-settings', __('SEO Settings', 'calibrefx'), array(&$this,'seo_settings_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('document', 'professor', 'calibrefx-seo-settings-document-title-settings', __('Document Title Settings', 'calibrefx'), array(&$this,'document_title_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('document', 'professor', 'calibrefx-seo-settings-document-description-settings', __('Document Description Settings', 'calibrefx'), array(&$this,'document_description_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('document', 'professor', 'calibrefx-seo-settings-document-keyword-settings', __('Document Keyword Settings', 'calibrefx'), array(&$this,'document_description_box'), $this->pagehook, 'main', 'high');
@@ -191,6 +194,20 @@ class CFX_Seo_Settings extends CFX_Admin {
     }
 
     //Meta Boxes Sections
+    
+    /**
+     * Show seo settings box
+     */
+    function seo_settings_box() { ?>
+         <span class="description">
+            You can disable the SEO feature if you want to use another SEO plugin by uncheck the checkbox below. 
+        </span>
+        <p>
+            <input type="checkbox" name="<?php echo $this->settings_field; ?>[enable_seo]" id="<?php echo $this->settings_field; ?>[enable_seo]" value="1" <?php checked(1, calibrefx_get_option('enable_seo', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[enable_seo]"><?php _e("Enable SEO Feature?", 'calibrefx'); ?></label><br/>
+        </p>
+        <?php
+    }
+    
     /**
      * Show document setting box
      */

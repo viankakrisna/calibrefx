@@ -71,9 +71,7 @@ final class Calibrefx {
      * Initialize our hooks
      */
     public function intialize() {
-        add_action('calibrefx_init', array(&$this, 'calibrefx_theme_support'));
-        
-        
+        add_action('calibrefx_init', array(&$this, 'calibrefx_theme_support'),0);
     }
 
     /**
@@ -96,7 +94,6 @@ final class Calibrefx {
                 )
             );
         }
-
         if (!current_theme_supports('calibrefx-wraps'))
             add_theme_support('calibrefx-wraps', array('header', 'nav', 'subnav', 'inner', 'footer', 'footer-widget'));
         

@@ -26,9 +26,13 @@
  * @link		http://calibrefx.com
  */
 
-//developer can deactivate this from the functions.php
-if(current_theme_supports('calibrefx-seo')){
-    init_seo_feature_hook();
+add_action('calibrefx_init', 'calibrefx_init_seo_hook');
+function calibrefx_init_seo_hook(){
+    $CFX = &calibrefx_get_instance();
+    //developer can deactivate this from the functions.php
+    if(current_theme_supports('calibrefx-seo') && ($CFX->seo_settings_m->get('enable_seo'))){
+        init_seo_feature_hook();
+    }
 }
 
 function init_seo_feature_hook(){
@@ -52,12 +56,14 @@ function calibrefx_seo_title() {
     
     $cfx_replacer = & $CFX->replacer->set_replace_tag($replace_tags);
 
-    if (is_home()) {
+    if (is_home() || is_front_page()) {
         $home_title = calibrefx_get_option('home_title', $CFX->seo_settings_m);
-        if ($home_title)
+        if ($home_title){
             return $home_title;
-        else
+        }
+        else{
             return get_bloginfo('name');
+        }
     }
 
     if (is_category()) {
