@@ -48,6 +48,7 @@ class CFX_Seo_Settings extends CFX_Admin {
             'category_rewrite_title' => '%category_title% &raquo; %site_title%',
             'archive_rewrite_title' => 'Archive: %date% &raquo; %site_title%',
             'tag_rewrite_title' => 'Tags: %tag% &raquo; %site_title%',
+            'taxonomy_rewrite_title' => '%taxonomy%',
             'search_rewrite_title' => '%search% &raquo; %site_title%',
             '404_rewrite_title' => 'Nothing found for %request_words% &raquo; %site_title%',
             'post_description' => '%description%',
@@ -57,6 +58,7 @@ class CFX_Seo_Settings extends CFX_Admin {
             'category_description' => 'Page Category %category_title% for %site_title%',
             'archive_description' => 'Website Archive %date% for %site_title%',
             'tag_description' => 'Website Tag %tag% for %site_title%',
+            'taxonomy_description' => '%taxonomy% &raquo; %site_title%',
             '404_description' => 'Nothing found for %request_words%',
             'post_keywords' => '%keywords%',
             'page_keywords' => '%keywords%',
@@ -65,6 +67,7 @@ class CFX_Seo_Settings extends CFX_Admin {
             'category_keywords' => '%category_title%, %category_title% articles, %category_title% list',
             'archive_keywords' => '%site_title% archive, %site_title% %date% archive ',
             'tag_keywords' => '%tag%, article %tag%, review %tag%',
+            'taxonomy_keywords' => '%taxonomy%, article %taxonomy%, review %taxonomy%',
             '404_keywords' => '%request_words% 404, %request_words% not found, %request_words% not available',
             'home_title' => '',
             'home_meta_description' => '',
@@ -134,14 +137,6 @@ class CFX_Seo_Settings extends CFX_Admin {
                 'safe_text', 
                 $this->settings_field,
                 array(
-                    'post_rewrite_title',
-                    'page_rewrite_title',
-                    'author_rewrite_title',
-                    'category_rewrite_title',
-                    'archive_rewrite_title',
-                    'tag_rewrite_title',
-                    'search_rewrite_title',
-                    '404_rewrite_title',
                     'post_description',
                     'page_description',
                     'author_description',
@@ -255,6 +250,11 @@ class CFX_Seo_Settings extends CFX_Admin {
             <span class="description">This option will automatically generate title for your entire tag page.</span>
         </p>
         <p>
+            <label for="<?php echo $this->settings_field; ?>[taxonomy_rewrite_title]"><?php _e('Taxonomy Rewrite Title:', 'calibrefx'); ?></label>
+            <input type="text" size="80" value="<?php calibrefx_option('taxonomy_rewrite_title', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[taxonomy_rewrite_title]" name="<?php echo $this->settings_field; ?>[taxonomy_rewrite_title]">
+            <span class="description">This option will automatically generate title for your entire custom taxonomy page.</span>
+        </p>
+        <p>
             <label for="<?php echo $this->settings_field; ?>[search_rewrite_title]"><?php _e('Search Rewrite Title:', 'calibrefx'); ?></label>
             <input type="text" size="80" value="<?php calibrefx_option('search_rewrite_title', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[search_rewrite_title]" name="<?php echo $this->settings_field; ?>[search_rewrite_title]">
             <span class="description">This option will automatically generate title for your Search page result.</span>
@@ -309,6 +309,11 @@ class CFX_Seo_Settings extends CFX_Admin {
         <p>
             <label for="<?php echo $this->settings_field; ?>[tag_description]"><?php _e('Tag Description Format:', 'calibrefx'); ?></label>
             <input type="text" size="80" value="<?php calibrefx_option('tag_description', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[tag_description]" name="<?php echo $this->settings_field; ?>[tag_description]">
+            <span class="description">This option will automatically generate description for your tag page.</span>
+        </p>
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[taxonomy_description]"><?php _e('Taxonomy Description Format:', 'calibrefx'); ?></label>
+            <input type="text" size="80" value="<?php calibrefx_option('taxonomy_description', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[taxonomy_description]" name="<?php echo $this->settings_field; ?>[taxonomy_description]">
             <span class="description">This option will automatically generate description for your tag page.</span>
         </p>
         <p>
@@ -368,6 +373,12 @@ class CFX_Seo_Settings extends CFX_Admin {
         <p>
             <label for="<?php echo $this->settings_field; ?>[tag_keywords]"><?php _e('Tag Keywords Format:', 'calibrefx'); ?></label>
             <input type="text" size="80" value="<?php calibrefx_option('tag_keywords', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[tag_keywords]" name="<?php echo $this->settings_field; ?>[tag_keywords]">
+            <span class="description">This option will automatically generate keywords for your tag archive page.</span>
+        </p>
+        
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[taxonomy_keywords]"><?php _e('Taxonomy Keywords Format:', 'calibrefx'); ?></label>
+            <input type="text" size="80" value="<?php calibrefx_option('taxonomy_keywords', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[taxonomy_keywords]" name="<?php echo $this->settings_field; ?>[taxonomy_keywords]">
             <span class="description">This option will automatically generate keywords for your tag archive page.</span>
         </p>
 

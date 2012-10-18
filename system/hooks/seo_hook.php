@@ -78,6 +78,10 @@ function calibrefx_seo_title() {
     if (is_date()) {
         return $cfx_replacer->get(calibrefx_get_option('archive_rewrite_title', $CFX->seo_settings_m));
     }
+    
+    if (is_tax()) {        
+        return $cfx_replacer->get(calibrefx_get_option('taxonomy_rewrite_title', $CFX->seo_settings_m));
+    }
 
     if (is_tag()) {
         return $cfx_replacer->get(calibrefx_get_option('tag_rewrite_title', $CFX->seo_settings_m));
