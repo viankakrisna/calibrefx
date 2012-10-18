@@ -133,6 +133,8 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_section('general', __('General', 'calibrefx'));
         calibrefx_add_meta_section('design', __('Design', 'calibrefx'));
         calibrefx_add_meta_section('social', __('Social', 'calibrefx'));
+        
+        do_action('more_theme_setting');
 
         $calibrefx_current_section = 'general';
         if (!empty($_GET['section'])) {
