@@ -57,8 +57,13 @@ function calibrefx_seo_title() {
     $cfx_replacer = & $CFX->replacer->set_replace_tag($replace_tags);
 
     if (is_home() || is_front_page()) {
+        $post_seo_title = calibrefx_get_custom_field('_calibrefx_title');    
         $home_title = calibrefx_get_option('home_title', $CFX->seo_settings_m);
-        if ($home_title){
+        
+        if($post_seo_title){
+            return $post_seo_title;
+        }
+        elseif ($home_title){
             return $home_title;
         }
         else{
@@ -108,9 +113,13 @@ function calibrefx_seo_description() {
     $CFX = &calibrefx_get_instance();
     $cfx_replacer = & $CFX->replacer->set_replace_tag($replace_tags);
 
-    if (is_home()) {
+    if (is_home() || is_front_page()) {
+        $post_seo_description = calibrefx_get_custom_field('_calibrefx_description');  
         $home_description = calibrefx_get_option('home_meta_description', $CFX->seo_settings_m);
-        if ($home_description)
+        
+        if($post_seo_description)
+            return $post_seo_description;
+        elseif ($home_description)
             return $home_description;
         else
             return get_bloginfo('description');

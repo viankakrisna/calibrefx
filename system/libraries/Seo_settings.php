@@ -394,7 +394,7 @@ class CFX_Seo_Settings extends CFX_Admin {
         </p>
         <p>
             <label for="<?php echo $this->settings_field; ?>[home_meta_description]"><?php _e('Home Meta Description:', 'calibrefx'); ?></label>
-            <textarea cols="70" rows="3" id="<?php echo $this->settings_field; ?>[home_meta_description]" name="<?php echo $this->settings_field; ?>[home_meta_description]"></textarea>
+            <textarea cols="70" rows="3" id="<?php echo $this->settings_field; ?>[home_meta_description]" name="<?php echo $this->settings_field; ?>[home_meta_description]"><?php calibrefx_option('home_meta_description', $this->_model); ?></textarea>
             <span class="description">If you leave the home title field blank, your site’s title will be used instead.</span>
         </p>
         <p>
