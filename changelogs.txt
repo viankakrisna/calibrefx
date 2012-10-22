@@ -1,6 +1,15 @@
 Change Logs CalibreFx
 
-version 1.0.3<11 September 2012> - 
+version 1.0.4 <22 October 2012> - 
+    * Fix Many Bugs in SEO Features
+    * Fix Many Default CSS Styles
+    * Allow user to disable seo feature for compatibility with other SEO Plugins
+    * Allow SEO For Custom Post Type and Custom Taxonomy
+    * Now Shortcode Helper load in autoload
+    * get_content_limit now can do wrap_close
+    * Fix many bugs in theme settings
+
+version 1.0.3 <11 September 2012> - 
     * Use Bootloader
     * No more complicated init.php
     * Using Loader to include helpers, library, widgets, config, etc
