@@ -625,12 +625,12 @@ ul#menu-secondary  > li > ul > li > ul > .current-menu-ancestor > a{
     font-weight: normal;
     list-style-type: none;
     margin: 15px 0 5px;
-    padding: 10px 5px 10px 10px;
+    padding: 15px;
 }
 
 .comment-list li ul li {
     list-style-type: none;
-    margin-right: -6px;
+    margin-right: -16px;
 }
 
 .comment-list li .avatar {
@@ -685,27 +685,36 @@ ul#menu-secondary  > li > ul > li > ul > .current-menu-ancestor > a{
 #comments ul{
     margin: 0px;	
 }
-.comment-list .comment-content ul{
+#comments .comment-list .comment-content > ul{
 	margin-bottom: 10px;
 }
-.comment-list .comment-content ul li{
+#comments .comment-list .comment-content > ul ul,
+#comments .comment-list .comment-content > ul ol{
+    margin-bottom: 0px;
+}
+#comments .comment-list .comment-content ul li{
 	list-style-type: square;
 	list-style-position: inside;
 	margin: 0px 10px 0px;
 	padding: 2px 5px;
 }
-.comment-list .comment-content ol{
+#comments .comment-list .comment-content > ol{
 	margin-bottom: 10px;
 	padding: 0px;
 }
-.comment-list .comment-content ol li{
+#comments .comment-list .comment-content > ol ol,
+#comments .comment-list .comment-content > ol ul{
+    margin-bottom: 0px;
+    padding: 0px;
+}
+#comments .comment-list .comment-content ol li{
 	list-style-type: decimal;
 	list-style-position: inside;
 	margin: 0px 10px 0px;
 	padding: 2px 5px;
 }
-.comment-list .comment-content blockquote,
-.comment-list .comment-content blockquote p{
+#comments .comment-list .comment-content blockquote,
+#comments .comment-list .comment-content blockquote p{
     font-size: 13px;
     font-style: italic;
 }
