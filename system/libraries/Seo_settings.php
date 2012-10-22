@@ -39,6 +39,7 @@ class CFX_Seo_Settings extends CFX_Admin {
     function __construct() {
         $this->page_id = 'calibrefx-seo';
         $this->default_settings = apply_filters('calibrefx_seo_settings_defaults', array(
+            'enable_seo' => 1,
             'doc_canonical_url' => 1,
             'doc_enable_rewrite_title' => 1,
             'post_rewrite_title' => '%post_title%',
@@ -47,6 +48,7 @@ class CFX_Seo_Settings extends CFX_Admin {
             'category_rewrite_title' => '%category_title% &raquo; %site_title%',
             'archive_rewrite_title' => 'Archive: %date% &raquo; %site_title%',
             'tag_rewrite_title' => 'Tags: %tag% &raquo; %site_title%',
+            'taxonomy_rewrite_title' => '%taxonomy%',
             'search_rewrite_title' => '%search% &raquo; %site_title%',
             '404_rewrite_title' => 'Nothing found for %request_words% &raquo; %site_title%',
             'post_description' => '%description%',
@@ -56,6 +58,7 @@ class CFX_Seo_Settings extends CFX_Admin {
             'category_description' => 'Page Category %category_title% for %site_title%',
             'archive_description' => 'Website Archive %date% for %site_title%',
             'tag_description' => 'Website Tag %tag% for %site_title%',
+            'taxonomy_description' => '%taxonomy% &raquo; %site_title%',
             '404_description' => 'Nothing found for %request_words%',
             'post_keywords' => '%keywords%',
             'page_keywords' => '%keywords%',
@@ -64,6 +67,7 @@ class CFX_Seo_Settings extends CFX_Admin {
             'category_keywords' => '%category_title%, %category_title% articles, %category_title% list',
             'archive_keywords' => '%site_title% archive, %site_title% %date% archive ',
             'tag_keywords' => '%tag%, article %tag%, review %tag%',
+            'taxonomy_keywords' => '%taxonomy%, article %taxonomy%, review %taxonomy%',
             '404_keywords' => '%request_words% 404, %request_words% not found, %request_words% not available',
             'home_title' => '',
             'home_meta_description' => '',
@@ -102,10 +106,61 @@ class CFX_Seo_Settings extends CFX_Admin {
      */
     public function security_filters(){
         $CFX = & calibrefx_get_instance();
+        
+        $CFX->security->add_sanitize_filter(
+                'one_zero', 
+                $this->settings_field,
+                array(
+                    'enable_seo',
+                    'doc_canonical_url',
+                    'doc_enable_rewrite_title',
+                    'home_noindex',
+                    'home_nofollow',
+                    'home_noarchive',
+                    'category_noindex',
+                    'tag_noindex',
+                    'author_noindex',
+                    'date_noindex',
+                    'search_noindex',
+                    'category_noarchive',
+                    'tag_noarchive',
+                    'author_noarchive',
+                    'date_noarchive',
+                    'search_noarchive',
+                    'site_noarchive',
+                    'site_noodp',
+                    'site_noydir',
+                    'archive_canonical')
+        );
+        
+        $CFX->security->add_sanitize_filter(
+                'safe_text', 
+                $this->settings_field,
+                array(
+                    'post_description',
+                    'page_description',
+                    'author_description',
+                    'search_description',
+                    'category_description',
+                    'archive_description',
+                    'tag_description',
+                    '404_description',
+                    'post_keywords',
+                    'page_keywords',
+                    'author_keywords',
+                    'search_keywords',
+                    'category_keywords',
+                    'archive_keywords',
+                    'tag_keywords',
+                    '404_keywords',
+                    'home_title',
+                    'home_meta_description',
+                    'home_meta_keywords')
+        );
     }
 
     public function meta_sections() {
-        global $calibrefx_current_section, $calibrefx_sections;
+        global $calibrefx_current_section;
 
         calibrefx_clear_meta_section();
 
@@ -121,6 +176,7 @@ class CFX_Seo_Settings extends CFX_Admin {
     }
 
     public function meta_boxes() {
+        calibrefx_add_meta_box('document', 'professor', 'calibrefx-seo-settings', __('SEO Settings', 'calibrefx'), array(&$this,'seo_settings_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('document', 'professor', 'calibrefx-seo-settings-document-title-settings', __('Document Title Settings', 'calibrefx'), array(&$this,'document_title_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('document', 'professor', 'calibrefx-seo-settings-document-description-settings', __('Document Description Settings', 'calibrefx'), array(&$this,'document_description_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('document', 'professor', 'calibrefx-seo-settings-document-keyword-settings', __('Document Keyword Settings', 'calibrefx'), array(&$this,'document_description_box'), $this->pagehook, 'main', 'high');
@@ -133,6 +189,20 @@ class CFX_Seo_Settings extends CFX_Admin {
     }
 
     //Meta Boxes Sections
+    
+    /**
+     * Show seo settings box
+     */
+    function seo_settings_box() { ?>
+         <span class="description">
+            You can disable the SEO feature if you want to use another SEO plugin by uncheck the checkbox below. 
+        </span>
+        <p>
+            <input type="checkbox" name="<?php echo $this->settings_field; ?>[enable_seo]" id="<?php echo $this->settings_field; ?>[enable_seo]" value="1" <?php checked(1, calibrefx_get_option('enable_seo', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[enable_seo]"><?php _e("Enable SEO Feature?", 'calibrefx'); ?></label><br/>
+        </p>
+        <?php
+    }
+    
     /**
      * Show document setting box
      */
@@ -178,6 +248,11 @@ class CFX_Seo_Settings extends CFX_Admin {
             <label for="<?php echo $this->settings_field; ?>[tag_rewrite_title]"><?php _e('Tag Rewrite Title:', 'calibrefx'); ?></label>
             <input type="text" size="80" value="<?php calibrefx_option('tag_rewrite_title', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[tag_rewrite_title]" name="<?php echo $this->settings_field; ?>[tag_rewrite_title]">
             <span class="description">This option will automatically generate title for your entire tag page.</span>
+        </p>
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[taxonomy_rewrite_title]"><?php _e('Taxonomy Rewrite Title:', 'calibrefx'); ?></label>
+            <input type="text" size="80" value="<?php calibrefx_option('taxonomy_rewrite_title', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[taxonomy_rewrite_title]" name="<?php echo $this->settings_field; ?>[taxonomy_rewrite_title]">
+            <span class="description">This option will automatically generate title for your entire custom taxonomy page.</span>
         </p>
         <p>
             <label for="<?php echo $this->settings_field; ?>[search_rewrite_title]"><?php _e('Search Rewrite Title:', 'calibrefx'); ?></label>
@@ -234,6 +309,11 @@ class CFX_Seo_Settings extends CFX_Admin {
         <p>
             <label for="<?php echo $this->settings_field; ?>[tag_description]"><?php _e('Tag Description Format:', 'calibrefx'); ?></label>
             <input type="text" size="80" value="<?php calibrefx_option('tag_description', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[tag_description]" name="<?php echo $this->settings_field; ?>[tag_description]">
+            <span class="description">This option will automatically generate description for your tag page.</span>
+        </p>
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[taxonomy_description]"><?php _e('Taxonomy Description Format:', 'calibrefx'); ?></label>
+            <input type="text" size="80" value="<?php calibrefx_option('taxonomy_description', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[taxonomy_description]" name="<?php echo $this->settings_field; ?>[taxonomy_description]">
             <span class="description">This option will automatically generate description for your tag page.</span>
         </p>
         <p>
@@ -295,6 +375,12 @@ class CFX_Seo_Settings extends CFX_Admin {
             <input type="text" size="80" value="<?php calibrefx_option('tag_keywords', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[tag_keywords]" name="<?php echo $this->settings_field; ?>[tag_keywords]">
             <span class="description">This option will automatically generate keywords for your tag archive page.</span>
         </p>
+        
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[taxonomy_keywords]"><?php _e('Taxonomy Keywords Format:', 'calibrefx'); ?></label>
+            <input type="text" size="80" value="<?php calibrefx_option('taxonomy_keywords', $this->_model); ?>" id="<?php echo $this->settings_field; ?>[taxonomy_keywords]" name="<?php echo $this->settings_field; ?>[taxonomy_keywords]">
+            <span class="description">This option will automatically generate keywords for your tag archive page.</span>
+        </p>
 
         <p>
             <label for="<?php echo $this->settings_field; ?>[404_keywords]"><?php _e('404 Keywords Format:', 'calibrefx'); ?></label>
@@ -319,7 +405,7 @@ class CFX_Seo_Settings extends CFX_Admin {
         </p>
         <p>
             <label for="<?php echo $this->settings_field; ?>[home_meta_description]"><?php _e('Home Meta Description:', 'calibrefx'); ?></label>
-            <textarea cols="70" rows="3" id="<?php echo $this->settings_field; ?>[home_meta_description]" name="<?php echo $this->settings_field; ?>[home_meta_description]"></textarea>
+            <textarea cols="70" rows="3" id="<?php echo $this->settings_field; ?>[home_meta_description]" name="<?php echo $this->settings_field; ?>[home_meta_description]"><?php calibrefx_option('home_meta_description', $this->_model); ?></textarea>
             <span class="description">If you leave the home title field blank, your site’s title will be used instead.</span>
         </p>
         <p>
@@ -381,7 +467,7 @@ class CFX_Seo_Settings extends CFX_Admin {
     function archive_box() {
         ?>
         <p>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[archive_canonical]" id="<?php echo $this->settings_field; ?>[category_noarchive]" value="1" <?php checked(1, calibrefx_get_option('category_noarchive', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[category_noarchive]"><?php _e("Canonical Paginated Archives", 'calibrefx'); ?></label><br/>
+            <input type="checkbox" name="<?php echo $this->settings_field; ?>[archive_canonical]" id="<?php echo $this->settings_field; ?>[archive_canonical]" value="1" <?php checked(1, calibrefx_get_option('archive_canonical', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[archive_canonical]"><?php _e("Canonical Paginated Archives", 'calibrefx'); ?></label><br/>
         </p>
         <?php
     }

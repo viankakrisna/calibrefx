@@ -65,7 +65,7 @@ function calibrefx_truncate_phrase($phrase, $max_characters) {
  * limits the output to $max_char characters,
  * and appends an ellipses and more link to the end.
  */
-function get_the_content_limit($max_char, $more_link_text = '(more...)', $stripteaser = 0) {
+function get_the_content_limit($max_char, $more_link_text = '(more...)', $stripteaser = 0, $wrap_open='<p>', $wrap_close='</p>') {
 
     $content = get_the_content('', $stripteaser);
 
@@ -79,9 +79,9 @@ function get_the_content_limit($max_char, $more_link_text = '(more...)', $stript
     if ($more_link_text) {
         $link = apply_filters('get_the_content_more_link', sprintf('%s <a href="%s" class="more-link">%s</a>', '&hellip;', get_permalink(), $more_link_text), $more_link_text);
 
-        $output = sprintf('<p>%s %s</p>', $content, $link);
+        $output = $wrap_open . sprintf('%s %s', $content, $link) . $wrap_close;
     } else {
-        $output = sprintf('<p>%s</p>', $content);
+        $output = $wrap_open . sprintf('%s', $content) . $wrap_close;
     }
 
     return apply_filters('get_the_content_limit', $output, $content, $link, $max_char);

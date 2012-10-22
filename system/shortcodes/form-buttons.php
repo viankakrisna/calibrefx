@@ -3,12 +3,12 @@
     <head>
         <title>Button shortcode</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <script language="javascript" type="text/javascript" src="../../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
-        <script language="javascript" type="text/javascript" src="../../../../../../wp-includes/js/tinymce/utils/mctabs.js"></script>
-        <script language="javascript" type="text/javascript" src="../../../../../../wp-includes/js/tinymce/utils/form_utils.js"></script>
-        <script language="javascript" type="text/javascript" src="../../../../../../wp-includes/js/jquery/jquery.js?ver=1.4.2"></script>
+        <script language="javascript" type="text/javascript" src="../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+        <script language="javascript" type="text/javascript" src="../../../../../wp-includes/js/tinymce/utils/mctabs.js"></script>
+        <script language="javascript" type="text/javascript" src="../../../../../wp-includes/js/tinymce/utils/form_utils.js"></script>
+        <script language="javascript" type="text/javascript" src="../../../../../wp-includes/js/jquery/jquery.js?ver=1.4.2"></script>
         <script language="javascript" type="text/javascript">
-            function lizatomic_zobrazForm() {
+            function calibrefx_zobrazForm() {
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
@@ -18,7 +18,7 @@
                 }		
             }
 	
-            function lizatomic_vlozSC() {
+            function calibrefx_vlozSC() {
 		
                 // shortcode sam
                 var shortcodeRetazec;
@@ -101,8 +101,8 @@
         </style>
 
     </head>
-    <body onload="lizatomic_zobrazForm();">
-        <form name="lizatomic_sc_form" action="#">
+    <body onload="calibrefx_zobrazForm();">
+        <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
                     <li id="textButtonTabID" class="current"><span><a href="javascript:mcTabs.displayTab('textButtonTabID','textButtonTab');" onmousedown="return false;">Text buttons</a></span></li>
@@ -300,7 +300,7 @@
                 </div>
 
                 <div style="float: right">
-                    <input type="submit" id="insert" name="insert" value="Insert" onclick="lizatomic_vlozSC();" />
+                    <input type="submit" id="insert" name="insert" value="Insert" onclick="calibrefx_vlozSC();" />
                 </div>
             </div>
         </form>

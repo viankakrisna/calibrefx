@@ -62,4 +62,4 @@ $autoload['hooks'] = array('header', 'logo', 'script', 'widget','layout', 'menu'
 /*
  *  Auto-load Shortcode files
  */
-$autoload['shortcodes'] = array('header','post','footer');
+$autoload['shortcodes'] = array('calibrefx','header','post','footer');

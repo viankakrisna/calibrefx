@@ -22,7 +22,7 @@
  */
 
 /** Define CALIBREFX Root Directory Constant */
-!defined('CALIBREFX_CACHE_URI') && define('CALIBREFX_CACHE_URI', CALIBREFX_URICALIBREFX_URI . '/cache');
+!defined('CALIBREFX_CACHE_URI') && define('CALIBREFX_CACHE_URI', CALIBREFX_URI . '/cache');
 !defined('CALIBREFX_LOG_URI') && define('CALIBREFX_LOG_URI', CALIBREFX_URI . '/log');
 !defined('CALIBREFX_SYS_URI') && define('CALIBREFX_SYS_URI', CALIBREFX_URI . '/system');
 
@@ -43,6 +43,7 @@
 !defined('CALIBREFX_IMAGES_URL') && define('CALIBREFX_IMAGES_URL', CALIBREFX_URL . '/assets/img');
 !defined('CALIBREFX_JS_URL') && define('CALIBREFX_JS_URL', CALIBREFX_URL . '/assets/js');
 !defined('CALIBREFX_CSS_URL') && define('CALIBREFX_CSS_URL', CALIBREFX_URL . '/assets/css');
+!defined('CALIBREFX_SHORTCODE_URL') && define('CALIBREFX_SHORTCODE_URL', CALIBREFX_URL . '/system/shortcodes');
 
 
 /** Define CALIBREFX Child Directory Constant */
@@ -58,8 +59,6 @@ define('CHILD_CACHE_URL', CHILD_URL . '/cache');
 define('CHILD_IMAGES_URL', CHILD_URL . '/assets/img');
 define('CHILD_JS_URL', CHILD_URL . '/assets/js');
 define('CHILD_CSS_URL', CHILD_URL . '/assets/css');
-
-
 
 /** File and Directory Modes */
 !defined('FILE_READ_MODE') && define('FILE_READ_MODE', 0644);

@@ -62,7 +62,7 @@ function calibrefx_register_admin_sub_menu() {
     $CFX = & calibrefx_get_instance();
     
     
-    if($calibrefx_user_ability === 'professor'){
+    if($calibrefx_user_ability === 'professor' && current_theme_supports('calibrefx-seo')){
         // Add "Seo Settings" submenu
         $CFX->load->library('seo_settings');
         $CFX->seo_settings->pagehook = add_submenu_page('calibrefx', __('Seo Settings', 'calibrefx'), __('Seo Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx-seo', array(&$CFX->seo_settings, 'dashboard'));

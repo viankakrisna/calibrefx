@@ -175,7 +175,7 @@ function calibrefx_numeric_posts_nav() {
 
     /** 	Previous Post Link */
     if (get_previous_posts_link())
-        printf('<li>%s</li>' . "\n", get_previous_posts_link(apply_filters('calibrefx_prev_link_text', '&laquo; ' . __('Previous Page', 'calibrefx'))));
+        printf('<li class="previous">%s</li>' . "\n", get_previous_posts_link(apply_filters('calibrefx_prev_link_text', '&laquo; ' . __('Previous Page', 'calibrefx'))));
 
     /** 	Link to first page, plus ellipses if necessary */
     if (!in_array(1, $links)) {
@@ -205,7 +205,7 @@ function calibrefx_numeric_posts_nav() {
 
     /** 	Next Post Link */
     if (get_next_posts_link())
-        printf('<li>%s</li>' . "\n", get_next_posts_link(apply_filters('calibrefx_next_link_text', __('Next Page', 'calibrefx') . ' &raquo;')));
+        printf('<li class="next">%s</li>' . "\n", get_next_posts_link(apply_filters('calibrefx_next_link_text', __('Next Page', 'calibrefx') . ' &raquo;')));
 
     echo '</ul></div>' . "\n";
 }

@@ -303,7 +303,7 @@ add_action('wp_head', 'calibrefx_header_scripts');
  */
 function calibrefx_header_scripts() {
 
-    echo apply_filters('calibrefx_header_scripts', calibrefx_get_option('header_scripts'));
+    echo apply_filters('calibrefx_header_scripts', stripslashes(calibrefx_get_option('header_scripts')));
 
     // If singular, echo scripts from custom field
     if (is_singular()) {
@@ -318,7 +318,7 @@ add_action('wp_head', 'calibrefx_header_custom_styles');
  */
 function calibrefx_header_custom_styles() {
 
-    $custom_css = calibrefx_get_option('custom_css');
+    $custom_css = stripslashes(calibrefx_get_option('custom_css'));
     if (!empty($custom_css))
         printf('<style type="text/css">%1$s</style>', apply_filters('calibrefx_header_custom_styles', $custom_css));
 
@@ -400,37 +400,22 @@ function calibrefx_do_header() {
     do_action('calibrefx_site_description');
     echo '</div><!-- end #header-title -->';
 
-    if (is_active_sidebar('header-right')) {
-        echo '<div class="pull-right header-right">';
-        do_action('calibrefx_header_right_widget');
-        dynamic_sidebar('header-right');
-        echo '</div><!-- end .widget-wrap -->';
+    $header_right_widget = current_theme_supports('calibrefx-header-right-widgets');
+
+    if ($header_right_widget) {
+       echo '<div class="pull-right header-right">';
+       do_action('calibrefx_header_right_widget');
+       echo '</div><!-- end .widget-wrap -->';
     }
 }
 
-add_action('calibrefx_after_header', 'calibrefx_add_socials_script');
-
 /**
- * Add Social javascript after header
+ * Print header right widget
  */
-function calibrefx_add_socials_script() {
-    global $twitteruser;
-
-    $twitteruser = calibrefx_get_option('twitter_username');
-
-    //@TODO: add enable facebook in theme setting
-    echo '
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184690738325056";
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, \'script\', \'facebook-jssdk\'));</script>';
-
-    if (!empty($twitteruser)) {
-        echo '<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>';
+add_action('calibrefx_header_right_widget','calibrefx_do_header_right_widget');
+function calibrefx_do_header_right_widget(){
+    if (is_active_sidebar('header-right')) {
+        dynamic_sidebar('header-right');
     }
 }
 

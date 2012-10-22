@@ -33,7 +33,9 @@ add_action('wp_footer', 'calibrefx_footer_scripts');
  * Display the footer scripts, defined in Theme Settings.
  */
 function calibrefx_footer_scripts() {
-    echo apply_filters('calibrefx_footer_scripts', calibrefx_option('footer_scripts'));
+    $footer_scripts = stripslashes(calibrefx_get_option('footer_scripts'));
+
+    echo apply_filters('calibrefx_footer_scripts', $footer_scripts);
 
     // If singular, echo scripts from custom field
     if (is_singular()) {
@@ -117,4 +119,30 @@ function calibrefx_do_footer() {
     $output = $creds . $backtotop;
 
     echo apply_filters('calibrefx_footer_output', $output, $backtotop_text, $creds_text);
+}
+
+add_action('wp_footer', 'calibrefx_add_socials_script');
+
+/**
+ * Add Social javascript after header
+ */
+function calibrefx_add_socials_script() {
+    global $twitteruser;
+
+    $twitteruser = calibrefx_get_option('twitter_username');
+
+    //@TODO: add enable facebook in theme setting
+    echo '
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184690738325056";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, \'script\', \'facebook-jssdk\'));</script>';
+
+    if (!empty($twitteruser)) {
+        echo '<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>';
+    }
 }
