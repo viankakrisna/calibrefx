@@ -303,7 +303,7 @@ add_action('wp_head', 'calibrefx_header_scripts');
  */
 function calibrefx_header_scripts() {
 
-    echo apply_filters('calibrefx_header_scripts', calibrefx_get_option('header_scripts'));
+    echo apply_filters('calibrefx_header_scripts', stripslashes(calibrefx_get_option('header_scripts')));
 
     // If singular, echo scripts from custom field
     if (is_singular()) {
@@ -318,7 +318,7 @@ add_action('wp_head', 'calibrefx_header_custom_styles');
  */
 function calibrefx_header_custom_styles() {
 
-    $custom_css = calibrefx_get_option('custom_css');
+    $custom_css = stripslashes(calibrefx_get_option('custom_css'));
     if (!empty($custom_css))
         printf('<style type="text/css">%1$s</style>', apply_filters('calibrefx_header_custom_styles', $custom_css));
 

@@ -33,7 +33,9 @@ add_action('wp_footer', 'calibrefx_footer_scripts');
  * Display the footer scripts, defined in Theme Settings.
  */
 function calibrefx_footer_scripts() {
-    echo apply_filters('calibrefx_footer_scripts', calibrefx_option('footer_scripts'));
+    $footer_scripts = stripslashes(calibrefx_get_option('footer_scripts'));
+
+    echo apply_filters('calibrefx_footer_scripts', $footer_scripts);
 
     // If singular, echo scripts from custom field
     if (is_singular()) {

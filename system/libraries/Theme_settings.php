@@ -133,6 +133,8 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_section('general', __('General', 'calibrefx'));
         calibrefx_add_meta_section('design', __('Design', 'calibrefx'));
         calibrefx_add_meta_section('social', __('Social', 'calibrefx'));
+        
+        do_action('more_theme_setting');
 
         $calibrefx_current_section = 'general';
         if (!empty($_GET['section'])) {
@@ -255,19 +257,19 @@ class CFX_Theme_Settings extends CFX_Admin {
     function custom_script_box() {
         ?>
         <p><?php _e("Custom CSS code will be output at <code>wp_head()</code>:", 'calibrefx'); ?></p>
-        <textarea name="<?php echo $this->settings_field; ?>[custom_css]" cols="78" rows="8"><?php echo esc_textarea(calibrefx_get_option('custom_css')); ?></textarea>
+        <textarea name="<?php echo $this->settings_field; ?>[custom_css]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('custom_css'))); ?></textarea>
         <p><span class="description"><?php _e('The <code>wp_head()</code> hook executes immediately before the closing <code>&lt;/head&gt;</code> tag in the document source.', 'calibrefx'); ?></span></p>
 
         <hr class="div" />
 
         <p><?php _e("Header script will be output at <code>wp_head()</code>:", 'calibrefx'); ?></p>
-        <textarea name="<?php echo $this->settings_field; ?>[header_scripts]" cols="78" rows="8"><?php echo esc_textarea(calibrefx_get_option('header_scripts')); ?></textarea>
+        <textarea name="<?php echo $this->settings_field; ?>[header_scripts]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('header_scripts'))); ?></textarea>
         <p><span class="description"><?php _e('The <code>wp_head()</code> hook executes immediately before the closing <code>&lt;/head&gt;</code> tag in the document source.', 'calibrefx'); ?></span></p>
 
         <hr class="div" />
 
         <p><?php _e("Footer scripts will be output at <code>wp_footer()</code>:", 'calibrefx'); ?></p>
-        <textarea name="<?php echo $this->settings_field; ?>[footer_scripts]" cols="78" rows="8"><?php echo esc_textarea(calibrefx_get_option('footer_scripts')); ?></textarea>
+        <textarea name="<?php echo $this->settings_field; ?>[footer_scripts]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('footer_scripts'))); ?></textarea>
         <p><span class="description"><?php _e('The <code>wp_footer()</code> hook executes immediately before the closing <code>&lt;/body&gt;</code> tag in the document source.', 'calibrefx'); ?></span></p>
         <?php
     }
