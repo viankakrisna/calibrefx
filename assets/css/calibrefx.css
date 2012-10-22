@@ -1,9 +1,9 @@
 /* Table of Contents
 
-* Import & Reset
-* Typography
+* Wrapper Style 
+* Widget Title
 * Header
-* Header / Primary / Secondary Navigation
+* Primary / Secondary Navigation
 * Content
 * Sidebar
 * Sidebar Alt
@@ -16,14 +16,12 @@
 * Sticky Posts
 * Archive Page
 * Comments
-* Images
-* Post Navigation
-* Buttons
+* Pagination
 * Search Form
 * Footer Widgets
 * Footer
-* Max 980px Media
-* Max 768px Media
+* Form Style
+* Shortcode Style
 */
 
 body{
@@ -42,23 +40,13 @@ h1, h2, h3, h4, h5, h6{
     font-weight: normal;
 }
 
-/* Import & Reset
+/* Wrapper Style 
 ------------------------------------------------------------ */
 #wrapper{
-    padding:0;
+    padding: 0;
 }
 
-.wrap.row:after{
-    clear: both;
-}
-
-#inner{
-    margin-top: 40px;	
-	width: auto;
-	padding: 0 20px;
-}
-
-/* Typography
+/* Widget Title
 ------------------------------------------------------------ */
 .widget-area h4 {
     background-color: #e5e5e5;
@@ -125,7 +113,7 @@ h1, h2, h3, h4, h5, h6{
 	text-decoration: none;
 }
 
-/* Header / Primary / Secondary Navigation
+/* Primary / Secondary Navigation
 ------------------------------------------------------------ */
 #nav{
     background: #cecece;
@@ -325,10 +313,12 @@ ul#menu-secondary .current-menu-ancestor > a{
 	background-color: #373737;
 	color: #fff;
 }
+
 ul#menu-secondary  > li > ul > .current-menu-ancestor > a{
 	background-color: #2f2f2f;
 	color: #fff;
 }
+
 ul#menu-secondary  > li > ul > li > ul > .current-menu-ancestor > a{
 	background-color: #2F2F2F;
 	color: #fff;
@@ -336,6 +326,12 @@ ul#menu-secondary  > li > ul > li > ul > .current-menu-ancestor > a{
 
 /* Content
 ------------------------------------------------------------ */
+
+#inner{
+    margin-top: 40px;   
+    width: auto;
+    padding: 0 20px;
+}
 
 #content{
     /*margin:0;*/
@@ -576,9 +572,11 @@ blockquote{
 
 /* Comments
 ------------------------------------------------------------ */
+
 #commentform{
   
 }
+
 #commentform blockquote{
     border-color: #ddd;
     border-color:rgba(0, 0, 0, 0.15);
@@ -588,6 +586,10 @@ blockquote{
 #respond {
     margin: 0px 0px 15px;
     overflow: hidden;
+}
+
+#comments{
+    margin-top: 20px;
 }
 
 #author,
@@ -920,7 +922,8 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 }
 
 
-/* Shortcode Style */
+/* Shortcode Style
+------------------------------------------------------------ */
 
 /*====================================================================================================
 * B U T T O N S                                                                         B U T T O N S
