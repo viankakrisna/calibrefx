@@ -45,7 +45,10 @@ function get_replace_title_tags() {
     if (count($categories) > 0) {
         $category = $categories[0]->cat_name;
     }
-
+    
+    $taxonomies = get_the_taxonomies();
+    $taxonomy = strip_tags(array_shift(array_values($taxonomies)), '');
+    
     $site_title = calibrefx_capitalize(get_bloginfo('name'));
     $site_description = get_bloginfo('description');
     $post_title = calibrefx_capitalize(calibrefx_get_title());
@@ -81,6 +84,7 @@ function get_replace_title_tags() {
         'page' => $page,
         'request_words' => $request_word,
         'keywords' => $keywords,
+        'taxonomy' => $taxonomy,
     );
 
     return apply_filters('calibrefx_title_tags', $replace_arr);
