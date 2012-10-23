@@ -59,6 +59,40 @@ function calibrefx_user_archive_fields($user) {
     if (!current_user_can('edit_users', $user->ID))
         return false;
     ?>
+    <h3><?php _e('Social Media Settings', 'calibrefx'); ?></h3>
+    <table class="form-table">
+        <tbody>
+            <tr>
+                <th scope="row" valign="top"><label for="gplus_profile"><?php _e('Google+ Profile', 'calibrefx'); ?></label></th>
+                <td>
+                    <input name="meta[gplus_profile]" id="gplus_profile" type="text" value="<?php echo esc_attr(get_the_author_meta('gplus_profile', $user->ID)); ?>" class="regular-text" /><br />
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" valign="top"><label for="twitter_profile"><?php _e('Twitter Profile', 'calibrefx'); ?></label></th>
+                <td>
+                    <input name="meta[twitter_profile]" id="twitter_profile" type="text" value="<?php echo esc_attr(get_the_author_meta('twitter_profile', $user->ID)); ?>" class="regular-text" /><br />
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" valign="top"><label for="youtube_channel"><?php _e('Youtube Channel', 'calibrefx'); ?></label></th>
+                <td>
+                    <input name="meta[youtube_channel]" id="youtube_channel" type="text" value="<?php echo esc_attr(get_the_author_meta('youtube_channel', $user->ID)); ?>" class="regular-text" /><br />
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" valign="top"><label for="linkedin_profile"><?php _e('Linkedin Profile', 'calibrefx'); ?></label></th>
+                <td>
+                    <input name="meta[linkedin_profile]" id="linkedin_profile" type="text" value="<?php echo esc_attr(get_the_author_meta('linkedin_profile', $user->ID)); ?>" class="regular-text" /><br />
+                </td>
+            </tr>
+           
+        </tbody>
+    </table>
+
     <h3><?php _e('Author Archive Settings', 'calibrefx'); ?></h3>
     <p><span class="description"><?php _e('These settings apply to this author\'s archive pages.', 'calibrefx'); ?></span></p>
     <table class="form-table">
