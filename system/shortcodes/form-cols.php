@@ -38,7 +38,7 @@
                     var is_first = document.getElementById('is_first').value; 
 		
                     //shortcodeRetazec = '["'+col_width+'" last="'+is_last+'" ]'+medziShortcodom+'[/"'+col_width+'"] ';
-                    shortcodeRetazec = '[column class="' + col_width + '" last=' + is_last + ' first=' + is_first + ']' + medziShortcodom + '[/column]';
+                    shortcodeRetazec = '[column cols="' + col_width + '" last=' + is_last + ' first=' + is_first + ']' + medziShortcodom + '[/column]';
 		
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {

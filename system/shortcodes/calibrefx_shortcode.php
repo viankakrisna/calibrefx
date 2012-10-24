@@ -325,6 +325,7 @@ add_shortcode('column', 'calibrefx_column');
 function calibrefx_column($atts, $content = '') {
     extract(shortcode_atts(array(
                 'class' => '',
+                'cols' => ''
                 'style' => '',
                 'align' => '',
                 'last' => '',
@@ -334,8 +335,8 @@ function calibrefx_column($atts, $content = '') {
     $classes = $class;
     if (!empty($class))
         $classes .= ' ' . $class;
-    if (!empty($style))
-        $classes .= ' ' . $style;
+    if (!empty($cols))
+        $classes .= ' ' . $cols;
     if (!empty($align))
         $classes .= ' ' . $align;
     if (!empty($first)) {
@@ -349,7 +350,7 @@ function calibrefx_column($atts, $content = '') {
         }
     }
 
-    return $before . '<div class="' . $classes . '">' . do_shortcode($content) . '</div>' . $after;
+    return $before . '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode($content) . '</div>' . $after;
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_column');
