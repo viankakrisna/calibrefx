@@ -324,12 +324,11 @@ add_shortcode('column', 'calibrefx_column');
 
 function calibrefx_column($atts, $content = '') {
     extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
                 'class' => '',
                 'style' => '',
                 'align' => '',
                 'last' => '',
+                'first' => '',
                     ), $atts));
 
     $classes = $class;
@@ -339,9 +338,14 @@ function calibrefx_column($atts, $content = '') {
         $classes .= ' ' . $style;
     if (!empty($align))
         $classes .= ' ' . $align;
+    if (!empty($first)) {
+        if ($first == 'yes') {
+            $before = '<div class="row">';
+        }
+    }
     if (!empty($last)) {
         if ($last == 'yes') {
-            $classes .= ' last';
+            $after = '</div>';
         }
     }
 
