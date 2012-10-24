@@ -325,7 +325,7 @@ add_shortcode('column', 'calibrefx_column');
 function calibrefx_column($atts, $content = '') {
     extract(shortcode_atts(array(
                 'class' => '',
-                'cols' => ''
+                'cols' => '',
                 'style' => '',
                 'align' => '',
                 'last' => '',
