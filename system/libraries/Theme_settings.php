@@ -153,6 +153,7 @@ class CFX_Theme_Settings extends CFX_Admin {
 
 
         calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), array($this, 'feeds_box'), $this->pagehook, 'main');
+        calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-social-link', __('Social Media Links', 'calibrefx'), array($this, 'social_link'), $this->pagehook, 'main');
         calibrefx_add_meta_box('social', 'professor', 'calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), array($this, 'socials_box'), $this->pagehook, 'side');
     }
 
@@ -462,6 +463,39 @@ class CFX_Theme_Settings extends CFX_Admin {
             <input type="text" size="30" value="<?php echo calibrefx_get_option('twitter_username'); ?>" id="<?php echo $this->settings_field; ?>[twitter_username]" name="<?php echo $this->settings_field; ?>[twitter_username]">
         </p>
         <?php
+    }
+
+    /**
+     * This function social_link is to show social links
+     * Use For Widgets
+     */
+    function social_link(){ 
+    ?>
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[gplus_profile]"><?php _e('Google+ Profile Link:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('gplus_profile'); ?>" id="<?php echo $this->settings_field; ?>[gplus_profile]" name="<?php echo $this->settings_field; ?>[gplus_profile]">
+        </p>
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[gplus_page]"><?php _e('Google+ Page Link:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('gplus_page'); ?>" id="<?php echo $this->settings_field; ?>[gplus_page]" name="<?php echo $this->settings_field; ?>[gplus_page]">
+        </p>
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[facebook_fanpage]"><?php _e('Facebook Fanpage Link:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_fanpage'); ?>" id="<?php echo $this->settings_field; ?>[facebook_fanpage]" name="<?php echo $this->settings_field; ?>[facebook_fanpage]">
+        </p>
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[twitter_profile]"><?php _e('Twitter Profile Link:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('twitter_profile'); ?>" id="<?php echo $this->settings_field; ?>[twitter_profile]" name="<?php echo $this->settings_field; ?>[twitter_profile]">
+        </p>
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[youtube_channel]"><?php _e('Youtube Channel Link:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('youtube_channel'); ?>" id="<?php echo $this->settings_field; ?>[youtube_channel]" name="<?php echo $this->settings_field; ?>[youtube_channel]">
+        </p>
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[linkedin_profile]"><?php _e('Linkedin Profile Link:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('linkedin_profile'); ?>" id="<?php echo $this->settings_field; ?>[linkedin_profile]" name="<?php echo $this->settings_field; ?>[linkedin_profile]">
+        </p>
+    <?php
     }
 
 }
