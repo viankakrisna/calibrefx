@@ -129,7 +129,7 @@ function calibrefx_img($atts, $content = null) {
                 'class' => '',
                     ), $atts));
 
-    return $before . '<img src="' . $content . '" title="' . $title . '" width="' . $width . '" height="' . $height . '" class="' . $class . '"/>' . $after;
+    return $before . '<img src="' . do_shortcode($content) . '" title="' . $title . '" width="' . $width . '" height="' . $height . '" class="' . $class . '"/>' . $after;
 }
 
 /**
@@ -350,7 +350,7 @@ function calibrefx_column($atts, $content = '') {
         }
     }
 
-    return $before . '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode($content) . '</div>' . $after;
+    return $before . '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_column');
@@ -707,5 +707,18 @@ class calibrefx_add_shortcode_button {
         return++$version;
     }
 
+}
+
+/**
+ * remove unnecessary paragraf tag
+ *  
+ * @access public
+ * @author Hilaladdiyar Muhammad Nur
+ *
+ */
+function advance_shortcode_unautop($content) {
+    $content = do_shortcode( shortcode_unautop($content) );
+    $content = preg_replace( '#^<\/p>|^<br \/>|<p>$#', '', $content );
+    return $content;
 }
 
