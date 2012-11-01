@@ -171,8 +171,14 @@ function calibrefx_seo_keywords() {
     $CFX = &calibrefx_get_instance();
     $cfx_replacer = & $CFX->replacer->set_replace_tag($replace_tags);
 
-    if (is_home()) {
-        return calibrefx_get_option('home_meta_keywords', $CFX->seo_settings_m);
+    if (is_home() || is_front_page()) {        
+        $post_seo_keywords = calibrefx_get_custom_field('_calibrefx_keywords');  
+        $home_keywords = calibrefx_get_option('home_meta_keywords', $CFX->seo_settings_m);
+        
+        if($post_seo_keywords)
+            return $post_seo_keywords;
+        else
+            return $home_keywords;
     }
 
     if (is_category()) {

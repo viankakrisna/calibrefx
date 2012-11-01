@@ -129,7 +129,7 @@ function calibrefx_img($atts, $content = null) {
                 'class' => '',
                     ), $atts));
 
-    return $before . '<img src="' . $content . '" title="' . $title . '" width="' . $width . '" height="' . $height . '" class="' . $class . '"/>' . $after;
+    return $before . '<img src="' . do_shortcode($content) . '" title="' . $title . '" width="' . $width . '" height="' . $height . '" class="' . $class . '"/>' . $after;
 }
 
 /**
@@ -324,28 +324,33 @@ add_shortcode('column', 'calibrefx_column');
 
 function calibrefx_column($atts, $content = '') {
     extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
                 'class' => '',
+                'cols' => '',
                 'style' => '',
                 'align' => '',
                 'last' => '',
+                'first' => '',
                     ), $atts));
 
     $classes = $class;
     if (!empty($class))
         $classes .= ' ' . $class;
-    if (!empty($style))
-        $classes .= ' ' . $style;
+    if (!empty($cols))
+        $classes .= ' ' . $cols;
     if (!empty($align))
         $classes .= ' ' . $align;
+    if (!empty($first)) {
+        if ($first == 'yes') {
+            $before = '<div class="row">';
+        }
+    }
     if (!empty($last)) {
         if ($last == 'yes') {
-            $classes .= ' last';
+            $after = '</div>';
         }
     }
 
-    return $before . '<div class="' . $classes . '">' . do_shortcode($content) . '</div>' . $after;
+    return $before . '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_column');
@@ -702,5 +707,18 @@ class calibrefx_add_shortcode_button {
         return++$version;
     }
 
+}
+
+/**
+ * remove unnecessary paragraf tag
+ *  
+ * @access public
+ * @author Hilaladdiyar Muhammad Nur
+ *
+ */
+function advance_shortcode_unautop($content) {
+    $content = do_shortcode( shortcode_unautop($content) );
+    $content = preg_replace( '#^<\/p>|^<br \/>|<p>$#', '', $content );
+    return $content;
 }
 
