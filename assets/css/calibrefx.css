@@ -24,20 +24,21 @@
 * Shortcode Style
 */
 
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+
 body{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
     color: #2f2f2f;
 }
 
 input, select, textarea{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6{
-    font-family: 'BebasRegular', Bebas, Arial, Helvetica, sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     color: inherit;
-    font-weight: normal;
 }
 
 /* Wrapper Style 
@@ -57,7 +58,6 @@ h1, h2, h3, h4, h5, h6{
     text-transform: uppercase;
     color: #848484;
     margin: 0px;
-    font-weight: normal;
 }
 
 .widget-area h4 a {
@@ -130,7 +130,7 @@ h1, h2, h3, h4, h5, h6{
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    min-height: 36px;
+    min-height: 34px;
     background: none;
     filter: none;
 }
@@ -139,12 +139,8 @@ h1, h2, h3, h4, h5, h6{
     padding: 0px;
 }
 
-.navbar .nav > li {
-    padding-top: 2px;	
-}
-
 .navbar .nav > li > a {
-    padding: 6px 20px 9px;
+    padding: 7px 20px 8px;
     text-shadow: none;
     color: #2F2F2F;
 }
@@ -474,7 +470,6 @@ ul#menu-secondary  > li > ul > li > ul > .current-menu-ancestor > a{
     border-bottom: 1px solid #e5e5e5;	
     font-size: 30px;
     text-rendering: optimizespeed;
-    font-weight: normal;
     padding-bottom: 5px;
 }
 
@@ -1368,14 +1363,3 @@ ul.ltt-slider-hor-nav a.tabvertnav.activeSlide span {  }
 .ltt-trigger a:hover  { }
 .ltt-trigger.active   { background: url(../img/shortcode/toggle-open.png) no-repeat right; }
 .ltt-toggle-container {	overflow: hidden; width: 100%; clear: both; display: none; }
-
-@font-face {
-    font-family: 'BebasRegular';
-    src: url('../font/BEBAS.eot');
-    src: url('../font/BEBAS.eot?#iefix') format('embedded-opentype'),
-         url('../font/BEBAS.woff') format('woff'),
-         url('../font/BEBAS.ttf') format('truetype'),
-         url('../font/BEBAS.svg#BebasRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
