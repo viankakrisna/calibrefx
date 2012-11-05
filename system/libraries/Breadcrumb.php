@@ -53,10 +53,10 @@ class CFX_Breadcrumb {
         /** Default arguments * */
         $this->args = array(
             'home' => __('Home', 'calibrefx'),
-            'sep' => ' / ',
+            'sep' => ' <span class="divider">/</span> ',
             'list_sep' => ', ',
-            'prefix' => '<div class="breadcrumb">',
-            'suffix' => '</div>',
+            'prefix' => '<div class="breadcrumb-container" xmlns:v="http://rdf.data-vocabulary.org/#"><ul class="breadcrumb" itemprop="breadcrumb">',
+            'suffix' => '</ul></div>',
             'heirarchial_attachments' => true,
             'heirarchial_categories' => true,
             'display' => true,
@@ -84,7 +84,7 @@ class CFX_Breadcrumb {
         /** Merge and Filter user and default arguments * */
         $this->args = apply_filters('calibrefx_breadcrumb_args', wp_parse_args($args, $this->args));
         
-        return $this->args['prefix'] . $this->args['labels']['prefix'] . $this->build_crumbs() . $this->args['suffix'];
+        return $this->args['prefix'] .'<li class="labels">'. $this->args['labels']['prefix'] .'</li>'. $this->build_crumbs() . $this->args['suffix'];
     }
 
     /**
@@ -109,7 +109,7 @@ class CFX_Breadcrumb {
         $url = 'page' == $this->on_front ? get_permalink(get_option('page_on_front')) : trailingslashit(home_url());
         $crumb = ( is_home() && is_front_page() ) ? $this->args['home'] : $this->get_breadcrumb_link($url, sprintf(__('View %s', 'calibrefx'), $this->args['home']), $this->args['home']);
 
-        return apply_filters('calibrefx_home_crumb', $crumb, $this->args);
+        return apply_filters('calibrefx_home_crumb', '<li typeof="v:Breadcrumb">'.$crumb.'</li>', $this->args);
     }
 
     /**
@@ -126,7 +126,7 @@ class CFX_Breadcrumb {
         if ('page' == $this->on_front)
             $crumb = get_the_title(get_option('page_for_posts'));
 
-        return apply_filters('calibrefx_blog_crumb', $crumb, $this->args);
+        return apply_filters('calibrefx_blog_crumb', '<li typeof="v:Breadcrumb">'.$crumb.'</li>', $this->args);
     }
 
     /**
@@ -138,7 +138,7 @@ class CFX_Breadcrumb {
 
         $crumb = $this->args['labels']['search'] . '"' . esc_html(apply_filters('the_search_query', get_search_query())) . '"';
 
-        return apply_filters('calibrefx_search_crumb', $crumb, $this->args);
+        return apply_filters('calibrefx_search_crumb', '<li typeof="v:Breadcrumb">'.$crumb.'</li>', $this->args);
     }
 
     /**
@@ -173,7 +173,7 @@ class CFX_Breadcrumb {
 
             // If this is a top level Page, it's simple to output the breadcrumb
             if (0 == $post->post_parent) {
-                $crumb = get_the_title();
+                $crumb = '<li typeof="v:Breadcrumb">'.get_the_title().'</li>';
             } else {
                 if (isset($post->ancestors)) {
                     if (is_array($post->ancestors))
@@ -186,14 +186,16 @@ class CFX_Breadcrumb {
 
                 $crumbs = array();
                 foreach ($ancestors as $ancestor) {
-                    array_unshift($crumbs, $this->get_breadcrumb_link(
+                    $anchestor_link = $this->get_breadcrumb_link(
                                     get_permalink($ancestor), sprintf(__('View %s', 'calibrefx'), get_the_title($ancestor)), get_the_title($ancestor)
-                            )
-                    );
+                            );
+                    $anchestor_link = '<li typeof="v:Breadcrumb">'.$anchestor_link.'</li>';
+
+                    array_unshift($crumbs, $anchestor_link);
                 }
 
                 // Add the current page title
-                $crumbs[] = get_the_title($post->ID);
+                $crumbs[] = '<li typeof="v:Breadcrumb">'.get_the_title($post->ID).'</li>';
 
                 $crumb = join($this->args['sep'], $crumbs);
             }
@@ -247,7 +249,7 @@ class CFX_Breadcrumb {
             $crumb = $this->args['labels']['post_type'] . esc_html(post_type_archive_title('', false));
         }
 
-        return apply_filters('calibrefx_archive_crumb', $crumb, $this->args);
+        return apply_filters('calibrefx_archive_crumb', '<li typeof="v:Breadcrumb">'.$crumb.'</li>', $this->args);
     }
 
     /**
@@ -273,7 +275,7 @@ class CFX_Breadcrumb {
             $categories = get_the_category($post->ID);
 
             if (1 == count($categories)) { // if in single category, show it, and any parent categories
-                $crumb = $this->get_term_parents($categories[0]->cat_ID, 'category', true) . $this->args['sep'];
+                $crumb = '<li typeof="v:Breadcrumb">'.$this->get_term_parents($categories[0]->cat_ID.'</li>', 'category', true) . $this->args['sep'];
             }
             if (count($categories) > 1) {
                 if (!$this->args['heirarchial_categories']) { // Don't show parent categories (unless the post happen to be explicitely in them)
@@ -282,24 +284,24 @@ class CFX_Breadcrumb {
                                 get_category_link($category->term_id), sprintf(__('View all posts in %s', 'calibrefx'), $category->name), $category->name
                         );
                     }
-                    $crumb = join($this->args['list_sep'], $crumbs) . $this->args['sep'];
+                    $crumb = '<li typeof="v:Breadcrumb">'.(join($this->args['list_sep'], $crumbs)).'</li>'. $this->args['sep'];
                 } else { // Show parent categories - see if one is marked as primary and try to use that.
                     $primary_category_id = get_post_meta($post->ID, '_category_permalink', true); // Support for sCategory Permalink plugin
                     if ($primary_category_id) {
-                        $crumb = $this->get_term_parents($primary_category_id, 'category', true) . $this->args['sep'];
+                        $crumb = '<li typeof="v:Breadcrumb">'.$this->get_term_parents($primary_category_id, 'category', true).'</li>'. $this->args['sep'];
                     } else {
-                        $crumb = $this->get_term_parents($categories[0]->cat_ID, 'category', true) . $this->args['sep'];
+                        $crumb = '<li typeof="v:Breadcrumb">'.$this->get_term_parents($categories[0]->cat_ID, 'category', true).'</li>'. $this->args['sep'];
                     }
                 }
             }
-            $crumb .= single_post_title('', false);
+            $crumb .= '<li typeof="v:Breadcrumb">'.single_post_title('', false).'</li>';
         } else {
             $post_type = get_query_var('post_type');
             $post_type_object = get_post_type_object($post_type);
 
             $crumb = $this->get_breadcrumb_link(get_post_type_archive_link($post_type), sprintf(__('View all %s', 'calibrefx'), $post_type_object->labels->name), $post_type_object->labels->name);
 
-            $crumb .= $this->args['sep'] . single_post_title('', false);
+            $crumb .= $this->args['sep'] . '<li typeof="v:Breadcrumb">'.single_post_title('', false).'</li>';
         }
 
         return apply_filters('calibrefx_single_crumb', $crumb, $this->args);
@@ -371,7 +373,7 @@ class CFX_Breadcrumb {
      */
     function get_breadcrumb_link($url, $title, $content, $sep = false) {
 
-        $link = sprintf('<a href="%s" title="%s">%s</a>', esc_attr($url), esc_attr($title), esc_html($content));
+        $link = sprintf('<a href="%s" title="%s" rel="v:url" property="v:title">%s</a>', esc_attr($url), esc_attr($title), esc_html($content));
 
         if ($sep)
             $link .= $sep;

@@ -21,6 +21,7 @@
 * Footer Widgets
 * Footer
 * Form Style
+* Breadcrumb
 * Shortcode Style
 */
 
@@ -916,6 +917,14 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
     content:none;
 }
 
+/* Breadcrumb
+------------------------------------------------------------ */
+.breadcrumb .labels{
+    padding-right: 5px;
+}
+.breadcrumb .divider {
+    padding: 0 1px;
+}
 
 /* Shortcode Style
 ------------------------------------------------------------ */
