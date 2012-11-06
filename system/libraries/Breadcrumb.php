@@ -124,9 +124,9 @@ class CFX_Breadcrumb {
 
         $crumb = $this->get_home_crumb();
         if ('page' == $this->on_front)
-            $crumb = get_the_title(get_option('page_for_posts'));
+            $crumb = '<li typeof="v:Breadcrumb">'.get_the_title(get_option('page_for_posts')).'</li>';
 
-        return apply_filters('calibrefx_blog_crumb', '<li typeof="v:Breadcrumb">'.$crumb.'</li>', $this->args);
+        return apply_filters('calibrefx_blog_crumb', $crumb, $this->args);
     }
 
     /**
@@ -267,15 +267,17 @@ class CFX_Breadcrumb {
             if ($this->args['heirarchial_attachments']) { // if showing attachment parent
                 $attachment_parent = get_post($post->post_parent);
                 $crumb = $this->get_breadcrumb_link(
-                        get_permalink($post->post_parent), sprintf(__('View %s', 'calibrefx'), $attachment_parent->post_title), $attachment_parent->post_title, $this->args['sep']
+                        get_permalink($post->post_parent), sprintf(__('View %s', 'calibrefx'), $attachment_parent->post_title), $attachment_parent->post_title
                 );
+
+                $crumb = '<li typeof="v:Breadcrumb">'.$crumb.'</li>'.$this->args['sep'];
             }
-            $crumb .= single_post_title('', false);
+            $crumb .= '<li typeof="v:Breadcrumb">'.single_post_title('', false).'</li>';
         } elseif (is_singular('post')) {
             $categories = get_the_category($post->ID);
 
             if (1 == count($categories)) { // if in single category, show it, and any parent categories
-                $crumb = '<li typeof="v:Breadcrumb">'.$this->get_term_parents($categories[0]->cat_ID.'</li>', 'category', true) . $this->args['sep'];
+                $crumb = '<li typeof="v:Breadcrumb">'.$this->get_term_parents($categories[0]->cat_ID, 'category', true).'</li>'. $this->args['sep'];
             }
             if (count($categories) > 1) {
                 if (!$this->args['heirarchial_categories']) { // Don't show parent categories (unless the post happen to be explicitely in them)
