@@ -475,7 +475,8 @@ ul#menu-secondary  > li > ul > li > ul > .current-menu-ancestor > a{
 }
 
 .post h2.entry-title a,
-.page h2.entry-title a{
+.page h2.entry-title a,
+.page h1.entry-title a{
     text-decoration: none;
     color: #101010;
     text-rendering: optimizespeed;
