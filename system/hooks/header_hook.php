@@ -74,11 +74,26 @@ add_action('calibrefx_meta', 'calibrefx_do_meta_keywords');
  * Will be override by seo addon later
  */
 function calibrefx_do_meta_keywords() {
-    $keywords = apply_filters('calibrefx_do_meta_keywords', '');
+    $keywords = apply_filters('calibrefx_do_meta_keywords', ''); 
 
     // Add the description, but only if one exists
     if (!empty($keywords)) {
         echo '<meta name="keywords" content="' . esc_attr($keywords) . '" />' . "\n";
+    }
+}
+
+add_action('calibrefx_meta', 'calibrefx_do_link_author');
+
+/**
+ * Print meta keywords
+ * Will be override by seo addon later
+ */
+function calibrefx_do_link_author() {
+    $link_author = apply_filters('calibrefx_do_link_author', '');
+
+    // Add the description, but only if one exists
+    if (!empty($link_author)) {
+        echo '<link rel="author" content="' . esc_attr($link_author) . '" />' . "\n";
     }
 }
 
