@@ -220,14 +220,11 @@ class CFX_Breadcrumb {
 
         if (is_category()) {
             $crumb = $this->args['labels']['category'] . $this->get_term_parents(get_query_var('cat'), 'category');
-            $crumb .= edit_term_link(__('(Edit)', 'calibrefx'), ' ', '', null, false);
         } elseif (is_tag()) {
             $crumb = $this->args['labels']['tag'] . single_term_title('', false);
-            $crumb .= edit_term_link(__('(Edit)', 'calibrefx'), ' ', '', null, false);
         } elseif (is_tax()) {
             $term = $wp_query->get_queried_object();
             $crumb = $this->args['labels']['tax'] . $this->get_term_parents($term->term_id, $term->taxonomy);
-            $crumb .= edit_term_link(__('(Edit)', 'calibrefx'), ' ', '', null, false);
         } elseif (is_year()) {
             $crumb = $this->args['labels']['date'] . get_query_var('year');
         } elseif (is_month()) {
