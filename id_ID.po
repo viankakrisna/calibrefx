@@ -1,0 +1,2444 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Calibrefx v1.0\n"
+"POT-Creation-Date: 2012-11-13 18:08+0700\n"
+"PO-Revision-Date: 2012-11-13 18:09+0700\n"
+"Last-Translator: \n"
+"Language-Team: Calibrefx\n"
+"Language: Indonesian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;_n:1,2;_x:1,2c;_ex:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../calibrefx/404.php:33
+msgid "Not Found, Error 404"
+msgstr ""
+
+#: ../calibrefx/404.php:35
+#, php-format
+msgid ""
+"The page you are looking for no longer exists. Perhaps you can return back "
+"to the site's <a href=\"%s\">homepage</a> and see if you can find what you "
+"are looking for. Or, you can try finding it with the information below."
+msgstr ""
+
+#: ../calibrefx/404.php:39 ../calibrefx/page-archive.php:41
+#: ../calibrefx/page-blog.php:107 ../calibrefx/system/hooks/post_hook.php:248
+#: ../twentyeleven/content-aside.php:34
+#: ../twentyeleven/content-featured.php:23
+#: ../twentyeleven/content-gallery.php:54 ../twentyeleven/content-image.php:28
+#: ../twentyeleven/content-intro.php:18 ../twentyeleven/content-link.php:34
+#: ../twentyeleven/content-page.php:18 ../twentyeleven/content-quote.php:36
+#: ../twentyeleven/content-single.php:24 ../twentyeleven/content-status.php:35
+#: ../twentyeleven/content.php:42 ../twentyeleven/image.php:90
+#: ../twentyten/loop-attachment.php:105 ../twentyten/loop-page.php:29
+#: ../twentyten/loop-single.php:34 ../twentyten/loop.php:144
+msgid "Pages:"
+msgstr ""
+
+#: ../calibrefx/404.php:44 ../calibrefx/page-archive.php:46
+msgid "Categories:"
+msgstr ""
+
+#: ../calibrefx/404.php:53 ../calibrefx/page-archive.php:55
+msgid "Authors:"
+msgstr ""
+
+#: ../calibrefx/404.php:58 ../calibrefx/page-archive.php:60
+msgid "Monthly:"
+msgstr ""
+
+#: ../calibrefx/404.php:63 ../calibrefx/page-archive.php:65
+msgid "Recent Posts:"
+msgstr ""
+
+#: ../calibrefx/comments.php:25
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: ../calibrefx/page-blog.php:102 ../calibrefx/page-blog.php:104
+#: ../calibrefx/system/hooks/post_hook.php:243
+#: ../calibrefx/system/hooks/post_hook.php:245
+msgid "[Read more...]"
+msgstr ""
+
+#: ../calibrefx/system/core/Admin.php:168
+msgid "Settings saved."
+msgstr ""
+
+#: ../calibrefx/system/core/Admin.php:170
+msgid "Settings reset."
+msgstr ""
+
+#: ../calibrefx/system/core/Admin.php:172
+msgid "Settings not saved. Error occured."
+msgstr ""
+
+#: ../calibrefx/system/core/Admin.php:211
+msgid "Basic"
+msgstr ""
+
+#: ../calibrefx/system/core/Admin.php:212
+msgid "Professor"
+msgstr ""
+
+#: ../calibrefx/system/core/Admin.php:217
+#: ../calibrefx/system/core/Admin.php:250
+msgid "Save Settings"
+msgstr ""
+
+#: ../calibrefx/system/core/Admin.php:218
+#: ../calibrefx/system/core/Admin.php:251
+msgid "Reset Settings"
+msgstr ""
+
+#: ../calibrefx/system/core/Admin.php:218
+#: ../calibrefx/system/core/Admin.php:251
+msgid "Are you sure you want to reset?"
+msgstr ""
+
+#: ../calibrefx/system/core/Calibrefx.php:92
+msgid "Primary Navigation Menu"
+msgstr ""
+
+#: ../calibrefx/system/core/Calibrefx.php:93
+msgid "Secondary Navigation Menu"
+msgstr ""
+
+#: ../calibrefx/system/helpers/format_helper.php:128
+msgctxt "time difference"
+msgid "seconds"
+msgstr ""
+
+#: ../calibrefx/system/helpers/format_helper.php:163
+msgctxt "separator in time difference"
+msgid "and"
+msgstr ""
+
+#: ../calibrefx/system/helpers/layout_helper.php:85
+msgid "No Label Selected"
+msgstr ""
+
+#: ../calibrefx/system/helpers/post_helper.php:103
+msgid "Older Posts"
+msgstr ""
+
+#: ../calibrefx/system/helpers/post_helper.php:104
+msgid "Newer Posts"
+msgstr ""
+
+#: ../calibrefx/system/helpers/post_helper.php:121
+#: ../calibrefx/system/helpers/post_helper.php:178
+msgid "Previous Page"
+msgstr ""
+
+#: ../calibrefx/system/helpers/post_helper.php:122
+#: ../calibrefx/system/helpers/post_helper.php:208
+msgid "Next Page"
+msgstr ""
+
+#: ../calibrefx/system/helpers/user_helper.php:40
+#: ../calibrefx/system/hooks/menu_hook.php:73
+msgid "About"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:87
+#, php-format
+msgid "Welcome, %1$s"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:97
+msgid "My Account"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:113
+#: ../twentyeleven/searchform.php:11
+msgid "Search"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:158
+msgid "Edit My Profile"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:164
+msgid "Log Out"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:175
+msgid "About WordPress"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:183
+msgid "WordPress.org"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:184
+msgid "http://wordpress.org"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:222
+#, php-format
+msgid "Network Admin: %s"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:224
+#, php-format
+msgid "Global Dashboard: %s"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:244
+msgid "Visit Site"
+msgstr ""
+
+#: ../calibrefx/system/hooks/admin_bar_hook.php:254
+msgid "Dashboard"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:60
+msgid "<h3>Comments</h3>"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:104
+msgid "<h3>Trackbacks</h3>"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:157
+#, php-format
+msgid "<cite class=\"fn\">%s</cite> <span class=\"says\">%s:</span>"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:157
+msgid "says"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:161
+#: ../twentyeleven/functions.php:545 ../twentyten/functions.php:345
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:162
+#: ../twentyeleven/content-aside.php:44
+#: ../twentyeleven/content-featured.php:45
+#: ../twentyeleven/content-gallery.php:90 ../twentyeleven/content-image.php:68
+#: ../twentyeleven/content-intro.php:19 ../twentyeleven/content-link.php:44
+#: ../twentyeleven/content-page.php:21 ../twentyeleven/content-quote.php:72
+#: ../twentyeleven/content-single.php:52 ../twentyeleven/content-status.php:45
+#: ../twentyeleven/content.php:80 ../twentyeleven/functions.php:522
+#: ../twentyeleven/functions.php:550 ../twentyeleven/image.php:41
+#: ../twentyten/loop-attachment.php:63 ../twentyten/loop-attachment.php:111
+#: ../twentyten/loop-page.php:30 ../twentyten/loop-single.php:56
+#: ../twentyten/loop.php:100 ../twentyten/loop.php:123
+#: ../twentyten/loop.php:165
+msgid "Edit"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:167
+#: ../twentyeleven/functions.php:554 ../twentyten/functions.php:338
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:212
+msgid "Your Name (required)"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:216
+msgid "Your Email (required)"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:217
+msgid "Your email will be keep safe and won't be shared with third party"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:221
+msgid "Your Website Url (start with http://)"
+msgstr ""
+
+#: ../calibrefx/system/hooks/comments_hook.php:235
+msgid "Leave us your thought"
+msgstr ""
+
+#: ../calibrefx/system/hooks/footer_hook.php:113
+msgid "Copyright"
+msgstr ""
+
+#: ../calibrefx/system/hooks/footer_hook.php:113
+msgid "on"
+msgstr ""
+
+#: ../calibrefx/system/hooks/footer_hook.php:113
+msgid "Powered By"
+msgstr ""
+
+#: ../calibrefx/system/hooks/header_hook.php:463
+msgid "RSS Feed"
+msgstr ""
+
+#: ../calibrefx/system/hooks/header_hook.php:464
+msgid "Atom Feed"
+msgstr ""
+
+#: ../calibrefx/system/hooks/header_hook.php:465
+msgid "Comment Feed"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:45
+msgid "Calibrefx Custom Layout"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:59
+#, php-format
+msgid "Default Layout set in <a href=\"%s\">Theme Settings</a>"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:66
+msgid "Custom Body Class"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:69
+msgid "Custom Post Class"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:137
+msgid "CalibreFx SEO Settings"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:148
+msgid "Custom Document Title"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:148
+#: ../calibrefx/system/hooks/inpost_hook.php:151
+#, php-format
+msgid "Characters Used: %s"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:151
+msgid "Custom Post/Page Meta Description"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:154
+msgid "Custom Post/Page Meta Keywords, comma separated"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:157
+msgid "Custom Canonical URI"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:160
+msgid "Custom Redirect URI"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:165
+msgid "Robots Meta Settings"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:169
+#: ../calibrefx/system/hooks/inpost_hook.php:172
+#: ../calibrefx/system/hooks/inpost_hook.php:175
+#, php-format
+msgid "Apply %s to this post/page"
+msgstr ""
+
+#: ../calibrefx/system/hooks/inpost_hook.php:180
+msgid "Custom Tracking/Conversion Code"
+msgstr ""
+
+#: ../calibrefx/system/hooks/layout_hook.php:41
+msgid "Content Sidebar (default blog)"
+msgstr ""
+
+#: ../calibrefx/system/hooks/layout_hook.php:47
+msgid "Full Width Content (minisite)"
+msgstr ""
+
+#: ../calibrefx/system/hooks/layout_hook.php:52
+msgid "Sidebar Content"
+msgstr ""
+
+#: ../calibrefx/system/hooks/layout_hook.php:57
+msgid "Sidebar Content Sidebar"
+msgstr ""
+
+#: ../calibrefx/system/hooks/login_hook.php:66
+msgid "Powered By "
+msgstr ""
+
+#: ../calibrefx/system/hooks/menu_hook.php:45
+msgid "Calibre Framework Settings"
+msgstr ""
+
+#: ../calibrefx/system/hooks/menu_hook.php:46
+msgid "Theme Settings"
+msgstr ""
+
+#: ../calibrefx/system/hooks/menu_hook.php:68
+msgid "Seo Settings"
+msgstr ""
+
+#: ../calibrefx/system/hooks/post_hook.php:181
+msgid "By"
+msgstr ""
+
+#: ../calibrefx/system/hooks/post_hook.php:237
+#: ../calibrefx/system/shortcodes/post_shortcode.php:260
+#: ../twentyten/functions.php:345 ../twentyten/functions.php:362
+msgid "(Edit)"
+msgstr ""
+
+#: ../calibrefx/system/hooks/post_hook.php:272
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+
+#: ../calibrefx/system/hooks/script_hook.php:111
+msgid "Select / Deselect All"
+msgstr ""
+
+#: ../calibrefx/system/hooks/sidebar_hook.php:40
+msgid "Primary Sidebar Widget Area"
+msgstr ""
+
+#: ../calibrefx/system/hooks/sidebar_hook.php:43
+#, php-format
+msgid ""
+"This is the Primary Sidebar Widget Area. You can add content to this area by "
+"visiting your <a href=\"%s\">Widgets Panel</a> and adding new widgets to "
+"this area."
+msgstr ""
+
+#: ../calibrefx/system/hooks/sidebar_hook.php:62
+msgid "Secondary Sidebar Widget Area"
+msgstr ""
+
+#: ../calibrefx/system/hooks/sidebar_hook.php:65
+#, php-format
+msgid ""
+"This is the Secondary Sidebar Widget Area. You can add content to this area "
+"by visiting your <a href=\"%s\">Widgets Panel</a> and adding new widgets to "
+"this area."
+msgstr ""
+
+#: ../calibrefx/system/hooks/upgrade_hook.php:121
+#, php-format
+msgid "Congratulations! You are now using the latest version of Calibrefx v%s"
+msgstr ""
+
+#: ../calibrefx/system/hooks/upgrade_hook.php:134
+msgid "Click here to complete the upgrade"
+msgstr ""
+
+#: ../calibrefx/system/hooks/upgrade_hook.php:152
+#, php-format
+msgid ""
+"CalibreFx %s is available. <a href=\"%s\" class=\"thickbox thickbox-preview"
+"\">Check out what's new</a> or <a href=\"%s\" onclick=\"return "
+"calibrefx_confirm('%s');\">update now</a>."
+msgstr ""
+
+#: ../calibrefx/system/hooks/upgrade_hook.php:152
+msgid ""
+"Upgrading CalibreFx will overwrite the current installed version of "
+"CalibreFx. Are you sure you want to upgrade?. \"Cancel\" to stop, \"OK\" to "
+"upgrade."
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:62
+msgid "Social Media Settings"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:66
+msgid "Google+ Profile"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:73
+msgid "Twitter Profile"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:80
+msgid "Youtube Channel"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:87
+msgid "Linkedin Profile"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:96
+msgid "Author Archive Settings"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:97
+msgid "These settings apply to this author's archive pages."
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:101
+msgid "Custom Archive Headline"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:104
+#, php-format
+msgid "Will display in the %s tag at the top of the first page"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:109
+msgid "Custom Description Text"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:112
+msgid "This text will be the first paragraph, and display on the first page"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:117
+msgid "Author Box"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:120
+msgid "Enable Author Box on this User's Posts?"
+msgstr ""
+
+#: ../calibrefx/system/hooks/user_hook.php:122
+msgid "Enable Author Box on this User's Archives?"
+msgstr ""
+
+#: ../calibrefx/system/hooks/widget_hook.php:37
+msgid "Primary Sidebar"
+msgstr ""
+
+#: ../calibrefx/system/hooks/widget_hook.php:38
+msgid ""
+"This is the primary sidebar if you are using a 2 or 3 column site layout "
+"option"
+msgstr ""
+
+#: ../calibrefx/system/hooks/widget_hook.php:43
+msgid "Secondary Sidebar"
+msgstr ""
+
+#: ../calibrefx/system/hooks/widget_hook.php:44
+msgid ""
+"This is the secondary sidebar if you are using a 3 column site layout option"
+msgstr ""
+
+#: ../calibrefx/system/hooks/widget_hook.php:59
+msgid "Header Right"
+msgstr ""
+
+#: ../calibrefx/system/hooks/widget_hook.php:60
+msgid "This is the right side of the header"
+msgstr ""
+
+#: ../calibrefx/system/hooks/widget_hook.php:69
+msgid "Footer Widget"
+msgstr ""
+
+#: ../calibrefx/system/hooks/widget_hook.php:70
+msgid "This is the footer widget"
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:65
+msgid "System Information"
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:66
+msgid "The Team"
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:75
+msgid "Information"
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:76
+msgid "Latest News"
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:77
+msgid "<span class=\"twitter-logo\"></span>Latest Tweets"
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:88
+msgid "Framework Name: "
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:88
+msgid "Codename: "
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:89
+msgid "Version:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:89
+msgid "Released:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:90
+msgid "DB Version: "
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:127
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:86
+msgid "The Twitter API is taking too long to respond. Please try again later."
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:129
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:88
+msgid ""
+"There was an error while attempting to contact the Twitter API. Please try "
+"again."
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:131
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:90
+msgid ""
+"The Twitter API returned an error while processing your request. Please try "
+"again."
+msgstr ""
+
+#: ../calibrefx/system/libraries/About_settings.php:138
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:97
+#, php-format
+msgid "about %s ago"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Admin_bar.php:171
+msgid "The menu ID should not be empty."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:55
+msgid "Home"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:64
+msgid "You are here: "
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:65
+#: ../calibrefx/system/libraries/Breadcrumb.php:66
+#: ../calibrefx/system/libraries/Breadcrumb.php:67
+#: ../calibrefx/system/libraries/Breadcrumb.php:68
+#: ../calibrefx/system/libraries/Breadcrumb.php:70
+#: ../calibrefx/system/libraries/Breadcrumb.php:71
+msgid "Archives for "
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:69
+msgid "Search for "
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:72
+msgid "Not found: "
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:110
+#: ../calibrefx/system/libraries/Breadcrumb.php:190
+#: ../calibrefx/system/libraries/Breadcrumb.php:267
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:232
+#: ../calibrefx/system/libraries/Breadcrumb.php:237
+#, php-format
+msgid "View archives for %s"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:240
+#, php-format
+msgid "View archives for %s %s"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:283
+#, php-format
+msgid "View all posts in %s"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:301
+#, php-format
+msgid "View all %s"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Breadcrumb.php:356
+#, php-format
+msgid "View all items in %s"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:167
+msgid "Document Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:168
+msgid "Robots"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:169
+msgid "Archive"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:178
+msgid "SEO Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:179
+msgid "Home Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:180
+msgid "Document Title Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:181
+msgid "Document Description Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:182
+msgid "Document Keyword Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:184
+msgid "Robot Meta Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:186
+msgid "Archive Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:196
+msgid "Enable SEO Feature?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:202
+msgid "Enable Canonical URL?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:217
+msgid "Enable Rewrite Title?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:221
+msgid "Post Rewrite Title:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:226
+msgid "Page Rewrite Title:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:231
+msgid "Category Rewrite Title:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:236
+msgid "Archive Rewrite Title:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:241
+msgid "Author Rewrite Title:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:246
+msgid "Tag Rewrite Title:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:251
+msgid "Taxonomy Rewrite Title:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:256
+msgid "Search Rewrite Title:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:261
+msgid "404 Rewrite Title:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:278
+msgid "Post Description Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:283
+msgid "Page Description Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:288
+msgid "Search Description Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:293
+msgid "Category Description Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:298
+msgid "Author Description Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:303
+msgid "Archive Description Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:308
+msgid "Tag Description Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:313
+msgid "Taxonomy Description Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:318
+msgid "404 Page Description Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:336
+#: ../calibrefx/system/libraries/Seo_settings.php:342
+msgid "Post Keywords Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:348
+msgid "Page Keywords Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:354
+msgid "Author Keywords Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:360
+msgid "Search Keywords Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:366
+msgid "Archive Keywords Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:372
+msgid "Tag Keywords Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:378
+msgid "Taxonomy Keywords Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:384
+msgid "404 Keywords Format:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:400
+msgid "Home Title:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:405
+msgid "Home Meta Description:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:410
+msgid "Home Meta Keywords:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:418
+msgid "Apply <code>noindex</code> to the homepage?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:420
+msgid "Apply <code>nofollow</code> to the homepage?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:422
+msgid "Apply <code>noarchive</code> to the homepage?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:437
+msgid "Apply <code>noindex</code> to Category Archives?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:438
+msgid "Apply <code>noindex</code> to Tag Archives?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:439
+msgid "Apply <code>noindex</code> to Author Archives?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:440
+msgid "Apply <code>noindex</code> to Date Archives?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:441
+msgid "Apply <code>noindex</code> to Search Archives?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:447
+msgid "Apply <code>noarchive</code> to Category Archives?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:448
+msgid "Apply <code>noarchive</code> to Tag Archives?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:449
+msgid "Apply <code>noarchive</code> to Author Archives?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:450
+msgid "Apply <code>noarchive</code> to Date Archives?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:451
+msgid "Apply <code>noarchive</code> to Search Archives?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:457
+msgid "Apply <code>noarchive</code> to your site?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:458
+msgid "Apply <code>noodp</code> to your site?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:459
+msgid "Apply <code>noydir</code> to your site?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Seo_settings.php:471
+msgid "Canonical Paginated Archives"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:126
+msgid "General"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:127
+msgid "Design"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:128
+msgid "Social"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:139
+msgid "Navigation Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:140
+msgid "Content Archives"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:141
+msgid "Breadcrumbs"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:142
+msgid "Comment and Trackbacks"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:144
+msgid "Default Layout Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:145
+msgid "Themes Custom Script"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:148
+msgid "Feeds Setting"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:149
+msgid "Social Media Links"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:150
+msgid "Social Settings"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:160
+#: ../twentyten/functions.php:93
+msgid "Primary Navigation"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:162
+msgid "Include Primary Navigation Menu?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:165
+msgid "You can assign your primary menu from Appreances > Menus."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:170
+msgid "Secondary Navigation"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:172
+msgid "Include Secondary Navigation Menu?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:175
+msgid "You can assign your secondary menu from Appreances > Menus."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:179
+#, php-format
+msgid ""
+"Please build a <a href=\"%s\">custom menu</a>, then assign it to the proper "
+"Menu Location."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:190
+msgid "Enable Bootstrap"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:195
+msgid "This option will use Twitter Bootstrap as css and javascript libraries."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:200
+msgid "Enable Responsive Layout"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:205
+msgid "This option will enable responsive layout."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:210
+msgid ""
+"You can choose between static layout and fluid layout. If in static layout "
+"you need to put the max width size."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:217
+msgid "Static Layout"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:218
+msgid "Fluid Layout"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:230
+msgid "Layout Width"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:231
+msgid "pixels"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:233
+msgid "You can put maximum width in pixel size. Default: 960"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:239
+msgid "General Layout Type:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:247
+msgid ""
+"You can choose your general layout type. You can override this from the post/"
+"page editor."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:258
+msgid "Custom CSS code will be output at <code>wp_head()</code>:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:261
+msgid ""
+"You can add your custom css codes here. Example: <code>a.hover {color:"
+"#ffffff}</code> ."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:266
+msgid "Header script will be output at <code>wp_head()</code>:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:269
+msgid ""
+"You can add your javascript at the head of the page. For example Google "
+"analytics code. <br/>Samples: <code>&lt;script type=\"text/javascript\">alert"
+"(\"Hello World\");&lt;/script></code>"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:273
+msgid "Footer scripts will be output at <code>wp_footer()</code>:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:276
+msgid ""
+"You can add your javascript at the footer of the page. For example tracking "
+"code. <br/>Samples: <code>&lt;script type=\"text/javascript\">alert(\"Hello "
+"World\");&lt;/script></code>"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:286
+msgid "Select one of the following:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:291
+msgid "Display post content"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:292
+msgid "Display post excerpts"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:303
+msgid "Limit content to"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:305
+msgid "characters"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:308
+msgid ""
+"This option will limit the text and strip all formatting from the text "
+"displayed. Use this option, with \"Display post content\" in the selected "
+"box above."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:314
+msgid "Select Post Navigation:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:319
+msgid "older/Newer"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:320
+msgid "Previous/Next"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:321
+msgid "Numeric"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:330
+msgid ""
+"You can choose your navigation format. Choices: Numeric, Older-Newer, or "
+"Previous-Next"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:339
+msgid "Show Breadcrumb on:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:343
+msgid "Front Page"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:349
+msgid "Posts"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:354
+msgid "Pages"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:359
+#: ../twentyeleven/sidebar.php:19 ../twentyten/sidebar.php:27
+msgid "Archives"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:364
+msgid "404 Page"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:367
+msgid ""
+"You can choose where you want to show breadcrumb (sitemap navigation) links."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:377
+msgid "Enable Comments"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:380
+#: ../calibrefx/system/libraries/Theme_settings.php:394
+msgid "on posts?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:386
+#: ../calibrefx/system/libraries/Theme_settings.php:400
+msgid "on pages?"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:391
+msgid "Enable Trackbacks"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:405
+msgid ""
+"You can generally enabled/disabled comments and trackbacks per post/page."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:415
+msgid "Main Feed URL:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:418
+msgid ""
+"You can replace WordPress builtin Feed URL using this options. For sample "
+"you want to use feedburner instead. Sample: http://feeds2.feedburner.com/"
+"calibrefx."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:421
+msgid "Comment Feed URL:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:424
+msgid ""
+"You can replace WordPress builtin Feed URL using this options. For sample "
+"you want to use feedburner instead. Sample: http://feeds2.feedburner.com/"
+"calibrefxcomment."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:434
+msgid "Facebook Settings:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:436
+msgid "Facebook Admin ID:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:438
+msgid ""
+"This will be use for Facebook Insight. <br/>This will output: <code>&lt;meta "
+"property=\"fb:admins\" content=\"YOUR ADMIN ID HERE\"/></code> Read More "
+"about this <a href='https://developers.facebook.com/docs/insights/' "
+"target='_blank'>here</a>."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:441
+msgid "Facebook Page Type:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:463
+msgid ""
+"This is open graph protocol that helo to identify your content. <br/>This "
+"will output: <code>&lt;meta property=\"og:type\" content=\"TYPE\"/></code>"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:466
+msgid "Twitter Settings:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:468
+msgid "Twiiter Username:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:470
+msgid ""
+"This will use for Latest Tweets Widget to show your latest tweets on the "
+"sidebar or footer."
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:482
+msgid "Google+ Profile Link:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:484
+msgid ""
+"This will output <code>&lt;link rel=\"author\" href=\"YOUR GOOGLE+ LINK HERE"
+"\"/></code> in html head"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:487
+msgid "Google+ Page Link:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:489
+msgid ""
+"This will use for Google Page For Business link, and it will show if using "
+"the Social Widget"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:492
+msgid "Facebook Page Link:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:494
+msgid ""
+"This will use for Facebook Page link, and it will show if using the Social "
+"Widget"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:497
+msgid "Twitter Profile Link:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:499
+msgid ""
+"This will use for Twitter link, and it will show if using the Social Widget"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:502
+msgid "Youtube Channel Link:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:504
+msgid ""
+"This will use for Youtube Channel link, and it will show if using the Social "
+"Widget"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:507
+msgid "Linkedin Profile Link:"
+msgstr ""
+
+#: ../calibrefx/system/libraries/Theme_settings.php:509
+msgid ""
+"This will use for Linkedin link, and it will show if using the Social Widget"
+msgstr ""
+
+#: ../calibrefx/system/shortcodes/footer_shortcode.php:43
+msgid "Return To Top"
+msgstr ""
+
+#: ../calibrefx/system/shortcodes/post_shortcode.php:50
+msgid "ago"
+msgstr ""
+
+#: ../calibrefx/system/shortcodes/post_shortcode.php:114
+#, php-format
+msgid "Visit %s&#8217;s website"
+msgstr ""
+
+#: ../calibrefx/system/shortcodes/post_shortcode.php:158
+#: ../twentyten/loop.php:99 ../twentyten/loop.php:122
+#: ../twentyten/loop.php:164
+msgid "% Comments"
+msgstr ""
+
+#: ../calibrefx/system/shortcodes/post_shortcode.php:159
+#: ../twentyten/loop.php:99 ../twentyten/loop.php:122
+#: ../twentyten/loop.php:164
+msgid "1 Comment"
+msgstr ""
+
+#: ../calibrefx/system/shortcodes/post_shortcode.php:160
+msgid "Leave a Comment"
+msgstr ""
+
+#: ../calibrefx/system/shortcodes/post_shortcode.php:187
+msgid "Tagged With: "
+msgstr ""
+
+#: ../calibrefx/system/shortcodes/post_shortcode.php:210
+#: ../calibrefx/system/shortcodes/post_shortcode.php:234
+msgid "Filed Under: "
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_comment_widget.php:41
+msgid "Display facebook comment box"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_comment_widget.php:50
+msgid "CalibreFx - Facebook Comment Box"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_comment_widget.php:97
+#: ../calibrefx/system/widgets/facebook_like_widget.php:114
+#: ../calibrefx/system/widgets/feature_page_slider_widget.php:132
+#: ../calibrefx/system/widgets/feature_page_widget.php:121
+#: ../calibrefx/system/widgets/feature_post_slider_widget.php:131
+#: ../calibrefx/system/widgets/feature_post_widget.php:128
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:142
+#: ../calibrefx/system/widgets/subscriber_widget.php:98
+#: ../calibrefx/system/widgets/twitter_widget.php:140
+msgid "Title"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_comment_widget.php:102
+#: ../calibrefx/system/widgets/facebook_like_widget.php:119
+msgid "Facebook Url"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_comment_widget.php:109
+#: ../calibrefx/system/widgets/facebook_like_widget.php:126
+msgid "Width"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_comment_widget.php:114
+msgid "Number Of Posts"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_like_widget.php:46
+msgid "Display facebook like box"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_like_widget.php:55
+msgid "CalibreFx - Facebook Like Box"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_like_widget.php:131
+msgid "Height"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_like_widget.php:138
+#: ../twentyeleven/inc/theme-options.php:55
+#: ../twentyeleven/inc/theme-options.php:474
+msgid "Color Scheme"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_like_widget.php:140
+#: ../twentyeleven/inc/theme-options.php:149
+msgid "Light"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_like_widget.php:141
+#: ../twentyeleven/inc/theme-options.php:155
+msgid "Dark"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_like_widget.php:146
+msgid "Border Color"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_like_widget.php:152
+msgid "Show Faces"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_like_widget.php:153
+msgid "Show Stream"
+msgstr ""
+
+#: ../calibrefx/system/widgets/facebook_like_widget.php:154
+msgid "Show Header"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_slider_widget.php:44
+msgid "Display image slider based on page"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_slider_widget.php:48
+msgid "CalibreFx - Page Slider Widget"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_slider_widget.php:137
+msgid "Page ID"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_slider_widget.php:142
+#: ../calibrefx/system/widgets/feature_post_slider_widget.php:146
+msgid "Interval"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_slider_widget.php:147
+#: ../calibrefx/system/widgets/feature_page_widget.php:138
+#: ../calibrefx/system/widgets/feature_post_slider_widget.php:151
+#: ../calibrefx/system/widgets/feature_post_widget.php:159
+msgid "Image Size"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_slider_widget.php:160
+#: ../calibrefx/system/widgets/feature_post_slider_widget.php:164
+msgid "Show Caption"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_slider_widget.php:168
+#: ../calibrefx/system/widgets/feature_post_slider_widget.php:172
+msgid "Caption Text Limit"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_slider_widget.php:173
+#: ../calibrefx/system/widgets/feature_post_slider_widget.php:177
+msgid "Caption Read More Text"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:47
+msgid "Display feature page with thumbnail"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:50
+msgid "CalibreFx - Feature Page"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:126
+msgid "Page"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:134
+#: ../calibrefx/system/widgets/feature_post_widget.php:155
+msgid "Show Featured Image"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:150
+#: ../calibrefx/system/widgets/feature_post_widget.php:171
+msgid "Image Alignment"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:152
+#: ../calibrefx/system/widgets/feature_post_widget.php:173
+msgid "None"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:153
+#: ../calibrefx/system/widgets/feature_post_widget.php:174
+msgid "Left"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:154
+#: ../calibrefx/system/widgets/feature_post_widget.php:175
+msgid "Right"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:162
+#: ../calibrefx/system/widgets/feature_post_widget.php:183
+msgid "Show Page Title"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:167
+#: ../calibrefx/system/widgets/feature_post_widget.php:188
+msgid "Show Page Content"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:171
+#: ../calibrefx/system/widgets/feature_post_widget.php:192
+msgid "Content Character Limit"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_page_widget.php:176
+#: ../calibrefx/system/widgets/feature_post_widget.php:197
+msgid "More Text"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_post_slider_widget.php:45
+msgid "Display image slider based on post"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_post_slider_widget.php:49
+msgid "CalibreFx - Post Slider Widget"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_post_slider_widget.php:136
+#: ../calibrefx/system/widgets/feature_post_widget.php:133
+msgid "Category"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_post_slider_widget.php:141
+msgid "Number of Slider"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_post_widget.php:48
+msgid "Display feature post with thumbnail"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_post_widget.php:51
+msgid "CalibreFx - Feature Post"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_post_widget.php:140
+msgid "All Categories"
+msgstr ""
+
+#: ../calibrefx/system/widgets/feature_post_widget.php:147
+msgid "Number of Posts to Show"
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:43
+msgid "Display latest Tweets"
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:52
+msgid "CalibreFx - Latest Tweet"
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:147
+msgid "Twitter Username"
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:152
+msgid "Number of Tweets to Show"
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:157
+msgid "Load new Tweets every"
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:159
+msgid "5 Min."
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:160
+msgid "15 Minutes"
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:161
+msgid "30 Minutes"
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:162
+msgid "1 Hour"
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:163
+msgid "2 Hours"
+msgstr ""
+
+#: ../calibrefx/system/widgets/latest_tweets_widget.php:164
+msgid "4 Hours"
+msgstr ""
+
+#: ../calibrefx/system/widgets/subscriber_widget.php:43
+msgid "Display email subscriber form for Feedburner"
+msgstr ""
+
+#: ../calibrefx/system/widgets/subscriber_widget.php:46
+msgid "CalibreFx - Email Updates"
+msgstr ""
+
+#: ../calibrefx/system/widgets/subscriber_widget.php:103
+msgid "Text To Show"
+msgstr ""
+
+#: ../calibrefx/system/widgets/subscriber_widget.php:108
+msgid "Google/Feedburner ID"
+msgstr ""
+
+#: ../calibrefx/system/widgets/subscriber_widget.php:113
+msgid "Enter your email address..."
+msgstr ""
+
+#: ../calibrefx/system/widgets/subscriber_widget.php:114
+msgid "Input Text"
+msgstr ""
+
+#: ../calibrefx/system/widgets/subscriber_widget.php:119
+msgid "Go"
+msgstr ""
+
+#: ../calibrefx/system/widgets/subscriber_widget.php:120
+msgid "Button Text"
+msgstr ""
+
+#: ../calibrefx/system/widgets/twitter_widget.php:46
+msgid "Display Twitter Widget"
+msgstr ""
+
+#: ../calibrefx/system/widgets/twitter_widget.php:55
+msgid "CalibreFx - Twitter Widget Box"
+msgstr ""
+
+#: ../calibrefx/system/widgets/twitter_widget.php:145
+msgid "Twitter Interval"
+msgstr ""
+
+#: ../calibrefx/system/widgets/twitter_widget.php:150
+msgid "Widget Width"
+msgstr ""
+
+#: ../calibrefx/system/widgets/twitter_widget.php:155
+msgid "Widget Height"
+msgstr ""
+
+#: ../calibrefx/system/widgets/twitter_widget.php:162
+msgid "Shell Background Color #"
+msgstr ""
+
+#: ../calibrefx/system/widgets/twitter_widget.php:167
+msgid "Shell Color #"
+msgstr ""
+
+#: ../calibrefx/system/widgets/twitter_widget.php:174
+msgid "Tweets Background Color #"
+msgstr ""
+
+#: ../calibrefx/system/widgets/twitter_widget.php:179
+msgid "Tweets Color #"
+msgstr ""
+
+#: ../calibrefx/system/widgets/twitter_widget.php:184
+msgid "Tweets Link Color #"
+msgstr ""
+
+#: ../twentyeleven/404.php:17
+msgid "This is somewhat embarrassing, isn&rsquo;t it?"
+msgstr ""
+
+#: ../twentyeleven/404.php:21
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching, or one of the links below, can help."
+msgstr ""
+
+#: ../twentyeleven/404.php:28
+msgid "Most Used Categories"
+msgstr ""
+
+#: ../twentyeleven/404.php:36
+#, php-format
+msgid "Try looking in the monthly archives. %1$s"
+msgstr ""
+
+#: ../twentyeleven/archive.php:25
+#, php-format
+msgid "Daily Archives: %s"
+msgstr ""
+
+#: ../twentyeleven/archive.php:27
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr ""
+
+#: ../twentyeleven/archive.php:27 ../twentyten/archive.php:35
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr ""
+
+#: ../twentyeleven/archive.php:29
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr ""
+
+#: ../twentyeleven/archive.php:29 ../twentyten/archive.php:37
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr ""
+
+#: ../twentyeleven/archive.php:31 ../twentyten/archive.php:39
+msgid "Blog Archives"
+msgstr ""
+
+#: ../twentyeleven/archive.php:57 ../twentyeleven/author.php:74
+#: ../twentyeleven/category.php:50 ../twentyeleven/index.php:37
+#: ../twentyeleven/search.php:42 ../twentyeleven/tag.php:50
+#: ../twentyten/search.php:26
+msgid "Nothing Found"
+msgstr ""
+
+#: ../twentyeleven/archive.php:61 ../twentyeleven/author.php:78
+#: ../twentyeleven/category.php:54 ../twentyeleven/index.php:41
+#: ../twentyeleven/tag.php:54 ../twentyten/loop.php:35
+msgid ""
+"Apologies, but no results were found for the requested archive. Perhaps "
+"searching will help find a related post."
+msgstr ""
+
+#: ../twentyeleven/author.php:28 ../twentyten/author.php:27
+#, php-format
+msgid "Author Archives: %s"
+msgstr ""
+
+#: ../twentyeleven/author.php:49 ../twentyeleven/content-single.php:60
+#: ../twentyten/author.php:37 ../twentyten/loop-single.php:43
+#, php-format
+msgid "About %s"
+msgstr ""
+
+#: ../twentyeleven/category.php:19 ../twentyten/category.php:16
+#, php-format
+msgid "Category Archives: %s"
+msgstr ""
+
+#: ../twentyeleven/comments.php:17 ../twentyten/comments.php:18
+msgid ""
+"This post is password protected. Enter the password to view any comments."
+msgstr ""
+
+#: ../twentyeleven/comments.php:33
+#, php-format
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../twentyeleven/comments.php:40 ../twentyeleven/comments.php:60
+msgid "Comment navigation"
+msgstr ""
+
+#: ../twentyeleven/comments.php:41 ../twentyeleven/comments.php:61
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: ../twentyeleven/comments.php:42 ../twentyeleven/comments.php:62
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: ../twentyeleven/comments.php:72 ../twentyten/comments.php:72
+msgid "Comments are closed."
+msgstr ""
+
+#: ../twentyeleven/content-aside.php:17
+msgid "Aside"
+msgstr ""
+
+#: ../twentyeleven/content-aside.php:22 ../twentyeleven/content-image.php:21
+#: ../twentyeleven/content-link.php:22 ../twentyeleven/content-quote.php:24
+#: ../twentyeleven/content-status.php:21 ../twentyeleven/content.php:30
+msgid "Reply"
+msgstr ""
+
+#: ../twentyeleven/content-aside.php:22 ../twentyeleven/content-image.php:21
+#: ../twentyeleven/content-link.php:22 ../twentyeleven/content-quote.php:24
+#: ../twentyeleven/content-status.php:21 ../twentyeleven/content.php:30
+msgctxt "comments number"
+msgid "1"
+msgstr ""
+
+#: ../twentyeleven/content-aside.php:22 ../twentyeleven/content-image.php:21
+#: ../twentyeleven/content-link.php:22 ../twentyeleven/content-quote.php:24
+#: ../twentyeleven/content-status.php:21 ../twentyeleven/content.php:30
+msgctxt "comments number"
+msgid "%"
+msgstr ""
+
+#: ../twentyeleven/content-aside.php:33 ../twentyeleven/content-gallery.php:32
+#: ../twentyeleven/content-image.php:27 ../twentyeleven/content-link.php:33
+#: ../twentyeleven/content-quote.php:35 ../twentyeleven/content-status.php:34
+#: ../twentyeleven/content.php:41 ../twentyeleven/functions.php:344
+#: ../twentyten/functions.php:253 ../twentyten/loop-attachment.php:104
+#: ../twentyten/loop.php:115 ../twentyten/loop.php:143
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../twentyeleven/content-aside.php:42 ../twentyeleven/content-gallery.php:87
+#: ../twentyeleven/content-image.php:64 ../twentyeleven/content-link.php:42
+#: ../twentyeleven/content-quote.php:69 ../twentyeleven/content-status.php:43
+#: ../twentyeleven/content.php:77 ../twentyeleven/showcase.php:201
+msgid "Leave a reply"
+msgstr ""
+
+#: ../twentyeleven/content-aside.php:42 ../twentyeleven/content-gallery.php:87
+#: ../twentyeleven/content-image.php:64 ../twentyeleven/content-link.php:42
+#: ../twentyeleven/content-quote.php:69 ../twentyeleven/content-status.php:43
+#: ../twentyeleven/content.php:77 ../twentyeleven/showcase.php:201
+msgid "<b>1</b> Reply"
+msgstr ""
+
+#: ../twentyeleven/content-aside.php:42 ../twentyeleven/content-gallery.php:87
+#: ../twentyeleven/content-image.php:64 ../twentyeleven/content-link.php:42
+#: ../twentyeleven/content-quote.php:69 ../twentyeleven/content-status.php:43
+#: ../twentyeleven/content.php:77 ../twentyeleven/showcase.php:201
+msgid "<b>%</b> Replies"
+msgstr ""
+
+#: ../twentyeleven/content-featured.php:29
+#: ../twentyeleven/content-featured.php:38
+#: ../twentyeleven/content-gallery.php:62
+#: ../twentyeleven/content-gallery.php:72 ../twentyeleven/content-image.php:47
+#: ../twentyeleven/content-image.php:56 ../twentyeleven/content-quote.php:44
+#: ../twentyeleven/content-quote.php:54 ../twentyeleven/content-single.php:30
+#: ../twentyeleven/content-single.php:33 ../twentyeleven/content.php:51
+#: ../twentyeleven/content.php:61
+msgid ", "
+msgstr ""
+
+#: ../twentyeleven/content-featured.php:31 ../twentyten/functions.php:498
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" "
+"title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+
+#: ../twentyeleven/content-featured.php:33 ../twentyten/functions.php:500
+#, php-format
+msgid ""
+"This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title="
+"\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+
+#: ../twentyeleven/content-gallery.php:17
+msgid "Gallery"
+msgstr ""
+
+#: ../twentyeleven/content-gallery.php:47 ../twentyten/loop.php:82
+#, php-format
+msgid "This gallery contains <a %1$s>%2$s photo</a>."
+msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../twentyeleven/content-gallery.php:66 ../twentyeleven/content-image.php:51
+#: ../twentyeleven/content-quote.php:48 ../twentyeleven/content.php:55
+#: ../twentyten/loop.php:151
+#, php-format
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr ""
+
+#: ../twentyeleven/content-gallery.php:78 ../twentyeleven/content-image.php:59
+#: ../twentyeleven/content-quote.php:60 ../twentyeleven/content.php:67
+#: ../twentyten/loop.php:160
+#, php-format
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr ""
+
+#: ../twentyeleven/content-image.php:16
+msgid "Image"
+msgstr ""
+
+#: ../twentyeleven/content-image.php:34
+#, php-format
+msgid ""
+"<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%2$s"
+"\" pubdate>%3$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by "
+"</span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" "
+"title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+msgstr ""
+
+#: ../twentyeleven/content-image.php:39 ../twentyeleven/functions.php:587
+#: ../twentyten/functions.php:481 ../twentyten/loop-attachment.php:36
+#, php-format
+msgid "View all posts by %s"
+msgstr ""
+
+#: ../twentyeleven/content-link.php:17
+msgid "Link"
+msgstr ""
+
+#: ../twentyeleven/content-quote.php:15
+msgid "Quote"
+msgstr ""
+
+#: ../twentyeleven/content-single.php:35
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s by <a href=\"%6$s\">%5$s</a>. "
+"Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark"
+"\">permalink</a>."
+msgstr ""
+
+#: ../twentyeleven/content-single.php:37
+#, php-format
+msgid ""
+"This entry was posted in %1$s by <a href=\"%6$s\">%5$s</a>. Bookmark the <a "
+"href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+
+#: ../twentyeleven/content-single.php:39
+#, php-format
+msgid ""
+"This entry was posted by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href="
+"\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+
+#: ../twentyeleven/content-single.php:64 ../twentyten/loop-single.php:47
+#, php-format
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../twentyeleven/content-status.php:16
+msgid "Status"
+msgstr ""
+
+#: ../twentyeleven/content.php:16
+msgid "Featured"
+msgstr ""
+
+#: ../twentyeleven/footer.php:27 ../twentyten/footer.php:33
+msgid "http://wordpress.org/"
+msgstr ""
+
+#: ../twentyeleven/footer.php:27
+#, php-format
+msgid "Proudly powered by %s"
+msgstr ""
+
+#: ../twentyeleven/functions.php:95
+msgid "Primary Menu"
+msgstr ""
+
+#: ../twentyeleven/functions.php:164
+msgid "Wheel"
+msgstr ""
+
+#: ../twentyeleven/functions.php:170
+msgid "Shore"
+msgstr ""
+
+#: ../twentyeleven/functions.php:176
+msgid "Trolley"
+msgstr ""
+
+#: ../twentyeleven/functions.php:182
+msgid "Pine Cone"
+msgstr ""
+
+#: ../twentyeleven/functions.php:188
+msgid "Chessboard"
+msgstr ""
+
+#: ../twentyeleven/functions.php:194
+msgid "Lanterns"
+msgstr ""
+
+#: ../twentyeleven/functions.php:200
+msgid "Willow"
+msgstr ""
+
+#: ../twentyeleven/functions.php:206
+msgid "Hanoi Plant"
+msgstr ""
+
+#: ../twentyeleven/functions.php:391
+msgid "Main Sidebar"
+msgstr ""
+
+#: ../twentyeleven/functions.php:400
+msgid "Showcase Sidebar"
+msgstr ""
+
+#: ../twentyeleven/functions.php:402
+msgid "The sidebar for the optional Showcase Template"
+msgstr ""
+
+#: ../twentyeleven/functions.php:410
+msgid "Footer Area One"
+msgstr ""
+
+#: ../twentyeleven/functions.php:412 ../twentyeleven/functions.php:422
+#: ../twentyeleven/functions.php:432
+msgid "An optional widget area for your site footer"
+msgstr ""
+
+#: ../twentyeleven/functions.php:420
+msgid "Footer Area Two"
+msgstr ""
+
+#: ../twentyeleven/functions.php:430
+msgid "Footer Area Three"
+msgstr ""
+
+#: ../twentyeleven/functions.php:450 ../twentyeleven/single.php:18
+msgid "Post navigation"
+msgstr ""
+
+#: ../twentyeleven/functions.php:451 ../twentyten/loop.php:25
+#: ../twentyten/loop.php:178
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr ""
+
+#: ../twentyeleven/functions.php:452 ../twentyten/loop.php:26
+#: ../twentyten/loop.php:179
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../twentyeleven/functions.php:522 ../twentyten/functions.php:362
+msgid "Pingback:"
+msgstr ""
+
+#: ../twentyeleven/functions.php:539
+#, php-format
+msgid "%1$s on %2$s <span class=\"says\">said:</span>"
+msgstr ""
+
+#: ../twentyeleven/functions.php:563
+msgid "Reply <span>&darr;</span>"
+msgstr ""
+
+#: ../twentyeleven/functions.php:581
+#, php-format
+msgid ""
+"<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel="
+"\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\" pubdate>%4$s</"
+"time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span "
+"class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" "
+"rel=\"author\">%7$s</a></span></span>"
+msgstr ""
+
+#: ../twentyeleven/header.php:45 ../twentyten/header.php:33
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: ../twentyeleven/header.php:129
+msgid "Main menu"
+msgstr ""
+
+#: ../twentyeleven/header.php:131
+msgid "Skip to primary content"
+msgstr ""
+
+#: ../twentyeleven/header.php:132
+msgid "Skip to secondary content"
+msgstr ""
+
+#: ../twentyeleven/image.php:18
+msgid "Image navigation"
+msgstr ""
+
+#: ../twentyeleven/image.php:19
+msgid "&larr; Previous"
+msgstr ""
+
+#: ../twentyeleven/image.php:20
+msgid "Next &rarr;"
+msgstr ""
+
+#: ../twentyeleven/image.php:30
+#, php-format
+msgid ""
+"<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class="
+"\"entry-date\"><abbr class=\"published\" title=\"%1$s\">%2$s</abbr></span> "
+"at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> "
+"in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+msgstr ""
+
+#: ../twentyeleven/search.php:18 ../twentyten/search.php:16
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: ../twentyeleven/search.php:46 ../twentyten/search.php:28
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: ../twentyeleven/showcase.php:77
+msgid "Featured Post"
+msgstr ""
+
+#: ../twentyeleven/showcase.php:160
+msgid "Recent Posts"
+msgstr ""
+
+#: ../twentyeleven/sidebar.php:26 ../twentyten/sidebar.php:34
+msgid "Meta"
+msgstr ""
+
+#: ../twentyeleven/single.php:19
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr ""
+
+#: ../twentyeleven/single.php:20
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../twentyeleven/tag.php:19 ../twentyten/tag.php:16
+#, php-format
+msgid "Tag Archives: %s"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:61
+#: ../twentyeleven/inc/theme-options.php:491
+msgid "Link Color"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:62
+msgid "Default Layout"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:94
+#: ../twentyeleven/inc/theme-options.php:95
+msgid "Theme Options"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:110
+msgid ""
+"Some themes provide customization options that are grouped together on a "
+"Theme Options screen. If you change themes, options may change or disappear, "
+"as they are theme-specific. Your current theme, Twenty Eleven, provides the "
+"following Theme Options:"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:112
+msgid ""
+"<strong>Color Scheme</strong>: You can choose a color palette of \"Light"
+"\" (light background with dark text) or \"Dark\" (dark background with light "
+"text) for your site."
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:113
+msgid ""
+"<strong>Link Color</strong>: You can choose the color used for text links on "
+"your site. You can enter the HTML color or hex code, or you can choose "
+"visually by clicking the \"Select a Color\" button to pick from a color "
+"wheel."
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:114
+msgid ""
+"<strong>Default Layout</strong>: You can choose if you want your site&#8217;"
+"s default layout to have a sidebar on the left, the right, or not at all."
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:116
+msgid ""
+"Remember to click \"Save Changes\" to save any changes you have made to the "
+"theme options."
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:118
+msgid "For more information:"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:119
+msgid ""
+"<a href=\"http://codex.wordpress.org/Appearance_Theme_Options_Screen\" "
+"target=\"_blank\">Documentation on Theme Options</a>"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:120
+msgid ""
+"<a href=\"http://wordpress.org/support/\" target=\"_blank\">Support Forums</"
+"a>"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:127
+msgid "Overview"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:173
+msgid "Content on left"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:178
+msgid "Content on right"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:183
+msgid "One-column, no sidebar"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:276
+#, php-format
+msgid "Default color: %s"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:312
+#, php-format
+msgid "%s Theme Options"
+msgstr ""
+
+#: ../twentyeleven/inc/theme-options.php:498
+msgid "Layout"
+msgstr ""
+
+#: ../twentyeleven/inc/widgets.php:19
+msgid ""
+"Use this widget to list your recent Aside, Status, Quote, and Link posts"
+msgstr ""
+
+#: ../twentyeleven/inc/widgets.php:20
+msgid "Twenty Eleven Ephemera"
+msgstr ""
+
+#: ../twentyeleven/inc/widgets.php:52
+msgid "Ephemera"
+msgstr ""
+
+#: ../twentyeleven/inc/widgets.php:91 ../twentyeleven/inc/widgets.php:107
+msgid "0 <span class=\"reply\">comments &rarr;</span>"
+msgstr ""
+
+#: ../twentyeleven/inc/widgets.php:91 ../twentyeleven/inc/widgets.php:107
+msgid "1 <span class=\"reply\">comment &rarr;</span>"
+msgstr ""
+
+#: ../twentyeleven/inc/widgets.php:91 ../twentyeleven/inc/widgets.php:107
+msgid "% <span class=\"reply\">comments &rarr;</span>"
+msgstr ""
+
+#: ../twentyeleven/inc/widgets.php:157
+msgid "Title:"
+msgstr ""
+
+#: ../twentyeleven/inc/widgets.php:160
+msgid "Number of posts to show:"
+msgstr ""
+
+#: ../twentyten/404.php:16 ../twentyten/loop.php:33
+msgid "Not Found"
+msgstr ""
+
+#: ../twentyten/404.php:18
+msgid ""
+"Apologies, but the page you requested could not be found. Perhaps searching "
+"will help."
+msgstr ""
+
+#: ../twentyten/archive.php:33
+#, php-format
+msgid "Daily Archives: <span>%s</span>"
+msgstr ""
+
+#: ../twentyten/archive.php:35
+#, php-format
+msgid "Monthly Archives: <span>%s</span>"
+msgstr ""
+
+#: ../twentyten/archive.php:37
+#, php-format
+msgid "Yearly Archives: <span>%s</span>"
+msgstr ""
+
+#: ../twentyten/comments.php:35
+#, php-format
+msgid "One Response to %2$s"
+msgid_plural "%1$s Responses to %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../twentyten/comments.php:41 ../twentyten/comments.php:60
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr ""
+
+#: ../twentyten/comments.php:42 ../twentyten/comments.php:61
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../twentyten/footer.php:33
+#, php-format
+msgid "Proudly powered by %s."
+msgstr ""
+
+#: ../twentyten/functions.php:145
+msgid "Berries"
+msgstr ""
+
+#: ../twentyten/functions.php:151
+msgid "Cherry Blossoms"
+msgstr ""
+
+#: ../twentyten/functions.php:157
+msgid "Concave"
+msgstr ""
+
+#: ../twentyten/functions.php:163
+msgid "Fern"
+msgstr ""
+
+#: ../twentyten/functions.php:169
+msgid "Forest Floor"
+msgstr ""
+
+#: ../twentyten/functions.php:175
+msgid "Inkwell"
+msgstr ""
+
+#: ../twentyten/functions.php:181
+msgid "Path"
+msgstr ""
+
+#: ../twentyten/functions.php:187
+msgid "Sunset"
+msgstr ""
+
+#: ../twentyten/functions.php:335
+#, php-format
+msgid "%s <span class=\"says\">says:</span>"
+msgstr ""
+
+#: ../twentyten/functions.php:381
+msgid "Primary Widget Area"
+msgstr ""
+
+#: ../twentyten/functions.php:383
+msgid "The primary widget area"
+msgstr ""
+
+#: ../twentyten/functions.php:392
+msgid "Secondary Widget Area"
+msgstr ""
+
+#: ../twentyten/functions.php:394
+msgid "The secondary widget area"
+msgstr ""
+
+#: ../twentyten/functions.php:403
+msgid "First Footer Widget Area"
+msgstr ""
+
+#: ../twentyten/functions.php:405
+msgid "The first footer widget area"
+msgstr ""
+
+#: ../twentyten/functions.php:414
+msgid "Second Footer Widget Area"
+msgstr ""
+
+#: ../twentyten/functions.php:416
+msgid "The second footer widget area"
+msgstr ""
+
+#: ../twentyten/functions.php:425
+msgid "Third Footer Widget Area"
+msgstr ""
+
+#: ../twentyten/functions.php:427
+msgid "The third footer widget area"
+msgstr ""
+
+#: ../twentyten/functions.php:436
+msgid "Fourth Footer Widget Area"
+msgstr ""
+
+#: ../twentyten/functions.php:438
+msgid "The fourth footer widget area"
+msgstr ""
+
+#: ../twentyten/functions.php:472
+#, php-format
+msgid ""
+"<span class=\"%1$s\">Posted on</span> %2$s <span class=\"meta-sep\">by</"
+"span> %3$s"
+msgstr ""
+
+#: ../twentyten/functions.php:502
+#, php-format
+msgid ""
+"Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark"
+"\">permalink</a>."
+msgstr ""
+
+#: ../twentyten/header.php:101
+msgid "Skip to content"
+msgstr ""
+
+#: ../twentyten/loop-attachment.php:21
+#, php-format
+msgid "Return to %s"
+msgstr ""
+
+#: ../twentyten/loop-attachment.php:23
+#, php-format
+msgid "<span class=\"meta-nav\">&larr;</span> %s"
+msgstr ""
+
+#: ../twentyten/loop-attachment.php:32
+#, php-format
+msgid "<span class=\"%1$s\">By</span> %2$s"
+msgstr ""
+
+#: ../twentyten/loop-attachment.php:43
+#, php-format
+msgid "<span class=\"%1$s\">Published</span> %2$s"
+msgstr ""
+
+#: ../twentyten/loop-attachment.php:53
+#, php-format
+msgid "Full size is %s pixels"
+msgstr ""
+
+#: ../twentyten/loop-attachment.php:56
+msgid "Link to full-size image"
+msgstr ""
+
+#: ../twentyten/loop-single.php:21 ../twentyten/loop-single.php:61
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr ""
+
+#: ../twentyten/loop-single.php:22 ../twentyten/loop-single.php:62
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr ""
+
+#: ../twentyten/loop.php:60 ../twentyten/loop.php:95 ../twentyten/loop.php:96
+msgctxt "gallery category slug"
+msgid "gallery"
+msgstr ""
+
+#: ../twentyten/loop.php:93 ../twentyten/loop.php:96
+msgid "More Galleries"
+msgstr ""
+
+#: ../twentyten/loop.php:99 ../twentyten/loop.php:122
+#: ../twentyten/loop.php:164
+msgid "Leave a comment"
+msgstr ""
+
+#: ../twentyten/loop.php:106
+msgctxt "asides category slug"
+msgid "asides"
+msgstr ""
