@@ -25,6 +25,7 @@
 !defined('CALIBREFX_CACHE_URI') && define('CALIBREFX_CACHE_URI', CALIBREFX_URI . '/cache');
 !defined('CALIBREFX_LOG_URI') && define('CALIBREFX_LOG_URI', CALIBREFX_URI . '/log');
 !defined('CALIBREFX_SYS_URI') && define('CALIBREFX_SYS_URI', CALIBREFX_URI . '/system');
+!defined('CALIBREFX_LANG_URI') && define('CALIBREFX_LANG_URI', CALIBREFX_URI . '/system/languages');
 
 !defined('CALIBREFX_CONFIG_URI') && define('CALIBREFX_CONFIG_URI', CALIBREFX_SYS_URI . '/config');
 !defined('CALIBREFX_LIBRARY_URI') && define('CALIBREFX_LIBRARY_URI', CALIBREFX_SYS_URI . '/libraries');
