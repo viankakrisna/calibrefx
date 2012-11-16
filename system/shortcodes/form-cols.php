@@ -67,9 +67,9 @@
                 </ul>
             </div>
 
-            <div class="panel_wrapper" style="height: 120px;">
+            <div class="panel_wrapper" style="height: 145px;">
 
-                <div id="colTab" class="panel current" style="height: 120px;">
+                <div id="colTab" class="panel current" style="height: 145px;">
 
                     <fieldset>        
                         <legend>Columns</legend><br />  
