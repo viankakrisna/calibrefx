@@ -33,7 +33,7 @@ $autoload['libraries'] = array('cache','breadcrumb','security','replacer');
 
 $autoload['helpers'] = array('debug','format', 'image', 'html', 'url', 'widget', 
                              'option', 'layout', 'meta_box','nav','post','seo', 
-                             'user','script');
+                             'user','script','admin_menu');
 
 /*
  *  Auto-load Config files
