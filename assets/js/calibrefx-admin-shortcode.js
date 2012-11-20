@@ -6,7 +6,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_buttons', {
 			ed.windowManager.open({			
 				file : calibrefx_local.shortcode_url + '/form-buttons.php',
 				width : 360 + ed.getLang('calibrefx_shortcode_buttons.delta_width', 0),
-				height : 200 + ed.getLang('calibrefx_shortcode_buttons.delta_height', 0),
+				height : 380 + ed.getLang('calibrefx_shortcode_buttons.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		
@@ -58,7 +58,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_dropcaps', {
 			ed.windowManager.open({			
 				file : calibrefx_local.shortcode_url + '/form-dropcaps.php',
 				width : 360 + ed.getLang('calibrefx_shortcode_dropcaps.delta_width', 0),
-				height : 340 + ed.getLang('calibrefx_shortcode_dropcaps.delta_height', 0),
+				height : 280 + ed.getLang('calibrefx_shortcode_dropcaps.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		
@@ -85,7 +85,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_list', {
 			ed.windowManager.open({			
 				file : calibrefx_local.shortcode_url + '/form-list.php',
 				width : 360 + ed.getLang('calibrefx_shortcode_list.delta_width', 0),
-				height : 340 + ed.getLang('calibrefx_shortcode_list.delta_height', 0),
+				height : 200 + ed.getLang('calibrefx_shortcode_list.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		
@@ -111,7 +111,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_column', {
 			ed.windowManager.open({			
 				file : calibrefx_local.shortcode_url + '/form-cols.php',
 				width : 360 + ed.getLang('calibrefx_shortcode_column.delta_width', 0),
-				height : 340 + ed.getLang('calibrefx_shortcode_column.delta_height', 0),
+				height : 220 + ed.getLang('calibrefx_shortcode_column.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		
@@ -136,8 +136,8 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_gmaps', {
 		ed.addCommand('calibrefx_sc_gmaps', function() {		
 			ed.windowManager.open({			
 				file : calibrefx_local.shortcode_url + '/form-gmaps.php',
-				width : 360 + ed.getLang('calibrefx_shortcode_gmaps.delta_width', 0),
-				height : 340 + ed.getLang('calibrefx_shortcode_gmaps.delta_height', 0),
+				width : 470 + ed.getLang('calibrefx_shortcode_gmaps.delta_width', 0),
+				height : 240 + ed.getLang('calibrefx_shortcode_gmaps.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		
@@ -164,7 +164,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_video', {
 			ed.windowManager.open({			
 				file : calibrefx_local.shortcode_url + '/form-video.php',
 				width : 360 + ed.getLang('calibrefx_shortcode_video.delta_width', 0),
-				height : 340 + ed.getLang('calibrefx_shortcode_video.delta_height', 0),
+				height : 240 + ed.getLang('calibrefx_shortcode_video.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		
@@ -243,7 +243,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_togglebox', {
 			ed.windowManager.open({			
 				file : calibrefx_local.shortcode_url + '/form-togglebox.php',
 				width : 360 + ed.getLang('calibrefx_shortcode_togglebox.delta_width', 0),
-				height : 340 + ed.getLang('calibrefx_shortcode_togglebox.delta_height', 0),
+				height : 200 + ed.getLang('calibrefx_shortcode_togglebox.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		
@@ -269,7 +269,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_social', {
 			ed.windowManager.open({			
 				file : calibrefx_local.shortcode_url + '/form-social.php',
 				width : 360 + ed.getLang('calibrefx_shortcode_social.delta_width', 0),
-				height : 340 + ed.getLang('calibrefx_shortcode_social.delta_height', 0),
+				height : 200 + ed.getLang('calibrefx_shortcode_social.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		

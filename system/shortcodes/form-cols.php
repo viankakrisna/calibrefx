@@ -35,9 +35,10 @@
                     // ziskaj hodnoty z formu			
                     var col_width = document.getElementById('col_width').value;	
                     var is_last = document.getElementById('is_last').value;	
+                    var is_first = document.getElementById('is_first').value; 
 		
                     //shortcodeRetazec = '["'+col_width+'" last="'+is_last+'" ]'+medziShortcodom+'[/"'+col_width+'"] ';
-                    shortcodeRetazec = '[column class="' + col_width + '" last=' + is_last + ']' + medziShortcodom + '[/column]';
+                    shortcodeRetazec = '[column cols="' + col_width + '" last=' + is_last + ' first=' + is_first + ']' + medziShortcodom + '[/column]';
 		
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
@@ -66,9 +67,9 @@
                 </ul>
             </div>
 
-            <div class="panel_wrapper" style="height: 120px;">
+            <div class="panel_wrapper" style="height: 145px;">
 
-                <div id="colTab" class="panel current" style="height: 120px;">
+                <div id="colTab" class="panel current" style="height: 145px;">
 
                     <fieldset>        
                         <legend>Columns</legend><br />  
@@ -78,15 +79,25 @@
                             <tr>                 
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="col_width">Column:</label></td>                          <td>                    
                                     <select name="col_width" id="col_width" style="width: 250px">                       
-                                        <option value="one-half">One half</option>
-                                        <option value="one-third">One third</option>  
-                                        <option value="two-thirds">Two thirds</option>  
-                                        <option value="one-fourth">One fourth</option>  
-                                        <option value="three-fourths">Three fourths</option>                                               
+                                        <option value="span6">One half</option>
+                                        <option value="span4">One third</option>  
+                                        <option value="span8">Two thirds</option>  
+                                        <option value="span3">One fourth</option>  
+                                        <option value="span9">Three fourths</option>                                               
                                     </select><br />      
                                     <em style="font-size: 9px; color: #999;">Select width of the col.</em>                
                                 </td>                    
                             </tr>     
+                            <!-- is first? -->       
+                            <tr>                 
+                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="is_first">Is First?</label></td>                          <td>                    
+                                    <select name="is_first" id="is_first" style="width: 250px">                       
+                                        <option value="no">No</option>
+                                        <option value="yes">Yes</option>                                            
+                                    </select><br />      
+                                    <em style="font-size: 9px; color: #999;">Is this column first in the row?</em>                
+                                </td>                    
+                            </tr>    
                             <!-- is last? -->       
                             <tr>                 
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="is_last">Is last?</label></td>                          <td>                    

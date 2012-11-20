@@ -72,8 +72,12 @@ final class Calibrefx {
      */
     public function intialize() {
         add_action('calibrefx_init', array(&$this, 'calibrefx_theme_support'),0);
+        add_action('after_setup_theme', array(&$this,'calibrefx_theme_i18N'));
     }
 
+    public function calibrefx_theme_i18N(){
+        load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
+    }
     /**
      * Add our calibrefx theme support
      */

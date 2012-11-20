@@ -33,7 +33,6 @@ function calibrefx_clear_meta_section() {
  *
  * @since 1.0.2
  *
- * @use add_meta_box
  * @param string $slug String section slug.
  * @param string $title Title of the section.
  * @param string $ability Optional. The ability that can see the settings ('general', 'professor').

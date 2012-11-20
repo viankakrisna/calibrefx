@@ -79,10 +79,13 @@ class CFX_About_Settings extends CFX_Admin {
 
     public function info_box() {
         ?>
-        <p><strong><?php _e('Framework Name: ', 'calibrefx'); ?></strong><?php echo FRAMEWORK_NAME; ?> (<?php
-        _e('Codename: ', 'calibrefx');
-        echo FRAMEWORK_CODENAME;
-        ?>)</p>
+        <p>
+            <span class="description">
+            Below is the CalibreFx Framework Informations. All the codes and informations is copyrighted by <a href="http://www.calibreworks.com" target="_blank">CalibreWorks</a>. 
+            CalibreFx is released under the GPL v2. For license information please refer to the license.txt in themes folder.
+            </span>
+        </p>
+        <p><strong><?php _e('Framework Name: ', 'calibrefx'); ?></strong><?php echo FRAMEWORK_NAME; ?> (<?php _e('Codename: ', 'calibrefx'); echo FRAMEWORK_CODENAME; ?>)</p>
         <p><strong><?php _e('Version:', 'calibrefx'); ?></strong> <?php calibrefx_option('calibrefx_version'); ?> <?php echo '&middot;'; ?> <strong><?php _e('Released:', 'calibrefx'); ?></strong> <?php echo FRAMEWORK_RELEASE_DATE; ?></p>
         <p><strong><?php _e('DB Version: ', 'calibrefx'); ?></strong><?php calibrefx_option('calibrefx_db_version'); ?></p>
         <?php

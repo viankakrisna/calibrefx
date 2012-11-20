@@ -450,33 +450,33 @@ class CFX_Admin_Bar {
                     </div>
                 </div>
                 <div id="calibrefx-admin-bar-menu">
-                    <?php //TODO: Must be changed using _render_group ?>
                     <div class="bottom-bar-left">
                         <ul>
-                            <li>
-                                <a href="<?php echo admin_url('edit.php', 'http'); ?>">Posts</a>
-                                <ul class="children">
-                                    <li><a href="<?php echo admin_url('edit.php', 'http'); ?>">All Posts</a></li>
-                                    <li><a href="<?php echo admin_url('post-new.php', 'http'); ?>">Add New</a></li>
-                                    <li><a href="<?php echo admin_url('edit-tags.php?taxonomy=category', 'http'); ?>">Categories</a></li>
-                                    <li><a href="<?php echo admin_url('edit-tags.php?taxonomy=post_tag', 'http'); ?>">Tags</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="<?php echo admin_url('edit.php?post_type=page', 'http'); ?>">Pages</a>
-                                <ul class="children">
-                                    <li><a href="<?php echo admin_url('edit.php?post_type=page', 'http'); ?>">All Pages</a></li>
-                                    <li><a href="<?php echo admin_url('post-new.php?post_type=page', 'http'); ?>">Add New</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="<?php echo admin_url('nav-menus.php', 'http'); ?>">Menus</a></li>
+                            <?php 
+                                global $calibrefx_admin_menu;
+                                foreach($calibrefx_admin_menu as $top_menu){
+                                    if (current_user_can($top_menu['capability'])) {
+                                        echo '<li>' . '<a href="'.$top_menu['url'].'">'.$top_menu['title'].'</a>'; 
+                                        if(!empty($top_menu['submenu'])){
+                                            echo ' <ul class="children">';
+                                            foreach($top_menu['submenu'] as $sub_menu){ 
+                                                if (current_user_can($sub_menu['capability'])) {
+                                                    echo '<li>' . '<a href="'.$sub_menu['url'].'">'.$sub_menu['title'].'</a>' . '</li>';
+                                                }
+                                            }
+                                             echo ' </ul>';
+                                        }
+                                        echo '</li>';
+                                    }
+                                }
+                            ?>
                         </ul>
                     </div>
                     <div class="bottom-bar-right">
                         <ul class="social">
-                            <li><a href="http://www.facebook.com/CalibreWorks" class="facebook" title="Calibreworks at Facebook"></a></li>
-                            <li><a href="http://twitter.com/calibrefx" class="twitter" title="CalibreFx at Twitter"></a></li>
-                            <li><a href="http://www.calibrefx.com/" class="homepage" title="Calibrefx Homepage"></a></li>
+                            <li><a href="http://www.facebook.com/CalibreWorks" class="facebook" title="Calibreworks at Facebook" target="_blank"></a></li>
+                            <li><a href="http://twitter.com/calibrefx" class="twitter" title="CalibreFx at Twitter" target="_blank"></a></li>
+                            <li><a href="http://www.calibrefx.com/" class="homepage" title="Calibrefx Homepage" target="_blank"></a></li>
                         </ul>
                     </div>
                 </div>

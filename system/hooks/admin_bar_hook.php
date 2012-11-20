@@ -53,6 +53,23 @@ function calibrefx_admin_bar_init() {
     return true;
 }
 
+add_action('init', 'calibrefx_admin_bar_add_menu', 15);
+function calibrefx_admin_bar_add_menu(){
+    calibrefx_clear_admin_menu();
+    calibrefx_add_admin_menu('Posts', 'edit_posts', 'posts', admin_url('edit.php'));
+    calibrefx_add_admin_submenu('posts', 'All Posts', 'edit_posts', 'posts_all_post', admin_url('edit.php'));
+    calibrefx_add_admin_submenu('posts', 'Add New', 'edit_posts', 'posts_add_new_post', admin_url('post-new.php'));
+    calibrefx_add_admin_submenu('posts', 'Categories', 'edit_posts', 'posts_categories', admin_url('edit-tags.php?taxonomy=category'));
+    calibrefx_add_admin_submenu('posts', 'Tags', 'edit_posts', 'posts_tags', admin_url('edit-tags.php?taxonomy=post_tag'));
+    
+    calibrefx_add_admin_menu('Pages', 'edit_pages', 'pages', admin_url('edit.php?post_type=page'));
+    calibrefx_add_admin_submenu('pages', 'All Pages', 'edit_pages', 'pages_all_post', admin_url('edit.php?post_type=page'));
+    calibrefx_add_admin_submenu('pages', 'Add New', 'edit_pages', 'pages_all_post', admin_url('post-new.php?post_type=page'));
+    
+    calibrefx_add_admin_menu('Menus', 'edit_theme_options', 'menus', admin_url('nav-menus.php'));
+}
+
+
 add_action('admin_footer', 'calibrefx_admin_bar_render', 1000);
 
 /**

@@ -49,7 +49,8 @@ function calibrefx_login_logo() {
             div#login form#lostpasswordform { padding-bottom: 16px !important; } div#login form#lostpasswordform p.submit { float: none !important; } div#login form#lostpasswordform input[type="submit"] { width: 100% !important; }
             div#login form#registerform { padding-bottom: 16px !important; } div#login form#registerform p.submit { float: none !important; margin-top: -10px !important; } div#login form#registerform input[type="submit"] { width: 100% !important; }
             div#login form#registerform p#reg_passmail { font-style: italic !important; }
-                        
+            div#login p.submit::after{ clear: both; }
+            div#login p.submit::before, div#login p.submit::after{ display: table; content: \'\';  }
         </style>';
 }
 
