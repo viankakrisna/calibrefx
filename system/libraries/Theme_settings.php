@@ -508,6 +508,11 @@ class CFX_Theme_Settings extends CFX_Admin {
             <input type="text" size="30" value="<?php echo calibrefx_get_option('linkedin_profile'); ?>" id="<?php echo $this->settings_field; ?>[linkedin_profile]" name="<?php echo $this->settings_field; ?>[linkedin_profile]">
             <span class="description"><?php _e("This will use for Linkedin link, and it will show if using the Social Widget", 'calibrefx'); ?></span>
         </p>
+		<p>
+            <label for="<?php echo $this->settings_field; ?>[pinterest_profile]"><?php _e('Pinterest Profile Link:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('pinterest_profile'); ?>" id="<?php echo $this->settings_field; ?>[pinterest_profile]" name="<?php echo $this->settings_field; ?>[pinterest_profile]">
+            <span class="description"><?php _e("This will use for Pinterest link, and it will show if using the Social Widget", 'calibrefx'); ?></span>
+        </p>
         <?php
     }
 
