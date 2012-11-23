@@ -42,15 +42,15 @@ class CFX_Seo_Settings extends CFX_Admin {
             'enable_seo' => 1,
             'doc_canonical_url' => 1,
             'doc_enable_rewrite_title' => 1,
-            'post_rewrite_title' => '%post_title% &raquo; %site_title%',
-            'page_rewrite_title' => '%page_title% &raquo; %site_title%',
-            'author_rewrite_title' => '%author_name% Profile &raquo; %site_title%',
-            'category_rewrite_title' => '%category_title% &raquo; %site_title%',
-            'archive_rewrite_title' => 'Archive: %date% &raquo; %site_title%',
-            'tag_rewrite_title' => 'Tags: %tag% &raquo; %site_title%',
+            'post_rewrite_title' => '%post_title% | %site_title%',
+            'page_rewrite_title' => '%page_title% | %site_title%',
+            'author_rewrite_title' => '%author_name% Profile | %site_title%',
+            'category_rewrite_title' => '%category_title% | %site_title%',
+            'archive_rewrite_title' => 'Archive: %date% | %site_title%',
+            'tag_rewrite_title' => 'Tags: %tag% | %site_title%',
             'taxonomy_rewrite_title' => '%taxonomy%',
-            'search_rewrite_title' => '%search% &raquo; %site_title%',
-            '404_rewrite_title' => 'Nothing found for %request_words% &raquo; %site_title%',
+            'search_rewrite_title' => '%search% | %site_title%',
+            '404_rewrite_title' => 'Nothing found for %request_words% | %site_title%',
             'post_description' => '%description%',
             'page_description' => '%description%',
             'author_description' => 'Profile Author: %author_name% in %site_title%',
@@ -58,7 +58,7 @@ class CFX_Seo_Settings extends CFX_Admin {
             'category_description' => 'Page Category %category_title% for %site_title%',
             'archive_description' => 'Website Archive %date% for %site_title%',
             'tag_description' => 'Website Tag %tag% for %site_title%',
-            'taxonomy_description' => '%taxonomy% &raquo; %site_title%',
+            'taxonomy_description' => '%taxonomy% | %site_title%',
             '404_description' => 'Nothing found for %request_words%',
             'post_keywords' => '%keywords%',
             'page_keywords' => '%keywords%',
@@ -107,56 +107,56 @@ class CFX_Seo_Settings extends CFX_Admin {
     public function security_filters(){
         $CFX = & calibrefx_get_instance();
         
-//        $CFX->security->add_sanitize_filter(
-//                'one_zero', 
-//                $this->settings_field,
-//                array(
-//                    'enable_seo',
-//                    'doc_canonical_url',
-//                    'doc_enable_rewrite_title',
-//                    'home_noindex',
-//                    'home_nofollow',
-//                    'home_noarchive',
-//                    'category_noindex',
-//                    'tag_noindex',
-//                    'author_noindex',
-//                    'date_noindex',
-//                    'search_noindex',
-//                    'category_noarchive',
-//                    'tag_noarchive',
-//                    'author_noarchive',
-//                    'date_noarchive',
-//                    'search_noarchive',
-//                    'site_noarchive',
-//                    'site_noodp',
-//                    'site_noydir',
-//                    'archive_canonical')
-//        );
-//        
-//        $CFX->security->add_sanitize_filter(
-//                'safe_text', 
-//                $this->settings_field,
-//                array(
-//                    'post_description',
-//                    'page_description',
-//                    'author_description',
-//                    'search_description',
-//                    'category_description',
-//                    'archive_description',
-//                    'tag_description',
-//                    '404_description',
-//                    'post_keywords',
-//                    'page_keywords',
-//                    'author_keywords',
-//                    'search_keywords',
-//                    'category_keywords',
-//                    'archive_keywords',
-//                    'tag_keywords',
-//                    '404_keywords',
-//                    'home_title',
-//                    'home_meta_description',
-//                    'home_meta_keywords')
-//        );
+        $CFX->security->add_sanitize_filter(
+                'one_zero', 
+                $this->settings_field,
+                array(
+                    'enable_seo',
+                    'doc_canonical_url',
+                    'doc_enable_rewrite_title',
+                    'home_noindex',
+                    'home_nofollow',
+                    'home_noarchive',
+                    'category_noindex',
+                    'tag_noindex',
+                    'author_noindex',
+                    'date_noindex',
+                    'search_noindex',
+                    'category_noarchive',
+                    'tag_noarchive',
+                    'author_noarchive',
+                    'date_noarchive',
+                    'search_noarchive',
+                    'site_noarchive',
+                    'site_noodp',
+                    'site_noydir',
+                    'archive_canonical')
+        );
+        
+        $CFX->security->add_sanitize_filter(
+                'no_html', 
+                $this->settings_field,
+                array(
+                    'post_description',
+                    'page_description',
+                    'author_description',
+                    'search_description',
+                    'category_description',
+                    'archive_description',
+                    'tag_description',
+                    '404_description',
+                    'post_keywords',
+                    'page_keywords',
+                    'author_keywords',
+                    'search_keywords',
+                    'category_keywords',
+                    'archive_keywords',
+                    'tag_keywords',
+                    '404_keywords',
+                    'home_title',
+                    'home_meta_description',
+                    'home_meta_keywords')
+        );
     }
 
     public function meta_sections() {
@@ -193,13 +193,17 @@ class CFX_Seo_Settings extends CFX_Admin {
      */
     function seo_settings_box() { ?>
         <p>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[enable_seo]" id="<?php echo $this->settings_field; ?>[enable_seo]" value="1" <?php checked(1, calibrefx_get_option('enable_seo', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[enable_seo]"><?php _e("Enable SEO Feature?", 'calibrefx'); ?></label><br/>
+            <input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-seo" value="1" <?php checked(1, $this->_model->get('enable_seo')); ?> target="<?php echo $this->settings_field; ?>-enable_seo" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[enable_seo]"><?php _e("Enable SEO Feature?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[enable_seo]" id="<?php echo $this->settings_field; ?>-enable_seo" value="<?php echo $this->_model->get('enable_seo'); ?>" />
             <span class="description">
                 You can disable the SEO feature if you want to use another SEO plugin by uncheck the checkbox below. 
             </span>
         </p>
         <p>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[doc_canonical_url]" id="<?php echo $this->settings_field; ?>[doc_canonical_url]" value="1" <?php checked(1, calibrefx_get_option('doc_canonical_url', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[doc_canonical_url]"><?php _e("Enable Canonical URL?", 'calibrefx'); ?></label><br/>
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('doc_canonical_url')); ?> target="<?php echo $this->settings_field; ?>-doc_canonical_url" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[doc_canonical_url]"><?php _e("Enable Canonical URL?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[doc_canonical_url]" id="<?php echo $this->settings_field; ?>-doc_canonical_url" value="<?php echo $this->_model->get('doc_canonical_url'); ?>"/>
             <span class="description">This option will automatically generate Canonical URLS for your entire WordPress installation. This will help to prevent duplicate content penalties by Search Engine.</span>
         </p>
         <?php
@@ -214,7 +218,9 @@ class CFX_Seo_Settings extends CFX_Admin {
             Document Title will defined your page headline (title) which is the single most important SEO tag in your document source. It will tell search engines the information contained in the document. The doctitle changes from page to page, but these options will help you control what it looks by default.
         </span>
         <p>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[doc_enable_rewrite_title]" id="<?php echo $this->settings_field; ?>[doc_enable_rewrite_title]" value="1" <?php checked(1, calibrefx_get_option('doc_enable_rewrite_title', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[doc_enable_rewrite_title]"><?php _e("Enable Rewrite Title?", 'calibrefx'); ?></label><br/>
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('doc_enable_rewrite_title')); ?> target="<?php echo $this->settings_field; ?>-doc_enable_rewrite_title" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[doc_enable_rewrite_title]"><?php _e("Enable Rewrite Title?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[doc_enable_rewrite_title]" id="<?php echo $this->settings_field; ?>-doc_enable_rewrite_title" value="<?php echo $this->_model->get('doc_enable_rewrite_title'); ?>"/>
             <span class="description">This option will automatically generate title for your entire site. If disable it will use the default title from WordPress.</span>
         </p>
         <p>
@@ -415,11 +421,19 @@ class CFX_Seo_Settings extends CFX_Admin {
         <h4>Homepage Robots Meta Tags:</h4>
 
         <p>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[home_noindex]" id="<?php echo $this->settings_field; ?>[home_noindex]" value="1" <?php checked(1, calibrefx_get_option('home_noindex', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[home_noindex]"><?php _e("Apply <code>noindex</code> to the homepage?", 'calibrefx'); ?></label>
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('home_noindex')); ?> target="<?php echo $this->settings_field; ?>-home_noindex" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[home_noindex]"><?php _e("Apply <code>noindex</code> to the homepage?", 'calibrefx'); ?></label>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[home_noindex]" id="<?php echo $this->settings_field; ?>-home_noindex" value="<?php echo $this->_model->get('home_noindex'); ?>" />
             <span class="description">You can apply noindex for your homepage. Warning: Leave this uncheck if you don't understand.</span><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[home_nofollow]" id="<?php echo $this->settings_field; ?>[home_nofollow]" value="1" <?php checked(1, calibrefx_get_option('home_nofollow', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[home_nofollow]"><?php _e("Apply <code>nofollow</code> to the homepage?", 'calibrefx'); ?></label>
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('home_nofollow')); ?> target="<?php echo $this->settings_field; ?>-home_nofollow" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[home_nofollow]"><?php _e("Apply <code>nofollow</code> to the homepage?", 'calibrefx'); ?></label>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[home_nofollow]" id="<?php echo $this->settings_field; ?>-home_nofollow" value="<?php echo $this->_model->get('home_nofollow'); ?>" />
             <span class="description">You can apply nofollow for your homepage. Warning: Leave this uncheck if you don't understand.</span><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[home_noarchive]" id="<?php echo $this->settings_field; ?>[home_noarchive]" value="1" <?php checked(1, calibrefx_get_option('home_noarchive', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[home_noarchive]"><?php _e("Apply <code>noarchive</code> to the homepage?", 'calibrefx'); ?></label>
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('home_noarchive')); ?> target="<?php echo $this->settings_field; ?>-home_noarchive" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[home_noarchive]"><?php _e("Apply <code>noarchive</code> to the homepage?", 'calibrefx'); ?></label>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[home_noarchive]" id="<?php echo $this->settings_field; ?>-home_noarchive" value="<?php echo $this->_model->get('home_noarchive'); ?>" />
             <span class="description">You can apply noarchive for your homepage. Warning: Leave this uncheck if you don't understand.</span><br/>
         </p>
         <?php
@@ -434,29 +448,65 @@ class CFX_Seo_Settings extends CFX_Admin {
             Robot Meta Noindex will tell the search engine not to index certain page in your website. This option will avoid duplicate content penalty. But use it wisely.
         </span>
         <p>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[category_noindex]" id="<?php echo $this->settings_field; ?>[category_noindex]" value="1" <?php checked(1, calibrefx_get_option('category_noindex', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[category_noindex]"><?php _e("Apply <code>noindex</code> to Category Archives?", 'calibrefx'); ?></label><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[tag_noindex]" id="<?php echo $this->settings_field; ?>[tag_noindex]" value="1" <?php checked(1, calibrefx_get_option('tag_noindex', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[tag_noindex]"><?php _e("Apply <code>noindex</code> to Tag Archives?", 'calibrefx'); ?></label><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[author_noindex]" id="<?php echo $this->settings_field; ?>[author_noindex]" value="1" <?php checked(1, calibrefx_get_option('author_noindex', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[author_noindex]"><?php _e("Apply <code>noindex</code> to Author Archives?", 'calibrefx'); ?></label><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[date_noindex]" id="<?php echo $this->settings_field; ?>[date_noindex]" value="1" <?php checked(1, calibrefx_get_option('date_noindex', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[date_noindex]"><?php _e("Apply <code>noindex</code> to Date Archives?", 'calibrefx'); ?></label><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[search_noindex]" id="<?php echo $this->settings_field; ?>[search_noindex]" value="1" <?php checked(1, calibrefx_get_option('search_noindex', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[search_noindex]"><?php _e("Apply <code>noindex</code> to Search Archives?", 'calibrefx'); ?></label><br/>
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('category_noindex')); ?> target="<?php echo $this->settings_field; ?>-category_noindex" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[category_noindex]"><?php _e("Apply <code>noindex</code> to Category Archives?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[category_noindex]" id="<?php echo $this->settings_field; ?>-category_noindex" value="<?php echo $this->_model->get('category_noindex'); ?>"/>
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('tag_noindex')); ?> target="<?php echo $this->settings_field; ?>-tag_noindex" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[tag_noindex]"><?php _e("Apply <code>noindex</code> to Tag Archives?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[tag_noindex]" id="<?php echo $this->settings_field; ?>-tag_noindex" value="<?php echo $this->_model->get('tag_noindex'); ?>"  />
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('author_noindex')); ?> target="<?php echo $this->settings_field; ?>-author_noindex" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[author_noindex]"><?php _e("Apply <code>noindex</code> to Author Archives?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[author_noindex]" id="<?php echo $this->settings_field; ?>-author_noindex" value="<?php echo $this->_model->get('author_noindex'); ?>" />
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('date_noindex')); ?> target="<?php echo $this->settings_field; ?>-date_noindex" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[date_noindex]"><?php _e("Apply <code>noindex</code> to Date Archives?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[date_noindex]" id="<?php echo $this->settings_field; ?>-date_noindex" value="<?php echo $this->_model->get('date_noindex'); ?>" />
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('search_noindex')); ?> target="<?php echo $this->settings_field; ?>-search_noindex" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[search_noindex]"><?php _e("Apply <code>noindex</code> to Search Archives?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[search_noindex]" id="<?php echo $this->settings_field; ?>-search_noindex" value="<?php echo $this->_model->get('search_noindex'); ?>" />
         </p>
         <span class="description">
             Robot Meta Noarchive will tell the search engine not to archive certain page in your website. This option will avoid duplicate content penalty. But use it wisely.
         </span>
         <p>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[category_noarchive]" id="<?php echo $this->settings_field; ?>[category_noarchive]" value="1" <?php checked(1, calibrefx_get_option('category_noarchive', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[category_noarchive]"><?php _e("Apply <code>noarchive</code> to Category Archives?", 'calibrefx'); ?></label><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[tag_noarchive]" id="<?php echo $this->settings_field; ?>[tag_noarchive]" value="1" <?php checked(1, calibrefx_get_option('tag_noarchive', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[tag_noarchive]"><?php _e("Apply <code>noarchive</code> to Tag Archives?", 'calibrefx'); ?></label><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[author_noarchive]" id="<?php echo $this->settings_field; ?>[author_noarchive]" value="1" <?php checked(1, calibrefx_get_option('author_noarchive', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[author_noarchive]"><?php _e("Apply <code>noarchive</code> to Author Archives?", 'calibrefx'); ?></label><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[date_noarchive]" id="<?php echo $this->settings_field; ?>[date_noarchive]" value="1" <?php checked(1, calibrefx_get_option('date_noarchive', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[date_noarchive]"><?php _e("Apply <code>noarchive</code> to Date Archives?", 'calibrefx'); ?></label><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[search_noarchive]" id="<?php echo $this->settings_field; ?>[search_noarchive]" value="1" <?php checked(1, calibrefx_get_option('search_noarchive', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[search_noarchive]"><?php _e("Apply <code>noarchive</code> to Search Archives?", 'calibrefx'); ?></label><br/>
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('category_noarchive')); ?> target="<?php echo $this->settings_field; ?>-category_noarchive" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[category_noarchive]"><?php _e("Apply <code>noarchive</code> to Category Archives?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[category_noarchive]" id="<?php echo $this->settings_field; ?>-category_noarchive" value="<?php echo $this->_model->get('category_noarchive'); ?>" />
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('tag_noarchive')); ?> target="<?php echo $this->settings_field; ?>-tag_noarchive" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[tag_noarchive]"><?php _e("Apply <code>noarchive</code> to Tag Archives?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[tag_noarchive]" id="<?php echo $this->settings_field; ?>-tag_noarchive" value="<?php echo $this->_model->get('tag_noarchive'); ?>" />
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('author_noarchive')); ?> target="<?php echo $this->settings_field; ?>-author_noarchive" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[author_noarchive]"><?php _e("Apply <code>noarchive</code> to Author Archives?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[author_noarchive]" id="<?php echo $this->settings_field; ?>-author_noarchive" value="<?php echo $this->_model->get('author_noarchive'); ?>" />
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('date_noarchive')); ?> target="<?php echo $this->settings_field; ?>-date_noarchive" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[date_noarchive]"><?php _e("Apply <code>noarchive</code> to Date Archives?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[date_noarchive]" id="<?php echo $this->settings_field; ?>-date_noarchive" value="<?php echo $this->_model->get('date_noarchive'); ?>" />
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('search_noarchive')); ?> target="<?php echo $this->settings_field; ?>-search_noarchive" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[search_noarchive]"><?php _e("Apply <code>noarchive</code> to Search Archives?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[search_noarchive]" id="<?php echo $this->settings_field; ?>-search_noarchive" value="<?php echo $this->_model->get('search_noarchive'); ?>" />
         </p>
         <p>
             <span class="description">Occasionally, search engines use resources like the Open Directory Project and the Yahoo! Directory to find titles and descriptions for your content. Generally, you will not want them to do this. The <code>noodp</code> and <code>noydir</code> tags prevent them from doing so.</span>
         </p>
         <p>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[site_noarchive]" id="<?php echo $this->settings_field; ?>[site_noarchive]" value="1" <?php checked(1, calibrefx_get_option('site_noarchive', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[site_noarchive]"><?php _e("Apply <code>noarchive</code> to your site?", 'calibrefx'); ?></label><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[site_noodp]" id="<?php echo $this->settings_field; ?>[site_noodp]" value="1" <?php checked(1, calibrefx_get_option('site_noodp', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[site_noodp]"><?php _e("Apply <code>noodp</code> to your site?", 'calibrefx'); ?></label><br/>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[site_noydir]" id="<?php echo $this->settings_field; ?>[site_noydir]" value="1" <?php checked(1, calibrefx_get_option('site_noydir', $this->_model)); ?> /> <label for="<?php echo $this->settings_field; ?>[site_noydir]"><?php _e("Apply <code>noydir</code> to your site?", 'calibrefx'); ?></label><br/>
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('site_noarchive')); ?> target="<?php echo $this->settings_field; ?>-site_noarchive" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[site_noarchive]"><?php _e("Apply <code>noarchive</code> to your site?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[site_noarchive]" id="<?php echo $this->settings_field; ?>-site_noarchive" value="<?php echo $this->_model->get('site_noarchive'); ?>" />
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('site_noodp')); ?> target="<?php echo $this->settings_field; ?>-site_noodp" class="calibrefx-settings-checkbox" /> 
+            <label for="<?php echo $this->settings_field; ?>[site_noodp]"><?php _e("Apply <code>noodp</code> to your site?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[site_noodp]" id="<?php echo $this->settings_field; ?>-site_noodp" value="<?php echo $this->_model->get('site_noodp'); ?>" />
+            
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('site_noydir')); ?> target="<?php echo $this->settings_field; ?>-site_noydir" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[site_noydir]"><?php _e("Apply <code>noydir</code> to your site?", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[site_noydir]" id="<?php echo $this->settings_field; ?>-site_noydir" value="<?php echo $this->_model->get('site_noydir'); ?>" />
         </p>
 
         <?php
@@ -468,7 +518,9 @@ class CFX_Seo_Settings extends CFX_Admin {
     function archive_box() {
         ?>
         <p>
-            <input type="checkbox" name="<?php echo $this->settings_field; ?>[archive_canonical]" id="<?php echo $this->settings_field; ?>[archive_canonical]" value="1" <?php checked(1, $this->_model->get('archive_canonical')); ?> /> <label for="<?php echo $this->settings_field; ?>[archive_canonical]"><?php _e("Canonical Paginated Archives", 'calibrefx'); ?></label><br/>
+            <input type="checkbox" name="" value="1" <?php checked(1, $this->_model->get('archive_canonical')); ?> target="<?php echo $this->settings_field; ?>-archive_canonical" class="calibrefx-settings-checkbox"/> 
+            <label for="<?php echo $this->settings_field; ?>[archive_canonical]"><?php _e("Canonical Paginated Archives", 'calibrefx'); ?></label><br/>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[archive_canonical]" id="<?php echo $this->settings_field; ?>-archive_canonical" value="<?php echo $this->_model->get('archive_canonical'); ?>" />
             <span class="description">This option will output canonical url for the paginated page. So the paginated page will canonical to the first page. This will avoid duplicate content for the archive page.</span>
         </p>
         <?php

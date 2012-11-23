@@ -39,7 +39,7 @@ class CFX_Security {
      * @var	array
      */
     protected $options = array();
-    
+
     /**
      * Safe value for text
      *
@@ -50,6 +50,14 @@ class CFX_Security {
         '%post_title%',
         '%page_title%',
         '%keywords%',
+        '%request_words%',
+        '%category_title%',
+        '%author_name%',
+        '%date%',
+        '%tag%',
+        '%site_title%',
+        '%taxonomy%',
+        '%tag%'
     );
 
     /**
@@ -91,7 +99,7 @@ class CFX_Security {
 
         if (!in_array($filter, array_keys($available_filters)))
             return $new_value;
-        
+
         return call_user_func($available_filters[$filter], $new_value);
     }
 
@@ -121,7 +129,7 @@ class CFX_Security {
             return $new_value;
         } elseif (is_string($this->options[$field])) {
             return $this->do_sanitize_filter($this->options[$field], $new_value, get_option($option));
-        } elseif (is_array($this->options[$field])) {            
+        } elseif (is_array($this->options[$field])) {
             foreach ($this->options[$field] as $key => $filter) {
                 $new_value[$key] = isset($new_value[$key]) ? $new_value[$key] : '';
                 $new_value[$key] = $this->do_sanitize_filter($filter, $new_value[$key]);
@@ -195,7 +203,7 @@ class CFX_Security {
      */
     function safe_text($new_value) {
         //If in safe text don't filter
-        if(in_array($new_value, $this->safe_value)){
+        if (in_array($new_value, $this->safe_value)) {
             return $new_value;
         }
         return sanitize_text_field($new_value);
@@ -218,7 +226,8 @@ class CFX_Security {
      * @uses wp_verify_nonce
      * @param string $nonce_key
      */
-    public function verify_nonce($action, $nonce_key){
+    public function verify_nonce($action, $nonce_key) {
         return (isset($_POST[$nonce_key]) || wp_verify_nonce($_POST[$nonce_key], $action));
     }
+
 }
