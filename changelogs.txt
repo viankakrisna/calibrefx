@@ -1,5 +1,28 @@
 Change Logs CalibreFx
 
+version 1.0.6 <4 November 2012> - 
+    * Fix Bugs in SEO Settings
+    * Add English PO translation
+    * Add Indonesia PO Translation
+    * Remove unnecessary css styles 
+    * Fix many bugs in theme settings
+
+version 1.0.5 <12 November 2012> - 
+    * Add Rich Snippet For Breadcrumb
+    * Add Social Settings
+    * Add Google Author Verfied URL
+    * Add Google Publisher Verified URL
+    * Fix many other bugs
+
+version 1.0.4 <22 October 2012> - 
+    * Fix Many Bugs in SEO Features
+    * Fix Many Default CSS Styles
+    * Allow user to disable seo feature for compatibility with other SEO Plugins
+    * Allow SEO For Custom Post Type and Custom Taxonomy
+    * Now Shortcode Helper load in autoload
+    * get_content_limit now can do wrap_close
+    * Fix many bugs in theme settings
+
 version 1.0.4 <22 October 2012> - 
     * Fix Many Bugs in SEO Features
     * Fix Many Default CSS Styles
