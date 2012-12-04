@@ -205,11 +205,11 @@ abstract class CFX_Admin {
                         <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
                     </div>
                     <div class="calibrefx-version">
-                        <span>v<?php calibrefx_option('calibrefx_version'); ?> ( Code Name : <?php echo FRAMEWORK_CODENAME; ?>)</span>
+                        <span class="description">Build On CalibreFx version <?php calibrefx_option('calibrefx_version'); ?> (Code Name : <?php echo FRAMEWORK_CODENAME; ?>)</span>
                     </div>
                     <div class="calibrefx-ability">
-                        <a class="calibrefx-general" href="<?php echo admin_url("admin.php?page=calibrefx&ability=basic&section=" . $calibrefx_current_section); ?>"><?php _e('Basic', 'calibrefx'); ?></a>
-                        <a class="calibrefx-professor" href="<?php echo admin_url("admin.php?page=calibrefx&ability=professor&section=" . $calibrefx_current_section); ?>"><?php _e('Professor', 'calibrefx'); ?></a>
+                        <a class="calibrefx-general" href="<?php echo admin_url("admin.php?page=".$this->page_id."&ability=basic&section=" . $calibrefx_current_section); ?>"><?php _e('Basic', 'calibrefx'); ?></a>
+                        <a class="calibrefx-professor" href="<?php echo admin_url("admin.php?page=".$this->page_id."&ability=professor&section=" . $calibrefx_current_section); ?>"><?php _e('Professor', 'calibrefx'); ?></a>
                     </div>
                 </div>
                 <div class="calibrefx-content">
