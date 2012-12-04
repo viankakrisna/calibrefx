@@ -39,22 +39,20 @@ function calibrefx_set_user_ability() {
     $calibrefx_user_ability = get_usermeta($current_user->ID, 'ability');
 }
 
-add_action('show_user_profile', 'calibrefx_user_archive_fields');
-add_action('edit_user_profile', 'calibrefx_user_archive_fields');
+add_action('show_user_profile', 'calibrefx_user_social_fields');
+add_action('edit_user_profile', 'calibrefx_user_social_fields');
 
 /**
- * Adds fields for author archives contents to the user edit screen.
+ * Adds fields for author social media information.
  *
  * Input / Textarea fields are:
- * - Custom Archive Headline
- * - Custom Description Text
- *
- * Checkbox fields are:
- * - Enable Author Box on the User's Posts?
- * - Enable Author Box on this User's Archives?
+ * - Google+ profile page
+ * - Twitter profile
+ * - Youtube channel
+ * - Linkedin profile
  *
  */
-function calibrefx_user_archive_fields($user) {
+function calibrefx_user_social_fields($user) {
 
     if (!current_user_can('edit_users', $user->ID))
         return false;
@@ -92,7 +90,29 @@ function calibrefx_user_archive_fields($user) {
            
         </tbody>
     </table>
+    <?php
+}
 
+add_action('show_user_profile', 'calibrefx_user_archive_fields');
+add_action('edit_user_profile', 'calibrefx_user_archive_fields');
+
+/**
+ * Adds fields for author archives contents to the user edit screen.
+ *
+ * Input / Textarea fields are:
+ * - Custom Archive Headline
+ * - Custom Description Text
+ *
+ * Checkbox fields are:
+ * - Enable Author Box on the User's Posts?
+ * - Enable Author Box on this User's Archives?
+ *
+ */
+function calibrefx_user_archive_fields($user) {
+
+    if (!current_user_can('edit_users', $user->ID))
+        return false;
+    ?>
     <h3><?php _e('Author Archive Settings', 'calibrefx'); ?></h3>
     <p><span class="description"><?php _e('These settings apply to this author\'s archive pages.', 'calibrefx'); ?></span></p>
     <table class="form-table">
