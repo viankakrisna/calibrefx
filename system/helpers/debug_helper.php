@@ -5,10 +5,10 @@
  *
  * WordPress Themes Framework by CalibreWorks Team
  *
- * @package		CalibreFx
- * @author		CalibreWorks Team
+ * @package     CalibreFx
+ * @author      CalibreWorks Team
  * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @link		http://calibrefx.com
+ * @link        http://calibrefx.com
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
@@ -41,6 +41,19 @@ if (!function_exists('debug_var')) {
         $after .= '</div>' . "\n";
 
         echo $after;
+    }
+
+}
+
+if (!function_exists('debug_var_log')) {
+
+    function debug_var_log($var) {
+        ob_start(); //Start buffering
+        var_dump($var); //print the result
+        $output = ob_get_contents(); //get the result from buffer
+        ob_end_clean(); //close buffer
+
+        calibrefx_log_message('debug', 'Debug Var: '. $output);
     }
 
 }
