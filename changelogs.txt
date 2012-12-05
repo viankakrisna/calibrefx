@@ -1,6 +1,9 @@
 Change Logs CalibreFx
 
-version 1.0.6 <4 November 2012> - 
+version 1.0.7 <5 December 2012> - 
+    * Allow Cross Settings Other Theme Settings
+
+version 1.0.6 <4 December 2012> - 
     * Fix Bugs in SEO Settings
     * Add English PO translation
     * Add Indonesia PO Translation
