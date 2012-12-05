@@ -30,7 +30,7 @@ do_action('calibrefx_pre');
 /** Define Theme Info Constants */
 define('FRAMEWORK_NAME', 'CalibreFx');
 define('FRAMEWORK_CODENAME', 'Pink Gibbon');
-define('FRAMEWORK_VERSION', '1.0.6');
+define('FRAMEWORK_VERSION', '1.0.7');
 define('FRAMEWORK_DB_VERSION', '1000');
 define('FRAMEWORK_URL', 'http://www.calibrefx.com');
 define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1327922947'));
