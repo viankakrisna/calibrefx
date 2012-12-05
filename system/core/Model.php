@@ -5,10 +5,10 @@
  *
  * WordPress Themes Framework by CalibreWorks Team
  *
- * @package		CalibreFx
- * @author		CalibreWorks Team
+ * @package     CalibreFx
+ * @author      CalibreWorks Team
  * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @link		http://calibrefx.com
+ * @link        http://calibrefx.com
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
@@ -21,11 +21,11 @@
 /**
  * Calibrefx Model Class
  *
- * @package		Calibrefx
+ * @package     Calibrefx
  * @subpackage          Core
- * @author		CalibreWorks Team
- * @since		Version 1.0
- * @link		http://calibrefx.com
+ * @author      CalibreWorks Team
+ * @since       Version 1.0
+ * @link        http://calibrefx.com
  */
 class CFX_Model {
 
@@ -46,7 +46,7 @@ class CFX_Model {
     /**
      * Initialize CFX_Model Class
      *
-     * @return	void
+     * @return  void
      */
     public function __construct($setting_field = '') {
         $this->_setting_field = $setting_field;
@@ -74,6 +74,15 @@ class CFX_Model {
         $this->_cfx->cache->cache_set($setting, $options, $setting);
 
         return $options[$key];
+    }
+
+    public function get_all(){
+        $options = apply_filters('calibrefx_options', get_option($this->_setting_field), $this->_setting_field);
+        return $options;
+    }
+
+    public function save($value){
+        return update_option($this->_setting_field, $value);
     }
 
 }

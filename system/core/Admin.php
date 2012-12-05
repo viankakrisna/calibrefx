@@ -5,12 +5,12 @@
  *
  * WordPress Themes Framework by CalibreWorks Team
  *
- * @package		CalibreFx
- * @author		CalibreWorks Team
+ * @package     CalibreFx
+ * @author      CalibreWorks Team
  * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
- * @license		Commercial
- * @link		http://www.calibrefx.com
- * @since		Version 1.0
+ * @license     Commercial
+ * @link        http://www.calibrefx.com
+ * @since       Version 1.0
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
@@ -62,6 +62,7 @@ abstract class CFX_Admin {
      * 
      */
     public function initialize() {
+        global $calibrefx;
 
         $this->settings_field = $this->_model->get_settings_field();
         
@@ -72,8 +73,16 @@ abstract class CFX_Admin {
         add_action('admin_notices', array($this, 'notices'));
         add_action('admin_init', array($this, 'settings_init'));
 
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
+
         /** Add a sanitizer/validator */
         add_filter('pre_update_option_' . $this->settings_field, array(&$this, 'save'), 10, 2);
+        
+        //This will allow to cross save calibrefx themes settings
+        if($this->settings_field != $calibrefx->theme_settings_m->get_settings_field()){
+            $this->save_core();
+            //add_filter('pre_update_option_' . $calibrefx->theme_settings_m->get_settings_field(), array(&$this, 'save_core'), 10, 2);            
+        }
     }
 
     /**
@@ -124,6 +133,34 @@ abstract class CFX_Admin {
         }
         
         return $_newvalue;
+    }
+
+    /**
+     * Save our settings option
+     *
+     * $return array
+     */
+    public function save_core() {
+        global $calibrefx;
+
+        $calibrefx_settings_field = $calibrefx->theme_settings_m->get_settings_field();
+        
+        //Get the value from post settings
+        $_newvalue = $_POST[$calibrefx_settings_field];
+        debug_var_log($_POST);
+        
+        if(empty($_newvalue)) return;
+
+        $_oldvalue = $calibrefx->theme_settings_m->get_all();
+        
+        //merge value from old settings
+        $_newvalue = array_merge($_oldvalue, $_newvalue);
+        
+        //We merge with default value too
+        $_newvalue = array_merge((array)$calibrefx->theme_settings->default_settings, $_newvalue);
+
+        //@TODO: Need to sanitize before save
+        return $calibrefx->theme_settings_m->save($_newvalue);
     }
 
     /**array_merge
