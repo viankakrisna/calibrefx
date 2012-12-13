@@ -72,12 +72,30 @@ function calibrefx_do_footer_widgets() {
     register_sidebar($sidebar);
 
     if (is_active_sidebar('footer-widget')) {
-        echo '<div id="footer-widget" ' . get_footer_widget_class() . '>';
-		calibrefx_put_wrapper('footer-widget');
+        do_action('calibrefx_before_footer_widget');
         dynamic_sidebar('footer-widget');
-		calibrefx_put_wrapper('footer-widget','close');
-        echo '</div><!--end #footer-widget-->';
+		do_action('calibrefx_after_footer_widget');
     }
+}
+
+add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_open');
+
+/**
+ * Open footer widget markup
+ */
+function calibrefx_do_footer_widget_open(){
+    echo '<div id="footer-widget" ' . get_footer_widget_class() . '>';
+    calibrefx_put_wrapper('footer-widget'); 
+}
+
+add_action('calibrefx_after_footer_widget', 'calibrefx_do_footer_widget_close');
+
+/**
+ * Open footer widget markup
+ */
+function calibrefx_do_footer_widget_close(){
+    calibrefx_put_wrapper('footer-widget','close');
+    echo '</div><!--end #footer-widget-->';
 }
 
 add_action('calibrefx_footer', 'calibrefx_do_footer_open', 5);
