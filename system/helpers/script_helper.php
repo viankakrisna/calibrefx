@@ -36,3 +36,7 @@ function calibrefx_get_script() {
     $pfile = $break[count($break) - 1];
     return $pfile;
 }
+
+function cfx_is_ajax_request(){
+	return ( ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
+}
