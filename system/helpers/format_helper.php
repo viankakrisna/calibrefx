@@ -105,9 +105,9 @@ function get_the_title_limit($max_char, $stripteaser = 0) {
     $title = get_the_title('', $stripteaser);
 
     // Truncate $content to $max_char
-    $title = calibrefx_truncate_phrase($title, $max_char);
-
+    
     if(strlen($title) > $max_char){
+        $title = calibrefx_truncate_phrase($title, $max_char);
         $output = sprintf('%s...', $title);
     }else{
         $output = sprintf('%s', $title);
