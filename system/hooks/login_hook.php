@@ -40,7 +40,7 @@ function calibrefx_login_logo() {
             body, .login { background: #F5F5F5 !important; }
 
             div#login { width: 440px !important; }
-            div#login h1 a { width:291px !important; background-size: 260px 76px; padding-bottom: 0; height: 90px !important; background-image: url(' . CALIBREFX_IMAGES_URL . '/CalibreWorks_logo.png) !important; background-repeat:no-repeat; }
+            div#login h1 a { width:291px !important; background-size: 260px 76px; padding-bottom: 0; height: 90px !important; background-image: url(' . CALIBREFX_IMAGES_URL . '/CalibreFX_logo.png) !important; background-repeat:no-repeat; }
             div#login form { -moz-box-shadow: 1px 1px 5px #EEEEEE, -1px -1px 5px #EEEEEE !important; -webkit-box-shadow: 1px 1px 5px #EEEEEE, -1px -1px 5px #EEEEEE !important; box-shadow: 1px 1px 5px #EEEEEE, -1px -1px 5px #EEEEEE !important; }
             div#login form label { cursor:pointer; }
             div#login form p.submit { margin-bottom: 0 !important; }
