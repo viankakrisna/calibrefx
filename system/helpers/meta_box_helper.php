@@ -37,7 +37,7 @@ function calibrefx_clear_meta_section() {
  * @param string $title Title of the section.
  * @param string $ability Optional. The ability that can see the settings ('general', 'professor').
  */
-function calibrefx_add_meta_section($slug, $title) {
+function calibrefx_add_meta_section($slug, $title, $target='options.php') {
     global $calibrefx_sections;
 
     if (!isset($calibrefx_sections))
@@ -57,6 +57,8 @@ function calibrefx_add_meta_section($slug, $title) {
         'basic' => array(),
         'professor' => array()
     );
+
+    add_filter('calibrefx_'.$slug.'_form_url', function() use ($target) { return $target; });
 }
 
 function calibrefx_do_meta_sections($section, $screen, $context, $object) {

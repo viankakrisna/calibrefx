@@ -57,6 +57,9 @@ abstract class CFX_Admin {
      */
     public $_model;
 
+
+    public $_submit_url;
+
     /**
      * Initialize our admin area
      * 
@@ -228,10 +231,11 @@ abstract class CFX_Admin {
 
     public function dashboard() {
         global $calibrefx_sections, $calibrefx_current_section;
+        $this->_submit_url = apply_filters('calibrefx_'.$calibrefx_current_section.'_form_url', 'options.php');
         
         ?>
         <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes <?php echo $calibrefx_current_section; ?>">
-            <form method="post" action="options.php">
+            <form method="post" action="<?php echo $this->_submit_url; ?>">
                 <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
                 <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
                 <?php settings_fields($this->settings_field); // important! ?>
