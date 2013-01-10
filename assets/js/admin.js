@@ -109,3 +109,29 @@ function calibrefx_confirm( text ) {
         return false;
     }
 }
+
+jQuery(document).ready(function($){
+    theTeamResize();
+
+    $(window).resize(theTeamResize);
+});
+
+
+
+
+function theTeamResize(){
+
+    
+    jQuery('.the-team').css('height', 'auto');
+
+    var height = 0;
+    jQuery('.the-team').each(function(){
+        $this = jQuery(this);
+
+        if(height < $this.height()){
+            height = $this.height();
+        }
+
+    })
+    jQuery('.the-team').height(height);
+}
