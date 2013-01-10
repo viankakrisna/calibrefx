@@ -72,6 +72,7 @@ abstract class CFX_Admin {
         //define our security filter
         $this->security_filters();
         
+        add_action('calibrefx_hidden_fields', array($this,'hidden_fields'));
         add_action('admin_init', array($this, 'register_settings'));
         add_action('admin_notices', array($this, 'notices'));
         add_action('admin_init', array($this, 'settings_init'));
@@ -108,6 +109,13 @@ abstract class CFX_Admin {
      * $return null
      */
     abstract public function meta_sections();
+
+    public function hidden_fields(){
+        ?>
+        <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_version', $this->_model)); ?>" />
+        <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_db_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_db_version', $this->_model)); ?>" />
+        <?php
+    }
 
     /**
      * Save our settings option
@@ -239,10 +247,8 @@ abstract class CFX_Admin {
                 <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
                 <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
                 <?php settings_fields($this->settings_field); // important! ?>
-                <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_version', $this->_model)); ?>" />
-                <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_db_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_db_version', $this->_model)); ?>" />
                 <?php do_action('calibrefx_hidden_fields'); ?>
-                
+
                 <div class="calibrefx-header">
                     <div class="calibrefx-option-logo">
                         <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
