@@ -150,6 +150,13 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_box('social', 'professor', 'calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), array($this, 'socials_box'), $this->pagehook, 'side');
     }
 
+    public function hidden_fields(){
+        ?>
+        <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_version', $this->_model)); ?>" />
+        <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_db_version]>" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_db_version', $this->_model)); ?>" />
+        <?php
+    }
+
     //Meta Boxes Sections
     /**
      * Show navigation setting box
