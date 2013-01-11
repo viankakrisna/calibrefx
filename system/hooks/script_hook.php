@@ -45,7 +45,6 @@ function calibrefx_register_scripts(){
     wp_register_style('calibrefx-bootstrap-responsive', CALIBREFX_CSS_URL . '/bootstrap.responsive.min.css');
     wp_register_style('calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css');
     wp_register_style('calibrefx-responsive-style', CALIBREFX_CSS_URL . '/calibrefx.responsive.css');
-    wp_register_style('nivo-slider', CALIBREFX_CSS_URL . '/nivo-slider.css');
 }
 
 add_action('get_header', 'calibrefx_load_scripts');
