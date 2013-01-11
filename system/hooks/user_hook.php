@@ -68,6 +68,13 @@ function calibrefx_user_social_fields($user) {
             </tr>
 
             <tr>
+                <th scope="row" valign="top"><label for="facebook_profile"><?php _e('Facebook Profile', 'calibrefx'); ?></label></th>
+                <td>
+                    <input name="meta[facebook_profile]" id="facebook_profile" type="text" value="<?php echo esc_attr(get_the_author_meta('facebook_profile', $user->ID)); ?>" class="regular-text" /><br />
+                </td>
+            </tr>
+
+            <tr>
                 <th scope="row" valign="top"><label for="twitter_profile"><?php _e('Twitter Profile', 'calibrefx'); ?></label></th>
                 <td>
                     <input name="meta[twitter_profile]" id="twitter_profile" type="text" value="<?php echo esc_attr(get_the_author_meta('twitter_profile', $user->ID)); ?>" class="regular-text" /><br />

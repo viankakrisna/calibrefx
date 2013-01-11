@@ -98,6 +98,34 @@ function the_content_limit($max_char, $more_link_text = '(more...)', $striptease
 }
 
 /**
+ * limits the output for title to $max_char characters,
+ * and appends an ellipses to the end.
+ */
+function get_the_title_limit($max_char, $stripteaser = 0) {
+    $title = get_the_title('', $stripteaser);
+
+    // Truncate $content to $max_char
+    
+    if(strlen($title) > $max_char){
+        $title = calibrefx_truncate_phrase($title, $max_char);
+        $output = sprintf('%s...', $title);
+    }else{
+        $output = sprintf('%s', $title);
+    }
+
+    return apply_filters('get_the_title_limit', $output, $title, $max_char);
+}
+
+/**
+ * Helper function to limit the title
+ * called get_the_titl_limit function
+ */
+function the_title_limit($max_char, $stripteaser = 0) {
+    $title = get_the_title_limit($max_char, $stripteaser);
+    echo apply_filters('the_title_limit', $title);
+}
+
+/**
  * Calculate the time difference - a replacement for human_time_diff() until it
  * is improved.
  *

@@ -209,16 +209,20 @@ function calibrefx_comment_form_args( $defaults ) {
     $aria_req  = ( $req ? ' aria-required="true"' : '' );
 
     $author = '<p class="comment-form-author">' .
-              '<input id="author" name="author" type="text" class="required" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" tabindex="1"' . $aria_req . ' placeholder="'.__('Your Name (required)','calibrefx').'" />' .
+              '<label for="author" class="comment-form-label">'.__('Your Name (required)','calibrefx').'</label>' .
+              '<input id="author" name="author" type="text" class="required" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" tabindex="1"' . $aria_req . ' />' .
               '</p><!-- #form-section-author .form-section -->';
 
     $email = '<p class="comment-form-email">' .
-             '<input id="email" name="email" type="text" class="required" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' placeholder="'.__('Your Email (required)','calibrefx').'"/>' .
-             '<p class="help-block">'.__('Your email will be keep safe and won\'t be shared with third party','calibrefx').'</p>'.
+             '<label for="email" class="comment-form-label">'.__('Your Email (required)','calibrefx').'</label>' .
+             '<input id="email" name="email" type="text" class="required" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' />' .
+             '<span class="help-block">'.__('Your email will be keep safe and won\'t be shared with third party','calibrefx').'</span>'.
              '</p><!-- #form-section-email .form-section -->';
 
     $url = '<p class="comment-form-url">' .
-           '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" placeholder="'.__('Your Website Url (start with http://)','calibrefx').'"/>' .
+           '<label for="url" class="comment-form-label">'.__('Your Website Url','calibrefx').'</label>' .
+           '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" />' .
+           '<span class="help-block">'.__('(start with http://)','calibrefx').'</span>'.
            '</p><!-- #form-section-url .form-section -->';
 
     $comment_field = '<p class="comment-form-comment">' .

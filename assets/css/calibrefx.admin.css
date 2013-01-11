@@ -901,7 +901,64 @@ ul.twitter-tweets li span a{
 	margin-top: 5px;
 }
 
+.clear{
+    float: clear;
+}
 
+.the-team-container{
+    margin-left: -2%;
+}
+
+.the-team{
+    width: 31%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    float: left;
+}
+
+.the-team h4{
+    font-size: 10px;
+    line-height: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+.the-team h4 a{
+    text-decoration: none;
+    color: #404040;
+}
+
+.the-team .image{
+    float: left;
+}
+
+.the-team .frame{  
+    box-shadow:0px 0px 4px #ccc;  
+    
+    border: 6px solid #fff;
+    border-radius: 5px;
+    float: left;
+}
+
+.the-team .frame .inset{
+    line-height: 0;
+}
+
+.the-team .frame .inset img{
+    box-shadow:inset 0px 2px 3px #333;  
+    border-radius: 3px;
+    width: 75px;
+    height: 75px
+}       
+
+.the-team .description{
+    line-height: 20px;
+    margin-left: 95px;
+}
+
+.the-team .description p{
+    margin: 0 0 10px;
+}
 
 
 

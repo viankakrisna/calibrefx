@@ -302,3 +302,22 @@ function calibrefx_wpautop_correction() {
 function calibrefx_wpautop($pee) {
     return wpautop($pee, 0);
 }
+
+add_action('pre_ping', 'calibrefx_no_self_ping');
+
+/**
+ * Disable Self-Pingbacks
+ */
+function calibrefx_no_self_ping (&$links) {
+    $home = get_option( 'home' );
+
+    foreach ( $links as $l => $link ) :
+        //Find the position of the first occurrence of a substring in a string.
+        //($a === $b) Identical operator. TRUE if $a is equal to $b, and they are of the same type.
+        if ( 0 === strpos( $link, $home ) ) :
+            //Unset the variable
+            unset($links[$l]);
+        endif;
+    endforeach;
+}
+

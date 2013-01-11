@@ -608,6 +608,8 @@ blockquote{
 .comment-form-email,
 .help-block{
     margin-bottom: 7px;
+    margin-top: 3px;
+    font-size: 12px;
 }
 
 #comment {
@@ -690,8 +692,11 @@ blockquote{
 }
 
 #commentform label{
-    display: inline;
-    margin: 0;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 #comments ol,
@@ -731,7 +736,6 @@ blockquote{
     font-size: 13px;
     font-style: italic;
 }
-
 
 /* Pagination
 ------------------------------------------------------------ */
@@ -875,6 +879,10 @@ input[type="submit"].searchsubmit:hover{
 
 .scrolltop{
     padding: 5px 0px 0px;
+}
+
+.credits p, .scrolltop p{
+    margin-bottom: 0px;
 }
 
 /* Footer
