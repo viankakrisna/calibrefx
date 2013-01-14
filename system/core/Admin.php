@@ -58,7 +58,7 @@ abstract class CFX_Admin {
     public $_model;
 
 
-    public $_submit_url;
+    public $_submit_url = 'options.php';
 
     /**
      * Initialize our admin area
@@ -237,7 +237,8 @@ abstract class CFX_Admin {
     public function dashboard() {
         global $calibrefx_sections, $calibrefx_current_section;
         $this->_submit_url = apply_filters('calibrefx_'.$calibrefx_current_section.'_form_url', 'options.php');
-        
+        $this->_submit_url = str_replace('php', '.php', $this->_submit_url);
+	
         ?>
         <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes <?php echo $calibrefx_current_section; ?>">
             <form method="post" action="<?php echo $this->_submit_url; ?>">
