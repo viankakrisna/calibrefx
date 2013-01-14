@@ -58,8 +58,6 @@ function calibrefx_add_meta_section($slug, $title, $target='options.php') {
         'professor' => array()
     );
 
-
-
     $func = create_function('', 'return '.$target.';');
     add_filter('calibrefx_'.$slug.'_form_url', $func);
 }
