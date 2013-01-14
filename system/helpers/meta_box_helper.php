@@ -58,7 +58,14 @@ function calibrefx_add_meta_section($slug, $title, $target='options.php') {
         'professor' => array()
     );
 
-    add_filter('calibrefx_'.$slug.'_form_url', function() use ($target) { return $target; });
+
+    if(version_compare( phpversion(), '5.3.0', '>=' )){}
+        //Only use for > PHP 5.3.0
+        add_filter('calibrefx_'.$slug.'_form_url', function() use ($target) { return $target; });
+    }else{
+        $func = create_function('', 'return '.$target.';');
+        add_filter('calibrefx_'.$slug.'_form_url', $func);
+    }
 }
 
 function calibrefx_do_meta_sections($section, $screen, $context, $object) {
