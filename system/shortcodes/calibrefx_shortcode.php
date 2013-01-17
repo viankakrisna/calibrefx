@@ -372,7 +372,7 @@ function calibrefx_gmap($atts, $content = '') {
                 'src' => ''
                     ), $atts));
 
-    return $before . '<iframe width="' . $width . '" height="' . $height . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . html_entity_decode($src) . '" class="' . $class . '"></iframe>' . $after;
+    return $before . '<iframe width="' . $width . '" height="' . $height . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . html_entity_decode($src) . '&output=embed" class="' . $class . '"></iframe>' . $after;
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps');
