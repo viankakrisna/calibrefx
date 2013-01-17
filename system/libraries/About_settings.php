@@ -94,7 +94,7 @@ class CFX_About_Settings extends CFX_Admin {
                     <h4><a href="#">Ivan Kristianto</a></h4>
                 </div>
                 <div class="description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p><strong>I am a WordPress Expert Developer</strong>. I am Actively develop WordPress and Plugins for more than 3 years. Develop Calibrefx as the masterpiece for WordPress </p>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -106,7 +106,7 @@ class CFX_About_Settings extends CFX_Admin {
                             <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
                         </div>                    
                     </div>
-                    <h4><a href="#">Ivan Kristianto</a></h4>
+                    <h4><a href="#">Sunil Tolani</a></h4>
                 </div>
                 <div class="description">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
@@ -121,7 +121,7 @@ class CFX_About_Settings extends CFX_Admin {
                             <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
                         </div>                    
                     </div>
-                    <h4><a href="#">Ivan Kristianto</a></h4>
+                    <h4><a href="#">Dee Ferdinand</a></h4>
                 </div>
                 <div class="description">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
@@ -136,7 +136,7 @@ class CFX_About_Settings extends CFX_Admin {
                             <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
                         </div>                    
                     </div>
-                    <h4><a href="#">Ivan Kristianto</a></h4>
+                    <h4><a href="#">Padro Widjaja</a></h4>
                 </div>
                 <div class="description">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
@@ -151,7 +151,37 @@ class CFX_About_Settings extends CFX_Admin {
                             <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
                         </div>                    
                     </div>
-                    <h4><a href="#">Ivan Kristianto</a></h4>
+                    <h4><a href="#">Hilal</a></h4>
+                </div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Fadhel</a></h4>
+                </div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Hendrik</a></h4>
                 </div>
                 <div class="description">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>

@@ -175,7 +175,7 @@
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="textButton_url">URL:</label></td>                
                                 <td>                
                                     <input type="text" name="textButton_url" id="textButton_url" style="width: 247px" /><br /> 
-                                    <em style="font-size: 9px; color: #999999;">The destination UR of the button.</em>               
+                                    <em style="font-size: 9px; color: #999999;">The destination URL of the button.</em>               
                                 </td>                
                             </tr>  
                             <!-- rel -->
@@ -267,7 +267,7 @@
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="iconButton_url">URL:</label></td>                
                                 <td>                
                                     <input type="text" name="iconButton_url" id="iconButton_url" style="width: 247px" /> 
-                                    <em style="font-size: 9px; color: #999999;">The destination UR of the button.</em>               
+                                    <em style="font-size: 9px; color: #999999;">The destination URL of the button.</em>               
                                 </td>                
                             </tr>  
                             <!-- rel -->
