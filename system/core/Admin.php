@@ -129,6 +129,9 @@ abstract class CFX_Admin {
         $_newvalue = $_POST[$this->settings_field];
         
         //merge value from old settings
+        if(!is_array($_oldvalue)) $_oldvalue = array();
+        if(!is_array($_newvalue)) $_newvalue = array();
+        
         $_newvalue = array_merge($_oldvalue, $_newvalue);
         
         //We merge with default value too
