@@ -181,14 +181,7 @@ class CFX_Loader {
         if (isset($autoload['configs']) && count($autoload['configs']) > 0) {
             $this->config($autoload['configs']);
         }
-
-        // Load libraries
-        if (isset($autoload['libraries']) && count($autoload['libraries']) > 0) {
-            foreach ($autoload['libraries'] as $item) {
-                $this->library($item);
-            }
-        }
-
+        
         // Autoload models
         if (isset($autoload['models'])) {
             $this->model($autoload['models']);
@@ -197,6 +190,13 @@ class CFX_Loader {
         // Load Helpers
         if (isset($autoload['helpers']) && count($autoload['helpers']) > 0) {
             $this->helper($autoload['helpers']);
+        }
+
+        // Load libraries
+        if (isset($autoload['libraries']) && count($autoload['libraries']) > 0) {
+            foreach ($autoload['libraries'] as $item) {
+                $this->library($item);
+            }
         }
 
         // Load Hooks

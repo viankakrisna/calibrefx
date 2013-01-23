@@ -203,8 +203,6 @@ abstract class CFX_Admin {
     /**
      * Display notices on the save or reset of settings.
      *
-     * @since 1.8.0
-     *
      * @return null Returns early if not on the correct admin page.
      */
     public function notices() {
