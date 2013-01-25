@@ -1,12 +1,13 @@
 <?php
 /**
- * CalibreFx
+ * CalibreFx Framework
  *
- * WordPress Themes Framework by CalibreWorks Team
+ * WordPress Themes Framework by CalibreFx Team
  *
  * @package		CalibreFx
- * @author		CalibreWorks Team
- * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
+ * @author		CalibreFx Team
+ * @authorlink  http://www.calibrefx.com
+ * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
  * @link		http://www.calibrefx.com
  * @filesource 
  *
@@ -20,9 +21,9 @@
  * Calibrefx Class
  *
  * @package		Calibrefx
- * @subpackage          Core
- * @author		CalibreWorks Team
- * @since		Version 1.0
+ * @subpackage  Core
+ * @author		CalibreFx Team
+ * @since		Version 1.0.0
  * @link		http://www.calibrefx.com
  */
 

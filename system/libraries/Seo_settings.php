@@ -3,10 +3,10 @@
 /**
  * CalibreFx
  *
- * WordPress Themes Framework by CalibreWorks Team
+ * WordPress Themes Framework by CalibreFx Team
  *
  * @package		CalibreFx
- * @author		CalibreWorks Team
+ * @author		CalibreFx Team
  * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
  * @link		http://www.calibrefx.com
@@ -26,9 +26,9 @@
  *
  * @package		Calibrefx
  * @subpackage          Library
- * @author		CalibreWorks Team
+ * @author		CalibreFx Team
  * @since		Version 1.0
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  */
 
 class CFX_Seo_Settings extends CFX_Admin {

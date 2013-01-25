@@ -2,13 +2,14 @@
 /**
  * CalibreFx
  *
- * WordPress Themes Framework by CalibreWorks Team
+ * WordPress Themes Framework by CalibreFx Team
  *
  * @package		CalibreFx
- * @author		CalibreWorks Team
- * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
+ * @author		CalibreFx Team
+ * @authorlink	http://www.calibrefx.com
+ * @copyright   Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  * @since		Version 1.0
  * @filesource 
  *

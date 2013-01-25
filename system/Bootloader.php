@@ -1,13 +1,14 @@
 <?php
 /**
- * CalibreFx
+ * CalibreFx Framework
  *
- * WordPress Themes Framework by CalibreWorks Team
+ * WordPress Themes Framework by CalibreFx Team
  *
  * @package		CalibreFx
- * @author		CalibreWorks Team
- * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @link		http://calibrefx.com
+ * @author		CalibreFx Team
+ * @authorlink	http://www.calibrefx.com
+ * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @link		http://www.calibrefx.com
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit

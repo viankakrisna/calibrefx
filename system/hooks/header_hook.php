@@ -3,10 +3,10 @@
 /**
  * CalibreFx
  *
- * WordPress Themes Framework by CalibreWorks Team
+ * WordPress Themes Framework by CalibreFx Team
  *
  * @package		CalibreFx
- * @author		CalibreWorks Team
+ * @author		CalibreFx Team
  * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
  * @link		http://www.calibrefx.com
  * @filesource 
@@ -22,7 +22,7 @@
  *
  * @package		Calibrefx
  * @subpackage          Hook
- * @author		CalibreWorks Team
+ * @author		CalibreFx Team
  * @since		Version 1.0
  * @link		http://www.calibrefx.com
  */

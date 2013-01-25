@@ -7,8 +7,8 @@
  *
  * @package		CalibreFx
  * @author		CalibreFx Team
- * @authorlink          http://www.calibrefx.com
- * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
+ * @authorlink  http://www.calibrefx.com
+ * @copyright   Copyright (c) 2012, Suntech Inti Perkasa.
  * @license		Commercial
  * @link		http://www.calibrefx.com
  * @since		Version 1.0

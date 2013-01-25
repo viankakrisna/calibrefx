@@ -3,12 +3,12 @@
 /**
  * CalibreFx
  *
- * WordPress Themes Framework by CalibreWorks Team
+ * WordPress Themes Framework by CalibreFx Team
  *
  * @package		CalibreFx
- * @author		CalibreWorks Team
+ * @author		CalibreFx Team
  * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
@@ -22,9 +22,9 @@
  *
  * @package		Calibrefx
  * @subpackage          Hook
- * @author		CalibreWorks Team
+ * @author		CalibreFx Team
  * @since		Version 1.0
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  */
 
 add_filter('get_search_form', 'calibrefx_search_form');

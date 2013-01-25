@@ -23,9 +23,9 @@
  *
  * @package		Calibrefx
  * @subpackage          Library
- * @author		CalibreWorks Team
+ * @author		CalibreFx Team
  * @since		Version 1.0
- * @link		http://calibrefx.com
+ * @link		http://www.calibrefx.com
  */
 class CFX_Curl {
 
