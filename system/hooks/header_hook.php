@@ -48,7 +48,7 @@ function calibrefx_print_doctype() {?>
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <?php
 }
 
