@@ -300,10 +300,16 @@ add_action('calibrefx_meta', 'calibrefx_do_fb_og');
  * This function adds dublin core meta in header
  */
 function calibrefx_do_fb_og() {
+    if(is_home()){
+        $url = home_url();
+    }else{
+        $url = get_permalink();
+    }
+
     echo '<meta property="fb:admins" content="' . calibrefx_get_option('facebook_admins') . '"/>';
     echo '<meta property="og:title" content="' . apply_filters('calibrefx_do_title', get_bloginfo('name')) . '"/>';
     echo '<meta property="og:type" content="' . calibrefx_get_option('facebook_og_type') . '"/>';
-    echo '<meta property="og:url" content="' . get_permalink() . '"/>';
+    echo '<meta property="og:url" content="' . $url . '"/>';
     echo '<meta property="og:site_name" content="' . get_bloginfo('name') . '"/>';
     $image = calibrefx_get_image(array('format' => 'url'));
     if ($image) {
