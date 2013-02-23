@@ -286,6 +286,21 @@ class CFX_Curl {
         }
     }
 
+    public function get_info(){
+        return $this->info;
+    }
+
+    public function get_error(){
+        if($this->error_string){
+            return array(
+                'error_code' => $this->error_code,
+                'error_string' => $this->error_string,
+            );
+        }
+
+        return false;
+    }
+
     public function is_enabled() {
         return function_exists('curl_init');
     }
