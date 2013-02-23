@@ -1,26 +1,25 @@
-<?php
-
+<?php defined('CALIBREFX_URL') OR exit();
 /**
- * CalibreFx
+ * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
- * @package		CalibreFx
- * @author		CalibreFx Team
- * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
- * @license		Commercial
- * @link		http://www.calibrefx.com
- * @since		Version 1.0
+ * @package     CalibreFx
+ * @author      CalibreFx Team
+ * @authorlink  http://www.calibrefx.com
+ * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @license     GNU GPL v2
+ * @link        http://www.calibrefx.com
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
  *
- * Contain latest Tweets widgets class
- * extend from WP_Widget Class
+ * This define the framework constants
  *
  * @package CalibreFx
  */
+
 class CFX_Latest_Tweets_Widget extends WP_Widget {
 
     protected $defaults;
