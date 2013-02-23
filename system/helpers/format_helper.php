@@ -105,8 +105,8 @@ function the_content_limit($max_char, $more_link_text = '(more...)', $striptease
  * limits the output for title to $max_char characters,
  * and appends an ellipses to the end.
  */
-function get_the_title_limit($max_char, $stripteaser = 0) {
-    $title = get_the_title('', $stripteaser);
+function get_the_title_limit($max_char, $post_id = 0) {
+    $title = get_the_title($post_id);
 
     // Truncate $content to $max_char
     
@@ -124,8 +124,8 @@ function get_the_title_limit($max_char, $stripteaser = 0) {
  * Helper function to limit the title
  * called get_the_titl_limit function
  */
-function the_title_limit($max_char, $stripteaser = 0) {
-    $title = get_the_title_limit($max_char, $stripteaser);
+function the_title_limit($max_char, $post_id = 0) {
+    $title = get_the_title_limit($max_char, $post_id);
     echo apply_filters('the_title_limit', $title);
 }
 
