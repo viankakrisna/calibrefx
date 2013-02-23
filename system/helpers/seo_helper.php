@@ -80,6 +80,7 @@ function get_replace_title_tags() {
         'page_title' => $page_title,
         'description' => $description,
         'post_author_name' => $post_author_name,
+        'author_name' => $author_name,
         'date' => $date,
         'search' => $search,
         'page' => $page,
