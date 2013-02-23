@@ -4,16 +4,18 @@
  *
  * WordPress Themes Framework by CalibreFx Team
  *
- * @package		CalibreFx
- * @author		CalibreFx Team
- * @authorlink	http://www.calibrefx.com
+ * @package     CalibreFx
+ * @author      CalibreFx Team
+ * @authorlink  http://www.calibrefx.com
  * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
- * @link		http://www.calibrefx.com
+ * @license     GNU GPL v2
+ * @link        http://www.calibrefx.com
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
- * 
+ *
+ * This define the framework constants
  *
  * @package CalibreFx
  */
@@ -31,7 +33,7 @@ do_action('calibrefx_pre');
 /** Define Theme Info Constants */
 define('FRAMEWORK_NAME', 'CalibreFx');
 define('FRAMEWORK_CODENAME', 'Pink Gibbon');
-define('FRAMEWORK_VERSION', '1.0.8');
+define('FRAMEWORK_VERSION', '1.0.9');
 define('FRAMEWORK_DB_VERSION', '1000');
 define('FRAMEWORK_URL', 'http://www.calibrefx.com');
 define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1327922947'));
