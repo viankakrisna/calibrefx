@@ -75,6 +75,10 @@ function calibrefx_register_admin_sub_menu() {
     $CFX->load->library('about_settings');
     $CFX->about_settings->pagehook = add_submenu_page('calibrefx', __('About', 'calibrefx'), __('About', 'calibrefx'), 'edit_theme_options', 'calibrefx-about', array(&$CFX->about_settings, 'dashboard'));
     
+
+    // Add "Other" submenu
+    $CFX->load->library('other_settings');
+    $CFX->other_settings->pagehook = add_submenu_page('calibrefx', __('Other', 'calibrefx'), __('Other', 'calibrefx'), 'edit_theme_options', 'calibrefx-other', array(&$CFX->other_settings, 'dashboard'));
 }
 
 add_action('after_setup_theme', 'calibrefx_register_nav_menus');
