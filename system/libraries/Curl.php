@@ -286,6 +286,7 @@ class CFX_Curl {
         }
     }
 
+    //get curl information data
     public function get_info(){
         return $this->info;
     }
