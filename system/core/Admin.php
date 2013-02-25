@@ -1,4 +1,4 @@
-<?php
+<?php defined('CALIBREFX_URL') OR exit();
 /**
  * CalibreFx Framework
  *
@@ -7,19 +7,19 @@
  * @package     CalibreFx
  * @author      CalibreFx Team
  * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, Suntech Inti Perkasa.
- * @license     Commercial
+ * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
- * @since       Version 1.0
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
  *
- * This File will handle admin area settings dashboard
+ * This define the framework constants
  *
  * @package CalibreFx
  */
+
 abstract class CFX_Admin {
 
     /**

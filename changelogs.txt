@@ -1,18 +1,32 @@
 /**
  * CalibreFx Framework
  *
- * WordPress Themes by CalibreFx Team
+ * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
  * @author      CalibreFx Team
  * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012 - 2013, CalibreWorks. (http://www.calibreworks.com/)
- * @license     Commercial
+ * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
+ * @filesource 
  *
- * CalibreFx Change logs file
+ * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
+ * this file under any circumstances. 
  *
+ * This define the framework constants
+ *
+ * @package CalibreFx
  */
+
+version 1.0.9 <24 February 2013> - 
+    * Fix some minor bugs
+    * Harden security
+    * Fix SEO Bugs
+    * Fix social scripts
+
+version 1.0.8 <15 Januari 2013> - 
+    * Fix some minor bugs
 
 version 1.0.7 <5 December 2012> - 
     * Allow Cross Settings Other Theme Settings
