@@ -203,16 +203,6 @@ class CFX_Theme_Settings extends CFX_Admin {
             </p>
 
             <hr class="div" />
-
-            <p><label><?php _e('Enable Responsive Layout', 'calibrefx'); ?></label>
-                <label for="calibrefx-settings-checkbox-enable-responsive">
-                    <input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-responsive" value="1" <?php checked(1, calibrefx_get_option('enable_responsive')); ?> target="calibrefx-settings-enable-responsive" class="calibrefx-settings-checkbox" />
-                </label>
-                <input type="hidden" name="<?php echo $this->settings_field; ?>[enable_responsive]" id="calibrefx-settings-enable-responsive" value="<?php echo calibrefx_get_option('enable_responsive'); ?>" />
-                <span class="description"><?php printf(__('This option will enable responsive layout.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
-            </p>
-
-            <hr class="div" />
         <?php } ?>
         <p><span class="description"><?php _e('You can choose between static layout and fluid layout. If in static layout you need to put the max width size.', 'calibrefx'); ?></span></p>
         <p>
