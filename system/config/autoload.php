@@ -1,4 +1,5 @@
 <?php
+defined('CALIBREFX_URL') OR exit();
 /**
  * CalibreFx Framework
  *
@@ -8,9 +9,8 @@
  * @author		CalibreFx Team
  * @authorlink  http://www.calibrefx.com
  * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
- * @license		Commercial
+ * @license		GNU GPL v2
  * @link		http://www.calibrefx.com
- * @since		Version 1.0.0
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit

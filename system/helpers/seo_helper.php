@@ -1,22 +1,25 @@
-<?php
-
+<?php defined('CALIBREFX_URL') OR exit();
 /**
- * CalibreFx
+ * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
- * @package		CalibreFx
- * @author		CalibreFx Team
- * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @link		http://www.calibrefx.com
+ * @package     CalibreFx
+ * @author      CalibreFx Team
+ * @authorlink  http://www.calibrefx.com
+ * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @license     GNU GPL v2
+ * @link        http://www.calibrefx.com
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
- * 
+ *
+ * This define the framework constants
  *
  * @package CalibreFx
  */
+
 /**
  * Calibrefx SEO Helper
  *
@@ -48,6 +51,7 @@ function get_replace_title_tags() {
     
     $taxonomies = get_the_taxonomies();
     $taxonomy = strip_tags(array_shift(array_values($taxonomies)), '');
+    if(empty($taxonomy)) $taxonomy = post_type_archive_title('',false);
     
     $site_title = calibrefx_capitalize(get_bloginfo('name'));
     $site_description = get_bloginfo('description');
@@ -79,6 +83,7 @@ function get_replace_title_tags() {
         'page_title' => $page_title,
         'description' => $description,
         'post_author_name' => $post_author_name,
+        'author_name' => $author_name,
         'date' => $date,
         'search' => $search,
         'page' => $page,

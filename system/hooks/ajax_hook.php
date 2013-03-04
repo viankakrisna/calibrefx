@@ -1,22 +1,25 @@
-<?php
-
+<?php defined('CALIBREFX_URL') OR exit();
 /**
- * CalibreFx
+ * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
- * @package		CalibreFx
- * @author		CalibreFx Team
- * @copyright           Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @link		http://www.calibrefx.com
+ * @package     CalibreFx
+ * @author      CalibreFx Team
+ * @authorlink  http://www.calibrefx.com
+ * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @license     GNU GPL v2
+ * @link        http://www.calibrefx.com
  * @filesource 
  *
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
- * 
+ *
+ * This define the framework constants
  *
  * @package CalibreFx
  */
+
 /**
  * Calibrefx Ajax Hooks
  *
@@ -34,7 +37,7 @@ add_action('wp_ajax_nopriv_cfx_ajax', 'calibrefx_ajax');
  * Run any action to do ajax
  */
 function calibrefx_ajax() {
-	
+	check_ajax_referer( 'calibrefx_ajax_nonce', '_ajax_nonce' );
 	header("Content-Type: application/json");
     do_action('calibrefx_do_ajax');
     exit;
