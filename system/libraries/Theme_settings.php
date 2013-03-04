@@ -61,6 +61,13 @@ class CFX_Theme_Settings extends CFX_Admin {
             'posts_nav' => 'older-newer',
             'header_scripts' => '',
             'footer_scripts' => '',
+            'email_protocol' => 'sendmail',
+            'smtp_host' => '',
+            'smtp_secure' => 'SSL',
+            'smtp_port' => '25',
+            'smtp_use_auth' => 'yes',
+            'smtp_username' => '',
+            'smtp_password' => '',
             'calibrefx_version' => FRAMEWORK_VERSION,
             'calibrefx_db_version' => FRAMEWORK_DB_VERSION)
         );
@@ -83,39 +90,39 @@ class CFX_Theme_Settings extends CFX_Admin {
 
         $CFX->security->add_sanitize_filter(
                 'one_zero', $this->settings_field, array(
-            'update',
-            'enable_bootstrap',
-            'header_right',
-            'nav',
-            'subnav',
-            'breadcrumb_home',
-            'breadcrumb_single',
-            'breadcrumb_page',
-            'breadcrumb_archive',
-            'breadcrumb_404',
-            'comments_posts',
-            'comments_pages',
-            'trackbacks_posts',
-            'trackbacks_pages')
-        );
+                    'update',
+                    'enable_bootstrap',
+                    'header_right',
+                    'nav',
+                    'subnav',
+                    'breadcrumb_home',
+                    'breadcrumb_single',
+                    'breadcrumb_page',
+                    'breadcrumb_archive',
+                    'breadcrumb_404',
+                    'comments_posts',
+                    'comments_pages',
+                    'trackbacks_posts',
+                    'trackbacks_pages')
+                );
 
         $CFX->security->add_sanitize_filter(
                 'safe_text', $this->settings_field, array(
-            'blog_title',
-            'calibrefx_version',
-            'calibrefx_db_version',
-            'posts_nav',
-            'content_archive',
-            'layout_type',
-            'site_layout')
-        );
+                    'blog_title',
+                    'calibrefx_version',
+                    'calibrefx_db_version',
+                    'posts_nav',
+                    'content_archive',
+                    'layout_type',
+                    'site_layout')
+                );
 
         $CFX->security->add_sanitize_filter(
                 'integer', $this->settings_field, array(
-            'calibrefx_layout_width',
-            'content_archive_limit',
-            'calibrefx_db_version')
-        );
+                    'calibrefx_layout_width',
+                    'content_archive_limit',
+                    'calibrefx_db_version')
+                );
     }
 
     public function meta_sections() {
@@ -126,6 +133,7 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_section('general', __('General', 'calibrefx'));
         calibrefx_add_meta_section('design', __('Design', 'calibrefx'));
         calibrefx_add_meta_section('social', __('Social', 'calibrefx'));
+        calibrefx_add_meta_section('email', __('Email Setting', 'calibrefx'));
 
         do_action('more_theme_setting');
 
@@ -148,6 +156,8 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), array($this, 'feeds_box'), $this->pagehook, 'main');
         calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-social-link', __('Social Media Links', 'calibrefx'), array($this, 'social_link'), $this->pagehook, 'main');
         calibrefx_add_meta_box('social', 'professor', 'calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), array($this, 'socials_box'), $this->pagehook, 'side');
+
+        calibrefx_add_meta_box('email', 'professor', 'calibrefx-theme-settings-email', __('Mail Settings', 'calibrefx'), array($this, 'email_setting_box'), $this->pagehook, 'main', 'high');
     }
 
     public function hidden_fields(){
@@ -521,6 +531,70 @@ class CFX_Theme_Settings extends CFX_Admin {
             <span class="description"><?php _e("This will use for Pinterest link, and it will show if using the Social Widget", 'calibrefx'); ?></span>
         </p>
         <?php
+    }
+
+    /**
+     * This function to do setting for the email settings
+     */
+    function email_setting_box(){ ?>
+         <p>
+            <label for="<?php echo $this->settings_field; ?>[email_protocol]"><?php _e('Select Mail Protocol:', 'calibrefx'); ?></label>
+            <select name="<?php echo $this->settings_field; ?>[email_protocol]" id="<?php echo $this->settings_field; ?>[email_protocol]">
+                <option value="sendmail">Sendmail</option>
+                <option value="smtp">SMTP</option>
+            </select>
+            <span class="description"><?php _e('Please choose your mailer protocol. (default: sendmail)', 'calibrefx'); ?></span>
+        </p>
+
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[smtp_host]"><?php _e('SMTP Host:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_host'); ?>" id="<?php echo $this->settings_field; ?>[smtp_host]" name="<?php echo $this->settings_field; ?>[smtp_host]">
+            <span class="description"><?php _e("Put your SMTP Host", 'calibrefx'); ?></span>
+        </p>
+
+       <p>
+            <label for="<?php echo $this->settings_field; ?>[smtp_secure]"><?php _e('Use Secure Connection:', 'calibrefx'); ?></label>
+            <select name="<?php echo $this->settings_field; ?>[smtp_secure]" id="<?php echo $this->settings_field; ?>[smtp_secure]">
+                <option value="">No Secure Connection</option>
+                <option value="tls">TLS</option>
+                <option value="ssl">SSL</option>
+            </select>
+            <span class="description"><?php _e('Use secure connection when sending email', 'calibrefx'); ?></span>
+        </p>
+
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[smtp_port]"><?php _e('SMTP Port:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_port'); ?>" id="<?php echo $this->settings_field; ?>[smtp_port]" name="<?php echo $this->settings_field; ?>[smtp_port]">
+            <span class="description"><?php _e("Put your SMTP Port (ex: 25, 465)", 'calibrefx'); ?></span>
+        </p>
+
+        <p>
+            <input type="checkbox" name="" target="calibrefx-settings-smtp_use_auth" value="1" id="calibrefx-settings-smtp_use_auth-box" class="calibrefx-settings-checkbox" <?php checked(1, calibrefx_get_option('smtp_use_auth')); ?> /> 
+            <label for="calibrefx-settings-smtp_use_auth"><?php _e("Use SMTP Authentication", 'calibrefx'); ?></label>
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[smtp_use_auth]" id="calibrefx-settings-smtp_use_auth" value="<?php echo calibrefx_get_option('smtp_use_auth'); ?>" />
+        </p>
+
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[smtp_username]"><?php _e('SMTP Username:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_username'); ?>" id="<?php echo $this->settings_field; ?>[smtp_username]" name="<?php echo $this->settings_field; ?>[smtp_username]">
+            <span class="description"><?php _e("Put your SMTP Username", 'calibrefx'); ?></span>
+        </p>
+
+        <p>
+            <label for="<?php echo $this->settings_field; ?>[smtp_password]"><?php _e('SMTP Password:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_password'); ?>" id="<?php echo $this->settings_field; ?>[smtp_password]" name="<?php echo $this->settings_field; ?>[smtp_password]">
+            <span class="description"><?php _e("Put your SMTP Password", 'calibrefx'); ?></span>
+        </p>
+
+        <hr class="div" />
+        <h4><?php _e('Test Email', 'calibrefx'); ?></h4>
+         <p>
+            <label for="email-test"><?php _e('SMTP Password:', 'calibrefx'); ?></label>
+            <input type="text" size="30" value="" id="email-test" name="email-test">
+            <label id="send-mail-res"></label>
+            <button class="btn btn-scondary" id="test-send-mail">Send</button>
+        </p>
+    <?php
     }
 
 }

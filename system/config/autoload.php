@@ -25,7 +25,7 @@ defined('CALIBREFX_URL') OR exit();
  * Auto-load Libraries
  */
 
-$autoload['libraries'] = array('cache','breadcrumb','security','replacer');
+$autoload['libraries'] = array('cache','breadcrumb','security','replacer','email');
 
 /*
  * Auto-load Helper File
@@ -57,7 +57,7 @@ $autoload['models'] = array('theme_settings_m', 'seo_settings_m', 'other_setting
  */
 $autoload['hooks'] = array('header', 'logo', 'script', 'widget','layout', 'menu', 
                           'login','user','admin_bar','post','inpost','comments', 'footer',
-                          'sidebar','seo','performance','search','third_party','upgrade', 'ajax');
+                          'sidebar','seo','performance','search','third_party','upgrade', 'ajax', 'admin_ajax');
 
 /*
  *  Auto-load Shortcode files

@@ -97,6 +97,25 @@ jQuery(document).ready(function($){
 			$('#' + id).val('0');
 		}
 	});
+
+    $('#test-send-mail').click(function(){
+        var email = $('#email-test').val();
+        var caller = $.this;
+        
+        var data = {
+            action: 'calibrefx_test_send_mail',
+            email: email,
+        };
+        
+        $.post(ajaxurl, data, function(response) {
+            console.info(response);
+            if(response.status == 'success'){
+                $('#send-mail-res').html(response.message);
+            }
+        }, "json");
+
+        return false;
+    });
 });
 
 function calibrefx_confirm( text ) {
