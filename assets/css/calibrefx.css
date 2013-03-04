@@ -739,6 +739,20 @@ blockquote{
 
 /* Pagination
 ------------------------------------------------------------ */
+.pagination ul{
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+.pagination li{
+	display: inline-block;
+	vertical-align: middle;
+}
+
 .pagination a{
     line-height: 20px;
     border: 1px solid #ababab;
