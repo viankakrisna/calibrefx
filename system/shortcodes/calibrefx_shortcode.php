@@ -682,6 +682,58 @@ function calibrefx_retweet($atts, $content = null) {
     return $output;
 }
 
+/**
+ * ==============================================================
+ * Contact Form
+ * ==============================================================
+ */
+
+add_shortcode('contact_form', 'calibrefx_contact_form');
+
+function calibrefx_contact_form($atts, $content = null) {
+    global $calibrefx;
+    extract(shortcode_atts(array(
+                "target" => get_bloginfo('admin_email')
+            ), $atts));
+
+    //General Settings
+    $rows = array();
+
+    $rows[] = array(
+        'id' => 'name',
+        'label' => __('Name','calibrefx'),
+        'desc' => __('Fill with your name','calibrefx'),
+        'tooltip' => __('Your name','calibrefx'),
+        'content' => $calibrefx->form->textinput('name', ''),
+    );
+
+    $rows[] = array(
+        'id' => 'email',
+        'label' => __('Email','calibrefx'),
+        'desc' => __('Fill with your email','calibrefx'),
+        'tooltip' => __('Your email','calibrefx'),
+        'content' => $calibrefx->form->textinput('email', ''),
+    );
+
+    $rows[] = array(
+        'id' => 'subject',
+        'label' => __('Subject','calibrefx'),
+        'desc' => __('Your subject','calibrefx'),
+        'tooltip' => __('Your subject','calibrefx'),
+        'content' => $calibrefx->form->textinput('name', ''),
+    );
+
+    $rows[] = array(
+        'id' => 'message',
+        'label' => __('Message','calibrefx'),
+        'desc' => __('Your message','calibrefx'),
+        'tooltip' => __('Your message','calibrefx'),
+        'content' => $calibrefx->form->textarea('message', ''),
+    );
+
+    return $calibrefx->form->open('calibrefx_contact_form', site_url('contact'))->build($rows);
+}
+
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_social');
 
 /**
