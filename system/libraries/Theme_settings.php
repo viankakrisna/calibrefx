@@ -130,9 +130,9 @@ class CFX_Theme_Settings extends CFX_Admin {
 
         calibrefx_clear_meta_section();
 
-        calibrefx_add_meta_section('general', __('General', 'calibrefx'));
-        calibrefx_add_meta_section('design', __('Design', 'calibrefx'));
-        calibrefx_add_meta_section('social', __('Social', 'calibrefx'));
+        calibrefx_add_meta_section('general', __('General Settings', 'calibrefx'));
+        calibrefx_add_meta_section('design', __('Design Settings', 'calibrefx'));
+        calibrefx_add_meta_section('social', __('Social Settings', 'calibrefx'));
         calibrefx_add_meta_section('email', __('Email Setting', 'calibrefx'));
 
         do_action('more_theme_setting');
@@ -528,10 +528,10 @@ class CFX_Theme_Settings extends CFX_Admin {
      */
     function email_setting_box(){ ?>
          <p>
-            <label for="<?php echo $this->settings_field; ?>[email_protocol]"><?php _e('Select Mail Protocol:', 'calibrefx'); ?></label>
+            <label for="<?php echo $this->settings_field; ?>[email_protocol]"><?php _e('Select Mail Protocol:', 'calibrefx');?></label>
             <select name="<?php echo $this->settings_field; ?>[email_protocol]" id="<?php echo $this->settings_field; ?>[email_protocol]">
-                <option value="sendmail">Sendmail</option>
-                <option value="smtp">SMTP</option>
+                <option value="sendmail" <?php selected(calibrefx_get_option('email_protocol'), 'sendmail'); ?> >Sendmail</option>
+                <option value="smtp" <?php selected(calibrefx_get_option('email_protocol'), 'smtp'); ?>>SMTP</option>
             </select>
             <span class="description"><?php _e('Please choose your mailer protocol. (default: sendmail)', 'calibrefx'); ?></span>
         </p>
@@ -545,9 +545,9 @@ class CFX_Theme_Settings extends CFX_Admin {
        <p>
             <label for="<?php echo $this->settings_field; ?>[smtp_secure]"><?php _e('Use Secure Connection:', 'calibrefx'); ?></label>
             <select name="<?php echo $this->settings_field; ?>[smtp_secure]" id="<?php echo $this->settings_field; ?>[smtp_secure]">
-                <option value="">No Secure Connection</option>
-                <option value="tls">TLS</option>
-                <option value="ssl">SSL</option>
+                <option value="-1" <?php selected(calibrefx_get_option('smtp_secure'), '-1'); ?> >No Secure Connection</option>
+                <option value="tls" <?php selected(calibrefx_get_option('smtp_secure'), 'tls'); ?> >TLS</option>
+                <option value="ssl" <?php selected(calibrefx_get_option('smtp_secure'), 'ssl'); ?> >SSL</option>
             </select>
             <span class="description"><?php _e('Use secure connection when sending email', 'calibrefx'); ?></span>
         </p>
@@ -562,6 +562,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             <input type="checkbox" name="" target="calibrefx-settings-smtp_use_auth" value="1" id="calibrefx-settings-smtp_use_auth-box" class="calibrefx-settings-checkbox" <?php checked(1, calibrefx_get_option('smtp_use_auth')); ?> /> 
             <label for="calibrefx-settings-smtp_use_auth"><?php _e("Use SMTP Authentication", 'calibrefx'); ?></label>
             <input type="hidden" name="<?php echo $this->settings_field; ?>[smtp_use_auth]" id="calibrefx-settings-smtp_use_auth" value="<?php echo calibrefx_get_option('smtp_use_auth'); ?>" />
+            <span class="description"><?php _e('Checked this if your SMTP need Authentication. If using Google Service, then this should be checked.', 'calibrefx'); ?></span>
         </p>
 
         <p>
@@ -579,9 +580,9 @@ class CFX_Theme_Settings extends CFX_Admin {
         <hr class="div" />
         <h4><?php _e('Test Email', 'calibrefx'); ?></h4>
          <p>
-            <label for="email-test"><?php _e('SMTP Password:', 'calibrefx'); ?></label>
+            <label for="email-test"><?php _e('Email Recipient: ', 'calibrefx'); ?></label>
             <input type="text" size="30" value="" id="email-test" name="email-test">
-            <label id="send-mail-res"></label>
+            <label id="send-mail-res"></label><br/>
             <button class="btn btn-scondary" id="test-send-mail">Send</button>
         </p>
     <?php

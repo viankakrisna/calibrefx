@@ -21,3 +21,5 @@
  * Include CalibreFx WordPress Themes Framework
  */
 require_once(TEMPLATEPATH.'/system/Bootloader.php');
+global $calibrefx;
+$calibrefx->load->library('email'); //we need load the email libraries here

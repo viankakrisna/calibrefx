@@ -55,7 +55,6 @@ require_once( CALIBREFX_URI . '/system/core/Calibrefx.php' );
 
 global $calibrefx;
 $calibrefx = &calibrefx_get_instance();
-
 /** Run the calibrefx_pre_init hook */
 do_action('calibrefx_pre_init');
 

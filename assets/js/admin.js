@@ -104,7 +104,7 @@ jQuery(document).ready(function($){
         
         var data = {
             action: 'calibrefx_test_send_mail',
-            email: email,
+            data: email,
         };
         
         $.post(ajaxurl, data, function(response) {

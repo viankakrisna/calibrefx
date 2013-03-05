@@ -46,12 +46,12 @@ class CFX_Email {
 	public $priority			= 3;			// Default priority (1 - 5)
 	public $newline				= "\n";			// Default newline. "\r\n" or "\n" (Use "\r\n" to comply with RFC 822)
 	public $crlf				= "\n";			// The RFC 2045 compliant CRLF for quoted-printable is "\r\n".  Apparently some servers,
-									// even on the receiving end think they need to muck with CRLFs, so using "\n", while
-									// distasteful, is the only thing that seems to work for all environments.
+												// even on the receiving end think they need to muck with CRLFs, so using "\n", while
+												// distasteful, is the only thing that seems to work for all environments.
 	public $dsn					= FALSE;		// Delivery Status Notification
-	public $send_multipart		= TRUE;		// TRUE/FALSE - Yahoo does not like multipart alternative, so this is an override.  Set to FALSE for Yahoo.
-	public $bcc_batch_mode		= FALSE;	// TRUE/FALSE - Turns on/off Bcc batch feature
-	public $bcc_batch_size		= 200;		// If bcc_batch_mode = TRUE, sets max number of Bccs in each batch
+	public $send_multipart		= TRUE;			// TRUE/FALSE - Yahoo does not like multipart alternative, so this is an override.  Set to FALSE for Yahoo.
+	public $bcc_batch_mode		= FALSE;		// TRUE/FALSE - Turns on/off Bcc batch feature
+	public $bcc_batch_size		= 200;			// If bcc_batch_mode = TRUE, sets max number of Bccs in each batch
 
 	protected $_safe_mode		= FALSE;
 	protected $_subject			= '';
@@ -71,8 +71,6 @@ class CFX_Email {
 	protected $_bcc_array		= array();
 	protected $_headers			= array();
 	protected $_attach_name		= array();
-	protected $_attach_type		= array();
-	protected $_attach_disp		= array();
 	protected $_protocols		= array('mail', 'sendmail', 'smtp');
 	protected $_base_charsets	= array('us-ascii', 'iso-2022-');	// 7-bit charsets (excluding language suffix)
 	protected $_bit_depths		= array('7bit', '8bit');
@@ -104,6 +102,10 @@ class CFX_Email {
 		{
 			$this->_smtp_auth = ! ($this->smtp_user === '' && $this->smtp_pass === '');
 			$this->_safe_mode = (bool) @ini_get('safe_mode');
+		}
+
+		if($calibrefx->theme_settings_m->get('email_protocol') == 'smtp'){
+			add_action('phpmailer_init',array(&$this,'_init_smtp'));
 		}
 
 		calibrefx_log_message('debug', 'Email Class Initialized');
@@ -139,15 +141,6 @@ class CFX_Email {
 			$this->_attach_type = array();
 			$this->_attach_disp = array();
 		}
-
-		// Empty out the values that may be set
-		$this->_phpmailer->ClearAddresses();
-		$this->_phpmailer->ClearAllRecipients();
-		$this->_phpmailer->ClearAttachments();
-		$this->_phpmailer->ClearBCCs();
-		$this->_phpmailer->ClearCCs();
-		$this->_phpmailer->ClearCustomHeaders();
-		$this->_phpmailer->ClearReplyTos();
 
 		return $this;
 	}
@@ -380,11 +373,9 @@ class CFX_Email {
 	 * @param	string
 	 * @return	object
 	 */
-	public function attach($filename, $disposition = '', $newname = NULL, $mime = '')
+	public function attach($filename)//, $disposition = '', $newname = NULL, $mime = '')
 	{
-		$this->_attach_name[] = array($filename, $newname);
-		$this->_attach_disp[] = empty($disposition) ? 'attachment' : $disposition; // Can also be 'inline'  Not sure if it matters
-		$this->_attach_type[] = $mime;
+		$this->_attach_name[] = $filename; 
 		return $this;
 	}
 
@@ -898,160 +889,7 @@ class CFX_Email {
 		$this->_set_boundaries();
 		$this->_write_headers();
 
-		$hdr = ($this->_get_protocol() === 'mail') ? $this->newline : '';
-		$body = '';
-
-		switch ($this->_get_content_type())
-		{
-			case 'plain' :
-
-				$hdr .= 'Content-Type: text/plain; charset='.$this->charset.$this->newline
-					.'Content-Transfer-Encoding: '.$this->_get_encoding();
-
-				if ($this->_get_protocol() === 'mail')
-				{
-					$this->_header_str .= $hdr;
-					$this->_finalbody = $this->_body;
-				}
-				else
-				{
-					$this->_finalbody = $hdr . $this->newline . $this->newline . $this->_body;
-				}
-
-				return;
-
-			case 'html' :
-
-				if ($this->send_multipart === FALSE)
-				{
-					$hdr .= 'Content-Type: text/html; charset='.$this->charset.$this->newline
-						.'Content-Transfer-Encoding: quoted-printable';
-				}
-				else
-				{
-					$hdr .= 'Content-Type: multipart/alternative; boundary="'.$this->_alt_boundary.'"'.$this->newline.$this->newline;
-
-					$body .= $this->_get_mime_message().$this->newline.$this->newline
-						.'--'.$this->_alt_boundary.$this->newline
-
-						.'Content-Type: text/plain; charset='.$this->charset.$this->newline
-						.'Content-Transfer-Encoding: '.$this->_get_encoding().$this->newline.$this->newline
-						.$this->_get_alt_message().$this->newline.$this->newline.'--'.$this->_alt_boundary.$this->newline
-
-						.'Content-Type: text/html; charset='.$this->charset.$this->newline
-						.'Content-Transfer-Encoding: quoted-printable'.$this->newline.$this->newline;
-				}
-
-				$this->_finalbody = $body.$this->_prep_quoted_printable($this->_body).$this->newline.$this->newline;
-
-
-				if ($this->_get_protocol() === 'mail')
-				{
-					$this->_header_str .= $hdr;
-				}
-				else
-				{
-					$this->_finalbody = $hdr.$this->_finalbody;
-				}
-
-
-				if ($this->send_multipart !== FALSE)
-				{
-					$this->_finalbody .= '--'.$this->_alt_boundary.'--';
-				}
-
-				return;
-
-			case 'plain-attach' :
-
-				$hdr .= 'Content-Type: multipart/'.$this->multipart.'; boundary="'.$this->_atc_boundary.'"'.$this->newline.$this->newline;
-
-				if ($this->_get_protocol() === 'mail')
-				{
-					$this->_header_str .= $hdr;
-				}
-
-				$body .= $this->_get_mime_message().$this->newline.$this->newline
-					.'--'.$this->_atc_boundary.$this->newline
-
-					.'Content-Type: text/plain; charset='.$this->charset.$this->newline
-					.'Content-Transfer-Encoding: '.$this->_get_encoding().$this->newline.$this->newline
-
-					.$this->_body.$this->newline.$this->newline;
-
-			break;
-			case 'html-attach' :
-
-				$hdr .= 'Content-Type: multipart/'.$this->multipart.'; boundary="'.$this->_atc_boundary.'"'.$this->newline.$this->newline;
-
-				if ($this->_get_protocol() === 'mail')
-				{
-					$this->_header_str .= $hdr;
-				}
-
-				$body .= $this->_get_mime_message().$this->newline.$this->newline
-					.'--'.$this->_atc_boundary.$this->newline
-
-					.'Content-Type: multipart/alternative; boundary="'.$this->_alt_boundary.'"'.$this->newline.$this->newline
-					.'--'.$this->_alt_boundary.$this->newline
-
-					.'Content-Type: text/plain; charset='.$this->charset.$this->newline
-					.'Content-Transfer-Encoding: '.$this->_get_encoding().$this->newline.$this->newline
-					.$this->_get_alt_message().$this->newline.$this->newline.'--'.$this->_alt_boundary.$this->newline
-
-					.'Content-Type: text/html; charset='.$this->charset.$this->newline
-					.'Content-Transfer-Encoding: quoted-printable'.$this->newline.$this->newline
-
-					.$this->_prep_quoted_printable($this->_body).$this->newline.$this->newline
-					.'--'.$this->_alt_boundary.'--'.$this->newline.$this->newline;
-
-			break;
-		}
-
-		$attachment = array();
-		for ($i = 0, $c = count($this->_attach_name), $z = 0; $i < $c; $i++)
-		{
-			$filename = $this->_attach_name[$i][0];
-			$basename = is_null($this->_attach_name[$i][1]) ? basename($filename) : $this->_attach_name[$i][1];
-			$ctype = $this->_attach_type[$i];
-			$file_content = '';
-
-			if ($this->_attach_type[$i] === '')
-			{
-				if ( ! file_exists($filename))
-				{
-					$this->_set_error_message('lang:email_attachment_missing', $filename);
-					return FALSE;
-				}
-
-				$file = filesize($filename) +1;
-
-				if ( ! $fp = fopen($filename, FOPEN_READ))
-				{
-					$this->_set_error_message('lang:email_attachment_unreadable', $filename);
-					return FALSE;
-				}
-
-				$ctype = $this->_mime_types(pathinfo($filename, PATHINFO_EXTENSION));
-				$file_content = fread($fp, $file);
-				fclose($fp);
-			}
-			else
-			{
-				$file_content =& $this->_attach_content[$i];
-			}
-
-			$attachment[$z++] = '--'.$this->_atc_boundary.$this->newline
-				.'Content-type: '.$ctype.'; '
-				.'name="'.$basename.'"'.$this->newline
-				.'Content-Disposition: '.$this->_attach_disp[$i].';'.$this->newline
-				.'Content-Transfer-Encoding: base64'.$this->newline;
-
-			$attachment[$z++] = chunk_split(base64_encode($file_content));
-		}
-
-		$body .= implode($this->newline, $attachment).$this->newline.'--'.$this->_atc_boundary.'--';
-		$this->_finalbody = ($this->_get_protocol() === 'mail') ? $body : $hdr.$body;
+		$this->_finalbody = $this->_body;
 		return;
 	}
 
@@ -1351,7 +1189,7 @@ class CFX_Email {
 	 */
 	protected function _send_with_mail()
 	{
-		return wp_mail($this->_recipients, $this->_subject, $this->_finalbody, $this->_header_str);
+		return wp_mail($this->_recipients, $this->_subject, $this->_finalbody, $this->_header_str, $this->_attach_name);
 	}
 
 	// --------------------------------------------------------------------
@@ -1363,7 +1201,7 @@ class CFX_Email {
 	 */
 	protected function _send_with_sendmail()
 	{
-		return wp_mail($this->_recipients, $this->_subject, $this->_finalbody, $this->_header_str);
+		return wp_mail($this->_recipients, $this->_subject, $this->_finalbody, $this->_header_str, $this->_attach_name);
 	}
 
 	// --------------------------------------------------------------------
@@ -1375,25 +1213,28 @@ class CFX_Email {
 	 */
 	protected function _send_with_smtp()
 	{
-		add_action('phpmailer_init',array(&$this,'_send_smtp'));
-		return wp_mail($this->_recipients, $this->_subject, $this->_finalbody, $this->_header_str);
+		return wp_mail($this->_recipients, $this->_subject, $this->_finalbody, $this->_header_str, $this->_attach_name);
 	}
 
-	public function _send_smtp($phpmailer){
+	public function _init_smtp($phpmailer){
+		if(is_null($this->_phpmailer)) $this->_phpmailer = $phpmailer;
 
 		$this->_phpmailer->Mailer = "smtp";
 		//$this->_phpmailer->From = $this->_calibrefx->theme_settings_m->get('smtp_from_email');
 		//$this->_phpmailer->FromName = $this->_calibrefx->theme_settings_m->get('smtp_from_name');
 		//$this->_phpmailer->Sender = $this->_phpmailer->From; //Return-Path
 		//$this->_phpmailer->AddReplyTo($this->_phpmailer->From,$this->_phpmailer->FromName); //Reply-To
+		if($this->mailtype == 'html') $this->_phpmailer->IsHTML( true );
 		$this->_phpmailer->Host = $this->_calibrefx->theme_settings_m->get('smtp_host');
 		$this->_phpmailer->SMTPSecure = $this->_calibrefx->theme_settings_m->get('smtp_secure');
 		$this->_phpmailer->Port = $this->_calibrefx->theme_settings_m->get('smtp_port');
-		$this->_phpmailer->SMTPAuth = ($this->_calibrefx->theme_settings_m->get('smtp_use_auth')=="yes") ? TRUE : FALSE;
+		$this->_phpmailer->SMTPAuth = ($this->_calibrefx->theme_settings_m->get('smtp_use_auth')=="1") ? TRUE : FALSE;
 		if($this->_phpmailer->SMTPAuth){
 			$this->_phpmailer->Username = $this->_calibrefx->theme_settings_m->get('smtp_username');
 			$this->_phpmailer->Password = $this->_calibrefx->theme_settings_m->get('smtp_password');
 		}
+		
+		$phpmailer = $this->_phpmailer;
 	}
 
 	// --------------------------------------------------------------------
