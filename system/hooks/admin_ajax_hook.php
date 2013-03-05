@@ -43,6 +43,7 @@ function calibrefx_test_send_mail(){
 	$calibrefx->email->subject('Test Email');
 	$calibrefx->email->message('Test Body Message');
 	$result = $calibrefx->email->send();
+
 	$return_data = array(
 		"status" => 'success',
 		"message" => 'Result: '.$result

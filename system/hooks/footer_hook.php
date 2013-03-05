@@ -91,6 +91,24 @@ function calibrefx_do_footer_widget_open(){
     calibrefx_put_wrapper('footer-widget'); 
 }
 
+add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_wrapper_open');
+
+/**
+ * Open footer widget wrapper markup
+ */
+function calibrefx_do_footer_widget_wrapper_open(){
+    echo '<div class="footer-widget-wrapper"><div class="row">';
+}
+
+add_action('calibrefx_after_footer_widget', 'calibrefx_do_footer_widget_wrapper_close');
+
+/**
+ * Open footer widget markup
+ */
+function calibrefx_do_footer_widget_wrapper_close(){
+    echo '</div></div><!--end .footer-widget-wrapper -->';
+}
+
 add_action('calibrefx_after_footer_widget', 'calibrefx_do_footer_widget_close');
 
 /**
