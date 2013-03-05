@@ -24,7 +24,15 @@ if(file_exists(CHILD_DIR . '/page-contact.php')){
     exit;
 }
 
-remove_action('calibrefx_post_content', 'calibrefx_do_post_content');
+add_filter('the_content','calibrefx_add_contact_form');
+function calibrefx_add_contact_form($content){
+	$target_email = apply_filters('calibrefx_contact_form', get_bloginfo('admin_email'), get_bloginfo('admin_email'));
+	$shortcode = '[contact_form target="'.$target_email.'"]';
+
+	return $content . do_shortcode($shortcode);
+}
+
+/*remove_action('calibrefx_post_content', 'calibrefx_do_post_content');
 add_action('calibrefx_post_content', 'calibrefx_do_contact_content');
 
 
@@ -34,11 +42,9 @@ add_action('calibrefx_post_content', 'calibrefx_do_contact_content');
  * It's just like the default loop except it is used for displaying blog post category
  *
  */
-function calibrefx_do_contact_content() { 
-	$target_email = apply_filters('calibrefx_contact_form', get_bloginfo('admin_email'), get_bloginfo('admin_email'));
-	$shortcode = '[contact_form target="'.$target_email.'"]';
-	echo do_shortcode($shortcode);
+/*function calibrefx_do_contact_content() { 
 	the_content( do_shortcode($shortcode) . __('[Read more...]', 'calibrefx'));
-}
+
+}*/
 
 calibrefx();

@@ -731,6 +731,14 @@ function calibrefx_contact_form($atts, $content = null) {
         'content' => $calibrefx->form->textarea('message', ''),
     );
 
+    $rows[] = array(
+        'id' => 'submit',
+        'label' => '',
+        'desc' => '',
+        'tooltip' => '',
+        'content' => $calibrefx->form->save_button('Send'),
+    );
+
     return $calibrefx->form->open('calibrefx_contact_form', site_url('contact'))->build($rows);
 }
 

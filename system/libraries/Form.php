@@ -28,9 +28,9 @@
 
 class CFX_Form {
 
-    var $form_open = '';
-    var $form_close = '</form>';
-    var $form_fields = '';
+    private $form_open = '';
+    private $form_close = '</form>';
+    private $form_fields = '';
 
     function __construct() {}
 
@@ -38,7 +38,7 @@ class CFX_Form {
      * Open form
      */
     function open($id, $action, $method='post') {
-        $form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'">';
+        $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'">';
         return $this;
     }
 
@@ -175,8 +175,8 @@ end;
     }
 
     function build($rows) {
-        $form_fields = $this->form_table($rows);
-        $output = $form_open . $form_fields . $form_close;
+        $this->form_fields = $this->form_table($rows);
+        $output = $this->form_open . $this->form_fields  . $this->form_close;
         return $output;
     }
     
