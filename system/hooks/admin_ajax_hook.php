@@ -35,14 +35,14 @@ function calibrefx_test_send_mail(){
 	global $calibrefx;
 	$calibrefx->load->library('email');
 	
-	/*$calibrefx->email->set_protocol($calibrefx->theme_settings_m->get('email_protocol'));
+	$calibrefx->email->set_protocol($calibrefx->theme_settings_m->get('email_protocol'));
 	$calibrefx->email->from(get_bloginfo('admin_email'));
 	$calibrefx->email->to($_POST('email'));
 	$calibrefx->email->subject('Test Email');
 	$calibrefx->email->message('Test Body Message');
-	$result = $calibrefx->email->send();*/
+	$result = $calibrefx->email->send();
 
-	$result = wp_mail('ivan@ivankristianto.com', 'Test Email','Test Body Message');
+	//$result = wp_mail('ivan@ivankristianto.com', 'Test Email','Test Body Message');
 
 	$return_data = array(
 		"status" => 'success',

@@ -371,13 +371,17 @@ ul#menu-secondary  > li > ul > li > ul > .current-menu-ancestor > a{
     margin-bottom: 20px;	
 }
 
-#footer-widget .widget-wrap{
-    padding: 10px 20px;
+#footer-widget .widget{
+    margin-top: 20px;
+}
+
+#footer-widget .widget .widget-wrap{
+	border-bottom: none;
 }
 
 .widgettitle{
-    font-size: 18px;
-    margin: 10px 0;
+    font-size: 20px;
+    margin: 10px 0 20px;
 }
 
 .widget .textwidget {
@@ -867,8 +871,7 @@ input[type="submit"].searchsubmit:hover{
 ------------------------------------------------------------ */
 #footer-widget{
     background-color: #F3F3F3;
-    border: 1px solid #DDDDDD;
-    margin: 10px 0;
+    margin: 10px 0 0;
 }
 
 /* Footer

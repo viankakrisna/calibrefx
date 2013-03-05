@@ -82,35 +82,40 @@ class CFX_Twitter_Widget extends WP_Widget {
         
         printf('<script>
 			jQuery(document).ready(function(){
-				var twitterWidget = new TWTR.Widget({
-				  version: 2,
-				  type: \'profile\',
-				  rpp: %10$s,
-				  interval: %2$s,
-				  width: %2$s,
-				  height: %3$s,
-				  id: \'twitter-widget-content\',
-				  theme: {
-					shell: {
-					  background: \'#%4$s\',
-					  color: \'#%5$s\'
-					},
-					tweets: {
-					  background: \'#%6$s\',
-					  color: \'#%7$s\',
-					  links: \'#%8$s\'
-					}
-				  },
-				  features: {
-					scrollbar: false,
-					loop: false,
-					live: false,
-					behavior: \'all\',
-					avatars: %11$s
-				  }
-				});
+                jQuery.getScript("http://widgets.twimg.com/j/2/widget.js", function () {
+    				var twitterWidget = new TWTR.Widget({
+    				  version: 2,
+    				  type: \'profile\',
+    				  rpp: %10$s,
+    				  interval: %1$s,
+    				  width: %2$s,
+    				  height: %3$s,
+    				  id: \'twitter-widget-content\',
+    				  theme: {
+    					shell: {
+    					  background: \'#%4$s\',
+    					  color: \'#%5$s\'
+    					},
+    					tweets: {
+    					  background: \'#%6$s\',
+    					  color: \'#%7$s\',
+    					  links: \'#%8$s\'
+    					}
+    				  },
+    				  features: {
+    					scrollbar: true,
+    					loop: false,
+    					live: true,
+                        hashtags: true,
+                        timestamp: true,
+    					behavior: \'default\',
+                        toptweets: true,
+    					avatars: %11$s
+    				  }
+    				});
 				
-				twitterWidget.render().setUser(\'%9$s\').start();
+				    twitterWidget.render().setUser(\'%9$s\').start();
+                });
 			});
 			</script>',
 			$instance['interval'],
