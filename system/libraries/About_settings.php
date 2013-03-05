@@ -87,13 +87,13 @@ class CFX_About_Settings extends CFX_Admin {
                 <div class="image">
                     <div class="frame">
                         <div class="inset">
-                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/c14.14.173.173/s160x160/262956_4317692468156_689102013_n.jpg" alt="ivan kristianto" />
                         </div>                    
                     </div>
                     <h4><a href="#">Ivan Kristianto</a></h4>
                 </div>
                 <div class="description">
-                    <p><strong>I am a WordPress Expert Developer</strong>. I am Actively develop WordPress and Plugins for more than 3 years. Develop Calibrefx as the masterpiece for WordPress </p>
+                    <p><strong>A WordPress Expert</strong>. Actively develop WordPress and Plugins for more than 4 years. Develop Calibrefx as the masterpiece for WordPress Themes Framework</p>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -102,13 +102,13 @@ class CFX_About_Settings extends CFX_Admin {
                 <div class="image">
                     <div class="frame">
                         <div class="inset">
-                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/c33.34.413.413/s160x160/271130_10150303743249882_7232460_n.jpg" alt="Sunil Tolani" />
                         </div>                    
                     </div>
                     <h4><a href="#">Sunil Tolani</a></h4>
                 </div>
                 <div class="description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p><strong>A Business Guru</strong></p>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -117,13 +117,13 @@ class CFX_About_Settings extends CFX_Admin {
                 <div class="image">
                     <div class="frame">
                         <div class="inset">
-                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/c10.10.160.160/227639_10151271752418889_2108418971_a.jpg" alt="Dee Ferdinand" />
                         </div>                    
                     </div>
                     <h4><a href="#">Dee Ferdinand</a></h4>
                 </div>
                 <div class="description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p>A Well known marketer on the net as <strong>"Minisite Guru"</strong>, actively doing internet marketing seminar and expand his creative art skill.</p>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -132,7 +132,7 @@ class CFX_About_Settings extends CFX_Admin {
                 <div class="image">
                     <div class="frame">
                         <div class="inset">
-                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/c33.33.414.414/s160x160/318329_10150288849259837_7462108_n.jpg" alt="Padro Widjaja" />
                         </div>                    
                     </div>
                     <h4><a href="#">Padro Widjaja</a></h4>
@@ -147,7 +147,7 @@ class CFX_About_Settings extends CFX_Admin {
                 <div class="image">
                     <div class="frame">
                         <div class="inset">
-                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c56.56.696.696/s160x160/154351_3834262819533_2120621801_n.jpg" alt="Hilal" />
                         </div>                    
                     </div>
                     <h4><a href="#">Hilal</a></h4>
