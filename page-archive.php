@@ -28,7 +28,7 @@ remove_action('calibrefx_post_content', 'calibrefx_do_post_content');
 add_action('calibrefx_post_content', 'calibrefx_do_archive_content');
 
 /**
- * CalibreFx Loop for blog bage
+ * CalibreFx Loop for archive bage
  *
  * It's just like the default loop except it is used for displaying blog post category
  *
