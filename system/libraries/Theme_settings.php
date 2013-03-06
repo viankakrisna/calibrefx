@@ -536,46 +536,53 @@ class CFX_Theme_Settings extends CFX_Admin {
             <span class="description"><?php _e('Please choose your mailer protocol. (default: sendmail)', 'calibrefx'); ?></span>
         </p>
 
-        <p>
-            <label for="<?php echo $this->settings_field; ?>[smtp_host]"><?php _e('SMTP Host:', 'calibrefx'); ?></label>
-            <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_host'); ?>" id="<?php echo $this->settings_field; ?>[smtp_host]" name="<?php echo $this->settings_field; ?>[smtp_host]">
-            <span class="description"><?php _e("Put your SMTP Host", 'calibrefx'); ?></span>
-        </p>
+        <div id="email_setting_box_content">
 
-       <p>
-            <label for="<?php echo $this->settings_field; ?>[smtp_secure]"><?php _e('Use Secure Connection:', 'calibrefx'); ?></label>
-            <select name="<?php echo $this->settings_field; ?>[smtp_secure]" id="<?php echo $this->settings_field; ?>[smtp_secure]">
-                <option value="-1" <?php selected(calibrefx_get_option('smtp_secure'), '-1'); ?> >No Secure Connection</option>
-                <option value="tls" <?php selected(calibrefx_get_option('smtp_secure'), 'tls'); ?> >TLS</option>
-                <option value="ssl" <?php selected(calibrefx_get_option('smtp_secure'), 'ssl'); ?> >SSL</option>
-            </select>
-            <span class="description"><?php _e('Use secure connection when sending email', 'calibrefx'); ?></span>
-        </p>
+            <p>
+                <label for="<?php echo $this->settings_field; ?>[smtp_host]"><?php _e('SMTP Host:', 'calibrefx'); ?></label>
+                <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_host'); ?>" id="<?php echo $this->settings_field; ?>[smtp_host]" name="<?php echo $this->settings_field; ?>[smtp_host]">
+                <span class="description"><?php _e("Put your SMTP Host", 'calibrefx'); ?></span>
+            </p>
 
-        <p>
-            <label for="<?php echo $this->settings_field; ?>[smtp_port]"><?php _e('SMTP Port:', 'calibrefx'); ?></label>
-            <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_port'); ?>" id="<?php echo $this->settings_field; ?>[smtp_port]" name="<?php echo $this->settings_field; ?>[smtp_port]">
-            <span class="description"><?php _e("Put your SMTP Port (ex: 25, 465)", 'calibrefx'); ?></span>
-        </p>
+           <p>
+                <label for="<?php echo $this->settings_field; ?>[smtp_secure]"><?php _e('Use Secure Connection:', 'calibrefx'); ?></label>
+                <select name="<?php echo $this->settings_field; ?>[smtp_secure]" id="<?php echo $this->settings_field; ?>[smtp_secure]">
+                    <option value="-1" <?php selected(calibrefx_get_option('smtp_secure'), '-1'); ?> >No Secure Connection</option>
+                    <option value="tls" <?php selected(calibrefx_get_option('smtp_secure'), 'tls'); ?> >TLS</option>
+                    <option value="ssl" <?php selected(calibrefx_get_option('smtp_secure'), 'ssl'); ?> >SSL</option>
+                </select>
+                <span class="description"><?php _e('Use secure connection when sending email', 'calibrefx'); ?></span>
+            </p>
 
-        <p>
-            <input type="checkbox" name="" target="calibrefx-settings-smtp_use_auth" value="1" id="calibrefx-settings-smtp_use_auth-box" class="calibrefx-settings-checkbox" <?php checked(1, calibrefx_get_option('smtp_use_auth')); ?> /> 
-            <label for="calibrefx-settings-smtp_use_auth"><?php _e("Use SMTP Authentication", 'calibrefx'); ?></label>
-            <input type="hidden" name="<?php echo $this->settings_field; ?>[smtp_use_auth]" id="calibrefx-settings-smtp_use_auth" value="<?php echo calibrefx_get_option('smtp_use_auth'); ?>" />
-            <span class="description"><?php _e('Checked this if your SMTP need Authentication. If using Google Service, then this should be checked.', 'calibrefx'); ?></span>
-        </p>
+            <p>
+                <label for="<?php echo $this->settings_field; ?>[smtp_port]"><?php _e('SMTP Port:', 'calibrefx'); ?></label>
+                <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_port'); ?>" id="<?php echo $this->settings_field; ?>[smtp_port]" name="<?php echo $this->settings_field; ?>[smtp_port]">
+                <span class="description"><?php _e("Put your SMTP Port (ex: 25, 465)", 'calibrefx'); ?></span>
+            </p>
 
-        <p>
-            <label for="<?php echo $this->settings_field; ?>[smtp_username]"><?php _e('SMTP Username:', 'calibrefx'); ?></label>
-            <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_username'); ?>" id="<?php echo $this->settings_field; ?>[smtp_username]" name="<?php echo $this->settings_field; ?>[smtp_username]">
-            <span class="description"><?php _e("Put your SMTP Username", 'calibrefx'); ?></span>
-        </p>
+            <p>
+                <input type="checkbox" name="" target="calibrefx-settings-smtp_use_auth" value="1" id="calibrefx-settings-smtp_use_auth-box" class="calibrefx-settings-checkbox" <?php checked(1, calibrefx_get_option('smtp_use_auth')); ?> /> 
+                <label for="calibrefx-settings-smtp_use_auth"><?php _e("Use SMTP Authentication", 'calibrefx'); ?></label>
+                <input type="hidden" name="<?php echo $this->settings_field; ?>[smtp_use_auth]" id="calibrefx-settings-smtp_use_auth" value="<?php echo calibrefx_get_option('smtp_use_auth'); ?>" />
+                <span class="description"><?php _e('Checked this if your SMTP need Authentication. If using Google Service, then this should be checked.', 'calibrefx'); ?></span>
+            </p>
 
-        <p>
-            <label for="<?php echo $this->settings_field; ?>[smtp_password]"><?php _e('SMTP Password:', 'calibrefx'); ?></label>
-            <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_password'); ?>" id="<?php echo $this->settings_field; ?>[smtp_password]" name="<?php echo $this->settings_field; ?>[smtp_password]">
-            <span class="description"><?php _e("Put your SMTP Password", 'calibrefx'); ?></span>
-        </p>
+            <div id="smtp_use_auth_box_content">
+
+                <p>
+                    <label for="<?php echo $this->settings_field; ?>[smtp_username]"><?php _e('SMTP Username:', 'calibrefx'); ?></label>
+                    <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_username'); ?>" id="<?php echo $this->settings_field; ?>[smtp_username]" name="<?php echo $this->settings_field; ?>[smtp_username]">
+                    <span class="description"><?php _e("Put your SMTP Username", 'calibrefx'); ?></span>
+                </p>
+
+                <p>
+                    <label for="<?php echo $this->settings_field; ?>[smtp_password]"><?php _e('SMTP Password:', 'calibrefx'); ?></label>
+                    <input type="text" size="30" value="<?php echo calibrefx_get_option('smtp_password'); ?>" id="<?php echo $this->settings_field; ?>[smtp_password]" name="<?php echo $this->settings_field; ?>[smtp_password]">
+                    <span class="description"><?php _e("Put your SMTP Password", 'calibrefx'); ?></span>
+                </p>
+
+            </div>  
+        </div>  
 
         <hr class="div" />
         <h4><?php _e('Test Email', 'calibrefx'); ?></h4>
@@ -585,6 +592,46 @@ class CFX_Theme_Settings extends CFX_Admin {
             <label id="send-mail-res"></label><br/>
             <button class="btn btn-scondary" id="test-send-mail">Send</button>
         </p>
+
+            
+
+            <script type="text/javascript">
+
+                // "smtp_use_auth":["#calibrefx-settings\\[smtp_use_auth\\]","#smtp_use_auth_box_content","1"]
+
+                function checkbox_slide(i, $t){
+                    if(jQuery(i).is(':checked')){
+                        $t.slideDown('fast');
+                    }else{                        
+                        $t.slideUp('fast');
+                    }
+                }
+
+                jQuery(document).ready(function($){
+                    checkbox_slide(this, $("#smtp_use_auth_box_content"));
+                    $("#calibrefx-settings-smtp_use_auth-box").click(function(){  
+                        checkbox_slide(this, $("#smtp_use_auth_box_content"));
+                    })
+
+                    $("#calibrefx-settings\\[smtp_secure\\]").change(function(){
+                        $this = $(this);
+
+                        if($this.val() == '-1'){
+                            $("#calibrefx-settings\\[smtp_port\\]").val("25");
+                        }
+                        else if($this.val() == 'tls'){
+                            console.info('sdsdfsdf');
+                            $("#calibrefx-settings\\[smtp_port\\]").val("965");
+                        }
+                        else if($this.val() == 'ssl'){
+                            $("#calibrefx-settings\\[smtp_port\\]").val("465");
+                        }
+                    })
+                });
+
+            </script>
+
+        
     <?php
     }
 

@@ -44,10 +44,17 @@ function calibrefx_test_send_mail(){
 	$calibrefx->email->message('Test Body Message');
 	$result = $calibrefx->email->send();
 
-	$return_data = array(
-		"status" => 'success',
-		"message" => 'Result: '.$result
-	);
+	if($result){
+		$return_data = array(
+			"status" => 'success',
+			"message" => 'Result: Email Sent Succesfully.'
+		);
+	}else{
+		$return_data = array(
+			"status" => 'failed',
+			"message" => 'Result: Failed to send email. Please check your settings.'
+		);
+	}
 
 	echo json_encode($return_data);exit;
 }
