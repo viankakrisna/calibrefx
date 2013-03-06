@@ -38,7 +38,7 @@ class CFX_Form {
      * Open form
      */
     function open($id, $action, $method='post') {
-        $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'">';
+        $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal">';
         return $this;
     }
 
@@ -196,46 +196,58 @@ end;
      */
     function save_button($text = '') {
         if ($text == '')
-            $text = "Update Options &raquo;";
-        return '<div class="btnSubmit"><input type="submit" class="button-primary" name="submit" value="' . $text . '" /></div><br class="clear"/>';
+            $text = "Update Options &raquo;"; 
+        
+        return '<button type="submit" class="btn">' . $text . '</button>';
     }
 
     /**
      * Create a form table from an array of rows
      */
     function form_table($rows) {
-        $content = '<table class="form-table">';
+
+        $content = '';
         $i = 1;
         foreach ($rows as $row) {
             $class = '';
-            if ($i > 1) {
-                $class .= 'bws_row';
-            }
-            if ($i % 2 == 0) {
-                $class .= ' even';
-            }
+            // if ($i > 1) {
+            //     $class .= 'bws_row';
+            // }
+            // if ($i % 2 == 0) {
+            //     $class .= ' even';
+            // }
 
             if (!empty($row['label'])) {
-                $content .= '<tr id="' . $row['id'] . '_row" class="' . $class . '"><th valign="top" scrope="row" original-title="' . $row['tooltip'] . '">';
+
+                $content .= '<div class="control-group">';
+
                 if (isset($row['id']) && $row['id'] != '')
-                    $content .= '<label for="' . $row['id'] . '">' . $row['label'] . ':</label>';
+                    $content .= '<label class="control-label" for="' . $row['id'] . '">' . $row['label'] . ':</label>';
                 else
-                    $content .= $row['label'];
-                $content .= '</th><td valign="top">';
+                    $content .= '<label class="control-label">' . $row['label'] . ':</label>';
+
+                $content .= '   <div class="controls">';
                 $content .= $row['content'];
-                $content .= '</td></tr>';
                 if (isset($row['desc']) && !empty($row['desc'])) {
-                    $content .= '<tr class="' . $class . ' notopborder"><td valign="top"></th><td colspan="2" class="bws_desc"><small>' . $row['desc'] . '</small></td></tr>';
+                    $content .= '       <span class="help-block">' . $row['desc'] . '</span>';
                 }
+                $content .= '   </div>';
+
+                $content .= '</div>';
             } else {
-                $content .= '<tr id="' . $row['id'] . '_row" class="' . $class . '">';
-                $content .= '<td colspan="3">' . $row['content'] . '</td>';
-                $content .= '</tr>';
+
+                $content .= '<div class="control-group">';                
+
+                $content .= '   <div class="controls">';
+                $content .= $row['content'];                
+                $content .= '   </div>';
+
+                $content .= '</div>';
             }
 
             $i++;
         }
-        $content .= '</table>';
+        
         return $content;
     }
 
