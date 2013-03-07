@@ -19,6 +19,13 @@
  * @package CalibreFx
  */
 
+version 1.0.10 <7 March 2013> - 
+    * Add some functions to helpers
+    * Update icons
+    * Add Form Builder Library
+    * Add Email Library
+    * Fix minor styling
+
 version 1.0.9 <24 February 2013> - 
     * Fix some minor bugs
     * Harden security
