@@ -260,7 +260,7 @@ add_action('wp_head', 'calibrefx_print_wrap');
  * Print .wrap style
  */
 function calibrefx_print_wrap() {
-    if (calibrefx_get_option('enable_responsive')) {
+    if ( current_theme_supports('calibrefx-responsive-style') ) {
         $wrap = sprintf('@media (min-width:%dpx){.wrap.row{width: %dpx;margin: 0 auto;}}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
     } else {
         $wrap = sprintf('.wrap.row{width: %dpx;margin-left:auto;margin-right:auto} @media (max-width:%dpx){ #header.row, #nav.row, #subnav.row, #inner.row, #footer.row, #footer-widget.row{width: %dpx;margin-left:auto;margin-right:auto}}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));

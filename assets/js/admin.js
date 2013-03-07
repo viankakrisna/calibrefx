@@ -1,6 +1,7 @@
 var calibrefx_toggles = {
     "content_archive":["#calibrefx-settings\\[content_archive\\]","#calibrefx_content_limit_setting","full"],
-    "layout_type":["#calibrefx-settings\\[layout_type\\]","#calibrefx_layout_width","static"]
+    "layout_type":["#calibrefx-settings\\[layout_type\\]","#calibrefx_layout_width","static"],
+    "email_protocol":["#calibrefx-settings\\[email_protocol\\]","#email_setting_box_content","smtp"]
 };
 window['calibrefx'] = {
 
@@ -104,14 +105,12 @@ jQuery(document).ready(function($){
         
         var data = {
             action: 'calibrefx_test_send_mail',
-            email: email,
+            data: email,
         };
         
         $.post(ajaxurl, data, function(response) {
             console.info(response);
-            if(response.status == 'success'){
-                $('#send-mail-res').html(response.message);
-            }
+            $('#send-mail-res').html(response.message);
         }, "json");
 
         return false;

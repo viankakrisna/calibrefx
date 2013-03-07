@@ -52,6 +52,12 @@
 		padding-right: 0px;
 	}
 	
+	#nav{
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+	}
+	
     /* Subnav */
 	#subnav{
 		margin-top: 10px;
@@ -116,13 +122,6 @@
         border-top: 1px solid #e5e5e5;
     }
 	
-    /*.subnav .nav > li:first-child > a,
-    .subnav .nav > li:first-child > a:hover {
-        -webkit-border-radius: 4px 4px 0 0;
-        -moz-border-radius: 4px 4px 0 0;
-        border-radius: 4px 4px 0 0;
-    }*/
-	
 	.subnav .dropdown-menu{
 		position: static;
 		width: 100%;
@@ -169,6 +168,10 @@
 		margin: 0 auto;
 	}
 	
+	#footer-widget .footer-widget-wrapper{
+		padding: 0px 10px;
+	}
+	
 	#footer{
 		padding: 0px 2%;
 		width: 96%;
@@ -186,9 +189,5 @@
 		max-width: 100%;
 	}
 	
-	#nav{
-		-moz-border-radius: 3px;
-		-webkit-border-radius: 3px;
-		border-radius: 3px;
-	}
+	
 }
