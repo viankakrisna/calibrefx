@@ -95,18 +95,18 @@ class CFX_Other_Settings extends CFX_Admin {
 
     public function tos_generator(){
         $name = '';
-$url = '';
-$info = '';
+        $url = '';
+        $info = '';
 
 
-$asp = '';
-$cn = '';
-$disclaimer = '';
-$dmca = '';
-$federal = '';
-$privacy = '';
-$social = '';
-$terms = '';
+        $asp = '';
+        $cn = '';
+        $disclaimer = '';
+        $dmca = '';
+        $federal = '';
+        $privacy = '';
+        $social = '';
+        $terms = '';
 
 
 if(isset($_POST['name']) && isset($_POST['url']) ){
