@@ -343,7 +343,7 @@ function calibrefx_list_item($atts, $content = '') {
 
 add_shortcode('row', 'calibrefx_row');
 
-function calibrefx_column($atts, $content = '') {
+function calibrefx_row($atts, $content = '') {
     extract(shortcode_atts(array(
                 'class' => '',
                 'style' => '',
