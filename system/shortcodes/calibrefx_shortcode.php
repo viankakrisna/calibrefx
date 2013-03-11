@@ -396,7 +396,7 @@ function calibrefx_column($atts, $content = '') {
 
 /**
  * ==============================================================
- * Row
+ * Separator
  * ==============================================================
  */
 
@@ -408,9 +408,9 @@ function calibrefx_separator($atts, $content = '') {
                 'style' => '',
                     ), $atts));
 
-    $classes = $class;
+    $classes = " separator row";
     if (!empty($class))
-        $classes .=  $class . " separator row";
+        $classes =  $class . $classes ;
 
     return '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
