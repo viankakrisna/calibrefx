@@ -337,6 +337,27 @@ function calibrefx_list_item($atts, $content = '') {
 
 /**
  * ==============================================================
+ * Row
+ * ==============================================================
+ */
+
+add_shortcode('row', 'calibrefx_row');
+
+function calibrefx_column($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'class' => '',
+                'style' => '',
+                    ), $atts));
+
+    $classes = $class;
+    if (!empty($class))
+        $classes .= ' ' . $class;
+
+    return '<div class="' . $classes . ' row" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
+}
+
+/**
+ * ==============================================================
  * Column
  * ==============================================================
  */
@@ -348,8 +369,8 @@ function calibrefx_column($atts, $content = '') {
                 'cols' => '',
                 'style' => '',
                 'align' => '',
-                'last' => '',
-                'first' => '',
+                'last' => 'no',
+                'first' => 'no',
                     ), $atts));
 
     $classes = $class;
@@ -371,6 +392,27 @@ function calibrefx_column($atts, $content = '') {
     }
 
     return $before . '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
+}
+
+/**
+ * ==============================================================
+ * Row
+ * ==============================================================
+ */
+
+add_shortcode('separator', 'calibrefx_separator');
+
+function calibrefx_separator($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'class' => '',
+                'style' => '',
+                    ), $atts));
+
+    $classes = $class;
+    if (!empty($class))
+        $classes .=  $class . " separator row";
+
+    return '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_column');
