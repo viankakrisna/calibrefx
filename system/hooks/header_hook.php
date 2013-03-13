@@ -359,16 +359,32 @@ add_action('calibrefx_header', 'calibrefx_do_header_open', 5);
  */
 function calibrefx_do_header_open() {
     echo '<div id="header" class="row">';
+}
+
+add_action('calibrefx_header', 'calibrefx_do_header_wrapper_open', 10);
+
+/**
+ * Put header wrapper open
+ */
+function calibrefx_do_header_wrapper_open(){
     calibrefx_put_wrapper('header');
 }
 
-add_action('calibrefx_header', 'calibrefx_do_header_close', 15);
+add_action('calibrefx_header', 'calibrefx_do_header_wrapper_close', 15);
+
+/**
+ * Put header wrapper close
+ */
+function calibrefx_do_header_wrapper_close(){
+    calibrefx_put_wrapper('header', 'close');
+}
+
+add_action('calibrefx_header', 'calibrefx_do_header_close', 20);
 
 /**
  * Close header markup
  */
 function calibrefx_do_header_close() {
-    calibrefx_put_wrapper('header', 'close');
     echo '</div><!--end #header-->';
 }
 
