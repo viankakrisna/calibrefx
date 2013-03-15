@@ -539,7 +539,9 @@ function calibrefx_slider($atts, $content = '') {
         'pager' => 0,
         'next_prev' => 0,
         'slide_elm' => '> div',
-        'auto_height' => 0
+        'auto_height' => 0,
+        'height' => '',
+        'width' => ''
     ), $atts));
 
     if(!empty($class)) $class = ' '.$class;
@@ -552,6 +554,11 @@ function calibrefx_slider($atts, $content = '') {
             $pager_class .= $chars[rand(0, $size - 1)];
         }
     }
+
+    if(!empty($width)) $style_item .= 'width:'.$width.';';
+    if(!empty($height)) $style_item .= 'height:'.$height.';';
+    
+    if(!empty($width) || !empty($height)) $style .= ' style="'.$style_item.'"';
 
     $data_cycle = '';
     if(!empty($fx)) $data_cycle .= ' data-cycle-fx="'.$fx.'"';
@@ -566,7 +573,7 @@ function calibrefx_slider($atts, $content = '') {
     $html = '';
     $html .= '<div id="'.$id.'" class="slider-container'.$class.'">';
     $html .= '<div class="slider-wrapper">';
-    $html .= '<div class="slider cycle-slideshow"'.$data_cycle.'>';
+    $html .= '<div class="slider cycle-slideshow"'.$data_cycle.$style.'>';
     $html .= advance_shortcode_unautop($content);
     $html .= '</div><!-- end .slider -->';
     if($pager) $html  .= '<div id="'.$pager_class.'" class="slider-pager"></div><!-- end .slider-pager -->';
@@ -868,14 +875,18 @@ function calibrefx_post_item($atts, $content = null) {
 
     if($query->have_posts()) :
  
-        $html .= '<div class="post-item '.$class.'">';
+        foreach(get_post_class() as $class_item => $val){
+            $post_class .= ' '.$val;
+        }
+
+        $html .= '<div class="post-item'.$post_class.' '.$class.'">';
 
         while($query->have_posts()) : $query->the_post();
             if($show_title){
                 if($is_title_link){
-                    $html .= '<h4 class="post-item-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h4>';
+                    $html .= '<h2 class="post-item-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h2>';
                 }else{
-                    $html .= '<h4 class="post-item-title">'.get_the_title().'</h4>';
+                    $html .= '<h2 class="post-item-title">'.get_the_title().'</h2>';
                 }
             } 
 
