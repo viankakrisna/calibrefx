@@ -347,13 +347,14 @@ function calibrefx_row($atts, $content = '') {
     extract(shortcode_atts(array(
                 'class' => '',
                 'style' => '',
+                'id' => '',
                     ), $atts));
 
     $classes = $class;
     if (!empty($class))
         $classes .= ' ' . $class;
 
-    return '<div class="' . $classes . ' row" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
+    return '<div class="' . $classes . ' row" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
 /**
@@ -394,9 +395,11 @@ function calibrefx_column($atts, $content = '') {
     return $before . '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
 }
 
+$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_column');
+
 /**
  * ==============================================================
- * Row
+ * Separator
  * ==============================================================
  */
 
@@ -415,7 +418,37 @@ function calibrefx_separator($atts, $content = '') {
     return '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_column');
+/**
+ * ==============================================================
+ * HEADLINE
+ * ==============================================================
+ */
+
+add_shortcode('headline', 'calibrefx_headline');
+
+function calibrefx_headline($atts, $content = '') {
+    extract(shortcode_atts(array(
+        'class' => '',
+        'id' => '',
+        'style' => '',
+        'first_separator' => 0,
+        'last_separator' => 0,
+    ), $atts));
+
+    $html = '';
+    $html .= '<div class="headline '.$class.'" id="'.$id.'">';
+    if($first_separator) $html .= '<div class="headline-separator first"></div>';
+    $html .= '<div class="headline-content row">';
+    $html .= advance_shortcode_unautop($content);
+    $html .= '</div>';
+    if($last_separator) $html .= '<div class="headline-separator last"></div>';
+    $html .= '</div>';
+
+    return $html;
+}
+
+
+
 
 /**
  * ==============================================================
@@ -448,35 +481,60 @@ add_shortcode('slider', 'calibrefx_slider');
 
 function calibrefx_slider($atts, $content = '') {
     extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'class' => '',
-                'interval' => '',
-                    ), $atts));
+        'before' => '',
+        'after' => '',
+        'id' => '',
+        'class' => '',
+        'interval' => '3000',
+        'speed' => '800',
+        'fx' => 'fade',
+        'pager' => '0',
+        'width' => '100%',
+        'height' => '100%'
+    ), $atts));
 
-    $is_bootstrap_enabled = calibrefx_get_option('enable_bootstrap');
-
-    if ($is_bootstrap_enabled) {
-        //Create Random ID
-        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    // Create Random ID
+    if(empty($id)){
+        $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
         $size = strlen($chars);
         for ($i = 0; $i < 8; $i++) {
             $id .= $chars[rand(0, $size - 1)];
         }
-
-        return $before . '<div id="' . $id . '" class="carousel slide ' . $class . '">
-	  <!-- Carousel items -->
-	  <div class="carousel-inner">
-		' . do_shortcode($content) . '
-	  </div>
-	  <!-- Carousel nav -->
-	  <a class="carousel-control left" href="#' . $id . '" data-slide="prev">&lsaquo;</a>
-	  <a class="carousel-control right" href="#' . $id . '" data-slide="next">&rsaquo;</a>
-	</div>
-	<script>jQuery("#' . $id . '").carousel({ interval: ' . $interval . ' });</script>' . $after;
-    } else {
-        return '<div class="alert alert-error">Bootstrap must be enabled to use the slider.</div>';
     }
+
+    if(!empty($class)) $class = ' '.$class;
+
+    $data_cycle = '';
+    $data_cycle_item = array();
+    if(!empty($fx)) array_push($data_cycle_item, '"fx" : "'.$fx.'"');
+    if(!empty($interval)) array_push($data_cycle_item, '"timeout" : '.$interval);
+    if(!empty($speed)) array_push($data_cycle_item, '"speed" : '.$speed);
+    if($pager) array_push($data_cycle_item, '"pager" : "#'.$id.' .slider-pager"');
+
+    $i = 1;
+    foreach($data_cycle_item as $item => $val){
+    
+        if($i == 1) $data_cycle .= $val;
+        else $data_cycle .= ', '.$val;
+
+        $i++;
+    }
+
+    $data_cycle = '{ '.$data_cycle.' }';
+
+    $style = 'width: '.$width.'; height: '.$height.';';
+
+    $html = '';
+    $html .= '<div id="'.$id.'" class="slider-container'.$class.'">';
+    $html .= '<div class="slider-wrapper">';
+    $html .= '<div class="slider carousel" data-cycle=\''.$data_cycle.'\' style="'.$style.'">';
+    $html .= advance_shortcode_unautop($content);
+    $html .= '</div><!-- end .slider -->';
+    $html .= '</div><!-- end .slider-wrapper -->';
+    if($pager) $html  .= '<div class="slider-pager"></div><!-- end .slider-pager -->';
+    $html .= '</div><!-- end .slider-container -->';
+
+    return $before.$html.$after;
 }
 
 add_shortcode('slider_item', 'calibrefx_slider_item');
@@ -489,7 +547,7 @@ function calibrefx_slider_item($atts, $content = '') {
                 'src' => ''
                     ), $atts));
 
-    return '<div class="item ' . $class . '">' . $before . '<img src="' . $src . '" />.' . do_shortcode($content) . $after . '</div>';
+    return '<div class="item ' . $class . '">' . $before . '<img src="' . $src . '" />' . advance_shortcode_unautop($content) . $after . '</div>';
 }
 
 add_shortcode('slider_caption', 'calibrefx_slider_caption');
@@ -501,7 +559,7 @@ function calibrefx_slider_caption($atts, $content = '') {
                 'class' => '',
                     ), $atts));
 
-    return '<div class="carousel-caption ' . $class . '">' . $before . do_shortcode($content) . $after . '</div>';
+    return '<div class="carousel-caption ' . $class . '">' . $before . advance_shortcode_unautop($content) . $after . '</div>';
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_slider');
@@ -722,6 +780,86 @@ add_shortcode('retweet', 'calibrefx_retweet');
 function calibrefx_retweet($atts, $content = null) {
     $output = "<a href='http://twitter.com/share' class='twitter-share-button' data-count='vertical'>Tweet</a><script type='text/javascript' src='http://platform.twitter.com/widgets.js'></script>";
     return $output;
+}
+
+/**
+ * ==============================================================
+ * Post
+ * ==============================================================
+ */
+
+add_shortcode('post', 'calibrefx_post_item');
+
+function calibrefx_post_item($atts, $content = null) {
+    extract(shortcode_atts(array(
+        "post_type" => 'post',
+        "post_id" => '',
+        "limit" => 0,
+        "limit_text" => 'Read More',
+        "show_title" => 1,
+        "is_title_link" => 0,
+        "show_featured_image" => 0,
+        "before" => '',
+        "after" => '',
+        "class" => '',
+        "id" => '',
+        "style" => '',
+    ), $atts)); 
+
+    $args = array();
+
+    if($post_type != 'post'){
+        $args['post_type'] = $post_type;
+
+        if(!empty($post_id)){
+            $args['page_id'] = $post_id;
+        }
+    }else{
+        if(!empty($post_id)){
+            $args['p'] = $post_id;
+        }
+    }
+
+    $args['posts_per_page'] = 1;
+
+    $query = new WP_Query($args);
+
+    $html = '';
+
+    if($query->have_posts()) :
+ 
+        $html .= '<div class="post-item '.$class.'">';
+
+        while($query->have_posts()) : $query->the_post();
+            if($show_title){
+                if($is_title_link){
+                    $html .= '<a href="'.get_permalink().'"><h4 class="post-item-title">'.get_the_title().'</h4></a>';
+                }else{
+                    $html .= '<h4 class="post-item-title">'.get_the_title().'</h4>';
+                }
+            } 
+
+            if($show_featured_image){
+                $post_img = calibrefx_get_image(array('format' => 'html', 'size' => ''));
+
+                $html .= $post_img;
+            }
+
+            if($limit){
+                $html .= get_the_content_limit($limit, $limit_text);
+            }else{
+                $html .= wpautop( get_the_content(), true );
+            }
+        endwhile;
+
+        $html .= '</div><!-- end .post-item -->';
+    endif;
+
+    wp_reset_query();
+    wp_reset_postdata();
+    //debug_var($html);
+
+    return do_shortcode( $html );
 }
 
 /**

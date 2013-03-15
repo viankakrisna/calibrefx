@@ -47,4 +47,8 @@ jQuery(document).ready(function($) {
 		jQuery(this).toggleClass("active").next().slideToggle("slow");
 		return false; //Prevent the browser jump to the link anchor
 	});
+
+	jQuery(window).load(function(){
+		jQuery(".slider").cycle();
+	});
 });
