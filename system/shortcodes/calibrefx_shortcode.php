@@ -1022,3 +1022,12 @@ function advance_shortcode_unautop($content) {
     return $content;
 }
 
+/**
+ * make text widget to be able to run shortcode
+ *  
+ * @access public
+ * @author Hilaladdiyar Muhammad Nur
+ *
+ */
+add_filter('widget_text', 'do_shortcode');
+
