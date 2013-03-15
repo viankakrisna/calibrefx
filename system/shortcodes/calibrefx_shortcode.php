@@ -350,9 +350,7 @@ function calibrefx_row($atts, $content = '') {
                 'id' => '',
                     ), $atts));
 
-    $classes = $class;
-    if (!empty($class))
-        $classes .= ' ' . $class;
+    if (!empty($class)) $classes .= ' ' . $class;
 
     return '<div class="' . $classes . ' row" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
@@ -411,9 +409,7 @@ function calibrefx_separator($atts, $content = '') {
                 'style' => '',
                     ), $atts));
 
-    $classes = $class;
-    if (!empty($class))
-        $classes .=  $class . " separator row";
+    $classes .=  $class . " separator row";
 
     return '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
@@ -447,8 +443,60 @@ function calibrefx_headline($atts, $content = '') {
     return $html;
 }
 
+/**
+ * ==============================================================
+ * SOCIAL LINK
+ * ==============================================================
+ */
 
+add_shortcode( 'gplus_url', 'calibrefx_gplus_url' );
+function calibrefx_gplus_url(){
+    $gplus_page = calibrefx_get_option('gplus_page');
+    
+    return $gplus_page;  
+}
 
+add_shortcode( 'facebook_url', 'calibrefx_facebook_url' );
+function calibrefx_facebook_url(){
+    $facebook_fanpage = calibrefx_get_option('facebook_fanpage');
+    
+    return $facebook_fanpage;  
+}
+
+add_shortcode( 'twitter_url', 'calibrefx_twitter_url' );
+function calibrefx_twitter_url(){
+    $twitter_profile = calibrefx_get_option('twitter_profile');
+    
+    return $twitter_profile;  
+}
+
+add_shortcode( 'youtube_url', 'calibrefx_youtube_url' );
+function calibrefx_youtube_url(){
+    $youtube_channel = calibrefx_get_option('youtube_channel');
+    
+    return $youtube_channel;  
+}
+
+add_shortcode( 'linkedin_url', 'calibrefx_linkedin_url' );
+function calibrefx_linkedin_url(){
+    $linkedin_profile = calibrefx_get_option('linkedin_profile');
+    
+    return $linkedin_profile;  
+}
+
+add_shortcode( 'pinterest_url', 'calibrefx_pinterest_url' );
+function calibrefx_pinterest_url(){
+    $pinterest_profile = calibrefx_get_option('pinterest_profile');
+    
+    return $pinterest_profile;  
+}
+
+add_shortcode( 'feed_url', 'calibrefx_feed_url' );
+function calibrefx_feed_url(){
+    $feed_uri = calibrefx_get_option('feed_uri');
+    
+    return $feed_uri;  
+}
 
 /**
  * ==============================================================
@@ -485,53 +533,45 @@ function calibrefx_slider($atts, $content = '') {
         'after' => '',
         'id' => '',
         'class' => '',
-        'interval' => '3000',
-        'speed' => '800',
+        'interval' => 3000,
+        'speed' => 800,
         'fx' => 'fade',
-        'pager' => '0',
-        'width' => '100%',
-        'height' => '100%'
+        'pager' => 0,
+        'next_prev' => 0,
+        'slide_elm' => '> div',
+        'auto_height' => 0
     ), $atts));
-
-    // Create Random ID
-    if(empty($id)){
-        $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-        $size = strlen($chars);
-        for ($i = 0; $i < 8; $i++) {
-            $id .= $chars[rand(0, $size - 1)];
-        }
-    }
 
     if(!empty($class)) $class = ' '.$class;
 
-    $data_cycle = '';
-    $data_cycle_item = array();
-    if(!empty($fx)) array_push($data_cycle_item, '"fx" : "'.$fx.'"');
-    if(!empty($interval)) array_push($data_cycle_item, '"timeout" : '.$interval);
-    if(!empty($speed)) array_push($data_cycle_item, '"speed" : '.$speed);
-    if($pager) array_push($data_cycle_item, '"pager" : "#'.$id.' .slider-pager"');
-
-    $i = 1;
-    foreach($data_cycle_item as $item => $val){
-    
-        if($i == 1) $data_cycle .= $val;
-        else $data_cycle .= ', '.$val;
-
-        $i++;
+    if($pager || $next_prev){
+        // Create custom ID for pager
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $size = strlen($chars);
+        for ($i = 0; $i < 8; $i++) {
+            $pager_class .= $chars[rand(0, $size - 1)];
+        }
     }
 
-    $data_cycle = '{ '.$data_cycle.' }';
-
-    $style = 'width: '.$width.'; height: '.$height.';';
+    $data_cycle = '';
+    if(!empty($fx)) $data_cycle .= ' data-cycle-fx="'.$fx.'"';
+    if(!empty($interval)) $data_cycle .= ' data-cycle-timeout="'.$interval.'"';
+    if(!empty($speed)) $data_cycle .= ' data-cycle-speed="'.$speed.'"';
+    if(!empty($slide_elm)) $data_cycle .= ' data-cycle-slides="'.$slide_elm.'"';
+    if($pager) $data_cycle .= ' data-cycle-pager="#'.$pager_class.'" data-cycle-pager-template=\'<a href="#" class="slider-pager-item">{{slideNum}}</a>\'';
+    if($next_prev) $data_cycle .= ' data-cycle-prev="#slider-prev-'.$pager_class.'" data-cycle-next="#slider-next-'.$pager_class.'"';
+    if($auto_height !== 0) $data_cycle .= ' data-cycle-auto-height="'.$auto_height.'"';
+    $data_cycle .= ' data-cycle-pause-on-hover="true"';
 
     $html = '';
     $html .= '<div id="'.$id.'" class="slider-container'.$class.'">';
     $html .= '<div class="slider-wrapper">';
-    $html .= '<div class="slider carousel" data-cycle=\''.$data_cycle.'\' style="'.$style.'">';
+    $html .= '<div class="slider cycle-slideshow"'.$data_cycle.'>';
     $html .= advance_shortcode_unautop($content);
     $html .= '</div><!-- end .slider -->';
+    if($pager) $html  .= '<div id="'.$pager_class.'" class="slider-pager"></div><!-- end .slider-pager -->';
+    if($next_prev) $html  .= '<div class="slider-nav"><a href="#" class="slider-prev" id="slider-prev-'.$pager_class.'">&laquo; prev</a><a href="#" class="slider-next" id="slider-next-'.$pager_class.'">next &raquo;</a></div>';
     $html .= '</div><!-- end .slider-wrapper -->';
-    if($pager) $html  .= '<div class="slider-pager"></div><!-- end .slider-pager -->';
     $html .= '</div><!-- end .slider-container -->';
 
     return $before.$html.$after;
@@ -833,7 +873,7 @@ function calibrefx_post_item($atts, $content = null) {
         while($query->have_posts()) : $query->the_post();
             if($show_title){
                 if($is_title_link){
-                    $html .= '<a href="'.get_permalink().'"><h4 class="post-item-title">'.get_the_title().'</h4></a>';
+                    $html .= '<h4 class="post-item-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h4>';
                 }else{
                     $html .= '<h4 class="post-item-title">'.get_the_title().'</h4>';
                 }

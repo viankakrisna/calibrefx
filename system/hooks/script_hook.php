@@ -66,7 +66,7 @@ function calibrefx_load_scripts() {
         wp_enqueue_script('comment-reply');
     }
     wp_enqueue_script('superfish', CALIBREFX_JS_URL . '/superfish.js', array('jquery'), '', true);
-    wp_enqueue_script('jquery.cycle');
+    wp_enqueue_script('jquery.cycle2');
     wp_localize_script('calibrefx-script', 'cfx_ajax', array('ajaxurl' => admin_url('admin-ajax.php'), 'ajax_action' => 'cfx_ajax', '_ajax_nonce' => wp_create_nonce( 'calibrefx_ajax_nonce')));
 }
 
