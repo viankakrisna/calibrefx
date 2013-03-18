@@ -696,12 +696,64 @@ function calibrefx_buzz($atts, $content = null) {
 }
 
 add_shortcode('twitter', 'calibrefx_twitter');
-
 function calibrefx_twitter($atts, $content = null) {
     $calibrefx_twitter = get_option('calibrefx_twitter');
     if ($calibrefx_twitter)
         $output = "<script type='text/javascript' src='http://twittercounter.com/embed/{$calibrefx_twitter}/ffffff/111111'></script>";
     return $output;
+}
+
+add_shortcode('tweet', 'calibrefx_tweet');
+function calibrefx_tweet($atts, $content = null) {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'width' => '',
+                'url' => get_permalink(),
+                    ), $atts));
+
+    $output = '
+       <a href="https://twitter.com/share" class="twitter-share-button" data-url="'.$url.'">Tweet</a>
+    ';
+
+    return $before . $output . $after;
+}
+
+add_shortcode('fblike', 'calibrefx_fblike');
+function calibrefx_fblike($atts, $content = null) {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'width' => '',
+                'url' => get_permalink(),
+                    ), $atts));
+
+    $output = '
+        <div class="fb-like" data-href="'.$url.'" data-send="false" data-layout="button_count" data-width="'.$width.'" 
+        data-show-faces="false"></div>
+    ';
+
+    return $before . $output . $after;
+}
+
+add_shortcode('gplus', 'calibrefx_gplus');
+function calibrefx_gplus($atts, $content = null) {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'width' => 300,
+                'size' => 'medium',
+                'url' => get_permalink(),
+                    ), $atts));
+
+    $output = '
+        <div class="g-plusone" data-size="'.$size.'" data-width="'.$width.'" data-href="'.$url.'"></div>
+    ';
+
+    return $before . $output . $after;
 }
 
 add_shortcode('feedburner', 'calibrefx_feedburner');
@@ -722,6 +774,11 @@ add_shortcode('retweet', 'calibrefx_retweet');
 function calibrefx_retweet($atts, $content = null) {
     $output = "<a href='http://twitter.com/share' class='twitter-share-button' data-count='vertical'>Tweet</a><script type='text/javascript' src='http://platform.twitter.com/widgets.js'></script>";
     return $output;
+}
+
+add_shortcode('clear', 'calibrefx_clear');
+function calibrefx_clear() {
+    return '<div class="clearfix"></div>';
 }
 
 /**
