@@ -19,6 +19,11 @@
  * @package CalibreFx
  */
 
+version 1.0.11 <?March 2013> - 
+    * Add more apply_filters in post_hook
+    * Update JQuery cycle to v2
+    * Fix minor styling
+
 version 1.0.10 <7 March 2013> - 
     * Add some functions to helpers
     * Update icons
