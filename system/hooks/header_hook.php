@@ -435,7 +435,8 @@ add_action('calibrefx_header', 'calibrefx_do_header');
  * Do Header Callback
  */
 function calibrefx_do_header() {
-    echo '<div id="header-title" class="pull-left">';
+    $header_title_class = apply_filters('header_title_class', 'pull-left', $classes);
+    echo '<div id="header-title" class="'.$header_title_class.'">';
     do_action('calibrefx_site_title');
     do_action('calibrefx_site_description');
     echo '</div><!-- end #header-title -->';

@@ -243,10 +243,13 @@ function calibrefx_do_post_content() {
     } elseif ('excerpts' == calibrefx_get_option('content_archive')) {
         the_excerpt();
     } else {
-        if (calibrefx_get_option('content_archive_limit'))
-            the_content_limit((int) calibrefx_get_option('content_archive_limit'), __('[Read more...]', 'calibrefx'));
-        else
-            the_content(__('[Read more...]', 'calibrefx'));
+        if (calibrefx_get_option('content_archive_limit')){
+            $read_more_text = apply_filters( 'calibrefx_readmore_text', __('[Read more...]', 'calibrefx') );
+            the_content_limit((int) calibrefx_get_option('content_archive_limit'), $read_more_text);
+        }
+        else{
+            the_content();
+        }
     }
 
     wp_link_pages(array('before' => '<p class="pages">' . __('Pages:', 'calibrefx'), 'after' => '</p>'));
