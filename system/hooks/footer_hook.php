@@ -88,7 +88,7 @@ add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_open');
  */
 function calibrefx_do_footer_widget_open(){
     echo '<div id="footer-widget" ' . get_footer_widget_class() . '>';
-    calibrefx_put_wrapper('footer-widget'); 
+    calibrefx_put_wrapper('footer-widget', 'open'); 
 }
 
 add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_wrapper_open');
@@ -97,7 +97,8 @@ add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_wrapper
  * Open footer widget wrapper markup
  */
 function calibrefx_do_footer_widget_wrapper_open(){
-    echo '<div class="footer-widget-wrapper"><div class="row">';
+    $footer_widget_wrapper_class = apply_filters( 'footer_widget_wrapper_class', calibrefx_row_class() );
+    echo '<div class="footer-widget-wrapper"><div class="'.$footer_widget_wrapper_class.'">';
 }
 
 add_action('calibrefx_after_footer_widget', 'calibrefx_do_footer_widget_wrapper_close');
@@ -125,7 +126,8 @@ add_action('calibrefx_footer', 'calibrefx_do_footer_open', 5);
  * Open footer markup
  */
 function calibrefx_do_footer_open() {
-    echo '<div id="footer" class="row">';
+    $footer_class = apply_filters( 'footer_class', calibrefx_row_class() );
+    echo '<div id="footer" class="'.$footer_class.'">';
 }
 
 add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_row_open', 7);
@@ -134,7 +136,7 @@ add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_row_open', 7);
  * Open footer wrapper row markup
  */
 function calibrefx_do_footer_wrapper_row_open() {
-    calibrefx_put_wrapper('footer');
+    calibrefx_put_wrapper('footer', 'open');
 }
 
 add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_open', 9);

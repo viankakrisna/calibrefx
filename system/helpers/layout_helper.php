@@ -36,7 +36,7 @@
  * 
  * @return type 
  */
-function calibrefx_layout_is_responsive() {
+function calibrefx_layout_is_fluid() {
     return calibrefx_get_option('layout_type') == 'fluid';
 }
 
@@ -53,12 +53,13 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
     if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
         return '';
 
-    if (calibrefx_layout_is_responsive())
+    if (calibrefx_layout_is_fluid() || !current_theme_supports('calibrefx-responsive-style'))
         return '';
 
+    $row_class = calibrefx_row_class();
     switch ($output) {
         case 'open':
-            $output = '<div class="wrap row">';
+            $output = '<div class="wrap '.$row_class.'">';
             break;
         case 'close':
             $output = '</div><!-- end .wrap -->';
@@ -168,7 +169,7 @@ function calibrefx_get_layouts() {
 /**
  * Get the layout based on the context given
  *
- * @access public
+ * @param string layout name
  * @return string
  */
 function calibrefx_get_layout($context) {
@@ -184,7 +185,7 @@ function calibrefx_get_layout($context) {
  * This function will get the custom layout from the specific post
  * if none, then will return default layout
  *
- * @access public
+ * @param void
  * @return string
  */
 function calibrefx_site_layout() {
@@ -207,6 +208,8 @@ function calibrefx_site_layout() {
 /**
  * html helper function to output layout setting
  *
+ * @param array args
+ * @return string
  */
 function calibrefx_layout_selector($args = array()) {
 
@@ -232,4 +235,32 @@ function calibrefx_layout_selector($args = array()) {
         echo $output;
     else
         return $output;
+}
+
+/**
+ * Get the row class for the html. will have post fix '-fluid' for responsive layout
+ *
+ * @return string
+ */
+function calibrefx_row_class() {
+    $rowClass = 'row';
+    if ( current_theme_supports('calibrefx-responsive-style') ) {
+        $rowClass = 'row-fluid';
+    }
+
+    return apply_filters( 'calibrefx_row_class', $rowClass );
+}
+
+/**
+ * Get the container class for the html. will have post fix '-fluid' for responsive layout
+ *
+ * @return string
+ */
+function calibrefx_container_class() {
+    $containerClass = 'container';
+    if ( current_theme_supports('calibrefx-responsive-style') ) {
+        $containerClass = 'container-fluid';
+    }
+
+    return apply_filters( 'calibrefx_container_class', $containerClass );
 }

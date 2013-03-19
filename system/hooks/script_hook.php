@@ -86,16 +86,16 @@ function calibrefx_load_styles() {
 
     if (calibrefx_get_option('enable_bootstrap')) {
         wp_enqueue_style('calibrefx-bootstrap');
-
         if ( current_theme_supports('calibrefx-responsive-style') ) {
             wp_enqueue_style('calibrefx-bootstrap-responsive');
         }
     }
 
     wp_enqueue_style('calibrefx-style');
-    if ( current_theme_supports('calibrefx-responsive-style') ) {
-        wp_enqueue_style('calibrefx-responsive-style');
-    }
+    // wp_enqueue_style('calibrefx-responsive-style');
+    // if ( current_theme_supports('calibrefx-responsive-style') ) {
+    //     wp_enqueue_style('calibrefx-responsive-style');
+    // }
 }
 
 add_action('admin_init', 'calibrefx_load_admin_scripts');

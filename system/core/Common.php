@@ -281,8 +281,10 @@ function calibrefx() {
     get_header();
 
     do_action('calibrefx_before_content_wrapper');
+
+    $content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_wrapper_class', '' );
     ?>
-    <div id="content-wrapper" class="row" >
+    <div id="content-wrapper" class="<?php echo $content_wrapper_class; ?>" >
         <?php do_action('calibrefx_before_content'); ?>
         <div id="content" class="<?php echo calibrefx_content_span(); ?>">
             <?php

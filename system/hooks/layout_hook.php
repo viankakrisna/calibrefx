@@ -86,7 +86,7 @@ add_filter('post_class', 'calibrefx_post_class');
  */
 function calibrefx_post_class($classes) {
 
-    $classes[] = $row_class = "row";
+    $classes[] = calibrefx_row_class();
 
     $custom_post = calibrefx_get_custom_field('_calibrefx_custom_post_class');
     if (!empty($custom_post)) {
@@ -115,6 +115,12 @@ function calibrefx_header_body_classes($classes) {
         $classes[] = 'header-image';
 
     $classes[] = 'responsive';
+
+    if(calibrefx_layout_is_fluid()){
+        $classes[] = 'fluid';
+    }else{
+       $classes[] = 'static'; 
+    }
 
     $custom_body = calibrefx_get_custom_field('_calibrefx_custom_body_class');
     if (!empty($custom_body)) {
