@@ -68,6 +68,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             'smtp_use_auth' => 'yes',
             'smtp_username' => '',
             'smtp_password' => '',
+            'enable_mobile' => 0,
             'calibrefx_version' => FRAMEWORK_VERSION,
             'calibrefx_db_version' => FRAMEWORK_DB_VERSION)
         );
@@ -210,6 +211,16 @@ class CFX_Theme_Settings extends CFX_Admin {
                 </label>
                 <input type="hidden" name="<?php echo $this->settings_field; ?>[enable_bootstrap]" id="calibrefx-settings-enable-bootstrap" value="<?php echo calibrefx_get_option('enable_bootstrap'); ?>" />
                 <span class="description"><?php printf(__('This option will use Twitter Bootstrap as css and javascript libraries.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
+            </p>
+
+            <hr class="div" />
+
+             <p><label><?php _e('Enable Mobile Site', 'calibrefx'); ?></label>
+                <label for="calibrefx-settings-checkbox-enable-mobile">
+                    <input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-mobile" value="0" <?php checked(1, calibrefx_get_option('enable_mobile')); ?> target="calibrefx-settings-enable-mobile" class="calibrefx-settings-checkbox"  />
+                </label>
+                <input type="hidden" name="<?php echo $this->settings_field; ?>[enable_mobile]" id="calibrefx-settings-enable-mobile" value="<?php echo calibrefx_get_option('enable_mobile'); ?>" />
+                <span class="description"><?php _e('This option will overwrite your themes when view in mobile. But the child themes should support it to get it working. Contact your Child themes developer regarding this.', 'calibrefx'); ?></span>
             </p>
 
             <hr class="div" />

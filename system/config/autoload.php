@@ -57,7 +57,8 @@ $autoload['models'] = array('theme_settings_m', 'seo_settings_m', 'other_setting
  */
 $autoload['hooks'] = array('header', 'logo', 'script', 'widget','layout', 'menu', 
                           'login','user','admin_bar','post','inpost','comments', 'footer',
-                          'sidebar','seo','performance','search','third_party','upgrade', 'ajax', 'admin_ajax');
+                          'sidebar','seo','performance','search','third_party','upgrade', 'ajax', 
+                          'admin_ajax', 'mobile');
 
 /*
  *  Auto-load Shortcode files

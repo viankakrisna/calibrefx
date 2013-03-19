@@ -41,13 +41,13 @@ abstract class clsAbstractDetector
      * @example $oDetect = new clsDetect();
      * try{
      *  if($oDetect->Detect()->isDetected())
-        {
-            echo "Detected";
-        }
-        else
-        {
-            echo "Not Detected";
-        }
+     *   {
+     *       echo "Detected";
+     *   }
+     *   else
+     *   {
+     *       echo "Not Detected";
+     *   }
      * }catch(Exception $ex){ echo $ex->getMessage(); }
      * @return $this 
      */
