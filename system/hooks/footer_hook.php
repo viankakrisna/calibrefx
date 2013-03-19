@@ -126,18 +126,50 @@ add_action('calibrefx_footer', 'calibrefx_do_footer_open', 5);
  */
 function calibrefx_do_footer_open() {
     echo '<div id="footer" class="row">';
-    calibrefx_put_wrapper('footer');
-    echo '<div id="footer-wrapper" class="row">';
 }
 
-add_action('calibrefx_footer', 'calibrefx_do_footer_close', 15);
+add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_row_open', 7);
+
+/**
+ * Open footer wrapper row markup
+ */
+function calibrefx_do_footer_wrapper_row_open() {
+    calibrefx_put_wrapper('footer');
+}
+
+add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_open', 9);
+
+/**
+ * Open footer wrapper markup
+ */
+function calibrefx_do_footer_wrapper_open() {
+    echo '<div id="footer-wrapper">';
+}
+
+add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_close', 12);
+
+/**
+ * Close footer wrapper markup
+ */
+function calibrefx_do_footer_wrapper_close() {
+    echo '</div><!-- end #footer-wrapper -->';
+}
+
+add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_row_close', 15);
+
+/**
+ * Close footer wrapper row markup
+ */
+function calibrefx_do_footer_wrapper_row_close() {
+    calibrefx_put_wrapper('footer', 'close');
+}
+
+add_action('calibrefx_footer', 'calibrefx_do_footer_close', 20);
 
 /**
  * Close footer markup
  */
 function calibrefx_do_footer_close() {
-    echo '</div><!-- end #footer-wrapper -->';
-    calibrefx_put_wrapper('footer', 'close');
     echo '</div><!-- end #footer -->' . "\n";
 }
 
@@ -152,7 +184,7 @@ function calibrefx_do_footer() {
     $creds_text = apply_filters('calibrefx_footer_credits', sprintf('[footer_copyright before="%1$s "] [footer_theme_link after=" %2$s "] [footer_calibrefx_link after=" %3$s "] [footer_wordpress_link before= " %4$s " after=" %3$s "]', __('Copyright', 'calibrefx'), __('on', 'calibrefx'), '&middot;', __('Powered By', 'calibrefx')));
     $backtotop_text = apply_filters('calibrefx_footer_scrolltop', '[footer_scrolltop]');
 
-    $backtotop = $backtotop_text ? sprintf('<div class="pull-right  scrolltop"><p>%s</p></div>', $backtotop_text) : '';
+    $backtotop = $backtotop_text ? sprintf('<div class="pull-right scrolltop"><p>%s</p></div>', $backtotop_text) : '';
     $creds = $creds_text ? sprintf('<div class="credits pull-left"><p>%s</p></div>', $creds_text) : '';
 
     $output = $creds . $backtotop;
