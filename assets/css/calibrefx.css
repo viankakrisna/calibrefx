@@ -752,12 +752,12 @@ blockquote{
 	-moz-box-shadow: none;
 }
 
-.pagination li{
+.pagination ul > li{
 	display: inline-block;
 	vertical-align: middle;
 }
 
-.pagination a{
+.pagination ul > li > a{
     line-height: 20px;
     border: 1px solid #ababab;
     background-color: #e5e5e5;
