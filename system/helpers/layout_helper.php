@@ -252,6 +252,15 @@ function calibrefx_row_class() {
 }
 
 /**
+ * Echo function for calibrefx_row_class()
+ *
+ * @echo string
+ */
+function row_class() {
+    echo calibrefx_row_class();
+}
+
+/**
  * Get the container class for the html. will have post fix '-fluid' for responsive layout
  *
  * @return string
