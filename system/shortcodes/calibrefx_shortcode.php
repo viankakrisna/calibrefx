@@ -352,7 +352,7 @@ function calibrefx_row($atts, $content = '') {
 
     if (!empty($class)) $classes .= ' ' . $class;
 
-    return '<div class="' . $classes . ' row" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
+    return '<div class="' . $classes . ' '.calibrefx_row_class().'" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
 /**
@@ -381,7 +381,7 @@ function calibrefx_column($atts, $content = '') {
         $classes .= ' ' . $align;
     if (!empty($first)) {
         if ($first == 'yes') {
-            $before = '<div class="row">';
+            $before = '<div class="'.calibrefx_row_class().'">';
         }
     }
     if (!empty($last)) {
@@ -409,7 +409,7 @@ function calibrefx_separator($atts, $content = '') {
                 'style' => '',
                     ), $atts));
 
-    $classes = " separator row";
+    $classes = " separator ".calibrefx_row_class();
     if (!empty($class))
         $classes =  $class . $classes ;
 
@@ -436,7 +436,7 @@ function calibrefx_headline($atts, $content = '') {
     $html = '';
     $html .= '<div class="headline '.$class.'" id="'.$id.'">';
     if($first_separator) $html .= '<div class="headline-separator first"></div>';
-    $html .= '<div class="headline-content row">';
+    $html .= '<div class="headline-content '.calibrefx_row_class().'">';
     $html .= advance_shortcode_unautop($content);
     $html .= '</div>';
     if($last_separator) $html .= '<div class="headline-separator last"></div>';

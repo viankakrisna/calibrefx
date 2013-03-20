@@ -84,8 +84,12 @@ h1, h2, h3, h4, h5, h6{
     min-height: 100px;
     margin: 0px;
     background: #e5e5e5;
+}
+
+#header.row-fluid{
 	width: auto;
-	padding: 0 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .header-image #description {
@@ -119,8 +123,12 @@ h1, h2, h3, h4, h5, h6{
 #nav{
     background: #cecece;
     margin: 0px;
+}
+
+#nav.row-fluid{
 	width: auto;
-	padding: 0 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .navbar-inner{
@@ -176,8 +184,12 @@ h1, h2, h3, h4, h5, h6{
 #subnav {
     min-height: 30px;
     border-bottom: 1px dashed #000;
+}
+
+#subnav.row-fluid{
 	width: auto;
-	padding: 0 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .sub-menu li ul{
@@ -326,12 +338,13 @@ ul#menu-secondary  > li > ul > li > ul > .current-menu-ancestor > a{
 
 #inner{
     margin-top: 10px;   
-    width: auto;
     padding-left: 20px;
 }
 
 #inner.row-fluid{
-    padding: 0 20px;
+    padding-left: 20px;
+	padding-right: 20px;
+	width: auto;
 }
 
 #content{
@@ -874,11 +887,23 @@ input[type="submit"].searchsubmit:hover{
     margin: 10px 0 0;
 }
 
+#footer-widget.row-fluid{
+	width: auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
 /* Footer
 ------------------------------------------------------------ */
 #footer{
+	background: #000;
+    height: 27px;
+}
+
+#footer.row-fluid{
 	width: auto;
-	padding: 0 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 #footer a, #footer:hover{
@@ -900,13 +925,6 @@ input[type="submit"].searchsubmit:hover{
 
 .credits p, .scrolltop p{
     margin-bottom: 0px;
-}
-
-/* Footer
------------------------------------------------------------- */
-#footer{
-    background: #000;
-    height: 27px;	
 }
 
 /* Form Style

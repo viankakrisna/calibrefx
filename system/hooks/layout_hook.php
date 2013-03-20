@@ -113,9 +113,10 @@ function calibrefx_header_body_classes($classes) {
 
     if ('image' == calibrefx_get_option('blog_title') || 'blank' == get_header_textcolor())
         $classes[] = 'header-image';
-
-    $classes[] = 'responsive';
-
+    
+    if(current_theme_supports( 'calibrefx-responsive-style' )){
+        $classes[] = 'responsive';
+    }   
     if(calibrefx_layout_is_fluid()){
         $classes[] = 'fluid';
     }else{

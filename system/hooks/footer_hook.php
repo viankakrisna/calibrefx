@@ -70,6 +70,7 @@ function calibrefx_do_footer_widgets() {
 
     $sidebar = $wp_registered_sidebars['footer-widget'];
     $sidebar['before_widget'] = '<div id="%1$s" class="widget ' . $span . ' %2$s"><div class="widget-wrap">';
+	$sidebar['after_widget'] = '</div></div>';
 
     unregister_sidebar('footer-widget');
     register_sidebar($sidebar);
