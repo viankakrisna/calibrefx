@@ -818,10 +818,13 @@ function calibrefx_tweet($atts, $content = null) {
                 'class' => '',
                 'width' => '',
                 'url' => get_permalink(),
+                'count' => 'horizontal'
                     ), $atts));
 
+    wp_enqueue_script( 'calibrefx-twitter-widget', 'http://platform.twitter.com/widgets.js', array(), false, true);
+
     $output = '
-       <a href="https://twitter.com/share" class="twitter-share-button" data-url="'.$url.'">Tweet</a>
+       <a href="https://twitter.com/share" class="twitter-share-button" data-url="'.$url.'" data-count="'.$count.'">Tweet</a>
     ';
 
     return $before . $output . $after;
@@ -835,10 +838,11 @@ function calibrefx_fblike($atts, $content = null) {
                 'class' => '',
                 'width' => '',
                 'url' => get_permalink(),
+                'count' => 'button_count'
                     ), $atts));
 
     $output = '
-        <div class="fb-like" data-href="'.$url.'" data-send="false" data-layout="button_count" data-width="'.$width.'" 
+        <div class="fb-like" data-href="'.$url.'" data-send="false" data-layout="'.$count.'" data-width="'.$width.'" 
         data-show-faces="false"></div>
     ';
 
@@ -853,11 +857,42 @@ function calibrefx_gplus($atts, $content = null) {
                 'class' => '',
                 'width' => 300,
                 'size' => 'medium',
+                'count' => 'true',
                 'url' => get_permalink(),
                     ), $atts));
 
+    wp_enqueue_script( 'calibrefx-gplus-widget', 'https://apis.google.com/js/plusone.js', array(), false, true);
+
     $output = '
-        <div class="g-plusone" data-size="'.$size.'" data-width="'.$width.'" data-href="'.$url.'"></div>
+        <div class="g-plusone" data-size="'.$size.'" data-width="'.$width.'" data-href="'.$url.'" data-count="'.$count.'"></div>
+    ';
+
+    return $before . $output . $after;
+}
+
+add_shortcode('pinterest', 'calibrefx_pinterest');
+function calibrefx_pinterest($atts, $content = null) {
+    global $post;
+
+    extract(shortcode_atts(array(
+        'before' => '',
+        'after' => '',
+        'count' => 'beside',
+        'url' => get_permalink(),
+        'media' => '',
+    ), $atts));
+
+    if(empty($media)){
+        $image_id = get_post_thumbnail_id( $post->ID );
+
+        $img_url = calibrefx_get_image(array('format' => 'url', 'id' => $image_id));
+        if(!empty($img_url)) $media = $img_url;
+    }
+
+    wp_enqueue_script( 'calibrefx-pinterest-widget', 'http://assets.pinterest.com/js/pinit.js', array(), false, true);
+
+    $output = '
+        <a data-pin-config="'.$count.'" href="http://pinterest.com/pin/create/button/?url='.urlencode($url).'&media='.urlencode($media).'&description='.urlencode($content).'" data-pin-do="buttonPin" ><img src="http://assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
     ';
 
     return $before . $output . $after;
