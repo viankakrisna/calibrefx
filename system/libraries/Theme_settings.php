@@ -146,6 +146,7 @@ class CFX_Theme_Settings extends CFX_Admin {
 
     public function meta_boxes() {
         calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), array($this, 'navigation_box'), $this->pagehook, 'main', 'high');
+        calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-analytics', __('Google Analytics Setting', 'calibrefx'), array($this, 'analytics_setting'), $this->pagehook, 'main');
         calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-content-archive', __('Content Archives', 'calibrefx'), array($this, 'content_archive_box'), $this->pagehook, 'side');
         calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), array($this, 'breadcrumb_box'), $this->pagehook, 'side');
         calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), array($this, 'comment_box'), $this->pagehook, 'side');
@@ -196,6 +197,21 @@ class CFX_Theme_Settings extends CFX_Admin {
 
         <p><span class="description"><?php printf(__('Please build a <a href="%s">custom menu</a>, then assign it to the proper Menu Location.', 'calibrefx'), admin_url('nav-menus.php')); ?></span></p>
         <?php
+    }
+
+    /**
+     * Show google analytic setting box
+     */
+    function analytics_setting(){
+    ?>
+        <p>
+            <label for="analytic_id"><strong><?php _e('Google Analytics ID'); ?></strong></label>
+        </p>
+        <p>
+            <input type="text" name="<?php echo $this->settings_field; ?>[analytic_id]" id="analytic_id" value="<?php echo esc_attr(calibrefx_get_option('analytic_id')); ?>" />
+        </p>
+        <p><span class="description"><?php _e('Enter your google analytics ID, example: <strong>UA-xxxxxxxx-x</strong>', 'calibrefx'); ?></span></p>
+    <?php
     }
 
     /**

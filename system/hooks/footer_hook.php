@@ -198,7 +198,7 @@ function calibrefx_do_footer() {
 add_action('wp_footer', 'calibrefx_add_socials_script');
 
 /**
- * Add Social javascript after header
+ * Add Social javascript in footer
  */
 function calibrefx_add_socials_script() {
     global $twitteruser;
@@ -218,5 +218,31 @@ function calibrefx_add_socials_script() {
 
     if (!empty($twitteruser)) {
         echo '<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>';
+    }
+}
+
+add_action('wp_footer', 'calibrefx_add_google_analytics');
+
+/**
+ * Add google analytics settings
+ */
+function calibrefx_add_google_analytics() {
+
+    $analytic_id = calibrefx_get_option('analytic_id');
+
+    if(!empty($analytic_id)){
+        echo "
+            <script type='text/javascript'>
+                var _gaq = _gaq || [];
+                 _gaq.push(['_setAccount', '$analytic_id']);
+                 _gaq.push(['_trackPageview']);
+
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+        ";
     }
 }
