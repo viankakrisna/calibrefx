@@ -590,13 +590,19 @@ add_shortcode('slider_item', 'calibrefx_slider_item');
 
 function calibrefx_slider_item($atts, $content = '') {
     extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'class' => '',
-                'src' => ''
-                    ), $atts));
+        'before' => '',
+        'after' => '',
+        'class' => '',
+        'src' => '',
+        'url' => '',
+        'title' => ''
+    ), $atts));
 
-    return '<div class="item ' . $class . '">' . $before . '<img src="' . $src . '" />' . advance_shortcode_unautop($content) . $after . '</div>';
+    if(!empty($url) && $url != '#'){
+        return '<div class="item ' . $class . '">' . $before . '<a href="'.$url.'" title="'.$title.'"><img src="' . $src . '" alt="'.$title.'" /></a>'  . $after . '</div>';
+    }else{
+        return '<div class="item ' . $class . '">' . $before . '<img src="' . $src . '" alt="'.$title.'" />'  . $after . '</div>';
+    }
 }
 
 add_shortcode('slider_caption', 'calibrefx_slider_caption');
@@ -659,35 +665,35 @@ function calibrefx_tabs($atts, $content = null) {
         $output .= '<div class="clear"></div><div id="' . $tabid . '" class="ltt-slider-hor-content">';
     }
 
-    echo "\n" . '<script type="text/javascript">' . "\n";
-    echo '<!--' . "\n";
-    echo 'jQuery(function(jQuery) {' . "\n";
-    echo 'jQuery("#' . $tabid . '").cycle({ ' . "\n";
-    echo '  timeout: ' . $timeout . ',' . "\n";
-    echo '  speed: 600,' . "\n";
-    echo '  startingSlide: 0,' . "\n";
-    echo '  pager:  "#ltt-pager-' . $tabid . '",' . "\n";
-    echo '  fx: "' . $effect . '" ' . "\n";
-    echo '}); ' . "\n";
-    echo ' jQuery("ul#ltt-pager-' . $tabid . ' a").not(".tabvertnav").remove();' . "\n";
+    $output .= "\n" . '<script type="text/javascript">' . "\n";
+    $output .= '<!--' . "\n";
+    $output .= 'jQuery(function(jQuery) {' . "\n";
+    $output .= 'jQuery("#' . $tabid . '").cycle({ ' . "\n";
+    $output .= '  timeout: ' . $timeout . ',' . "\n";
+    $output .= '  speed: 600,' . "\n";
+    $output .= '  startingSlide: 0,' . "\n";
+    $output .= '  pager:  "#ltt-pager-' . $tabid . '",' . "\n";
+    $output .= '  fx: "' . $effect . '" ' . "\n";
+    $output .= '}); ' . "\n";
+    $output .= ' jQuery("ul#ltt-pager-' . $tabid . ' a").not(".tabvertnav").remove();' . "\n";
 
     $ltt_tabs = explode('|', $headings);
     $i = 0;
     //iterate through tabs headings 
     foreach ($ltt_tabs as $ltt_tab) {
-        echo 'jQuery("#' . $tabid . '-goto' . $i . '").click(function() { ' . "\n";
-        echo '	jQuery("#' . $tabid . '").cycle(' . $i . ');    ' . "\n";
-        echo '	return false; ' . "\n";
-        echo '});' . "\n";
+        $output .= 'jQuery("#' . $tabid . '-goto' . $i . '").click(function() { ' . "\n";
+        $output .= '	jQuery("#' . $tabid . '").cycle(' . $i . ');    ' . "\n";
+        $output .= '	return false; ' . "\n";
+        $output .= '});' . "\n";
         $i++;
     }
 
-    echo '			' . "\n";
-    echo '		});' . "\n";
-    echo 'jQuery(".ltt-slider-hor-content div").css("filter", "none")' . "\n";
+    $output .= '			' . "\n";
+    $output .= '		});' . "\n";
+    $output .= 'jQuery(".ltt-slider-hor-content div").css("filter", "none")' . "\n";
     ;
-    echo '// -->' . "\n";
-    echo '  </script>' . "\n";
+    $output .= '// -->' . "\n";
+    $output .= '  </script>' . "\n";
 
     return $output . do_shortcode($content) . '</div><div class="clear"></div></div>';
 }

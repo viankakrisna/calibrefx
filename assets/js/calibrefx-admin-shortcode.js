@@ -190,7 +190,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_slider', {
 			ed.windowManager.open({			
 				file : calibrefx_local.shortcode_url + '/form-slider.php',
 				width : 400 + ed.getLang('calibrefx_shortcode_slider.delta_width', 0),
-				height : 265 + ed.getLang('calibrefx_shortcode_slider.delta_height', 0),
+				height : 460 + ed.getLang('calibrefx_shortcode_slider.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		
