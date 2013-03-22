@@ -246,20 +246,19 @@ add_shortcode('tooltip', 'calibrefx_tooltip');
 
 function calibrefx_tooltip($atts, $content = '') {
     extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'class' => '',
-                'color' => '',
-                'text' => ''
-                    ), $atts));
+        'before' => '',
+        'after' => '',
+        'class' => '',
+        'id' => '',
+        'position' => 'top',
+        'text' => '',
+        'url' => '#'
+    ), $atts));
 
-    $classes = 'ltt-tooltip';
-    if (!empty($class))
-        $classes .= ' ' . $class;
-    if (!empty($color))
-        $classes .= ' ' . $color;
+    $classes  = ' class="'.$class.'"';
+    $ids = ' id="'.$id.'"';
 
-    return $before . '<span class="' . $classes . '"><span class="tooltip-content"><span class="tooltip-arr"></span>' . $text . '</span>' . do_shortcode($content) . '</span>' . $after;
+    return $before.'<a href="'.$url.'" data-toggle="tooltip" data-placement="'.$position.'" data-original-title="'.$text.'"'.$classes.$ids.'>'.advance_shortcode_unautop($content).'</a>'.$after;
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_tooltips');
