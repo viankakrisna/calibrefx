@@ -627,31 +627,45 @@ $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_slider
 add_shortcode('tabs', 'calibrefx_tabs');
 
 function calibrefx_tabs($atts, $content = null) {
-    global $tabid, $headings;
+    global $tab_elm_id;
 
     extract(shortcode_atts(array(
-                'tabid' => 'tabID1',
-                'type' => 'vertical',
-                'effect' => 'fade',
-                'timeout' => '0',
-                'headings' => 'Tab1|Tab2|Tab3'), $atts));
+        'before' => '',
+        'after' => '',
+        'id' => '',
+        'tab' => 'tab1|tab2|tab3',
+        'class' => '',
+        'headings' => 'Tab1|Tab2|Tab3'), 
+    $atts));
 
-    if ($type == 'vertical') {
-        $output .= '<div class="ltt-slider-ver"><ul id="ltt-pager-' . $tabid . '" class="ltt-slider-ver-nav">';
-    } else if ($type == 'horizontal') {
-        $output .= '<div class="ltt-slider-hor"><ul id="ltt-pager-' . $tabid . '" class="ltt-slider-hor-nav">';
+    $tabs_headings = explode('|', $headings);
+    $tabs_elements = explode('|', $tab);
+
+    if(!empty($class)) $classes .= ' '.$class;
+    if(!empty($id)){ 
+        $ids .= ' id="'.$id.'"';
+    }else{
+        // Create custom ID for tabs
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $size = strlen($chars);
+        for ($i = 0; $i < 8; $i++) {
+            $id .= $chars[rand(0, $size - 1)];
+        }
+
+        $ids .= ' id="'.$id.'"';
     }
 
-    $ltt_tabs = explode('|', $headings);
+    $tab_elm_id = $id;
+
+    $output = '<ul class="nav nav-tabs'.$classes.'"'.$ids.'>';
 
     $i = 0;
     //iterate through tabs headings 
-    foreach ($ltt_tabs as $ltt_tab) {
+    foreach ($tabs_headings as $tab_heading) {
+        $tab_id = '#'.$id.'-'.$tabs_elements[$i];
         $output .= '<li>';
-        $output .= '<a id="' . $tabid . '-goto' . $i . '" class="tabvertnav" href="#">';
-        $output .= '<span>';
-        $output .= $ltt_tab;
-        $output .= '</span>';
+        $output .= '<a href="'.$tab_id.'" data-toggle="tab">';
+        $output .= $tab_heading;
         $output .= '</a>';
         $output .= '</li>';
         $i++;
@@ -659,88 +673,21 @@ function calibrefx_tabs($atts, $content = null) {
 
     $output .= '</ul>';
 
-    if ($type == 'vertical') {
-        $output .= '<div id="' . $tabid . '" class="ltt-slider-ver-content">';
-    } else if ($type == 'horizontal') {
-        $output .= '<div class="clear"></div><div id="' . $tabid . '" class="ltt-slider-hor-content">';
-    }
+    $output .= '<div class="tab-content">'.advance_shortcode_unautop($content).'</div>';
+    $output .= '<script type="text/javascript">jQuery(function(){ jQuery("#'.$id.' a:first").tab("show"); });</script>';
 
-    $output .= "\n" . '<script type="text/javascript">' . "\n";
-    $output .= '<!--' . "\n";
-    $output .= 'jQuery(function(jQuery) {' . "\n";
-    $output .= 'jQuery("#' . $tabid . '").cycle({ ' . "\n";
-    $output .= '  timeout: ' . $timeout . ',' . "\n";
-    $output .= '  speed: 600,' . "\n";
-    $output .= '  startingSlide: 0,' . "\n";
-    $output .= '  pager:  "#ltt-pager-' . $tabid . '",' . "\n";
-    $output .= '  fx: "' . $effect . '" ' . "\n";
-    $output .= '}); ' . "\n";
-    $output .= ' jQuery("ul#ltt-pager-' . $tabid . ' a").not(".tabvertnav").remove();' . "\n";
-
-    $ltt_tabs = explode('|', $headings);
-    $i = 0;
-    //iterate through tabs headings 
-    foreach ($ltt_tabs as $ltt_tab) {
-        $output .= 'jQuery("#' . $tabid . '-goto' . $i . '").click(function() { ' . "\n";
-        $output .= '	jQuery("#' . $tabid . '").cycle(' . $i . ');    ' . "\n";
-        $output .= '	return false; ' . "\n";
-        $output .= '});' . "\n";
-        $i++;
-    }
-
-    $output .= '			' . "\n";
-    $output .= '		});' . "\n";
-    $output .= 'jQuery(".ltt-slider-hor-content div").css("filter", "none")' . "\n";
-    ;
-    $output .= '// -->' . "\n";
-    $output .= '  </script>' . "\n";
-
-    return $output . do_shortcode($content) . '</div><div class="clear"></div></div>';
+    return $before.$output.$after;
 }
 
-add_shortcode('tabs', 'calibrefx_tabs');
-
-global $tabid, $headings;
 // slides
-add_shortcode('tab', 'calibrefx_tabs_slide');
+add_shortcode('tab', 'calibrefx_tabs_item');
 
-function calibrefx_tabs_slide($atts, $content = null) {
-    return '<div>' . do_shortcode($content) . '<div class=""clear"></div></div>';
-}
+function calibrefx_tabs_item($atts, $content = null) {
+    global $tab_elm_id;
 
-function add_tabs_js() {
-    add_action('wp_footer', 'tabs_js');
-}
+    extract(shortcode_atts(array('id' => ''),$atts));
 
-//tabs js
-function tabs_js() {
-    global $tabid, $headings;
-
-    echo "\n" . '<script type="text/javascript">' . "\n";
-    echo 'jQuery(function() {' . "\n";
-    echo 'jQuery("#' . $tabid . '").cycle({ ' . "\n";
-    echo '  timeout: ' . $timeout . ',' . "\n";
-    echo '  speed: 300,' . "\n";
-    echo '  startingSlide: 0,' . "\n";
-    echo '  pager:  "#ltt-pager-' . $tabid . '",' . "\n";
-    echo '  fx: "fade" ' . "\n";
-    echo '}); ' . "\n";
-    echo ' jQuery("ul#ltt-pager-' . $tabid . ' a").not(".tabvertnav").remove();' . "\n";
-
-    $ltt_tabs = explode('|', $headings);
-    $i = 0;
-    //iterate through tabs headings 
-    foreach ($ltt_tabs as $ltt_tab) {
-        echo 'jQuery("#' . $tabid . '-goto' . $i . '").click(function() { ' . "\n";
-        echo '  jQuery("#' . $tabid . '").cycle(' . $i . ');    ' . "\n";
-        echo '	return false; ' . "\n";
-        echo '});' . "\n";
-        $i++;
-    }
-
-    echo "\n";
-    echo '});' . "\n";
-    echo ' </script>' . "\n";
+    return '<div class="tab-pane" id="'.$tab_elm_id.'-'.$id.'">'.advance_shortcode_unautop($content).'</div>';
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_tabs');
