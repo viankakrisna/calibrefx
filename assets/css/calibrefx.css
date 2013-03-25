@@ -25,12 +25,12 @@
 * Shortcode Style
 */
 
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:700);
-
 body{
     font-family: Calibri, Verdana, Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: #2f2f2f;
+    padding: 0;
+    margin: 0;
 }
 
 input, select, textarea{
@@ -38,7 +38,7 @@ input, select, textarea{
 }
 
 h1, h2, h3, h4, h5, h6{
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Verdana, sans-serif;
     color: inherit;
 }
 
@@ -84,8 +84,12 @@ h1, h2, h3, h4, h5, h6{
     min-height: 100px;
     margin: 0px;
     background: #e5e5e5;
+}
+
+#header.row-fluid{
 	width: auto;
-	padding: 0 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .header-image #description {
@@ -119,8 +123,12 @@ h1, h2, h3, h4, h5, h6{
 #nav{
     background: #cecece;
     margin: 0px;
+}
+
+#nav.row-fluid{
 	width: auto;
-	padding: 0 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .navbar-inner{
@@ -176,8 +184,12 @@ h1, h2, h3, h4, h5, h6{
 #subnav {
     min-height: 30px;
     border-bottom: 1px dashed #000;
+}
+
+#subnav.row-fluid{
 	width: auto;
-	padding: 0 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .sub-menu li ul{
@@ -325,9 +337,14 @@ ul#menu-secondary  > li > ul > li > ul > .current-menu-ancestor > a{
 ------------------------------------------------------------ */
 
 #inner{
-    margin-top: 40px;   
-    width: auto;
-    padding: 0 20px;
+    margin-top: 10px;   
+    padding-left: 20px;
+}
+
+#inner.row-fluid{
+    padding-left: 20px;
+	padding-right: 20px;
+	width: auto;
 }
 
 #content{
@@ -484,10 +501,6 @@ ul#menu-secondary  > li > ul > li > ul > .current-menu-ancestor > a{
     text-decoration: none;
     color: #101010;
     text-rendering: optimizespeed;
-}
-
-.post h2.entry-title a:hover{
-    color: #666;	
 }
 
 blockquote{
@@ -752,12 +765,12 @@ blockquote{
 	-moz-box-shadow: none;
 }
 
-.pagination li{
+.pagination ul > li{
 	display: inline-block;
 	vertical-align: middle;
 }
 
-.pagination a{
+.pagination ul > li > a{
     line-height: 20px;
     border: 1px solid #ababab;
     background-color: #e5e5e5;
@@ -874,11 +887,23 @@ input[type="submit"].searchsubmit:hover{
     margin: 10px 0 0;
 }
 
+#footer-widget.row-fluid{
+	width: auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
 /* Footer
 ------------------------------------------------------------ */
 #footer{
+	background: #000;
+    height: 27px;
+}
+
+#footer.row-fluid{
 	width: auto;
-	padding: 0 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 #footer a, #footer:hover{
@@ -900,13 +925,6 @@ input[type="submit"].searchsubmit:hover{
 
 .credits p, .scrolltop p{
     margin-bottom: 0px;
-}
-
-/* Footer
------------------------------------------------------------- */
-#footer{
-    background: #000;
-    height: 27px;	
 }
 
 /* Form Style
@@ -1256,7 +1274,10 @@ a.button.icon span.ico.paypal { background: url(../img/shortcode/ico-16x16/paypa
 ====================================================================================================*/
 
 .dropcap { position: relative; display: block; float: left; margin: 0.3em 0.2em 0.2em 0; } 
-/*colors*/
+
+/*====================================================================================================
+* COLORS
+====================================================================================================*/
 .color-default { color: inherit; }
 .black         { color: #000; }
 .white         { color: #fff; }
@@ -1270,6 +1291,10 @@ a.button.icon span.ico.paypal { background: url(../img/shortcode/ico-16x16/paypa
 .yellow        { color: #FFFF00; }
 .orange        { color: #FF6600; }
 .pink          { color: #FF00FF; }
+
+/*====================================================================================================
+* FONTS
+====================================================================================================*/
 /*font family*/
 .font-arial { font-family: Arial, Helvetica, Sans-serif; }
 .font-verdana { font-family: Verdana, Arial, Helvetica, Sans-serif;  }
@@ -1335,6 +1360,8 @@ ul.delete li { background: url(../img/shortcode/icons/delete.png) no-repeat left
 .text-align-justify { text-align: justify; }
 .text-align-left    { text-align: left; }
 .text-align-right   { text-align: right; }
+.center {margin:0 auto;text-align: center;}
+
 
 /*====================================================================================================
 * S L I D E R                                                                         	   S L I D E R

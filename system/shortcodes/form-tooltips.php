@@ -23,15 +23,10 @@
                 // ziskaj text medzi shortcode tagmi
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
         
-                if (medziShortcodom != '') {            
-                    medziShortcodom = medziShortcodom;x
-                }	else {
-                    medziShortcodom = "tooltip";
-                } 
                 // ziskaj hodnoty z formu			
-                var tooltip_color = document.getElementById('tooltip_color').value;	            
+                var tooltip_position = document.getElementById('tooltip_position').value;	            
            
-                shortcodeRetazec = '[tooltip color="'+tooltip_color+'" text="This is tooltip content."] '+medziShortcodom+' [/tooltip]'; 
+                shortcodeRetazec = '[tooltip position="'+tooltip_position+'" text="This is tooltip content." url="#"]Tooltip Text[/tooltip]'; 
             
                 //vloz shortcode a repaint editor
                 if(window.tinyMCE) {
@@ -58,23 +53,20 @@
                 <div id="tooltipTab" class="panel current">
                     <fieldset>        
                         <legend>Tooltip color</legend><br />  
-                        <table border="0" cellpadding="4" cellspacing="0">                
-                            <!-- color -->       
+                        <table border="0" cellpadding="4" cellspacing="0">    
                             <tr>                 
-                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="tooltip_color">Color:</label></td>                          <td>                    
-                                    <select name="tooltip_color" id="tooltip_color" style="width: 250px">                       
-                                        <option value="blue">Blue</option>
-                                        <option value="orange">Orange</option>
-                                        <option value="green">Green</option>
-                                        <option value="purple">Purple</option>
-                                        <option value="pink">Pink</option>
-                                        <option value="red">Red</option>
-                                        <option value="gray">Gray</option>
-                                        <option value="light-gray">Light gray</option>
-                                        <option value="black">Black</option>                                              
+                                <td nowrap="nowrap" style="vertical-align: text-top;">
+                                    <label for="tooltip_position">Tooltip position:</label>
+                                </td>                          
+                                <td>                    
+                                    <select name="tooltip_position" id="tooltip_position" style="width:200px">                       
+                                        <option value="top">Top</option>
+                                        <option value="bottom">Bottom</option>
+                                        <option value="right">Right</option>
+                                        <option value="left">Left</option>                                              
                                     </select><br />      
-                                    <em style="font-size: 9px; color: #999;">Color of the tooltip</em>                
-                                </td>                    
+                                    <em style="font-size: 9px; color: #999;">Position of the tooltip</em>                
+                                </td>                
                             </tr>                                  
                         </table>     
                     </fieldset>         

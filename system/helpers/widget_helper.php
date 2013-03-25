@@ -75,7 +75,7 @@ function get_footer_widget_classes($class = '') {
 
     $classes = array();
 
-    $classes[] = 'row'; //Always use row class
+    $classes[] = calibrefx_row_class(); //Always use row class
 
     if (!empty($class)) {
         if (!is_array($class))

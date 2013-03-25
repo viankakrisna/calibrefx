@@ -34,9 +34,9 @@ jQuery(document).ready(function($) {
 		}
 	});         
   
-	jQuery('.ltt-tooltip').each(function() {
-		jQuery(this).ltttooltip();
-	});
+	jQuery('body').tooltip({
+      selector: "a[data-toggle=tooltip]"
+    });
 	
 	jQuery(".ltt-toggler.closed .ltt-toggle-container").hide(); 
 	jQuery(".ltt-toggler.open .ltt-toggle-container").show();

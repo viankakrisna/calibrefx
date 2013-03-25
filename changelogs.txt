@@ -19,6 +19,13 @@
  * @package CalibreFx
  */
 
+version 1.0.11 <?March 2013> - 
+    * Update to bootstrap v2.3.1
+    * Add more apply_filters in post_hook, header_hook
+    * Using bootstrap as standard for row-fluid and container-fluid
+    * Update JQuery cycle to v2
+    * Fix minor styling
+
 version 1.0.10 <7 March 2013> - 
     * Add some functions to helpers
     * Update icons

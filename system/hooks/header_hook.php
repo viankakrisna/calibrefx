@@ -261,7 +261,7 @@ add_action('wp_head', 'calibrefx_print_wrap');
  */
 function calibrefx_print_wrap() {
     if ( current_theme_supports('calibrefx-responsive-style') ) {
-        $wrap = sprintf('@media (min-width:%dpx){.wrap.row{width: %dpx;margin: 0 auto;}}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
+        $wrap = sprintf('@media (min-width:%dpx){.wrap.row-fluid{width: %dpx;margin: 0 auto;}}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
     } else {
         $wrap = sprintf('.wrap.row{width: %dpx;margin-left:auto;margin-right:auto} @media (max-width:%dpx){ #header.row, #nav.row, #subnav.row, #inner.row, #footer.row, #footer-widget.row{width: %dpx;margin-left:auto;margin-right:auto}}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
     }
@@ -358,17 +358,34 @@ add_action('calibrefx_header', 'calibrefx_do_header_open', 5);
  * Open header markup
  */
 function calibrefx_do_header_open() {
-    echo '<div id="header" class="row">';
-    calibrefx_put_wrapper('header');
+    $header_class = apply_filters( 'header_class', calibrefx_row_class() );
+    echo '<div id="header" class="'.$header_class.'">';
 }
 
-add_action('calibrefx_header', 'calibrefx_do_header_close', 15);
+add_action('calibrefx_header', 'calibrefx_do_header_wrapper_open', 10);
+
+/**
+ * Put header wrapper open
+ */
+function calibrefx_do_header_wrapper_open(){
+    calibrefx_put_wrapper('header', 'open');
+}
+
+add_action('calibrefx_header', 'calibrefx_do_header_wrapper_close', 15);
+
+/**
+ * Put header wrapper close
+ */
+function calibrefx_do_header_wrapper_close(){
+    calibrefx_put_wrapper('header', 'close');
+}
+
+add_action('calibrefx_header', 'calibrefx_do_header_close', 20);
 
 /**
  * Close header markup
  */
 function calibrefx_do_header_close() {
-    calibrefx_put_wrapper('header', 'close');
     echo '</div><!--end #header-->';
 }
 
@@ -419,7 +436,8 @@ add_action('calibrefx_header', 'calibrefx_do_header');
  * Do Header Callback
  */
 function calibrefx_do_header() {
-    echo '<div id="header-title" class="pull-left">';
+    $header_title_class = apply_filters('header_title_class', 'pull-left', $classes);
+    echo '<div id="header-title" class="'.$header_title_class.'">';
     do_action('calibrefx_site_title');
     do_action('calibrefx_site_description');
     echo '</div><!-- end #header-title -->';

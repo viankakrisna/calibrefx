@@ -25,11 +25,16 @@ wp_head();
 ?>
 </head>
 <body <?php body_onload(); ?> <?php body_class(); ?>>
-<?php do_action( 'calibrefx_before_wrapper' ); ?>
-<div id="wrapper" class="container">
+<?php 
+	do_action( 'calibrefx_before_wrapper' ); 
+	$wrapper_class = apply_filters( 'wrapper_class', calibrefx_container_class() );
+?>
+<div id="wrapper" class="<?php echo $wrapper_class; ?>">
 <?php
 do_action('calibrefx_before_header');
 do_action('calibrefx_header');
 do_action('calibrefx_after_header');
+
+$inner_class = apply_filters( 'inner_class', calibrefx_row_class() );
 ?>
-<div id="inner" class="row">
+<div id="inner" class="<?php echo $inner_class; ?>">

@@ -119,14 +119,14 @@ abstract class CFX_Admin {
      *
      * $return array
      */
-    public function save($_newvalue, $_oldvalue) {
+    public function save($_newvalue, $_oldvalue) { 
         //We merge newvalue and oldvalue
         if (calibrefx_get_option('reset', $this->_model)) {
             return $_newvalue;
         }
         
         //Get the value from post settings
-        $_newvalue = $_POST[$this->settings_field];
+        $_newvalue = $_POST[$this->settings_field]; 
         
         //merge value from old settings
         if(!is_array($_oldvalue)) $_oldvalue = array();
@@ -154,7 +154,7 @@ abstract class CFX_Admin {
     public function save_core() {
         global $calibrefx;
 
-        $calibrefx_settings_field = $calibrefx->theme_settings_m->get_settings_field();
+        $calibrefx_settings_field = $calibrefx->theme_settings_m->get_settings_field(); 
         
         //Get the value from post settings
         $_newvalue = $_POST[$calibrefx_settings_field];

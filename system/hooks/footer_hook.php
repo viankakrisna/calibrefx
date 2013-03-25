@@ -70,6 +70,7 @@ function calibrefx_do_footer_widgets() {
 
     $sidebar = $wp_registered_sidebars['footer-widget'];
     $sidebar['before_widget'] = '<div id="%1$s" class="widget ' . $span . ' %2$s"><div class="widget-wrap">';
+	$sidebar['after_widget'] = '</div></div>';
 
     unregister_sidebar('footer-widget');
     register_sidebar($sidebar);
@@ -88,7 +89,7 @@ add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_open');
  */
 function calibrefx_do_footer_widget_open(){
     echo '<div id="footer-widget" ' . get_footer_widget_class() . '>';
-    calibrefx_put_wrapper('footer-widget'); 
+    calibrefx_put_wrapper('footer-widget', 'open'); 
 }
 
 add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_wrapper_open');
@@ -97,7 +98,8 @@ add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_wrapper
  * Open footer widget wrapper markup
  */
 function calibrefx_do_footer_widget_wrapper_open(){
-    echo '<div class="footer-widget-wrapper"><div class="row">';
+    $footer_widget_wrapper_class = apply_filters( 'footer_widget_wrapper_class', calibrefx_row_class() );
+    echo '<div class="footer-widget-wrapper"><div class="'.$footer_widget_wrapper_class.'">';
 }
 
 add_action('calibrefx_after_footer_widget', 'calibrefx_do_footer_widget_wrapper_close');
@@ -125,19 +127,52 @@ add_action('calibrefx_footer', 'calibrefx_do_footer_open', 5);
  * Open footer markup
  */
 function calibrefx_do_footer_open() {
-    echo '<div id="footer" class="row">';
-    calibrefx_put_wrapper('footer');
-    echo '<div id="footer-wrapper" class="row">';
+    $footer_class = apply_filters( 'footer_class', calibrefx_row_class() );
+    echo '<div id="footer" class="'.$footer_class.'">';
 }
 
-add_action('calibrefx_footer', 'calibrefx_do_footer_close', 15);
+add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_row_open', 7);
+
+/**
+ * Open footer wrapper row markup
+ */
+function calibrefx_do_footer_wrapper_row_open() {
+    calibrefx_put_wrapper('footer', 'open');
+}
+
+add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_open', 9);
+
+/**
+ * Open footer wrapper markup
+ */
+function calibrefx_do_footer_wrapper_open() {
+    echo '<div id="footer-wrapper">';
+}
+
+add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_close', 12);
+
+/**
+ * Close footer wrapper markup
+ */
+function calibrefx_do_footer_wrapper_close() {
+    echo '</div><!-- end #footer-wrapper -->';
+}
+
+add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_row_close', 15);
+
+/**
+ * Close footer wrapper row markup
+ */
+function calibrefx_do_footer_wrapper_row_close() {
+    calibrefx_put_wrapper('footer', 'close');
+}
+
+add_action('calibrefx_footer', 'calibrefx_do_footer_close', 20);
 
 /**
  * Close footer markup
  */
 function calibrefx_do_footer_close() {
-    echo '</div><!-- end #footer-wrapper -->';
-    calibrefx_put_wrapper('footer', 'close');
     echo '</div><!-- end #footer -->' . "\n";
 }
 
@@ -152,7 +187,7 @@ function calibrefx_do_footer() {
     $creds_text = apply_filters('calibrefx_footer_credits', sprintf('[footer_copyright before="%1$s "] [footer_theme_link after=" %2$s "] [footer_calibrefx_link after=" %3$s "] [footer_wordpress_link before= " %4$s " after=" %3$s "]', __('Copyright', 'calibrefx'), __('on', 'calibrefx'), '&middot;', __('Powered By', 'calibrefx')));
     $backtotop_text = apply_filters('calibrefx_footer_scrolltop', '[footer_scrolltop]');
 
-    $backtotop = $backtotop_text ? sprintf('<div class="pull-right  scrolltop"><p>%s</p></div>', $backtotop_text) : '';
+    $backtotop = $backtotop_text ? sprintf('<div class="pull-right scrolltop"><p>%s</p></div>', $backtotop_text) : '';
     $creds = $creds_text ? sprintf('<div class="credits pull-left"><p>%s</p></div>', $creds_text) : '';
 
     $output = $creds . $backtotop;
@@ -163,7 +198,7 @@ function calibrefx_do_footer() {
 add_action('wp_footer', 'calibrefx_add_socials_script');
 
 /**
- * Add Social javascript after header
+ * Add Social javascript in footer
  */
 function calibrefx_add_socials_script() {
     global $twitteruser;
@@ -183,5 +218,31 @@ function calibrefx_add_socials_script() {
 
     if (!empty($twitteruser)) {
         echo '<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>';
+    }
+}
+
+add_action('wp_footer', 'calibrefx_add_google_analytics');
+
+/**
+ * Add google analytics settings
+ */
+function calibrefx_add_google_analytics() {
+
+    $analytic_id = calibrefx_get_option('analytic_id');
+
+    if(!empty($analytic_id)){
+        echo "
+            <script type='text/javascript'>
+                var _gaq = _gaq || [];
+                 _gaq.push(['_setAccount', '$analytic_id']);
+                 _gaq.push(['_trackPageview']);
+
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+        ";
     }
 }
