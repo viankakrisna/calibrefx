@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Contact
+/* Template Name: Contact Form Page
  *
  * CalibreFx Framework
  *
