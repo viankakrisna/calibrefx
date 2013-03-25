@@ -20,7 +20,9 @@
  */
 
 version 1.0.11 <?March 2013> - 
-    * Add more apply_filters in post_hook
+    * Update to bootstrap v2.3.1
+    * Add more apply_filters in post_hook, header_hook
+    * Using bootstrap as standard for row-fluid and container-fluid
     * Update JQuery cycle to v2
     * Fix minor styling
 
