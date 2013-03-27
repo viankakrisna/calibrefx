@@ -1388,7 +1388,8 @@ ul.delete li { background: url(../img/shortcode/icons/delete.png) no-repeat left
 .cycle-overlay p{
     margin: 0px;
 }
-.post-slider-item{
+.post-slider-item,
+.page-slider-item{
     width: 100%;
 }
 

@@ -37,7 +37,7 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
             'speed' => 800,
             'fx' => 'fade',
 			'image_size' => '',
-			'caption' => 1,
+			'caption' => 0,
             'display_link' => 0,
         );
 

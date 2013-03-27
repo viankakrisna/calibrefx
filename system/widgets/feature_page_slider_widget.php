@@ -32,11 +32,12 @@ class CFX_Feature_Page_Slider_Widget extends WP_Widget {
         $this->defaults = array(
             'title' => '',
             'page_id' => '',
-            'interval' => '5000',
-			'image_size' => '',
-			'caption' => '1',
-			'text_limit' => '100',
-			'more_text' => 'read more'
+            'interval' => 5000,
+            'speed' => 800,
+            'fx' => 'fade',
+            'image_size' => '',
+            'caption' => 0,
+            'display_link' => 0,
         );
 
         $widget_ops = array(
@@ -62,53 +63,51 @@ class CFX_Feature_Page_Slider_Widget extends WP_Widget {
 
         $q = new WP_Query(array('post__in' => $page_ids, 'post_type'=>'page', 'orderby' => 'id', 'order' => 'ASC'));
 
-        echo $before_widget . '<div id="page-slider" class="carousel slide">';
-		
-		echo '<div class="carousel-inner">';
+       echo $before_widget;
 
-		$loop_counter = 1;
-        if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-			
-			if($loop_counter == 1){
-				echo '<div class="item active">';
-			}else{
-				echo '<div class="item">';
-			}
-			
-			$img = calibrefx_get_image(array( 'format' => 'html', 'size' => $instance['image_size']));
+        if(!empty($instance['title']))
+            echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
         
-			echo $img;
-			
-			if($instance['caption']){
-				echo '<div class="carousel-caption">';
-				echo '<h4>'.get_the_title().'</h4>';
-				
-				the_content_limit( (int) $instance['text_limit'], esc_html( $instance['more_text'] ) );
-				echo '</div><!-- end carousel caption -->';
-			}
-			
-			echo '</div><!-- end carousel item -->';
-			
-			$loop_counter++;
+        $attr = '';
+        $attr .= ' data-cycle-timeout="'.$instance['interval'].'"';
+        $attr .= ' data-cycle-speed="'.$instance['speed'].'"';
+        $attr .= ' data-cycle-fx="'.$instance['fx'].'"';
+        $attr .= ' data-cycle-slides="> div.page-slider-item"';
+
+        echo '<div class="page-slider-wrapper">';
+        echo '<div class="page-slider cycle-slideshow"'.$attr.'>';
+
+        if($instance['caption']){
+            echo '<div class="cycle-overlay"></div>';
+
+            $attr .= ' data-cycle-caption-plugin=caption2';
+        }
+    
+        $loop_counter = 1;
+        if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
+            
+            if($display_link)
+                 echo '<div class="page-slider-item" data-cycle-title=\'<a href="'.get_permalink().'">'.get_the_title().'</a>\' data-cycle-desc="">';
+            else
+                echo '<div class="page-slider-item" data-cycle-title="'.get_the_title().'" data-cycle-desc="">';
+
+            $img = calibrefx_get_image(array( 'format' => 'html', 'size' => $instance['image_size']));
+
+            $display_link = $instance['display_link'];
+
+            if($display_link) echo '<a href="'.get_permalink().'">';
+            echo $img;
+            if($display_link) echo '</a>';
+            
+            
+            echo '</div>';
+            
+            $loop_counter++;
         endwhile;    
         endif;
-		
-		echo '</div><!-- end carousel inner -->';
-		echo '<!-- Carousel nav -->
-			<a class="carousel-control left" href="#page-slider" data-slide="prev">&lsaquo;</a>
-			<a class="carousel-control right" href="#page-slider" data-slide="next">&rsaquo;</a>
-		';
-        echo '</div><!-- end carousel slide -->';
         
-        echo "
-        <script>
-            jQuery(document).ready(function(){
-                $('#page-slider').carousel({
-				  interval: ".$instance['interval']."
-				})
-            });
-        </script>
-        ";
+        echo '</div><!-- end .post-slider -->';
+        echo '</div><!-- end .post-slider-wrapper -->';
         
         echo $after_widget;
     }
@@ -142,19 +141,37 @@ class CFX_Feature_Page_Slider_Widget extends WP_Widget {
             <label for="<?php echo $this->get_field_id('interval'); ?>"><?php _e('Interval', 'calibrefx'); ?>:</label>
             <input type="text" id="<?php echo $this->get_field_id('interval'); ?>" name="<?php echo $this->get_field_name('interval'); ?>" value="<?php echo esc_attr($instance['interval']); ?>" class="widefat" />
         </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('speed'); ?>"><?php _e('Slider Speed', 'calibrefx'); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id('speed'); ?>" name="<?php echo $this->get_field_name('speed'); ?>" value="<?php echo esc_attr($instance['speed']); ?>" class="widefat" />
+        </p>
+        
+        <p>
+            <label for="<?php echo $this->get_field_id('fx'); ?>"><?php _e('Slider Effect', 'calibrefx'); ?>:</label>
+            <select id="<?php echo $this->get_field_id('fx'); ?>" name="<?php echo $this->get_field_name('fx'); ?>">
+                <option style="padding-right:10px;" value="fade"<?php if($instance['fx'] == 'fade') echo ' selected="selected"'; ?>><?php _e('Fade', 'calibrefx'); ?></option>
+                <option style="padding-right:10px;" value="fadeOut"<?php if($instance['fx'] == 'fadeOut') echo ' selected="selected"'; ?>><?php _e('Fade Out', 'calibrefx'); ?></option>
+                <option style="padding-right:10px;" value="scrollHorz"<?php if($instance['fx'] == 'scrollHorz') echo ' selected="selected"'; ?>><?php _e('Scroll Horizontal', 'calibrefx'); ?></option>
+                <option style="padding-right:10px;" value="none"<?php if($instance['fx'] == 'none') echo ' selected="selected"'; ?>><?php _e('None', 'calibrefx'); ?></option>
+            </select>
+        </p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('image_size'); ?>"><?php _e('Image Size', 'calibrefx'); ?>:</label>
-			<?php $sizes = calibrefx_get_additional_image_sizes(); ?>
-			<select id="<?php echo $this->get_field_id('image_size'); ?>" name="<?php echo $this->get_field_name('image_size'); ?>">
-				<option style="padding-right:10px;" value="thumbnail">thumbnail (<?php echo get_option('thumbnail_size_w'); ?>x<?php echo get_option('thumbnail_size_h'); ?>)</option>
-				<?php
-				foreach((array)$sizes as $name => $size) :
-				echo '<option style="padding-right: 10px;" value="'.esc_attr($name).'" '.selected($name, $instance['image_size'], FALSE).'>'.esc_html($name).' ('.$size['width'].'x'.$size['height'].')</option>';
-				endforeach;
-				?>
-			</select>
-		</p>	
+            <label for="<?php echo $this->get_field_id('image_size'); ?>"><?php _e('Image Size', 'calibrefx'); ?>:</label>
+            <select id="<?php echo $this->get_field_id('image_size'); ?>" name="<?php echo $this->get_field_name('image_size'); ?>">
+                <option style="padding-right:10px;" value="thumbnail"<?php if($instance['image_size'] == 'thumbnail') echo ' selected="selected"'; ?>><?php _e('thumbnail', 'calibrefx'); ?> (<?php echo get_option('thumbnail_size_w'); ?>x<?php echo get_option('thumbnail_size_h'); ?>)</option>
+                <option style="padding-right:10px;" value="medium"<?php if($instance['image_size'] == 'medium') echo ' selected="selected"'; ?>><?php _e('medium', 'calibrefx'); ?> (<?php echo get_option('medium_size_w'); ?>x<?php echo get_option('medium_size_h'); ?>)</option>
+                <option style="padding-right:10px;" value="large"<?php if($instance['image_size'] == 'large') echo ' selected="selected"'; ?>><?php _e('large', 'calibrefx'); ?> (<?php echo get_option('large_size_w'); ?>x<?php echo get_option('large_size_h'); ?>)</option>
+                <option style="padding-right:10px;" value="full"<?php if($instance['image_size'] == 'full') echo ' selected="selected"'; ?>><?php _e('full size', 'calibrefx'); ?></option>
+                <?php
+                    $sizes = calibrefx_get_additional_image_sizes();
+                    foreach((array)$sizes as $name => $size) :
+                        echo '<option style="padding-right: 10px;" value="'.esc_attr($name).'" '.selected($name, $instance['image_size'], FALSE).'>'.esc_html($name).' ('.$size['width'].'x'.$size['height'].')</option>';
+                    endforeach;
+                ?>
+            </select>
+        </p>	
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('caption'); ?>"><?php _e('Show Caption', 'calibrefx'); ?>:</label>
@@ -165,14 +182,12 @@ class CFX_Feature_Page_Slider_Widget extends WP_Widget {
 		</p>	
 		
 		<p>
-            <label for="<?php echo $this->get_field_id('text_limit'); ?>"><?php _e('Caption Text Limit', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('text_limit'); ?>" name="<?php echo $this->get_field_name('text_limit'); ?>" value="<?php echo esc_attr($instance['text_limit']); ?>" class="widefat" />
-        </p>
-		
-		<p>
-            <label for="<?php echo $this->get_field_id('more_text'); ?>"><?php _e('Caption Read More Text', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('more_text'); ?>" name="<?php echo $this->get_field_name('more_text'); ?>" value="<?php echo esc_attr($instance['more_text']); ?>" class="widefat" />
-        </p>
+            <label for="<?php echo $this->get_field_id('display_link'); ?>"><?php _e('Show Post Link', 'calibrefx'); ?>:</label>
+            <select id="<?php echo $this->get_field_id('display_link'); ?>" name="<?php echo $this->get_field_name('display_link'); ?>">
+                <option value="1"<?php if($instance['display_link'] == '1') echo ' selected="selected"'?>>Show</option>
+                <option value="0"<?php if($instance['display_link'] == '0') echo ' selected="selected"'?>>Hide</option>
+            </select>
+        </p>   
 
         <?php
     }
