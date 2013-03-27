@@ -85,14 +85,14 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
 		$loop_counter = 1;
         if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 			
+            $display_link = $instance['display_link'];
+
             if($display_link)
 			     echo '<div class="post-slider-item" data-cycle-title=\'<a href="'.get_permalink().'">'.get_the_title().'</a>\' data-cycle-desc="">';
 			else
                 echo '<div class="post-slider-item" data-cycle-title="'.get_the_title().'" data-cycle-desc="">';
 
             $img = calibrefx_get_image(array( 'format' => 'html', 'size' => $instance['image_size']));
-
-            $display_link = $instance['display_link'];
 
             if($display_link) echo '<a href="'.get_permalink().'">';
             echo $img;
