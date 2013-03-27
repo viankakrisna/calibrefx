@@ -1367,13 +1367,29 @@ ul.delete li { background: url(../img/shortcode/icons/delete.png) no-repeat left
 * S L I D E R                                                                         	   S L I D E R
 ====================================================================================================*/
 
-.carousel{
-	line-height: 0px;
-}	
-.carousel-caption {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	color: #fff;
+.post-slider-wrapper,
+.page-slider-wrapper{
+    margin-top: 5px;
+}
+.cycle-overlay { 
+    position: absolute; 
+    bottom: 0; 
+    z-index: 600;
+    background: #000000; 
+    color: #ffffff; 
+    padding: 15px 0px; 
+    opacity: .5;
+    width: 100%;
+}
+.cycle-overlay > *{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.cycle-overlay p{
+    margin: 0px;
+}
+.post-slider-item{
+    width: 100%;
 }
 
 /*====================================================================================================
