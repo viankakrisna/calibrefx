@@ -7,11 +7,11 @@ special.scrollstop = {latency: 300,setup: function() {var timer, handler = funct
 jQuery(document).ready(function($) {
 	jQuery("#commentform").validate();
 	
-	jQuery('#header .menu, .superfish').superfish({
-		delay:       200,								// 0.1 second delay on mouseout 
-		animation:   {opacity:'show',height:'show'},	// fade-in and slide-down animation 
-		dropSadows: false							// disable drop shadows 
-	});
+	// jQuery('#header .menu, .superfish').superfish({
+	// 	delay:       200,								// 0.1 second delay on mouseout 
+	// 	animation:   {opacity:'show',height:'show'},	// fade-in and slide-down animation 
+	// 	dropSadows: false							// disable drop shadows 
+	// });
 	
 	jQuery('.scrolltop a').click(
 		function (e) {
@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
 	});         
   
 	jQuery('body').tooltip({
-      selector: "a[data-toggle=tooltip]"
+      	selector: "a[data-toggle=tooltip]"
     });
 	
 	jQuery(".ltt-toggler.closed .ltt-toggle-container").hide(); 

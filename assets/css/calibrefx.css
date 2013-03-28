@@ -142,6 +142,7 @@ h1, h2, h3, h4, h5, h6{
     min-height: 34px;
     background: none;
     filter: none;
+    border: none;
 }
 
 .navbar-inner .container{
@@ -159,7 +160,17 @@ h1, h2, h3, h4, h5, h6{
 .navbar .nav > .active > a,
 .navbar .nav > li.dropdown.active > a.dropdown-toggle{
     background: #f1f1f1;
-    color: #2F2F2F;	
+    color: #2F2F2F;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;	
+}
+
+.navbar .nav > .active:hover > a,
+.navbar .nav > .active > a:hover{
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 
 .navbar .nav > li.dropdown.active > a.dropdown-toggle:hover {
@@ -236,6 +247,10 @@ h1, h2, h3, h4, h5, h6{
     top: -4px;	
 }
 
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+    display: block;    
+}
+
 .dropdown-menu{
     position: absolute;
     top: 100%;
@@ -257,6 +272,11 @@ h1, h2, h3, h4, h5, h6{
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+}
+
+.navbar .nav > li > .dropdown-menu:before,
+.navbar .nav > li > .dropdown-menu:after {
+    display: none;
 }
 
 #subnav .dropdown-menu{
@@ -295,12 +315,18 @@ ul#menu-secondary > .active > a{
 	background-color: #2F2F2F;
 }
 
-.dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
+.dropdown-menu li > a:hover, 
+.dropdown-menu .active > a, 
+.dropdown-menu .active > a:hover {
 	background-color: #2F2F2F;
 }
 
-.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
-	background-color: #2F2F2F;
+.navbar .nav li.dropdown.open > .dropdown-toggle, 
+.navbar .nav li.dropdown.active > .dropdown-toggle, 
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+	background-image: none;
+    background-color: #2F2F2F;
+    color: #fff;
 }
 
 .nav > .current-menu-ancestor > a{
