@@ -273,3 +273,8 @@ function calibrefx_container_class() {
 
     return apply_filters( 'calibrefx_container_class', $containerClass );
 }
+
+
+function calibrefx_layout_full_width(){
+    return 'full-width-content';
+}

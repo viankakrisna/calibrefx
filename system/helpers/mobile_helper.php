@@ -21,23 +21,28 @@
  */
 
 /**
- * Calibrefx Third Party Hooks
+ * Calibrefx Mobile Helper
  *
- * @package		Calibrefx
- * @subpackage  Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
+ * @package         CalibreFx
+ * @subpackage      Helpers
+ * @category        Helpers
+ * @author          CalibreFx Team
+ * @link            http://www.calibrefx.com
+ * 
  */
 
-add_action('calibrefx_setup', 'calibrefx_init_third_party');
-/**
- * After frameworks is initialized we initialize other third party module
- */
-function calibrefx_init_third_party(){
-    global $oBrowser;
-    
-    $CFX = & calibrefx_get_instance();
-    $CFX->load->file(CALIBREFX_LIBRARY_URI . '/third-party/mobiledetector/mobileDetector.php');
-    $oBrowser = new mobileDetector();
+function calibrefx_mobile_themes_exist(){
+	return file_exists(CHILD_URI . '/mobile');
+}
+
+function calibrefx_set_mobile_themes_folder(){
+	return CHILD_URI;
+}
+
+function calibrefx_set_mobile_themes_uri(){
+	return CHILD_URL;
+}
+
+function calibrefx_get_mobile_theme(){
+	return 'mobile';
 }
