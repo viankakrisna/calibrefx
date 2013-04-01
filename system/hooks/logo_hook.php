@@ -95,11 +95,7 @@ function calibrefx_custom_header_style() {
     if (HEADER_TEXTCOLOR == get_header_textcolor() && HEADER_IMAGE == get_header_image())
         return;
 
-	if( calibrefx_get_option( 'enable_responsive' )){
-		$header = sprintf('@media (min-width:961px){#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}} @media (max-width:960px){#header-title {background: url(%1$s) no-repeat left center; width:%4$s; height: %3$dpx}}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT, '100%');
-	}else{
-		$header = sprintf('#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
-	}
+	$header = sprintf('#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
 	
     $text = sprintf('#title, #title a, #title a:hover{ display: block; margin: 0; overflow: hidden; padding: 0;text-indent: -9999px; color: #%s; width:%dpx; height: %dpx }', esc_html(get_header_textcolor()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
     $header_ie = sprintf('#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);

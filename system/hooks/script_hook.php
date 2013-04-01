@@ -66,7 +66,7 @@ function calibrefx_load_scripts() {
     if (is_singular() && get_option('thread_comments') && comments_open()) {
         wp_enqueue_script('comment-reply');
     }
-    //wp_enqueue_script('superfish', CALIBREFX_JS_URL . '/superfish.js', array('jquery'), '', true);
+    wp_enqueue_script('superfish', CALIBREFX_JS_URL . '/superfish.js', array('jquery'), '', true);
     wp_enqueue_script('jquery.cycle2');
     wp_enqueue_script('jquery.cycle2.optional');
     wp_localize_script('calibrefx-script', 'cfx_ajax', array('ajaxurl' => admin_url('admin-ajax.php'), 'ajax_action' => 'cfx_ajax', '_ajax_nonce' => wp_create_nonce( 'calibrefx_ajax_nonce')));
@@ -94,10 +94,10 @@ function calibrefx_load_styles() {
     }
 
     wp_enqueue_style('calibrefx-style');
-    // wp_enqueue_style('calibrefx-responsive-style');
-    // if ( current_theme_supports('calibrefx-responsive-style') ) {
-    //     wp_enqueue_style('calibrefx-responsive-style');
-    // }
+    //wp_enqueue_style('calibrefx-responsive-style');
+    if ( current_theme_supports('calibrefx-responsive-style') ) {
+        wp_enqueue_style('calibrefx-responsive-style');
+    }
 }
 
 add_action('admin_init', 'calibrefx_load_admin_scripts');
