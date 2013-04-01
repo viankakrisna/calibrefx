@@ -31,18 +31,26 @@
  * 
  */
 
+/**
+ * calibrefx_mobile_themes_exist
+ * Check if the mobile theme exist in Child themes
+ *
+ * @return boolean
+ * @author Ivan Kristianto
+ **/
 function calibrefx_mobile_themes_exist(){
 	return file_exists(CHILD_URI . '/mobile');
 }
 
-function calibrefx_set_mobile_themes_folder(){
-	return CHILD_URI;
-}
 
-function calibrefx_set_mobile_themes_uri(){
-	return CHILD_URL;
-}
-
+/**
+ * calibrefx_get_mobile_theme
+ * this function will return the mobile folder from the child themes folder
+ * this will use in add_filter 'template' & 'stylesheet'
+ *
+ * @return string
+ * @author Ivan Kristianto
+ **/
 function calibrefx_get_mobile_theme(){
 	return 'mobile';
 }
