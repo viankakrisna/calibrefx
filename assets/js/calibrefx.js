@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
 	});         
   
 	jQuery('body').tooltip({
-      selector: "a[data-toggle=tooltip]"
+      	selector: "a[data-toggle=tooltip]"
     });
 	
 	jQuery(".ltt-toggler.closed .ltt-toggle-container").hide(); 

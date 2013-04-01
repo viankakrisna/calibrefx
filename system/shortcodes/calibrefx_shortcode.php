@@ -351,7 +351,7 @@ function calibrefx_row($atts, $content = '') {
 
     if (!empty($class)) $classes .= ' ' . $class;
 
-    return '<div class="' . $classes . ' '.calibrefx_row_class().'" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
+    return '<div class="' . $class . ' '.calibrefx_row_class().'" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
 /**
@@ -369,9 +369,9 @@ function calibrefx_column($atts, $content = '') {
                 'align' => '',
                 'last' => 'no',
                 'first' => 'no',
+                'id' => ''
                     ), $atts));
 
-    $classes = $class;
     if (!empty($class))
         $classes .= ' ' . $class;
     if (!empty($cols))
@@ -389,7 +389,7 @@ function calibrefx_column($atts, $content = '') {
         }
     }
 
-    return $before . '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
+    return $before . '<div class="' . $classes . '" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_column');
@@ -410,9 +410,9 @@ function calibrefx_separator($atts, $content = '') {
 
     $classes = " separator ".calibrefx_row_class();
     if (!empty($class))
-        $classes =  $class . $classes ;
+        $classes .= ' '.$class;
 
-    return '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
+    return '<div class="' . $classes . ' separator" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
 /**
