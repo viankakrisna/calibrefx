@@ -33,10 +33,16 @@
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var togglebox_state = document.getElementById('togglebox_state').value;	
+                    var num_togglebox = document.getElementById('num_togglebox').value;	
 		
-                    shortcodeRetazec = '[togglebox state="'+togglebox_state+'" head="Togglebox head" ]'+medziShortcodom+'[/togglebox] ';
+                    shortcodeRetazec = '[togglebox]';
+
+                    for(var i = 1; i <= num_togglebox; i++){
+                        if(i == 1) shortcodeRetazec += '[togglebox_item in="1" title="Collapsible Group Item #'+i+'" id="accordion-'+i+'"]Collapsible Group Item #'+i+' Content[/togglebox_item]';
+                        else shortcodeRetazec += '[togglebox_item title="Collapsible Group Item #'+i+'" id="accordion-'+i+'"]Collapsible Group Item #'+i+' Content[/togglebox_item]'; 
+                    }
 		
+                    shortcodeRetazec += '[/togglebox]';
 		
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
@@ -75,12 +81,12 @@
                         <table border="0" cellpadding="4" cellspacing="0">                
                             <!-- state -->       
                             <tr>                 
-                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="togglebox_state">State:</label></td>                          <td>                    
-                                    <select name="togglebox_state" id="togglebox_state" style="width: 250px">                       
-                                        <option value="open">Open</option>
-                                        <option value="closed">Closed</option>                                            
-                                    </select><br />      
-                                    <em style="font-size: 9px; color: #999;">Select the default state of the togglebox.</em>                
+                                <td nowrap="nowrap" style="vertical-align: text-top;">
+                                    <label for="num_togglebox">Num of Toggleboxes</label>
+                                </td>                          
+                                <td>                    
+                                    <input name="num_togglebox" id="num_togglebox" style="width: 180px" value="1" /><br />     
+                                    <em style="font-size: 9px; color: #999;">Enter how many toggleboxes you want to show, default 1</em>                
                                 </td>                    
                             </tr>                                  
                         </table>     

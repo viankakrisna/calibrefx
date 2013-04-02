@@ -699,12 +699,56 @@ $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_tabs')
 add_shortcode('togglebox', 'calibrefx_togglebox');
 
 function calibrefx_togglebox($atts, $content = null) {
-    extract(shortcode_atts(array('state' => 'open',
-                'head' => 'Togglebox header'), $atts));
+    global $togglebox_id;
 
-    return '<div class="ltt-toggler ' . $state . '"><h2 class="ltt-trigger"><a href="#">' . $head . '</a></h2>
-            <div class="ltt-toggle-container">' . do_shortcode($content) . '</div>
-            </div>';
+    extract(shortcode_atts(array(
+        'before' => '',
+        'after' => '',
+        'id' => '',
+        'class' => '',
+    ), $atts));
+
+    if(empty($id)){
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $size = strlen($chars);
+        for ($i = 0; $i < 8; $i++) {
+            $id .= $chars[rand(0, $size - 1)];
+        }
+    }
+
+    $togglebox_id = $id;
+
+    if(!empty($class)) $class = ' '.$class;
+
+    return $before . '<div class="accordion'.$class.'" id="'.$id.'">' . advance_shortcode_unautop($content) . '</div>' . $after;
+}
+
+add_shortcode('togglebox_item', 'calibrefx_togglebox_item');
+function calibrefx_togglebox_item($atts, $content = null){
+    global $togglebox_id;
+
+    extract(shortcode_atts(array(
+        'title' => '',
+        'id' => '',
+        'in' => 0
+    ), $atts));
+
+    if($in) $class = ' in';
+
+    $output = '<div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#'.$togglebox_id.'" href="#'.$togglebox_id.'-'.$id.'">
+                '.$title.'
+            </a>
+        </div>
+        <div id="'.$togglebox_id.'-'.$id.'" class="accordion-body collapse'.$class.'">
+            <div class="accordion-inner">
+                '.advance_shortcode_unautop($content).'
+            </div>
+        </div>
+    </div>';
+
+    return $output;
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_togglebox');
