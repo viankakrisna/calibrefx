@@ -578,7 +578,7 @@ function calibrefx_slider($atts, $content = '') {
     $html .= advance_shortcode_unautop($content);
     $html .= '</div><!-- end .slider -->';
     if($pager) $html  .= '<div id="'.$pager_class.'" class="slider-pager"></div><!-- end .slider-pager -->';
-    if($next_prev) $html  .= '<div class="slider-nav"><a href="#" class="slider-prev" id="slider-prev-'.$pager_class.'">&laquo; prev</a><a href="#" class="slider-next" id="slider-next-'.$pager_class.'">next &raquo;</a></div>';
+    if($next_prev) $html  .= '<a href="#" class="slider-nav slider-prev" id="slider-prev-'.$pager_class.'">&laquo; prev</a><a href="#" class="slider-nav slider-next" id="slider-next-'.$pager_class.'">next &raquo;</a>';
     $html .= '</div><!-- end .slider-wrapper -->';
     $html .= '</div><!-- end .slider-container -->';
 
