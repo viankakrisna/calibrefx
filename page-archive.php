@@ -19,8 +19,8 @@
  * @package CalibreFx
  */
 
-if (file_exists(CHILD_DIR . '/page-archive.php')) {
-    include CHILD_DIR . '/page-archive.php';
+if (file_exists(CHILD_URI . '/page-archive.php')) {
+    include CHILD_URI . '/page-archive.php';
     exit;
 }
 

@@ -20,31 +20,7 @@ jQuery(document).ready(function($) {
 		}
 	);
 	
-	jQuery.fn.extend({ 	
-		ltttooltip: function() {		
-			var bubble = this;			
-			this.hover(function() {				
-				bubble.children('span').children('span').css({ display: 'block' });
-				bubble.children('span').stop().css({ display: 'block', opacity: 0, bottom: '30px' }).animate({ opacity: 1, bottom: '40px' }, 200);				
-			}, function() {				
-				bubble.children('span').stop().animate({ opacity: 0, bottom: '50px' }, 200, function() {					
-					jQuery(this).hide();					
-				});				
-			});			
-		}
-	});         
-  
 	jQuery('body').tooltip({
-      selector: "a[data-toggle=tooltip]"
+      	selector: "a[data-toggle=tooltip]"
     });
-	
-	jQuery(".ltt-toggler.closed .ltt-toggle-container").hide(); 
-	jQuery(".ltt-toggler.open .ltt-toggle-container").show();
-	jQuery(".ltt-toggler.open .ltt-trigger").addClass("active");
-
-	//Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
-	jQuery(".ltt-trigger").click(function(){
-		jQuery(this).toggleClass("active").next().slideToggle("slow");
-		return false; //Prevent the browser jump to the link anchor
-	});
 });

@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Contact
+/* Template Name: Contact Form Page
  *
  * CalibreFx Framework
  *
@@ -19,8 +19,8 @@
  * @package CalibreFx
  */
 
-if(file_exists(CHILD_DIR . '/page-contact.php')){
-    include CHILD_DIR . '/page-contact.php';
+if(file_exists(CHILD_URI . '/page-contact.php')){
+    include CHILD_URI . '/page-contact.php';
     exit;
 }
 

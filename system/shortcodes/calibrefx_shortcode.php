@@ -211,27 +211,30 @@ function calibrefx_button($atts, $content = '') {
                 'before' => '',
                 'after' => '',
                 'class' => '',
-                'url' => '',
+                'id' => '',
+                'url' => '#',
                 'type' => '',
-                'color' => '',
                 'size' => '',
                 'icon' => '',
+                'icon_color' => '',
+                'rel' => 'nofollow'
                     ), $atts));
 
-    $classes = 'button';
+    $classes = 'btn';
     if (!empty($class))
         $classes .= ' ' . $class;
     if (!empty($type))
-        $classes .= ' ' . $type;
-    if (!empty($color))
-        $classes .= ' ' . $color;
+        $classes .= ' btn-' . $type;
     if (!empty($size))
-        $classes .= ' ' . $size;
+        $classes .= ' btn-' . $size;
+
+    if (!empty($icon_color))
+        $icon_class .= ' icon-'.$icon_color;
 
     if (!empty($icon)) {
-        return $before . '<a href="' . $url . '" class="' . $classes . ' icon"><span class="rightbtn">' . do_shortcode($content) . '</span><span class="ico ' . $icon . '"></span></a>' . $after;
+        return $before . '<a href="' . $url . '" class="' . $classes . '" rel="'.$rel.'"><i class="icon-'.$icon.$icon_class.'"></i>' . do_shortcode($content) . '</a>' . $after;
     } else {
-        return $before . '<a href="' . $url . '" class="' . $classes . '"><span>' . do_shortcode($content) . '</span></a>' . $after;
+        return $before . '<a href="' . $url . '" class="' . $classes . '" rel="'.$rel.'">' . do_shortcode($content) . '</a>' . $after;
     }
 }
 
@@ -351,7 +354,7 @@ function calibrefx_row($atts, $content = '') {
 
     if (!empty($class)) $classes .= ' ' . $class;
 
-    return '<div class="' . $classes . ' '.calibrefx_row_class().'" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
+    return '<div class="' . $class . ' '.calibrefx_row_class().'" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
 /**
@@ -369,9 +372,9 @@ function calibrefx_column($atts, $content = '') {
                 'align' => '',
                 'last' => 'no',
                 'first' => 'no',
+                'id' => ''
                     ), $atts));
 
-    $classes = $class;
     if (!empty($class))
         $classes .= ' ' . $class;
     if (!empty($cols))
@@ -389,7 +392,7 @@ function calibrefx_column($atts, $content = '') {
         }
     }
 
-    return $before . '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
+    return $before . '<div class="' . $classes . '" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_column');
@@ -410,9 +413,9 @@ function calibrefx_separator($atts, $content = '') {
 
     $classes = " separator ".calibrefx_row_class();
     if (!empty($class))
-        $classes =  $class . $classes ;
+        $classes .= ' '.$class;
 
-    return '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
+    return '<div class="' . $classes . ' separator" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
 /**
@@ -578,7 +581,7 @@ function calibrefx_slider($atts, $content = '') {
     $html .= advance_shortcode_unautop($content);
     $html .= '</div><!-- end .slider -->';
     if($pager) $html  .= '<div id="'.$pager_class.'" class="slider-pager"></div><!-- end .slider-pager -->';
-    if($next_prev) $html  .= '<div class="slider-nav"><a href="#" class="slider-prev" id="slider-prev-'.$pager_class.'">&laquo; prev</a><a href="#" class="slider-next" id="slider-next-'.$pager_class.'">next &raquo;</a></div>';
+    if($next_prev) $html  .= '<a href="#" class="slider-nav slider-prev" id="slider-prev-'.$pager_class.'">&laquo; prev</a><a href="#" class="slider-nav slider-next" id="slider-next-'.$pager_class.'">next &raquo;</a>';
     $html .= '</div><!-- end .slider-wrapper -->';
     $html .= '</div><!-- end .slider-container -->';
 
@@ -699,12 +702,56 @@ $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_tabs')
 add_shortcode('togglebox', 'calibrefx_togglebox');
 
 function calibrefx_togglebox($atts, $content = null) {
-    extract(shortcode_atts(array('state' => 'open',
-                'head' => 'Togglebox header'), $atts));
+    global $togglebox_id;
 
-    return '<div class="ltt-toggler ' . $state . '"><h2 class="ltt-trigger"><a href="#">' . $head . '</a></h2>
-            <div class="ltt-toggle-container">' . do_shortcode($content) . '</div>
-            </div>';
+    extract(shortcode_atts(array(
+        'before' => '',
+        'after' => '',
+        'id' => '',
+        'class' => '',
+    ), $atts));
+
+    if(empty($id)){
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $size = strlen($chars);
+        for ($i = 0; $i < 8; $i++) {
+            $id .= $chars[rand(0, $size - 1)];
+        }
+    }
+
+    $togglebox_id = $id;
+
+    if(!empty($class)) $class = ' '.$class;
+
+    return $before . '<div class="accordion'.$class.'" id="'.$id.'">' . advance_shortcode_unautop($content) . '</div>' . $after;
+}
+
+add_shortcode('togglebox_item', 'calibrefx_togglebox_item');
+function calibrefx_togglebox_item($atts, $content = null){
+    global $togglebox_id;
+
+    extract(shortcode_atts(array(
+        'title' => '',
+        'id' => '',
+        'in' => 0
+    ), $atts));
+
+    if($in) $class = ' in';
+
+    $output = '<div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#'.$togglebox_id.'" href="#'.$togglebox_id.'-'.$id.'">
+                '.$title.'
+            </a>
+        </div>
+        <div id="'.$togglebox_id.'-'.$id.'" class="accordion-body collapse'.$class.'">
+            <div class="accordion-inner">
+                '.advance_shortcode_unautop($content).'
+            </div>
+        </div>
+    </div>';
+
+    return $output;
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_togglebox');

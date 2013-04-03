@@ -21,7 +21,7 @@
  */
 
 /**
- * Calibrefx Script Helper
+ * Calibrefx Mobile Helper
  *
  * @package         CalibreFx
  * @subpackage      Helpers
@@ -30,23 +30,27 @@
  * @link            http://www.calibrefx.com
  * 
  */
-/**
- * Get current script run by the server
- */
-function calibrefx_get_script() {
-    $file = $_SERVER["SCRIPT_NAME"];
-    $break = Explode('/', $file);
-    $pfile = $break[count($break) - 1];
-    return $pfile;
-}
 
 /**
- * cfx_is_ajax_request
- * Helper function to check if the request is using Ajax
+ * calibrefx_mobile_themes_exist
+ * Check if the mobile theme exist in Child themes
  *
  * @return boolean
  * @author Ivan Kristianto
  **/
-function cfx_is_ajax_request(){
-	return ( ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
+function calibrefx_mobile_themes_exist(){
+	return file_exists(CHILD_URI . '/mobile');
+}
+
+
+/**
+ * calibrefx_get_mobile_theme
+ * this function will return the mobile folder from the child themes folder
+ * this will use in add_filter 'template' & 'stylesheet'
+ *
+ * @return string
+ * @author Ivan Kristianto
+ **/
+function calibrefx_get_mobile_theme(){
+	return 'mobile';
 }

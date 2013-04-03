@@ -41,6 +41,7 @@ function calibrefx_register_scripts(){
     wp_register_script('jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array('jquery'));
     wp_register_script('calibrefx-script', CALIBREFX_JS_URL . '/calibrefx.js', array('jquery', 'jquery-validate'));
     wp_register_script('jquery.cycle2', CALIBREFX_JS_URL . '/jquery.cycle2.js', array('jquery'));
+    wp_register_script('jquery.cycle2.optional', CALIBREFX_JS_URL . '/jquery.cycle2.optional.js', array('jquery'));
     wp_register_script('jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array('jquery'));
     wp_register_script('calibrefx-admin-bar', CALIBREFX_JS_URL . '/calibrefx-admin-bar.js', array('jquery'));
     
@@ -67,6 +68,7 @@ function calibrefx_load_scripts() {
     }
     wp_enqueue_script('superfish', CALIBREFX_JS_URL . '/superfish.js', array('jquery'), '', true);
     wp_enqueue_script('jquery.cycle2');
+    wp_enqueue_script('jquery.cycle2.optional');
     wp_localize_script('calibrefx-script', 'cfx_ajax', array('ajaxurl' => admin_url('admin-ajax.php'), 'ajax_action' => 'cfx_ajax', '_ajax_nonce' => wp_create_nonce( 'calibrefx_ajax_nonce')));
 }
 
@@ -92,10 +94,10 @@ function calibrefx_load_styles() {
     }
 
     wp_enqueue_style('calibrefx-style');
-    // wp_enqueue_style('calibrefx-responsive-style');
-    // if ( current_theme_supports('calibrefx-responsive-style') ) {
-    //     wp_enqueue_style('calibrefx-responsive-style');
-    // }
+    //wp_enqueue_style('calibrefx-responsive-style');
+    if ( current_theme_supports('calibrefx-responsive-style') ) {
+        wp_enqueue_style('calibrefx-responsive-style');
+    }
 }
 
 add_action('admin_init', 'calibrefx_load_admin_scripts');
