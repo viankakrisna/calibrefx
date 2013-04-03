@@ -6,7 +6,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_buttons', {
 			ed.windowManager.open({			
 				file : calibrefx_local.shortcode_url + '/form-buttons.php',
 				width : 360 + ed.getLang('calibrefx_shortcode_buttons.delta_width', 0),
-				height : 380 + ed.getLang('calibrefx_shortcode_buttons.delta_height', 0),
+				height : 420 + ed.getLang('calibrefx_shortcode_buttons.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		

@@ -211,27 +211,30 @@ function calibrefx_button($atts, $content = '') {
                 'before' => '',
                 'after' => '',
                 'class' => '',
-                'url' => '',
+                'id' => '',
+                'url' => '#',
                 'type' => '',
-                'color' => '',
                 'size' => '',
                 'icon' => '',
+                'icon_color' => '',
+                'rel' => 'nofollow'
                     ), $atts));
 
-    $classes = 'button';
+    $classes = 'btn';
     if (!empty($class))
         $classes .= ' ' . $class;
     if (!empty($type))
-        $classes .= ' ' . $type;
-    if (!empty($color))
-        $classes .= ' ' . $color;
+        $classes .= ' btn-' . $type;
     if (!empty($size))
-        $classes .= ' ' . $size;
+        $classes .= ' btn-' . $size;
+
+    if (!empty($icon_color))
+        $icon_class .= ' icon-'.$icon_color;
 
     if (!empty($icon)) {
-        return $before . '<a href="' . $url . '" class="' . $classes . ' icon"><span class="rightbtn">' . do_shortcode($content) . '</span><span class="ico ' . $icon . '"></span></a>' . $after;
+        return $before . '<a href="' . $url . '" class="' . $classes . '" rel="'.$rel.'"><i class="icon-'.$icon.$icon_class.'"></i>' . do_shortcode($content) . '</a>' . $after;
     } else {
-        return $before . '<a href="' . $url . '" class="' . $classes . '"><span>' . do_shortcode($content) . '</span></a>' . $after;
+        return $before . '<a href="' . $url . '" class="' . $classes . '" rel="'.$rel.'">' . do_shortcode($content) . '</a>' . $after;
     }
 }
 
