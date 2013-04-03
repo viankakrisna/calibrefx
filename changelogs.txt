@@ -19,7 +19,12 @@
  * @package CalibreFx
  */
 
-version 1.0.11 <?March 2013> - 
+version 1.0.13 <3 April 2013> - 
+    * Add mobile site function for child themes. This feature for showing different themes in mobile
+    * Update shortcode function and styles to use bootstrap v2.3.1
+    * Fix minor styling
+
+version 1.0.11 <25 March 2013> - 
     * Update to bootstrap v2.3.1
     * Add more apply_filters in post_hook, header_hook
     * Using bootstrap as standard for row-fluid and container-fluid
