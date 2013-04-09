@@ -8,9 +8,9 @@ jQuery(document).ready(function($) {
 	jQuery("#commentform").validate();
 	
 	jQuery('#header .menu, .superfish').superfish({
-		delay:       200,								// 0.1 second delay on mouseout 
-		animation:   {opacity:'show',height:'show'},	// fade-in and slide-down animation 
-		dropSadows: false							// disable drop shadows 
+		delay		: 200,
+		animation	: {opacity:'show'},
+		dropShadows : false
 	});
 	
 	jQuery('.scrolltop a').click(

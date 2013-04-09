@@ -38,6 +38,6 @@ function calibrefx_init_third_party(){
     global $oBrowser;
     
     $CFX = & calibrefx_get_instance();
-    $CFX->load->file(CALIBREFX_LIBRARY_URI . '/third-party/mobiledetector/mobileDetector.php');
+    $CFX->load->file(CALIBREFX_LIBRARY_URI . '/third-party/mobiledetector/mobiledetector.php');
     $oBrowser = new mobileDetector();
 }
