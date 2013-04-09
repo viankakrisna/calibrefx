@@ -84,7 +84,9 @@ abstract class CFX_Admin {
         
         //This will allow to cross save calibrefx themes settings
         if($this->settings_field != $calibrefx->theme_settings_m->get_settings_field()){
+            do_action('calibrefx_before_save_core');
             $this->save_core();
+            do_action('calibrefx_after_save_core');
             //add_filter('pre_update_option_' . $calibrefx->theme_settings_m->get_settings_field(), array(&$this, 'save_core'), 10, 2);            
         }
     }
@@ -124,6 +126,11 @@ abstract class CFX_Admin {
         if (calibrefx_get_option('reset', $this->_model)) {
             return $_newvalue;
         }
+
+        if( !empty($_POST['calibrefx_do_import']) ){
+            
+            return $_newvalue;
+        }
         
         //Get the value from post settings
         $_newvalue = $_POST[$this->settings_field]; 
@@ -158,7 +165,6 @@ abstract class CFX_Admin {
         
         //Get the value from post settings
         $_newvalue = $_POST[$calibrefx_settings_field];
-        debug_var_log($_POST);
         
         if(empty($_newvalue)) return;
 
@@ -216,6 +222,8 @@ abstract class CFX_Admin {
             echo '<div id="message" class="updated"><p><strong>' . __('Settings reset.', 'calibrefx') . '</strong></p></div>';
         elseif (isset($_REQUEST['error']) && $_REQUEST['error'] == 'true')
             echo '<div id="message" class="updated"><p><strong>' . __('Settings not saved. Error occured.', 'calibrefx') . '</strong></p></div>';
+        elseif (isset($_REQUEST['import']) && $_REQUEST['import'] == 'true')
+            echo '<div id="message" class="updated"><p><strong>' . __('Import Settings Success.', 'calibrefx') . '</strong></p></div>';
     }
 
     public function settings_init() {
@@ -242,7 +250,7 @@ abstract class CFX_Admin {
 	
         ?>
         <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes <?php echo $calibrefx_current_section; ?>">
-            <form method="post" action="<?php echo $this->_submit_url; ?>">
+            <form method="post" action="<?php echo $this->_submit_url; ?>" enctype="multipart/form-data">
                 <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
                 <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
                 <?php settings_fields($this->settings_field); // important! ?>
