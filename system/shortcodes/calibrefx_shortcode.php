@@ -803,7 +803,7 @@ function calibrefx_buzz($atts, $content = null) {
 
 add_shortcode('twitter', 'calibrefx_twitter');
 function calibrefx_twitter($atts, $content = null) {
-    $calibrefx_twitter = get_option('calibrefx_twitter');
+    $calibrefx_twitter = calibrefx_get_option('calibrefx_twitter');
     if ($calibrefx_twitter)
         $output = "<script type='text/javascript' src='http://twittercounter.com/embed/{$calibrefx_twitter}/ffffff/111111'></script>";
     return $output;
