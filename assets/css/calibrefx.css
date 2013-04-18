@@ -1354,14 +1354,7 @@ ul.delete li { background: url(../img/shortcode/icons/delete.png) no-repeat left
 
 /* Slider Shortcode */
 .slider-container{
-
-}
-.slider-wrapper{
-    position: relative;
-    float: left;
-}
-.slider{
-   
+    
 }
 .slider-container::before,
 .slider-container::after{
@@ -1370,6 +1363,12 @@ ul.delete li { background: url(../img/shortcode/icons/delete.png) no-repeat left
 }
 .slider-container::after{
     clear: both;
+}
+.slider-wrapper{
+    position: relative;
+}
+.slider{
+   
 }
 .slider .item{
     width: 100%;
