@@ -95,13 +95,33 @@ function calibrefx_custom_header_style() {
     if (HEADER_TEXTCOLOR == get_header_textcolor() && HEADER_IMAGE == get_header_image())
         return;
 
-	$header = sprintf('#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
+	$header = sprintf('
+#header-title { 
+    background: url(%1$s) no-repeat left center; 
+    width: %2$s; 
+    height: %3$dpx
+}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
 	
-    $text = sprintf('#title, #title a, #title a:hover{ display: block; margin: 0; overflow: hidden; padding: 0;text-indent: -9999px; color: #%s; width:%dpx; height: %dpx }', esc_html(get_header_textcolor()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
-    $header_ie = sprintf('#header-title { background: url(%1$s) no-repeat left center; width:%2$s; height: %3$dpx}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
+    $text = sprintf('
+#title, #title a, #title a:hover{ 
+    display: block; 
+    margin: 0; 
+    overflow: hidden; 
+    padding: 0;
+    text-indent: -9999px; 
+    color: #%s; 
+    width: %dpx; 
+    height: %dpx 
+}'."\n", esc_html(get_header_textcolor()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
+    $header_ie = sprintf('
+#header-title { 
+    background: url(%1$s) no-repeat left center; 
+    width: %2$s;
+    height: %3$dpx
+}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
 	
     printf('<style type="text/css">%1$s %2$s</style>'."\n", $header, $text);
-	printf('<!--[if lt IE 9]><style type="text/css">%1$s</style><![endif]-->'."\n", $header_ie);
+	printf('<!--[if lt IE 9]>'."\n".'<style type="text/css">%1$s</style>'."\n".'<![endif]-->'."\n", $header_ie);
 }
 
 /**

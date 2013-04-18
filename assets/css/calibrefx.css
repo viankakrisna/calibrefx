@@ -82,7 +82,6 @@ h1, h2, h3, h4, h5, h6{
 ------------------------------------------------------------ */
 #header{
     min-height: 100px;
-    margin: 0px;
     background: #e5e5e5;
 }
 
@@ -121,7 +120,8 @@ h1, h2, h3, h4, h5, h6{
 ------------------------------------------------------------ */
 #nav{
     background: #cecece;
-    margin: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #nav.row-fluid{
@@ -289,8 +289,7 @@ h1, h2, h3, h4, h5, h6{
 ------------------------------------------------------------ */
 
 #inner{
-    margin-top: 10px;   
-    padding-left: 20px;
+    margin-top: 10px;
 }
 
 #inner.row-fluid{
@@ -395,6 +394,10 @@ h1, h2, h3, h4, h5, h6{
     margin: 13px 0;
     color: #2D373D;
 	line-height: 20px;
+}
+
+.entry-content p:first-child{
+    margin-top: 0px;
 }
 
 .entry-content p.pages{
@@ -836,7 +839,7 @@ input[type="submit"].searchsubmit:hover{
 ------------------------------------------------------------ */
 #footer-widget{
     background-color: #F3F3F3;
-    margin: 10px 0 0;
+    margin-top: 10px;
 }
 
 #footer-widget.row-fluid{
@@ -1351,14 +1354,7 @@ ul.delete li { background: url(../img/shortcode/icons/delete.png) no-repeat left
 
 /* Slider Shortcode */
 .slider-container{
-
-}
-.slider-wrapper{
-    position: relative;
-    float: left;
-}
-.slider{
-   
+    
 }
 .slider-container::before,
 .slider-container::after{
@@ -1367,6 +1363,12 @@ ul.delete li { background: url(../img/shortcode/icons/delete.png) no-repeat left
 }
 .slider-container::after{
     clear: both;
+}
+.slider-wrapper{
+    position: relative;
+}
+.slider{
+   
 }
 .slider .item{
     width: 100%;

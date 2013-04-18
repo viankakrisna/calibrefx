@@ -50,7 +50,6 @@ function calibrefx_admin_redirect($page, $query_args = array()) {
         return;
 
     $url = menu_page_url($page, false);
-
     foreach ((array) $query_args as $key => $value) {
         if (isset($key) && isset($value)) {
             $url = add_query_arg($key, $value, $url);
