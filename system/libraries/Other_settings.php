@@ -294,6 +294,7 @@ if(isset($_POST['name']) && isset($_POST['url']) ){
         if(empty($_POST['calibrefx_do_export'])) return;
 
         $options = $this->get_export_options();
+        
         $settings = array();
         
         foreach ( $options as $option ) {
