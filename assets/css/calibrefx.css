@@ -375,6 +375,15 @@ h1, h2, h3, h4, h5, h6{
     color: #2f2f2f;
 }
 
+/* This element holds injected scripts inside iframes that in some cases may stretch layouts. So, we're just hiding it. */
+#fb-root {
+display: none;
+}
+ 
+/* To fill the container and nothing else */
+.facebook-like-widget iframe{
+    width: 100% !important;
+}
 /* Post
 ------------------------------------------------------------ */
 .post{
