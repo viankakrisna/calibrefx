@@ -718,6 +718,10 @@ blockquote{
     font-style: italic;
 }
 
+.fb-like.fb_iframe_widget{
+    display: inline-block !important;
+}
+
 .fb_iframe_widget{
     display: block !important;
 }
