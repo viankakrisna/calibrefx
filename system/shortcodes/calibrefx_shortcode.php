@@ -20,6 +20,29 @@
  * @package CalibreFx
  */
 
+
+add_shortcode( 'site_url', 'calibrefx_site_url' );
+
+function calibrefx_site_url($atts, $content = null){
+    extract(shortcode_atts(array(
+                'path' => '',
+                'scheme' => null,
+                    ), $atts));
+
+    return site_url( $path, $scheme );
+}
+
+add_shortcode( 'home_url', 'calibrefx_site_url' );
+
+function calibrefx_home_url($atts, $content = null){
+    extract(shortcode_atts(array(
+                'path' => '',
+                'scheme' => null,
+                    ), $atts));
+
+    return home_url( $path, $scheme );
+}
+
 /**
  * ==============================================================
  * Video Section
@@ -1134,4 +1157,3 @@ function advance_shortcode_unautop($content) {
  *
  */
 add_filter('widget_text', 'do_shortcode');
-
