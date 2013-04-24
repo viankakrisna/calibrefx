@@ -718,6 +718,26 @@ blockquote{
     font-style: italic;
 }
 
+.fb_iframe_widget{
+    display: block !important;
+}
+
+.fb_iframe_widget span{
+    width: 100% !important;
+}
+
+.fb-comments {
+    position: relative;
+    overflow: hidden;
+}
+
+.fb-comments span iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
 /* Pagination
 ------------------------------------------------------------ */
 .pagination ul{

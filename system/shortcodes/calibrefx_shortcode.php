@@ -525,6 +525,20 @@ function calibrefx_feed_url(){
     return $feed_uri;  
 }
 
+add_shortcode('facebook_comment', 'fb_comment_box');
+function fb_comment_box($atts, $content = null) {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'width' => 470,
+                'numberpost' => 10,
+                'url' => get_current_url(),
+                    ), $atts));
+    $output = '<div class="fb-comments" data-href="'.$url.'" data-width="'.$width.'" data-num-posts="'.$numberpost.'"></div>';
+
+    return $before . $output . $after;
+}
+
 /**
  * ==============================================================
  * Google Maps

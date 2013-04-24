@@ -58,3 +58,14 @@ function calibrefx_admin_redirect($page, $query_args = array()) {
 
     wp_redirect(esc_url_raw($url));
 }
+
+/**
+ * Get the current url
+ */
+if ( !function_exists( 'get_current_url' ) ) :
+function get_current_url(){
+    global $wp;
+    $current_url = home_url( $wp->request );
+    return $current_url;
+}
+endif;
