@@ -377,13 +377,19 @@ h1, h2, h3, h4, h5, h6{
 
 /* This element holds injected scripts inside iframes that in some cases may stretch layouts. So, we're just hiding it. */
 #fb-root {
-display: none;
+    display: none;
 }
  
 /* To fill the container and nothing else */
 .facebook-like-widget iframe{
     width: 100% !important;
 }
+
+/* To make twitter widget box width flexibel */
+.twtr-doc {
+    width: 100% !important;
+}
+
 /* Post
 ------------------------------------------------------------ */
 .post{
@@ -742,6 +748,7 @@ blockquote{
     width: 100% !important;
     height: 100% !important;
 }
+
 /* Pagination
 ------------------------------------------------------------ */
 .pagination ul{
@@ -1494,3 +1501,23 @@ ul.ltt-slider-hor-nav a.tabvertnav.activeSlide span {  }
 .ltt-trigger a:hover  { }
 .ltt-trigger.active   { background: url(../img/shortcode/toggle-open.png) no-repeat right; }
 .ltt-toggle-container {	overflow: hidden; width: 100%; clear: both; display: none; }
+
+/* Flexible iFrame
+------------------------------------------------------------ */
+.flexible-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.flexible-container iframe,   
+.flexible-container object,  
+.flexible-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
