@@ -20,7 +20,7 @@
  * @package CalibreFx
  */
 
-class CFX_Twitter_Widget extends WP_Widget {
+class CFX_Twitter_Box_Widget extends WP_Widget {
 
     protected $defaults;
 
