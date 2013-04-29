@@ -1317,46 +1317,32 @@ a.button.icon span.ico.paypal { background: url(../img/shortcode/ico-16x16/paypa
 * L I S T S                                                                                  L I S T S
 ====================================================================================================*/
 
-ul.custom,
-ul.custom ul { list-style: none; }
-ul.custom li { padding: 0 0 0 20px; }
-ul.custom li ul { margin-left: 0px; }
-ul.bullet-tick li { padding-left: 30px; background: url(../img/shortcode/icons/bullet-tick.png) no-repeat left 6px; }
-ul.cross li { padding-left: 30px; background: url(../img/shortcode/icons/cross.png) no-repeat left 6px; }
-ul.bullet-arrow li { background: url(../img/shortcode/icons/bullet_arrow.png) no-repeat left 6px; }
-ul.bullet-black li { background: url(../img/shortcode/icons/bullet_black.png) no-repeat left 6px; }
-ul.bullet-green li { background: url(../img/shortcode/icons/bullet_green.png) no-repeat left 6px; }
-ul.bullet-orange li { background: url(../img/shortcode/icons/bullet_orange.png) no-repeat left 6px; }
-ul.bullet-pink li { background: url(../img/shortcode/icons/bullet_pink.png) no-repeat left 6px; }
-ul.bullet-purple li { background: url(../img/shortcode/icons/bullet_purple.png) no-repeat left 6px; }
-ul.bullet-red li { background: url(../img/shortcode/icons/bullet_red.png) no-repeat left 6px; }
-ul.bullet-star li { background: url(../img/shortcode/icons/bullet_star.png) no-repeat left 6px; }
-ul.bullet-paper-clip li { background: url(../img/shortcode/icons/bullet-paper-clip.png) no-repeat left 6px; }
-ul.add li { background: url(../img/shortcode/icons/add.png) no-repeat left 6px; }
-ul.delete li { background: url(../img/shortcode/icons/delete.png) no-repeat left 6px; }
+.custom-list ul { list-style: none; }
+.custom-list ul li { padding: 0 0 0 20px; }
+.custom-list ul li ul { margin-left: 0px; }
+.custom-list.bullet-tick ul li { padding-left: 30px; background: url(../img/shortcode/icons/bullet-tick.png) no-repeat left 6px; }
+.custom-list.cross ul li { padding-left: 30px; background: url(../img/shortcode/icons/cross.png) no-repeat left 6px; }
+.custom-list.bullet-arrow ul li { background: url(../img/shortcode/icons/bullet_arrow.png) no-repeat left 6px; }
+.custom-list.bullet-black ul li { background: url(../img/shortcode/icons/bullet_black.png) no-repeat left 6px; }
+.custom-list.bullet-green ul li { background: url(../img/shortcode/icons/bullet_green.png) no-repeat left 6px; }
+.custom-list.bullet-orange ul li { background: url(../img/shortcode/icons/bullet_orange.png) no-repeat left 6px; }
+.custom-list.bullet-pink ul li { background: url(../img/shortcode/icons/bullet_pink.png) no-repeat left 6px; }
+.custom-list.bullet-purple ul li { background: url(../img/shortcode/icons/bullet_purple.png) no-repeat left 6px; }
+.custom-list.bullet-red ul li { background: url(../img/shortcode/icons/bullet_red.png) no-repeat left 6px; }
+.custom-list.bullet-star ul li { background: url(../img/shortcode/icons/bullet_star.png) no-repeat left 6px; }
+.custom-list.bullet-paper-clip ul li { background: url(../img/shortcode/icons/bullet-paper-clip.png) no-repeat left 6px; }
+.custom-list.add ul li { background: url(../img/shortcode/icons/add.png) no-repeat left 6px; }
+.custom-list.delete ul li { background: url(../img/shortcode/icons/delete.png) no-repeat left 6px; }
 
 /*====================================================================================================
-* C O L U M N S                                                                          C O L U M N S
+* T E X T A L I G N M E N T                                                  T E X T A L I G N M E N T
 ====================================================================================================*/
-
-.one-half,
-.one-third,
-.two-thirds,
-.one-fourth,
-.three-fourths  { position: relative; float: left; margin-right: 4%; margin-bottom: 10px; }
-.one-half       { width: 48%; }
-.one-third      { width: 30.66%; }
-.two-thirds     { width: 65.32%; }
-.one-fourth     { width: 22%; }
-.three-fourths  { width: 74%; }
-.last           { margin-right: 0 !important; clear: right; }
 
 .text-align-center  { text-align: center; }
 .text-align-justify { text-align: justify; }
 .text-align-left    { text-align: left; }
 .text-align-right   { text-align: right; }
 .center {margin:0 auto;text-align: center;}
-
 
 /*====================================================================================================
 * S L I D E R                                                                         	   S L I D E R

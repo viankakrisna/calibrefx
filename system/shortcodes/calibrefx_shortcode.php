@@ -333,19 +333,19 @@ add_shortcode('list', 'calibrefx_list');
 
 function calibrefx_list($atts, $content = '') {
     extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'class' => '',
-                'style' => ''
-                    ), $atts));
+        'before' => '',
+        'after' => '',
+        'class' => '',
+        'style' => ''
+    ), $atts));
 
-    $classes = 'custom';
+    $classes = 'custom-list';
     if (!empty($class))
         $classes .= ' ' . $class;
     if (!empty($style))
         $classes .= ' ' . $style;
 
-    return $before . '<ul class="' . $classes . '">' . do_shortcode($content) . '</ul>' . $after;
+    return $before . '<div class="' . $classes . '">' . advance_shortcode_unautop($content) . '</div>' . $after;
 }
 
 $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_list');
