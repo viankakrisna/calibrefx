@@ -437,6 +437,38 @@ function calibrefx_clear() {
 
 /**
  * ==============================================================
+ * Text
+ * ==============================================================
+ */
+add_shortcode('text', 'calibrefx_text');
+
+function calibrefx_text($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'color' => '',
+                'font' => '',
+                'style' => '',
+                    ), $atts));
+
+    $classes = 'text';
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($color))
+        $classes .= ' ' . $color;
+    if (!empty($font))
+        $classes .= ' font-' . $font;
+    if (!empty($style))
+        $classes .= ' font-' . $style;
+
+    return $before . '<span class="' . $classes . '">' . do_shortcode($content) . '</span>' . $after;
+}
+
+$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_text');
+
+/**
+ * ==============================================================
  * HEADLINE
  * ==============================================================
  */

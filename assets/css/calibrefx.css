@@ -1025,6 +1025,7 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 /* Fonts */
 
 /** font family **/
+.font-default { font-family: inherit; }
 .font-arial { font-family: Arial, Helvetica, Sans-serif; }
 .font-verdana { font-family: Verdana, Arial, Helvetica, Sans-serif;  }
 .font-times { font-family: 'Times New Roman', Times, Serif; }
