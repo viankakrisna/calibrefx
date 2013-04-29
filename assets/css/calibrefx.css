@@ -1521,3 +1521,13 @@ ul.ltt-slider-hor-nav a.tabvertnav.activeSlide span {  }
     width: 100%;
     height: 100%;
 }
+
+/* Social Button
+------------------------------------------------------------ */
+.social-bookmark{
+    display: inline-block;
+    margin-right: 5px;
+}
+.social-bookmark.facebook-like{
+    min-width: 47px;
+}
