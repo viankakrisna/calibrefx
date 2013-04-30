@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6{
 .widget-area h4 {
     background-color: #e5e5e5;
     border-bottom: 1px solid #bdbdbd;
-    font-size: 14px;
+    font-size: 1em;
     font-weight: bold;
     padding: 9px 5px 8px 16px;
     text-transform: uppercase;
@@ -65,11 +65,8 @@ h1, h2, h3, h4, h5, h6{
     background: none;
     border: none;
     color: #fff;
-    font-size: 12px;
-    font-weight: bold;
     margin: 0 0 5px;
     padding: 0;
-    text-transform: uppercase;
 }
 
 
@@ -442,7 +439,6 @@ h1, h2, h3, h4, h5, h6{
 .entry-content p{
     margin: 13px 0;
     color: #2D373D;
-	line-height: 20px;
 }
 
 .entry-content p:first-child{
@@ -508,14 +504,13 @@ h1, h2, h3, h4, h5, h6{
 }
 
 blockquote{
-    font-size: 14px;
     font-style: italic;
 }
 
 /* Post Info
 ------------------------------------------------------------ */
 .post-info {
-    font-size: 11px;
+    font-size: 0.8em;
     margin: 5px 0;
     color: #2D373D;
 }
@@ -544,7 +539,7 @@ blockquote{
 .post-meta {
     border-top: 1px solid #ddd;
     clear: both;
-    font-size: 12px;
+    font-size: 0.85em;
     padding: 5px 0 0;
 }
 
@@ -555,10 +550,6 @@ blockquote{
     margin: 0 0 40px;
     overflow: hidden;
     padding: 10px;
-}
-
-.author-box p {
-    font-size: 14px;
 }
 
 .avatar, .featuredpage img, .featuredpost img, .post-image {
@@ -615,7 +606,6 @@ blockquote{
 #comment,
 #email,
 #url {
-    font-size: 12px;
     padding: 5px;
     width: 250px;
     margin: 0px;
@@ -626,11 +616,10 @@ blockquote{
     margin: 0px 0px 20px;
 }
 
-.comment-form-email,
 .help-block{
     margin-bottom: 7px;
     margin-top: 3px;
-    font-size: 12px;
+    font-size: 0.9em;
 }
 
 #comment {
@@ -687,7 +676,7 @@ blockquote{
 }
 
 .commentmetadata {
-    font-size: 11px;
+    font-size: smaller;
 }
 
 .nocomments {
@@ -716,7 +705,7 @@ blockquote{
     display: block;
     font-weight: bold;
     margin-bottom: 8px;
-    font-size: 16px;
+    font-size: 1.14em;
     cursor: pointer;
 }
 
@@ -754,7 +743,7 @@ blockquote{
 }
 #comments .comment-list .comment-content blockquote,
 #comments .comment-list .comment-content blockquote p{
-    font-size: 13px;
+    font-size: 1em;
     font-style: italic;
 }
 
@@ -827,7 +816,7 @@ blockquote{
     border-radius: 6px;
     color: #2f2f2f;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 0.9em;
     font-weight: bold;
     padding: 5px 10px;
     text-decoration: none;
@@ -872,16 +861,14 @@ form.searchform{
 input[type=text].s{
     background-color: #fff;
     color: #20586d;
-    font-size: 11px;
+    font-size: 0.8em;
     font-weight: bold;
-    
     width: 68%;
     padding: 5px 1%;
     margin: 0px;
     float: left;
     border: 1px solid #e5e5e5;
     box-shadow: none;
-    font-size: 14px;
     color: #2f2f2f;
     font-weight: normal;
 }
@@ -897,7 +884,6 @@ input[type="submit"].searchsubmit{
     border-radius: 0px;	
     padding: 6px 0px;
     color: #2f2f2f;
-    font-size: 14px;
 }
 
 input[type="submit"].searchsubmit:hover{
