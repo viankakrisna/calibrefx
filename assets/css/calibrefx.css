@@ -416,7 +416,11 @@ h1, h2, h3, h4, h5, h6{
 }
 
 #sidebar .facebook-like-widget iframe,
-#sidebar-alt .facebook-like-widget iframe{
+#sidebar-alt .facebook-like-widget iframe,
+#sidebar .twtr-doc,
+#sidebar-alt .twtr-doc,
+#sidebar .twitter-timeline,
+#sidebar-alt .twitter-timeline{
     margin-top: 5px;
 }
 
