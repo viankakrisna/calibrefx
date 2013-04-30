@@ -82,7 +82,7 @@ class CFX_Twitter_Box_Widget extends WP_Widget {
         
         printf('<script>
 			jQuery(document).ready(function(){
-                jQuery.getScript("http://widgets.twimg.com/j/2/widget.js", function () {
+                jQuery(function() {
     				var twitterWidget = new TWTR.Widget({
     				  version: 2,
     				  type: \'profile\',

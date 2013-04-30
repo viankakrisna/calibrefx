@@ -219,8 +219,8 @@ function calibrefx_add_socials_script() {
     //@TODO : add enable twitter in theme setting
     echo '<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>';
 
-    if (!empty($twitteruser)) {
-        //echo '<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>';
+    if (!empty($twitteruser) && is_active_widget( false, false, 'twitter-widget' )) {
+        echo '<script src="http://widgets.twimg.com/j/2/widget.js"></script>';
     }
 }
 
