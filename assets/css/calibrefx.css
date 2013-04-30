@@ -54,7 +54,6 @@ h1, h2, h3, h4, h5, h6{
     background-color: #e5e5e5;
     border-bottom: 1px solid #bdbdbd;
     font-size: 1em;
-    font-weight: bold;
     padding: 9px 5px 8px 16px;
     text-transform: uppercase;
     color: #848484;
@@ -408,7 +407,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 /* To make twitter widget box width flexibel */
-.twtr-doc {
+.twtr-doc, .twitter-timeline {
     width: 100% !important;
 }
 
