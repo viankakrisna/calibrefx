@@ -20,7 +20,6 @@
  * @package CalibreFx
  */
 
-
 add_shortcode( 'site_url', 'calibrefx_site_url' );
 
 function calibrefx_site_url($atts, $content = null){
@@ -77,7 +76,8 @@ function calibrefx_vimeo($atts, $content = null) {
     return '<iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://player.vimeo.com/video/' . $content . '" frameborder="0"></iframe>';
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_video');
+$tinymce_button_video = new CFX_Shortcode();
+$tinymce_button_video->calibrefx_add_shortcode_button('calibrefx_shortcode_video', CALIBREFX_SHORTCODE_URL . '/form-video.php', 360, 240, __('Video shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/video.png');
 
 /**
  * ==============================================================
@@ -261,7 +261,8 @@ function calibrefx_button($atts, $content = '') {
     }
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_buttons');
+$tinymce_button_buttons = new CFX_Shortcode();
+$tinymce_button_buttons->calibrefx_add_shortcode_button('calibrefx_shortcode_buttons', CALIBREFX_SHORTCODE_URL . '/form-buttons.php', 360, 420, __('Button shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/buttons.png');
 
 /**
  * ==============================================================
@@ -287,7 +288,8 @@ function calibrefx_tooltip($atts, $content = '') {
     return $before.'<a href="'.$url.'" data-toggle="tooltip" data-placement="'.$position.'" data-original-title="'.$text.'"'.$classes.$ids.'>'.advance_shortcode_unautop($content).'</a>'.$after;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_tooltips');
+$tinymce_button_tooltips = new CFX_Shortcode();
+$tinymce_button_tooltips->calibrefx_add_shortcode_button('calibrefx_shortcode_tooltips', CALIBREFX_SHORTCODE_URL . '/form-tooltips.php', 360, 380, __('Tooltips shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/tooltips.png');
 
 /**
  * ==============================================================
@@ -322,7 +324,8 @@ function calibrefx_dropcap($atts, $content = '') {
     return $before . '<span class="' . $classes . '">' . do_shortcode($content) . '</span>' . $after;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_dropcaps');
+$tinymce_button_dropcaps = new CFX_Shortcode();
+$tinymce_button_dropcaps->calibrefx_add_shortcode_button('calibrefx_shortcode_dropcaps', CALIBREFX_SHORTCODE_URL . '/form-dropcaps.php', 360, 280, __('Dropcaps shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/dropcaps.png');
 
 /**
  * ==============================================================
@@ -333,24 +336,26 @@ add_shortcode('list', 'calibrefx_list');
 
 function calibrefx_list($atts, $content = '') {
     extract(shortcode_atts(array(
-        'before' => '',
-        'after' => '',
-        'class' => '',
-        'style' => ''
-    ), $atts));
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'style' => ''
+                    ), $atts));
 
-    $classes = 'custom-list';
+    $classes = 'custom';
     if (!empty($class))
         $classes .= ' ' . $class;
     if (!empty($style))
         $classes .= ' ' . $style;
 
-    return $before . '<div class="' . $classes . '">' . advance_shortcode_unautop($content) . '</div>' . $after;
+    return $before . '<ul class="' . $classes . '">' . do_shortcode($content) . '</ul>' . $after;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_list');
+$tinymce_button_list = new CFX_Shortcode();
+$tinymce_button_list->calibrefx_add_shortcode_button('calibrefx_shortcode_list', CALIBREFX_SHORTCODE_URL . '/form-list.php', 360, 200, __('List shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/list.png');
 
 add_shortcode('li', 'calibrefx_list_item');
+
 function calibrefx_list_item($atts, $content = '') {
     extract(shortcode_atts(array(
                 'class' => ''
@@ -361,7 +366,7 @@ function calibrefx_list_item($atts, $content = '') {
 
 /**
  * ==============================================================
- * Row & Column
+ * Row
  * ==============================================================
  */
 
@@ -379,6 +384,11 @@ function calibrefx_row($atts, $content = '') {
     return '<div class="' . $class . ' '.calibrefx_row_class().'" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
+/**
+ * ==============================================================
+ * Column
+ * ==============================================================
+ */
 add_shortcode('column', 'calibrefx_column');
 
 function calibrefx_column($atts, $content = '') {
@@ -412,7 +422,14 @@ function calibrefx_column($atts, $content = '') {
     return $before . '<div class="' . $classes . '" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_column');
+$tinymce_button_row = new CFX_Shortcode();
+$tinymce_button_row->calibrefx_add_shortcode_button('calibrefx_shortcode_column', CALIBREFX_SHORTCODE_URL . '/form-cols.php', 360, 220, __('Column shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/cols.png');
+
+/**
+ * ==============================================================
+ * Separator
+ * ==============================================================
+ */
 
 add_shortcode('separator', 'calibrefx_separator');
 
@@ -430,42 +447,10 @@ function calibrefx_separator($atts, $content = '') {
 }
 
 add_shortcode('clear', 'calibrefx_clear');
-
 function calibrefx_clear() {
     return '<div class="clearfix"></div>';
 }
 
-/**
- * ==============================================================
- * Text
- * ==============================================================
- */
-add_shortcode('text', 'calibrefx_text');
-
-function calibrefx_text($atts, $content = '') {
-    extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'class' => '',
-                'color' => '',
-                'font' => '',
-                'style' => '',
-                    ), $atts));
-
-    $classes = 'text';
-    if (!empty($class))
-        $classes .= ' ' . $class;
-    if (!empty($color))
-        $classes .= ' ' . $color;
-    if (!empty($font))
-        $classes .= ' font-' . $font;
-    if (!empty($style))
-        $classes .= ' font-' . $style;
-
-    return $before . '<span class="' . $classes . '">' . do_shortcode($content) . '</span>' . $after;
-}
-
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_text');
 
 /**
  * ==============================================================
@@ -503,7 +488,6 @@ function calibrefx_headline($atts, $content = '') {
  */
 
 add_shortcode( 'gplus_url', 'calibrefx_gplus_url' );
-
 function calibrefx_gplus_url(){
     $gplus_page = calibrefx_get_option('gplus_page');
     
@@ -511,7 +495,6 @@ function calibrefx_gplus_url(){
 }
 
 add_shortcode( 'facebook_url', 'calibrefx_facebook_url' );
-
 function calibrefx_facebook_url(){
     $facebook_fanpage = calibrefx_get_option('facebook_fanpage');
     
@@ -519,7 +502,6 @@ function calibrefx_facebook_url(){
 }
 
 add_shortcode( 'twitter_url', 'calibrefx_twitter_url' );
-
 function calibrefx_twitter_url(){
     $twitter_profile = calibrefx_get_option('twitter_profile');
     
@@ -527,7 +509,6 @@ function calibrefx_twitter_url(){
 }
 
 add_shortcode( 'youtube_url', 'calibrefx_youtube_url' );
-
 function calibrefx_youtube_url(){
     $youtube_channel = calibrefx_get_option('youtube_channel');
     
@@ -535,7 +516,6 @@ function calibrefx_youtube_url(){
 }
 
 add_shortcode( 'linkedin_url', 'calibrefx_linkedin_url' );
-
 function calibrefx_linkedin_url(){
     $linkedin_profile = calibrefx_get_option('linkedin_profile');
     
@@ -543,7 +523,6 @@ function calibrefx_linkedin_url(){
 }
 
 add_shortcode( 'pinterest_url', 'calibrefx_pinterest_url' );
-
 function calibrefx_pinterest_url(){
     $pinterest_profile = calibrefx_get_option('pinterest_profile');
     
@@ -551,11 +530,24 @@ function calibrefx_pinterest_url(){
 }
 
 add_shortcode( 'feed_url', 'calibrefx_feed_url' );
-
 function calibrefx_feed_url(){
     $feed_uri = calibrefx_get_option('feed_uri');
     
     return $feed_uri;  
+}
+
+add_shortcode('facebook_comment', 'fb_comment_box');
+function fb_comment_box($atts, $content = null) {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'width' => 470,
+                'numberpost' => 10,
+                'url' => get_current_url(),
+                    ), $atts));
+    $output = '<div class="fb-comments" data-href="'.$url.'" data-width="'.$width.'" data-num-posts="'.$numberpost.'"></div>';
+
+    return $before . $output . $after;
 }
 
 /**
@@ -563,7 +555,6 @@ function calibrefx_feed_url(){
  * Google Maps
  * ==============================================================
  */
-
 add_shortcode('gmaps', 'calibrefx_gmap');
 
 function calibrefx_gmap($atts, $content = '') {
@@ -576,10 +567,11 @@ function calibrefx_gmap($atts, $content = '') {
                 'src' => ''
                     ), $atts));
 
-    return $before . '<div class="flexible-container"><iframe width="' . $width . '" height="' . $height . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . html_entity_decode($src) . '&output=embed" class="' . $class . '"></iframe></div>' . $after;
+    return $before . '<iframe width="' . $width . '" height="' . $height . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . html_entity_decode($src) . '&output=embed" class="' . $class . '"></iframe>' . $after;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps');
+$tinymce_button_gmaps = new CFX_Shortcode();
+$tinymce_button_gmaps->calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps', CALIBREFX_SHORTCODE_URL . '/form-gmaps.php', 470, 240, __('Google map shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/googlemaps.png');
 
 /**
  * ==============================================================
@@ -676,7 +668,8 @@ function calibrefx_slider_caption($atts, $content = '') {
     return '<div class="carousel-caption ' . $class . '">' . $before . advance_shortcode_unautop($content) . $after . '</div>';
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_slider');
+$tinymce_button_slider = new CFX_Shortcode();
+$tinymce_button_slider->calibrefx_add_shortcode_button('calibrefx_shortcode_slider', CALIBREFX_SHORTCODE_URL . '/form-slider.php', 400, 460, __('Slider shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/nivo.png');
 
 /**
  * ==============================================================
@@ -749,7 +742,8 @@ function calibrefx_tabs_item($atts, $content = null) {
     return '<div class="tab-pane" id="'.$tab_elm_id.'-'.$id.'">'.advance_shortcode_unautop($content).'</div>';
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_tabs');
+$tinymce_button_tabs = new CFX_Shortcode();
+$tinymce_button_tabs->calibrefx_add_shortcode_button('calibrefx_shortcode_tabs', CALIBREFX_SHORTCODE_URL . '/form-tabs.php', 360, 340, __('Tabs shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/tabs.png');
 
 /**
  * ==============================================================
@@ -784,7 +778,6 @@ function calibrefx_togglebox($atts, $content = null) {
 }
 
 add_shortcode('togglebox_item', 'calibrefx_togglebox_item');
-
 function calibrefx_togglebox_item($atts, $content = null){
     global $togglebox_id;
 
@@ -812,7 +805,8 @@ function calibrefx_togglebox_item($atts, $content = null){
     return $output;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_togglebox');
+$tinymce_button_togglebox = new CFX_Shortcode();
+$tinymce_button_togglebox->calibrefx_add_shortcode_button('calibrefx_shortcode_togglebox', CALIBREFX_SHORTCODE_URL . '/form-togglebox.php', 360, 200, __('Togglebox shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/togglebox.png');
 
 /**
  * ==============================================================
@@ -822,9 +816,17 @@ $tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_toggle
 add_shortcode('digg', 'calibrefx_digg');
 
 function calibrefx_digg($atts, $content = null) {
-    $output = '<span class="social-bookmark digg-button"><a class="DiggThisButton DiggMedium"></a></span>';
-
-    wp_enqueue_script( 'digg-button-script', 'http://widgets.digg.com/buttons.js', '', false, true );
+    $output = "<script type='text/javascript'>
+(function() {
+var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
+s.type = 'text/javascript';
+s.async = true;
+s.src = 'http://widgets.digg.com/buttons.js';
+s1.parentNode.insertBefore(s, s1);
+})();
+</script>
+<!-- Medium Button -->
+<a class='DiggThisButton DiggMedium'></a>";
 
     return $output;
 }
@@ -832,92 +834,101 @@ function calibrefx_digg($atts, $content = null) {
 add_shortcode('stumble', 'calibrefx_stumble');
 
 function calibrefx_stumble($atts, $content = null) {
-    $output = '<span class="social-bookmark stumbleupon-badge"><su:badge layout="5"></su:badge></span>';
-
-    wp_enqueue_script( 'stumbleupon-badge-script', 'http://platform.stumbleupon.com/1/widgets.js', '', false, true );
-
+    $output = "<script src='http://www.stumbleupon.com/hostedbadge.php?s=5'></script>";
     return $output;
 }
 
-add_shortcode('fblike', 'calibrefx_fblike');
+add_shortcode('facebook', 'calibrefx_facebook');
 
-function calibrefx_fblike($atts, $content = null) {
-    extract(shortcode_atts(array(
-        'href' => '',
-        'send' => 'false',
-        'width' => '450',
-        'faces' => 'false',
-        'layout' => 'box_count',
-        'color' => '',
-        'action' => '',
-    ), $atts));
+function calibrefx_facebook($atts, $content = null) {
+    $output = "<a name='fb_share' type='button_count' href='http://www.facebook.com/sharer.php'></a><script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>";
+    return $output;
+}
 
-    $attr = '';
+add_shortcode('buzz', 'calibrefx_buzz');
 
-    if(!empty($href)) $attr .=' data-href="'.$href.'"';
-    else $attr .=' data-href="'.get_permalink().'"';
+function calibrefx_buzz($atts, $content = null) {
+    $output = "<a title='Post to Google Buzz' class='google-buzz-button' href='http://www.google.com/buzz/post' data-button-style='normal-count'></a>
+<script type='text/javascript' src='http://www.google.com/buzz/api/button.js'></script>";
+    return $output;
+}
 
-    $attr .=' data-send="'.$send.'"';
-    $attr .=' data-width="'.$width.'"';
-    $attr .=' data-show-faces="'.$faces.'"';
-
-    if(!empty($layout)) $attr .=' data-layout="'.$layout.'"';
-    if(!empty($color)) $attr .=' data-colorscheme="'.$color.'"';
-    if(!empty($action)) $attr .=' data-action="'.$action.'"';
-    
-    $output = '<span class="social-bookmark facebook-like"><span class="fb-like"'.$attr.'></span></span>';
-
+add_shortcode('twitter', 'calibrefx_twitter');
+function calibrefx_twitter($atts, $content = null) {
+    $calibrefx_twitter = calibrefx_get_option('calibrefx_twitter');
+    if ($calibrefx_twitter)
+        $output = "<script type='text/javascript' src='http://twittercounter.com/embed/{$calibrefx_twitter}/ffffff/111111'></script>";
     return $output;
 }
 
 add_shortcode('tweet', 'calibrefx_tweet');
-
 function calibrefx_tweet($atts, $content = null) {
     extract(shortcode_atts(array(
-        'url' => get_permalink(),
-        'count' => 'vertical',
-        'size' => 'medium',
-    ), $atts));
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'width' => '',
+                'url' => get_permalink(),
+                'count' => 'horizontal'
+                    ), $atts));
 
-    if(!empty($url)) $attr .=' data-url="'.$url.'"';
-    if(!empty($count)) $attr .=' data-count="'.$count.'"';
-    if(!empty($size)) $attr .=' data-size="'.$size.'"';
-    
-    $output = '<span class="social-bookmark tweet-share"><a href="https://twitter.com/share" class="twitter-share-button"'.$attr.'>Tweet</a></span>';
+    wp_enqueue_script( 'calibrefx-twitter-widget', 'http://platform.twitter.com/widgets.js', array(), false, true);
 
-    return $output;
+    $output = '
+       <a href="https://twitter.com/share" class="twitter-share-button" data-url="'.$url.'" data-count="'.$count.'">Tweet</a>
+    ';
+
+    return $before . $output . $after;
 }
 
+add_shortcode('fblike', 'calibrefx_fblike');
+function calibrefx_fblike($atts, $content = null) {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'width' => '',
+                'url' => get_permalink(),
+                'count' => 'button_count'
+                    ), $atts));
+
+    $output = '
+        <div class="fb-like" data-href="'.$url.'" data-send="false" data-layout="'.$count.'" data-width="'.$width.'" 
+        data-show-faces="false"></div>
+    ';
+
+    return $before . $output . $after;
+}
 
 add_shortcode('gplus', 'calibrefx_gplus');
-
 function calibrefx_gplus($atts, $content = null) {
     extract(shortcode_atts(array(
-        'width' => 300,
-        'size' => 'tall',
-        'annotation' => 'bubble',
-        'url' => get_permalink(),
-    ), $atts));
-
-    if(!empty($width)) $attr .=' data-width="'.$width.'"';
-    if(!empty($url)) $attr .=' data-href="'.$url.'"';
-    if(!empty($size)) $attr .=' data-size="'.$size.'"';
-    if(!empty($annotation)) $attr .=' data-annotation="'.$annotation.'"';
-
-    $output = '<span class="social-bookmark gplus-button"><span class="g-plusone"'.$attr.'></span></span>';
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'width' => 300,
+                'size' => 'medium',
+                'count' => 'true',
+                'url' => get_permalink(),
+                    ), $atts));
 
     wp_enqueue_script( 'calibrefx-gplus-widget', 'https://apis.google.com/js/plusone.js', array(), false, true);
 
-    return $output;
+    $output = '
+        <div class="g-plusone" data-size="'.$size.'" data-width="'.$width.'" data-href="'.$url.'" data-count="'.$count.'"></div>
+    ';
+
+    return $before . $output . $after;
 }
 
 add_shortcode('pinterest', 'calibrefx_pinterest');
-
 function calibrefx_pinterest($atts, $content = null) {
     global $post;
 
     extract(shortcode_atts(array(
-        'count' => 'above',
+        'before' => '',
+        'after' => '',
+        'count' => 'beside',
         'url' => get_permalink(),
         'media' => '',
     ), $atts));
@@ -928,28 +939,38 @@ function calibrefx_pinterest($atts, $content = null) {
         $img_url = calibrefx_get_image(array('format' => 'url', 'id' => $image_id));
         if(!empty($img_url)) $media = $img_url;
     }
-    
-    $output = '<span class="social-bookmark pinterest-button"><a data-pin-config="'.$count.'" href="http://pinterest.com/pin/create/button/?url='.urlencode($url).'&media='.urlencode($media).'&description='.urlencode($content).'" data-pin-do="buttonPin" ><img src="http://assets.pinterest.com/images/pidgets/pin_it_button.png" /></a></span>';
 
     wp_enqueue_script( 'calibrefx-pinterest-widget', 'http://assets.pinterest.com/js/pinit.js', array(), false, true);
 
-    return $output;
-}
-
-add_shortcode('facebook_comment', 'fb_comment_box');
-
-function fb_comment_box($atts, $content = null) {
-    extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'width' => 470,
-                'numberpost' => 10,
-                'url' => get_current_url(),
-                    ), $atts));
-    $output = '<div class="fb-comments" data-href="'.$url.'" data-width="'.$width.'" data-num-posts="'.$numberpost.'"></div>';
+    $output = '
+        <a data-pin-config="'.$count.'" href="http://pinterest.com/pin/create/button/?url='.urlencode($url).'&media='.urlencode($media).'&description='.urlencode($content).'" data-pin-do="buttonPin" ><img src="http://assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
+    ';
 
     return $before . $output . $after;
 }
+
+add_shortcode('feedburner', 'calibrefx_feedburner');
+
+function calibrefx_feedburner($atts, $content = null) {
+    $calibrefx_feedburner = get_option('calibrefx_feedburner');
+    extract(shortcode_atts(array(
+                "name" => 'name'
+                    ), $atts));
+    if ($calibrefx_feedburner)
+        $output = "<a href='http://feeds.feedburner.com/{$calibrefx_feedburner}'><img src='http://feeds.feedburner.com/~fc/{$calibrefx_feedburner}?bg=99CCFF&amp;fg=444444&amp;anim=0' height='26' width='88' style='border:0' alt='' />
+</a>";
+    return $output;
+}
+
+add_shortcode('retweet', 'calibrefx_retweet');
+
+function calibrefx_retweet($atts, $content = null) {
+    $output = "<a href='http://twitter.com/share' class='twitter-share-button' data-count='vertical'>Tweet</a><script type='text/javascript' src='http://platform.twitter.com/widgets.js'></script>";
+    return $output;
+}
+
+$tinymce_button_social = new CFX_Shortcode();
+$tinymce_button_social->calibrefx_add_shortcode_button('calibrefx_shortcode_social', CALIBREFX_SHORTCODE_URL . '/form-social.php', 360, 200, __('Social shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/social.png');
 
 /**
  * ==============================================================
@@ -1093,53 +1114,6 @@ function calibrefx_contact_form($atts, $content = null) {
     );
 
     return $calibrefx->form->open('calibrefx_contact_form', site_url('contact'))->build($rows);
-}
-
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_social');
-
-/**
- * add shortcode buttons to editor
- *  
- * @access public
- * @author Hilaladdiyar Muhammad Nur
- *
- */
-class calibrefx_add_shortcode_button {
-
-    var $plugin_name = "";
-
-    function calibrefx_add_shortcode_button($plugin_name = '') {
-        $this->plugin_name = $plugin_name;
-        add_filter('tiny_mce_version', array(&$this, 'increase_tinymce_version'));
-        add_action('init', array(&$this, 'add_sc_buttons'));
-    }
-
-    function add_sc_buttons() {
-        // Check that current user can edit post
-        if (!current_user_can('edit_posts') && !current_user_can('edit_pages'))
-            return;
-
-        // Check that rich editing is enable
-        if (get_user_option('rich_editing') == 'true') {
-            add_filter("mce_external_plugins", array(&$this, "calibrefx_add_scbuttons_plugin"), 5);
-            add_filter('mce_buttons_3', array(&$this, 'calibrefx_register_scbuttons_plugin'), 5);
-        }
-    }
-
-    function calibrefx_register_scbuttons_plugin($buttons) {
-        array_push($buttons, "", $this->plugin_name);
-        return $buttons;
-    }
-
-    function calibrefx_add_scbuttons_plugin($plugin_arr) {
-        $plugin_arr[$this->plugin_name] = CALIBREFX_JS_URL . '/calibrefx-admin-shortcode.js';
-        return $plugin_arr;
-    }
-
-    function increase_tinymce_version($version) {
-        return++$version;
-    }
-
 }
 
 /**

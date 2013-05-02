@@ -40,14 +40,25 @@
 class CFX_Shortcode {
 
     var $plugin_name = "";
+    var $form_url = "";
+    var $width = "";
+    var $height = "";
+    var $title = "";
+    var $img_url = "";
 
-    function add_shortcode_button($plugin_name = '') {
+    public function calibrefx_add_shortcode_button($plugin_name = '', $form_url = '', $width = '320', $height = '460', $title = '', $img_url = '') {
         $this->plugin_name = $plugin_name;
+        $this->form_url = $form_url;
+        $this->width = $width;
+        $this->height = $height;
+        $this->title = $title;
+        $this->img_url = $img_url;
+
         add_filter('tiny_mce_version', array(&$this, 'increase_tinymce_version'));
         add_action('init', array(&$this, 'add_sc_buttons'));
     }
 
-    function add_sc_buttons() {
+    public function add_sc_buttons() {
         // Check that current user can edit post
         if (!current_user_can('edit_posts') && !current_user_can('edit_pages'))
             return;
@@ -59,18 +70,17 @@ class CFX_Shortcode {
         }
     }
 
-    function calibrefx_register_scbuttons_plugin($buttons) {
+    public function calibrefx_register_scbuttons_plugin($buttons) {
         array_push($buttons, "", $this->plugin_name);
         return $buttons;
     }
 
-    function calibrefx_add_scbuttons_plugin($plugin_arr) {
-        $plugin_arr[$this->plugin_name] = CALIBREFX_JS_URL . '/calibrefx-admin-shortcode.js';
+    public function calibrefx_add_scbuttons_plugin($plugin_arr) {
+        $plugin_arr[$this->plugin_name] = CALIBREFX_SHORTCODE_URL . '/calibrefx_tinymce_add_plugin.php?plugin_name='.$this->plugin_name.'&form_url='.urlencode($this->form_url).'&width='.$this->width.'&height='.$this->height.'&title='.urlencode($this->title).'&img_url='.urlencode($this->img_url);
         return $plugin_arr;
     }
 
-    function increase_tinymce_version($version) {
+    public function increase_tinymce_version($version) {
         return++$version;
     }
-
 }
