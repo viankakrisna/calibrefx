@@ -273,6 +273,20 @@ function calibrefx_print_wrap() {
         printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
     }
 
+    if ( !current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {
+        $wrap = sprintf('
+.wrap.row-fluid{
+    width: %dpx;
+    margin-left: auto;
+    margin-right: auto
+}
+#header, #nav, #subnav, #inner, #footer, #footer-widget{
+    min-width: %dpx;
+}
+', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
+   
+        printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
+    }
 
     $wrap_ie = sprintf('
 .wrap.row-fluid{

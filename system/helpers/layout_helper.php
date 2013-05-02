@@ -53,7 +53,7 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
     if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
         return '';
 
-    if (calibrefx_layout_is_fluid() || !current_theme_supports('calibrefx-responsive-style'))
+    if (calibrefx_layout_is_fluid() /*|| !current_theme_supports('calibrefx-responsive-style')*/)
         return '';
 
     $row_class = calibrefx_row_class();
@@ -190,14 +190,20 @@ function calibrefx_get_layout($context) {
  */
 function calibrefx_site_layout() {
 
-    $site_layout = calibrefx_get_option('site_layout');
+    $site_layout = calibrefx_get_option('site_layout'); 
 
     // Use default layout as a fallback, if necessary
     if (!calibrefx_get_layout($site_layout)) {
         $site_layout = calibrefx_get_default_layout();
     }
 
+    $front_content = get_option('show_on_front');
+
     $custom_layout = calibrefx_get_custom_field('site_layout');
+
+    if((is_home() && $front_content == 'posts') || (is_front_page() && $front_content == 'posts')){
+        $custom_layout = false;
+    }
 
     if ($custom_layout) {
         return esc_attr(apply_filters('calibrefx_site_layout', $custom_layout));
@@ -243,10 +249,7 @@ function calibrefx_layout_selector($args = array()) {
  * @return string
  */
 function calibrefx_row_class() {
-    $rowClass = 'row';
-    if ( current_theme_supports('calibrefx-responsive-style') ) {
-        $rowClass = 'row-fluid';
-    }
+    $rowClass = 'row-fluid';
 
     return apply_filters( 'calibrefx_row_class', $rowClass );
 }
@@ -266,10 +269,7 @@ function row_class() {
  * @return string
  */
 function calibrefx_container_class() {
-    $containerClass = 'container';
-    if ( current_theme_supports('calibrefx-responsive-style') ) {
-        $containerClass = 'container-fluid';
-    }
+    $containerClass = 'container-fluid';
 
     return apply_filters( 'calibrefx_container_class', $containerClass );
 }
