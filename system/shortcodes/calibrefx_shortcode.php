@@ -77,7 +77,7 @@ function calibrefx_vimeo($atts, $content = null) {
 }
 
 $tinymce_button_video = new CFX_Shortcode();
-$tinymce_button_video->calibrefx_add_shortcode_button('calibrefx_shortcode_video', CALIBREFX_SHORTCODE_URL . '/form-video.php', 360, 240, __('Video shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/video.png');
+$tinymce_button_video->calibrefx_add_shortcode_button('calibrefx_shortcode_video', CALIBREFX_SHORTCODE_URL . '/form-video.php', 360, 240, __('Video shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/video.png');
 
 /**
  * ==============================================================
@@ -262,7 +262,7 @@ function calibrefx_button($atts, $content = '') {
 }
 
 $tinymce_button_buttons = new CFX_Shortcode();
-$tinymce_button_buttons->calibrefx_add_shortcode_button('calibrefx_shortcode_buttons', CALIBREFX_SHORTCODE_URL . '/form-buttons.php', 360, 420, __('Button shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/buttons.png');
+$tinymce_button_buttons->calibrefx_add_shortcode_button('calibrefx_shortcode_buttons', CALIBREFX_SHORTCODE_URL . '/form-buttons.php', 360, 420, __('Button shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/buttons.png');
 
 /**
  * ==============================================================
@@ -289,7 +289,7 @@ function calibrefx_tooltip($atts, $content = '') {
 }
 
 $tinymce_button_tooltips = new CFX_Shortcode();
-$tinymce_button_tooltips->calibrefx_add_shortcode_button('calibrefx_shortcode_tooltips', CALIBREFX_SHORTCODE_URL . '/form-tooltips.php', 360, 380, __('Tooltips shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/tooltips.png');
+$tinymce_button_tooltips->calibrefx_add_shortcode_button('calibrefx_shortcode_tooltips', CALIBREFX_SHORTCODE_URL . '/form-tooltips.php', 360, 380, __('Tooltips shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/tooltips.png');
 
 /**
  * ==============================================================
@@ -325,7 +325,7 @@ function calibrefx_dropcap($atts, $content = '') {
 }
 
 $tinymce_button_dropcaps = new CFX_Shortcode();
-$tinymce_button_dropcaps->calibrefx_add_shortcode_button('calibrefx_shortcode_dropcaps', CALIBREFX_SHORTCODE_URL . '/form-dropcaps.php', 360, 280, __('Dropcaps shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/dropcaps.png');
+$tinymce_button_dropcaps->calibrefx_add_shortcode_button('calibrefx_shortcode_dropcaps', CALIBREFX_SHORTCODE_URL . '/form-dropcaps.php', 360, 280, __('Dropcaps shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/dropcaps.png');
 
 /**
  * ==============================================================
@@ -352,7 +352,7 @@ function calibrefx_list($atts, $content = '') {
 }
 
 $tinymce_button_list = new CFX_Shortcode();
-$tinymce_button_list->calibrefx_add_shortcode_button('calibrefx_shortcode_list', CALIBREFX_SHORTCODE_URL . '/form-list.php', 360, 200, __('List shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/list.png');
+$tinymce_button_list->calibrefx_add_shortcode_button('calibrefx_shortcode_list', CALIBREFX_SHORTCODE_URL . '/form-list.php', 360, 200, __('List shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/list.png');
 
 add_shortcode('li', 'calibrefx_list_item');
 
@@ -423,7 +423,7 @@ function calibrefx_column($atts, $content = '') {
 }
 
 $tinymce_button_row = new CFX_Shortcode();
-$tinymce_button_row->calibrefx_add_shortcode_button('calibrefx_shortcode_column', CALIBREFX_SHORTCODE_URL . '/form-cols.php', 360, 220, __('Column shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/cols.png');
+$tinymce_button_row->calibrefx_add_shortcode_button('calibrefx_shortcode_column', CALIBREFX_SHORTCODE_URL . '/form-cols.php', 360, 220, __('Column shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/cols.png');
 
 /**
  * ==============================================================
@@ -571,7 +571,7 @@ function calibrefx_gmap($atts, $content = '') {
 }
 
 $tinymce_button_gmaps = new CFX_Shortcode();
-$tinymce_button_gmaps->calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps', CALIBREFX_SHORTCODE_URL . '/form-gmaps.php', 470, 240, __('Google map shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/googlemaps.png');
+$tinymce_button_gmaps->calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps', CALIBREFX_SHORTCODE_URL . '/form-gmaps.php', 470, 240, __('Google map shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/googlemaps.png');
 
 /**
  * ==============================================================
@@ -669,7 +669,7 @@ function calibrefx_slider_caption($atts, $content = '') {
 }
 
 $tinymce_button_slider = new CFX_Shortcode();
-$tinymce_button_slider->calibrefx_add_shortcode_button('calibrefx_shortcode_slider', CALIBREFX_SHORTCODE_URL . '/form-slider.php', 400, 460, __('Slider shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/nivo.png');
+$tinymce_button_slider->calibrefx_add_shortcode_button('calibrefx_shortcode_slider', CALIBREFX_SHORTCODE_URL . '/form-slider.php', 400, 460, __('Slider shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/nivo.png');
 
 /**
  * ==============================================================
@@ -743,7 +743,7 @@ function calibrefx_tabs_item($atts, $content = null) {
 }
 
 $tinymce_button_tabs = new CFX_Shortcode();
-$tinymce_button_tabs->calibrefx_add_shortcode_button('calibrefx_shortcode_tabs', CALIBREFX_SHORTCODE_URL . '/form-tabs.php', 360, 340, __('Tabs shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/tabs.png');
+$tinymce_button_tabs->calibrefx_add_shortcode_button('calibrefx_shortcode_tabs', CALIBREFX_SHORTCODE_URL . '/form-tabs.php', 360, 340, __('Tabs shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/tabs.png');
 
 /**
  * ==============================================================
@@ -806,7 +806,7 @@ function calibrefx_togglebox_item($atts, $content = null){
 }
 
 $tinymce_button_togglebox = new CFX_Shortcode();
-$tinymce_button_togglebox->calibrefx_add_shortcode_button('calibrefx_shortcode_togglebox', CALIBREFX_SHORTCODE_URL . '/form-togglebox.php', 360, 200, __('Togglebox shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/togglebox.png');
+$tinymce_button_togglebox->calibrefx_add_shortcode_button('calibrefx_shortcode_togglebox', CALIBREFX_SHORTCODE_URL . '/form-togglebox.php', 360, 200, __('Togglebox shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/togglebox.png');
 
 /**
  * ==============================================================
@@ -970,7 +970,7 @@ function calibrefx_retweet($atts, $content = null) {
 }
 
 $tinymce_button_social = new CFX_Shortcode();
-$tinymce_button_social->calibrefx_add_shortcode_button('calibrefx_shortcode_social', CALIBREFX_SHORTCODE_URL . '/form-social.php', 360, 200, __('Social shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/buttons/social.png');
+$tinymce_button_social->calibrefx_add_shortcode_button('calibrefx_shortcode_social', CALIBREFX_SHORTCODE_URL . '/form-social.php', 360, 200, __('Social shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/social.png');
 
 /**
  * ==============================================================
