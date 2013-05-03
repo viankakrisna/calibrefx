@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Texts</title>
+        <title>Heading Form</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <script language="javascript" type="text/javascript" src="../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
         <script language="javascript" type="text/javascript" src="../../../../../wp-includes/js/tinymce/utils/mctabs.js"></script>
@@ -18,37 +18,29 @@
             }
 	
             function calibrefx_vlozSC() {
-		
                 // shortcode sam
                 var shortcodeRetazec;
 		
-                // instancie tabov
-                var textTab_instancia = document.getElementById('textTab');	
-		
-                // Column ==============================================================
-        
-                // je tab aktivny?
-                if (textTab_instancia.className.indexOf('current') != -1) {
-		  
-                    // ziskaj text medzi shortcode tagmi
-                    var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
-                    // ziskaj hodnoty z formu			
-                    var text_color = document.getElementById('text_color').value;
-                    var text_font = document.getElementById('text_font').value;
-                    var text_style = document.getElementById('text_style').value;
-                    var text_type = document.getElementById('text_type').value;
+                // ziskaj text medzi shortcode tagmi
+                var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
+                // ziskaj hodnoty z formu			
+                var text_color = document.getElementById('text_color').value;
+                var text_font = document.getElementById('text_font').value;
+                var text_style = document.getElementById('text_style').value;
+                var text_type = document.getElementById('text_type').value;
+
+
+                shortcodeRetazec = '[' + text_type + ' color="' + text_color + '" font="' + text_font + '" font_style="' + text_style + '"]YOUR HEADING TEXT HERE[/' + text_type + ']';
+    
+                //vloz shortcode a repaint editor
+                if(window.tinyMCE) {
+                    window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
+                    tinyMCEPopup.editor.execCommand('mceRepaint');
+                    tinyMCEPopup.close();
+                }
 	
-                    shortcodeRetazec = '[text color="' + text_color + '" font="' + text_font + '" style="' + text_style + '" type="' + text_type + '"]'+medziShortcodom+'[/text]';
-        
-                    //vloz shortcode a repaint editor
-                    if(window.tinyMCE) {
-                        window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                        tinyMCEPopup.editor.execCommand('mceRepaint');
-                        tinyMCEPopup.close();
-                    }
-		
-                    return;
-                } }
+                return;
+            }
         </script>
         <base target="_self" />
 
@@ -63,7 +55,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="textTabID" class="current"><span><a href="javascript:mcTabs.displayTab('textTabID','textTab');" onmousedown="return false;">text</a></span></li>            
+                    <li id="textTabID" class="current"><span><a href="javascript:mcTabs.displayTab('textTabID','textTab');" onmousedown="return false;">Headings</a></span></li>            
                 </ul>
             </div>
 
@@ -72,9 +64,25 @@
                 <div id="textTab" class="panel current" style="height: 200px">
 
                     <fieldset>        
-                        <legend>Text Style</legend><br />  
+                        <legend>Heading Style</legend><br />  
 
-                        <table border="0" cellpadding="4" cellspacing="0">                
+                        <table border="0" cellpadding="4" cellspacing="0">     
+                            <!-- Heading Type -->       
+                            <tr>                 
+                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="text_type">Heading Type:</label>
+                                </td>                          
+                                <td>                    
+                                    <select name="text_type" id="text_type" style="width: 210px"> 
+                                        <option value="h1">Heading 1</option>                        
+                                        <option value="h2">Heading 2</option>                  
+                                        <option value="h3">Heading 3</option>
+                                        <option value="h4">Heading 4</option>  
+                                        <option value="h5">Heading 5</option>  
+                                        <option value="h6">Heading 6</option>                
+                                    </select><br />      
+                                    <em style="font-size: 9px; color: #999;">Select heading type</em>
+                                </td>                    
+                            </tr>           
                             <!-- Color -->       
                             <tr>                 
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="text_color">Color:</label></td>                          <td>                    
@@ -127,18 +135,7 @@
                                     </select><br />      
                                     <em style="font-size: 9px; color: #999;">Select style.</em>                
                                 </td>                    
-                            </tr>  
-                            <!-- Text type -->       
-                            <tr>                 
-                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="text_type">Text Type:</label></td>                          <td>                    
-                                    <select name="text_type" id="text_type" style="width: 210px">     
-                                        <option value="normal">Normal</option>                  
-                                        <option value="cite">Cite</option>
-                                        <option value="blockquote">Blockquote</option>                                                        
-                                    </select><br />      
-                                    <em style="font-size: 9px; color: #999;">Select text type.</em>                
-                                </td>                    
-                            </tr>                                     
+                            </tr>                              
                         </table>     
                     </fieldset>
                 </div><!-- /#textTab -->

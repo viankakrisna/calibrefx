@@ -1155,3 +1155,25 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 .social-bookmark.facebook-like{
     min-width: 47px;
 }
+
+/* Separator */
+.separator{
+    background: #ccc;
+    height: 1px;
+    margin: 10px 0px;
+}
+
+/* Headline */
+.headline-separator{
+    height: 1px;
+    background: #ccc;
+}
+.headline-separator.top{
+    margin-bottom: 5px;
+}
+.headline-separator.bottom{
+    margin-top: 5px;
+}
+.headline-content{
+    text-align: center;
+}
