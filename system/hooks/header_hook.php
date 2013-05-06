@@ -438,7 +438,7 @@ function calibrefx_do_site_title() {
     $title = sprintf('<h1 id="title">%s</h1>', $inside);
 
     // Echo (filtered)
-    echo apply_filters('calibrefx_seo_title', $title, $inside, $wrap);
+    echo apply_filters('calibrefx_seo_title', $title, $inside, $wrap = '');
 }
 
 add_action('calibrefx_site_description', 'calibrefx_do_site_description');
@@ -468,7 +468,7 @@ add_action('calibrefx_header', 'calibrefx_do_header');
  * Do Header Callback
  */
 function calibrefx_do_header() {
-    $header_title_class = apply_filters('header_title_class', 'pull-left', $classes);
+    $header_title_class = apply_filters('header_title_class', 'pull-left', '');
     echo '<div id="header-title" class="'.$header_title_class.'">';
     do_action('calibrefx_site_title');
     do_action('calibrefx_site_description');

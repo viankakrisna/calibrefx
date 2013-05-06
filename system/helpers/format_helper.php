@@ -80,6 +80,7 @@ function get_the_content_limit($max_char, $more_link_text = '(more...)', $stript
     $content = calibrefx_truncate_phrase($content, $max_char);
 
     // More Link?
+    $link = '';
     if ($more_link_text) {
         $link = apply_filters('get_the_content_more_link', sprintf('%s <a href="%s" class="more-link">%s</a>', '&hellip;', get_permalink(), $more_link_text), $more_link_text);
 

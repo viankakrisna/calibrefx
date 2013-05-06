@@ -123,7 +123,7 @@ function calibrefx_do_nav() {
             $nav = wp_nav_menu($args);
         }
 
-        $nav_class = apply_filters( 'nav_class', calibrefx_row_class() ) ;
+        $nav_class = apply_filters( 'nav_class', calibrefx_row_class() );
         $nav_output = sprintf('
             <div id="nav" class="navbar %4$s">
                 %2$s
@@ -139,7 +139,7 @@ function calibrefx_do_nav() {
                 %3$s
                 </div>
             </div>', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class);
-
+        
         echo apply_filters('calibrefx_do_nav', $nav_output, $nav, $args);
     }
 }

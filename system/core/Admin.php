@@ -163,6 +163,8 @@ abstract class CFX_Admin {
 
         $calibrefx_settings_field = $calibrefx->theme_settings_m->get_settings_field(); 
         
+        if(!isset($_POST[$calibrefx_settings_field])) return;
+
         //Get the value from post settings
         $_newvalue = $_POST[$calibrefx_settings_field];
         
@@ -246,7 +248,7 @@ abstract class CFX_Admin {
     public function dashboard() {
         global $calibrefx_sections, $calibrefx_current_section;
         $this->_submit_url = apply_filters('calibrefx_'.$calibrefx_current_section.'_form_url', 'options.php');
-        $this->_submit_url = str_replace('php', '.php', $this->_submit_url);
+        //$this->_submit_url = str_replace('php', '.php', $this->_submit_url);
 	
         ?>
         <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes <?php echo $calibrefx_current_section; ?>">

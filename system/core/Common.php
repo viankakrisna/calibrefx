@@ -117,7 +117,7 @@ if (!function_exists('calibrefx_load_class')) {
      * @param	string	the class name prefix
      * @return	object
      */
-    function &calibrefx_load_class($class, $directory = 'libraries') {
+    function calibrefx_load_class($class, $directory = 'libraries') {
         global $_cfx_classes;
         
         //class name should be uppercase first
@@ -144,7 +144,7 @@ if (!function_exists('calibrefx_load_class')) {
         //if is abstract class we don't instantiate
         if(calibrefx_is_abstract($name)){
             $_cfx_classes[$class] = $name;
-            return;
+            return false;
         }
 
         $_cfx_classes[$class] = new $name();

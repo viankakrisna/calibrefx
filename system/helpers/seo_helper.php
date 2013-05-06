@@ -59,7 +59,7 @@ function get_replace_title_tags() {
     $page_title = calibrefx_capitalize(calibrefx_get_title());
     $post_author_name = $author->display_name;
     $description = calibrefx_truncate_phrase(calibrefx_get_description(), 160);
-    $search = calibrefx_capitalize(wp_specialchars(stripcslashes($s), true));
+    $search = calibrefx_capitalize(esc_html(stripcslashes($s), true));
 
     $keywords = calibrefx_get_keywords();
 
@@ -68,7 +68,7 @@ function get_replace_title_tags() {
         $my_month = $wp_locale->get_month(substr($m, 4, 2));
         $date = calibrefx_capitalize($my_year . ' ' . $my_month);
     } else {
-        $date = calibrefx_capitalize($year . ' ' . $wp_locale->get_month($monthnum));
+        $date = calibrefx_capitalize($year);
     }
 
 
@@ -83,7 +83,7 @@ function get_replace_title_tags() {
         'page_title' => $page_title,
         'description' => $description,
         'post_author_name' => $post_author_name,
-        'author_name' => $author_name,
+        'author_name' => $post_author_name,
         'date' => $date,
         'search' => $search,
         'page' => $page,

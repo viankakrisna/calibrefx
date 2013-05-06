@@ -40,7 +40,7 @@ function calibrefx_set_user_ability() {
         update_user_meta($current_user->ID, 'ability', $_GET['ability']);
     }
 
-    $calibrefx_user_ability = get_usermeta($current_user->ID, 'ability');
+    $calibrefx_user_ability = get_user_meta($current_user->ID, 'ability', true);
 }
 
 add_action('show_user_profile', 'calibrefx_user_social_fields');

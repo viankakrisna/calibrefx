@@ -91,6 +91,7 @@ function calibrefx_do_loop() {
  */
 function calibrefx_default_loop() {
 
+    $loop_counter = 0;
     if (have_posts()) : while (have_posts()) : the_post(); // the loop
             do_action('calibrefx_before_post');
             ?>
