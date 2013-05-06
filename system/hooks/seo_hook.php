@@ -252,6 +252,8 @@ function calibrefx_do_meta_robot() {
 
     global $wp_query, $post;
 
+    $CFX = & calibrefx_get_instance();
+
     /*
      * If the blog is private, then following logic is unnecessary as WP will
      * insert noindex and nofollow
