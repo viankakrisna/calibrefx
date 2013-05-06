@@ -110,6 +110,8 @@ function calibrefx_do_nav() {
     $CFX = &calibrefx_get_instance();
     $CFX->load->library('walker_nav_menu');
 
+    $nav = '';
+
     if (calibrefx_get_option('nav')) {
         if (has_nav_menu('primary')) {
 
