@@ -158,6 +158,9 @@ function calibrefx_do_subnav() {
     if (!calibrefx_nav_menu_supported('secondary'))
         return;
 
+    $subnav = '';
+    $args = '';
+
     if (calibrefx_get_option('subnav')) {
         if (has_nav_menu('secondary')) {
             $args = array(
