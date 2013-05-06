@@ -111,6 +111,7 @@ function calibrefx_do_nav() {
     $CFX->load->library('walker_nav_menu');
 
     $nav = '';
+    $args = '';
 
     if (calibrefx_get_option('nav')) {
         if (has_nav_menu('primary')) {
