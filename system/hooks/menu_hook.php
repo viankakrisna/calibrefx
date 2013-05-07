@@ -110,6 +110,9 @@ function calibrefx_do_nav() {
     $CFX = &calibrefx_get_instance();
     $CFX->load->library('walker_nav_menu');
 
+    $nav = '';
+    $args = '';
+
     if (calibrefx_get_option('nav')) {
         if (has_nav_menu('primary')) {
 
@@ -154,6 +157,9 @@ function calibrefx_do_subnav() {
     /** Do nothing if menu not supported */
     if (!calibrefx_nav_menu_supported('secondary'))
         return;
+
+    $subnav = '';
+    $args = '';
 
     if (calibrefx_get_option('subnav')) {
         if (has_nav_menu('secondary')) {

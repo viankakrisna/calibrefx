@@ -1098,8 +1098,12 @@ add_shortcode('contact_form', 'calibrefx_contact_form');
 function calibrefx_contact_form($atts, $content = null) {
     global $calibrefx, $post;
     extract(shortcode_atts(array(
-                "target" => get_bloginfo('admin_email')
+                "target" => "",
+                "redirect" => ""
             ), $atts));
+
+    if(empty($target)) $target = 'ADMIN_EMAIL';
+    if(empty($redirect)) $redirect = get_permalink( $post->ID );
 
     //General Settings
     $rows = array();
@@ -1125,7 +1129,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Subject','calibrefx'),
         'desc' => __('Your subject','calibrefx'),
         'tooltip' => __('Your subject','calibrefx'),
-        'content' => $calibrefx->form->textinput('name', ''),
+        'content' => $calibrefx->form->textinput('subject', ''),
     );
 
     $rows[] = array(
@@ -1137,6 +1141,30 @@ function calibrefx_contact_form($atts, $content = null) {
     );
 
     $rows[] = array(
+        'id' => 'action',
+        'label' => '',
+        'desc' => '',
+        'tooltip' => '',
+        'content' => $calibrefx->form->hidden('action', 'contact-form'),
+    );
+
+    $rows[] = array(
+        'id' => 'target',
+        'label' => '',
+        'desc' => '',
+        'tooltip' => '',
+        'content' => $calibrefx->form->hidden('target', $target),
+    );
+
+    $rows[] = array(
+        'id' => 'redirect',
+        'label' => '',
+        'desc' => '',
+        'tooltip' => '',
+        'content' => $calibrefx->form->hidden('redirect', $redirect),
+    );
+
+    $rows[] = array(
         'id' => 'submit',
         'label' => '',
         'desc' => '',
@@ -1144,7 +1172,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'content' => $calibrefx->form->save_button('Send'),
     );
 
-    return $calibrefx->form->open('calibrefx_contact_form', get_permalink( $post->ID ))->build($rows);
+    return $calibrefx->form->open('calibrefx_contact_form', get_permalink( $post->ID ) )->build($rows);
 }
 
 $tinymce_button_contact = new CFX_Shortcode();
