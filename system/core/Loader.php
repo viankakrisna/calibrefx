@@ -639,7 +639,7 @@ class CFX_Loader {
 
                 include_once($filepath);
                 $this->_loaded_files[] = $filepath;
-                return $this->_init_class($class, 'CFX_', $params, $object_name);
+                return $this->_init_class($class, 'CFX_', $params);
             }
         } // END FOREACH
         // If we got this far we were unable to find the requested class.
@@ -660,7 +660,7 @@ class CFX_Loader {
      * @param	string	an optional object name
      * @return	void
      */
-    protected function _init_class($class, $prefix = '', $config = FALSE, $object_name = NULL) {
+    protected function _init_class($class, $prefix = '', $config = FALSE) {
         $name = $prefix . $class;
 
         // Is the class name valid?

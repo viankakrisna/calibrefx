@@ -197,8 +197,18 @@
 		background: #373737;
 		margin-bottom: 0px;
 	}
+	#footer{
+		height: auto;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.credits, .scrolltop{
+		float: none !important;
+		display: block;
+		text-align: center;
+	}
 }
 
 @media (max-width: 479px) { /* For 320px media */
-
+	
 }

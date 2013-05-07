@@ -58,11 +58,11 @@ function calibrefx_custom_header() {
     $args = wp_parse_args($custom_header, array(
         'width' => 260,
         'height' => 100,
-        'textcolor' => '333333',
-        'no_header_text' => false,
-        'header_image' => '%s/header.png',
-        'header_callback' => 'calibrefx_custom_header_style',
-        'admin_header_callback' => 'calibrefx_custom_header_admin_style'
+        'default-text-color' => '333333',
+        'default-image' => '%s/header.png',
+        'header-text' => true,
+        'wp-head-callback' => 'calibrefx_custom_header_style',
+        'admin-head-callback' => 'calibrefx_custom_header_admin_style'
             ));
 
     /** Define all the constants */
@@ -72,17 +72,17 @@ function calibrefx_custom_header() {
     if (!defined('HEADER_IMAGE_HEIGHT') && is_numeric($args['height']))
         define('HEADER_IMAGE_HEIGHT', $args['height']);
 
-    if (!defined('HEADER_TEXTCOLOR') && $args['textcolor'])
-        define('HEADER_TEXTCOLOR', $args['textcolor']);
+    if (!defined('HEADER_TEXTCOLOR') && $args['default-text-color'])
+        define('HEADER_TEXTCOLOR', $args['default-text-color']);
 
-    if (!defined('NO_HEADER_TEXT') && $args['no_header_text'])
-        define('NO_HEADER_TEXT', $args['no_header_text']);
+    if (!defined('HEADER_TEXT') && $args['header-text'])
+        define('HEADER_TEXT', $args['header-text']);
 
-    if (!defined('HEADER_IMAGE') && $args['header_image'])
-        define('HEADER_IMAGE', sprintf($args['header_image'], apply_filters('calibrefx_images_url', CALIBREFX_IMAGES_URL)));
+    if (!defined('HEADER_IMAGE') && $args['default-image'])
+        define('HEADER_IMAGE', sprintf($args['default-image'], apply_filters('calibrefx_images_url', CALIBREFX_IMAGES_URL)));
 
     /** Activate Custom Header */
-    add_custom_image_header($args['header_callback'], $args['admin_header_callback']);
+    add_theme_support( 'custom-header', $args );
 }
 
 /**

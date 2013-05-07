@@ -94,7 +94,6 @@ function calibrefx_load_styles() {
     }
 
     wp_enqueue_style('calibrefx-style');
-    //wp_enqueue_style('calibrefx-responsive-style');
     if ( current_theme_supports('calibrefx-responsive-style') ) {
         wp_enqueue_style('calibrefx-responsive-style');
     }

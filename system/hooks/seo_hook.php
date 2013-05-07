@@ -111,6 +111,10 @@ function calibrefx_seo_title() {
     if (is_404()) {
         return $cfx_replacer->get(calibrefx_get_option('404_rewrite_title', $CFX->seo_settings_m));
     }
+
+    if(is_archive()){
+        return $cfx_replacer->get(calibrefx_get_option('taxonomy_rewrite_title', $CFX->seo_settings_m));
+    }
 }
 
 /**
@@ -165,6 +169,10 @@ function calibrefx_seo_description() {
     if (is_404()) {
         return $cfx_replacer->get(calibrefx_get_option('404_description', $CFX->seo_settings_m));
     }
+
+    if(is_archive()){
+        return $cfx_replacer->get(calibrefx_get_option('taxonomy_description', $CFX->seo_settings_m));
+    }
 }
 
 /**
@@ -217,6 +225,10 @@ function calibrefx_seo_keywords() {
     if (is_404()) {
         return $cfx_replacer->get(calibrefx_get_option('404_keywords', $CFX->seo_settings_m));
     }
+
+    if(is_archive()){
+        return $cfx_replacer->get(calibrefx_get_option('taxonomy_keywords', $CFX->seo_settings_m));
+    }
 }
 
 /**
@@ -239,6 +251,8 @@ function calibrefx_link_author(){
 function calibrefx_do_meta_robot() {
 
     global $wp_query, $post;
+
+    $CFX = & calibrefx_get_instance();
 
     /*
      * If the blog is private, then following logic is unnecessary as WP will

@@ -32,19 +32,4 @@ function calibrefx_add_contact_form($content){
 	return $content . do_shortcode($shortcode);
 }
 
-/*remove_action('calibrefx_post_content', 'calibrefx_do_post_content');
-add_action('calibrefx_post_content', 'calibrefx_do_contact_content');
-
-
-/**
- * CalibreFx Loop for contact bage
- *
- * It's just like the default loop except it is used for displaying blog post category
- *
- */
-/*function calibrefx_do_contact_content() { 
-	the_content( do_shortcode($shortcode) . __('[Read more...]', 'calibrefx'));
-
-}*/
-
 calibrefx();

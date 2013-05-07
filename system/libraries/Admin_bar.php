@@ -99,8 +99,8 @@ class CFX_Admin_Bar {
     }
 
     final protected function _get_node($id) {
-        if ($this->bound)
-            return;
+        // if ($this->bound)
+        //     return;
 
         if (empty($id))
             $id = 'root';
@@ -120,8 +120,8 @@ class CFX_Admin_Bar {
     }
 
     final protected function _get_nodes() {
-        if ($this->bound)
-            return;
+        // if ($this->bound)
+        //     return;
 
         return $this->nodes;
     }

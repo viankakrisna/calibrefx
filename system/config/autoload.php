@@ -25,7 +25,7 @@ defined('CALIBREFX_URL') OR exit();
  * Auto-load Libraries
  */
 
-$autoload['libraries'] = array('cache','breadcrumb','security','replacer','form');
+$autoload['libraries'] = array('cache','breadcrumb','security','replacer','form', 'shortcode');
 
 /*
  * Auto-load Helper File
@@ -45,7 +45,7 @@ $autoload['configs'] = array();
  */
 $autoload['widgets'] = array('Facebook_Comment', 'Facebook_Like', 'Feature_Page_Slider', 
                             'Feature_Page', 'Feature_Post_Slider', 'Feature_Post',
-                            'Latest_Tweets', 'Subscriber', 'Twitter');
+                            'Latest_Tweets', 'Subscriber', 'Twitter_Box', 'Twitter_Timeline');
 
 /*
  *  Auto-load Config files
@@ -58,7 +58,7 @@ $autoload['models'] = array('theme_settings_m', 'seo_settings_m', 'other_setting
 $autoload['hooks'] = array('header', 'logo', 'script', 'widget','layout', 'menu', 
                           'login','user','admin_bar','post','inpost','comments', 'footer',
                           'sidebar','seo','performance','search','third_party','upgrade', 'ajax', 
-                          'admin_ajax', 'mobile');
+                          'admin_ajax', 'mobile', 'form_submit');
 
 /*
  *  Auto-load Shortcode files

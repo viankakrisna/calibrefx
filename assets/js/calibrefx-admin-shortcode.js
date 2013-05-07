@@ -16,7 +16,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_buttons', {
 		ed.addButton('calibrefx_shortcode_buttons', {
 			title : 'Button shortcode',
 			cmd : 'calibrefx_sc_buttons',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/buttons.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/buttons.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
@@ -42,7 +42,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_tooltips', {
 		ed.addButton('calibrefx_shortcode_tooltips', {
 			title : 'Tooltips shortcode',
 			cmd : 'calibrefx_sc_tooltips',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/tooltips.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/tooltips.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
@@ -68,11 +68,38 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_dropcaps', {
 		ed.addButton('calibrefx_shortcode_dropcaps', {
 			title : 'Dropcaps shortcode',
 			cmd : 'calibrefx_sc_dropcaps',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/dropcaps.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/dropcaps.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
 			cm.setActive('calibrefx_shortcode_dropcaps', n.nodeName == 'IMG');		
+		});
+	}
+
+});
+
+tinymce.create('tinymce.plugins.calibrefx_shortcode_text', {
+	init : function(ed, url) {	
+		// Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
+		ed.addCommand('calibrefx_sc_text', function() {		
+			ed.windowManager.open({			
+				file : calibrefx_local.shortcode_url + '/form-texts.php',
+				width : 360 + ed.getLang('calibrefx_shortcode_text.delta_width', 0),
+				height : 280 + ed.getLang('calibrefx_shortcode_text.delta_height', 0),
+				inline : 1			
+			}, {			
+				plugin_url : url		
+			});
+		});
+		// Register calibrefx_sc_text button
+		ed.addButton('calibrefx_shortcode_text', {
+			title : 'Text shortcode',
+			cmd : 'calibrefx_sc_text',
+			image : calibrefx_local.assets_img_url + '/shortcode/form/text.png'		
+		});
+		// Add a node change handler, selects the button in the UI when a image is selected
+		ed.onNodeChange.add(function(ed, cm, n) {		
+			cm.setActive('calibrefx_shortcode_text', n.nodeName == 'IMG');		
 		});
 	}
 
@@ -95,7 +122,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_list', {
 		ed.addButton('calibrefx_shortcode_list', {
 			title : 'List shortcode',
 			cmd : 'calibrefx_sc_list',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/list.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/list.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
@@ -121,7 +148,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_column', {
 		ed.addButton('calibrefx_shortcode_column', {
 			title : 'Column shortcode',
 			cmd : 'calibrefx_sc_cols',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/cols.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/cols.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
@@ -147,7 +174,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_gmaps', {
 		ed.addButton('calibrefx_shortcode_gmaps', {
 			title : 'Google maps shortcode',
 			cmd : 'calibrefx_sc_gmaps',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/googlemaps.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/googlemaps.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
@@ -174,7 +201,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_video', {
 		ed.addButton('calibrefx_shortcode_video', {
 			title : 'Video shortcode',
 			cmd : 'calibrefx_sc_video',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/video.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/video.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
@@ -200,7 +227,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_slider', {
 		ed.addButton('calibrefx_shortcode_slider', {
 			title : 'Slider shortcode',
 			cmd : 'calibrefx_sc_slider',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/nivo.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/nivo.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
@@ -227,7 +254,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_tabs', {
 		ed.addButton('calibrefx_shortcode_tabs', {
 			title : 'Tabs shortcode',
 			cmd : 'calibrefx_sc_tabs',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/tabs.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/tabs.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
@@ -253,7 +280,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_togglebox', {
 		ed.addButton('calibrefx_shortcode_togglebox', {
 			title : 'Togglebox shortcode',
 			cmd : 'calibrefx_sc_togglebox',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/togglebox.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/togglebox.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
@@ -279,7 +306,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_social', {
 		ed.addButton('calibrefx_shortcode_social', {
 			title : 'Social icon shortcode',
 			cmd : 'calibrefx_sc_social',
-			image : calibrefx_local.assets_img_url + '/shortcode/buttons/social.png'		
+			image : calibrefx_local.assets_img_url + '/shortcode/form/social.png'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
@@ -293,6 +320,7 @@ tinymce.create('tinymce.plugins.calibrefx_shortcode_social', {
 tinymce.PluginManager.add('calibrefx_shortcode_buttons', tinymce.plugins.calibrefx_shortcode_buttons);
 tinymce.PluginManager.add('calibrefx_shortcode_tooltips', tinymce.plugins.calibrefx_shortcode_tooltips);
 tinymce.PluginManager.add('calibrefx_shortcode_dropcaps', tinymce.plugins.calibrefx_shortcode_dropcaps);
+tinymce.PluginManager.add('calibrefx_shortcode_text', tinymce.plugins.calibrefx_shortcode_text);
 tinymce.PluginManager.add('calibrefx_shortcode_list', tinymce.plugins.calibrefx_shortcode_list);
 tinymce.PluginManager.add('calibrefx_shortcode_column', tinymce.plugins.calibrefx_shortcode_column);
 tinymce.PluginManager.add('calibrefx_shortcode_gmaps', tinymce.plugins.calibrefx_shortcode_gmaps);

@@ -20,6 +20,28 @@
  * @package CalibreFx
  */
 
+add_shortcode( 'site_url', 'calibrefx_site_url' );
+
+function calibrefx_site_url($atts, $content = null){
+    extract(shortcode_atts(array(
+                'path' => '',
+                'scheme' => null,
+                    ), $atts));
+
+    return site_url( $path, $scheme );
+}
+
+add_shortcode( 'home_url', 'calibrefx_site_url' );
+
+function calibrefx_home_url($atts, $content = null){
+    extract(shortcode_atts(array(
+                'path' => '',
+                'scheme' => null,
+                    ), $atts));
+
+    return home_url( $path, $scheme );
+}
+
 /**
  * ==============================================================
  * Video Section
@@ -54,27 +76,51 @@ function calibrefx_vimeo($atts, $content = null) {
     return '<iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://player.vimeo.com/video/' . $content . '" frameborder="0"></iframe>';
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_video');
+$tinymce_button_video = new CFX_Shortcode();
+$tinymce_button_video->calibrefx_add_shortcode_button('calibrefx_shortcode_video', CALIBREFX_SHORTCODE_URL . '/form-video.php', 360, 240, __('Video shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/video.png');
 
 /**
  * ==============================================================
  * Typography Section
  * ==============================================================
  */
-add_shortcode('font', 'calibrefx_font');
+add_shortcode('text', 'calibrefx_text');
 
-function calibrefx_font($atts, $content = '') {
+function calibrefx_text($atts, $content = '') {
     extract(shortcode_atts(array(
                 'before' => '',
                 'after' => '',
-                'family' => '',
-                'color' => '',
-                'size' => 20,
                 'class' => '',
+                'color' => '',
+                'font' => '',
+                'style' => '',
+                'type' => 'normal',
                     ), $atts));
 
-    return $before . '<span class="' . $class . '" style="font-family:' . $family . ';color:' . $color . ';font-size:' . $size . 'px;">	' . do_shortcode($content) . '</span>' . $after;
+    $classes = 'text';
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($color))
+        $classes .= ' ' . $color;
+    if (!empty($font))
+        $classes .= ' font-' . $font;
+    if (!empty($style))
+        $classes .= ' font-' . $style;
+
+    if($type == 'normal')
+        $elm = 'span';
+    elseif($type == 'cite')
+        $elm = 'cite';
+    elseif($type == 'blockquote')
+        $elm = 'blockquote';
+
+
+
+    return $before . '<'. $elm .' class="' . $classes . '">' . do_shortcode($content) . '</' . $elm . '>' . $after;
 }
+
+$tinymce_button_text = new CFX_Shortcode();
+$tinymce_button_text->calibrefx_add_shortcode_button('calibrefx_shortcode_text', CALIBREFX_SHORTCODE_URL . '/form-texts.php', 360, 280, __('Text shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/text.png');
 
 add_shortcode('bold', 'calibrefx_bold');
 
@@ -151,6 +197,9 @@ function calibrefx_img($atts, $content = null) {
 
     return $before . '<img src="' . do_shortcode($content) . '" title="' . $title . '" width="' . $width . '" height="' . $height . '" class="' . $class . '"/>' . $after;
 }
+
+$tinymce_button_image = new CFX_Shortcode();
+$tinymce_button_image->calibrefx_add_shortcode_button('calibrefx_shortcode_image', CALIBREFX_SHORTCODE_URL . '/form-image.php', 360, 280, __('Image shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/image.png');
 
 /**
  * ==============================================================
@@ -238,7 +287,8 @@ function calibrefx_button($atts, $content = '') {
     }
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_buttons');
+$tinymce_button_buttons = new CFX_Shortcode();
+$tinymce_button_buttons->calibrefx_add_shortcode_button('calibrefx_shortcode_buttons', CALIBREFX_SHORTCODE_URL . '/form-buttons.php', 360, 420, __('Button shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/buttons.png');
 
 /**
  * ==============================================================
@@ -264,7 +314,8 @@ function calibrefx_tooltip($atts, $content = '') {
     return $before.'<a href="'.$url.'" data-toggle="tooltip" data-placement="'.$position.'" data-original-title="'.$text.'"'.$classes.$ids.'>'.advance_shortcode_unautop($content).'</a>'.$after;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_tooltips');
+$tinymce_button_tooltips = new CFX_Shortcode();
+$tinymce_button_tooltips->calibrefx_add_shortcode_button('calibrefx_shortcode_tooltips', CALIBREFX_SHORTCODE_URL . '/form-tooltips.php', 360, 380, __('Tooltips shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/tooltips.png');
 
 /**
  * ==============================================================
@@ -299,7 +350,8 @@ function calibrefx_dropcap($atts, $content = '') {
     return $before . '<span class="' . $classes . '">' . do_shortcode($content) . '</span>' . $after;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_dropcaps');
+$tinymce_button_dropcaps = new CFX_Shortcode();
+$tinymce_button_dropcaps->calibrefx_add_shortcode_button('calibrefx_shortcode_dropcaps', CALIBREFX_SHORTCODE_URL . '/form-dropcaps.php', 360, 280, __('Dropcaps shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/dropcaps.png');
 
 /**
  * ==============================================================
@@ -325,7 +377,8 @@ function calibrefx_list($atts, $content = '') {
     return $before . '<ul class="' . $classes . '">' . do_shortcode($content) . '</ul>' . $after;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_list');
+$tinymce_button_list = new CFX_Shortcode();
+$tinymce_button_list->calibrefx_add_shortcode_button('calibrefx_shortcode_list', CALIBREFX_SHORTCODE_URL . '/form-list.php', 360, 200, __('List shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/list.png');
 
 add_shortcode('li', 'calibrefx_list_item');
 
@@ -395,7 +448,8 @@ function calibrefx_column($atts, $content = '') {
     return $before . '<div class="' . $classes . '" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_column');
+$tinymce_button_row = new CFX_Shortcode();
+$tinymce_button_row->calibrefx_add_shortcode_button('calibrefx_shortcode_column', CALIBREFX_SHORTCODE_URL . '/form-cols.php', 360, 220, __('Column shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/cols.png');
 
 /**
  * ==============================================================
@@ -418,6 +472,14 @@ function calibrefx_separator($atts, $content = '') {
     return '<div class="' . $classes . ' separator" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
+$tinymce_button_separator = new CFX_Shortcode();
+$tinymce_button_separator->calibrefx_add_shortcode_button('calibrefx_shortcode_separator', CALIBREFX_SHORTCODE_URL . '/form-separator.php', 360, 200, __('Separator shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/separator.png');
+
+add_shortcode('clear', 'calibrefx_clear');
+function calibrefx_clear() {
+    return '<div class="clearfix"></div>';
+}
+
 /**
  * ==============================================================
  * HEADLINE
@@ -431,21 +493,24 @@ function calibrefx_headline($atts, $content = '') {
         'class' => '',
         'id' => '',
         'style' => '',
-        'first_separator' => 0,
-        'last_separator' => 0,
+        'top_separator' => 0,
+        'bottom_separator' => 0,
     ), $atts));
 
     $html = '';
     $html .= '<div class="headline '.$class.'" id="'.$id.'">';
-    if($first_separator) $html .= '<div class="headline-separator first"></div>';
+    if($top_separator) $html .= '<div class="headline-separator top"></div>';
     $html .= '<div class="headline-content '.calibrefx_row_class().'">';
     $html .= advance_shortcode_unautop($content);
     $html .= '</div>';
-    if($last_separator) $html .= '<div class="headline-separator last"></div>';
+    if($bottom_separator) $html .= '<div class="headline-separator bottom"></div>';
     $html .= '</div>';
 
     return $html;
 }
+
+$tinymce_button_headline = new CFX_Shortcode();
+$tinymce_button_headline->calibrefx_add_shortcode_button('calibrefx_shortcode_headline', CALIBREFX_SHORTCODE_URL . '/form-headline.php', 360, 200, __('Headline shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/headline.png');
 
 /**
  * ==============================================================
@@ -502,6 +567,20 @@ function calibrefx_feed_url(){
     return $feed_uri;  
 }
 
+add_shortcode('facebook_comment', 'fb_comment_box');
+function fb_comment_box($atts, $content = null) {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'width' => 470,
+                'numberpost' => 10,
+                'url' => get_current_url(),
+                    ), $atts));
+    $output = '<div class="fb-comments" data-href="'.$url.'" data-width="'.$width.'" data-num-posts="'.$numberpost.'"></div>';
+
+    return $before . $output . $after;
+}
+
 /**
  * ==============================================================
  * Google Maps
@@ -522,7 +601,8 @@ function calibrefx_gmap($atts, $content = '') {
     return $before . '<iframe width="' . $width . '" height="' . $height . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . html_entity_decode($src) . '&output=embed" class="' . $class . '"></iframe>' . $after;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps');
+$tinymce_button_gmaps = new CFX_Shortcode();
+$tinymce_button_gmaps->calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps', CALIBREFX_SHORTCODE_URL . '/form-gmaps.php', 470, 240, __('Google map shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/googlemaps.png');
 
 /**
  * ==============================================================
@@ -619,7 +699,8 @@ function calibrefx_slider_caption($atts, $content = '') {
     return '<div class="carousel-caption ' . $class . '">' . $before . advance_shortcode_unautop($content) . $after . '</div>';
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_slider');
+$tinymce_button_slider = new CFX_Shortcode();
+$tinymce_button_slider->calibrefx_add_shortcode_button('calibrefx_shortcode_slider', CALIBREFX_SHORTCODE_URL . '/form-slider.php', 400, 460, __('Slider shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/nivo.png');
 
 /**
  * ==============================================================
@@ -692,7 +773,8 @@ function calibrefx_tabs_item($atts, $content = null) {
     return '<div class="tab-pane" id="'.$tab_elm_id.'-'.$id.'">'.advance_shortcode_unautop($content).'</div>';
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_tabs');
+$tinymce_button_tabs = new CFX_Shortcode();
+$tinymce_button_tabs->calibrefx_add_shortcode_button('calibrefx_shortcode_tabs', CALIBREFX_SHORTCODE_URL . '/form-tabs.php', 360, 340, __('Tabs shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/tabs.png');
 
 /**
  * ==============================================================
@@ -754,7 +836,8 @@ function calibrefx_togglebox_item($atts, $content = null){
     return $output;
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_togglebox');
+$tinymce_button_togglebox = new CFX_Shortcode();
+$tinymce_button_togglebox->calibrefx_add_shortcode_button('calibrefx_shortcode_togglebox', CALIBREFX_SHORTCODE_URL . '/form-togglebox.php', 360, 200, __('Togglebox shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/togglebox.png');
 
 /**
  * ==============================================================
@@ -917,10 +1000,8 @@ function calibrefx_retweet($atts, $content = null) {
     return $output;
 }
 
-add_shortcode('clear', 'calibrefx_clear');
-function calibrefx_clear() {
-    return '<div class="clearfix"></div>';
-}
+$tinymce_button_social = new CFX_Shortcode();
+$tinymce_button_social->calibrefx_add_shortcode_button('calibrefx_shortcode_social', CALIBREFX_SHORTCODE_URL . '/form-social.php', 360, 200, __('Social shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/social.png');
 
 /**
  * ==============================================================
@@ -1015,10 +1096,14 @@ function calibrefx_post_item($atts, $content = null) {
 add_shortcode('contact_form', 'calibrefx_contact_form');
 
 function calibrefx_contact_form($atts, $content = null) {
-    global $calibrefx;
+    global $calibrefx, $post;
     extract(shortcode_atts(array(
-                "target" => get_bloginfo('admin_email')
+                "target" => "",
+                "redirect" => ""
             ), $atts));
+
+    if(empty($target)) $target = 'ADMIN_EMAIL';
+    if(empty($redirect)) $redirect = get_permalink( $post->ID );
 
     //General Settings
     $rows = array();
@@ -1044,7 +1129,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Subject','calibrefx'),
         'desc' => __('Your subject','calibrefx'),
         'tooltip' => __('Your subject','calibrefx'),
-        'content' => $calibrefx->form->textinput('name', ''),
+        'content' => $calibrefx->form->textinput('subject', ''),
     );
 
     $rows[] = array(
@@ -1056,6 +1141,30 @@ function calibrefx_contact_form($atts, $content = null) {
     );
 
     $rows[] = array(
+        'id' => 'action',
+        'label' => '',
+        'desc' => '',
+        'tooltip' => '',
+        'content' => $calibrefx->form->hidden('action', 'contact-form'),
+    );
+
+    $rows[] = array(
+        'id' => 'target',
+        'label' => '',
+        'desc' => '',
+        'tooltip' => '',
+        'content' => $calibrefx->form->hidden('target', $target),
+    );
+
+    $rows[] = array(
+        'id' => 'redirect',
+        'label' => '',
+        'desc' => '',
+        'tooltip' => '',
+        'content' => $calibrefx->form->hidden('redirect', $redirect),
+    );
+
+    $rows[] = array(
         'id' => 'submit',
         'label' => '',
         'desc' => '',
@@ -1063,55 +1172,11 @@ function calibrefx_contact_form($atts, $content = null) {
         'content' => $calibrefx->form->save_button('Send'),
     );
 
-    return $calibrefx->form->open('calibrefx_contact_form', site_url('contact'))->build($rows);
+    return $calibrefx->form->open('calibrefx_contact_form', get_permalink( $post->ID ) )->build($rows);
 }
 
-$tinymce_button = new calibrefx_add_shortcode_button('calibrefx_shortcode_social');
-
-/**
- * add shortcode buttons to editor
- *  
- * @access public
- * @author Hilaladdiyar Muhammad Nur
- *
- */
-class calibrefx_add_shortcode_button {
-
-    var $plugin_name = "";
-
-    function calibrefx_add_shortcode_button($plugin_name = '') {
-        $this->plugin_name = $plugin_name;
-        add_filter('tiny_mce_version', array(&$this, 'increase_tinymce_version'));
-        add_action('init', array(&$this, 'add_sc_buttons'));
-    }
-
-    function add_sc_buttons() {
-        // Check that current user can edit post
-        if (!current_user_can('edit_posts') && !current_user_can('edit_pages'))
-            return;
-
-        // Check that rich editing is enable
-        if (get_user_option('rich_editing') == 'true') {
-            add_filter("mce_external_plugins", array(&$this, "calibrefx_add_scbuttons_plugin"), 5);
-            add_filter('mce_buttons_3', array(&$this, 'calibrefx_register_scbuttons_plugin'), 5);
-        }
-    }
-
-    function calibrefx_register_scbuttons_plugin($buttons) {
-        array_push($buttons, "", $this->plugin_name);
-        return $buttons;
-    }
-
-    function calibrefx_add_scbuttons_plugin($plugin_arr) {
-        $plugin_arr[$this->plugin_name] = CALIBREFX_JS_URL . '/calibrefx-admin-shortcode.js';
-        return $plugin_arr;
-    }
-
-    function increase_tinymce_version($version) {
-        return++$version;
-    }
-
-}
+$tinymce_button_contact = new CFX_Shortcode();
+$tinymce_button_contact->calibrefx_add_shortcode_button('calibrefx_shortcode_contact', CALIBREFX_SHORTCODE_URL . '/form-contact.php', 360, 200, __('Contact Form shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/contact.png');
 
 /**
  * remove unnecessary paragraf tag
@@ -1134,4 +1199,3 @@ function advance_shortcode_unautop($content) {
  *
  */
 add_filter('widget_text', 'do_shortcode');
-

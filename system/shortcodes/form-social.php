@@ -38,7 +38,7 @@
 		
                     if ( display_social == 'all' ) {
             
-                        shortcodeRetazec = '[digg] [stumble] [buzz] [retweet] [facebook] [twitter] [feedburner] ';
+                        shortcodeRetazec = '[digg] [stumble] [fblike] [tweet] [gplus] [pinterest]';
             
                     } else {  
             
@@ -88,11 +88,10 @@
                                         <option value="all">Display all</option>                  
                                         <option value="digg">Digg</option>
                                         <option value="stumble">Stumble</option>  
-                                        <option value="facebook">Facebook</option>  
-                                        <option value="buzz">Buzz</option>  
-                                        <option value="twitter">Twitter</option>  
-                                        <option value="feedburner">Feedburner</option>  
-                                        <option value="retweet">Retweet</option>                                             
+                                        <option value="fblike">Facebook Like</option>  
+                                        <option value="tweet">Tweet Button</option> 
+                                        <option value="gplus">Google Plus Button</option>  
+                                        <option value="pinterest">Pin It Button</option>                                          
                                     </select><br />      
                                     <em style="font-size: 9px; color: #999;">Select social bookmark you want to display.</em>                
                                 </td>                    
