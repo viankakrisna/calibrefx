@@ -406,6 +406,10 @@ h1, h2, h3, h4, h5, h6{
     width: 100% !important;
 }
 
+.entry-content iframe{
+    width: 100% !important;
+}
+
 /* To make twitter widget box width flexibel */
 .twtr-doc, .twitter-timeline {
     width: 100% !important;
