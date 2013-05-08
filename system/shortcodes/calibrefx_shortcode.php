@@ -59,7 +59,7 @@ function calibrefx_youtube($atts, $content = null) {
                 'title' => '',
                     ), $atts));
 
-    return '<div class="flexible-container"><iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . $content . '" frameborder="0" allowfullscreen></iframe></div>';
+    return '<div class="flexible-container youtube"><iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . $content . '" frameborder="0" allowfullscreen></iframe></div>';
 }
 
 add_shortcode('vimeo', 'calibrefx_vimeo');
@@ -73,7 +73,7 @@ function calibrefx_vimeo($atts, $content = null) {
                 'title' => '',
                     ), $atts));
 
-    return '<div class="flexible-container"><iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://player.vimeo.com/video/' . $content . '" frameborder="0"></iframe></div>';
+    return '<div class="flexible-container vimeo"><iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://player.vimeo.com/video/' . $content . '" frameborder="0"></iframe></div>';
 }
 
 $tinymce_button_video = new CFX_Shortcode();
@@ -598,7 +598,7 @@ function calibrefx_gmap($atts, $content = '') {
                 'src' => ''
                     ), $atts));
 
-    return $before . '<div class="flexible-container"><iframe width="' . $width . '" height="' . $height . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . html_entity_decode($src) . '&output=embed" class="' . $class . '"></iframe></div>' . $after;
+    return $before . '<div class="flexible-container gmaps"><iframe width="' . $width . '" height="' . $height . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . html_entity_decode($src) . '&output=embed" class="' . $class . '"></iframe></div>' . $after;
 }
 
 $tinymce_button_gmaps = new CFX_Shortcode();
