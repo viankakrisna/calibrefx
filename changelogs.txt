@@ -19,6 +19,14 @@
  * @package CalibreFx
  */
 
+version 1.0.14 <7 May 2013> - 
+    * Add more shortcode buttons to the tinymce editor
+    * Fix styling for responsive layout
+    * Fix many bugs and error suprresions when WP_DEBUG true
+    * Add contact for features
+    * Add new twitter box widget
+    * Fix style when responsive layout is disabled
+
 version 1.0.13 <3 April 2013> - 
     * Add mobile site function for child themes. This feature for showing different themes in mobile
     * Update shortcode function and styles to use bootstrap v2.3.1
