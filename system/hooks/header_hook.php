@@ -269,8 +269,20 @@ function calibrefx_print_wrap() {
         margin-right: auto
     }
 }', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
+
+        $wrapper_fixed  = '';
+        if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
+        $wrapper_fixed = sprintf('
+@media (min-width: %dpx){
+    #wrapper.container-fluid{
+        width: %dpx;
+        margin-left: auto;
+        margin-right: auto
+    }
+}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
+    }
    
-        printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
+        printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap . $wrapper_fixed);
     }
 
     if ( !current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {

@@ -25,6 +25,7 @@ function form_submit_handler(){
 	$CFX = & calibrefx_get_instance();
 
 	if ('POST' == $_SERVER['REQUEST_METHOD']){
+		if(!isset($_REQUEST['action'])) return;
 		$action = sanitize_text_field($_REQUEST['action']);
 
 		if (!$action)

@@ -289,6 +289,12 @@ h1, h2, h3, h4, h5, h6{
 	width: auto;
 }
 
+.layout-wrapper-fixed #inner.row-fluid{
+    padding-left: 0;
+    padding-right: 0;
+    width: auto;
+}
+
 #content{
     /*margin:0;*/
 }

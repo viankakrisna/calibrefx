@@ -76,6 +76,10 @@ function calibrefx_layout_body_class($classes) {
     if ($site_layout)
         $classes[] = $site_layout;
 
+    if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
+        $classes[] = 'layout-wrapper-fixed';
+    }
+
     return $classes;
 }
 
