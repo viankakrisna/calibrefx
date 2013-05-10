@@ -88,20 +88,23 @@ add_action('save_post', 'calibrefx_inpost_layout_save', 1, 2);
  * @return voides
  */
 function calibrefx_inpost_layout_save($post_id, $post) {
+    global $calibrefx;
+    
+    if(!in_array($post->post_type, get_post_types(array('public' => true)))) return $post->ID;
 
-    $CFX = & calibrefx_get_instance();
-    
-    if(!$CFX->security->verify_nonce('calibrefx_inpost_layout_action','calibrefx_inpost_layout_nonce')){    
-        return $post_id;
-    }
-    
-    calibrefx_log_message('debug', 'POST LAYOUT:'.$_POST['_calibrefx_layout']);
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
         return;
     if (defined('DOING_AJAX') && DOING_AJAX)
         return;
     if (defined('DOING_CRON') && DOING_CRON)
         return;
+    
+    if(!$calibrefx->security->verify_nonce('calibrefx_inpost_layout_action','calibrefx_inpost_layout_nonce')){    
+        return $post_id;
+    }
+    
+    calibrefx_log_message('debug', 'POST LAYOUT:'.$_POST['_calibrefx_layout']);
+    
 
     if (( 'page' == $_POST['post_type'] && !current_user_can('edit_page', $post_id) ) || !current_user_can('edit_post', $post_id))
         return $post_id;
@@ -192,19 +195,20 @@ add_action('save_post', 'calibrefx_inpost_seo_save', 1, 2);
  * Save the SEO settings when we save a post or page.
  */
 function calibrefx_inpost_seo_save($post_id, $post) {
-
-    $CFX = & calibrefx_get_instance();
+    global $calibrefx;
     
-    if(!$CFX->security->verify_nonce('calibrefx_inpost_seo_action','calibrefx_inpost_seo_nonce')){    
-        return $post_id;
-    }
-
+    if(!in_array($post->post_type, get_post_types(array('public' => true)))) return $post->ID;
+    
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
         return;
     if (defined('DOING_AJAX') && DOING_AJAX)
         return;
     if (defined('DOING_CRON') && DOING_CRON)
         return;
+    
+    if(!$calibrefx->security->verify_nonce('calibrefx_inpost_seo_action','calibrefx_inpost_seo_nonce')){    
+        return $post_id;
+    }
 
     if (( 'page' == $_POST['post_type'] && !current_user_can('edit_page', $post->ID) ) || !current_user_can('edit_post', $post->ID))
         return $post->ID;
