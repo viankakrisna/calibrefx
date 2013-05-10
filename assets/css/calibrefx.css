@@ -413,11 +413,6 @@ h1, h2, h3, h4, h5, h6{
     overflow: hidden;
 }
 
-.entry-content iframe{
-    width: 100% !important;
-    overflow: hidden;
-}
-
 /* To make twitter widget box width flexibel */
 .twtr-doc, .twitter-timeline {
     width: 100% !important;
@@ -759,10 +754,6 @@ blockquote{
     font-style: italic;
 }
 
-.fb-like.fb_iframe_widget{
-    display: inline-block !important;
-}
-
 .fb_iframe_widget{
     display: block !important;
 }
@@ -1015,7 +1006,7 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 .color-default { color: inherit; }
 .black         { color: #000; }
 .white         { color: #fff; }
-.red           { color: #FF8080; }
+.red           { color: #E71D25; }
 .light-blue    { color: #00CCFF; }
 .dark-blue     { color: #333399; }
 .light-green   { color: #99CC00; }

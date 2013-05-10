@@ -121,7 +121,7 @@
                             <tr>                 
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="text_style">Font style:</label></td>                          <td>                    
                                     <select name="text_style" id="text_style" style="width: 210px">     
-                                        <option value="normal">Normal</option>                  
+                                        <option value="normal">Normal</option>			
                                         <option value="italic">Italic</option>
                                         <option value="oblique">Oblique</option>                                                        
                                     </select><br />      
@@ -132,7 +132,8 @@
                             <tr>                 
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="text_type">Text Type:</label></td>                          <td>                    
                                     <select name="text_type" id="text_type" style="width: 210px">     
-                                        <option value="normal">Normal</option>                  
+                                        <option value="normal">Normal</option>    
+										<option value="paragraph">Paragraph</option>	
                                         <option value="cite">Cite</option>
                                         <option value="blockquote">Blockquote</option>                                                        
                                     </select><br />      

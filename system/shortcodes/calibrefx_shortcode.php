@@ -109,6 +109,8 @@ function calibrefx_text($atts, $content = '') {
 
     if($type == 'normal')
         $elm = 'span';
+	elseif($type == 'paragraph')
+        $elm = 'p';
     elseif($type == 'cite')
         $elm = 'cite';
     elseif($type == 'blockquote')
@@ -368,13 +370,13 @@ function calibrefx_list($atts, $content = '') {
                 'style' => ''
                     ), $atts));
 
-    $classes = 'custom';
+    $classes = 'custom-list';
     if (!empty($class))
         $classes .= ' ' . $class;
     if (!empty($style))
         $classes .= ' ' . $style;
 
-    return $before . '<ul class="' . $classes . '">' . do_shortcode($content) . '</ul>' . $after;
+    return $before . '<div class="' . $classes . '">' . do_shortcode($content) . '</div>' . $after;
 }
 
 $tinymce_button_list = new CFX_Shortcode();
@@ -565,20 +567,6 @@ function calibrefx_feed_url(){
     $feed_uri = calibrefx_get_option('feed_uri');
     
     return $feed_uri;  
-}
-
-add_shortcode('facebook_comment', 'fb_comment_box');
-function fb_comment_box($atts, $content = null) {
-    extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'width' => 470,
-                'numberpost' => 10,
-                'url' => get_current_url(),
-                    ), $atts));
-    $output = '<div class="fb-comments" data-href="'.$url.'" data-width="'.$width.'" data-num-posts="'.$numberpost.'"></div>';
-
-    return $before . $output . $after;
 }
 
 /**
@@ -847,17 +835,9 @@ $tinymce_button_togglebox->calibrefx_add_shortcode_button('calibrefx_shortcode_t
 add_shortcode('digg', 'calibrefx_digg');
 
 function calibrefx_digg($atts, $content = null) {
-    $output = "<script type='text/javascript'>
-(function() {
-var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
-s.type = 'text/javascript';
-s.async = true;
-s.src = 'http://widgets.digg.com/buttons.js';
-s1.parentNode.insertBefore(s, s1);
-})();
-</script>
-<!-- Medium Button -->
-<a class='DiggThisButton DiggMedium'></a>";
+    $output = '<span class="social-bookmark digg-button"><a class="DiggThisButton DiggMedium"></a></span>';
+
+    wp_enqueue_script( 'digg-button-script', 'http://widgets.digg.com/buttons.js', '', false, true );
 
     return $output;
 }
@@ -865,26 +845,46 @@ s1.parentNode.insertBefore(s, s1);
 add_shortcode('stumble', 'calibrefx_stumble');
 
 function calibrefx_stumble($atts, $content = null) {
-    $output = "<script src='http://www.stumbleupon.com/hostedbadge.php?s=5'></script>";
+    $output = '<span class="social-bookmark stumbleupon-badge"><su:badge layout="5"></su:badge></span>';
+
+    wp_enqueue_script( 'stumbleupon-badge-script', 'http://platform.stumbleupon.com/1/widgets.js', '', false, true );
+
     return $output;
 }
 
-add_shortcode('facebook', 'calibrefx_facebook');
+add_shortcode('fblike', 'calibrefx_fblike');
 
-function calibrefx_facebook($atts, $content = null) {
-    $output = "<a name='fb_share' type='button_count' href='http://www.facebook.com/sharer.php'></a><script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>";
-    return $output;
-}
+function calibrefx_fblike($atts, $content = null) {
+    extract(shortcode_atts(array(
+        'href' => '',
+        'send' => 'false',
+        'width' => '450',
+        'faces' => 'false',
+        'layout' => 'box_count',
+        'color' => '',
+        'action' => '',
+    ), $atts));
 
-add_shortcode('buzz', 'calibrefx_buzz');
+    $attr = '';
 
-function calibrefx_buzz($atts, $content = null) {
-    $output = "<a title='Post to Google Buzz' class='google-buzz-button' href='http://www.google.com/buzz/post' data-button-style='normal-count'></a>
-<script type='text/javascript' src='http://www.google.com/buzz/api/button.js'></script>";
+    if(!empty($href)) $attr .=' data-href="'.$href.'"';
+    else $attr .=' data-href="'.get_permalink().'"';
+
+    $attr .=' data-send="'.$send.'"';
+    $attr .=' data-width="'.$width.'"';
+    $attr .=' data-show-faces="'.$faces.'"';
+
+    if(!empty($layout)) $attr .=' data-layout="'.$layout.'"';
+    if(!empty($color)) $attr .=' data-colorscheme="'.$color.'"';
+    if(!empty($action)) $attr .=' data-action="'.$action.'"';
+
+    $output = '<span class="social-bookmark facebook-like"><span class="fb-like"'.$attr.'></span></span>';
+
     return $output;
 }
 
 add_shortcode('twitter', 'calibrefx_twitter');
+
 function calibrefx_twitter($atts, $content = null) {
     $calibrefx_twitter = calibrefx_get_option('calibrefx_twitter');
     if ($calibrefx_twitter)
@@ -893,63 +893,43 @@ function calibrefx_twitter($atts, $content = null) {
 }
 
 add_shortcode('tweet', 'calibrefx_tweet');
+
 function calibrefx_tweet($atts, $content = null) {
     extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'class' => '',
-                'width' => '',
-                'url' => get_permalink(),
-                'count' => 'horizontal'
-                    ), $atts));
+        'url' => get_permalink(),
+        'count' => 'vertical',
+        'size' => 'medium',
+    ), $atts));
 
-    wp_enqueue_script( 'calibrefx-twitter-widget', 'http://platform.twitter.com/widgets.js', array(), false, true);
+    if(!empty($url)) $attr .=' data-url="'.$url.'"';
+    if(!empty($count)) $attr .=' data-count="'.$count.'"';
+    if(!empty($size)) $attr .=' data-size="'.$size.'"';
 
-    $output = '
-       <a href="https://twitter.com/share" class="twitter-share-button" data-url="'.$url.'" data-count="'.$count.'">Tweet</a>
-    ';
-
-    return $before . $output . $after;
-}
-
-add_shortcode('fblike', 'calibrefx_fblike');
-function calibrefx_fblike($atts, $content = null) {
-    extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'class' => '',
-                'width' => '',
-                'url' => get_permalink(),
-                'count' => 'button_count'
-                    ), $atts));
-
-    $output = '
-        <div class="fb-like" data-href="'.$url.'" data-send="false" data-layout="'.$count.'" data-width="'.$width.'" 
-        data-show-faces="false"></div>
-    ';
+   $output = '<span class="social-bookmark tweet-share"><a href="https://twitter.com/share" class="twitter-share-button"'.$attr.'>Tweet</a></span>';
 
     return $before . $output . $after;
 }
 
 add_shortcode('gplus', 'calibrefx_gplus');
+
 function calibrefx_gplus($atts, $content = null) {
     extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'class' => '',
-                'width' => 300,
-                'size' => 'medium',
-                'count' => 'true',
-                'url' => get_permalink(),
-                    ), $atts));
+        'width' => 300,
+        'size' => 'tall',
+        'annotation' => 'bubble',
+        'url' => get_permalink(),
+    ), $atts));
+
+    if(!empty($width)) $attr .=' data-width="'.$width.'"';
+    if(!empty($url)) $attr .=' data-href="'.$url.'"';
+    if(!empty($size)) $attr .=' data-size="'.$size.'"';
+    if(!empty($annotation)) $attr .=' data-annotation="'.$annotation.'"';
+
+    $output = '<span class="social-bookmark gplus-button"><span class="g-plusone"'.$attr.'></span></span>';
 
     wp_enqueue_script( 'calibrefx-gplus-widget', 'https://apis.google.com/js/plusone.js', array(), false, true);
 
-    $output = '
-        <div class="g-plusone" data-size="'.$size.'" data-width="'.$width.'" data-href="'.$url.'" data-count="'.$count.'"></div>
-    ';
-
-    return $before . $output . $after;
+    return $output;
 }
 
 add_shortcode('pinterest', 'calibrefx_pinterest');
@@ -957,9 +937,7 @@ function calibrefx_pinterest($atts, $content = null) {
     global $post;
 
     extract(shortcode_atts(array(
-        'before' => '',
-        'after' => '',
-        'count' => 'beside',
+        'count' => 'above',
         'url' => get_permalink(),
         'media' => '',
     ), $atts));
@@ -971,13 +949,11 @@ function calibrefx_pinterest($atts, $content = null) {
         if(!empty($img_url)) $media = $img_url;
     }
 
+    $output = '<span class="social-bookmark pinterest-button"><a data-pin-config="'.$count.'" href="http://pinterest.com/pin/create/button/?url='.urlencode($url).'&media='.urlencode($media).'&description='.urlencode($content).'" data-pin-do="buttonPin" ><img src="http://assets.pinterest.com/images/pidgets/pin_it_button.png" /></a></span>';
+
     wp_enqueue_script( 'calibrefx-pinterest-widget', 'http://assets.pinterest.com/js/pinit.js', array(), false, true);
 
-    $output = '
-        <a data-pin-config="'.$count.'" href="http://pinterest.com/pin/create/button/?url='.urlencode($url).'&media='.urlencode($media).'&description='.urlencode($content).'" data-pin-do="buttonPin" ><img src="http://assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
-    ';
-
-    return $before . $output . $after;
+    return $output;
 }
 
 add_shortcode('feedburner', 'calibrefx_feedburner');
@@ -993,11 +969,19 @@ function calibrefx_feedburner($atts, $content = null) {
     return $output;
 }
 
-add_shortcode('retweet', 'calibrefx_retweet');
+add_shortcode('facebook_comment', 'fb_comment_box');
 
-function calibrefx_retweet($atts, $content = null) {
-    $output = "<a href='http://twitter.com/share' class='twitter-share-button' data-count='vertical'>Tweet</a><script type='text/javascript' src='http://platform.twitter.com/widgets.js'></script>";
-    return $output;
+function fb_comment_box($atts, $content = null) {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+                'width' => 470,
+                'numberpost' => 10,
+                'url' => get_current_url(),
+                    ), $atts));
+    $output = '<div class="fb-comments" data-href="'.$url.'" data-width="'.$width.'" data-num-posts="'.$numberpost.'"></div>';
+
+    return $before . $output . $after;
 }
 
 $tinymce_button_social = new CFX_Shortcode();
