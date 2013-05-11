@@ -703,15 +703,16 @@ function calibrefx_tabs($atts, $content = null) {
     extract(shortcode_atts(array(
         'before' => '',
         'after' => '',
-        'id' => '',
+        'id' => 'entry-tab',
         'tab' => 'tab1|tab2|tab3',
-        'class' => '',
+        'class' => 'entry-tab',
         'headings' => 'Tab1|Tab2|Tab3'), 
     $atts));
 
     $tabs_headings = explode('|', $headings);
     $tabs_elements = explode('|', $tab);
 
+    $classes = "";$ids="";
     if(!empty($class)) $classes .= ' '.$class;
     if(!empty($id)){ 
         $ids .= ' id="'.$id.'"';
@@ -1086,7 +1087,7 @@ function calibrefx_contact_form($atts, $content = null) {
                 "redirect" => ""
             ), $atts));
 
-    if(empty($target)) $target = 'ADMIN_EMAIL';
+    if(empty($target)) $target = ADMIN_EMAIL;
     if(empty($redirect)) $redirect = get_permalink( $post->ID );
 
     //General Settings
