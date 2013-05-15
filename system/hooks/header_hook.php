@@ -321,7 +321,7 @@ function calibrefx_print_wrap() {
     min-width: %1$dpx;
 }', calibrefx_get_option("calibrefx_layout_width"));
 
-    if( !current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {
+    if( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {
         printf('<!--[if lt IE 9]>'."\n".'<style type="text/css">%1$s'."\n".'</style>'."\n".'<![endif]-->'."\n", $wrap_ie);
     }
 }
