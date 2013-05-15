@@ -44,7 +44,7 @@ function calibrefx_print_doctype() {?>
 <!--[if lt IE 7 ]> <html class="ie ltie9 ie6 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie ltie9 ie7 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
 <!--[if IE 8 ]>    <html class="ie ltie9 ie8 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie ltie9 ie9 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
 <!--[if gt IE 9]><!--><html class="no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. -->
 <head id="<?php echo calibrefx_get_site_url(); ?>" data-template-set="html5-reset">
