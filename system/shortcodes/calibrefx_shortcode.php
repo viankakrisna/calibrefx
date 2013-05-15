@@ -1066,7 +1066,7 @@ function calibrefx_post_item($atts, $content = null) {
 
     wp_reset_query();
     wp_reset_postdata();
-    //debug_var($html);
+    //debug_var($query);
 
     return do_shortcode( $html );
 }
