@@ -300,11 +300,11 @@ function calibrefx_print_wrap() {
         $wrapper_fixed  = '';
         if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
             $wrapper_fixed = sprintf('
-    #wrapper.container-fluid{
-        width: %dpx;
-        margin-left: auto;
-        margin-right: auto
-    }
+#wrapper.container-fluid{
+    width: %dpx;
+    margin-left: auto;
+    margin-right: auto
+}
 ', calibrefx_get_option("calibrefx_layout_width")+40);
         }
    
@@ -321,7 +321,7 @@ function calibrefx_print_wrap() {
     min-width: %1$dpx;
 }', calibrefx_get_option("calibrefx_layout_width"));
 
-    if( !calibrefx_layout_is_fluid() ) {
+    if( !current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {
         printf('<!--[if lt IE 9]>'."\n".'<style type="text/css">%1$s'."\n".'</style>'."\n".'<![endif]-->'."\n", $wrap_ie);
     }
 }
