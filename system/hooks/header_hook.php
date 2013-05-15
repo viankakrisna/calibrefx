@@ -272,7 +272,7 @@ function calibrefx_print_wrap() {
 
         $wrapper_fixed  = '';
         if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
-        $wrapper_fixed = sprintf('
+            $wrapper_fixed = sprintf('
 @media (min-width: %dpx){
     #wrapper.container-fluid{
         width: %dpx;
@@ -280,7 +280,7 @@ function calibrefx_print_wrap() {
         margin-right: auto
     }
 }', calibrefx_get_option("calibrefx_layout_width")+40, calibrefx_get_option("calibrefx_layout_width")+40);
-    }
+        }
    
         printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap . $wrapper_fixed);
     }
@@ -296,8 +296,19 @@ function calibrefx_print_wrap() {
     min-width: %dpx;
 }
 ', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
+
+        $wrapper_fixed  = '';
+        if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
+            $wrapper_fixed = sprintf('
+    #wrapper.container-fluid{
+        width: %dpx;
+        margin-left: auto;
+        margin-right: auto
+    }
+', calibrefx_get_option("calibrefx_layout_width")+40);
+        }
    
-        printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
+        printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap . $wrapper_fixed);
     }
 
     $wrap_ie = sprintf('
