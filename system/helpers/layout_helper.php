@@ -275,6 +275,38 @@ function calibrefx_container_class() {
 }
 
 
+/**
+ * Helper function to change layout programmatically to full width
+ *
+ * @return string
+ */
 function calibrefx_layout_full_width(){
     return 'full-width-content';
+}
+
+/**
+ * Helper function to change layout programmatically to content-sidebar
+ *
+ * @return string
+ */
+function calibrefx_layout_content_sidebar(){
+    return 'content-sidebar';
+}
+
+/**
+ * Helper function to change layout programmatically to sidebar-content
+ *
+ * @return string
+ */
+function calibrefx_layout_sidebar_content(){
+    return 'sidebar-content';
+}
+
+/**
+ * Helper function to change layout programmatically to sidebar-content-sidebar
+ *
+ * @return string
+ */
+function calibrefx_layout_sidebar_content_sidebar(){
+    return 'sidebar-content-sidebar';
 }

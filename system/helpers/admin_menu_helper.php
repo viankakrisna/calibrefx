@@ -71,3 +71,17 @@ function calibrefx_add_admin_submenu($parent_slug, $menu_title, $capability, $me
         'url' => $url,
     );
 }
+
+function calibrefx_add_admin_menu_separator($position) {
+  global $menu;
+  $index = 0;
+  foreach($menu as $offset => $section) {
+    if (substr($section[2],0,9)=='separator')
+      $index++;
+    if ($offset>=$position) {
+      $menu[$position] = array('','read',"separator{$index}",'','wp-menu-separator');
+      break;
+    }
+  }
+  ksort( $menu );
+}

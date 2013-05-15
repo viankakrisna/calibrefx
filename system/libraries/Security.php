@@ -225,7 +225,9 @@ class CFX_Security {
      * @param string $nonce_key
      */
     public function verify_nonce($action, $nonce_key) {
-        return (isset($_POST[$nonce_key]) || wp_verify_nonce($_POST[$nonce_key], $action));
+        if(!isset($_POST[$nonce_key])) return false;
+
+        return wp_verify_nonce($_POST[$nonce_key], $action);
     }
 
 }

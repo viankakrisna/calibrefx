@@ -43,6 +43,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             'header_right' => 0,
             'layout_type' => 'fluid',
             'calibrefx_layout_width' => 960,
+            'calibrefx_layout_wrapper_fixed' => 0,
             'site_layout' => calibrefx_get_default_layout(),
             'nav' => 1,
             'subnav' => 0,
@@ -93,6 +94,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                 'one_zero', $this->settings_field, array(
                     'update',
                     'enable_bootstrap',
+                    'calibrefx_layout_wrapper_fixed',
                     'header_right',
                     'nav',
                     'subnav',
@@ -258,11 +260,17 @@ class CFX_Theme_Settings extends CFX_Admin {
             </select>
 
         </p>
-
         <div id="calibrefx_layout_width">
             <p>
                 <label for="<?php echo $this->settings_field; ?>[calibrefx_layout_width]"><?php _e('Layout Width', 'calibrefx'); ?></label>
                 <input type="text" name="<?php echo $this->settings_field; ?>[calibrefx_layout_width]" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_layout_width')); ?>" size="3" /><?php _e('pixels', 'calibrefx'); ?>
+            </p>
+            <p>
+                <label for="calibrefx_layout_wrapper_fixed">
+                    <input type="checkbox" name="" value="1" class="calibrefx-settings-checkbox" id="calibrefx_layout_wrapper_fixed_input" target="calibrefx_layout_wrapper_fixed" <?php checked(1, calibrefx_get_option('calibrefx_layout_wrapper_fixed')); ?> /> <?php _e("Use fixed wrapper", 'calibrefx'); ?> 
+                </label>
+                <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_layout_wrapper_fixed]" id="calibrefx_layout_wrapper_fixed" value="<?php echo calibrefx_get_option('calibrefx_layout_wrapper_fixed') ?>" />
+                
             </p>
             <p><span class="description"><?php _e('You can put maximum width in pixel size. Default: 960', 'calibrefx'); ?></span></p>
         </div>

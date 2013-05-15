@@ -217,7 +217,7 @@ abstract class CFX_Admin {
 
         if (!isset($_REQUEST['page']) || $_REQUEST['page'] != $this->page_id)
             return;
-
+        
         if (isset($_REQUEST['settings-updated']) && $_REQUEST['settings-updated'] == 'true')
             echo '<div id="message" class="updated"><p><strong>' . __('Settings saved.', 'calibrefx') . '</strong></p></div>';
         elseif (isset($_REQUEST['reset']) && 'true' == $_REQUEST['reset'])

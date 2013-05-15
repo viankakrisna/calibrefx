@@ -56,10 +56,11 @@ function calibrefx_do_footer_widgets() {
 
     $footer_widgets = get_theme_support('calibrefx-footer-widgets');
 
-    if (!$footer_widgets)
+    $all_widgets = wp_get_sidebars_widgets();
+
+    if (!$footer_widgets || !isset($all_widgets['footer-widget']))
         return;
 
-    $all_widgets = wp_get_sidebars_widgets();
     $count_footer_widgets = count($all_widgets['footer-widget']);
 
     if ($count_footer_widgets == 0)
