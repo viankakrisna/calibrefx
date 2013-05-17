@@ -617,7 +617,7 @@ function calibrefx_slider($atts, $content = '') {
     ), $atts));
 
     if(!empty($class)) $class = ' '.$class;
-
+    $pager_class = '';$style='';
     if($pager || $next_prev){
         // Create custom ID for pager
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
