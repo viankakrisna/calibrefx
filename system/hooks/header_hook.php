@@ -44,7 +44,7 @@ function calibrefx_print_doctype() {?>
 <!--[if lt IE 7 ]> <html class="ie ltie9 ie6 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie ltie9 ie7 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
 <!--[if IE 8 ]>    <html class="ie ltie9 ie8 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie ltie9 ie9 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
 <!--[if gt IE 9]><!--><html class="no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. -->
 <head id="<?php echo calibrefx_get_site_url(); ?>" data-template-set="html5-reset">
@@ -272,7 +272,7 @@ function calibrefx_print_wrap() {
 
         $wrapper_fixed  = '';
         if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
-        $wrapper_fixed = sprintf('
+            $wrapper_fixed = sprintf('
 @media (min-width: %dpx){
     #wrapper.container-fluid{
         width: %dpx;
@@ -280,7 +280,7 @@ function calibrefx_print_wrap() {
         margin-right: auto
     }
 }', calibrefx_get_option("calibrefx_layout_width")+40, calibrefx_get_option("calibrefx_layout_width")+40);
-    }
+        }
    
         printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap . $wrapper_fixed);
     }
@@ -296,8 +296,19 @@ function calibrefx_print_wrap() {
     min-width: %dpx;
 }
 ', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
+
+        $wrapper_fixed  = '';
+        if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
+            $wrapper_fixed = sprintf('
+#wrapper.container-fluid{
+    width: %dpx;
+    margin-left: auto;
+    margin-right: auto
+}
+', calibrefx_get_option("calibrefx_layout_width")+40);
+        }
    
-        printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
+        printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap . $wrapper_fixed);
     }
 
     $wrap_ie = sprintf('
@@ -310,7 +321,7 @@ function calibrefx_print_wrap() {
     min-width: %1$dpx;
 }', calibrefx_get_option("calibrefx_layout_width"));
 
-    if( !calibrefx_layout_is_fluid() ) {
+    if( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {
         printf('<!--[if lt IE 9]>'."\n".'<style type="text/css">%1$s'."\n".'</style>'."\n".'<![endif]-->'."\n", $wrap_ie);
     }
 }
