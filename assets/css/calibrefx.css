@@ -375,6 +375,7 @@ h1, h2, h3, h4, h5, h6{
 .post-slider-wrapper,
 .page-slider-wrapper{
     margin-top: 5px;
+    position: relative;
 }
 .cycle-overlay { 
     position: absolute; 
