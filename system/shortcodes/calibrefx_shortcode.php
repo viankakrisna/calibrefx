@@ -626,7 +626,7 @@ function calibrefx_slider($atts, $content = '') {
             $pager_class .= $chars[rand(0, $size - 1)];
         }
     }
-
+	$style_item = '';
     if(!empty($width)) $style_item .= 'width:'.$width.';';
     if(!empty($height)) $style_item .= 'height:'.$height.';';
     
