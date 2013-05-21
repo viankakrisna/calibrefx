@@ -383,7 +383,7 @@ class CFX_Loader {
      * @param	mixed
      * @return	void
      */
-    public function widget($widgets = array()) {
+    public function widget($widgets = array()) { 
         foreach ($widgets as $widget) {
             $widget_name = 'CFX_' . $widget . '_Widget';
             if (isset($this->_loaded_widgets[$widget_name])) {
@@ -391,9 +391,9 @@ class CFX_Loader {
             }
 
             foreach ($this->_widget_paths as $path) {
-                $filepath = $path . '/' . strtolower($widget). '_widget' . '.php';
+                $filepath = $path . '/' . strtolower($widget). '_widget' . '.php'; 
                 if (file_exists($filepath)) {
-                    
+                 
                     include_once($filepath);
 
                     $this->_loaded_widgets[] = $widget_name;
