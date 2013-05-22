@@ -1098,7 +1098,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Name','calibrefx'),
         'desc' => __('Fill with your name','calibrefx'),
         'tooltip' => __('Your name','calibrefx'),
-        'content' => $calibrefx->form->textinput('name', ''),
+        'content' => $calibrefx->form->textinput('name', '', '', 'required'),
     );
 
     $rows[] = array(
@@ -1106,7 +1106,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Email','calibrefx'),
         'desc' => __('Fill with your email','calibrefx'),
         'tooltip' => __('Your email','calibrefx'),
-        'content' => $calibrefx->form->textinput('email', ''),
+        'content' => $calibrefx->form->textinput('email', '', '', 'required email'),
     );
 
     $rows[] = array(
@@ -1114,7 +1114,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Subject','calibrefx'),
         'desc' => __('Your subject','calibrefx'),
         'tooltip' => __('Your subject','calibrefx'),
-        'content' => $calibrefx->form->textinput('subject', ''),
+        'content' => $calibrefx->form->textinput('subject', '', '', 'required'),
     );
 
     $rows[] = array(
@@ -1122,7 +1122,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Message','calibrefx'),
         'desc' => __('Your message','calibrefx'),
         'tooltip' => __('Your message','calibrefx'),
-        'content' => $calibrefx->form->textarea('message', ''),
+        'content' => $calibrefx->form->textarea('message', '', '', 'required'),
     );
 
     $rows[] = array(
