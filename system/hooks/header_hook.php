@@ -500,7 +500,7 @@ function calibrefx_do_header() {
     $header_right_widget = current_theme_supports('calibrefx-header-right-widgets');
 
     if ($header_right_widget) {
-       echo '<div class="pull-right header-right span6">';
+       echo '<div class="pull-right header-right">';
        do_action('calibrefx_header_right_widget');
        echo '</div><!-- end .widget-wrap -->';
     }
