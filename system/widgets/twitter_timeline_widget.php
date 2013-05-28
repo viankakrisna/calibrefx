@@ -121,8 +121,8 @@ class CFX_Twitter_Timeline_Widget extends WP_Widget {
 		<p>
             <label for="<?php echo $this->get_field_id('theme'); ?>"><?php _e('Widget Theme', 'calibrefx'); ?>:</label>
 			<select id="<?php echo $this->get_field_id('theme'); ?>" name="<?php echo $this->get_field_name('theme'); ?>">
-				<option value="true"<?php if($instance['theme']==''){ echo ' selected="selected"'; } ?>><?php _e('Default', 'calibrefx'); ?></option>
-				<option value="false"<?php if($instance['theme']=='dark'){ echo ' selected="selected"'; } ?>><?php _e('Dark', 'calibrefx'); ?></option>
+				<option value=""<?php if($instance['theme']==''){ echo ' selected="selected"'; } ?>><?php _e('Default', 'calibrefx'); ?></option>
+				<option value="dark"<?php if($instance['theme']=='dark'){ echo ' selected="selected"'; } ?>><?php _e('Dark', 'calibrefx'); ?></option>
 			</select>
 		</p>
 
