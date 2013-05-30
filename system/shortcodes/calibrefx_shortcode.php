@@ -409,9 +409,10 @@ function calibrefx_row($atts, $content = '') {
                 'id' => '',
                     ), $atts));
 
+    $classes = '';
     if (!empty($class)) $classes .= ' ' . $class;
 
-    return '<div class="' . $class . ' '.calibrefx_row_class().'" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
+    return '<div class="' . $classes . ' '.calibrefx_row_class().'" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
 /**
