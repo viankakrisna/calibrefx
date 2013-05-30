@@ -115,6 +115,8 @@ function calibrefx_text($atts, $content = '') {
         $elm = 'cite';
     elseif($type == 'blockquote')
         $elm = 'blockquote';
+    elseif($type == 'div')
+        $elm = 'div';
 
 
 
@@ -867,6 +869,93 @@ function cronos_alert($atts, $content = null){
     $output .= do_shortcode($content);
               
     $output .= '</div>';
+
+    return $output;
+}
+
+/**
+ * ==============================================================
+ * bar Shortcode
+ * ==============================================================
+ */
+
+add_shortcode('bar', 'cronos_bar');
+function cronos_bar($atts, $content = null){
+    extract(shortcode_atts(array(        
+        'active' => 0,
+        'class' => '',
+        'type' => '',
+        'option' => '',
+        'style' => '',
+    ), $atts));
+    
+    global $bar_item;
+    $bar_item = '';
+
+
+    $content = do_shortcode($content);
+
+    $output = '';
+
+    $classes = 'progress';
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($type))
+        $classes .= ' progress-' . $type;
+    if (!empty($option))
+        $classes .= ' progress-' . $option;
+    if (!empty($active) && $active == '1')
+        $classes .= ' active';
+
+    $output .= '<div class="'. $classes .'" style="'. $style .'">';    
+
+    $output .= $bar_item;
+              
+    $output .= '</div>';
+
+    return $output;
+}
+
+/**
+ * ==============================================================
+ * bar item Shortcode
+ * ==============================================================
+ */
+
+add_shortcode('bar_item', 'cronos_bar_item');
+function cronos_bar_item($atts, $content = null){
+    extract(shortcode_atts(array(        
+        'length' => '10%',
+        'title' => '',
+        'class' => '',
+        'type' => '',
+        'option' => '',
+        'style' => '',
+    ), $atts));
+    
+    global $bar_item;
+
+    $output = '';
+
+    $classes = 'bar';
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($type))
+        $classes .= ' bar-' . $type;
+    if (!empty($option))
+        $classes .= ' bar-' . $option;
+
+    $styles = '';
+    if (!empty($style))
+        $styles .= ' ' . $style;
+    if (!empty($length))
+        $styles .= ' width:' . $length;
+
+    $output .= '<div class="'. $classes .'" style="'. $styles .'">'; 
+    $output .= $title;          
+    $output .= '</div>';
+
+    $bar_item .= $output;
 
     return $output;
 }
