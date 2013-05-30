@@ -264,6 +264,7 @@ function calibrefx_button($atts, $content = '') {
                 'before' => '',
                 'after' => '',
                 'class' => '',
+                'style' => '',
                 'id' => '',
                 'url' => '#',
                 'type' => '',
@@ -285,9 +286,9 @@ function calibrefx_button($atts, $content = '') {
         $icon_class .= ' icon-'.$icon_color;
 
     if (!empty($icon)) {
-        return $before . '<a href="' . $url . '" class="' . $classes . '" rel="'.$rel.'"><i class="icon-'.$icon.$icon_class.'"></i>' . do_shortcode($content) . '</a>' . $after;
+        return $before . '<a href="' . $url . '" class="' . $classes . '" style="' . $style . '" rel="'.$rel.'"><i class="icon-'.$icon.$icon_class.'"></i>' . do_shortcode($content) . '</a>' . $after;
     } else {
-        return $before . '<a href="' . $url . '" class="' . $classes . '" rel="'.$rel.'">' . do_shortcode($content) . '</a>' . $after;
+        return $before . '<a href="' . $url . '" class="' . $classes . '" style="' . $style . '" rel="'.$rel.'">' . do_shortcode($content) . '</a>' . $after;
     }
 }
 
