@@ -811,6 +811,7 @@ function calibrefx_togglebox_item($atts, $content = null){
         'in' => 0
     ), $atts));
 
+    $class = '';
     if($in) $class = ' in';
 
     $output = '<div class="accordion-group">
@@ -831,6 +832,44 @@ function calibrefx_togglebox_item($atts, $content = null){
 
 $tinymce_button_togglebox = new CFX_Shortcode();
 $tinymce_button_togglebox->calibrefx_add_shortcode_button('calibrefx_shortcode_togglebox', CALIBREFX_SHORTCODE_URL . '/form-togglebox.php', 360, 200, __('Togglebox shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/togglebox.png');
+
+/**
+ * ==============================================================
+ * alert Shortcode
+ * ==============================================================
+ */
+
+add_shortcode('alert', 'cronos_alert');
+function cronos_alert($atts, $content = null){
+    extract(shortcode_atts(array(        
+        'close_button' => 1,
+        'class' => '',
+        'type' => '',
+        'option' => '',
+        'style' => '',
+    ), $atts));
+    
+    $output = '';
+
+    $classes = 'alert';
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($type))
+        $classes .= ' alert-' . $type;
+    if (!empty($option))
+        $classes .= ' alert-' . $option;
+
+    $output .= '<div class="'. $classes .'" style="'. $style .'">';
+
+    if($close_button)
+        $output .= '<button type="button" class="close" data-dismiss="alert">×</button>';
+
+    $output .= do_shortcode($content);
+              
+    $output .= '</div>';
+
+    return $output;
+}
 
 /**
  * ==============================================================
