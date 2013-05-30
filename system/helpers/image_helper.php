@@ -27,6 +27,8 @@
 function calibrefx_get_image_id($num = 0) {
     global $post;
 
+	if(is_404()) return;
+	
     $image_ids = array_keys(
             get_children(
                     array(

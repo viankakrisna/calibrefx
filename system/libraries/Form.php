@@ -46,14 +46,14 @@ class CFX_Form {
      * Create a label field
      */
     function label($id, $value = "") {
-        return '<label>' . $value . '</label>';
+        return '<label for="' . $id . '">' . $value . '</label>';
     }
 
     /**
      * Create a hidden input field
      */
-    function hidden($id, $value = "") {
-        return '<input class="hidden" type="hidden" id="' . $id . '" name="' . $id . '" value="' . $value . '"/>';
+    function hidden($id, $value = "", $class = "", $attr = "") {
+        return '<input class="hidden ' . $class . '" type="hidden" id="' . $id . '" name="' . $id . '" value="' . $value . '" ' . $attr . ' />';
     }
 
     /**
@@ -92,15 +92,15 @@ class CFX_Form {
     /**
      * Create a Text input field
      */
-    function textinput($id, $value = "", $readonly = "") {
-		return '<input class="text" type="text" id="' . $id . '" name="' . $id . '" size="30" value="' . stripslashes($value) . '" ' . $readonly . '/>';
+    function textinput($id, $value = "", $readonly = "", $class = "", $attr = "") {
+		return '<input class="text '.$class.'" type="text" id="' . $id . '" name="' . $id . '" size="30" value="' . stripslashes($value) . '" ' . $attr . ' ' . $readonly . '/>';
     }
 	
 	/**
      * Create a Text input field
      */
-    function password($id, $value = "", $readonly = "") {
-		return '<input class="text" type="password" id="' . $id . '" name="' . $id . '" size="30" value="' . stripslashes($value) . '" ' . $readonly . '/>';
+    function password($id, $value = "", $readonly = "", $class = "", $attr = "") {
+		return '<input class="text ' . $class . '" type="password" id="' . $id . '" name="' . $id . '" size="30" value="' . stripslashes($value) . '" ' . $attr . ' ' . $readonly . '/>';
     }
 
     /**
@@ -113,11 +113,11 @@ class CFX_Form {
     /**
      * Create a Text area field
      */
-    function textarea($id, $value = "", $disabled = "") {
+    function textarea($id, $value = "", $disabled = "", $class = "", $attr = "") {
 		if($disabled){
-			return '<textarea id="' . $id . '" rows="6" cols="70" name="' . $id . '" disabled="' . $disabled. '">' . stripslashes($value) . '</textarea>';
+			return '<textarea class="textarea ' . $class . '" id="' . $id . '" rows="6" cols="70" name="' . $id . '" disabled="' . $disabled. '" ' . $attr . '>' . stripslashes($value) . '</textarea>';
 		}else{
-			return '<textarea id="' . $id . '" rows="6" cols="70" name="' . $id . '">' . stripslashes($value) . '</textarea>';
+			return '<textarea class="textarea ' . $class . '" id="' . $id . '" rows="6" cols="70" name="' . $id . '" ' . $attr . '>' . stripslashes($value) . '</textarea>';
 		}
     }
 	
@@ -133,8 +133,8 @@ class CFX_Form {
     /**
      * Create a dropdown field
      */
-    function select($id, $options = "", $value = "", $multiple = false) {
-        $output = '<select class="select" name="' . $id . '" id="' . $id . '">';
+    function select($id, $options = "", $value = "", $multiple = false, $class = "", $attr = "") {
+        $output = '<select class="select ' . $class . '" name="' . $id . '" id="' . $id . '" ' . $attr . '>';
         foreach ($options as $val => $name) {
             $sel = '';
             if ($value == $val)
