@@ -430,6 +430,10 @@ function calibrefx_column($atts, $content = '') {
                 'id' => ''
                     ), $atts));
 
+    $before = '';
+    $after = '';
+    $classes = '';
+
     if (!empty($class))
         $classes .= ' ' . $class;
     if (!empty($cols))
