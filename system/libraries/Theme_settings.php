@@ -266,7 +266,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                 <input type="text" name="<?php echo $this->settings_field; ?>[calibrefx_layout_width]" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_layout_width')); ?>" size="3" /><?php _e('pixels', 'calibrefx'); ?>
             </p>
             <p>
-                <label for="calibrefx_layout_wrapper_fixed">
+                <label for="calibrefx_layout_wrapper_fixed_input">
                     <input type="checkbox" name="" value="1" class="calibrefx-settings-checkbox" id="calibrefx_layout_wrapper_fixed_input" target="calibrefx_layout_wrapper_fixed" <?php checked(1, calibrefx_get_option('calibrefx_layout_wrapper_fixed')); ?> /> <?php _e("Use fixed wrapper", 'calibrefx'); ?> 
                 </label>
                 <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_layout_wrapper_fixed]" id="calibrefx_layout_wrapper_fixed" value="<?php echo calibrefx_get_option('calibrefx_layout_wrapper_fixed') ?>" />

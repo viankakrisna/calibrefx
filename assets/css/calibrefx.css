@@ -375,6 +375,7 @@ h1, h2, h3, h4, h5, h6{
 .post-slider-wrapper,
 .page-slider-wrapper{
     margin-top: 5px;
+    position: relative;
 }
 .cycle-overlay { 
     position: absolute; 
@@ -1037,6 +1038,11 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 .font-normal { font-style: normal; }
 .font-italic { font-style: italic; }
 .font-oblique { font-style: oblique; }
+
+/** font weight **/
+.font-weight-normal { font-weight: 400; }
+.font-weight-semibold { font-weight: 600; }
+.font-weight-bold { font-weight: 700; }
 
 /** font size **/
 .size-ltt-3em { font-size: 3em; margin-bottom: 4px; margin-right: 10px; }

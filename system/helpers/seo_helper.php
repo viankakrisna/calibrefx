@@ -36,6 +36,8 @@
  */
 function get_replace_title_tags() {
     global $post, $s, $paged, $wp_locale;
+	
+	if(is_404()) return;
 
     $m = get_query_var('m');
     $year = get_query_var('year');

@@ -5,7 +5,7 @@ special.scrollstop = {latency: 300,setup: function() {var timer, handler = funct
 })();
 
 jQuery(document).ready(function($) {
-	jQuery("#commentform").validate();
+	jQuery("#commentform, #calibrefx_contact_form").validate();
 	
 	jQuery('#header .menu, .superfish').superfish({
 		delay		: 200,
