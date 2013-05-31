@@ -94,6 +94,7 @@ function calibrefx_text($atts, $content = '') {
                 'color' => '',
                 'font' => '',
                 'style' => '',
+                'weight' => '',
                 'type' => 'normal',
                     ), $atts));
 
@@ -106,6 +107,8 @@ function calibrefx_text($atts, $content = '') {
         $classes .= ' font-' . $font;
     if (!empty($style))
         $classes .= ' font-' . $style;
+    if (!empty($weight))
+        $classes .= ' font-weight-' . $weight;
 
     if($type == 'normal')
         $elm = 'span';

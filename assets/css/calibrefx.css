@@ -1039,6 +1039,11 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 .font-italic { font-style: italic; }
 .font-oblique { font-style: oblique; }
 
+/** font weight **/
+.font-weight-normal { font-weight: 400; }
+.font-weight-semibold { font-weight: 600; }
+.font-weight-bold { font-weight: 700; }
+
 /** font size **/
 .size-ltt-3em { font-size: 3em; margin-bottom: 4px; margin-right: 10px; }
 .size-ltt-4em { font-size: 4em; }
