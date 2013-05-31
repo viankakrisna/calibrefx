@@ -109,7 +109,7 @@ function calibrefx_text($atts, $content = '') {
 
     if($type == 'normal')
         $elm = 'span';
-	elseif($type == 'paragraph')
+    elseif($type == 'paragraph')
         $elm = 'p';
     elseif($type == 'cite')
         $elm = 'cite';
@@ -634,7 +634,7 @@ function calibrefx_slider($atts, $content = '') {
             $pager_class .= $chars[rand(0, $size - 1)];
         }
     }
-	$style_item = '';
+    $style_item = '';
     if(!empty($width)) $style_item .= 'width:'.$width.';';
     if(!empty($height)) $style_item .= 'height:'.$height.';';
     
@@ -1035,14 +1035,16 @@ function calibrefx_tweet($atts, $content = null) {
         'count' => 'vertical',
         'size' => 'medium',
     ), $atts));
+    
+    $attr = '';
 
     if(!empty($url)) $attr .=' data-url="'.$url.'"';
     if(!empty($count)) $attr .=' data-count="'.$count.'"';
     if(!empty($size)) $attr .=' data-size="'.$size.'"';
 
-   $output = '<span class="social-bookmark tweet-share"><a href="https://twitter.com/share" class="twitter-share-button"'.$attr.'>Tweet</a></span>';
+    $output = '<span class="social-bookmark tweet-share"><a href="https://twitter.com/share" class="twitter-share-button"'.$attr.'>Tweet</a></span>';
 
-    return $before . $output . $after;
+    return $output;
 }
 
 add_shortcode('gplus', 'calibrefx_gplus');
@@ -1054,6 +1056,8 @@ function calibrefx_gplus($atts, $content = null) {
         'annotation' => 'bubble',
         'url' => get_permalink(),
     ), $atts));
+    
+    $attr = '';
 
     if(!empty($width)) $attr .=' data-width="'.$width.'"';
     if(!empty($url)) $attr .=' data-href="'.$url.'"';
