@@ -49,6 +49,8 @@ function calibrefx_register_scripts(){
     wp_register_style('calibrefx-bootstrap-responsive', CALIBREFX_CSS_URL . '/bootstrap.responsive.min.css');
     wp_register_style('calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css');
     wp_register_style('calibrefx-responsive-style', CALIBREFX_CSS_URL . '/calibrefx.responsive.css');
+    wp_register_style('font-awesome', CALIBREFX_CSS_URL . '/font-awesome.min.css');
+    wp_register_style('font-awesome-ie', CALIBREFX_CSS_URL . '/font-awesome-ie7.min.css');
 }
 
 add_action('get_header', 'calibrefx_load_scripts');
@@ -80,6 +82,8 @@ add_action('calibrefx_meta', 'calibrefx_load_styles',5);
  * since @1.0
  */
 function calibrefx_load_styles() {
+    global $wp_styles;
+
     $calibrefx_default_style = get_theme_support('calibrefx-default-styles');
 
     /** If not active, do nothing */
@@ -97,6 +101,11 @@ function calibrefx_load_styles() {
     if ( current_theme_supports('calibrefx-responsive-style') ) {
         wp_enqueue_style('calibrefx-responsive-style');
     }
+
+    wp_enqueue_style('font-awesome');
+    $wp_styles->add_data('font-awesome-ie', 'conditional', 'IE7');
+    wp_enqueue_style('font-awesome-ie');
+    
 }
 
 add_action('admin_init', 'calibrefx_load_admin_scripts');
