@@ -135,7 +135,8 @@
                                         <option value="normal">Normal</option>    
 										<option value="paragraph">Paragraph</option>	
                                         <option value="cite">Cite</option>
-                                        <option value="blockquote">Blockquote</option>                                                        
+                                        <option value="blockquote">Blockquote</option>     
+                                        <option value="div">Div</option>                                                       
                                     </select><br />      
                                     <em style="font-size: 9px; color: #999;">Select text type.</em>                
                                 </td>                    
