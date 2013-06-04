@@ -36,7 +36,7 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
             'facebook_height' => 400,
             'facebook_color' => 'light',
             'facebook_show_faces' => 1,
-            'facebook_border_color' => '',
+            'facebook_border_color' => 1,
             'facebook_show_stream' => 1,
             'facebook_show_header' => 1,
         );
@@ -74,7 +74,7 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
         
         printf('<iframe
 			src="http://www.facebook.com/plugins/likebox.php?href=%1$s&
-			width=%2$s&height=%3$s&colorscheme=%4$s&show_faces=%5$s&stream=%6$s&header=%7$s" 
+			width=%2$s&height=%3$s&colorscheme=%4$s&show_faces=%5$s&stream=%6$s&header=%7$s&show_border=%8$s" 
 			scrolling="no" frameborder="0" 
 			style="border:none; overflow:hidden; width:%2$spx; height:%3$spx;" allowTransparency="true"></iframe>',
 			$instance['facebook_url'],
@@ -83,8 +83,8 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
 			$instance['facebook_color'],
 			($instance['facebook_show_faces'] == '1') ? 'true' : 'false',
 			($instance['facebook_show_stream'] == '1') ? 'true' : 'false',
-			($instance['facebook_show_header'] == '1') ? 'true' : 'false'
-			);
+			($instance['facebook_show_header'] == '1') ? 'true' : 'false',
+			($instance['facebook_border_color'] == '1') ? 'true' : 'false');
         
         //Widget Body Stop
 
@@ -100,6 +100,7 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
         $new_instance['facebook_show_stream'] = $new_instance['facebook_show_stream'];
 		$new_instance['facebook_show_faces'] = $new_instance['facebook_show_faces'];
 		$new_instance['facebook_show_header'] = $new_instance['facebook_show_header'];
+		$new_instance['facebook_border_color'] = $new_instance['facebook_border_color'];
 		
         return $new_instance;
     }
@@ -142,13 +143,9 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
             </select>
         </p>
 
-        <p>
-            <label for="<?php echo $this->get_field_id('facebook_border_color'); ?>"><?php _e('Border Color', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('facebook_border_color'); ?>" name="<?php echo $this->get_field_name('facebook_border_color'); ?>" value="<?php echo esc_attr($instance['facebook_border_color']); ?>" class="widefat" />
-        </p>
-
         <hr class="div" />
-
+		
+		<p><input id="<?php echo $this->get_field_id('facebook_border_color'); ?>" type="checkbox" name="<?php echo $this->get_field_name('facebook_border_color'); ?>" value="1" <?php checked(1, $instance['facebook_border_color']); ?>/> <label for="<?php echo $this->get_field_id('facebook_border_color'); ?>"><?php _e('Show Border', 'calibrefx'); ?></label></p>
         <p><input id="<?php echo $this->get_field_id('facebook_show_faces'); ?>" type="checkbox" name="<?php echo $this->get_field_name('facebook_show_faces'); ?>" value="1" <?php checked(1, $instance['facebook_show_faces']); ?>/> <label for="<?php echo $this->get_field_id('facebook_show_faces'); ?>"><?php _e('Show Faces', 'calibrefx'); ?></label></p>
         <p><input id="<?php echo $this->get_field_id('facebook_show_stream'); ?>" type="checkbox" name="<?php echo $this->get_field_name('facebook_show_stream'); ?>" value="1" <?php checked(1, $instance['facebook_show_stream']); ?>/> <label for="<?php echo $this->get_field_id('facebook_show_stream'); ?>"><?php _e('Show Stream', 'calibrefx'); ?></label></p>
         <p><input id="<?php echo $this->get_field_id('facebook_show_header'); ?>" type="checkbox" name="<?php echo $this->get_field_name('facebook_show_header'); ?>" value="1" <?php checked(1, $instance['facebook_show_header']); ?>/> <label for="<?php echo $this->get_field_id('facebook_show_header'); ?>"><?php _e('Show Header', 'calibrefx'); ?></label></p>
