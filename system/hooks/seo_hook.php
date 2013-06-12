@@ -44,6 +44,7 @@ function init_seo_feature_hook(){
     add_filter('calibrefx_do_meta_description', 'calibrefx_seo_description');
     add_filter('calibrefx_do_meta_keywords', 'calibrefx_seo_keywords');
     add_filter('calibrefx_do_link_author', 'calibrefx_link_author');
+    add_filter('calibrefx_do_link_publisher', 'calibrefx_link_publisher');
     add_action('calibrefx_meta', 'calibrefx_do_meta_robot');
     add_action('wp_head', 'calibrefx_canonical', 5);
     add_action('template_redirect', 'calibrefx_custom_redirect', 5);
@@ -242,6 +243,13 @@ function calibrefx_link_author(){
     }else{
         return calibrefx_get_option('gplus_profile');
     }
+}
+
+/**
+ * Return link publisher URL to be displayed in html head
+ */
+function calibrefx_link_publisher(){ 
+    return calibrefx_get_option('gplus_page');        
 }
 
 /**
