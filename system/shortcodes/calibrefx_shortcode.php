@@ -94,6 +94,7 @@ function calibrefx_text($atts, $content = '') {
                 'color' => '',
                 'font' => '',
                 'style' => '',
+                'weight' => '',
                 'type' => 'normal',
                     ), $atts));
 
@@ -106,6 +107,8 @@ function calibrefx_text($atts, $content = '') {
         $classes .= ' font-' . $font;
     if (!empty($style))
         $classes .= ' font-' . $style;
+    if (!empty($weight))
+        $classes .= ' font-weight-' . $weight;
 
     if($type == 'normal')
         $elm = 'span';
@@ -179,6 +182,33 @@ function calibrefx_blockquote($atts, $content = '') {
                     ), $atts));
 
     return $before . '<blockquote>' . do_shortcode($content) . '</blockquote>' . $after;
+}
+
+/**
+ * ==============================================================
+ * Icon Section
+ * ==============================================================
+ */
+add_shortcode('i', 'calibrefx_icon');
+
+function calibrefx_icon($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+				'name' => '',
+				'class' => '',
+				'style' => '',
+                    ), $atts));
+					
+	$attr = '';
+	$classes = 'icon';
+	
+	if(!empty($name)) $classes .= ' '.$name;
+	if(!empty($class)) $classes .= ' '.$class;
+	
+	if(!empty($style)) $attr .= ' style="'.$style.'"';
+
+    return $before . '<i class="'.$classes.'"'.$attr.'></i>' . $after;
 }
 
 /**
@@ -1205,7 +1235,7 @@ function calibrefx_post_item($atts, $content = null) {
 
     wp_reset_query();
     wp_reset_postdata();
-    //debug_var($html);
+    //debug_var($query);
 
     return do_shortcode( $html );
 }

@@ -37,8 +37,9 @@
                     var text_font = document.getElementById('text_font').value;
                     var text_style = document.getElementById('text_style').value;
                     var text_type = document.getElementById('text_type').value;
+                    var text_weight = document.getElementById('text_weight').value;
 	
-                    shortcodeRetazec = '[text color="' + text_color + '" font="' + text_font + '" style="' + text_style + '" type="' + text_type + '"]'+medziShortcodom+'[/text]';
+                    shortcodeRetazec = '[text color="' + text_color + '" font="' + text_font + '" style="' + text_style + '" type="' + text_type + '" weight="' + text_weight + '"]'+medziShortcodom+'[/text]';
         
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
@@ -124,6 +125,17 @@
                                         <option value="normal">Normal</option>			
                                         <option value="italic">Italic</option>
                                         <option value="oblique">Oblique</option>                                                        
+                                    </select><br />      
+                                    <em style="font-size: 9px; color: #999;">Select style.</em>                
+                                </td>                    
+                            </tr> 
+                            <!-- Font weight -->       
+                            <tr>                 
+                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="text_weight">Font weight:</label></td>                          <td>                    
+                                    <select name="text_weight" id="text_weight" style="width: 210px">     
+                                        <option value="normal">Normal</option>          
+                                        <option value="semibold">Semibold</option>
+                                        <option value="bold">Bold</option>                                                        
                                     </select><br />      
                                     <em style="font-size: 9px; color: #999;">Select style.</em>                
                                 </td>                    
