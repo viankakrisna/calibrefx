@@ -186,6 +186,33 @@ function calibrefx_blockquote($atts, $content = '') {
 
 /**
  * ==============================================================
+ * Icon Section
+ * ==============================================================
+ */
+add_shortcode('i', 'calibrefx_icon');
+
+function calibrefx_icon($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'before' => '',
+                'after' => '',
+				'name' => '',
+				'class' => '',
+				'style' => '',
+                    ), $atts));
+					
+	$attr = '';
+	$classes = 'icon';
+	
+	if(!empty($name)) $classes .= ' '.$name;
+	if(!empty($class)) $classes .= ' '.$class;
+	
+	if(!empty($style)) $attr .= ' style="'.$style.'"';
+
+    return $before . '<i class="'.$classes.'"'.$attr.'></i>' . $after;
+}
+
+/**
+ * ==============================================================
  * Image Section
  * ==============================================================
  */
