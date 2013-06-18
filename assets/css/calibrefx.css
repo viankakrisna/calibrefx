@@ -765,7 +765,7 @@ blockquote{
     position: absolute;
     top: 0;
     left: 0;
-    width: 100% !important;
+    width: 99.9% !important;
     height: 100% !important;
     overflow: hidden;
 }

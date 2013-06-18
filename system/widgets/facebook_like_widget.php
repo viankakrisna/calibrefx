@@ -32,13 +32,14 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
         $this->defaults = array(
             'title' => '',
             'facebook_url' => '',
-            'facebook_width' => 200,
-            'facebook_height' => 400,
+            'facebook_width' => 292,
+            'facebook_height' => 320,
             'facebook_color' => 'light',
             'facebook_show_faces' => 1,
             'facebook_border_color' => 1,
             'facebook_show_stream' => 1,
             'facebook_show_header' => 1,
+            'facebook_background_color' => ''
         );
 
         $widget_ops = array(
@@ -71,12 +72,21 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
             echo $before_title . apply_filters('widget_title', $instance['title'], $instance, $this->id_base) . $after_title;
 
         //Widget Body Start
+        if(empty($instance['facebook_background_color'])){
+            if($instance['facebook_color'] == 'dark'){
+                $background_color = '#333333';
+            }else{
+                $background_color = '#ffffff';
+            }
+        }else{
+            $background_color = $instance['facebook_background_color'];
+        }
         
         printf('<iframe
 			src="http://www.facebook.com/plugins/likebox.php?href=%1$s&
 			width=%2$s&height=%3$s&colorscheme=%4$s&show_faces=%5$s&stream=%6$s&header=%7$s&show_border=%8$s" 
 			scrolling="no" frameborder="0" 
-			style="border:none; overflow:hidden; width:%2$spx; height:%3$spx;" allowTransparency="true"></iframe>',
+			style="border:none; overflow:hidden; width:%2$spx; height:%3$spx; background-color: %9$s" allowTransparency="true"></iframe>',
 			$instance['facebook_url'],
 			$instance['facebook_width'],
 			$instance['facebook_height'],
@@ -84,7 +94,8 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
 			($instance['facebook_show_faces'] == '1') ? 'true' : 'false',
 			($instance['facebook_show_stream'] == '1') ? 'true' : 'false',
 			($instance['facebook_show_header'] == '1') ? 'true' : 'false',
-			($instance['facebook_border_color'] == '1') ? 'true' : 'false');
+			($instance['facebook_border_color'] == '1') ? 'true' : 'false',
+            $background_color);
         
         //Widget Body Stop
 
@@ -141,6 +152,11 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
                 <option style="padding-right:10px;" value="light" <?php selected('light', $instance['facebook_color']); ?>><?php _e('Light', 'calibrefx'); ?></option>
                 <option style="padding-right:10px;" value="dark" <?php selected('dark', $instance['facebook_color']); ?>><?php _e('Dark', 'calibrefx'); ?></option>
             </select>
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('facebook_background_color'); ?>"><?php _e('Background Color', 'calibrefx'); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id('facebook_background_color'); ?>" name="<?php echo $this->get_field_name('facebook_background_color'); ?>" value="<?php echo esc_attr($instance['facebook_background_color']); ?>" />
         </p>
 
         <hr class="div" />

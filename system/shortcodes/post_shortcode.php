@@ -162,6 +162,10 @@ function calibrefx_post_comments_shortcode( $atts ) {
             'one'         => __( '1 Comment', 'calibrefx' ),
             'zero'        => __( 'Leave a Comment', 'calibrefx' ),
     );
+
+    $is_facebook_comment_enabled = calibrefx_get_option('facebook_comments');
+    if($is_facebook_comment_enabled) return;
+
     $atts = shortcode_atts( $defaults, $atts );
     if ( ( ! calibrefx_get_option( 'comments_posts' ) || ! comments_open() ) && 'enabled' === $atts['hide_if_off'] )
             return;
