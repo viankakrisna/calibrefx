@@ -174,6 +174,13 @@ end;
 end;
     }
 
+    /**
+     * Create a legend text
+     */
+    function legend($text) {
+        return '<legend>'.stripslashes($text).'</legend>';
+    }
+
     function build($rows) {
         $this->form_fields = $this->form_table($rows);
         $output = $this->form_open . $this->form_fields  . $this->form_close;
@@ -235,14 +242,17 @@ end;
 
                 $content .= '</div>';
             } else {
+                if(isset($row['input_wrapper']) && $row['input_wrapper'] == 'no'){
+                    $content .= $row['content'];
+                }else{
+                    $content .= '<div class="control-group">';                
 
-                $content .= '<div class="control-group">';                
+                    $content .= '   <div class="controls">';
+                    $content .= $row['content'];                
+                    $content .= '   </div>';
 
-                $content .= '   <div class="controls">';
-                $content .= $row['content'];                
-                $content .= '   </div>';
-
-                $content .= '</div>';
+                    $content .= '</div>';
+                }   
             }
 
             $i++;
