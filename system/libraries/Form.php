@@ -174,6 +174,13 @@ end;
 end;
     }
 
+    /**
+     * Create a legend text
+     */
+    function legend($text) {
+        return '<legend>'.stripslashes($text).'</legend>';
+    }
+
     function build($rows) {
         $this->form_fields = $this->form_table($rows);
         $output = $this->form_open . $this->form_fields  . $this->form_close;
