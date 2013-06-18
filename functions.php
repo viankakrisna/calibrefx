@@ -14,7 +14,6 @@
  *
  * The WordPress functions.php file. initialize CalibreFx framework and themes.
  *
- * @package CalibreFx
  */
 
 /**

@@ -445,6 +445,13 @@ class CFX_Theme_Settings extends CFX_Admin {
         </p>
 
         <p><span class="description"><?php _e("You can generally enabled/disabled comments and trackbacks per post/page.", 'calibrefx'); ?></span></p>
+        
+        <p>
+            <label for="calibrefx-settings-checkbox-facebook-comments"><?php _e('Enable Facebook Comments', 'calibrefx'); ?></label>
+            <input type="checkbox" name="" id="calibrefx-settings-checkbox-facebook-comments" value="1" <?php checked(1, calibrefx_get_option('facebook_comments')); ?> target="calibrefx-settings-facebook-comments" class="calibrefx-settings-checkbox" />
+            <input type="hidden" name="<?php echo $this->settings_field; ?>[facebook_comments]" id="calibrefx-settings-facebook-comments" value="<?php echo calibrefx_get_option('facebook_comments'); ?>" />
+        </p>
+        <p class="description"><?php _e("This will override the default comments form with facebook comments form", 'calibrefx'); ?></p>
         <?php
     }
 

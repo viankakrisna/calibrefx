@@ -39,7 +39,6 @@ input, select, textarea{
 
 h1, h2, h3, h4, h5, h6{
     font-family: Verdana, sans-serif;
-    color: #2f2f2f;
 }
 
 /* Wrapper Style 
@@ -443,11 +442,6 @@ h1, h2, h3, h4, h5, h6{
     margin-bottom: 20px;	
 }
 
-.entry-content p{
-    margin: 13px 0;
-    color: inherit;
-}
-
 .entry-content p:first-child{
     margin-top: 0px;
 }
@@ -771,7 +765,7 @@ blockquote{
     position: absolute;
     top: 0;
     left: 0;
-    width: 100% !important;
+    width: 99.9% !important;
     height: 100% !important;
     overflow: hidden;
 }

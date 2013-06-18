@@ -93,10 +93,16 @@ add_action('calibrefx_meta', 'calibrefx_do_link_author');
  */
 function calibrefx_do_link_author() {
     $link_author = apply_filters('calibrefx_do_link_author', '');
+    $link_publisher = apply_filters('calibrefx_do_link_publisher', '');
 
     // Add the description, but only if one exists
     if (!empty($link_author)) {
         echo '<link rel="author" content="' . esc_attr($link_author) . '" />' . "\n";
+    }
+
+    // Add the description, but only if one exists
+    if (!empty($link_author)) {
+        echo '<link rel="publisher" content="' . esc_attr($link_publisher) . '" />' . "\n";
     }
 }
 

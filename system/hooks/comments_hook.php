@@ -39,10 +39,24 @@ add_action( 'calibrefx_after_post', 'calibrefx_get_comments_template' );
  *
  */
 function calibrefx_get_comments_template() {
-    if ( is_single() && ( calibrefx_get_option( 'trackbacks_posts' ) || calibrefx_get_option( 'comments_posts' ) ) )
-        comments_template( '', true );
-    elseif ( is_page() && ( calibrefx_get_option( 'trackbacks_pages' ) || calibrefx_get_option( 'comments_pages' ) ) )
-        comments_template( '', true );
+    $is_facebook_comment_enabled = calibrefx_get_option('facebook_comments');
+
+    if(!$is_facebook_comment_enabled){
+        if ( is_single() && ( calibrefx_get_option( 'trackbacks_posts' ) || calibrefx_get_option( 'comments_posts' ) ) )
+            comments_template( '', true );
+        elseif ( is_page() && ( calibrefx_get_option( 'trackbacks_pages' ) || calibrefx_get_option( 'comments_pages' ) ) )
+            comments_template( '', true );
+    }else{
+
+        if((is_page() && calibrefx_get_option('comments_pages')) || (is_single() && calibrefx_get_option('comments_posts'))){
+            echo '<div id="comments">';
+            echo '<h3 id="reply-title">'.__( 'Leave us your thought', 'calibrefx' ).'</h3>';
+
+            echo do_shortcode( '[facebook_comment]' );
+
+            echo '</div>';
+        }
+    }
 }
 
 add_action( 'calibrefx_comments', 'calibrefx_do_comments' );
