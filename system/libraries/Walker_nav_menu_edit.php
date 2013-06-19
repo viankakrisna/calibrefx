@@ -176,7 +176,7 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	            ?>      
 	            <p class="field-custom description description-wide">
 	                <label for="edit-menu-item-icon-<?php echo $item_id; ?>">
-	                    <?php _e( 'Custom Icon' ); ?><br />
+	                    <?php _e( 'Custom Icon (label <code>i</code> class)' ); ?><br />
 	                    <input type="text" id="edit-menu-item-icon-<?php echo $item_id; ?>" class="widefat code edit-menu-item-custom" name="menu-item-icon[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->custom_icon ); ?>" />
 	                </label>
 	            </p>
