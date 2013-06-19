@@ -47,16 +47,9 @@ class CFX_Walker_Nav_menu extends Walker_Nav_Menu {
             $classes[] = 'dropdown';
 
         $icon_html = '';
-        $temp_classes = array();
-        foreach($classes as $class){
-            if( strpos($class, 'icon-') !== false){
-                $icon_html = '<i class="'. $class .'"></i>&nbsp;&nbsp;';
-            }
-            else{
-                $temp_classes[] = $class;
-            }
+        if(isset($item->custom_icon) && !empty($item->custom_icon)){
+            $icon_html = '<i class="'. $item->custom_icon .'"></i>&nbsp;&nbsp;';
         }
-        $classes = $temp_classes;
 
 
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));

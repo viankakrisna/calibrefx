@@ -198,3 +198,30 @@ function calibrefx_nav_menu_css_class($classes, $item) {
     }
     return $classes;
 }
+
+/**
+ * Add custom fields to $item nav object
+ * in order to be used in custom Walker to add an icon in nav menu
+ *
+ * @since       1.0.15 
+ * @author      Hilaladdiyar Muhammad Nur (hilal@calibrefx.com)
+*/
+add_filter( 'wp_setup_nav_menu_item','calibrefx_custom_nav_icon' );
+function calibrefx_custom_nav_icon($menu_item) {
+    $menu_item->custom_icon = get_post_meta( $menu_item->ID, '_menu_item_custom_icon', true );
+    return $menu_item;
+}
+
+add_action( 'wp_update_nav_menu_item', 'calibrefx_update_custom_nav_fields', 10, 3 );
+function calibrefx_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
+    // Check if element is properly sent
+    if ( is_array( $_REQUEST['menu-item-icon']) ) {
+        $icon_menu = $_REQUEST['menu-item-icon'][$menu_item_db_id];
+        update_post_meta( $menu_item_db_id, '_menu_item_custom_icon', $icon_menu );
+    }
+}
+
+add_filter( 'wp_edit_nav_menu_walker', 'calibrefx_edit_walker', 10, 2);
+function calibrefx_edit_walker($walker,$menu_id) {
+    return 'CFX_Walker_Nav_Menu_Edit';
+}
