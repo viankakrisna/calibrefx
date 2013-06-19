@@ -46,6 +46,19 @@ class CFX_Walker_Nav_menu extends Walker_Nav_Menu {
         if ($args->has_children)
             $classes[] = 'dropdown';
 
+        $icon_html = '';
+        $temp_classes = array();
+        foreach($classes as $class){
+            if( strpos($class, 'icon-') !== false){
+                $icon_html = '<i class="'. $class .'"></i>&nbsp;&nbsp;';
+            }
+            else{
+                $temp_classes[] = $class;
+            }
+        }
+        $classes = $temp_classes;
+
+
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
         $class_names = ' class="' . esc_attr($class_names) . '"';
 
@@ -67,7 +80,7 @@ class CFX_Walker_Nav_menu extends Walker_Nav_Menu {
 
         $item_output = $args->before;
         $item_output .= '<a' . $attributes . '>';
-        $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
+        $item_output .= $args->link_before . $icon_html . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
         $item_output .= '</a>';
         $item_output .= $args->after;
 
