@@ -64,22 +64,25 @@ function form_submit_handler(){
 
 				$name = sanitize_text_field($_POST['name']);
 				$email = sanitize_text_field($_POST['email']);
+				$redirect = sanitize_text_field($_POST['redirect']);
+
+				$redirect = (!empty($redirect) ? $redirect : site_url());
 
 				// Checking for the value of name 
 				if(empty($name)){
-					wp_redirect(site_url()."/?submitted=1&error=1&type=autoresponder");
+					wp_redirect($redirect."/?submitted=1&error=1&type=autoresponder");
 					exit;
 				}
 
 				// Checking for the value of email
 				if(empty($email)){
-					wp_redirect(site_url()."/?submitted=1&error=2&type=autoresponder");
+					wp_redirect($redirect."/?submitted=1&error=2&type=autoresponder");
 					exit;
 				}
 
 				// Checking validity for the email
 				if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-					wp_redirect(site_url()."/?submitted=1&error=3&type=autoresponder");
+					wp_redirect($redirect."/?submitted=1&error=3&type=autoresponder");
 					exit;
 				}
 
@@ -95,7 +98,7 @@ function form_submit_handler(){
 					// TO DO: error credentials
 					if (!$ac->credentials_test()) {
 						calibrefx_log_message('debug','Invalid credentials (URL and API Key).');
-						wp_redirect(site_url()."/?submitted=1&error=4&type=autoresponder");
+						wp_redirect($redirect."/?submitted=1&error=4&type=autoresponder");
 						exit;
 					}
 
@@ -148,10 +151,10 @@ function form_submit_handler(){
 				}
 
 				if($success){
-					wp_redirect(site_url()."?submitted=1&success=1&type=autoresponder");
+					wp_redirect($redirect."?submitted=1&success=1&type=autoresponder");
 					exit;
 				}else{
-					wp_redirect(site_url()."?submitted=1&success=0&type=autoresponder");
+					wp_redirect($redirect."?submitted=1&success=0&type=autoresponder");
 					exit;
 				}
 

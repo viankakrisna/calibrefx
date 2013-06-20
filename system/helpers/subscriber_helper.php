@@ -38,7 +38,7 @@
  * @return	bool
  */
 
-include_once(CHILD_URI . '/system/libraries/third-party/GetResponseAPI.class.php');
+include_once(CALIBREFX_LIBRARY_URI . '/third-party/GetResponseAPI.class.php');
 function calibrefx_submit_getresponse($form, $name, $email, $args = array()){
 	$url = '';
 
