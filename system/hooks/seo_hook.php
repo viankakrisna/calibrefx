@@ -287,9 +287,9 @@ function calibrefx_do_meta_robot() {
     if (is_category()) {
         $term = $wp_query->get_queried_object();
 
-        $meta['noindex'] = $term->meta['noindex'] ? 'noindex' : $meta['noindex'];
-        $meta['nofollow'] = $term->meta['nofollow'] ? 'nofollow' : $meta['nofollow'];
-        $meta['noarchive'] = $term->meta['noarchive'] ? 'noarchive' : $meta['noarchive'];
+        if(isset($term->meta['noindex'])) $meta['noindex'] = $term->meta['noindex'] ? 'noindex' : $meta['noindex'];
+        if(isset($term->meta['nofollow'])) $meta['nofollow'] = $term->meta['nofollow'] ? 'nofollow' : $meta['nofollow'];
+        if(isset($term->meta['noarchive'])) $meta['noarchive'] = $term->meta['noarchive'] ? 'noarchive' : $meta['noarchive'];
 
         $meta['noindex'] = calibrefx_get_option('category_noindex', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
         $meta['noarchive'] = calibrefx_get_option('category_noarchive', $CFX->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
@@ -302,9 +302,9 @@ function calibrefx_do_meta_robot() {
     if (is_tag()) {
         $term = $wp_query->get_queried_object();
 
-        $meta['noindex'] = $term->meta['noindex'] ? 'noindex' : $meta['noindex'];
-        $meta['nofollow'] = $term->meta['nofollow'] ? 'nofollow' : $meta['nofollow'];
-        $meta['noarchive'] = $term->meta['noarchive'] ? 'noarchive' : $meta['noarchive'];
+        if(isset($term->meta['noindex'])) $meta['noindex'] = $term->meta['noindex'] ? 'noindex' : $meta['noindex'];
+        if(isset($term->meta['nofollow'])) $meta['nofollow'] = $term->meta['nofollow'] ? 'nofollow' : $meta['nofollow'];
+        if(isset($term->meta['noarchive'])) $meta['noarchive'] = $term->meta['noarchive'] ? 'noarchive' : $meta['noarchive'];
 
         $meta['noindex'] = calibrefx_get_option('tag_noindex', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
         $meta['noarchive'] = calibrefx_get_option('tag_noarchive', $CFX->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
@@ -317,9 +317,9 @@ function calibrefx_do_meta_robot() {
     if (is_tax()) {
         $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
 
-        $meta['noindex'] = $term->meta['noindex'] ? 'noindex' : $meta['noindex'];
-        $meta['nofollow'] = $term->meta['nofollow'] ? 'nofollow' : $meta['nofollow'];
-        $meta['noarchive'] = $term->meta['noarchive'] ? 'noarchive' : $meta['noarchive'];
+        if(isset($term->meta['noindex'])) $meta['noindex'] = $term->meta['noindex'] ? 'noindex' : $meta['noindex'];
+        if(isset($term->meta['nofollow'])) $meta['nofollow'] = $term->meta['nofollow'] ? 'nofollow' : $meta['nofollow'];
+        if(isset($term->meta['noarchive'])) $meta['noarchive'] = $term->meta['noarchive'] ? 'noarchive' : $meta['noarchive'];
 
         /** noindex paged archives, if canonical archives is off */
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
