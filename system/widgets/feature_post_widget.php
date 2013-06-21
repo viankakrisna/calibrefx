@@ -32,7 +32,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		$this->defaults = array(
 			'title'       	  => '',
 			'posts_cat'       => '',
-			'post_num'        => '',
+			'post_num'        => 5,
 			'show_image'      => 0,
 			'image_alignment' => 'alignleft',
 			'image_size'      => '',
@@ -65,7 +65,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		$query_args = array(
 			'post_type' => 'post',
 			'cat'       => $instance['posts_cat'],
-			'showposts' => $instance['posts_num'],
+			'showposts' => $instance['post_num'],
 		);
 		$featured_posts = new WP_Query( $query_args );
 		
@@ -143,8 +143,8 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'posts_num' ); ?>"><?php _e( 'Number of Posts to Show', 'calibrefx' ); ?>:</label>
-			<input type="text" id="<?php echo $this->get_field_id( 'posts_num' ); ?>" name="<?php echo $this->get_field_name( 'posts_num' ); ?>" value="<?php echo esc_attr( $instance['posts_num'] ); ?>" size="2" />
+			<label for="<?php echo $this->get_field_id( 'post_num' ); ?>"><?php _e( 'Number of Posts to Show', 'calibrefx' ); ?>:</label>
+			<input type="text" id="<?php echo $this->get_field_id( 'post_num' ); ?>" name="<?php echo $this->get_field_name( 'post_num' ); ?>" value="<?php echo esc_attr( $instance['post_num'] ); ?>" size="2" />
 		</p>
 
 		<hr class="div" />

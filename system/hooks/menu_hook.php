@@ -148,7 +148,8 @@ function calibrefx_do_nav() {
                     </div>
                 %3$s
                 </div>
-            </div>', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class);
+            </div>
+            <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class);
         
         echo apply_filters('calibrefx_do_nav', $nav_output, $nav, $args);
     }
@@ -187,7 +188,8 @@ function calibrefx_do_subnav() {
                 %2$s
 				%1$s
                 %3$s
-			</div>', $subnav, calibrefx_put_wrapper('subnav', 'open', false), calibrefx_put_wrapper('subnav', 'close', false), $subnav_class);
+			</div>
+            <!-- end #subnav -->', $subnav, calibrefx_put_wrapper('subnav', 'open', false), calibrefx_put_wrapper('subnav', 'close', false), $subnav_class);
 
         echo apply_filters('calibrefx_do_subnav', $subnav_output, $subnav, $args);
     }
