@@ -231,6 +231,7 @@ end;
                 $content .= '<div class="control-group">';
 
                 $tooltip = '';
+				$tooltip_class = '';
                 if(isset($row['tooltip']) && $row['tooltip'] != ''){
                     $tooltip .= ' data-toggle="tooltip" data-original-title="'.stripslashes($row['tooltip']).'" data-placement="right"';
                     $tooltip_class = ' form-tooltip';    

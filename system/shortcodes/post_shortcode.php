@@ -136,7 +136,9 @@ add_shortcode( 'post_author_posts_link', 'calibrefx_post_author_posts_link_short
  *
  */
 function calibrefx_post_author_posts_link_shortcode( $atts ) {
-    $defaults = array(
+    global $post;
+	
+	$defaults = array(
             'after'  => '',
             'before' => '',
     );
@@ -151,7 +153,9 @@ function calibrefx_post_author_posts_link_shortcode( $atts ) {
         $author_name = get_the_author_meta( 'user_nicename', $post->post_author );
     }
 
-    $author = sprintf( '<a href="%s" class="fn n" title="%s" rel="author">%s</a>', get_author_posts_url( $author ), $author_name, $author_name );
+    if(is_custom_post_type($post)) $author = sprintf( '<span class="fn n">%s</span>', $author_name );
+    else $author = sprintf( '<a href="%s" class="fn n" title="%s" rel="author">%s</a>', get_author_posts_url( $author ), $author_name, $author_name );
+
     $output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $author, $atts['before'], $atts['after'] );
     return apply_filters( 'calibrefx_post_author_posts_link_shortcode', $output, $atts );
 }

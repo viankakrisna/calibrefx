@@ -42,7 +42,7 @@ class CFX_Seo_Settings extends CFX_Admin {
             'doc_enable_rewrite_title' => 1,
             'post_rewrite_title' => '%post_title% | %site_title%',
             'page_rewrite_title' => '%page_title% | %site_title%',
-            'author_rewrite_title' => '%author_name% Profile | %site_title%',
+            'author_rewrite_title' => '%author_name% Posts | %site_title%',
             'category_rewrite_title' => '%category_title% | %site_title%',
             'archive_rewrite_title' => 'Archive: %date% | %site_title%',
             'tag_rewrite_title' => 'Tags: %tag% | %site_title%',

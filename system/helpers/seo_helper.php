@@ -35,9 +35,9 @@
  * Generate SEO title tags
  */
 function get_replace_title_tags() {
-    global $post, $s, $paged, $wp_locale;
+    global $post, $s, $paged, $wp_locale, $wp_query;
 	
-	if(is_404()) return;
+	if(is_404()) return; 
 
     $m = get_query_var('m');
     $year = get_query_var('year');
@@ -45,11 +45,16 @@ function get_replace_title_tags() {
     $day = get_query_var('day');
 
     $categories = get_the_category();
-    $author = get_userdata($post->post_author);
     $category = '';
     if (count($categories) > 0) {
         $category = $categories[0]->cat_name;
     }
+
+	if(is_author() && !$post){
+		$author = get_user_by('slug', get_query_var('author_name'));
+	}else{
+		$author = get_userdata($post->post_author);
+	}
     
     $taxonomies = get_the_taxonomies();
     $taxonomy = strip_tags(array_shift(array_values($taxonomies)), '');
@@ -62,7 +67,7 @@ function get_replace_title_tags() {
     $post_author_name = $author->display_name;
     $description = calibrefx_truncate_phrase(calibrefx_get_description(), 160);
     $search = calibrefx_capitalize(esc_html(stripcslashes($s), true));
-
+	
     $keywords = calibrefx_get_keywords();
 
     if (!empty($m)) {
@@ -128,18 +133,21 @@ function calibrefx_capitalize($s) {
 
 function calibrefx_get_title() {
     global $post;
+	if(!$post) return;
     $custom_title = calibrefx_get_custom_field('_calibrefx_title');
     return empty($custom_title) ? $post->post_title : $custom_title;
 }
 
 function calibrefx_get_description() {
     global $post;
+	if(!$post) return;
     $custom_description = calibrefx_get_custom_field('_calibrefx_description');
     return empty($custom_description) ? $post->post_title : $custom_description;
 }
 
 function calibrefx_get_keywords() {
     global $post;
+	if(!$post) return;
     $custom_keywords = calibrefx_get_custom_field('_calibrefx_keywords');
     $original_keywords = calibrefx_filter_keywords(wp_get_post_terms($post->ID, 'post_tag', array("fields" => "names")));
     return empty($custom_keywords) ? $original_keywords : $custom_keywords;

@@ -29,7 +29,16 @@
  * @since		Version 1.0
  * @link		http://www.calibrefx.com
  */
-add_action('admin_menu', 'calibrefx_register_admin_menu');
+
+// This is the process of checking to check whether to display the logo or not
+if( !get_option( 'calibrefx_show_settings' ) ) {
+    add_option( 'calibrefx_show_settings', 1);
+}
+
+if(get_option('calibrefx_show_settings')){
+    add_action('admin_menu', 'calibrefx_register_admin_menu');
+    add_action('admin_menu', 'calibrefx_register_admin_sub_menu');
+}
 
 // This function adds the top-level menu
 function calibrefx_register_admin_menu() {
@@ -48,8 +57,6 @@ function calibrefx_register_admin_menu() {
     $CFX->theme_settings->pagehook = add_menu_page(__('Calibre Framework Settings', 'calibrefx'), 'CalibreFx', 'edit_theme_options', 'calibrefx', array(&$CFX->theme_settings, 'dashboard'), CALIBREFX_IMAGES_URL . '/calibrefx.gif', '58.996');
     add_submenu_page('calibrefx', __('Theme Settings', 'calibrefx'), __('Theme Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx', array(&$CFX->theme_settings, 'dashboard'));
 }
-
-add_action('admin_menu', 'calibrefx_register_admin_sub_menu');
 
 // This function adds the top-level menu
 function calibrefx_register_admin_sub_menu() {
