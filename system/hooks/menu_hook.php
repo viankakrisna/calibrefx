@@ -200,6 +200,8 @@ add_filter('nav_menu_css_class', 'calibrefx_nav_menu_css_class', 10, 2);
  * from WordPress
  */
 function calibrefx_nav_menu_css_class($classes, $item) {
+    if(!is_array($item->classes)) return $classes;
+    
     if (in_array("current-menu-item", $item->classes) || in_array("current-menu-parent", $item->classes) || in_array("current-menu-acestor", $item->classes)) {
         $classes[] = "active";
     }
