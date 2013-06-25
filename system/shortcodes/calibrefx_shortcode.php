@@ -312,6 +312,7 @@ function calibrefx_button($atts, $content = '') {
     if (!empty($size))
         $classes .= ' btn-' . $size;
 
+    $icon_class = '';
     if (!empty($icon_color))
         $icon_class .= ' icon-'.$icon_color;
 
@@ -1255,7 +1256,7 @@ function calibrefx_contact_form($atts, $content = null) {
                 "redirect" => ""
             ), $atts));
 
-    if(empty($target)) $target = ADMIN_EMAIL;
+    if(empty($target)) $target = 'ADMIN_EMAIL';
     if(empty($redirect)) $redirect = get_permalink( $post->ID );
 
     //General Settings
