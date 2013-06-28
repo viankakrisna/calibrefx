@@ -38,6 +38,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 			'image_size'      => '',
 			'show_title'      => 0,
 			'show_content'    => 0,
+			'show_date'       => 0,
 			'content_limit'   => '',
 			'more_text'   	  => '[More...]',
 		);
@@ -95,6 +96,10 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 						the_content( $instance['more_text'] );
 					else
 						the_content_limit( (int) $instance['content_limit'], esc_html( $instance['more_text'] ) );
+				}
+
+				if ( ! empty( $instance['show_content'] ) ) {
+					echo do_shortcode('[post_date format="relative"]');
 				}
 
 				echo '</div><!--end post_class()-->' . "\n\n";
@@ -185,6 +190,11 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		<p>
 			<input id="<?php echo $this->get_field_id( 'show_content' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_content' ); ?>" value="1"<?php checked( $instance['show_content'] ); ?> />
 			<label for="<?php echo $this->get_field_id( 'show_content' ); ?>"><?php _e( 'Show Page Content', 'calibrefx' ); ?></label>
+		</p>
+
+		<p>
+			<input id="<?php echo $this->get_field_id( 'show_date' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_date' ); ?>" value="1"<?php checked( $instance['show_date'] ); ?> />
+			<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Show Date Content', 'calibrefx' ); ?></label>
 		</p>
 
 		<p>
