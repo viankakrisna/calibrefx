@@ -132,6 +132,13 @@ function calibrefx_do_nav() {
             );
             $nav = wp_nav_menu($args);
         }
+        else{
+            $nav = '<ul id="menu-primary-i" class="superfish sf-js-enabled nav menu-primary menu">
+            <li id="menu-item-812" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-800 current_page_item menu-item-812"><a href="#"><i class="icon-home"></i>&nbsp;&nbsp;Homepage</a></li>
+            <li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-813"><a href="#"><i class="icon-comment"></i>&nbsp;&nbsp;About Us</a></li>
+            <li id="menu-item-817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-817"><a href="#"><i class="icon-envelope-alt"></i>&nbsp;&nbsp;Contact Page</a></li>
+        </ul>';
+        }
 
         $nav_class = apply_filters( 'nav_class', calibrefx_row_class() );
         $nav_output = sprintf('
@@ -202,6 +209,8 @@ add_filter('nav_menu_css_class', 'calibrefx_nav_menu_css_class', 10, 2);
  * from WordPress
  */
 function calibrefx_nav_menu_css_class($classes, $item) {
+    if(!is_array($item->classes)) return $classes;
+    
     if (in_array("current-menu-item", $item->classes) || in_array("current-menu-parent", $item->classes) || in_array("current-menu-acestor", $item->classes)) {
         $classes[] = "active";
     }
