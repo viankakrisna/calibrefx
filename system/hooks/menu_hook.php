@@ -132,6 +132,13 @@ function calibrefx_do_nav() {
             );
             $nav = wp_nav_menu($args);
         }
+        else{
+            $nav = '<ul id="menu-primary-i" class="superfish sf-js-enabled nav menu-primary menu">
+            <li id="menu-item-812" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-800 current_page_item menu-item-812"><a href="#"><i class="icon-home"></i>&nbsp;&nbsp;Homepage</a></li>
+            <li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-813"><a href="#"><i class="icon-comment"></i>&nbsp;&nbsp;About Us</a></li>
+            <li id="menu-item-817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-817"><a href="#"><i class="icon-envelope-alt"></i>&nbsp;&nbsp;Contact Page</a></li>
+        </ul>';
+        }
 
         $nav_class = apply_filters( 'nav_class', calibrefx_row_class() );
         $nav_output = sprintf('
@@ -148,7 +155,8 @@ function calibrefx_do_nav() {
                     </div>
                 %3$s
                 </div>
-            </div>', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class);
+            </div>
+            <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class);
         
         echo apply_filters('calibrefx_do_nav', $nav_output, $nav, $args);
     }
@@ -187,7 +195,8 @@ function calibrefx_do_subnav() {
                 %2$s
 				%1$s
                 %3$s
-			</div>', $subnav, calibrefx_put_wrapper('subnav', 'open', false), calibrefx_put_wrapper('subnav', 'close', false), $subnav_class);
+			</div>
+            <!-- end #subnav -->', $subnav, calibrefx_put_wrapper('subnav', 'open', false), calibrefx_put_wrapper('subnav', 'close', false), $subnav_class);
 
         echo apply_filters('calibrefx_do_subnav', $subnav_output, $subnav, $args);
     }
