@@ -300,7 +300,7 @@ function calibrefx_posts_nav() {
 /**
  * Correct the wpautop function, so it will not return br tag in our content
  */
-function calibrefx_wpautop_correction() {
+/*function calibrefx_wpautop_correction() {
     remove_filter('the_content', 'wpautop');
     remove_filter('the_excerpt', 'wpautop');
     add_filter('the_content', 'calibrefx_wpautop');
@@ -309,7 +309,12 @@ function calibrefx_wpautop_correction() {
 
 function calibrefx_wpautop($pee) {
     return wpautop($pee, 0);
-}
+}*/
+
+remove_filter('the_content', 'wpautop');
+remove_filter('the_content', 'shortcode_unautop');
+add_filter('the_content', 'wpautop', 5);
+add_filter('the_content', 'advance_shortcode_unautop', 10);
 
 add_action('pre_ping', 'calibrefx_no_self_ping');
 

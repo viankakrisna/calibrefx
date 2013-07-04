@@ -1340,8 +1340,22 @@ $tinymce_button_contact->calibrefx_add_shortcode_button('calibrefx_shortcode_con
  *
  */
 function advance_shortcode_unautop($content) {
-    $content = do_shortcode( shortcode_unautop($content) );
-    $content = preg_replace( '#^<\/p>|^<br \/>|<p>$#', '', $content );
+    $content = trim( do_shortcode( shortcode_unautop( $content ) ) );
+
+    /* Remove '' from the start of the string. */
+    if ( substr( $content, 0, 4 ) == '' )
+        $content = substr( $content, 4 );
+
+    /* Remove '' from the end of the string. */
+    if ( substr( $content, -3, 3 ) == '' )
+        $content = substr( $content, 0, -3 );
+
+    //debug_var($content);
+    $content = preg_replace( '#^<\/p>|^<br \/>|^<br>|<p>$#', '', $content );
+
+    $content = str_replace( array( '<p></p>', '<p>  </p>', '<p> </p>' ), '', $content );
+    $content = str_replace( array( '<br/>', '<br>', '<br />' ), '', $content );
+    //debug_var($content);
     return $content;
 }
 
