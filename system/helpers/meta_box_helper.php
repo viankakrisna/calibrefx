@@ -37,9 +37,10 @@ function calibrefx_clear_meta_section() {
  * @param string $title Title of the section.
  * @param string $ability Optional. The ability that can see the settings ('general', 'professor').
  */
-function calibrefx_add_meta_section($slug, $title, $target='options.php') {
+function calibrefx_add_meta_section($slug, $title, $target='options.php', $priority = 10) {
     global $calibrefx_sections;
 
+    //$key = $priority . '-' . $slug;
     if (!isset($calibrefx_sections))
         $calibrefx_sections = array();
 
@@ -55,11 +56,18 @@ function calibrefx_add_meta_section($slug, $title, $target='options.php') {
         'slug' => $slug,
         'title' => $title,
         'basic' => array(),
-        'professor' => array()
+        'professor' => array(),
+        'priority' => $priority,
     );
+
+    uasort($calibrefx_sections, 'calibrefx_compare_meta_section_priority');
 
     $func = create_function('', 'return "'.$target.'";');
     add_filter('calibrefx_'.$slug.'_form_url', $func);
+}
+
+function calibrefx_compare_meta_section_priority($x, $y){
+    return $x['priority'] - $y['priority'];
 }
 
 function calibrefx_do_meta_sections($section, $screen, $context, $object) {
@@ -121,6 +129,7 @@ function calibrefx_add_meta_box($section, $ability, $id, $title, $callback, $scr
     if (!isset($calibrefx_sections[$section]))
         return;
 
+    
     $calibrefx_sections[$section][$ability][] = array(
         "id" => $id,
         "title" => $title,

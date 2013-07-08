@@ -61,8 +61,8 @@ class CFX_About_Settings extends CFX_Admin {
 
         calibrefx_clear_meta_section();
 
-        calibrefx_add_meta_section('system', __('System Information', 'calibrefx'));
-        calibrefx_add_meta_section('team', __('The Team', 'calibrefx'));
+        calibrefx_add_meta_section('system', __('System Information', 'calibrefx'), 'options.php', 1);
+        calibrefx_add_meta_section('team', __('The Team', 'calibrefx'), 'options.php', 2);
 
         $calibrefx_current_section = 'system';
         if (!empty($_GET['section'])) {
@@ -80,8 +80,6 @@ class CFX_About_Settings extends CFX_Admin {
 
     public function the_team() {
         ?>
-        
-
         <div class="the-team-container">
             <div class="the-team">
                 <div class="image">

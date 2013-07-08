@@ -31,18 +31,23 @@
  */
 
 // This is the process of checking to check whether to display the logo or not
-if( !get_option( 'calibrefx_show_settings' ) ) {
+/*if( !get_option( 'calibrefx_show_settings' ) ) {
     add_option( 'calibrefx_show_settings', 1);
 }
 
 if(get_option('calibrefx_show_settings')){
     add_action('admin_menu', 'calibrefx_register_admin_menu');
-    add_action('admin_menu', 'calibrefx_register_admin_sub_menu');
-}
+    //add_action('admin_menu', 'calibrefx_register_admin_sub_menu');
+}*/
+
+add_action('admin_menu', 'calibrefx_register_admin_menu');
+add_action('calibrefx_add_submenu_page', 'calibrefx_add_seo_settings',10);
+add_action('calibrefx_add_submenu_page', 'calibrefx_add_about_settings',20);
+add_action('calibrefx_add_submenu_page', 'calibrefx_add_extra_settings',30);
 
 // This function adds the top-level menu
 function calibrefx_register_admin_menu() {
-    global $menu;
+    global $menu, $calibrefx;
 
     // Disable if programatically disabled
     if (!current_theme_supports('calibrefx-admin-menu'))
@@ -51,41 +56,62 @@ function calibrefx_register_admin_menu() {
     // Create the new separator
     $menu['58.995'] = array('', 'edit_theme_options', '', '', 'wp-menu-separator');
 
-    $CFX = & calibrefx_get_instance();
-    $CFX->load->library('theme_settings');
+    $theme = wp_get_theme();
+    $theme_name = $theme->Name;
+
+    $calibrefx->load->library('theme_settings');
     
-    $CFX->theme_settings->pagehook = add_menu_page(__('Calibre Framework Settings', 'calibrefx'), 'CalibreFx', 'edit_theme_options', 'calibrefx', array(&$CFX->theme_settings, 'dashboard'), CALIBREFX_IMAGES_URL . '/calibrefx.gif', '58.996');
-    add_submenu_page('calibrefx', __('Theme Settings', 'calibrefx'), __('Theme Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx', array(&$CFX->theme_settings, 'dashboard'));
+    $calibrefx->theme_settings->pagehook = add_menu_page(__('Calibre Framework Settings', 'calibrefx'), $theme_name, 'edit_theme_options', 'calibrefx', array($calibrefx->theme_settings, 'dashboard'), CALIBREFX_IMAGES_URL . '/calibrefx.gif', '58.996');
+    add_submenu_page('calibrefx', __('Settings', 'calibrefx'), __('Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx', array($calibrefx->theme_settings, 'dashboard'));
+
+    do_action( 'calibrefx_add_submenu_page' );
 }
 
-// This function adds the top-level menu
-function calibrefx_register_admin_sub_menu() {
-    global $menu, $calibrefx_user_ability;
+function calibrefx_register_settings_sub_menu(){
+    global $menu, $calibrefx, $calibrefx_user_ability;
     
     // Disable if programatically disabled
     if (!current_theme_supports('calibrefx-admin-menu'))
         return;
 
-    // Create the new separator
-    $menu['58.995'] = array('', 'edit_theme_options', '', '', 'wp-menu-separator');
+}
 
-    $CFX = & calibrefx_get_instance();
-    
-    
-    if($calibrefx_user_ability === 'professor' && current_theme_supports('calibrefx-seo')){
-        // Add "Seo Settings" submenu
-        $CFX->load->library('seo_settings');
-        $CFX->seo_settings->pagehook = add_submenu_page('calibrefx', __('Seo Settings', 'calibrefx'), __('Seo Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx-seo', array(&$CFX->seo_settings, 'dashboard'));
+function calibrefx_add_seo_settings(){
+    global $menu, $calibrefx, $calibrefx_user_ability;
+
+    // Disable if programatically disabled
+    if (!current_theme_supports('calibrefx-admin-menu'))
+        return;
+
+    if( $calibrefx_user_ability !== 'professor' OR !current_theme_supports('calibrefx-seo') ){
+        return;
     }
-    
-    // Add "About" submenu
-    $CFX->load->library('about_settings');
-    $CFX->about_settings->pagehook = add_submenu_page('calibrefx', __('About', 'calibrefx'), __('About', 'calibrefx'), 'edit_theme_options', 'calibrefx-about', array(&$CFX->about_settings, 'dashboard'));
-    
 
-    // Add "Other" submenu
-    $CFX->load->library('other_settings');
-    $CFX->other_settings->pagehook = add_submenu_page('calibrefx', __('Other', 'calibrefx'), __('Other', 'calibrefx'), 'edit_theme_options', 'calibrefx-other', array(&$CFX->other_settings, 'dashboard'));
+    $calibrefx->load->library('seo_settings');
+    $calibrefx->seo_settings->pagehook = add_submenu_page('calibrefx', __('Seo Settings', 'calibrefx'), __('Seo Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx-seo', array($calibrefx->seo_settings, 'dashboard'));
+}
+
+function calibrefx_add_about_settings(){
+    global $menu, $calibrefx, $calibrefx_user_ability;
+
+    // Disable if programatically disabled
+    if (!current_theme_supports('calibrefx-admin-menu'))
+        return;
+
+    $calibrefx->load->library('about_settings');
+    $calibrefx->about_settings->pagehook = add_submenu_page('calibrefx', __('About', 'calibrefx'), __('About', 'calibrefx'), 'edit_theme_options', 'calibrefx-about', array($calibrefx->about_settings, 'dashboard'));
+}
+
+
+function calibrefx_add_extra_settings(){
+    global $menu, $calibrefx, $calibrefx_user_ability;
+
+    // Disable if programatically disabled
+    if (!current_theme_supports('calibrefx-admin-menu'))
+        return;
+
+    $calibrefx->load->library('other_settings');
+    $calibrefx->other_settings->pagehook = add_submenu_page('calibrefx', __('Extras', 'calibrefx'), __('Extras', 'calibrefx'), 'edit_theme_options', 'calibrefx-other', array($calibrefx->other_settings, 'dashboard'));
 }
 
 add_action('after_setup_theme', 'calibrefx_register_nav_menus');
@@ -110,12 +136,12 @@ add_action('calibrefx_after_header', 'calibrefx_do_nav');
  * This function is for displaying the "Primary Navigation" bar.
  */
 function calibrefx_do_nav() {
+    global $calibrefx;
     /** Do nothing if menu not supported */
     if (!calibrefx_nav_menu_supported('primary'))
         return;
     
-    $CFX = &calibrefx_get_instance();
-    $CFX->load->library('walker_nav_menu');
+    $calibrefx->load->library('walker_nav_menu');
 
     $nav = '';
     $args = '';
@@ -128,7 +154,7 @@ function calibrefx_do_nav() {
                 'container' => '',
                 'menu_class' => calibrefx_get_option('nav_fixed_top') ? 'navbar navbar-fixed-top menu-primary menu superfish sf-js-enabled' : 'superfish sf-js-enabled nav menu-primary menu',
                 'echo' => 0,
-                'walker' => $CFX->walker_nav_menu,
+                'walker' => $calibrefx->walker_nav_menu,
             );
             $nav = wp_nav_menu($args);
         }

@@ -25,7 +25,8 @@ defined('CALIBREFX_URL') OR exit();
  * Auto-load Libraries
  */
 
-$autoload['libraries'] = array('cache','breadcrumb','security','replacer','form', 'shortcode', 'walker_nav_menu_edit');
+$autoload['libraries'] = array('cache','breadcrumb','security','replacer','form', 
+							   'shortcode', 'walker_nav_menu_edit');
 
 /*
  * Auto-load Helper File

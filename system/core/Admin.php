@@ -73,9 +73,10 @@ abstract class CFX_Admin {
         $this->security_filters();
         
         add_action('calibrefx_hidden_fields', array($this,'hidden_fields'));
-        add_action('admin_init', array($this, 'register_settings'));
+        add_action('admin_init', array($this, 'register_settings'), 5);
+        add_action('admin_init', array($this, 'settings_init'), 20);
+
         add_action('admin_notices', array($this, 'notices'));
-        add_action('admin_init', array($this, 'settings_init'));
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
 
@@ -128,7 +129,6 @@ abstract class CFX_Admin {
         }
 
         if( !empty($_POST['calibrefx_do_import']) ){
-            
             return $_newvalue;
         }
         
