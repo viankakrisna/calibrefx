@@ -83,13 +83,14 @@ abstract class CFX_Admin {
         /** Add a sanitizer/validator */
         add_filter('pre_update_option_' . $this->settings_field, array(&$this, 'save'), 10, 2);
         
+        //Removed by Fadhel
         //This will allow to cross save calibrefx themes settings
-        if($this->settings_field != $calibrefx->theme_settings_m->get_settings_field()){
+        /*if($this->settings_field != $calibrefx->theme_settings_m->get_settings_field()){
             do_action('calibrefx_before_save_core');
             $this->save_core();
             do_action('calibrefx_after_save_core');
             //add_filter('pre_update_option_' . $calibrefx->theme_settings_m->get_settings_field(), array(&$this, 'save_core'), 10, 2);            
-        }
+        }*/
     }
 
     /**
