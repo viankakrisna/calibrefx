@@ -311,10 +311,10 @@ function calibrefx_wpautop($pee) {
     return wpautop($pee, 0);
 }*/
 
-remove_filter('the_content', 'wpautop');
-remove_filter('the_content', 'shortcode_unautop');
-add_filter('the_content', 'wpautop', 5);
-add_filter('the_content', 'advance_shortcode_unautop', 10);
+// remove_filter('the_content', 'wpautop');
+// remove_filter('the_content', 'shortcode_unautop');
+// add_filter('the_content', 'wpautop', 5);
+// add_filter('the_content', 'advance_shortcode_unautop', 10);
 
 add_action('pre_ping', 'calibrefx_no_self_ping');
 
