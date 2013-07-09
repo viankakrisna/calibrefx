@@ -427,6 +427,41 @@ h1, h2, h3, h4, h5, h6{
     overflow: hidden;
 }
 
+/* Latest & Popular Post Widget */
+.latest-posts-widget{
+
+}
+.latest-posts-widget ul, 
+.popular-posts-widget ul{
+    margin: 10px 0px 0px;
+}
+.latest-posts-widget .widget-wrap ul li,
+.popular-posts-widget .widget-wrap ul li{
+    margin: 0px 0px 15px;
+    padding: 0px 0px 15px;
+}
+.latest-posts-widget .widget-wrap ul li:last-child,
+.popular-posts-widget .widget-wrap ul li:last-child{
+    padding-bottom: 0px;
+}
+.latest-posts-widget .latest-post-title,
+.popular-posts-widget .latest-post-title{
+    color: #494949;
+    margin: 0px;
+}
+.latest-posts-widget .latest-post-title a:hover,
+.popular-posts-widget .latest-post-title a:hover{
+    text-decoration: none;
+}
+.latest-posts-widget .latest-post-detail p,
+.popular-posts-widget .latest-post-detail p{
+    margin-bottom: 4px;
+}
+.latest-posts-widget p.latest-post-info,
+.popular-posts-widget p.latest-post-info{
+    font-size: 0.9em;
+}
+
 /* Post
 ------------------------------------------------------------ */
 .post{
