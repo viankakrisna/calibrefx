@@ -263,9 +263,6 @@ abstract class CFX_Admin {
                     <div class="calibrefx-option-logo">
                         <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
                     </div>
-                    <div class="calibrefx-version">
-                        <span class="description">Build On CalibreFx version <?php echo FRAMEWORK_VERSION; ?> (Code Name : <?php echo FRAMEWORK_CODENAME; ?>)</span>
-                    </div>
                     <div class="calibrefx-ability">
                         <a class="calibrefx-general" href="<?php echo admin_url("admin.php?page=".$this->page_id."&ability=basic&section=" . $calibrefx_current_section); ?>"><?php _e('Basic', 'calibrefx'); ?></a>
                         <a class="calibrefx-professor" href="<?php echo admin_url("admin.php?page=".$this->page_id."&ability=professor&section=" . $calibrefx_current_section); ?>"><?php _e('Professor', 'calibrefx'); ?></a>
@@ -273,8 +270,8 @@ abstract class CFX_Admin {
                 </div>
                 <div class="calibrefx-content">
                     <div class="calibrefx-submit-button">
-                        <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
-                        <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo $this->settings_field; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="icon-save"></i><?php _e('Save Settings', 'calibrefx') ?></button>
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');"><i class="icon-reset"></i><?php _e('Reset Settings', 'calibrefx'); ?></button>
                     </div>
                     <div class="metabox-holder">
                         <div class="calibrefx-tab">
@@ -283,12 +280,12 @@ abstract class CFX_Admin {
                                 foreach ($calibrefx_sections as $section) {
                                     $current_class = ($calibrefx_current_section === $section['slug']) ? 'class="current"' : '';
                                     $section_link = admin_url('admin.php?page=' . $this->page_id . '&section=' . $section['slug']);
-                                    echo "<li $current_class><a href='$section_link'>" . $section['title'] . "</a><span></span></li>";
+                                    echo "<li $current_class><a href='$section_link'>" . $section['title'] . "</a></li>";
                                 }
                                 ?>
                             </ul>
                             <div class="calibrefx-option">
-                                <h2><?php echo $calibrefx_sections[$calibrefx_current_section]['title']; ?></h2>
+                                
                                 <div class="postbox-container main-postbox">
                                     <?php
                                     calibrefx_do_meta_sections($calibrefx_current_section, $this->pagehook, 'main', null);

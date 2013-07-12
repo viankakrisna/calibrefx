@@ -672,6 +672,12 @@ blockquote{
     margin-bottom: 0px;
 }
 
+#commentform label.error{
+    margin-top: 10px;
+    color: #cc0000;
+    font-weight: normal;
+}
+
 .ping-list {
     margin: 0 0 40px;
 }
