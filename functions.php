@@ -27,3 +27,8 @@ $calibrefx->load->library('email'); //we need load the email libraries here
 define('MAILVENTURE_URL', $calibrefx->other_settings_m->get('autoreponder_mailventure_url'));
 define('MAILVENTURE_API_KEY', $calibrefx->other_settings_m->get('autoreponder_mailventure_api'));
 require_once(CALIBREFX_LIBRARY_URI.'/third-party/MailVenture.class.php');
+
+$api_key = $calibrefx->other_settings_m->get('autoreponder_getresponse_api');
+$campaign_name = $calibrefx->other_settings_m->get('autoreponder_getresponse_campaign');
+
+calibrefx_getresponse_api_testing($api_key,$campaign_name);
