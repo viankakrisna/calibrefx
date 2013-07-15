@@ -1059,7 +1059,7 @@ ul.twitter-tweets li span a{
     position: relative;
 }
 
-.calibrefx-content #message{
+.calibrefx-content div.updated{
     margin: 5px 10px 15px 10px;
 }
 
