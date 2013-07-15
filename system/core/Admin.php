@@ -80,8 +80,12 @@ abstract class CFX_Admin {
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
 
+        do_action('calibrefx_before_save_core');
+
         /** Add a sanitizer/validator */
         add_filter('pre_update_option_' . $this->settings_field, array(&$this, 'save'), 10, 2);
+
+        do_action('calibrefx_after_save_core');
         
         //Removed by Fadhel
         //This will allow to cross save calibrefx themes settings
