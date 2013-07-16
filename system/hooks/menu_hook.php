@@ -58,10 +58,13 @@ function calibrefx_register_admin_menu() {
 
     $theme = wp_get_theme();
     $theme_name = $theme->Name;
+        
+    $admin_menu_icon = CALIBREFX_IMAGES_URL . '/calibrefx.gif';
+    if (file_exists( CHILD_IMAGES_URI . '/calibrefx.gif' )) $admin_menu_icon = CHILD_IMAGES_URL . '/calibrefx.gif';
 
     $calibrefx->load->library('theme_settings');
     
-    $calibrefx->theme_settings->pagehook = add_menu_page(__('Calibre Framework Settings', 'calibrefx'), $theme_name, 'edit_theme_options', 'calibrefx', array($calibrefx->theme_settings, 'dashboard'), CALIBREFX_IMAGES_URL . '/calibrefx.gif', '58.996');
+    $calibrefx->theme_settings->pagehook = add_menu_page(__('Calibre Framework Settings', 'calibrefx'), $theme_name, 'edit_theme_options', 'calibrefx', array($calibrefx->theme_settings, 'dashboard'), apply_filters('admin-menu-icon', $admin_menu_icon), '58.996');
     add_submenu_page('calibrefx', __('Settings', 'calibrefx'), __('Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx', array($calibrefx->theme_settings, 'dashboard'));
 
     do_action( 'calibrefx_add_submenu_page' );
