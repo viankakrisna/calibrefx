@@ -637,7 +637,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             <label for="email-test"><?php _e('Email Recipient: ', 'calibrefx'); ?></label>
             <input type="text" size="30" value="" id="email-test" name="email-test">
             <label id="send-mail-res"></label><br/>
-            <button class="btn btn-scondary" id="test-send-mail">Send</button>
+            <button class="button button-secondary" id="test-send-mail">Send</button>
         </p>
 
             

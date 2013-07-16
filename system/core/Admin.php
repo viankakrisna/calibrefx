@@ -251,10 +251,9 @@ abstract class CFX_Admin {
     }
 
     public function dashboard() {
-        global $calibrefx_sections, $calibrefx_current_section;
+        global $calibrefx_sections, $calibrefx_current_section, $calibrefx_user_ability;
         $this->_submit_url = apply_filters('calibrefx_'.$calibrefx_current_section.'_form_url', 'options.php');
         //$this->_submit_url = str_replace('php', '.php', $this->_submit_url);
-	
         ?>
         <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes <?php echo $calibrefx_current_section; ?>">
             <form method="post" action="<?php echo $this->_submit_url; ?>" enctype="multipart/form-data">
@@ -268,8 +267,14 @@ abstract class CFX_Admin {
                         <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
                     </div>
                     <div class="calibrefx-ability">
-                        <a class="calibrefx-general" href="<?php echo admin_url("admin.php?page=".$this->page_id."&ability=basic&section=" . $calibrefx_current_section); ?>"><?php _e('Basic', 'calibrefx'); ?></a>
-                        <a class="calibrefx-professor" href="<?php echo admin_url("admin.php?page=".$this->page_id."&ability=professor&section=" . $calibrefx_current_section); ?>"><?php _e('Professor', 'calibrefx'); ?></a>
+                        <span class="calibrefx-ability-label"><?php _e('Advanced Mode', 'calibrefx'); ?></span>
+                        <?php
+                            if($calibrefx_user_ability == 'professor'){
+                                echo '<a href="'.admin_url("admin.php?page=".$this->page_id."&ability=basic&section=" . $calibrefx_current_section).'"><img src="'.CALIBREFX_IMAGES_URL.'/on-toggle.png" alt="advanced mode on" /></a>';
+                            }else{
+                                echo '<a href="'.admin_url("admin.php?page=".$this->page_id."&ability=professor&section=" . $calibrefx_current_section).'"><img src="'.CALIBREFX_IMAGES_URL.'/off-toggle.png" alt="advanced mode off" /></a>';
+                            }
+                        ?>
                     </div>
                 </div>
                 <div class="calibrefx-content">
@@ -307,8 +312,8 @@ abstract class CFX_Admin {
                         </div>
                     </div>
                     <div class="calibrefx-submit-button calibrefx-bottom">
-                        <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
-                        <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo $this->settings_field; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="icon-save"></i><?php _e('Save Settings', 'calibrefx') ?></button>
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');"><i class="icon-reset"></i><?php _e('Reset Settings', 'calibrefx'); ?></button>
                     </div>
 
                 </div>
@@ -341,8 +346,23 @@ abstract class CFX_Admin {
                             side.addClass('empty-container');
                     }
                 };
+
                 postboxes._mark_area();
+
+                // Detect the higher height
+                //equalize_sidebar_height();
             });
+
+            equalize_sidebar_height = function(){
+                var option_list_height = jQuery('.calibrefx-tab-option'),
+                    option_height = jQuery('.calibrefx-option');
+
+                if(option_height.outerHeight() > option_list_height.outerHeight()){
+                    option_list_height.height(option_height.outerHeight() + 13);
+                }else{
+                    option_height.height(option_list_height.outerHeight());
+                }
+            }
             //]]>
         </script>
         <?php
