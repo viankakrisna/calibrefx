@@ -195,7 +195,7 @@ class CFX_About_Settings extends CFX_Admin {
 
         <style type="text/css">
             .main-postbox{
-                width: 98%;
+                width: 96%;
             }
 
             .side-postbox{
