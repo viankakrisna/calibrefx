@@ -77,7 +77,7 @@ class CFX_Model {
 
         if(!isset($options[$key])) return false;
         
-        return $options[$key];
+        return stripslashes($options[$key]);
     }
 
     public function get_all(){
