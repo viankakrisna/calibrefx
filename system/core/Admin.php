@@ -368,22 +368,8 @@ abstract class CFX_Admin {
                     $(this).addClass('active');
                 });
 
-                // Detect the higher height
-                //equalize_sidebar_height();
-
-                $('body').addClass('calibrefx-admin-page');
+                //$('body').addClass('calibrefx-admin-page');
             });
-
-            equalize_sidebar_height = function(){
-                var option_list_height = jQuery('.calibrefx-tab-option'),
-                    option_height = jQuery('.calibrefx-option');
-
-                if(option_height.outerHeight() > option_list_height.outerHeight()){
-                    option_list_height.height(option_height.outerHeight() + 13);
-                }else{
-                    option_height.height(option_list_height.outerHeight());
-                }
-            }
             //]]>
         </script>
         <?php

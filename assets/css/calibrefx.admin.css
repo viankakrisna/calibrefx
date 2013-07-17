@@ -19,7 +19,6 @@ hr.div {
 /** Metabox Styles **/
 .calibrefx-metaboxes{
     width: 100%;
-    padding-bottom: 20px;
     margin: 0px;
 }
 
@@ -1223,7 +1222,7 @@ body[class*="calibrefx"] #wpbody-content{
 
 .calibrefx-option{
     margin-left: 263px;
-    min-height: 320px;
+    min-height: 411px;
     padding-bottom: 13px;
     margin-right: 30px;
     background: #ffffff;
