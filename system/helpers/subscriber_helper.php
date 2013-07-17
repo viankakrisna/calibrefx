@@ -117,6 +117,7 @@ function calibrefx_submit_getresponse_api($name, $email, $api_key, $list_name, $
 			$campaign_id = $campaignIDs[0];
 			
 			$return = $api->addContact($campaign_id, $name, $email, 'standard', 0, $customs);
+			
 			calibrefx_log_message('debug', 'GetResponse Add Contact Success: '.debug_var($return, true));
 			return $return;
 		}else{

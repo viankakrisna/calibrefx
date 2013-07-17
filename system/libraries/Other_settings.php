@@ -85,7 +85,7 @@ class CFX_Other_Settings extends CFX_Admin {
         calibrefx_add_meta_section('importexport', __('Import / Export Settings', 'calibrefx'), '');
         calibrefx_add_meta_section('autoresponder', __('Autoresponder Settings', 'calibrefx'));
 
-        do_action('more_other_setting');
+        do_action('calibrefx_other_settings_meta_section');
 
         $calibrefx_current_section = 'tosgen';
         if (!empty($_GET['section'])) {
@@ -103,6 +103,8 @@ class CFX_Other_Settings extends CFX_Admin {
 
         // Autoresponder
         calibrefx_add_meta_box('autoresponder', 'basic', 'calibrefx-autoreponder-settings', __('Autoresponder Settings', 'calibrefx'), array($this, 'autoresponder_settings'), $this->pagehook, 'main', 'high');
+
+        do_action('calibrefx_other_settings_meta_box');
     }
 
     public function tos_generator(){

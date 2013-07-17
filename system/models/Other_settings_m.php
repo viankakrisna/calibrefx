@@ -29,6 +29,7 @@
 class Other_settings_m extends CFX_Model{
     
     public function __construct() {
-        parent::__construct(apply_filters('calibrefx_other_settings_field', 'calibrefx-other-settings'));
+        //parent::__construct(apply_filters('calibrefx_other_settings_field', 'calibrefx-other-settings'));
+        parent::__construct(apply_filters('calibrefx_other_settings_field', 'calibrefx-settings'));
     }
 }

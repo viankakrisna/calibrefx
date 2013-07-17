@@ -130,14 +130,16 @@ class CFX_Theme_Settings extends CFX_Admin {
     }
 
     public function meta_sections() {
-        global $calibrefx_current_section;
+        global $calibrefx_current_section, $calibrefx_target_form;
+
+        $calibrefx_target_form = apply_filters('calibrefx_target_form', 'options.php');
 
         calibrefx_clear_meta_section();
 
-        calibrefx_add_meta_section('general', __('General Settings', 'calibrefx'), 'options.php', 1);
-        calibrefx_add_meta_section('layout', __('Layout Settings', 'calibrefx'), 'options.php',2);
-        calibrefx_add_meta_section('social', __('Social Settings', 'calibrefx'), 'options.php',10);
-        calibrefx_add_meta_section('email', __('Email Setting', 'calibrefx'), 'options.php', 20);
+        calibrefx_add_meta_section('general', __('General Settings', 'calibrefx'), $calibrefx_target_form, 1);
+        calibrefx_add_meta_section('layout', __('Layout Settings', 'calibrefx'), $calibrefx_target_form,2);
+        calibrefx_add_meta_section('social', __('Social Settings', 'calibrefx'), $calibrefx_target_form,10);
+        calibrefx_add_meta_section('email', __('Email Setting', 'calibrefx'), $calibrefx_target_form, 20);
 
         do_action('calibrefx_theme_settings_meta_section');
 
