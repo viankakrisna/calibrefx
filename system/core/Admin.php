@@ -370,6 +370,8 @@ abstract class CFX_Admin {
 
                 // Detect the higher height
                 //equalize_sidebar_height();
+
+                $('body').addClass('calibrefx-admin-page');
             });
 
             equalize_sidebar_height = function(){
