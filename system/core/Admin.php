@@ -367,9 +367,23 @@ abstract class CFX_Admin {
                 $('.calibrefx-ability a').click(function(){
                     $(this).addClass('active');
                 });
-
-                //$('body').addClass('calibrefx-admin-page');
+				
+				equalize_option_height();
             });
+			
+			equalize_option_height = function(){
+				var calibrefx_tab_option = jQuery('.calibrefx-tab-option'),
+					calibrefx_option = jQuery('.calibrefx-option'),
+					height = 0;
+				
+				jQuery('.calibrefx-tab-option li').each(function(){
+					height += jQuery(this).height();
+				});
+				
+				if(calibrefx_option.height() < height){
+					calibrefx_option.height(height);
+				}
+			}
             //]]>
         </script>
         <?php
