@@ -1104,12 +1104,13 @@ body[class*="calibrefx"] #wpbody-content{
 }
 
 .calibrefx-content div.updated{
-    margin: 5px 10px 15px 10px;
+    margin: 0px 2% 15px 2%;
 }
 
 .calibrefx-content h2{
-    margin: 0 17px 0 10px;
+    margin: 0 2%;
     height: 0px;
+	padding: 0px;
     visibility: hidden;
 }
 

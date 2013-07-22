@@ -310,7 +310,7 @@ abstract class CFX_Admin {
                                 ?>
                             </ul>
                             <div class="calibrefx-option">
-                                
+                                <h2><?php echo $calibrefx_sections[$calibrefx_current_section]['title']; ?></h2>
                                 <div class="postbox-container main-postbox">
                                     <?php
                                     calibrefx_do_meta_sections($calibrefx_current_section, $this->pagehook, 'main', null);
