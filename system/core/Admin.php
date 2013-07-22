@@ -211,6 +211,8 @@ abstract class CFX_Admin {
                 calibrefx_admin_redirect($this->page_id, array('error' => 'true'));
             exit;
         }
+
+        add_filter('admin_body_class', 'calibrefx_admin_body_class', 20, 1);
     }
 
     /**

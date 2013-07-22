@@ -20,7 +20,6 @@
  * @package CalibreFx
  */
 
-add_filter('admin_body_class', 'calibrefx_admin_body_class', 20, 1);
 function calibrefx_admin_body_class($classes){
 	$classes .= 'calibrefx-admin-page';
 
