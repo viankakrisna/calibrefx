@@ -389,11 +389,6 @@ add_action('wp_head', 'calibrefx_header_scripts');
 function calibrefx_header_scripts() {
 
     echo apply_filters('calibrefx_header_scripts', stripslashes(calibrefx_get_option('header_scripts')));
-
-    // If singular, echo scripts from custom field
-    if (is_singular()) {
-        calibrefx_custom_field('_calibrefx_scripts');
-    }
 }
 
 add_action('wp_head', 'calibrefx_header_custom_styles');
