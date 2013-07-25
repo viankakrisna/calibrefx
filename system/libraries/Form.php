@@ -66,7 +66,7 @@ class CFX_Form {
 
     function mass_checkboxes($id, $array_data = array(), $checked = array(), $maxrow = 20) {
         $output = "";
-        $totalcol = ceil(count($array_data) / $maxrow);
+        $totalcol = ceil(count($array_data) / $maxrow); 
 
         $data = array();
         for ($col = 0; $col < $totalcol; $col++) {
@@ -75,8 +75,13 @@ class CFX_Form {
                 if (($i + 1) > count($array_data))
                     break;
                 $data = $array_data[$i];
-
-                $output .= '<label class="checkbox-label">' . $this->checkbox($id, $data['id'],  $checked[$data['id']], $data['name']) . '</label>';
+				
+				if(array_key_exists($data['id'], $checked)){
+					$output .= '<label class="checkbox-label">' . $this->checkbox($id, $data['id'], $checked[$data['id']], $data['name']) . '</label>';
+				}else{
+					$output .= '<label class="checkbox-label">' . $this->checkbox($id, $data['id'], '', $data['name']) . '</label>';
+				}
+                
             }
             $output .= '</div>';
         }
