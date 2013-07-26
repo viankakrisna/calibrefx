@@ -38,7 +38,7 @@ class CFX_Form {
      * Open form
      */
     function open($id, $action, $method='post') {
-        $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal">';
+        $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal" enctype="multipart/form-data">';
         return $this;
     }
 
@@ -200,7 +200,7 @@ end;
      * @param array $args 'action' URL for form action, 'post_id' ID for preset parent ID
      */
     function upload_form($id) {
-        $output = '<p><input type="file" name="'.$id.'" id="'.$id.'" size="50" /></p>';
+        $output = '<input type="file" name="'.$id.'" id="'.$id.'" size="50" />';
     
         return $output;
     }
