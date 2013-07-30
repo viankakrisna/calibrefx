@@ -174,7 +174,9 @@ function calibrefx_numeric_posts_nav() {
         $links[] = $paged + 1;
     }
 
-    echo '<div class="navigation pagination pagination-right"><ul>' . "\n";
+    $pagination_class = apply_filters( 'calibrefx_numeric_pagination_class', 'navigation pagination pagination-right' );
+
+    echo '<div class="'.$pagination_class.'"><ul>' . "\n";
 
     /** 	Previous Post Link */
     if (get_previous_posts_link())
