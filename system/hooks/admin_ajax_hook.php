@@ -58,3 +58,43 @@ function calibrefx_test_send_mail(){
 
 	echo json_encode($return_data);exit;
 }
+
+add_action('wp_ajax_check_getresponse_api', 'check_getresponse_api');
+function check_getresponse_api(){
+	global $calibrefx;
+	
+	$api = new GetResponse(calibrefx_get_option('autoreponder_getresponse_api'));
+	$ping = $api->ping();
+
+	if(!$ping){
+		$return_data = array(
+		"status" => 'error',
+		"message" => "Cannot connect to Getreponse server with that API KEY"
+		);
+
+
+		echo json_encode($return_data);exit;
+	}
+
+	$campaigns 	 = (array)$api->getCampaigns('CONTAINS', calibrefx_get_option('autoreponder_getresponse_campaign'));
+	$campaignIDs = array_keys($campaigns);
+	$campaign_id = $campaignIDs[0];
+
+	if(!$campaign_id){
+		$return_data = array(
+		"status" => 'error',
+		"message" => "Cannot connect to Getreponse server with that API KEY"
+		);
+
+
+		echo json_encode($return_data);exit;
+	}
+
+	$return_data = array(
+		"status" => 'success',
+		"message" => "Connect Success"
+	);
+
+
+	echo json_encode($return_data);exit;
+}

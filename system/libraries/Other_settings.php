@@ -314,6 +314,31 @@ if(isset($_POST['name']) && isset($_POST['url']) ){
             </p>
 
             <p><span class="description"><?php _e('GetResponse API Key and Campaign', 'calibrefx'); ?></span></p>
+            <div class="controls">
+                <a class="button-primary calibrefx-h2-button check-getresponse" href="#">Check</a>
+                <span class="result hidden"></span>
+            </div>
+            <script type="text/javascript">
+                jQuery(document).ready(function($){
+                    $('.check-getresponse').click(function(){
+                        $this = $(this);
+
+                        var data = {
+                            action: 'check_getresponse_api'
+                        };
+                        
+
+                        $.post(ajaxurl , data, function(response) {
+                            console.info(response);
+                            if(response.status == 'success'){
+                                $this.siblings().html(response.message);
+                            }
+                        }, "json");
+
+                        return false;
+                    });
+                });
+            </script>
         </div>
 
         <div id="autoresponder_mailventure_container" style="display:none">

@@ -109,7 +109,9 @@ function calibrefx_older_newer_posts_nav() {
     $older = $older_link ? '<div class="previous">' . $older_link . '</div>' : '';
     $newer = $newer_link ? '<div class="next">' . $newer_link . '</div>' : '';
 
-    $nav = '<div class="navigation pager">' . $older . $newer . '</div><!-- end .navigation -->';
+    $pagination_class = apply_filters( 'calibrefx_older_newer_pagination_class', 'navigation pager' );
+
+    $nav = '<div class="'.$pagination_class.'">' . $older . $newer . '</div><!-- end .navigation -->';
 
     if ($older || $newer)
         echo $nav;
@@ -127,7 +129,9 @@ function calibrefx_prev_next_posts_nav() {
     $prev = $prev_link ? '<div class="previous">' . $prev_link . '</div>' : '';
     $next = $next_link ? '<div class="next">' . $next_link . '</div>' : '';
 
-    $nav = '<div class="navigation pager">' . $prev . $next . '</div><!-- end .navigation -->';
+    $pagination_class = apply_filters( 'calibrefx_prev_next_pagination_class', 'navigation pager' );
+
+    $nav = '<div class="'.$pagination_class.'">' . $prev . $next . '</div><!-- end .navigation -->';
 
     if ($prev || $next)
         echo $nav;
@@ -174,7 +178,9 @@ function calibrefx_numeric_posts_nav() {
         $links[] = $paged + 1;
     }
 
-    echo '<div class="navigation pagination pagination-right"><ul>' . "\n";
+    $pagination_class = apply_filters( 'calibrefx_numeric_pagination_class', 'navigation pagination pagination-right' );
+
+    echo '<div class="'.$pagination_class.'"><ul>' . "\n";
 
     /** 	Previous Post Link */
     if (get_previous_posts_link())

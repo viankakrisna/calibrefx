@@ -62,51 +62,59 @@ function calibrefx_seo_title() {
     
     $cfx_replacer = & $CFX->replacer->set_replace_tag($replace_tags);
 
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+    if($paged != 1){
+        $paged = ' - Page ' . $paged;
+    }else{
+        $paged = '';
+    }
+
     if (is_home() || is_front_page()) {
         $post_seo_title = calibrefx_get_custom_field('_calibrefx_title');    
         $home_title = calibrefx_get_option('home_title', $CFX->seo_settings_m);
         
         if($post_seo_title){
-            return $post_seo_title;
+            return $post_seo_title . $paged;
         }
         elseif ($home_title){
-            return $home_title;
+            return $home_title . $paged;
         }
         else{
-            return get_bloginfo('name');
+            return get_bloginfo('name') . $paged;
         }
     }
 
     if (is_category()) {
-        return $cfx_replacer->get(calibrefx_get_option('category_rewrite_title', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('category_rewrite_title', $CFX->seo_settings_m)) . $paged;
     }
 
     if (is_date()) {
-        return $cfx_replacer->get(calibrefx_get_option('archive_rewrite_title', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('archive_rewrite_title', $CFX->seo_settings_m)) . $paged;
     }
     
     if (is_tax()) {        
-        return $cfx_replacer->get(calibrefx_get_option('taxonomy_rewrite_title', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('taxonomy_rewrite_title', $CFX->seo_settings_m)) . $paged;
     }
 
     if (is_tag()) {
-        return $cfx_replacer->get(calibrefx_get_option('tag_rewrite_title', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('tag_rewrite_title', $CFX->seo_settings_m)) . $paged;
     }
 
     if (is_page()) {
-        return $cfx_replacer->get(calibrefx_get_option('page_rewrite_title', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('page_rewrite_title', $CFX->seo_settings_m)) . $paged;
     }
 
     if (is_single()) {
-        return $cfx_replacer->get(calibrefx_get_option('post_rewrite_title', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('post_rewrite_title', $CFX->seo_settings_m)) . $paged;
     }
 
     if (is_author()) {
-        return $cfx_replacer->get(calibrefx_get_option('author_rewrite_title', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('author_rewrite_title', $CFX->seo_settings_m)) . $paged;
     }
 
     if (is_search()) {
-        return $cfx_replacer->get(calibrefx_get_option('search_rewrite_title', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('search_rewrite_title', $CFX->seo_settings_m)) . $paged;
     }
 
     if (is_404()) {
@@ -114,7 +122,7 @@ function calibrefx_seo_title() {
     }
 
     if(is_archive()){
-        return $cfx_replacer->get(calibrefx_get_option('taxonomy_rewrite_title', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('taxonomy_rewrite_title', $CFX->seo_settings_m)) . $paged;
     }
 }
 

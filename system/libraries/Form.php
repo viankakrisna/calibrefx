@@ -38,7 +38,7 @@ class CFX_Form {
      * Open form
      */
     function open($id, $action, $method='post') {
-        $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal">';
+        $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal" enctype="multipart/form-data">';
         return $this;
     }
 
@@ -66,7 +66,7 @@ class CFX_Form {
 
     function mass_checkboxes($id, $array_data = array(), $checked = array(), $maxrow = 20) {
         $output = "";
-        $totalcol = ceil(count($array_data) / $maxrow);
+        $totalcol = ceil(count($array_data) / $maxrow); 
 
         $data = array();
         for ($col = 0; $col < $totalcol; $col++) {
@@ -75,8 +75,13 @@ class CFX_Form {
                 if (($i + 1) > count($array_data))
                     break;
                 $data = $array_data[$i];
-
-                $output .= '<label class="checkbox-label">' . $this->checkbox($id, $data['id'],  $checked[$data['id']], $data['name']) . '</label>';
+				
+				if(array_key_exists($data['id'], $checked)){
+					$output .= '<label class="checkbox-label">' . $this->checkbox($id, $data['id'], $checked[$data['id']], $data['name']) . '</label>';
+				}else{
+					$output .= '<label class="checkbox-label">' . $this->checkbox($id, $data['id'], '', $data['name']) . '</label>';
+				}
+                
             }
             $output .= '</div>';
         }
@@ -195,7 +200,7 @@ end;
      * @param array $args 'action' URL for form action, 'post_id' ID for preset parent ID
      */
     function upload_form($id) {
-        $output = '<p><input type="file" name="'.$id.'" id="'.$id.'" size="50" /></p>';
+        $output = '<input type="file" name="'.$id.'" id="'.$id.'" size="50" />';
     
         return $output;
     }

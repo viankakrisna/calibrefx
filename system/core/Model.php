@@ -68,7 +68,7 @@ class CFX_Model {
         $options = $this->_cfx->cache->cache_get($this->_setting_field, $this->_setting_field);
 
         if ($options && isset($options[$key])) {
-            return $options[$key];
+            return stripslashes($options[$key]);
         }
 
         $options = apply_filters('calibrefx_options', get_option($this->_setting_field), $this->_setting_field);
@@ -77,7 +77,7 @@ class CFX_Model {
 
         if(!isset($options[$key])) return false;
         
-        return $options[$key];
+        return stripslashes($options[$key]);
     }
 
     public function get_all(){

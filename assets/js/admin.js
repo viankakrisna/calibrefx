@@ -101,7 +101,7 @@ jQuery(document).ready(function($){
 
     $('#test-send-mail').click(function(){
         var email = $('#email-test').val();
-        var caller = $.this;
+        var caller = $this;
         
         var data = {
             action: 'calibrefx_test_send_mail',
