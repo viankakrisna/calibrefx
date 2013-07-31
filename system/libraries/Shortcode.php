@@ -39,23 +39,25 @@
  */
 class CFX_Shortcode {
 
-    var $plugin_name = "";
-    var $form_url = "";
-    var $width = "";
-    var $height = "";
-    var $title = "";
-    var $img_url = "";
+	var $plugins = array();
+	
+	public function calibrefx_shortcode_button_init(){
+		add_filter('tiny_mce_version', array(&$this, 'increase_tinymce_version'));
+        add_action('init', array(&$this, 'add_sc_buttons'));
+		
+		update_option('calibrefx_shortcode_options', $this->plugins);
+	}
 
     public function calibrefx_add_shortcode_button($plugin_name = '', $form_url = '', $width = '320', $height = '460', $title = '', $img_url = '') {
-        $this->plugin_name = $plugin_name;
-        $this->form_url = $form_url;
-        $this->width = $width;
-        $this->height = $height;
-        $this->title = $title;
-        $this->img_url = $img_url;
-
-        add_filter('tiny_mce_version', array(&$this, 'increase_tinymce_version'));
-        add_action('init', array(&$this, 'add_sc_buttons'));
+		
+		$this->plugins[] = array(
+			'plugin_name' => $plugin_name,
+			'form_url' => $form_url,
+			'width' => $width,
+			'height' => $height,
+			'title' => $title,
+			'img_url' => $img_url
+		);
     }
 
     public function add_sc_buttons() {
@@ -70,13 +72,17 @@ class CFX_Shortcode {
         }
     }
 
-    public function calibrefx_register_scbuttons_plugin($buttons) {
-        array_push($buttons, "", $this->plugin_name);
+    public function calibrefx_register_scbuttons_plugin($buttons){
+		foreach($this->plugins as $plugin){
+			array_push($buttons, "", $plugin['plugin_name']);
+		}
         return $buttons;
     }
 
     public function calibrefx_add_scbuttons_plugin($plugin_arr) {
-        $plugin_arr[$this->plugin_name] = CALIBREFX_SHORTCODE_URL . '/calibrefx_tinymce_add_plugin.php?plugin_name='.$this->plugin_name.'&form_url='.urlencode($this->form_url).'&width='.$this->width.'&height='.$this->height.'&title='.urlencode($this->title).'&img_url='.urlencode($this->img_url);
+		foreach($this->plugins as $plugin){
+			$plugin_arr[$plugin['plugin_name']] = CALIBREFX_SHORTCODE_URL . '/calibrefx_tinymce_add_plugin.php';
+		}
         return $plugin_arr;
     }
 
@@ -84,3 +90,6 @@ class CFX_Shortcode {
         return++$version;
     }
 }
+
+global $cfx_shortcode;
+$cfx_shortcode = new CFX_Shortcode();

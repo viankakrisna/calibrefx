@@ -30,6 +30,8 @@
  * @link		http://www.calibrefx.com
  */
 
+global $cfx_shortcode;
+ 
 add_shortcode('h1', 'calibrefx_h1');
 
 function calibrefx_h1($atts, $content = '') {
@@ -186,5 +188,4 @@ function calibrefx_h6($atts, $content = '') {
     return $before . "<h6 class='$classes' style='$style'>" . do_shortcode($content) . "</h6>" . $after;
 }
 
-$tinymce_button_heading = new CFX_Shortcode();
-$tinymce_button_heading->calibrefx_add_shortcode_button('calibrefx_shortcode_heading', CALIBREFX_SHORTCODE_URL . '/form-heading.php', 360, 300, __('Heading shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/heading.png');
+$cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_heading', CALIBREFX_SHORTCODE_URL . '/form-heading.php', 360, 300, __('Heading shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/heading.png');
