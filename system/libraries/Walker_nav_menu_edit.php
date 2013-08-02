@@ -15,7 +15,7 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	 *
 	 * @param string $output Passed by reference.
 	 */
-	function start_lvl(&$output) {	
+	function start_lvl(&$output, $depth = 0, $args = array()) {	
 	}
 	
 	/**
@@ -24,7 +24,7 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	 *
 	 * @param string $output Passed by reference.
 	 */
-	function end_lvl(&$output) {
+	function end_lvl(&$output, $depth = 0, $args = array()) {
 	}
 	
 	/**
@@ -36,7 +36,7 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	 * @param int $depth Depth of menu item. Used for padding.
 	 * @param object $args
 	 */
-	function start_el(&$output, $item, $depth, $args) {
+	function start_el(&$output, $item, $depth = 0, $args = array(),  $current_object_id = 0) {
 	    global $_wp_nav_menu_max_depth;
 	   
 	    $_wp_nav_menu_max_depth = $depth > $_wp_nav_menu_max_depth ? $depth : $_wp_nav_menu_max_depth;

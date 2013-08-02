@@ -48,8 +48,8 @@ final class Calibrefx {
     function __construct() {
         self::$instance = & $this;
 
-        $this->config = & calibrefx_load_class('Config', 'core');
-        $this->load = & calibrefx_load_class('Loader', 'core');
+        $this->config = calibrefx_load_class('Config', 'core');
+        $this->load = calibrefx_load_class('Loader', 'core');
         //Since admin is abstract we don't instantiate
         calibrefx_load_class('Admin', 'core');
         calibrefx_load_class('Adapter', 'core');
