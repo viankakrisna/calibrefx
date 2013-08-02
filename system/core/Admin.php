@@ -370,7 +370,8 @@ abstract class CFX_Admin {
                     $(this).addClass('active');
                 });
 				
-				equalize_option_height();
+				
+				setTimeout(function(){ equalize_option_height() }, 400);	
             });
 			
 			equalize_option_height = function(){
