@@ -144,7 +144,9 @@ function calibrefx_get_description() {
     global $post;
 	if(!$post) return;
     $custom_description = calibrefx_get_custom_field('_calibrefx_description');
-    return empty($custom_description) ? $post->post_title : $custom_description;
+    if(!empty($custom_description)) return $custom_description;
+    
+    return $post->post_content;
 }
 
 function calibrefx_get_keywords() {

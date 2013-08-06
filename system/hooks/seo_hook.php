@@ -132,7 +132,7 @@ function calibrefx_seo_title() {
 function calibrefx_seo_description() {
     global $calibrefx;
     $replace_tags = get_replace_title_tags();
-
+    
     $cfx_replacer = $calibrefx->replacer->set_replace_tag($replace_tags);
 
     if (is_home() || is_front_page()) {
