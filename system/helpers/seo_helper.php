@@ -57,7 +57,9 @@ function get_replace_title_tags() {
 	}
     
     $taxonomies = get_the_taxonomies();
-    $taxonomy = strip_tags(array_shift(array_values($taxonomies)), '');
+    $taxonomy = array_values($taxonomies);
+    $taxonomy = array_shift($taxonomy);
+    $taxonomy = strip_tags($taxonomy, '');
     if(empty($taxonomy)) $taxonomy = post_type_archive_title('',false);
     
     $site_title = calibrefx_capitalize(get_bloginfo('name'));

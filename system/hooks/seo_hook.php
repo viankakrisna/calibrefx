@@ -32,9 +32,10 @@
 
 add_action('calibrefx_init', 'calibrefx_init_seo_hook');
 function calibrefx_init_seo_hook(){
-    $CFX = &calibrefx_get_instance();
+    global $calibrefx;
+    
     //developer can deactivate this from the functions.php
-    if(current_theme_supports('calibrefx-seo') && ($CFX->seo_settings_m->get('enable_seo'))){
+    if(current_theme_supports('calibrefx-seo') && ($calibrefx->seo_settings_m->get('enable_seo'))){
         init_seo_feature_hook();
     }
 }
@@ -55,12 +56,11 @@ function init_seo_feature_hook(){
  * Generate SEO title based on the format given
  */
 function calibrefx_seo_title() {
+    global $calibrefx;
 
     $replace_tags = get_replace_title_tags();
-
-    $CFX = &calibrefx_get_instance();
     
-    $cfx_replacer = & $CFX->replacer->set_replace_tag($replace_tags);
+    $cfx_replacer = $calibrefx->replacer->set_replace_tag($replace_tags);
 
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
@@ -72,7 +72,7 @@ function calibrefx_seo_title() {
 
     if (is_home() || is_front_page()) {
         $post_seo_title = calibrefx_get_custom_field('_calibrefx_title');    
-        $home_title = calibrefx_get_option('home_title', $CFX->seo_settings_m);
+        $home_title = calibrefx_get_option('home_title', $calibrefx->seo_settings_m);
         
         if($post_seo_title){
             return $post_seo_title . $paged;
@@ -86,43 +86,43 @@ function calibrefx_seo_title() {
     }
 
     if (is_category()) {
-        return $cfx_replacer->get(calibrefx_get_option('category_rewrite_title', $CFX->seo_settings_m)) . $paged;
+        return $cfx_replacer->get(calibrefx_get_option('category_rewrite_title', $calibrefx->seo_settings_m)) . $paged;
     }
 
     if (is_date()) {
-        return $cfx_replacer->get(calibrefx_get_option('archive_rewrite_title', $CFX->seo_settings_m)) . $paged;
+        return $cfx_replacer->get(calibrefx_get_option('archive_rewrite_title', $calibrefx->seo_settings_m)) . $paged;
     }
     
     if (is_tax()) {        
-        return $cfx_replacer->get(calibrefx_get_option('taxonomy_rewrite_title', $CFX->seo_settings_m)) . $paged;
+        return $cfx_replacer->get(calibrefx_get_option('taxonomy_rewrite_title', $calibrefx->seo_settings_m)) . $paged;
     }
 
     if (is_tag()) {
-        return $cfx_replacer->get(calibrefx_get_option('tag_rewrite_title', $CFX->seo_settings_m)) . $paged;
+        return $cfx_replacer->get(calibrefx_get_option('tag_rewrite_title', $calibrefx->seo_settings_m)) . $paged;
     }
 
     if (is_page()) {
-        return $cfx_replacer->get(calibrefx_get_option('page_rewrite_title', $CFX->seo_settings_m)) . $paged;
+        return $cfx_replacer->get(calibrefx_get_option('page_rewrite_title', $calibrefx->seo_settings_m)) . $paged;
     }
 
     if (is_single()) {
-        return $cfx_replacer->get(calibrefx_get_option('post_rewrite_title', $CFX->seo_settings_m)) . $paged;
+        return $cfx_replacer->get(calibrefx_get_option('post_rewrite_title', $calibrefx->seo_settings_m)) . $paged;
     }
 
     if (is_author()) {
-        return $cfx_replacer->get(calibrefx_get_option('author_rewrite_title', $CFX->seo_settings_m)) . $paged;
+        return $cfx_replacer->get(calibrefx_get_option('author_rewrite_title', $calibrefx->seo_settings_m)) . $paged;
     }
 
     if (is_search()) {
-        return $cfx_replacer->get(calibrefx_get_option('search_rewrite_title', $CFX->seo_settings_m)) . $paged;
+        return $cfx_replacer->get(calibrefx_get_option('search_rewrite_title', $calibrefx->seo_settings_m)) . $paged;
     }
 
     if (is_404()) {
-        return $cfx_replacer->get(calibrefx_get_option('404_rewrite_title', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('404_rewrite_title', $calibrefx->seo_settings_m));
     }
 
     if(is_archive()){
-        return $cfx_replacer->get(calibrefx_get_option('taxonomy_rewrite_title', $CFX->seo_settings_m)) . $paged;
+        return $cfx_replacer->get(calibrefx_get_option('taxonomy_rewrite_title', $calibrefx->seo_settings_m)) . $paged;
     }
 }
 
@@ -130,14 +130,14 @@ function calibrefx_seo_title() {
  * Generate SEO description based on the format given
  */
 function calibrefx_seo_description() {
+    global $calibrefx;
     $replace_tags = get_replace_title_tags();
 
-    $CFX = &calibrefx_get_instance();
-    $cfx_replacer = & $CFX->replacer->set_replace_tag($replace_tags);
+    $cfx_replacer = $calibrefx->replacer->set_replace_tag($replace_tags);
 
     if (is_home() || is_front_page()) {
         $post_seo_description = calibrefx_get_custom_field('_calibrefx_description');  
-        $home_description = calibrefx_get_option('home_meta_description', $CFX->seo_settings_m);
+        $home_description = calibrefx_get_option('home_meta_description', $calibrefx->seo_settings_m);
         
         if($post_seo_description)
             return $post_seo_description;
@@ -148,39 +148,39 @@ function calibrefx_seo_description() {
     }
 
     if (is_category()) {
-        return $cfx_replacer->get(calibrefx_get_option('category_description', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('category_description', $calibrefx->seo_settings_m));
     }
 
     if (is_date()) {
-        return $cfx_replacer->get(calibrefx_get_option('archive_description', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('archive_description', $calibrefx->seo_settings_m));
     }
 
     if (is_tag()) {
-        return $cfx_replacer->get(calibrefx_get_option('tag_description', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('tag_description', $calibrefx->seo_settings_m));
     }
 
     if (is_page()) {
-        return $cfx_replacer->get(calibrefx_get_option('page_description', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('page_description', $calibrefx->seo_settings_m));
     }
 
     if (is_single()) {
-        return $cfx_replacer->get(calibrefx_get_option('post_description', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('post_description', $calibrefx->seo_settings_m));
     }
 
     if (is_author()) {
-        return $cfx_replacer->get(calibrefx_get_option('author_description', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('author_description', $calibrefx->seo_settings_m));
     }
 
     if (is_search()) {
-        return $cfx_replacer->get(calibrefx_get_option('search_description', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('search_description', $calibrefx->seo_settings_m));
     }
 
     if (is_404()) {
-        return $cfx_replacer->get(calibrefx_get_option('404_description', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('404_description', $calibrefx->seo_settings_m));
     }
 
     if(is_archive()){
-        return $cfx_replacer->get(calibrefx_get_option('taxonomy_description', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('taxonomy_description', $calibrefx->seo_settings_m));
     }
 }
 
@@ -188,14 +188,14 @@ function calibrefx_seo_description() {
  * Generate SEO keywords based on the format given
  */
 function calibrefx_seo_keywords() {
+    global $calibrefx;
     $replace_tags = get_replace_title_tags();
 
-    $CFX = &calibrefx_get_instance();
-    $cfx_replacer = & $CFX->replacer->set_replace_tag($replace_tags);
+    $cfx_replacer = $calibrefx->replacer->set_replace_tag($replace_tags);
 
     if (is_home() || is_front_page()) {        
         $post_seo_keywords = calibrefx_get_custom_field('_calibrefx_keywords');  
-        $home_keywords = calibrefx_get_option('home_meta_keywords', $CFX->seo_settings_m);
+        $home_keywords = calibrefx_get_option('home_meta_keywords', $calibrefx->seo_settings_m);
         
         if($post_seo_keywords)
             return $post_seo_keywords;
@@ -204,39 +204,39 @@ function calibrefx_seo_keywords() {
     }
 
     if (is_category()) {
-        return $cfx_replacer->get(calibrefx_get_option('category_keywords', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('category_keywords', $calibrefx->seo_settings_m));
     }
 
     if (is_date()) {
-        return $cfx_replacer->get(calibrefx_get_option('archive_keywords', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('archive_keywords', $calibrefx->seo_settings_m));
     }
 
     if (is_tag()) {
-        return $cfx_replacer->get(calibrefx_get_option('tag_keywords', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('tag_keywords', $calibrefx->seo_settings_m));
     }
 
     if (is_page()) {
-        return $cfx_replacer->get(calibrefx_get_option('page_keywords', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('page_keywords', $calibrefx->seo_settings_m));
     }
 
     if (is_single()) {
-        return $cfx_replacer->get(calibrefx_get_option('post_keywords', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('post_keywords', $calibrefx->seo_settings_m));
     }
 
     if (is_author()) {
-        return $cfx_replacer->get(calibrefx_get_option('author_keywords', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('author_keywords', $calibrefx->seo_settings_m));
     }
 
     if (is_search()) {
-        return $cfx_replacer->get(calibrefx_get_option('search_keywords', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('search_keywords', $calibrefx->seo_settings_m));
     }
 
     if (is_404()) {
-        return $cfx_replacer->get(calibrefx_get_option('404_keywords', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('404_keywords', $calibrefx->seo_settings_m));
     }
 
     if(is_archive()){
-        return $cfx_replacer->get(calibrefx_get_option('taxonomy_keywords', $CFX->seo_settings_m));
+        return $cfx_replacer->get(calibrefx_get_option('taxonomy_keywords', $calibrefx->seo_settings_m));
     }
 }
 
@@ -265,10 +265,8 @@ function calibrefx_link_publisher(){
  * in the document <head>.
  */
 function calibrefx_do_meta_robot() {
-
     global $wp_query, $post;
-
-    $CFX = & calibrefx_get_instance();
+    global $calibrefx;
 
     /*
      * If the blog is private, then following logic is unnecessary as WP will
@@ -280,16 +278,16 @@ function calibrefx_do_meta_robot() {
     $meta = array(
         'noindex' => '',
         'nofollow' => '',
-        'noarchive' => calibrefx_get_option('noarchive', $CFX->seo_settings_m) ? 'noarchive' : '',
-        'noodp' => calibrefx_get_option('site_noodp', $CFX->seo_settings_m) ? 'noodp' : '',
-        'noydir' => calibrefx_get_option('site_noydir', $CFX->seo_settings_m) ? 'noydir' : '',
+        'noarchive' => calibrefx_get_option('noarchive', $calibrefx->seo_settings_m) ? 'noarchive' : '',
+        'noodp' => calibrefx_get_option('site_noodp', $calibrefx->seo_settings_m) ? 'noodp' : '',
+        'noydir' => calibrefx_get_option('site_noydir', $calibrefx->seo_settings_m) ? 'noydir' : '',
     );
 
     /** Check home page SEO settings, set noindex, nofollow and noarchive */
     if (is_front_page()) {
-        $meta['noindex'] = calibrefx_get_option('home_noindex', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
-        $meta['nofollow'] = calibrefx_get_option('home_nofollow', $CFX->seo_settings_m) ? 'nofollow' : $meta['nofollow'];
-        $meta['noarchive'] = calibrefx_get_option('home_noarchive', $CFX->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
+        $meta['noindex'] = calibrefx_get_option('home_noindex', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
+        $meta['nofollow'] = calibrefx_get_option('home_nofollow', $calibrefx->seo_settings_m) ? 'nofollow' : $meta['nofollow'];
+        $meta['noarchive'] = calibrefx_get_option('home_noarchive', $calibrefx->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
     }
 
     if (is_category()) {
@@ -299,12 +297,12 @@ function calibrefx_do_meta_robot() {
         if(isset($term->meta['nofollow'])) $meta['nofollow'] = $term->meta['nofollow'] ? 'nofollow' : $meta['nofollow'];
         if(isset($term->meta['noarchive'])) $meta['noarchive'] = $term->meta['noarchive'] ? 'noarchive' : $meta['noarchive'];
 
-        $meta['noindex'] = calibrefx_get_option('category_noindex', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
-        $meta['noarchive'] = calibrefx_get_option('category_noarchive', $CFX->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
+        $meta['noindex'] = calibrefx_get_option('category_noindex', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
+        $meta['noarchive'] = calibrefx_get_option('category_noarchive', $calibrefx->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
 
         /** 	noindex paged archives, if canonical archives is off */
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-        $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
+        $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
     }
 
     if (is_tag()) {
@@ -314,12 +312,12 @@ function calibrefx_do_meta_robot() {
         if(isset($term->meta['nofollow'])) $meta['nofollow'] = $term->meta['nofollow'] ? 'nofollow' : $meta['nofollow'];
         if(isset($term->meta['noarchive'])) $meta['noarchive'] = $term->meta['noarchive'] ? 'noarchive' : $meta['noarchive'];
 
-        $meta['noindex'] = calibrefx_get_option('tag_noindex', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
-        $meta['noarchive'] = calibrefx_get_option('tag_noarchive', $CFX->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
+        $meta['noindex'] = calibrefx_get_option('tag_noindex', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
+        $meta['noarchive'] = calibrefx_get_option('tag_noarchive', $calibrefx->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
 
         /** 	noindex paged archives, if canonical archives is off */
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-        $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
+        $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
     }
 
     if (is_tax()) {
@@ -331,7 +329,7 @@ function calibrefx_do_meta_robot() {
 
         /** noindex paged archives, if canonical archives is off */
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-        $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
+        $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
     }
 
     if (is_author()) {
@@ -339,22 +337,22 @@ function calibrefx_do_meta_robot() {
         $meta['nofollow'] = get_the_author_meta('nofollow', (int) get_query_var('author')) ? 'nofollow' : $meta['nofollow'];
         $meta['noarchive'] = get_the_author_meta('noarchive', (int) get_query_var('author')) ? 'noarchive' : $meta['noarchive'];
 
-        $meta['noindex'] = calibrefx_get_option('author_noindex', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
-        $meta['noarchive'] = calibrefx_get_option('author_noarchive', $CFX->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
+        $meta['noindex'] = calibrefx_get_option('author_noindex', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
+        $meta['noarchive'] = calibrefx_get_option('author_noarchive', $calibrefx->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
 
         /** 	noindex paged archives, if canonical archives is off */
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-        $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
+        $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
     }
 
     if (is_date()) {
-        $meta['noindex'] = calibrefx_get_option('date_noindex', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
-        $meta['noarchive'] = calibrefx_get_option('date_noarchive', $CFX->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
+        $meta['noindex'] = calibrefx_get_option('date_noindex', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
+        $meta['noarchive'] = calibrefx_get_option('date_noarchive', $calibrefx->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
     }
 
     if (is_search()) {
-        $meta['noindex'] = calibrefx_get_option('search_noindex', $CFX->seo_settings_m) ? 'noindex' : $meta['noindex'];
-        $meta['noarchive'] = calibrefx_get_option('search_noarchive', $CFX->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
+        $meta['noindex'] = calibrefx_get_option('search_noindex', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
+        $meta['noarchive'] = calibrefx_get_option('search_noarchive', $calibrefx->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
     }
 
     if (is_singular()) {
