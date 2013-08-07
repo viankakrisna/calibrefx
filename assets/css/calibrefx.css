@@ -527,7 +527,6 @@ h1, h2, h3, h4, h5, h6{
 .post h1.entry-title,
 .page h1.entry-title{
     border-bottom: 1px solid #e5e5e5;	
-    font-size: 30px;
     text-rendering: optimizespeed;
     padding-bottom: 5px;
 }
