@@ -46,8 +46,10 @@ function get_replace_title_tags() {
 
     $categories = get_the_category();
     $category = '';
+    $category_description = '';
     if (count($categories) > 0) {
         $category = $categories[0]->cat_name;
+        $category_description = $categories[0]->description;
     }
 
 	if(is_author() && !$post){
@@ -84,6 +86,13 @@ function get_replace_title_tags() {
     $page = $paged;
     $request_word = calibrefx_capitalize(calibrefx_request_as_words($_SERVER['REQUEST_URI']));
 
+    $term_id = get_query_var('tag_id');
+    $tag = get_tag( $term_id );
+    $tag_title = '';
+    if(!is_wp_error( $tag )){
+        $tag_title = ucfirst($tag->name);
+    }
+
     $replace_arr = array(
         'site_title' => $site_title,
         'site_description' => $site_description,
@@ -94,9 +103,11 @@ function get_replace_title_tags() {
         'post_author_name' => $post_author_name,
         'author_name' => $post_author_name,
         'date' => $date,
+        'tag' => $tag_title,
         'search' => $search,
         'page' => $page,
         'request_words' => $request_word,
+        'category_description' => $category_description,
         'keywords' => $keywords,
         'taxonomy' => $taxonomy,
     );
