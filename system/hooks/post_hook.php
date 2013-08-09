@@ -94,21 +94,7 @@ function calibrefx_default_loop() {
     $loop_counter = 0;
     if (have_posts()) : while (have_posts()) : the_post(); // the loop
             do_action('calibrefx_before_post');
-            ?>
-            <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-                <?php do_action('calibrefx_before_post_title'); ?>
-                <?php do_action('calibrefx_post_title'); ?>
-                <?php do_action('calibrefx_after_post_title'); ?>
-
-                <?php do_action('calibrefx_before_post_content'); ?>
-                <div class="entry-content">
-                    <?php do_action('calibrefx_post_content'); ?>
-                </div><!-- end .entry-content -->
-                <?php do_action('calibrefx_after_post_content'); ?>
-
-            </div><!-- end .postclass -->
-            <?php
+            get_template_part( 'content', get_post_format() );
             do_action('calibrefx_after_post');
             $loop_counter++;
 
