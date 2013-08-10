@@ -19,6 +19,18 @@
  * @package CalibreFx
  */
 
+version 1.0.15 <11 August 2013> - 
+    * New Admin Backend Design
+    * Add Email Settings, SMTP and Sendmail
+    * Add Font awesome
+    * Fix SEO Bugs in title and description
+    * Fix CSS Bugs
+    * Fix PHP Error for Strict Standard when using PHP 5.4
+    * Add compatibility for WordPress v3.6
+    * Add New Twitter Widget and remove the old one for compatibility
+    * Add Default contact form to widget, shortcode and page template
+    * Add Autoresponder feature for Aweber, GetResponse and Mailventure
+
 version 1.0.14 <7 May 2013> - 
     * Add more shortcode buttons to the tinymce editor
     * Fix styling for responsive layout
