@@ -61,8 +61,10 @@ class CFX_About_Settings extends CFX_Admin {
 
         calibrefx_clear_meta_section();
 
-        calibrefx_add_meta_section('system', __('System Information', 'calibrefx'));
-        calibrefx_add_meta_section('team', __('The Team', 'calibrefx'));
+        calibrefx_add_meta_section('system', __('System Information', 'calibrefx'), 'options.php', 1);
+        calibrefx_add_meta_section('team', __('The CalibreFX Team', 'calibrefx'), 'options.php', 2);
+        calibrefx_add_meta_section('support', __('Support', 'calibrefx'), 'options.php', 3);
+        calibrefx_add_meta_section('item', __('Recommended Items', 'calibrefx'), 'options.php', 4);
 
         $calibrefx_current_section = 'system';
         if (!empty($_GET['section'])) {
@@ -75,13 +77,11 @@ class CFX_About_Settings extends CFX_Admin {
         calibrefx_add_meta_box('system', 'basic', 'calibrefx-latest-news', __('Latest News', 'calibrefx'), array(&$this,'latest_news_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('system', 'basic', 'calibrefx-latest-tweets', __('<span class="twitter-logo"></span>Latest Tweets', 'calibrefx'), array(&$this,'latest_tweets_box'), $this->pagehook, 'side');
 
-        calibrefx_add_meta_box('team', 'basic', 'calibrefx-the-team', __('The Team', 'calibrefx'), array(&$this,'the_team'), $this->pagehook, 'main');
+        calibrefx_add_meta_box('team', 'basic', 'calibrefx-the-team', __('The CalibreFX Team', 'calibrefx'), array(&$this,'the_team'), $this->pagehook, 'main');
     }
 
     public function the_team() {
         ?>
-        
-
         <div class="the-team-container">
             <div class="the-team">
                 <div class="image">
@@ -195,7 +195,7 @@ class CFX_About_Settings extends CFX_Admin {
 
         <style type="text/css">
             .main-postbox{
-                width: 98%;
+                width: 96%;
             }
 
             .side-postbox{

@@ -52,7 +52,9 @@ function calibrefx_get_image_id($num = 0) {
  */
 function calibrefx_get_image($args = array()) {
     global $post;
-
+	
+	if(!$post) return;
+	
     $defaults = array(
         'format' => 'html',
         'size' => 'full',

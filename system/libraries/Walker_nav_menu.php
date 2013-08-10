@@ -30,12 +30,12 @@ class CFX_Walker_Nav_menu extends Walker_Nav_Menu {
         return parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
     }
 
-    function start_lvl(&$output, $depth) {
+    function start_lvl(&$output, $depth = 0, $args = array()) {
         $indent = str_repeat("\t", $depth);
         $output .= "\n$indent<ul class=\"dropdown-menu sub-menu\">\n";
     }
 
-    function start_el(&$output, $item, $depth, $args) {
+    function start_el(&$output, $item, $depth = 0, $args = array(), $current_object_id = 0) {
         global $wp_query;
         $indent = ( $depth ) ? str_repeat("\t", $depth) : '';
 
@@ -47,16 +47,9 @@ class CFX_Walker_Nav_menu extends Walker_Nav_Menu {
             $classes[] = 'dropdown';
 
         $icon_html = '';
-        $temp_classes = array();
-        foreach($classes as $class){
-            if( strpos($class, 'icon-') !== false){
-                $icon_html = '<i class="'. $class .'"></i>&nbsp;&nbsp;';
-            }
-            else{
-                $temp_classes[] = $class;
-            }
+        if(isset($item->custom_icon) && !empty($item->custom_icon)){
+            $icon_html = '<i class="'. $item->custom_icon .'"></i>&nbsp;&nbsp;';
         }
-        $classes = $temp_classes;
 
 
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));

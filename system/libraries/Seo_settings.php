@@ -42,7 +42,7 @@ class CFX_Seo_Settings extends CFX_Admin {
             'doc_enable_rewrite_title' => 1,
             'post_rewrite_title' => '%post_title% | %site_title%',
             'page_rewrite_title' => '%page_title% | %site_title%',
-            'author_rewrite_title' => '%author_name% Profile | %site_title%',
+            'author_rewrite_title' => '%author_name% Posts | %site_title%',
             'category_rewrite_title' => '%category_title% | %site_title%',
             'archive_rewrite_title' => 'Archive: %date% | %site_title%',
             'tag_rewrite_title' => 'Tags: %tag% | %site_title%',
@@ -162,9 +162,11 @@ class CFX_Seo_Settings extends CFX_Admin {
 
         calibrefx_clear_meta_section();
 
-        calibrefx_add_meta_section('document', __('Document Settings', 'calibrefx'));
-        calibrefx_add_meta_section('robot', __('Robots', 'calibrefx'));
-        calibrefx_add_meta_section('archive', __('Archive', 'calibrefx'));
+        calibrefx_add_meta_section('document', __('Document Settings', 'calibrefx'), 'options.php', 1);
+        calibrefx_add_meta_section('robot', __('Robots', 'calibrefx'), 'options.php', 2);
+        calibrefx_add_meta_section('archive', __('Archive', 'calibrefx'), 'options.php', 3);
+
+        do_action('calibrefx_seo_settings_meta_section');
 
         $calibrefx_current_section = 'document';
         if (!empty($_GET['section'])) {
@@ -182,6 +184,8 @@ class CFX_Seo_Settings extends CFX_Admin {
         calibrefx_add_meta_box('robot', 'professor', 'calibrefx-seo-settings-robot-meta-settings', __('Robot Meta Settings', 'calibrefx'), array(&$this,'robot_box'), $this->pagehook, 'main');
 
         calibrefx_add_meta_box('archive', 'professor', 'calibrefx-seo-settings-archive-settings', __('Archive Settings', 'calibrefx'), array(&$this,'archive_box'), $this->pagehook, 'main');
+
+        do_action('calibrefx_seo_settings_meta_box');
     }
 
     //Meta Boxes Sections

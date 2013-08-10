@@ -32,12 +32,13 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		$this->defaults = array(
 			'title'       	  => '',
 			'posts_cat'       => '',
-			'post_num'        => '',
+			'post_num'        => 5,
 			'show_image'      => 0,
 			'image_alignment' => 'alignleft',
 			'image_size'      => '',
 			'show_title'      => 0,
 			'show_content'    => 0,
+			'show_date'       => 0,
 			'content_limit'   => '',
 			'more_text'   	  => '[More...]',
 		);
@@ -65,7 +66,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		$query_args = array(
 			'post_type' => 'post',
 			'cat'       => $instance['posts_cat'],
-			'showposts' => $instance['posts_num'],
+			'showposts' => $instance['post_num'],
 		);
 		$featured_posts = new WP_Query( $query_args );
 		
@@ -88,13 +89,17 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 					);
 					
 				if ( ! empty( $instance['show_title'] ) )
-					printf( '<h2><a href="%s" title="%s">%s</a></h2>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
+					printf( '<h4 class="entry-title"><a href="%s" title="%s">%s</a></h4>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
 					
 				if ( ! empty( $instance['show_content'] ) ) {
 					if ( empty( $instance['content_limit'] ) )
 						the_content( $instance['more_text'] );
 					else
 						the_content_limit( (int) $instance['content_limit'], esc_html( $instance['more_text'] ) );
+				}
+
+				if ( ! empty( $instance['show_content'] ) ) {
+					echo do_shortcode('[post_date format="relative"]');
 				}
 
 				echo '</div><!--end post_class()-->' . "\n\n";
@@ -143,8 +148,8 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'posts_num' ); ?>"><?php _e( 'Number of Posts to Show', 'calibrefx' ); ?>:</label>
-			<input type="text" id="<?php echo $this->get_field_id( 'posts_num' ); ?>" name="<?php echo $this->get_field_name( 'posts_num' ); ?>" value="<?php echo esc_attr( $instance['posts_num'] ); ?>" size="2" />
+			<label for="<?php echo $this->get_field_id( 'post_num' ); ?>"><?php _e( 'Number of Posts to Show', 'calibrefx' ); ?>:</label>
+			<input type="text" id="<?php echo $this->get_field_id( 'post_num' ); ?>" name="<?php echo $this->get_field_name( 'post_num' ); ?>" value="<?php echo esc_attr( $instance['post_num'] ); ?>" size="2" />
 		</p>
 
 		<hr class="div" />
@@ -185,6 +190,11 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		<p>
 			<input id="<?php echo $this->get_field_id( 'show_content' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_content' ); ?>" value="1"<?php checked( $instance['show_content'] ); ?> />
 			<label for="<?php echo $this->get_field_id( 'show_content' ); ?>"><?php _e( 'Show Page Content', 'calibrefx' ); ?></label>
+		</p>
+
+		<p>
+			<input id="<?php echo $this->get_field_id( 'show_date' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_date' ); ?>" value="1"<?php checked( $instance['show_date'] ); ?> />
+			<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Show Date Content', 'calibrefx' ); ?></label>
 		</p>
 
 		<p>

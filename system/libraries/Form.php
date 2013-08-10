@@ -38,7 +38,7 @@ class CFX_Form {
      * Open form
      */
     function open($id, $action, $method='post') {
-        $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal">';
+        $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal" enctype="multipart/form-data">';
         return $this;
     }
 
@@ -64,17 +64,24 @@ class CFX_Form {
         return '<input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked($value, $checked, false) . ' class="' . $id2 . '" />' . $text;
     }
 
-    function mass_checkboxes($id, $array_data = array(), $checked = array(), $maxrow = 15) {
+    function mass_checkboxes($id, $array_data = array(), $checked = array(), $maxrow = 20) {
         $output = "";
-        $totalcol = ceil(count($array_data) / $maxrow);
+        $totalcol = ceil(count($array_data) / $maxrow); 
 
+        $data = array();
         for ($col = 0; $col < $totalcol; $col++) {
             $output .= '<div class="divider">';
             for ($i = ($col * $maxrow); $i < ($col + 1) * $maxrow; $i++) {
                 if (($i + 1) > count($array_data))
                     break;
                 $data = $array_data[$i];
-                $output .= $this->checkbox($id, $data['id'], $checked[$data['id']], $data['name']) . '<br/>';
+				
+				if(array_key_exists($data['id'], $checked)){
+					$output .= '<label class="checkbox-label">' . $this->checkbox($id, $data['id'], $checked[$data['id']], $data['name']) . '</label>';
+				}else{
+					$output .= '<label class="checkbox-label">' . $this->checkbox($id, $data['id'], '', $data['name']) . '</label>';
+				}
+                
             }
             $output .= '</div>';
         }
@@ -193,7 +200,7 @@ end;
      * @param array $args 'action' URL for form action, 'post_id' ID for preset parent ID
      */
     function upload_form($id) {
-        $output = '<p><input type="file" name="'.$id.'" id="'.$id.'" size="50" /></p>';
+        $output = '<input type="file" name="'.$id.'" id="'.$id.'" size="50" />';
     
         return $output;
     }
@@ -228,10 +235,17 @@ end;
 
                 $content .= '<div class="control-group">';
 
+                $tooltip = '';
+				$tooltip_class = '';
+                if(isset($row['tooltip']) && $row['tooltip'] != ''){
+                    $tooltip .= ' data-toggle="tooltip" data-original-title="'.stripslashes($row['tooltip']).'" data-placement="right"';
+                    $tooltip_class = ' form-tooltip';    
+                }
+
                 if (isset($row['id']) && $row['id'] != '')
-                    $content .= '<label class="control-label" for="' . $row['id'] . '">' . $row['label'] . ':</label>';
+                    $content .= '<label class="control-label'.$tooltip_class.'" for="' . $row['id'] . '"'.$tooltip.'>' . $row['label'] . ':</label>';
                 else
-                    $content .= '<label class="control-label">' . $row['label'] . ':</label>';
+                    $content .= '<label class="control-label'.$tooltip_class.'"'.$tooltip.'>' . $row['label'] . ':</label>';
 
                 $content .= '   <div class="controls">';
                 $content .= $row['content'];

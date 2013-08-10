@@ -203,7 +203,7 @@ if (!function_exists('calibrefx_log_message')) {
 
     function calibrefx_log_message($level = 'error', $message = '', $php_error = FALSE) {
         global $_log;
-        $_log = & calibrefx_load_class('Logger');
+        $_log = calibrefx_load_class('Logger');
         $_log->write_log($level, $message, $php_error);
     }
 

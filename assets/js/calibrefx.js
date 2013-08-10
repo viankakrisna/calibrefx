@@ -21,6 +21,6 @@ jQuery(document).ready(function($) {
 	);
 	
 	jQuery('body').tooltip({
-      	selector: "a[data-toggle=tooltip]"
+      	selector: "a[data-toggle=tooltip], label.form-tooltip"
     });
 });

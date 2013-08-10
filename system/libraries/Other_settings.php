@@ -83,8 +83,9 @@ class CFX_Other_Settings extends CFX_Admin {
 
         calibrefx_add_meta_section('tosgen', __('TOS Generator', 'calibrefx'), '');
         calibrefx_add_meta_section('importexport', __('Import / Export Settings', 'calibrefx'), '');
+        calibrefx_add_meta_section('autoresponder', __('Autoresponder Settings', 'calibrefx'));
 
-        do_action('more_other_setting');
+        do_action('calibrefx_other_settings_meta_section');
 
         $calibrefx_current_section = 'tosgen';
         if (!empty($_GET['section'])) {
@@ -93,9 +94,17 @@ class CFX_Other_Settings extends CFX_Admin {
     }
 
     public function meta_boxes() {
+        // Terms of Services Generator
         calibrefx_add_meta_box('tosgen', 'basic', 'calibrefx-other-settings-tosgen', __('TOS Generator', 'calibrefx'), array($this, 'tos_generator'), $this->pagehook, 'main', 'high');
+        
+        // Export - Import
         calibrefx_add_meta_box('importexport', 'basic', 'calibrefx-import-settings', __('Import Settings', 'calibrefx'), array($this, 'import_settings'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('importexport', 'basic', 'calibrefx-export-settings', __('Export Settings', 'calibrefx'), array($this, 'export_settings'), $this->pagehook, 'side', 'high');
+
+        // Autoresponder
+        calibrefx_add_meta_box('autoresponder', 'basic', 'calibrefx-autoreponder-settings', __('Autoresponder Settings', 'calibrefx'), array($this, 'autoresponder_settings'), $this->pagehook, 'main', 'high');
+
+        do_action('calibrefx_other_settings_meta_box');
     }
 
     public function tos_generator(){
@@ -268,6 +277,140 @@ if(isset($_POST['name']) && isset($_POST['url']) ){
         </p>
         
     <?php
+    }
+
+    public function autoresponder_settings(){
+    ?>
+        <p>
+            <label for="autoresponder_type"><strong><?php _e('Choose your autoresponder:', 'calibrefx'); ?></strong></label>
+            <select name="<?php echo $this->settings_field; ?>[autoresponder_type]" id="autoresponder_type">
+                <option value="-1" <?php echo ($this->_model->get('autoresponder_type') == -1)? ' selected="selected"' : '' ?>>Disabled</option>
+                <option value="mailventure" <?php echo ($this->_model->get('autoresponder_type') == 'mailventure')? ' selected="selected"' : '' ?>>Mailventure</option>
+                <option value="aweber" <?php echo ($this->_model->get('autoresponder_type') == 'aweber')? ' selected="selected"' : '' ?>>Aweber</option>
+                <option value="getresponse" <?php echo ($this->_model->get('autoresponder_type') == 'getresponse')? ' selected="selected"' : '' ?>>GetResponse</option>
+            </select>
+            <span class="description"><?php _e("Choose your autoreponsder. If you do not want to integrate choose disabled.", 'calibrefx'); ?></span>
+        </p> 
+
+        <div id="autoresponder_aweber_container" style="display:none">
+            <hr class="div" />
+
+            <p>
+                <label for="<?php echo $this->settings_field; ?>[autoreponder_aweber]"><strong><?php _e('Aweber Forms', 'calibrefx'); ?></strong></label>
+                <textarea name="<?php echo $this->settings_field; ?>[autoreponder_aweber]" cols="78" rows="8"><?php echo stripslashes(esc_textarea($this->_model->get('autoreponder_aweber'))); ?></textarea>
+            </p>
+
+            <p><span class="description"><?php _e('Paste your aweber form for your aweber', 'calibrefx'); ?></span></p>
+        </div>
+
+        <div id="autoresponder_getresponse_container" style="display:none">
+            <hr class="div" />
+
+            <p>
+                <label for="<?php echo $this->settings_field; ?>[autoreponder_getresponse_api]"><strong><?php _e('GetResponse API Key', 'calibrefx'); ?></strong></label>
+                <input type="text" size="30" value="<?php echo $this->_model->get('autoreponder_getresponse_api'); ?>" id="<?php echo $this->settings_field; ?>[autoreponder_getresponse_api]" name="<?php echo $this->settings_field; ?>[autoreponder_getresponse_api]" />
+                <label for="<?php echo $this->settings_field; ?>[autoreponder_getresponse_campaign]"><strong><?php _e('GetResponse Campaign Name', 'calibrefx'); ?></strong></label>
+                <input type="text" size="30" value="<?php echo $this->_model->get('autoreponder_getresponse_campaign'); ?>" id="<?php echo $this->settings_field; ?>[autoreponder_getresponse_campaign]" name="<?php echo $this->settings_field; ?>[autoreponder_getresponse_campaign]" />
+            </p>
+
+            <p><span class="description"><?php _e('GetResponse API Key and Campaign', 'calibrefx'); ?></span></p>
+            <div class="controls">
+                <a class="button-primary calibrefx-h2-button check-getresponse" href="#">Check</a>
+                <span class="result hidden"></span>
+            </div>
+            <script type="text/javascript">
+                jQuery(document).ready(function($){
+                    $('.check-getresponse').click(function(){
+                        $this = $(this);
+
+                        var data = {
+                            action: 'check_getresponse_api'
+                        };
+                        
+
+                        $.post(ajaxurl , data, function(response) {
+                            console.info(response);
+                            if(response.status == 'success'){
+                                $this.siblings().html(response.message);
+                            }
+                        }, "json");
+
+                        return false;
+                    });
+                });
+            </script>
+        </div>
+
+        <div id="autoresponder_mailventure_container" style="display:none">
+            <hr class="div" />
+
+            <p>
+                <label for="<?php echo $this->settings_field; ?>[autoreponder_mailventure_url]"><strong><?php _e('MailVenture API URL', 'calibrefx'); ?></strong></label>
+                <input type="text" size="30" value="<?php echo $this->_model->get('autoreponder_mailventure_url'); ?>" id="<?php echo $this->settings_field; ?>[autoreponder_mailventure_url]" name="<?php echo $this->settings_field; ?>[autoreponder_mailventure_url]" />
+
+                <label for="<?php echo $this->settings_field; ?>[autoreponder_mailventure_api]"><strong><?php _e('MailVenture API Key', 'calibrefx'); ?></strong></label>
+                <input type="text" size="30" value="<?php echo $this->_model->get('autoreponder_mailventure_api'); ?>" id="<?php echo $this->settings_field; ?>[autoreponder_mailventure_api]" name="<?php echo $this->settings_field; ?>[autoreponder_mailventure_api]" />
+                
+                <label for="<?php echo $this->settings_field; ?>[autoreponder_mailventure_campaign]"><strong><?php _e('Campaign ID', 'calibrefx'); ?></strong></label>
+                <input type="text" size="30" value="<?php echo $this->_model->get('autoreponder_mailventure_campaign'); ?>" id="<?php echo $this->settings_field; ?>[autoreponder_mailventure_campaign]" name="<?php echo $this->settings_field; ?>[autoreponder_mailventure_campaign]" />
+
+                <label for="<?php echo $this->settings_field; ?>[autoreponder_mailventure_form]"><strong><?php _e('Form ID', 'calibrefx'); ?></strong></label>
+                <input type="text" size="30" value="<?php echo $this->_model->get('autoreponder_mailventure_form'); ?>" id="<?php echo $this->settings_field; ?>[autoreponder_mailventure_form]" name="<?php echo $this->settings_field; ?>[autoreponder_mailventure_form]" />
+            </p>
+
+            <p><span class="description"><?php _e('Paste your Mailventure Form. Dont\'t have one? FREE REGISTER <a href="http://www.mailventure.com" target="_blank">here</a>.', 'calibrefx'); ?></span></p>
+        </div>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function($){
+                var autoresponder_type = $('#autoresponder_type').find('option:selected').val();
+
+                switch(autoresponder_type){
+                    case "aweber": 
+                        $('#autoresponder_aweber_container').show();
+                        break;
+                    case "getresponse": 
+                        $('#autoresponder_getresponse_container').show();
+                        break;
+                    case "mailventure": 
+                        $('#autoresponder_mailventure_container').show();
+                        break;
+                    default: 
+                        $('#autoresponder_aweber_container').hide();
+                        $('#autoresponder_getresponse_container').hide();
+                        $('#autoresponder_mailventure_container').hide();
+                        break;
+                }   
+
+                $('#autoresponder_type').change(function(){
+                    var autoresponder_type_sel = $(this).find('option:selected').val();
+
+                    switch(autoresponder_type_sel){
+                        case "aweber": 
+                            $('#autoresponder_aweber_container').slideDown();
+                            $('#autoresponder_getresponse_container').slideUp();
+                            $('#autoresponder_mailventure_container').slideUp();
+                            break;
+                        case "getresponse": 
+                            $('#autoresponder_aweber_container').slideUp();
+                            $('#autoresponder_getresponse_container').slideDown();
+                            $('#autoresponder_mailventure_container').slideUp();
+                            break;
+                        case "mailventure": 
+                            $('#autoresponder_aweber_container').slideUp();
+                            $('#autoresponder_getresponse_container').slideUp();
+                            $('#autoresponder_mailventure_container').slideDown();
+                            break;
+                        default: 
+                            $('#autoresponder_aweber_container').slideUp();
+                            $('#autoresponder_getresponse_container').slideUp();
+                            $('#autoresponder_mailventure_container').slideUp();
+                            break;
+                    }
+                });
+            });
+        </script>
+    <?php    
     }
 
     protected function get_export_options() {

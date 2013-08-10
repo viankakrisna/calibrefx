@@ -32,41 +32,40 @@
 
 include('../../../../../wp-load.php');
 
-$plugin_name = sanitize_text_field( $_REQUEST['plugin_name'] );
-$form_url = sanitize_text_field( $_REQUEST['form_url'] );
-$width = sanitize_text_field( $_REQUEST['width'] );
-$height = sanitize_text_field( $_REQUEST['height'] );
-$title = sanitize_text_field( $_REQUEST['title'] );
-$img_url = sanitize_text_field( $_REQUEST['img_url'] );
+$shortcode_options = get_option('calibrefx_shortcode_options');
 
 header("Content-type: text/javascript");
+echo '(function() {';
+foreach($shortcode_options as $option){
 ?>
-(function() {
-tinymce.create('tinymce.plugins.<?php echo $plugin_name; ?>', {
+tinymce.create('tinymce.plugins.<?php echo $option['plugin_name']; ?>', {
 	init : function(ed, url) {		
 		// Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
-		ed.addCommand('<?php echo $plugin_name; ?>', function() {		
+		ed.addCommand('<?php echo $option['plugin_name']; ?>', function() {		
 			ed.windowManager.open({			
-				file : '<?php echo $form_url; ?>',
-				width : <?php echo $width; ?> + ed.getLang('<?php echo $plugin_name; ?>.delta_width', 0),
-				height : <?php echo $height; ?> + ed.getLang('<?php echo $plugin_name; ?>.delta_height', 0),
+				file : '<?php echo $option['form_url']; ?>',
+				width : <?php echo $option['width']; ?> + ed.getLang('<?php echo $option['plugin_name']; ?>.delta_width', 0),
+				height : <?php echo $option['height']; ?> + ed.getLang('<?php echo $option['plugin_name']; ?>.delta_height', 0),
 				inline : 1			
 			}, {			
 				plugin_url : url		
 			});
 		});
 		// Register calibrefx_sc_buttons button
-		ed.addButton('<?php echo $plugin_name; ?>', {
-			title : '<?php echo $title; ?>',
-			cmd : '<?php echo $plugin_name; ?>',
-			image : '<?php echo $img_url; ?>'		
+		ed.addButton('<?php echo $option['plugin_name']; ?>', {
+			title : '<?php echo $option['title']; ?>',
+			cmd : '<?php echo $option['plugin_name']; ?>',
+			image : '<?php echo $option['img_url']; ?>'		
 		});
 		// Add a node change handler, selects the button in the UI when a image is selected
 		ed.onNodeChange.add(function(ed, cm, n) {		
-			cm.setActive('<?php echo $plugin_name; ?>', n.nodeName == 'IMG');		
+			cm.setActive('<?php echo $option['plugin_name']; ?>', n.nodeName == 'IMG');		
 		});
 	}
 });
 
-tinymce.PluginManager.add('<?php echo $plugin_name; ?>', tinymce.plugins.<?php echo $plugin_name; ?>);
-})();
+tinymce.PluginManager.add('<?php echo $option['plugin_name']; ?>', tinymce.plugins.<?php echo $option['plugin_name']; ?>);
+
+<?php
+}
+echo '})();';

@@ -1,4 +1,5 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php 
+defined('CALIBREFX_URL') OR exit();
 /**
  * CalibreFx Framework
  *
@@ -88,9 +89,9 @@ class CFX_Theme_Settings extends CFX_Admin {
      * $return void
      */
     public function security_filters() {
-        $CFX = & calibrefx_get_instance();
+        global $calibrefx;
 
-        $CFX->security->add_sanitize_filter(
+        $calibrefx->security->add_sanitize_filter(
                 'one_zero', $this->settings_field, array(
                     'update',
                     'enable_bootstrap',
@@ -109,7 +110,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                     'trackbacks_pages')
                 );
 
-        $CFX->security->add_sanitize_filter(
+        $calibrefx->security->add_sanitize_filter(
                 'safe_text', $this->settings_field, array(
                     'blog_title',
                     'calibrefx_version',
@@ -120,7 +121,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                     'site_layout')
                 );
 
-        $CFX->security->add_sanitize_filter(
+        $calibrefx->security->add_sanitize_filter(
                 'integer', $this->settings_field, array(
                     'calibrefx_layout_width',
                     'content_archive_limit',
@@ -129,16 +130,21 @@ class CFX_Theme_Settings extends CFX_Admin {
     }
 
     public function meta_sections() {
-        global $calibrefx_current_section;
+        global $calibrefx_current_section, $calibrefx_target_form, $calibrefx_user_ability;
+
+        $calibrefx_target_form = apply_filters('calibrefx_target_form', 'options.php');
 
         calibrefx_clear_meta_section();
 
-        calibrefx_add_meta_section('general', __('General Settings', 'calibrefx'));
-        calibrefx_add_meta_section('design', __('Design Settings', 'calibrefx'));
-        calibrefx_add_meta_section('social', __('Social Settings', 'calibrefx'));
-        calibrefx_add_meta_section('email', __('Email Setting', 'calibrefx'));
+        calibrefx_add_meta_section('general', __('General Settings', 'calibrefx'), $calibrefx_target_form, 1);
+        calibrefx_add_meta_section('layout', __('Layout Settings', 'calibrefx'), $calibrefx_target_form,2);
+        calibrefx_add_meta_section('social', __('Social Settings', 'calibrefx'), $calibrefx_target_form,10);
+        
+        if($calibrefx_user_ability == 'professor'){
+            calibrefx_add_meta_section('email', __('Email Setting', 'calibrefx'), $calibrefx_target_form, 20);
+        }
 
-        do_action('more_theme_setting');
+        do_action('calibrefx_theme_settings_meta_section');
 
         $calibrefx_current_section = 'general';
         if (!empty($_GET['section'])) {
@@ -153,8 +159,8 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-breadcrumb', __('Breadcrumbs', 'calibrefx'), array($this, 'breadcrumb_box'), $this->pagehook, 'side');
         calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), array($this, 'comment_box'), $this->pagehook, 'side');
 
-        calibrefx_add_meta_box('design', 'basic', 'calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), array($this, 'layout_box'), $this->pagehook, 'main', 'high');
-        calibrefx_add_meta_box('design', 'professor', 'calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), array($this, 'custom_script_box'), $this->pagehook, 'side');
+        calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), array($this, 'layout_box'), $this->pagehook, 'main', 'high');
+        calibrefx_add_meta_box('layout', 'professor', 'calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), array($this, 'custom_script_box'), $this->pagehook, 'side');
 
 
         calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), array($this, 'feeds_box'), $this->pagehook, 'main');
@@ -162,6 +168,8 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_box('social', 'professor', 'calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), array($this, 'socials_box'), $this->pagehook, 'side');
 
         calibrefx_add_meta_box('email', 'professor', 'calibrefx-theme-settings-email', __('Mail Settings', 'calibrefx'), array($this, 'email_setting_box'), $this->pagehook, 'main', 'high');
+
+        do_action('calibrefx_theme_settings_meta_box');
     }
 
     public function hidden_fields(){
@@ -632,7 +640,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             <label for="email-test"><?php _e('Email Recipient: ', 'calibrefx'); ?></label>
             <input type="text" size="30" value="" id="email-test" name="email-test">
             <label id="send-mail-res"></label><br/>
-            <button class="btn btn-scondary" id="test-send-mail">Send</button>
+            <button class="button button-secondary" id="test-send-mail">Send</button>
         </p>
 
             

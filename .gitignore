@@ -5,4 +5,5 @@
 /nbproject/private/
 cache/*
 log/*
+logs/*
 debug.txt

@@ -73,22 +73,28 @@ abstract class CFX_Admin {
         $this->security_filters();
         
         add_action('calibrefx_hidden_fields', array($this,'hidden_fields'));
-        add_action('admin_init', array($this, 'register_settings'));
+        add_action('admin_init', array($this, 'register_settings'), 5);
+        add_action('admin_init', array($this, 'settings_init'), 20);
+
         add_action('admin_notices', array($this, 'notices'));
-        add_action('admin_init', array($this, 'settings_init'));
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
 
+        do_action('calibrefx_before_save_core');
+
         /** Add a sanitizer/validator */
         add_filter('pre_update_option_' . $this->settings_field, array(&$this, 'save'), 10, 2);
+
+        do_action('calibrefx_after_save_core');
         
+        //Removed by Fadhel
         //This will allow to cross save calibrefx themes settings
-        if($this->settings_field != $calibrefx->theme_settings_m->get_settings_field()){
+        /*if($this->settings_field != $calibrefx->theme_settings_m->get_settings_field()){
             do_action('calibrefx_before_save_core');
             $this->save_core();
             do_action('calibrefx_after_save_core');
             //add_filter('pre_update_option_' . $calibrefx->theme_settings_m->get_settings_field(), array(&$this, 'save_core'), 10, 2);            
-        }
+        }*/
     }
 
     /**
@@ -123,12 +129,11 @@ abstract class CFX_Admin {
      */
     public function save($_newvalue, $_oldvalue) { 
         //We merge newvalue and oldvalue
-        if (calibrefx_get_option('reset', $this->_model)) {
+        if (isset($_newvalue['reset'])) {
             return $_newvalue;
         }
 
         if( !empty($_POST['calibrefx_do_import']) ){
-            
             return $_newvalue;
         }
         
@@ -146,8 +151,8 @@ abstract class CFX_Admin {
 
         if(!empty($_newvalue)){
             //We sanitizing
-            $CFX = & calibrefx_get_instance();
-            $_newvalue = $CFX->security->sanitize_input($this->settings_field, $_newvalue);
+            global $calibrefx;
+            $_newvalue = $calibrefx->security->sanitize_input($this->settings_field, $_newvalue);
         }
         
         return $_newvalue;
@@ -206,6 +211,8 @@ abstract class CFX_Admin {
                 calibrefx_admin_redirect($this->page_id, array('error' => 'true'));
             exit;
         }
+
+        add_filter('admin_body_class', 'calibrefx_admin_body_class', 20, 1);
     }
 
     /**
@@ -246,10 +253,11 @@ abstract class CFX_Admin {
     }
 
     public function dashboard() {
-        global $calibrefx_sections, $calibrefx_current_section;
+        global $calibrefx_sections, $calibrefx_current_section, $calibrefx_user_ability;
         $this->_submit_url = apply_filters('calibrefx_'.$calibrefx_current_section.'_form_url', 'options.php');
         //$this->_submit_url = str_replace('php', '.php', $this->_submit_url);
-	
+
+        $calibrefx_theme = wp_get_theme();
         ?>
         <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes <?php echo $calibrefx_current_section; ?>">
             <form method="post" action="<?php echo $this->_submit_url; ?>" enctype="multipart/form-data">
@@ -262,27 +270,42 @@ abstract class CFX_Admin {
                     <div class="calibrefx-option-logo">
                         <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
                     </div>
-                    <div class="calibrefx-version">
-                        <span class="description">Build On CalibreFx version <?php echo FRAMEWORK_VERSION; ?> (Code Name : <?php echo FRAMEWORK_CODENAME; ?>)</span>
-                    </div>
                     <div class="calibrefx-ability">
-                        <a class="calibrefx-general" href="<?php echo admin_url("admin.php?page=".$this->page_id."&ability=basic&section=" . $calibrefx_current_section); ?>"><?php _e('Basic', 'calibrefx'); ?></a>
-                        <a class="calibrefx-professor" href="<?php echo admin_url("admin.php?page=".$this->page_id."&ability=professor&section=" . $calibrefx_current_section); ?>"><?php _e('Professor', 'calibrefx'); ?></a>
+                        <span class="calibrefx-ability-label"><?php _e('Advanced Mode', 'calibrefx'); ?></span>
+                        <?php
+                            if($calibrefx_user_ability == 'professor'){
+                                echo '<a href="'.admin_url("admin.php?page=".$this->page_id."&ability=basic&section=" . $calibrefx_current_section).'" class="calibrefx-ability-professor"></a>';
+                            }else{
+                                echo '<a href="'.admin_url("admin.php?page=".$this->page_id."&ability=professor&section=" . $calibrefx_current_section).'" class="calibrefx-ability-basic"></a>';
+                            }
+                        ?>
                     </div>
                 </div>
                 <div class="calibrefx-content">
                     <div class="calibrefx-submit-button">
-                        <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
-                        <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo $this->settings_field; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
+                        <p class="calibrefx-site-description"><?php echo $calibrefx_theme->{'Description'}; ?></p>
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="icon-save"></i><?php _e('Save Settings', 'calibrefx') ?></button>
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" value="1" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');"><i class="icon-reset"></i><?php _e('Reset Settings', 'calibrefx'); ?></button>
                     </div>
                     <div class="metabox-holder">
                         <div class="calibrefx-tab">
                             <ul class="calibrefx-tab-option">
                                 <?php
                                 foreach ($calibrefx_sections as $section) {
-                                    $current_class = ($calibrefx_current_section === $section['slug']) ? 'class="current"' : '';
+                                    $current_class = ($calibrefx_current_section === $section['slug']) ? ' class="current"' : '';
                                     $section_link = admin_url('admin.php?page=' . $this->page_id . '&section=' . $section['slug']);
-                                    echo "<li $current_class><a href='$section_link'>" . $section['title'] . "</a><span></span></li>";
+                                    echo "<li$current_class>
+                                            <a href=\"$section_link\">
+                                                <div class=\"calibrefx-section-icon-container\">
+                                                    <div class=\"calibrefx-section-icon-wrapper\">
+                                                        <img class=\"calibrefx-section-icon\" src=\"".CALIBREFX_IMAGES_URL."/icon-sections/icon-general-settings.png\" />
+                                                        <img class=\"calibrefx-section-icon-active\" src=\"".CALIBREFX_IMAGES_URL."/icon-sections/icon-general-settings-active.png\" />
+                                                    </div>
+                                                </div>
+                                                <div class=\"calibrefx-section-link\">" . $section['title'] . "</div>
+                                            </a>
+                                            <span></span>
+                                        </li>";
                                 }
                                 ?>
                             </ul>
@@ -305,8 +328,9 @@ abstract class CFX_Admin {
                         </div>
                     </div>
                     <div class="calibrefx-submit-button calibrefx-bottom">
-                        <input type="submit" class="button-primary calibrefx-h2-button" value="<?php _e('Save Settings', 'calibrefx') ?>" />
-                        <input type="submit" class="button-highlighted calibrefx-h2-button" name="<?php echo $this->settings_field; ?>[reset]" value="<?php _e('Reset Settings', 'calibrefx'); ?>" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');" />
+                        <p class="copyright">Copyright &copy; <?php echo date('Y'); ?> <?php echo $calibrefx_theme->{'Name'}; ?>. Developed by <?php echo $calibrefx_theme->{'AuthorURI'}; ?><?php echo $calibrefx_theme->{'Author'}; ?>.</p>
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="icon-save"></i><?php _e('Save Settings', 'calibrefx') ?></button>
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');"><i class="icon-reset"></i><?php _e('Reset Settings', 'calibrefx'); ?></button>
                     </div>
 
                 </div>
@@ -339,8 +363,30 @@ abstract class CFX_Admin {
                             side.addClass('empty-container');
                     }
                 };
+
                 postboxes._mark_area();
+
+                $('.calibrefx-ability a').click(function(){
+                    $(this).addClass('active');
+                });
+				
+				
+				setTimeout(function(){ equalize_option_height() }, 400);	
             });
+			
+			equalize_option_height = function(){
+				var calibrefx_tab_option = jQuery('.calibrefx-tab-option'),
+					calibrefx_option = jQuery('.calibrefx-option'),
+					height = 0;
+				
+				jQuery('.calibrefx-tab-option li').each(function(){
+					height += jQuery(this).height();
+				});
+				
+				if(calibrefx_option.height() < height){
+					calibrefx_option.height(height);
+				}
+			}
             //]]>
         </script>
         <?php

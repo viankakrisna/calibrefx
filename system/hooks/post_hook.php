@@ -94,21 +94,7 @@ function calibrefx_default_loop() {
     $loop_counter = 0;
     if (have_posts()) : while (have_posts()) : the_post(); // the loop
             do_action('calibrefx_before_post');
-            ?>
-            <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-                <?php do_action('calibrefx_before_post_title'); ?>
-                <?php do_action('calibrefx_post_title'); ?>
-                <?php do_action('calibrefx_after_post_title'); ?>
-
-                <?php do_action('calibrefx_before_post_content'); ?>
-                <div class="entry-content">
-                    <?php do_action('calibrefx_post_content'); ?>
-                </div><!-- end .entry-content -->
-                <?php do_action('calibrefx_after_post_content'); ?>
-
-            </div><!-- end .postclass -->
-            <?php
+            get_template_part( 'content', get_post_format() );
             do_action('calibrefx_after_post');
             $loop_counter++;
 
@@ -300,7 +286,7 @@ function calibrefx_posts_nav() {
 /**
  * Correct the wpautop function, so it will not return br tag in our content
  */
-function calibrefx_wpautop_correction() {
+/*function calibrefx_wpautop_correction() {
     remove_filter('the_content', 'wpautop');
     remove_filter('the_excerpt', 'wpautop');
     add_filter('the_content', 'calibrefx_wpautop');
@@ -309,7 +295,12 @@ function calibrefx_wpautop_correction() {
 
 function calibrefx_wpautop($pee) {
     return wpautop($pee, 0);
-}
+}*/
+
+// remove_filter('the_content', 'wpautop');
+// remove_filter('the_content', 'shortcode_unautop');
+// add_filter('the_content', 'wpautop', 5);
+// add_filter('the_content', 'advance_shortcode_unautop', 10);
 
 add_action('pre_ping', 'calibrefx_no_self_ping');
 

@@ -324,7 +324,7 @@ class CFX_Loader {
             }
 
             if (!isset($CFX->Model)) {
-                $CFX->Model = & calibrefx_load_class('Model', 'core');
+                $CFX->Model = calibrefx_load_class('Model', 'core');
             }
 
             require_once($mod_path . '/' . $path . $model . '.php');
