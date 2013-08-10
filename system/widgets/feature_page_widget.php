@@ -81,7 +81,7 @@ class CFX_Feature_Page_Widget extends WP_Widget {
 					);
 					
 				if ( ! empty( $instance['show_title'] ) )
-					printf( '<h2><a href="%s" title="%s">%s</a></h2>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
+					printf( '<h4 class="entry-title"><a href="%s" title="%s">%s</a></h4>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
 					
 				if ( ! empty( $instance['show_content'] ) ) {
 					if ( empty( $instance['content_limit'] ) )

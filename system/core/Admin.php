@@ -129,7 +129,7 @@ abstract class CFX_Admin {
      */
     public function save($_newvalue, $_oldvalue) { 
         //We merge newvalue and oldvalue
-        if (calibrefx_get_option('reset', $this->_model)) {
+        if (isset($_newvalue['reset'])) {
             return $_newvalue;
         }
 
@@ -151,8 +151,8 @@ abstract class CFX_Admin {
 
         if(!empty($_newvalue)){
             //We sanitizing
-            $CFX = & calibrefx_get_instance();
-            $_newvalue = $CFX->security->sanitize_input($this->settings_field, $_newvalue);
+            global $calibrefx;
+            $_newvalue = $calibrefx->security->sanitize_input($this->settings_field, $_newvalue);
         }
         
         return $_newvalue;
@@ -285,7 +285,7 @@ abstract class CFX_Admin {
                     <div class="calibrefx-submit-button">
                         <p class="calibrefx-site-description"><?php echo $calibrefx_theme->{'Description'}; ?></p>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="icon-save"></i><?php _e('Save Settings', 'calibrefx') ?></button>
-                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');"><i class="icon-reset"></i><?php _e('Reset Settings', 'calibrefx'); ?></button>
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" value="1" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');"><i class="icon-reset"></i><?php _e('Reset Settings', 'calibrefx'); ?></button>
                     </div>
                     <div class="metabox-holder">
                         <div class="calibrefx-tab">
