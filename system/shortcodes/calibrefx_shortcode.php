@@ -1310,7 +1310,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => '',
         'desc' => '',
         'tooltip' => '',
-        'content' => $calibrefx->form->save_button('Send'),
+        'content' => $calibrefx->form->save_button('Submit'),
     );
 
     return $calibrefx->form->open('calibrefx_contact_form', get_permalink( $post->ID ) )->build($rows);
