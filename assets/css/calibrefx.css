@@ -1218,3 +1218,8 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 .headline-content{
     text-align: center;
 }
+
+/* Notice Message */
+#submit-notice .alert{
+    margin-bottom: 0px;
+}
