@@ -168,10 +168,14 @@ add_action('calibrefx_after_wrapper', 'form_submit_notification_handler', 20);
 function form_submit_notification_handler(){
 	$CFX = & calibrefx_get_instance();
 
-	if(!isset($_REQUEST['submitted']) && $_REQUEST['submitted'] != 'true') return;
+	if(isset($_REQUEST['submitted'])){
+		if($_REQUEST['submitted'] != 'true') return;
+	}else{
+		return;
+	}
 
 	$message = ''; $error = false;
-	switch ($_REQUEST['type']) {
+	switch ($_GET['type']) {
 		case 'contactform':
 			$message = apply_filters('calibrefx_contact_form_message', __('Your message has been sent. Thank you for submitting your message.', 'calibrefx'));
 			break;
