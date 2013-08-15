@@ -133,6 +133,7 @@ li.wp-menu-separator{  }
     font-size: 13px/28px;
     color: #CCCCCC;
     overflow: hidden;
+    z-index: 0;
 }
 
 #calibrefx-admin-bar{
