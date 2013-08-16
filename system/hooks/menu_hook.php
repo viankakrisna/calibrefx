@@ -262,7 +262,7 @@ function calibrefx_custom_nav_icon($menu_item) {
 add_action( 'wp_update_nav_menu_item', 'calibrefx_update_custom_nav_fields', 10, 3 );
 function calibrefx_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
     // Check if element is properly sent
-    if ( is_array( $_REQUEST['menu-item-icon']) ) {
+    if ( isset($_REQUEST['menu-item-icon']) && is_array( $_REQUEST['menu-item-icon']) ) {
         $icon_menu = $_REQUEST['menu-item-icon'][$menu_item_db_id];
         update_post_meta( $menu_item_db_id, '_menu_item_custom_icon', $icon_menu );
     }
