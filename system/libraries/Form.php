@@ -37,8 +37,9 @@ class CFX_Form {
     /**
      * Open form
      */
-    function open($id, $action, $method='post') {
-        $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal" enctype="multipart/form-data">';
+    function open($id, $action, $method='post', $enctype = true) {
+        if($enctype) $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal" enctype="multipart/form-data">';
+        else $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal">';
         return $this;
     }
 

@@ -1313,7 +1313,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'content' => $calibrefx->form->save_button('Submit'),
     );
 
-    return $calibrefx->form->open('calibrefx_contact_form', get_permalink( $post->ID ) )->build($rows);
+    return $calibrefx->form->open('calibrefx_contact_form', get_permalink( $post->ID ), 'post', false )->build($rows);
 }
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_contact', CALIBREFX_SHORTCODE_URL . '/form-contact.php', 360, 200, __('Contact Form shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/contact.png');
