@@ -41,7 +41,7 @@ function calibrefx_update_check() {
 
     /** If it has expired, do an update check */
     if (!$calibrefx_update) {
-        $url = 'http://api.calibrefx.com/themes-update/';
+        $url = 'http://api.cfx.local/themes-update/';
         $options = apply_filters(
                         'calibrefx_update_remote_post_options', 
                         array(
@@ -58,7 +58,6 @@ function calibrefx_update_check() {
 
         $response = wp_remote_post($url, $options);
         $calibrefx_update = wp_remote_retrieve_body($response);
-
         /** If an error occurred, return FALSE, store for 1 hour */
         if ('error' == $calibrefx_update || is_wp_error($calibrefx_update) || !is_serialized($calibrefx_update)) {
             set_transient('calibrefx-update', array('new_version' => FRAMEWORK_VERSION), 60 * 60);

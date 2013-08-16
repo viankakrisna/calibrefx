@@ -163,3 +163,48 @@ function form_submit_handler(){
 		}
 	}
 }
+
+add_action('calibrefx_after_wrapper', 'form_submit_notification_handler', 20);
+function form_submit_notification_handler(){
+	$CFX = & calibrefx_get_instance();
+
+	if(isset($_REQUEST['submitted'])){
+		if($_REQUEST['submitted'] != 'true') return;
+	}else{
+		return;
+	}
+
+	$message = ''; $error = false;
+	switch ($_GET['type']) {
+		case 'contactform':
+			$message = apply_filters('calibrefx_contact_form_message', __('Your message has been sent. Thank you for submitting your message.', 'calibrefx'));
+			break;
+		
+		case 'autoresponder':
+			# code...
+			break;
+
+		default:
+			# code...
+			break;
+	}
+
+	if($error) $alert_success = ' alert-error';
+	else $alert_success = ' alert-success';
+
+	echo '
+		<div class="modal hide fade" id="submit-notice">
+			<div class="modal-body">
+			    <div class="alert'.$alert_success.'">
+				  	<button type="button" class="close" data-dismiss="modal">&times;</button>
+					'.$message.'
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			jQuery(document).ready(function($){
+				$("#submit-notice").modal(\'show\');
+			});
+		</script>
+	';	
+}
