@@ -58,7 +58,7 @@ add_filter('print_styles_array', 'minify_styles');
  * Minify Styles and cache it
  */
 function minify_styles($todo){
-    global $cfx_minify, $wp_styles;
+    global $calibrefx, $wp_styles;
     
     if (!current_theme_supports('calibrefx-preformance'))
         return $todo;
@@ -67,6 +67,7 @@ function minify_styles($todo){
     if(is_admin() || calibrefx_get_script() == 'wp-login.php') 
         return $todo;
     
+    $calibrefx->load->library('minify');
     
     
     $styles = array();
@@ -75,7 +76,7 @@ function minify_styles($todo){
         $styles[] = $obj->src;
     }
     
-    wp_enqueue_style('calibrefx-minified', $cfx_minify->minified_css($styles));
+    wp_enqueue_style('calibrefx-minified', $calibrefx->minify->minified_css($styles));
     return array('calibrefx-minified');
 }
 
@@ -93,6 +94,8 @@ function minify_scripts($todo){
     
     if (!current_theme_supports('calibrefx-preformance'))
         return $todo;
+
+    $calibrefx->load->library('minify');
     
     $scripts = array();
     foreach($todo as $handle){
@@ -100,6 +103,6 @@ function minify_scripts($todo){
         $scripts[] = $obj->src;
     }
     
-    wp_enqueue_script('calibrefx-minified', $cfx_minify->minified_js($styles));
+    wp_enqueue_script('calibrefx-minified', $calibrefx->minify->minified_js($styles));
     return array('calibrefx-minified');
 }
