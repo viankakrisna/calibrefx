@@ -5,5 +5,89 @@
     Author: CalibreFx Team
     Author URI: http://www.calibrefx.com
     License: Commercial
+    License URI: http://www.calibrefx.com/calibrefx/#license
+	Text Domain: calibrefx
     Version: 1.0.15
 */
+
+body{
+	background-color: #EDEDEB;
+}
+
+.layout-wrapper-fixed #wrapper {
+    background-color: #FFFFFF;
+    border-color: #DDDDDD #CCCCCC #999999;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.layout-wrapper-fixed #nav {
+    background: none repeat-x scroll left top #232323;
+    border-bottom: 1px solid #444444;
+    border-top: 1px solid #383838;
+    margin: 0;
+    padding: 0;
+}
+
+#nav .nav > li > a{
+	color: #eee;
+}
+
+.widget-area h4 {
+}
+
+/*
+ * Responsive images
+ *
+ * Fluid images for posts, comments, and widgets
+ */
+.entry-content img,
+.entry-summary img,
+.comment-content img,
+.widget img,
+.wp-caption {
+	max-width: 100%;
+}
+
+.entry-content img.alignleft{
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.entry-content img.alignright{
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+.wp-caption .wp-caption-text,
+.entry-caption,
+.gallery-caption {
+	color: #220e10;
+	font-size: 18px;
+	font-style: italic;
+	font-weight: 300;
+}
+
+img.wp-smiley,
+.rsswidget img {
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+.wp-caption.alignleft + ul,
+.wp-caption.alignleft + ol  {
+	list-style-position: inside;
+}
+
+
+#footer{
+	background: #232323;
+	color: #eee;
+    height: 27px;
+}

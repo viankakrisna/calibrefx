@@ -26,25 +26,22 @@ add_action('init', 'calibrefx_remove_admin_bar', 5);
  * This will remove wordpress admin bar in admin area
  */
 function calibrefx_remove_admin_bar() {
-    remove_action('init', '_calibrefx_admin_bar_init');
-    remove_action('admin_footer', 'calibrefx_admin_bar_render');
+    //remove_action('init', '_calibrefx_admin_bar_init');
+    //remove_action('admin_footer', 'calibrefx_admin_bar_render');
+    remove_action( 'in_admin_header', 'wp_admin_bar_render', 0 );
 }
-
 add_action('init', 'calibrefx_admin_bar_init');
-
 /**
  * This will add calibrefx admin bar
  */
 function calibrefx_admin_bar_init() {
-    global $calibrefx_admin_bar;
+    global $calibrefx_admin_bar, $calibrefx;
 
     /* Instantiate the admin bar */
-
-    $CFX = & calibrefx_get_instance();
-    $CFX->load->library('admin_bar');
+    $calibrefx->load->library('admin_bar');
     
     //@TODO: need to change this later
-    $calibrefx_admin_bar = $CFX->admin_bar;
+    $calibrefx_admin_bar = $calibrefx->admin_bar;
     
     $calibrefx_admin_bar->initialize();
     $calibrefx_admin_bar->add_top_bar();
@@ -87,6 +84,7 @@ function calibrefx_admin_bar_render() {
     $calibrefx_admin_bar->render();
 
     do_action('calibrefx_after_admin_bar_render');
+    do_action( 'wp_after_admin_bar_render');
 }
 
 /**
@@ -101,7 +99,7 @@ function calibrefx_admin_bar_my_account_item($calibrefx_admin_bar) {
         return;
 
     $avatar = get_avatar($user_id, 16);
-    $howdy = sprintf(__('Welcome, %1$s'), $current_user->display_name);
+    $howdy = sprintf(__('Welcome, %1$s', 'calibrefx'), $current_user->display_name);
     $class = empty($avatar) ? '' : 'with-avatar';
 
     $calibrefx_admin_bar->add_menu(array(
@@ -111,7 +109,7 @@ function calibrefx_admin_bar_my_account_item($calibrefx_admin_bar) {
         'href' => $profile_url,
         'meta' => array(
             'class' => $class,
-            'title' => __('My Account'),
+            'title' => __('My Account', 'calibrefx'),
         ),
     ));
 }
@@ -127,7 +125,7 @@ function calibrefx_admin_bar_search_menu($calibrefx_admin_bar) {
 
     $form = '<form action="' . esc_url(home_url('/')) . '" method="get" id="adminbarsearch">';
     $form .= '<input class="adminbar-input" name="s" id="adminbar-search" tabindex="10" type="text" value="" maxlength="150" />';
-    $form .= '<input type="submit" class="adminbar-button" value="' . __('Search') . '"/>';
+    $form .= '<input type="submit" class="adminbar-button" value="' . __('Search', 'calibrefx') . '"/>';
     $form .= '</form>';
 
     $calibrefx_admin_bar->add_menu(array(
@@ -172,13 +170,13 @@ function calibrefx_admin_bar_my_account_menu($calibrefx_admin_bar) {
     $calibrefx_admin_bar->add_menu(array(
         'parent' => 'user-actions',
         'id' => 'edit-profile',
-        'title' => __('Edit My Profile'),
+        'title' => __('Edit My Profile', 'calibrefx'),
         'href' => $profile_url,
     ));
     $calibrefx_admin_bar->add_menu(array(
         'parent' => 'user-actions',
         'id' => 'logout',
-        'title' => __('Log Out'),
+        'title' => __('Log Out', 'calibrefx'),
         'href' => wp_logout_url(),
     ));
 }
@@ -189,7 +187,7 @@ function calibrefx_admin_bar_wp_menu($calibrefx_admin_bar) {
         'title' => '<span class="ab-icon"></span>',
         'href' => admin_url('about.php'),
         'meta' => array(
-            'title' => __('About WordPress'),
+            'title' => __('About WordPress', 'calibrefx'),
         ),
     ));
 
@@ -197,8 +195,8 @@ function calibrefx_admin_bar_wp_menu($calibrefx_admin_bar) {
     $calibrefx_admin_bar->add_menu(array(
         'parent' => 'wp-logo-external',
         'id' => 'wporg',
-        'title' => __('WordPress.org'),
-        'href' => __('http://wordpress.org'),
+        'title' => 'WordPress.org',
+        'href' => 'http://wordpress.org',
     ));
 }
 
@@ -236,9 +234,9 @@ function calibrefx_admin_bar_site_menu($calibrefx_admin_bar) {
         $blogname = preg_replace('#^(https?://)?(www.)?#', '', get_home_url());
 
     if (is_network_admin()) {
-        $blogname = sprintf(__('Network Admin: %s'), esc_html($current_site->site_name));
+        $blogname = sprintf(__('Network Admin: %s', 'calibrefx'), esc_html($current_site->site_name));
     } elseif (is_user_admin()) {
-        $blogname = sprintf(__('Global Dashboard: %s'), esc_html($current_site->site_name));
+        $blogname = sprintf(__('Global Dashboard: %s', 'calibrefx'), esc_html($current_site->site_name));
     }
 
     $title = wp_html_excerpt($blogname, 40);
@@ -258,7 +256,7 @@ function calibrefx_admin_bar_site_menu($calibrefx_admin_bar) {
         $calibrefx_admin_bar->add_menu(array(
             'parent' => 'site-name',
             'id' => 'view-site',
-            'title' => __('Visit Site'),
+            'title' => __('Visit Site', 'calibrefx'),
             'href' => home_url('/'),
         ));
 
@@ -268,7 +266,7 @@ function calibrefx_admin_bar_site_menu($calibrefx_admin_bar) {
         $calibrefx_admin_bar->add_menu(array(
             'parent' => 'site-name',
             'id' => 'dashboard',
-            'title' => __('Dashboard'),
+            'title' => __('Dashboard', 'calibrefx'),
             'href' => admin_url(),
         ));
 

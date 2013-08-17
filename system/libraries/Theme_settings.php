@@ -160,7 +160,8 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), array($this, 'comment_box'), $this->pagehook, 'side');
 
         calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), array($this, 'layout_box'), $this->pagehook, 'main', 'high');
-        calibrefx_add_meta_box('layout', 'professor', 'calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), array($this, 'custom_script_box'), $this->pagehook, 'side');
+        calibrefx_add_meta_box('layout', 'professor', 'calibrefx-theme-settings-custom-css', __('Themes Custom CSS', 'calibrefx'), array($this, 'custom_css_box'), $this->pagehook, 'side', 'high');
+        calibrefx_add_meta_box('layout', 'professor', 'calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), array($this, 'custom_script_box'), $this->pagehook, 'side', 'low');
 
 
         calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), array($this, 'feeds_box'), $this->pagehook, 'main');
@@ -215,7 +216,7 @@ class CFX_Theme_Settings extends CFX_Admin {
     function analytics_setting(){
     ?>
         <p>
-            <label for="analytic_id"><strong><?php _e('Google Analytics ID'); ?></strong></label>
+            <label for="analytic_id"><strong><?php _e('Google Analytics ID', 'calibrefx'); ?></strong></label>
         </p>
         <p>
             <input type="text" name="<?php echo $this->settings_field; ?>[analytic_id]" id="analytic_id" value="<?php echo esc_attr(calibrefx_get_option('analytic_id')); ?>" />
@@ -303,27 +304,32 @@ class CFX_Theme_Settings extends CFX_Admin {
         /**
          * Show setting box inside Theme Settings
          */
-        function custom_script_box() {
-            ?>
-        <p><?php _e("Custom CSS code will be output at <code>wp_head()</code>:", 'calibrefx'); ?></p>
-        <textarea name="<?php echo $this->settings_field; ?>[custom_css]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('custom_css'))); ?></textarea>
-        <p>
-            <span class="description"><?php _e('You can add your custom css codes here. Example: <code>a.hover {color:#ffffff}</code> .', 'calibrefx'); ?></span>
-        </p>
+        function custom_css_box() { ?>
+            <p><?php _e("Custom CSS code will be output at <code>wp_head()</code>:", 'calibrefx'); ?></p>
+                <textarea name="<?php echo $this->settings_field; ?>[custom_css]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('custom_css'))); ?></textarea>
+            <p>
+                <span class="description"><?php _e('You can add your custom css codes here. Example: <code>a.hover {color:#ffffff}</code> .', 'calibrefx'); ?></span>
+            </p>
+        <?php
+    }
 
-        <hr class="div" />
-
+        /**
+         * Show setting box inside Theme Settings
+         */
+        function custom_script_box() { ?>
         <p><?php _e("Header script will be output at <code>wp_head()</code>:", 'calibrefx'); ?></p>
-        <textarea name="<?php echo $this->settings_field; ?>[header_scripts]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('header_scripts'))); ?></textarea>
+            <textarea name="<?php echo $this->settings_field; ?>[header_scripts]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('header_scripts'))); ?></textarea>
         <p>
-            <span class="description"><?php _e('You can add your javascript at the head of the page. For example Google analytics code. <br/>Samples: <code>&lt;script type="text/javascript">alert("Hello World");&lt;/script></code>', 'calibrefx'); ?></span></p>
+            <span class="description"><?php _e('You can add your javascript at the head of the page. For example Google analytics code. <br/>Samples: <code>&lt;script type="text/javascript">alert("Hello World");&lt;/script></code>', 'calibrefx'); ?></span>
+        </p>
 
         <hr class="div" />
 
         <p><?php _e("Footer scripts will be output at <code>wp_footer()</code>:", 'calibrefx'); ?></p>
         <textarea name="<?php echo $this->settings_field; ?>[footer_scripts]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('footer_scripts'))); ?></textarea>
         <p>
-            <span class="description"><?php _e('You can add your javascript at the footer of the page. For example tracking code. <br/>Samples: <code>&lt;script type="text/javascript">alert("Hello World");&lt;/script></code>', 'calibrefx'); ?></span></p>
+            <span class="description"><?php _e('You can add your javascript at the footer of the page. For example tracking code. <br/>Samples: <code>&lt;script type="text/javascript">alert("Hello World");&lt;/script></code>', 'calibrefx'); ?></span>
+        </p>
         <?php
     }
 

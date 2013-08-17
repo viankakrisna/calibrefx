@@ -132,6 +132,9 @@ add_action('admin_init', 'calibrefx_load_admin_styles');
 function calibrefx_load_admin_styles() {
     wp_enqueue_style('calibrefx-admin-css', CALIBREFX_CSS_URL . '/calibrefx.admin.css', array());
     wp_enqueue_style('admin-bar');
+    if (current_theme_supports('calibrefx-admin-bar')) {
+        wp_enqueue_style('calibrefx-admin-bar-css', CALIBREFX_CSS_URL . '/calibrefx.admin.bar.css', array());
+    }
 }
 
 function calibrefx_remove_script_version( $src ){
