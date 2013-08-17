@@ -80,6 +80,7 @@ final class Calibrefx {
         add_theme_support('post-thumbnails');
         add_theme_support('calibrefx-admin-menu');
         add_theme_support('calibrefx-custom-header');
+        add_theme_support('calibrefx-custom-background');
         add_theme_support('calibrefx-default-styles');
         add_theme_support('calibrefx-inpost-layouts');
         add_theme_support('calibrefx-responsive-style');

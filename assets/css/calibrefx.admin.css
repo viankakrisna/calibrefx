@@ -423,9 +423,17 @@ body[class*="calibrefx"] #wpbody-content{
     padding: 23px 10px 23px 30px;
 }
 
-#wpbody-content .metabox-holder {
+.calibrefx-admin-page #wpbody-content .metabox-holder {
     padding-top: 0px;
     border-bottom: 0px;
+}
+
+.calibrefx-admin-page #wpcontent, .calibrefx-admin-page #wpfooter{
+    margin-left: 146px;
+}
+
+.calibrefx-admin-page .auto-fold #wpcontent, .calibrefx-admin-page .auto-fold #wpfooter{
+    margin-left: 33px;
 }
 
 .calibrefx-option{

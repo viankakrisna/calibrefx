@@ -143,3 +143,4 @@ function calibrefx_remove_script_version( $src ){
 }
 add_filter( 'script_loader_src', 'calibrefx_remove_script_version', 15, 1 );
 add_filter( 'style_loader_src', 'calibrefx_remove_script_version', 15, 1 );
+
