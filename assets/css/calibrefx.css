@@ -99,6 +99,22 @@ img.alignnone {
     max-width: 100%;
 }
 
+.wp-caption{
+    background-color: #F3F3F3;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
+    margin: 10px 0;
+    padding-top: 4px;
+    text-align: center;
+}
+
+.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
 /* Make sure images with WordPress-added height and width attributes are scaled correctly. */
 .entry-content img,
 .entry-summary img,

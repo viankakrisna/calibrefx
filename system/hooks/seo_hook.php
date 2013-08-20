@@ -30,7 +30,7 @@
  * @link        http://www.calibrefx.com
  */
 
-add_action('calibrefx_init', 'calibrefx_init_seo_hook');
+add_action('calibrefx_setup', 'calibrefx_init_seo_hook');
 function calibrefx_init_seo_hook(){
     global $calibrefx;
     
@@ -70,19 +70,14 @@ function calibrefx_seo_title() {
         $paged = '';
     }
 
-    // if(is_front_page()) { //is homepage is static page?
-    //     $post_seo_title = calibrefx_get_custom_field('_calibrefx_title');
-    //     if($post_seo_title){
-    //         return $post_seo_title . $paged;
-    //     }
-    // }
-
     if (is_home() || is_front_page()) {
-        
+        $post_seo_title = calibrefx_get_custom_field('_calibrefx_title');
         $home_title = calibrefx_get_option('home_title', $calibrefx->seo_settings_m);
         
         if ($home_title){
             return $home_title . $paged;
+        }elseif($post_seo_title){
+            return $post_seo_title . $paged;
         }
         else{
             return get_bloginfo('name') . $paged;
