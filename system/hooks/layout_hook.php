@@ -206,3 +206,25 @@ function calibrefx_get_sidebar_alt() {
     // output the primary sidebar
     get_sidebar('alt');
 }
+
+add_action('after_setup_theme', 'calibrefx_custom_background');
+/**
+ * This function will activate the custom background from WordPress
+ *
+ * It gets arguments passed through add_theme_support(), defines the constants,
+ * and calls calibrefx_custom_background().
+ *
+ * @return void
+ */
+function calibrefx_custom_background() {
+
+    $custom_background = get_theme_support('calibrefx-custom-background');
+
+    /** If not active, do nothing */
+    if (!$custom_background)
+        return;
+
+    $args = apply_filters( 'calibrefx_custom_background_args', array( 'default-color' => 'EDEDEB' ) );
+    
+    add_theme_support( 'custom-background', $args );
+}

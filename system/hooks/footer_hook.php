@@ -185,7 +185,7 @@ add_action('calibrefx_footer', 'calibrefx_do_footer');
  */
 function calibrefx_do_footer() {
     // Build the filterable text strings. Includes shortcodes.
-    $creds_text = apply_filters('calibrefx_footer_credits', sprintf('[footer_copyright before="%1$s "] [footer_theme_link after=" %2$s "] [footer_calibrefx_link after=" %3$s "] [footer_wordpress_link before= " %4$s " after=" %3$s "]', __('Copyright', 'calibrefx'), __('on', 'calibrefx'), '&middot;', __('Powered By', 'calibrefx')));
+    $creds_text = apply_filters('calibrefx_footer_credits', sprintf('[footer_copyright before="%1$s "] [footer_theme_link after=" %2$s "] [footer_calibrefx_link after=" %3$s "] [footer_wordpress_link before= " %3$s "]', __('Copyright', 'calibrefx'), __('on', 'calibrefx'),  __('Powered By', 'calibrefx')));
     $backtotop_text = apply_filters('calibrefx_footer_scrolltop', '[footer_scrolltop]');
 
     $backtotop = $backtotop_text ? sprintf('<div class="pull-right scrolltop"><p>%s</p></div>', $backtotop_text) : '';

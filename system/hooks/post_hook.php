@@ -198,9 +198,9 @@ add_action('calibrefx_post_content', 'calibrefx_do_post_image');
  * Post Image
  */
 function calibrefx_do_post_image() {
-    // && calibrefx_get_option('content_thumbnail')
     if (!is_singular()) {
-        $img = calibrefx_get_image(array('format' => 'html', 'size' => calibrefx_get_option('image_size'), 'attr' => array('class' => 'pull-left post-image')));
+        $default_post_image_size = apply_filters( 'content_thumbnail', 'thumbnail' );
+        $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_image_size, 'attr' => array('class' => 'pull-left alignleft post-image')));
         printf('<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute('echo=0'), $img);
     }
 }

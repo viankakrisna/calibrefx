@@ -1,7 +1,7 @@
 /* Table of Contents
 
 * Wrapper Style 
-* Widget Title
+* Images
 * Header
 * Primary / Secondary Navigation
 * Content
@@ -42,30 +42,60 @@ h1, h2, h3, h4, h5, h6{
     font-family: Verdana, sans-serif;
 }
 
+.size-auto, 
+.size-full,
+.size-large,
+.size-medium,
+.size-thumbnail {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Images
+------------------------------------------------------------ */
+.alignleft {
+    float: left;
+}
+
+.alignright {
+    float: right;
+}
+
+.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img.alignleft {
+    margin: 5px 20px 5px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 10px 5px 0;
+}
+
+img.alignright {
+    margin: 5px 0 5px 20px;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 5px 10px;
+}
+
+img.aligncenter {
+    margin: 5px auto;
+}
+
+img.alignnone {
+    margin: 5px 0;
+}
+
 /* Wrapper Style 
 ------------------------------------------------------------ */
 #wrapper{
     padding: 0;
 }
-
-/* Widget Title
------------------------------------------------------------- */
-.widget-area h4 {
-    background-color: #e5e5e5;
-    border-bottom: 1px solid #bdbdbd;
-    padding: 9px 5px 8px 16px;
-    text-transform: uppercase;
-    margin: 0px;
-}
-
-#footer-widgets .widget-area h4 {
-    background: none;
-    border: none;
-    color: #fff;
-    margin: 0 0 5px;
-    padding: 0;
-}
-
 
 /* Header
 ------------------------------------------------------------ */
@@ -134,8 +164,7 @@ h1, h2, h3, h4, h5, h6{
 
 #nav .nav > li > a {
     padding: 8px 20px;
-    text-shadow: none;
-    color: #2F2F2F;
+    text-shadow: none;   
 }
 
 #nav .nav > li > a:focus, 
@@ -143,8 +172,6 @@ h1, h2, h3, h4, h5, h6{
 #nav .nav > li.active > a,
 #nav .nav > li:hover > a,
 #nav .nav > li.current-menu-ancestor > a {
-    background: #f1f1f1;
-    color: #2F2F2F;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -364,8 +391,54 @@ h1, h2, h3, h4, h5, h6{
     border-bottom: none;	
 }
 
-.widget-wrap ul li a{
-    
+#footer-widgets .widget-area h4 {
+    background: none;
+    border: none;
+    color: #fff;
+    margin: 0 0 5px;
+    padding: 0;
+}
+
+/* Calendar Widget */
+.widget_calendar table{
+    width: 100%;
+}
+.widget_calendar table,
+.widget_calendar td {
+    border: 0;
+    border-collapse: separate;
+    border-spacing: 1px;
+}
+
+.widget_calendar caption {
+    font-size: 14px;
+    margin: 0;
+}
+
+.widget_calendar th,
+.widget_calendar td {
+    padding: 0;
+    text-align: center;
+}
+
+.widget_calendar a {
+    display: block;
+}
+
+.widget_calendar a:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.widget_calendar tbody td {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.site-footer .widget_calendar tbody td {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.widget_calendar tbody .pad, .site-footer .widget_calendar tbody .pad {
+    background-color: transparent;
 }
 
 /* Slider Widget */
@@ -510,13 +583,7 @@ h1, h2, h3, h4, h5, h6{
 .blog .entry-content img,
 .archive .entry-content img{
     display: block;	
-    margin: 10px 0px;
     height: auto;
-}
-
-.blog .entry-content p,
-.archive .entry-content p{
-    clear: both;	
 }
 
 .post h2.entry-title,
@@ -949,8 +1016,7 @@ input[type="submit"].searchsubmit:hover{
 ------------------------------------------------------------ */
 
 #footer{
-	background: #000;
-    height: 27px;
+    height: auto;
 }
 
 #footer.row-fluid{
@@ -1217,4 +1283,9 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 }
 .headline-content{
     text-align: center;
+}
+
+/* Notice Message */
+#submit-notice .alert{
+    margin-bottom: 0px;
 }

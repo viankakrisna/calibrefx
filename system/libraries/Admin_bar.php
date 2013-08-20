@@ -169,7 +169,7 @@ class CFX_Admin_Bar {
             if (empty($args['title']))
                 return;
 
-            _doing_it_wrong(__METHOD__, __('The menu ID should not be empty.'), '3.3');
+            _doing_it_wrong(__METHOD__, __('The menu ID should not be empty.', 'calibrefx'), '3.3');
             // Deprecated: Generate an ID from the title.
             $args['id'] = esc_attr(sanitize_title(trim($args['title'])));
         }

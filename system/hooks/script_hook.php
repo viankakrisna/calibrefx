@@ -132,6 +132,9 @@ add_action('admin_init', 'calibrefx_load_admin_styles');
 function calibrefx_load_admin_styles() {
     wp_enqueue_style('calibrefx-admin-css', CALIBREFX_CSS_URL . '/calibrefx.admin.css', array());
     wp_enqueue_style('admin-bar');
+    if (current_theme_supports('calibrefx-admin-bar')) {
+        wp_enqueue_style('calibrefx-admin-bar-css', CALIBREFX_CSS_URL . '/calibrefx.admin.bar.css', array());
+    }
 }
 
 function calibrefx_remove_script_version( $src ){
@@ -140,3 +143,4 @@ function calibrefx_remove_script_version( $src ){
 }
 add_filter( 'script_loader_src', 'calibrefx_remove_script_version', 15, 1 );
 add_filter( 'style_loader_src', 'calibrefx_remove_script_version', 15, 1 );
+
