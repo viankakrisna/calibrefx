@@ -174,9 +174,9 @@ if(isset($_POST['name']) && isset($_POST['url']) ){
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="info">Company Info</label>
+            <label class="control-label" for="info">Company Address</label>
             <div class="controls">
-                <textarea id="info" name="info" class="span12" rows="8" cols="15" placeholder="Type your company Info"><?php echo $info;?></textarea>
+                <textarea id="info" name="info" class="span12" rows="8" cols="15" placeholder="Type your company Address"><?php echo $info;?></textarea>
             </div>
         </div>
 
@@ -189,48 +189,56 @@ if(isset($_POST['name']) && isset($_POST['url']) ){
             <label class="control-label" for="asp">Anti-Spam Policy</label>
             <div class="controls">
                 <textarea id="asp" name="asp" class="span12" rows="10" cols="15"><?php echo $asp;?></textarea>
+                <p class="description">Please press the button to create the page <button class="button button-secondary button-large button-ajax" data-action="create-legal-page" data-param="asp" data-nonce="<?php echo wp_create_nonce( 'cfx_create-legal-page_asp'); ?>">Create Anti Spam Policy Page</button> </p>
             </div>
         </div>  
         <div class="control-group">
             <label class="control-label" for="cn">Copyright Notice</label>
             <div class="controls">
                 <textarea id="cn" name="cn" class="span12" rows="10" cols="15"><?php echo $cn;?></textarea>
+                <p class="description">Please press the button to create the page <button class="button button-secondary button-large button-ajax" data-action="create-legal-page" data-param="cn" data-nonce="<?php echo wp_create_nonce( 'cfx_create-legal-page_cn'); ?>">Copyright Notice Page</button> </p>
             </div>
         </div>  
         <div class="control-group">
             <label class="control-label" for="disclaimer">Disclaimer</label>
             <div class="controls">
                 <textarea id="disclaimer" name="disclaimer" class="span12" rows="10" cols="15"><?php echo $disclaimer;?></textarea>
+                <p class="description">Please press the button to create the page <button class="button button-secondary button-large button-ajax" data-action="create-legal-page" data-param="disclaimer" data-nonce="<?php echo wp_create_nonce( 'cfx_create-legal-page_disclaimer'); ?>">Create Disclaimer Page</button> </p>
             </div>
         </div>  
         <div class="control-group">
             <label class="control-label" for="dmca">DMCA Compliance</label>
             <div class="controls">
                 <textarea id="dmca" name="dmca" class="span12" rows="10" cols="15"><?php echo $dmca;?></textarea>
+                <p class="description">Please press the button to create the page <button class="button button-secondary button-large button-ajax" data-action="create-legal-page" data-param="dmca" data-nonce="<?php echo wp_create_nonce( 'cfx_create-legal-page_dmca'); ?>">Create DMCA Page</button> </p>
             </div>
         </div>  
         <div class="control-group">
             <label class="control-label" for="federal">Federal Trade Commission Compliance</label>
             <div class="controls">
                 <textarea id="federal" name="federal" class="span12" rows="10" cols="15"><?php echo $federal;?></textarea>
+                <p class="description">Please press the button to create the page <button class="button button-secondary button-large button-ajax" data-action="create-legal-page" data-param="federal" data-nonce="<?php echo wp_create_nonce( 'cfx_create-legal-page_federal'); ?>">Create Federal Compliance Page</button> </p>
             </div>
         </div>  
         <div class="control-group">
             <label class="control-label" for="privacy">Privacy Policy</label>
             <div class="controls">
                 <textarea id="privacy" name="privacy" class="span12" rows="10" cols="15"><?php echo $privacy;?></textarea>
+                <p class="description">Please press the button to create the page <button class="button button-secondary button-large button-ajax" data-action="create-legal-page" data-param="privacy" data-nonce="<?php echo wp_create_nonce( 'cfx_create-legal-page_privacy'); ?>">Create Privacy Policy Page</button> </p>
             </div>
         </div>  
         <div class="control-group">
             <label class="control-label" for="social">Social Media Disclosure</label>
             <div class="controls">
                 <textarea id="social" name="social" class="span12" rows="10" cols="15"><?php echo $social;?></textarea>
+                <p class="description">Please press the button to create the page <button class="button button-secondary button-large button-ajax" data-action="create-legal-page" data-param="social" data-nonce="<?php echo wp_create_nonce( 'cfx_create-legal-page_social'); ?>">Create Social Media Disclosure Page</button> </p>
             </div>
         </div>  
         <div class="control-group">
             <label class="control-label" for="terms">Terms Of Service &amp; Conditions Of Use</label>
             <div class="controls">
                 <textarea id="terms" name="terms" class="span12" rows="10" cols="15"><?php echo $terms;?></textarea>
+                <p class="description">Please press the button to create the page <button class="button button-secondary button-large button-ajax" data-action="create-legal-page" data-param="tos" data-nonce="<?php echo wp_create_nonce( 'cfx_create-legal-page_tos'); ?>">Create TOS Page</button> </p>
             </div>
         </div>
         <style type="text/css">
@@ -250,6 +258,8 @@ if(isset($_POST['name']) && isset($_POST['url']) ){
                 margin-bottom: 12px;
             }
         </style>
+
+        <script type="text/javascript">tos_bind_events();</script>
     <?php
     }
 
