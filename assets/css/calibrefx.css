@@ -91,6 +91,76 @@ img.alignnone {
     margin: 5px 0;
 }
 
+.entry-content img,
+.entry-summary img,
+.comment-content img,
+.widget img,
+.wp-caption {
+    max-width: 100%;
+}
+
+.wp-caption{
+    background-color: #F3F3F3;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
+    margin: 10px 0;
+    padding-top: 4px;
+    text-align: center;
+}
+
+.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
+/* Make sure images with WordPress-added height and width attributes are scaled correctly. */
+.entry-content img,
+.entry-summary img,
+.comment-content img[height],
+img[class*="align"],
+img[class*="wp-image-"],
+img[class*="attachment-"] {
+    height: auto;
+}
+
+img.size-full,
+img.size-large,
+img.wp-post-image {
+    height: auto;
+    max-width: 100%;
+}
+
+embed,
+iframe,
+object,
+video {
+    max-width: 100%;
+}
+
+.wp-caption .wp-caption-text,
+.entry-caption,
+.gallery-caption {
+    font-size: 12px;
+    font-style: italic;
+}
+
+img.wp-smiley,
+.rsswidget img {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0;
+}
+
+.wp-caption.alignleft + ul,
+.wp-caption.alignleft + ol  {
+    list-style-position: inside;
+}
+
 /* Wrapper Style 
 ------------------------------------------------------------ */
 #wrapper{
@@ -565,12 +635,14 @@ img.alignnone {
     margin-bottom: 10px;
 }
 
-.entry-content p img.alignleft{
+.entry-content p img.alignleft,
+.entry-content .wp-caption.alignleft{
     float: left;
     margin: 0px 10px 10px 0px;
 }
 
-.entry-content p img.alignright{
+.entry-content p img.alignright,
+.entry-content .wp-caption.alignright{
     float: right;
     margin: 0px 0px 10px 10px;
 }
@@ -579,6 +651,7 @@ img.alignnone {
     margin: 0 auto;
     display: block;
 }
+
 
 .blog .entry-content img,
 .archive .entry-content img{

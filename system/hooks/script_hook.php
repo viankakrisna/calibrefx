@@ -118,7 +118,7 @@ function calibrefx_load_admin_scripts() {
     add_thickbox();
     wp_enqueue_script('theme-preview');
     wp_enqueue_script('calibrefx-admin-bar');
-    wp_enqueue_script('calibrefx_admin_js', CALIBREFX_JS_URL . '/admin.js', array('jquery', 'jquery-sticky'), '', true);
+    wp_enqueue_script('calibrefx_admin_js', CALIBREFX_JS_URL . '/admin.js', array('jquery', 'jquery-sticky'), '');
     $params = array(
         'category_checklist_toggle' => __('Select / Deselect All', 'calibrefx'),
         'shortcode_url' => CALIBREFX_SHORTCODE_URL,

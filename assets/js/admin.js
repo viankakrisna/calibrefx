@@ -128,6 +128,51 @@ function calibrefx_confirm( text ) {
     }
 }
 
+function tos_bind_events() {
+    (function($){
+        $('.button-ajax').click( function() {
+            var button = this;
+            $.post( ajaxurl, {
+                'action': $(button).attr('data-action'),
+                '_ajax_nonce': $(button).attr('data-nonce'),
+                'param': $(button).attr('data-param'),
+                'name': $('#name').val,
+                'url': $('#url').val,
+                'info': $('#info').val,
+            })
+            .success( function( result ) {
+                if ( '1' === result ) {
+                    // $( button )
+                    //     .html( a8c_developer_i18n.installed )
+                    //     .nextAll( '.a8c-developer-action-result' )
+                    //     .remove();
+
+                    $(button).unbind('click').prop('disabled', true);
+                } else {
+                    alert( result );
+
+                    // $( button )
+                    //     .html( a8c_developer_i18n.ERROR )
+                    //     .nextAll( '.a8c-developer-action-result' )
+                    //     .remove();
+
+                    $( button ).after( '<span class="a8c-developer-action-result error">' + result + '</span>' );
+                }
+            })
+            .error( function( response ) {
+                // $( button )
+                //     .html( a8c_developer_i18n.ERROR )
+                //     .nextAll( '.a8c-developer-action-result' )
+                //     .remove();
+
+                $( button ).after( '<span class="a8c-developer-action-result error">' + response.statusText + ': ' + response.responseText + '</span>' );
+            });
+
+            return false;
+        }); 
+    })(jQuery);
+}
+
 jQuery(document).ready(function($){
     theTeamResize();
 

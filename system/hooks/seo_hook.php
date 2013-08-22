@@ -23,14 +23,14 @@
 /**
  * Calibrefx SEO Hooks
  *
- * @package		Calibrefx
+ * @package     Calibrefx
  * @subpackage          Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
+ * @author      CalibreFx Team
+ * @since       Version 1.0
+ * @link        http://www.calibrefx.com
  */
 
-add_action('calibrefx_init', 'calibrefx_init_seo_hook');
+add_action('calibrefx_setup', 'calibrefx_init_seo_hook');
 function calibrefx_init_seo_hook(){
     global $calibrefx;
     
@@ -71,14 +71,13 @@ function calibrefx_seo_title() {
     }
 
     if (is_home() || is_front_page()) {
-        $post_seo_title = calibrefx_get_custom_field('_calibrefx_title');    
+        $post_seo_title = calibrefx_get_custom_field('_calibrefx_title');
         $home_title = calibrefx_get_option('home_title', $calibrefx->seo_settings_m);
         
-        if($post_seo_title){
-            return $post_seo_title . $paged;
-        }
-        elseif ($home_title){
+        if ($home_title){
             return $home_title . $paged;
+        }elseif($post_seo_title){
+            return $post_seo_title . $paged;
         }
         else{
             return get_bloginfo('name') . $paged;
@@ -300,7 +299,7 @@ function calibrefx_do_meta_robot() {
         $meta['noindex'] = calibrefx_get_option('category_noindex', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
         $meta['noarchive'] = calibrefx_get_option('category_noarchive', $calibrefx->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
 
-        /** 	noindex paged archives, if canonical archives is off */
+        /**     noindex paged archives, if canonical archives is off */
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
         $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
     }
@@ -315,7 +314,7 @@ function calibrefx_do_meta_robot() {
         $meta['noindex'] = calibrefx_get_option('tag_noindex', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
         $meta['noarchive'] = calibrefx_get_option('tag_noarchive', $calibrefx->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
 
-        /** 	noindex paged archives, if canonical archives is off */
+        /**     noindex paged archives, if canonical archives is off */
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
         $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
     }
@@ -340,7 +339,7 @@ function calibrefx_do_meta_robot() {
         $meta['noindex'] = calibrefx_get_option('author_noindex', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
         $meta['noarchive'] = calibrefx_get_option('author_noarchive', $calibrefx->seo_settings_m) ? 'noarchive' : $meta['noarchive'];
 
-        /** 	noindex paged archives, if canonical archives is off */
+        /**     noindex paged archives, if canonical archives is off */
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
         $meta['noindex'] = $paged > 1 && !calibrefx_get_option('archive_canonical', $calibrefx->seo_settings_m) ? 'noindex' : $meta['noindex'];
     }
