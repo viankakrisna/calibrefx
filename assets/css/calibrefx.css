@@ -419,22 +419,19 @@ img.wp-smiley,
 
 /* Widgets
 ------------------------------------------------------------ */
-.widget-wrap{
+.widget{
     padding: 0;
     border-bottom: 1px solid #e5e5e5;
     margin-bottom: 20px;
 }
 
-.widget_search .widget-wrap{
+.widget_search{
     border-bottom: 0px;
     margin-bottom: 20px;	
 }
 
 #footer-widget .widget{
     margin-top: 20px;
-}
-
-#footer-widget .widget .widget-wrap{
 	border-bottom: none;
 }
 
