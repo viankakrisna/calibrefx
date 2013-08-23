@@ -486,7 +486,7 @@ function calibrefx_do_site_description() {
     echo apply_filters('calibrefx_seo_description', $description, $inside, $wrap);
 }
 
-add_action('calibrefx_header', 'calibrefx_do_header');
+add_action('calibrefx_header', 'calibrefx_do_header', 12);
 
 /**
  * Do Header Callback
