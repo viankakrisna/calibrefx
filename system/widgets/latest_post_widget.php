@@ -41,7 +41,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 			'description' => __( 'Display The Latest Posts', 'calibrefx' ),
 		);
 
-		$this->WP_Widget( 'latest-posts', __( 'Calibrefx - Latest Posts Widget With Thumbnail', 'calibrefx' ), $widget_ops );
+		$this->WP_Widget( 'latest-posts', __( 'Recent Posts (CalibreFx)', 'calibrefx' ), $widget_ops );
 
 	}
 	

@@ -49,7 +49,7 @@ class CFX_Twitter_Timeline_Widget extends WP_Widget {
             'id_base' => 'twitter-timeline-widget'
         );
 
-        $this->WP_Widget('twitter-timeline-widget', __('CalibreFx - Twitter Timeline Widget', 'calibrefx'), $widget_ops, $control_ops);
+        $this->WP_Widget('twitter-timeline-widget', __('Twitter Timeline (CalibreFx)', 'calibrefx'), $widget_ops, $control_ops);
     }
 
     /**
