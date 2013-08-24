@@ -21,7 +21,7 @@
  */
 
 function calibrefx_admin_body_class($classes){
-	$classes .= 'calibrefx-admin-page';
+	$classes .= ' calibrefx-admin-page';
 
 	return $classes;
 }

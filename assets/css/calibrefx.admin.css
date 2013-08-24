@@ -301,8 +301,7 @@ body[class*="calibrefx"] #wpbody-content{
 }
 
 .calibrefx-content .metabox-holder{
-    padding: 0;
-    border-bottom: 1px solid #E3E3E3;
+    padding: 0 !important;
     position: relative;
 }
 
