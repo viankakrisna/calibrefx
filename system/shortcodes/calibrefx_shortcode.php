@@ -1114,6 +1114,19 @@ function calibrefx_pinterest($atts, $content = null) {
     return $output;
 }
 
+add_shortcode('linkedin', 'calibrefx_linkedin');
+
+function calibrefx_linkedin($atts, $content = null){
+    extract(shortcode_atts(array(), $atts));
+
+    $output = '<span class="social-bookmark linkedin-button"><script type="IN/Share" data-counter="right"></script></span>';
+
+	wp_enqueue_script( 'calibrefx-linkedin-widget', 'http://platform.linkedin.com/in.js', array(), false, true);
+	
+    return $output;
+}
+
+
 add_shortcode('feedburner', 'calibrefx_feedburner');
 
 function calibrefx_feedburner($atts, $content = null) {
