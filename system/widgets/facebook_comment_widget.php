@@ -47,7 +47,7 @@ class CFX_Facebook_Comment_Widget extends WP_Widget {
             'height' => 250,
         );
 
-        $this->WP_Widget('facebook-comment', __('CalibreFx - Facebook Comment Box', 'calibrefx'), $widget_ops, $control_ops);
+        $this->WP_Widget('facebook-comment', __('Facebook Comment Box (CalibreFx)', 'calibrefx'), $widget_ops, $control_ops);
     }
 
     /**

@@ -42,7 +42,7 @@ class CFX_Subscriber_Widget extends WP_Widget {
 			'description' => __( 'Display email subscriber form for Feedburner', 'calibrefx' ),
 		);
 
-		$this->WP_Widget( 'subscriber', __( 'CalibreFx - Email Updates', 'calibrefx' ), $widget_ops );
+		$this->WP_Widget( 'subscriber', __( 'Email Updates (CalibreFx)', 'calibrefx' ), $widget_ops );
 
 	}
 	

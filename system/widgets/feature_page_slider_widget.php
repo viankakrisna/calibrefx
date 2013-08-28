@@ -46,7 +46,7 @@ class CFX_Feature_Page_Slider_Widget extends WP_Widget {
         );
 
  
-        $this->WP_Widget('page-slider', __('CalibreFx - Page Slider Widget', 'calibrefx'), $widget_ops);
+        $this->WP_Widget('page-slider', __('Feature Page with Slider (CalibreFx)', 'calibrefx'), $widget_ops);
     }
 
     /**

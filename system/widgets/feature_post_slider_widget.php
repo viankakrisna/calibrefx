@@ -48,7 +48,7 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
         );
 
  
-        $this->WP_Widget('post-slider', __('CalibreFx - Post Slider Widget', 'calibrefx'), $widget_ops);
+        $this->WP_Widget('post-slider', __('Featured Post with Slider (CalibreFx)', 'calibrefx'), $widget_ops);
     }
 
     /**

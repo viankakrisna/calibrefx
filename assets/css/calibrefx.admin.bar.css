@@ -10,7 +10,6 @@ body.admin-bar #wpcontent, body.admin-bar #adminmenu { padding: 0px !important; 
 .wp-submenu li.wp-first-item{border-top:0;}
 .wp-submenu li.current, 
 .wp-submenu li.current a{background:#f5f5f5;}
-#wpcontent			{ margin-left: 165px; }
 .folded #wpcontent	{ margin-left: 33px; }
 .update-nag			{ display:none; }
 #footer				{ margin-left: 146px; margin-right: 0px;}
@@ -23,17 +22,13 @@ body.admin-bar #wpcontent, body.admin-bar #adminmenu { padding: 0px !important; 
 }
 
 #calibrefx-admin-bar-wrapper{
-    /*position: absolute;
-    left: 0;
-    top: 0;*/
-    display: block;
-    /*height:60px;*/
+    position: fixed;
     width: 100%;
     font-family: Arial, Tahoma, 'Trebuchet MS', Sans-Serif; 
     font-size: 13px/28px;
     color: #CCCCCC;
     overflow: hidden;
-    z-index: 0;
+    z-index: 9999;
 }
 
 #calibrefx-admin-bar{
