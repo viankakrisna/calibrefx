@@ -643,7 +643,8 @@ function calibrefx_slider($atts, $content = '') {
         'slide_elm' => '> div',
         'auto_height' => 0,
         'height' => '',
-        'width' => ''
+        'width' => '',
+		'caption' => 0
     ), $atts));
 
     if(!empty($class)) $class = ' '.$class;
@@ -666,16 +667,24 @@ function calibrefx_slider($atts, $content = '') {
     if(!empty($fx)) $data_cycle .= ' data-cycle-fx="'.$fx.'"';
     if(!empty($interval)) $data_cycle .= ' data-cycle-timeout="'.$interval.'"';
     if(!empty($speed)) $data_cycle .= ' data-cycle-speed="'.$speed.'"';
-    if(!empty($slide_elm)) $data_cycle .= ' data-cycle-slides="'.$slide_elm.'"';
+    if(!empty($slide_elm)){
+		if($caption){
+			$data_cycle .= ' data-cycle-slides="'.$slide_elm.':not(.cycle-overlay)"';
+		}else{
+			$data_cycle .= ' data-cycle-slides="'.$slide_elm.'"';
+		}
+	}
     if($pager) $data_cycle .= ' data-cycle-pager="#'.$pager_class.'" data-cycle-pager-template=\'<a href="#" class="slider-pager-item">{{slideNum}}</a>\'';
     if($next_prev) $data_cycle .= ' data-cycle-prev="#slider-prev-'.$pager_class.'" data-cycle-next="#slider-next-'.$pager_class.'"';
     if($auto_height !== 0) $data_cycle .= ' data-cycle-auto-height="'.$auto_height.'"';
+	if($caption) $data_cycle .= ' data-cycle-caption-plugin=caption2';
     $data_cycle .= ' data-cycle-pause-on-hover="true"';
 
     $html = '';
     $html .= '<div id="'.$id.'" class="slider-container'.$class.'">';
     $html .= '<div class="slider-wrapper">';
     $html .= '<div class="slider cycle-slideshow"'.$data_cycle.$style.'>';
+	if($caption) $html .= '<div class="cycle-overlay"></div>';
     $html .= advance_shortcode_unautop($content);
     $html .= '</div><!-- end .slider -->';
     if($pager) $html  .= '<div id="'.$pager_class.'" class="slider-pager"></div><!-- end .slider-pager -->';
@@ -695,14 +704,15 @@ function calibrefx_slider_item($atts, $content = '') {
         'class' => '',
         'src' => '',
         'url' => '',
-        'title' => ''
+        'title' => '',
+		'desc' => ''
     ), $atts));
-
-    if(!empty($url) && $url != '#'){
-        return '<div class="item ' . $class . '">' . $before . '<a href="'.$url.'" title="'.$title.'"><img src="' . $src . '" alt="'.$title.'" /></a>'  . $after . '</div>';
-    }else{
-        return '<div class="item ' . $class . '">' . $before . '<img src="' . $src . '" alt="'.$title.'" />'  . $after . '</div>';
-    }
+	
+	if(!empty($url) && $url != '#'){
+		return '<div class="item ' . $class . '" data-cycle-title=\'<a href="'.$url.'">'.$title.'</a>\' data-cycle-desc="'.$desc.'">' . $before . '<a href="'.$url.'" title="'.$title.'"><img src="' . $src . '" alt="'.$title.'" /></a>'  . $after . '</div>';
+	}else{
+		return '<div class="item ' . $class . '" data-cycle-title="'.$title.'" data-cycle-desc="'.$desc.'">' . $before . '<img src="' . $src . '" alt="'.$title.'" />'  . $after . '</div>';
+	}
 }
 
 add_shortcode('slider_caption', 'calibrefx_slider_caption');

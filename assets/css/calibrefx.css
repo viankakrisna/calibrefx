@@ -1261,7 +1261,7 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
     position: relative;
 }
 .slider{
-   
+   position: relative;
 }
 .slider .item{
     width: 100%;
