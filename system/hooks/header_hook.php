@@ -286,7 +286,7 @@ function calibrefx_print_wrap() {
          margin-left: auto;
          margin-right: auto
     }
-}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
+}', calibrefx_get_option("calibrefx_layout_width")+40, calibrefx_get_option("calibrefx_layout_width"));
         }
 
         printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
