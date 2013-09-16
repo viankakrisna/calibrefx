@@ -80,6 +80,68 @@ function calibrefx_vimeo($atts, $content = null) {
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_video', CALIBREFX_SHORTCODE_URL . '/form-video.php', 360, 240, __('Video shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/video.png');
 
+add_shortcode('youtube_thumbnail', 'calibrefx_youtube_thumbnail');
+
+function calibrefx_youtube_thumbnail($atts, $content = null) {
+
+    extract(shortcode_atts(array(
+        'width' => '',
+        'height' => '',
+        'title' => '',
+        'id' => '',
+        'class' => 'thumbnail',
+        'style' => ''
+    ), $atts));
+
+    if(empty($content)) return '<div class="alert alert-error">'.__('Not a valid Youtube video ID. The video cannot be shown.', 'calibrefx').'</div>';
+
+    $url = 'http://www.youtube.com/watch?v='.$content;         
+
+    // get var from v variable
+    $video_query = parse_url($url, PHP_URL_QUERY);
+    $vars = array();
+    parse_str($video_query, $vars);
+
+    // get image url from youtube
+    $remote = wp_remote_retrieve_body(
+    wp_remote_request(
+            sprintf('http://gdata.youtube.com/feeds/api/videos/'. $vars['v'] .'?v=2&alt=json'), array('timeout' => 100,)
+        )
+    );
+
+    $youtube_data = json_decode($remote, true);
+
+    if($youtube_data === NULL) return '<div class="alert alert-error">'.__('The youtube video is currently not available. The video cannot be shown.', 'calibrefx').'</div>';
+
+    $video_title = $youtube_data['entry']['media$group']['media$title']['$t'];
+    $video_desc = $youtube_data['entry']['media$group']['media$description']['$t'];
+
+    $title = (!empty($title) ? $title : $video_title);
+
+    $imageurl = $youtube_data['entry']['media$group']['media$thumbnail'][3]['url'];
+
+    if(!empty($height)){
+        if($height <= 90){
+            $imageurl = $youtube_data['entry']['media$group']['media$thumbnail'][0]['url'];
+        }elseif($height <= 180){   
+            $imageurl = $youtube_data['entry']['media$group']['media$thumbnail'][1]['url'];
+        }elseif($height <= 360){   
+            $imageurl = $youtube_data['entry']['media$group']['media$thumbnail'][2]['url'];
+        }elseif($height <= 480){   
+            $imageurl = $youtube_data['entry']['media$group']['media$thumbnail'][3]['url'];
+        }
+
+        $style .= 'height:'.$height.'px;';
+    }
+
+    if(!empty($width)){
+        $style .= 'width:'.$width.'px;';
+    }
+    
+   
+    return '<img class="youtube-thumbnail '.$class.'" id="'.$id.'" style="'.$style.'" src="'.$imageurl.'" alt="'.$title.'" />';
+}
+
 /**
  * ==============================================================
  * Typography Section
