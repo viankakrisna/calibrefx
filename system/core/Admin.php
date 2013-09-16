@@ -294,12 +294,19 @@ abstract class CFX_Admin {
                                 foreach ($calibrefx_sections as $section) {
                                     $current_class = ($calibrefx_current_section === $section['slug']) ? ' class="current"' : '';
                                     $section_link = admin_url('admin.php?page=' . $this->page_id . '&section=' . $section['slug']);
+                                    
+                                    $icon = $section['icon'];
+                                    $active_icon = $section['active_icon'];
+
+                                    $icon = (!empty($icon) ? $icon : CALIBREFX_IMAGES_URL.'/icon-sections/icon-general-settings.png');
+                                    $active_icon = (!empty($active_icon) ? $active_icon : CALIBREFX_IMAGES_URL.'/icon-sections/icon-general-settings-active.png');
+
                                     echo "<li$current_class>
                                             <a href=\"$section_link\">
                                                 <div class=\"calibrefx-section-icon-container\">
                                                     <div class=\"calibrefx-section-icon-wrapper\">
-                                                        <img class=\"calibrefx-section-icon\" src=\"".CALIBREFX_IMAGES_URL."/icon-sections/icon-general-settings.png\" />
-                                                        <img class=\"calibrefx-section-icon-active\" src=\"".CALIBREFX_IMAGES_URL."/icon-sections/icon-general-settings-active.png\" />
+                                                        <img class=\"calibrefx-section-icon\" src=\"".$icon."\" />
+                                                        <img class=\"calibrefx-section-icon-active\" src=\"".$active_icon."\" />
                                                     </div>
                                                 </div>
                                                 <div class=\"calibrefx-section-link\">" . $section['title'] . "</div>

@@ -1,4 +1,16 @@
-@media (min-width: 768px) and (max-width: 959px) { /* For iPad in vertical position */
+@media (min-width: 768px) and (max-width: 939px) { /* For iPad in vertical position */
+	/* Wrapper */
+	.layout-wrapper-fluid .wrap.row-fluid{
+		width: 728px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.layout-wrapper-fixed #wrapper{
+		width: 748px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
 	/* Primary Navigation Menu */
 	#nav .nav{
 		margin-top: 5px;
@@ -91,6 +103,18 @@
 }
 
 @media (max-width: 767px) { /* For 480px media */
+	/* Wrapper */
+	.layout-wrapper-fluid .wrap.row-fluid{
+		width: 440px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.layout-wrapper-fixed #wrapper{
+		width: 460px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
 	/* Header & Logo */
 	#header-title{
 		float: none;
@@ -210,5 +234,24 @@
 }
 
 @media (max-width: 479px) { /* For 320px media */
-	
+	/* Wrapper */
+	.layout-wrapper-fluid .wrap.row-fluid{
+		width: 300px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.layout-wrapper-fixed #wrapper{
+		width: 300px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	.layout-wrapper-fluid #header, .layout-wrapper-fixed #header,
+	.layout-wrapper-fluid #nav, .layout-wrapper-fixed #nav,
+	.layout-wrapper-fluid #subnav, .layout-wrapper-fixed #subnav,
+	.layout-wrapper-fluid #inner, .layout-wrapper-fixed #inner,
+	.layout-wrapper-fluid #footer-widget, .layout-wrapper-fixed #footer-widget,
+	.layout-wrapper-fluid #footer, .layout-wrapper-fixed #footer{
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}
 }
