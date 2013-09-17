@@ -709,7 +709,7 @@ function calibrefx_slider($atts, $content = '') {
 		'caption' => 0,
         'carousel_visible' => '',
         'carousel_fluid' => '',
-        'carousel_wrap' => ''
+        'wrap' => ''
     ), $atts));
 
     if(!empty($class)) $class = ' '.$class;
@@ -745,7 +745,7 @@ function calibrefx_slider($atts, $content = '') {
 	if($caption) $data_cycle .= ' data-cycle-caption-plugin=caption2';
     if($carousel_visible) $data_cycle .= ' data-cycle-carousel-visible="'.$carousel_visible.'"';
     if($carousel_fluid) $data_cycle .= ' data-cycle-carousel-fluid="'.$carousel_fluid.'"';
-    if($carousel_wrap) $data_cycle .= ' data-allow-wrap="'.$carousel_wrap.'"';
+    if($wrap) $data_cycle .= ' data-allow-wrap="'.$carousel_wrap.'"';
     $data_cycle .= ' data-cycle-pause-on-hover="true"';
 
     $html = '';
