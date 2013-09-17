@@ -1,6 +1,6 @@
 /* Table of Contents
 
-* Wrapper Style 
+* General
 * Images
 * Header
 * Primary / Secondary Navigation
@@ -25,21 +25,12 @@
 * Shortcode Style
 */
 
+/* General
+------------------------------------------------------------ */
 body{
-    font-family: Calibri, Verdana, Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: #2f2f2f;
     padding: 0;
     margin: 0;
 	word-wrap: break-word;
-}
-
-input, select, textarea{
-    font-family: Calibri, Verdana, Arial, Helvetica, sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6{
-    font-family: Verdana, sans-serif;
 }
 
 .size-auto, 
@@ -71,16 +62,8 @@ img.alignleft {
     margin: 5px 20px 5px 0;
 }
 
-.wp-caption.alignleft {
-    margin: 5px 10px 5px 0;
-}
-
 img.alignright {
     margin: 5px 0 5px 20px;
-}
-
-.wp-caption.alignright {
-    margin: 5px 0 5px 10px;
 }
 
 img.aligncenter {
@@ -89,61 +72,6 @@ img.aligncenter {
 
 img.alignnone {
     margin: 5px 0;
-}
-
-.entry-content img,
-.entry-summary img,
-.comment-content img,
-.widget img,
-.wp-caption {
-    max-width: 100%;
-}
-
-.wp-caption{
-    background-color: #F3F3F3;
-    border: 1px solid #DDDDDD;
-    border-radius: 3px 3px 3px 3px;
-    margin: 10px 0;
-    padding-top: 4px;
-    text-align: center;
-}
-
-.wp-caption-text {
-    font-size: 11px;
-    line-height: 17px;
-    margin: 0;
-    padding: 0 4px 5px;
-}
-
-/* Make sure images with WordPress-added height and width attributes are scaled correctly. */
-.entry-content img,
-.entry-summary img,
-.comment-content img[height],
-img[class*="align"],
-img[class*="wp-image-"],
-img[class*="attachment-"] {
-    height: auto;
-}
-
-img.size-full,
-img.size-large,
-img.wp-post-image {
-    height: auto;
-    max-width: 100%;
-}
-
-embed,
-iframe,
-object,
-video {
-    max-width: 100%;
-}
-
-.wp-caption .wp-caption-text,
-.entry-caption,
-.gallery-caption {
-    font-size: 12px;
-    font-style: italic;
 }
 
 img.wp-smiley,
@@ -156,6 +84,37 @@ img.wp-smiley,
     padding: 0;
 }
 
+.wp-caption{
+    background-color: #F3F3F3;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    margin-top: 5px;
+	margin-bottom: 10px;
+    padding: 5px 0;
+    text-align: center;
+	max-width: 100%;
+}
+
+.wp-caption.alignleft {
+    margin-right: 20px;
+}
+
+.wp-caption.alignright {
+    margin-left: 20px;
+}
+
+.wp-caption-text {
+    margin: 0;
+    padding: 5px 0 0;
+}
+
+.wp-caption .wp-caption-text,
+.entry-caption,
+.gallery-caption {
+    font-size: 0.85em;
+    font-style: italic;
+}
+
 .wp-caption.alignleft + ul,
 .wp-caption.alignleft + ol  {
     list-style-position: inside;
@@ -166,16 +125,21 @@ img.wp-smiley,
 #wrapper{
     padding: 0;
 }
+.layout-wrapper-fixed #wrapper {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 
 /* Header
 ------------------------------------------------------------ */
 #header{
     min-height: 100px;
+	width: auto;
 }
 
-#header.row-fluid{
-	width: auto;
-	padding-left: 20px;
+.layout-wrapper-fixed #header{
+ 	padding-left: 20px;
 	padding-right: 20px;
 }
 
@@ -207,65 +171,28 @@ img.wp-smiley,
 /* Primary Navigation 
 ------------------------------------------------------------ */
 #nav{
-    background: #cecece;
     margin-top: 0px;
     margin-bottom: 0px;
+	width: auto;
 }
 
-#nav.row-fluid{
-    width: auto;
+.layout-wrapper-fixed #nav{
     padding-left: 20px;
     padding-right: 20px;
 }
 
 #nav .navbar-inner{
     padding: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    min-height: 34px;
-    background: none;
-    filter: none;
-    border: none;
+	min-height: 34px;
 }
 
 #nav .nav > li > a {
-    padding: 8px 20px;
-    text-shadow: none;   
-}
-
-#nav .nav > li > a:focus, 
-#nav .nav > li > a:hover,
-#nav .nav > li.active > a,
-#nav .nav > li:hover > a,
-#nav .nav > li.current-menu-ancestor > a {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+    padding: 8px 20px;   
 }
 
 #nav .dropdown-menu { /* 1st Level Sub Menu */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 160px;
     padding: 4px 0;
     margin: 0px;
-    list-style: none;
-    background-color: #f1f1f1;
-    border: none;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
 }
 
 #nav .dropdown-menu::after,
@@ -281,15 +208,6 @@ img.wp-smiley,
 #nav .nav > li > .dropdown-menu .dropdown-menu{ /* 2nd, 3rd, ... level submenus */
     left: 100%;
     top: -4px;
-}
-
-#nav .dropdown-menu > li > a:focus,
-#nav .dropdown-menu > li > a:hover,
-#nav .dropdown-menu > li:hover > a,
-#nav .dropdown-menu > li.active > a,
-#nav .dropdown-menu > li.current-menu-ancestor > a{
-    background: #08C;
-    color: #fff;    
 }
 
 /* Secondary Navigation
@@ -623,7 +541,7 @@ img.wp-smiley,
 	clear: both;
 }
 
-.entry-content p img{
+/* .entry-content p img{
 	height: auto;
 }
 
@@ -654,7 +572,7 @@ img.wp-smiley,
 .archive .entry-content img{
     display: block;	
     height: auto;
-}
+} */
 
 .post h2.entry-title,
 .page h2.entry-title,
