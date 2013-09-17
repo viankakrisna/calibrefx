@@ -729,12 +729,13 @@ function calibrefx_slider($atts, $content = '') {
     if(!empty($width) || !empty($height)) $style .= ' style="'.$style_item.'"';
 
     $data_cycle = '';
-    if(!empty($fx)) $data_cycle .= ' data-cycle-fx="'.$fx.'"';
-    if(!empty($interval)) $data_cycle .= ' data-cycle-timeout="'.$interval.'"';
+    $data_cycle .= ' data-cycle-fx="'.$fx.'"';
+    $data_cycle .= ' data-cycle-timeout="'.$interval.'"';
     if(!empty($speed)) $data_cycle .= ' data-cycle-speed="'.$speed.'"';
     if(!empty($slide_elm)){
 		if($caption){
 			$data_cycle .= ' data-cycle-slides="'.$slide_elm.':not(.cycle-overlay)"';
+			$data_cycle .= ' data-cycle-overlay-fx-sel="div.cycle-overlay"';
 		}else{
 			$data_cycle .= ' data-cycle-slides="'.$slide_elm.'"';
 		}
@@ -743,9 +744,9 @@ function calibrefx_slider($atts, $content = '') {
     if($next_prev) $data_cycle .= ' data-cycle-prev="#slider-prev-'.$pager_class.'" data-cycle-next="#slider-next-'.$pager_class.'"';
     if($auto_height !== 0) $data_cycle .= ' data-cycle-auto-height="'.$auto_height.'"';
 	if($caption) $data_cycle .= ' data-cycle-caption-plugin=caption2';
-    if($carousel_visible) $data_cycle .= ' data-cycle-carousel-visible="'.$carousel_visible.'"';
-    if($carousel_fluid) $data_cycle .= ' data-cycle-carousel-fluid="'.$carousel_fluid.'"';
-    if($wrap) $data_cycle .= ' data-allow-wrap="'.$carousel_wrap.'"';
+    if(!empty($carousel_visible)) $data_cycle .= ' data-cycle-carousel-visible="'.$carousel_visible.'"';
+    if(!empty($carousel_fluid)) $data_cycle .= ' data-cycle-carousel-fluid="'.$carousel_fluid.'"';
+    if(!empty($wrap)) $data_cycle .= ' data-allow-wrap="'.$wrap.'"';
     $data_cycle .= ' data-cycle-pause-on-hover="true"';
 
     $html = '';
