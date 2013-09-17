@@ -740,7 +740,6 @@ blockquote{
 form.searchform{
     display: block;
     height: 28px;
-    max-width: 303px;
 }
 
 input[type=text].s{

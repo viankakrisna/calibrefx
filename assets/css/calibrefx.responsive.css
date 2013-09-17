@@ -64,7 +64,7 @@
 	/* Secondary Navigation Menu */
 	#subnav {
 	    min-height: 30px;
-	    border-bottom: none;
+	    border-bottom: none !important;
 	    margin: 10px 0px;
 	}
 
@@ -74,7 +74,7 @@
 	}
 
 	#subnav .nav > li > a{
-		border: none;
+		border: none !important;
 		background: #F5F5F5;
 	}
 
@@ -185,7 +185,7 @@
 	/* Secondary Navigation Menu */
 	#subnav {
 	    min-height: 30px;
-	    border-bottom: none;
+	    border-bottom: none !important;
 	    margin: 10px 0px;
 	}
 
@@ -195,7 +195,7 @@
 	}
 
 	#subnav .nav > li > a{
-		border: none;
+		border: none !important;
 		background: #F5F5F5;
 	}
 
