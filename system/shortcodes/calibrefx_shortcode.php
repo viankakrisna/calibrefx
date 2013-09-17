@@ -706,7 +706,10 @@ function calibrefx_slider($atts, $content = '') {
         'auto_height' => 0,
         'height' => '',
         'width' => '',
-		'caption' => 0
+		'caption' => 0,
+        'carousel_visible' => '',
+        'carousel_fluid' => '',
+        'carousel_wrap' => ''
     ), $atts));
 
     if(!empty($class)) $class = ' '.$class;
@@ -740,6 +743,9 @@ function calibrefx_slider($atts, $content = '') {
     if($next_prev) $data_cycle .= ' data-cycle-prev="#slider-prev-'.$pager_class.'" data-cycle-next="#slider-next-'.$pager_class.'"';
     if($auto_height !== 0) $data_cycle .= ' data-cycle-auto-height="'.$auto_height.'"';
 	if($caption) $data_cycle .= ' data-cycle-caption-plugin=caption2';
+    if($carousel_visible) $data_cycle .= ' data-cycle-carousel-visible="'.$carousel_visible.'"';
+    if($carousel_fluid) $data_cycle .= ' data-cycle-carousel-fluid="'.$carousel_fluid.'"';
+    if($carousel_wrap) $data_cycle .= ' data-allow-wrap="'.$carousel_wrap.'"';
     $data_cycle .= ' data-cycle-pause-on-hover="true"';
 
     $html = '';
