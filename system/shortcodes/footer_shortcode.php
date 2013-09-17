@@ -50,7 +50,7 @@ function calibrefx_footer_scrolltop_shortcode($atts) {
 
     $nofollow = $atts['nofollow'] ? 'rel="nofollow"' : '';
 
-    $output = sprintf('%s<a href="%s" %s><i class="icon-upload icon-white"></i>%s</a>%s', $atts['before'], esc_url($atts['href']), $nofollow, $atts['text'], $atts['after']);
+    $output = sprintf('%s<a href="%s" %s><i class="icon-upload icon-white"></i> %s</a>%s', $atts['before'], esc_url($atts['href']), $nofollow, $atts['text'], $atts['after']);
 
     return apply_filters('calibrefx_footer_scrolltop_shortcode', $output, $atts);
 }
