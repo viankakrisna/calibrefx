@@ -744,17 +744,11 @@ form.searchform{
 }
 
 input[type=text].s{
-    width: 68%;
-    padding: 5px 1%;
-    margin: 0px;
-    float: left;
+    
 }
 
 input[type="submit"].searchsubmit{
-    width: 29%;	
-    padding: 0px;
-    float: left;
-    padding: 6px 0px;
+    vertical-align: top
 }
 
 /* Footer Widgets

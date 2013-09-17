@@ -44,9 +44,9 @@ function calibrefx_search_form() {
     $onblur = " onblur=\"if (this.value == '') {this.value = '$search_text';}\"";
 
     $form = '
-            <form method="get" class="searchform" action="' . home_url() . '/" >
-                    <input type="text" value="'. $search_text .'" name="s" class="s"'. $onfocus . $onblur .' />
-                    <input type="submit" class="searchsubmit" value="'. $button_text .'" />
+            <form method="get" class="searchform '.calibrefx_row_class().'" action="' . home_url() . '/" >
+                    <input type="text" value="'. $search_text .'" name="s" class="s span9"'. $onfocus . $onblur .' />
+                    <input type="submit" class="searchsubmit span3" value="'. $button_text .'" />
             </form>
     ';
 
