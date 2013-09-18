@@ -292,6 +292,26 @@ img.wp-smiley,
     color: #fff;    
 }
 
+#nav .btn-menu-toggle{
+	float: none;
+	text-align: left;
+	line-height: 14px;
+	border: none;
+	background: transparent;
+}
+
+#nav .btn-menu-toggle .icon-navbar{
+	
+}
+
+#nav .btn-menu-toggle .menu-toggle{
+	float: left;	
+}
+
+#nav .btn-menu-toggle .menu-toggle-icon{
+	float: right;
+}
+
 /* Secondary Navigation
 ------------------------------------------------------------ */
 #subnav {
