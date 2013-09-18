@@ -58,7 +58,8 @@
                    
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
-                        window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcode_output);
+                        //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcode_output);
+                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcode_output);
                         tinyMCEPopup.editor.execCommand('mceRepaint');
                         tinyMCEPopup.close();
                     }

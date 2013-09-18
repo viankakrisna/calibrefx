@@ -1092,7 +1092,6 @@ input[type="submit"].searchsubmit:hover{
 
 #footer a, #footer:hover{
     text-decoration: none;
-    color: #fff;
 }
 
 #footer-wrapper{
@@ -1256,7 +1255,7 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
     position: relative;
 }
 .slider{
-   
+   position: relative;
 }
 .slider .item{
     width: 100%;

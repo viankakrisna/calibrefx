@@ -274,6 +274,10 @@ function calibrefx_container_class() {
     return apply_filters( 'calibrefx_container_class', $containerClass );
 }
 
+function calibrefx_set_layout($layout){
+    add_filter('calibrefx_site_layout', 'calibrefx_layout_'.$layout);
+}
+
 
 /**
  * Helper function to change layout programmatically to full width
