@@ -26,7 +26,7 @@
 */
 
 body{
-    font-family: Calibri, Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     color: #2f2f2f;
     padding: 0;
@@ -35,11 +35,11 @@ body{
 }
 
 input, select, textarea{
-    font-family: Calibri, Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6{
-    font-family: Verdana, sans-serif;
+    font-family: Georgia, Times, "Times New Roman", serif;
 }
 
 .size-auto, 
@@ -206,10 +206,8 @@ img.wp-smiley,
 
 /* Primary Navigation 
 ------------------------------------------------------------ */
-#nav{
-    background: #cecece;
-    margin-top: 0px;
-    margin-bottom: 0px;
+#nav, #footer{
+    background:#404040;
 }
 
 #nav.row-fluid{
@@ -421,13 +419,11 @@ img.wp-smiley,
 ------------------------------------------------------------ */
 .widget{
     padding: 0;
-    border-bottom: 1px solid #e5e5e5;
     margin-bottom: 20px;
 }
 
 .widget_search{
     border-bottom: 0px;
-    margin-bottom: 20px;	
 }
 
 #footer-widget .widget{
@@ -436,7 +432,7 @@ img.wp-smiley,
 }
 
 .widgettitle{
-    margin: 10px 0 20px;
+    margin: 10px 0 10px;
 }
 
 .widget .textwidget {
@@ -450,8 +446,7 @@ img.wp-smiley,
 }
 
 .widget-wrap ul li{
-    padding: 12px 16px 12px 5px;	
-    border-bottom: 1px solid #e5e5e5;
+    padding: 10px 0 0 0;	
 }
 
 .widget-wrap ul li:last-child{
@@ -1101,7 +1096,7 @@ input[type="submit"].searchsubmit:hover{
 }
 
 #footer-wrapper{
-    color: #838383;
+    color: #eeeeee;
 }
 
 .credits{

@@ -32,4 +32,3 @@ if ( ! isset( $content_width ) ){
 	// will neeed to make this dynamic
 	$content_width = 600;
 }
-	
