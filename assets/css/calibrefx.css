@@ -218,8 +218,8 @@ img.wp-smiley,
 	background: transparent;
 }
 
-#nav .btn-menu-toggle .icon-navbar{
-	
+#nav .btn-menu-toggle .menu-toggle-icon{
+	float: right;
 }
 
 #nav .btn-menu-toggle .menu-toggle{
@@ -755,7 +755,6 @@ blockquote{
 
 form.searchform{
     display: block;
-    height: 28px;
 }
 
 input[type=text].s{
