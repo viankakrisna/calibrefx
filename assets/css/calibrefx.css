@@ -210,6 +210,22 @@ img.wp-smiley,
     top: -4px;
 }
 
+#nav .btn-menu-toggle{
+	float: none;
+	text-align: left;
+	line-height: 14px;
+	border: none;
+	background: transparent;
+}
+
+#nav .btn-menu-toggle .icon-navbar{
+	
+}
+
+#nav .btn-menu-toggle .menu-toggle{
+	float: left;	
+}
+
 /* Secondary Navigation
 ------------------------------------------------------------ */
 #subnav {

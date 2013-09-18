@@ -175,17 +175,22 @@ function calibrefx_do_nav() {
                 %2$s
                 <div class="navbar-inner">
                     <div class="container">
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                        <a class="btn btn-navbar btn-link btn-menu-toggle" data-toggle="collapse" data-target=".nav-collapse">
+							<span class="menu-toggle">%5$s</span>
+						
+							<span class="menu-toggle-icon">
+								<i class="icon-bar"></i>
+								<i class="icon-bar"></i>
+								<i class="icon-bar"></i>
+							</span>
+							<span class="clearfix"></span>
                         </a>
-                    <div class="nav-collapse">%1$s</div>
+						<div class="nav-collapse">%1$s</div>
                     </div>
                 %3$s
                 </div>
             </div>
-            <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class);
+            <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class, __('MENU', 'calibrefx'));
         
         echo apply_filters('calibrefx_do_nav', $nav_output, $nav, $args);
     }
