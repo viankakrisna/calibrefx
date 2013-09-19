@@ -59,9 +59,7 @@ class CFX_Twitter_Timeline_Widget extends WP_Widget {
      * @param array $instance The settings for the particular instance of the widget
      */
     function widget($args, $instance) {
-		global $twitteruser;
-		
-        extract($args);
+		extract($args);
         $instance = wp_parse_args((array) $instance, $this->defaults);
 		
 		if(!empty($instance['widget_id']) && !empty($instance['user_name'])) :
