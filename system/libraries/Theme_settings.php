@@ -513,13 +513,6 @@ class CFX_Theme_Settings extends CFX_Admin {
             </select>
             <span class="description"><?php _e("This is open graph protocol that helo to identify your content. <br/>This will output: <code>&lt;meta property=\"og:type\" content=\"TYPE\"/></code>", 'calibrefx'); ?></span>
         </p>
-        <hr class="div" />
-        <h4><?php _e('Twitter Settings:', 'calibrefx'); ?></h4>
-        <p>
-            <label for="<?php echo $this->settings_field; ?>[twitter_username]"><?php _e('Twiiter Username:', 'calibrefx'); ?></label>
-            <input type="text" size="30" value="<?php echo calibrefx_get_option('twitter_username'); ?>" id="<?php echo $this->settings_field; ?>[twitter_username]" name="<?php echo $this->settings_field; ?>[twitter_username]">
-            <span class="description"><?php _e("This will use for Latest Tweets Widget to show your latest tweets on the sidebar or footer.", 'calibrefx'); ?></span>
-        </p>
         <?php
     }
 
