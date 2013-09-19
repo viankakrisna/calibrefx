@@ -731,14 +731,8 @@ blockquote{
 
 /* Pagination
 ------------------------------------------------------------ */
-.pagination ul > li{
-	display: inline-block;
-	vertical-align: middle;
-}
-
 .pagination ul > li > a{
     line-height: 20px;
-    margin-left: 5px;	
 }
 
 .pager a {

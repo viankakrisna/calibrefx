@@ -39,7 +39,6 @@ class CFX_Theme_Settings extends CFX_Admin {
         $this->page_id = 'calibrefx';
         $this->default_settings = apply_filters('calibrefx_theme_settings_defaults', array(
             'update' => 1,
-            'enable_bootstrap' => 1,
             'blog_title' => 'text',
             'header_right' => 0,
             'layout_type' => 'fluid',
@@ -94,7 +93,6 @@ class CFX_Theme_Settings extends CFX_Admin {
         $calibrefx->security->add_sanitize_filter(
                 'one_zero', $this->settings_field, array(
                     'update',
-                    'enable_bootstrap',
                     'calibrefx_layout_wrapper_fixed',
                     'header_right',
                     'nav',
@@ -232,16 +230,6 @@ class CFX_Theme_Settings extends CFX_Admin {
         global $calibrefx_user_ability;
         if ($calibrefx_user_ability === 'professor') {
             ?>
-            <p><label><?php _e('Enable Bootstrap', 'calibrefx'); ?></label>
-                <label for="calibrefx-settings-checkbox-enable-bootstrap">
-                    <input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-bootstrap" value="1" <?php checked(1, calibrefx_get_option('enable_bootstrap')); ?> target="calibrefx-settings-enable-bootstrap" class="calibrefx-settings-checkbox"  />
-                </label>
-                <input type="hidden" name="<?php echo $this->settings_field; ?>[enable_bootstrap]" id="calibrefx-settings-enable-bootstrap" value="<?php echo calibrefx_get_option('enable_bootstrap'); ?>" />
-                <span class="description"><?php printf(__('This option will use Twitter Bootstrap as css and javascript libraries.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
-            </p>
-
-            <hr class="div" />
-
              <p><label><?php _e('Enable Mobile Site', 'calibrefx'); ?></label>
                 <label for="calibrefx-settings-checkbox-enable-mobile">
                     <input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-mobile" value="0" <?php checked(1, calibrefx_get_option('enable_mobile')); ?> target="calibrefx-settings-enable-mobile" class="calibrefx-settings-checkbox"  />
