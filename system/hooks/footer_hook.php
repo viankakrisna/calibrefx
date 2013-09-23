@@ -202,10 +202,6 @@ add_action('wp_footer', 'calibrefx_add_socials_script');
  * Add Social javascript in footer
  */
 function calibrefx_add_socials_script() {
-    global $twitteruser;
-
-    $twitteruser = calibrefx_get_option('twitter_username');
-
     //@TODO: add enable facebook in theme setting
     echo 
 '<div id="fb-root"></div>
@@ -224,11 +220,6 @@ fjs.parentNode.insertBefore(js, fjs);
 '<script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 </script>'."\n";
-
-    if (!empty($twitteruser) && is_active_widget( false, false, 'twitter-widget' )) {
-        echo 
-'<script src="http://widgets.twimg.com/j/2/widget.js"></script>'."\n";
-    }
 }
 
 add_action('wp_footer', 'calibrefx_add_google_analytics');

@@ -37,7 +37,7 @@ function calibrefx_clear_meta_section() {
  * @param string $title Title of the section.
  * @param string $ability Optional. The ability that can see the settings ('general', 'professor').
  */
-function calibrefx_add_meta_section($slug, $title, $target='options.php', $priority = 10) {
+function calibrefx_add_meta_section($slug, $title, $target='options.php', $priority = 10, $icon = '', $active_icon = '') {
     global $calibrefx_sections;
 
     //$key = $priority . '-' . $slug;
@@ -58,6 +58,8 @@ function calibrefx_add_meta_section($slug, $title, $target='options.php', $prior
         'basic' => array(),
         'professor' => array(),
         'priority' => $priority,
+        'icon' => $icon,
+        'active_icon' => $active_icon
     );
 
     uasort($calibrefx_sections, 'calibrefx_compare_meta_section_priority');
