@@ -83,7 +83,7 @@ class CFX_Other_Settings extends CFX_Admin {
 
         calibrefx_add_meta_section('tosgen', __('TOS Generator', 'calibrefx'), '');
         calibrefx_add_meta_section('importexport', __('Import / Export Settings', 'calibrefx'), '');
-        calibrefx_add_meta_section('autoresponder', __('Autoresponder Settings', 'calibrefx'));
+        //calibrefx_add_meta_section('autoresponder', __('Autoresponder Settings', 'calibrefx'));
 
         do_action('calibrefx_other_settings_meta_section');
 
@@ -102,7 +102,7 @@ class CFX_Other_Settings extends CFX_Admin {
         calibrefx_add_meta_box('importexport', 'basic', 'calibrefx-export-settings', __('Export Settings', 'calibrefx'), array($this, 'export_settings'), $this->pagehook, 'side', 'high');
 
         // Autoresponder
-        calibrefx_add_meta_box('autoresponder', 'basic', 'calibrefx-autoreponder-settings', __('Autoresponder Settings', 'calibrefx'), array($this, 'autoresponder_settings'), $this->pagehook, 'main', 'high');
+        //calibrefx_add_meta_box('autoresponder', 'basic', 'calibrefx-autoreponder-settings', __('Autoresponder Settings', 'calibrefx'), array($this, 'autoresponder_settings'), $this->pagehook, 'main', 'high');
 
         do_action('calibrefx_other_settings_meta_box');
     }
@@ -289,7 +289,7 @@ if(isset($_POST['name']) && isset($_POST['url']) ){
     <?php
     }
 
-    public function autoresponder_settings(){
+    /*public function autoresponder_settings(){
     ?>
         <p>
             <label for="autoresponder_type"><strong><?php _e('Choose your autoresponder:', 'calibrefx'); ?></strong></label>
@@ -421,7 +421,7 @@ if(isset($_POST['name']) && isset($_POST['url']) ){
             });
         </script>
     <?php    
-    }
+    }*/
 
     protected function get_export_options() {
         $CFX = & calibrefx_get_instance();
