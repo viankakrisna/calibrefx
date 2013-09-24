@@ -274,7 +274,8 @@ img.wp-smiley,
 }
 
 #content{
-    margin: 0;
+    margin-top: 0;
+	margin-bottom: 0;
 }
 
 .sidebar-content #content{
@@ -310,7 +311,6 @@ img.wp-smiley,
 
 .widget_search{
     border-bottom: 0px;
-    margin-bottom: 20px;	
 }
 
 #footer-widget .widget{
@@ -319,7 +319,7 @@ img.wp-smiley,
 }
 
 .widgettitle{
-    margin: 10px 0 20px;
+    margin: 10px 0 10px;
 }
 
 .widget .textwidget {
