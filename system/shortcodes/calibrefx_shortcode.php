@@ -1326,7 +1326,7 @@ function calibrefx_post_item($atts, $content = null) {
  * ==============================================================
  */
 
-add_shortcode('contact_form', 'calibrefx_contact_form');
+/*add_shortcode('contact_form', 'calibrefx_contact_form');
 
 function calibrefx_contact_form($atts, $content = null) {
     global $calibrefx, $post;
@@ -1409,7 +1409,7 @@ function calibrefx_contact_form($atts, $content = null) {
 }
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_contact', CALIBREFX_SHORTCODE_URL . '/form-contact.php', 360, 200, __('Contact Form shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/contact.png');
-
+*/
 /**
  * remove unnecessary paragraf tag
  *  

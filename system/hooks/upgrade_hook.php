@@ -41,7 +41,7 @@ function calibrefx_update_check() {
 
     /** If it has expired, do an update check */
     if (!$calibrefx_update) {
-        $url = 'http://api.cfx.local/themes-update/';
+        $url = 'http://api.calibrefx.com/themes-update/';
         $options = apply_filters(
                         'calibrefx_update_remote_post_options', 
                         array(
