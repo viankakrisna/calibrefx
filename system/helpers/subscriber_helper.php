@@ -77,6 +77,7 @@ function calibrefx_submit_getresponse($form, $name, $email, $args = array()){
 	curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 5);
 	curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl_handle, CURLOPT_POST, 1);
+	curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $post_data);
 	$buffer = curl_exec($curl_handle);
 	calibrefx_log_message('debug', 'Return from getresponse: '.$buffer);
