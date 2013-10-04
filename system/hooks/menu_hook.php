@@ -175,17 +175,22 @@ function calibrefx_do_nav() {
                 %2$s
                 <div class="navbar-inner">
                     <div class="container">
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                        <a class="btn btn-navbar btn-link btn-menu-toggle" data-toggle="collapse" data-target=".nav-collapse">
+							<span class="menu-toggle">%5$s</span>
+						
+							<span class="menu-toggle-icon">
+								<i class="icon-bar"></i>
+								<i class="icon-bar"></i>
+								<i class="icon-bar"></i>
+							</span>
+							<span class="clearfix"></span>
                         </a>
-                    <div class="nav-collapse">%1$s</div>
+						<div class="nav-collapse">%1$s</div>
                     </div>
                 %3$s
                 </div>
             </div>
-            <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class);
+            <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class, __('MENU', 'calibrefx'));
         
         echo apply_filters('calibrefx_do_nav', $nav_output, $nav, $args);
     }
@@ -262,7 +267,7 @@ function calibrefx_custom_nav_icon($menu_item) {
 add_action( 'wp_update_nav_menu_item', 'calibrefx_update_custom_nav_fields', 10, 3 );
 function calibrefx_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
     // Check if element is properly sent
-    if ( is_array( $_REQUEST['menu-item-icon']) ) {
+    if ( isset($_REQUEST['menu-item-icon']) && is_array( $_REQUEST['menu-item-icon']) ) {
         $icon_menu = $_REQUEST['menu-item-icon'][$menu_item_db_id];
         update_post_meta( $menu_item_db_id, '_menu_item_custom_icon', $icon_menu );
     }

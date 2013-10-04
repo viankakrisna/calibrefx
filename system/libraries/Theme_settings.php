@@ -39,10 +39,9 @@ class CFX_Theme_Settings extends CFX_Admin {
         $this->page_id = 'calibrefx';
         $this->default_settings = apply_filters('calibrefx_theme_settings_defaults', array(
             'update' => 1,
-            'enable_bootstrap' => 1,
             'blog_title' => 'text',
             'header_right' => 0,
-            'layout_type' => 'fluid',
+            'layout_type' => 'static',
             'calibrefx_layout_width' => 960,
             'calibrefx_layout_wrapper_fixed' => 0,
             'site_layout' => calibrefx_get_default_layout(),
@@ -59,7 +58,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             'trackbacks_posts' => 1,
             'custom_css' => '',
             'content_archive' => 'full',
-            'content_archive_limit' => 250,
+            'content_archive_limit' => 500,
             'posts_nav' => 'older-newer',
             'header_scripts' => '',
             'footer_scripts' => '',
@@ -94,7 +93,6 @@ class CFX_Theme_Settings extends CFX_Admin {
         $calibrefx->security->add_sanitize_filter(
                 'one_zero', $this->settings_field, array(
                     'update',
-                    'enable_bootstrap',
                     'calibrefx_layout_wrapper_fixed',
                     'header_right',
                     'nav',
@@ -140,9 +138,9 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_section('layout', __('Layout Settings', 'calibrefx'), $calibrefx_target_form,2);
         calibrefx_add_meta_section('social', __('Social Settings', 'calibrefx'), $calibrefx_target_form,10);
         
-        if($calibrefx_user_ability == 'professor'){
+        /*if($calibrefx_user_ability == 'professor'){
             calibrefx_add_meta_section('email', __('Email Setting', 'calibrefx'), $calibrefx_target_form, 20);
-        }
+        }*/
 
         do_action('calibrefx_theme_settings_meta_section');
 
@@ -160,14 +158,15 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_box('general', 'professor', 'calibrefx-theme-settings-comment', __('Comment and Trackbacks', 'calibrefx'), array($this, 'comment_box'), $this->pagehook, 'side');
 
         calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), array($this, 'layout_box'), $this->pagehook, 'main', 'high');
-        calibrefx_add_meta_box('layout', 'professor', 'calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), array($this, 'custom_script_box'), $this->pagehook, 'side');
+        calibrefx_add_meta_box('layout', 'professor', 'calibrefx-theme-settings-custom-css', __('Themes Custom CSS', 'calibrefx'), array($this, 'custom_css_box'), $this->pagehook, 'side', 'high');
+        calibrefx_add_meta_box('layout', 'professor', 'calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), array($this, 'custom_script_box'), $this->pagehook, 'side', 'low');
 
 
         calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), array($this, 'feeds_box'), $this->pagehook, 'main');
         calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-social-link', __('Social Media Links', 'calibrefx'), array($this, 'social_link'), $this->pagehook, 'main');
         calibrefx_add_meta_box('social', 'professor', 'calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), array($this, 'socials_box'), $this->pagehook, 'side');
 
-        calibrefx_add_meta_box('email', 'professor', 'calibrefx-theme-settings-email', __('Mail Settings', 'calibrefx'), array($this, 'email_setting_box'), $this->pagehook, 'main', 'high');
+        //calibrefx_add_meta_box('email', 'professor', 'calibrefx-theme-settings-email', __('Mail Settings', 'calibrefx'), array($this, 'email_setting_box'), $this->pagehook, 'main', 'high');
 
         do_action('calibrefx_theme_settings_meta_box');
     }
@@ -215,7 +214,7 @@ class CFX_Theme_Settings extends CFX_Admin {
     function analytics_setting(){
     ?>
         <p>
-            <label for="analytic_id"><strong><?php _e('Google Analytics ID'); ?></strong></label>
+            <label for="analytic_id"><strong><?php _e('Google Analytics ID', 'calibrefx'); ?></strong></label>
         </p>
         <p>
             <input type="text" name="<?php echo $this->settings_field; ?>[analytic_id]" id="analytic_id" value="<?php echo esc_attr(calibrefx_get_option('analytic_id')); ?>" />
@@ -231,16 +230,6 @@ class CFX_Theme_Settings extends CFX_Admin {
         global $calibrefx_user_ability;
         if ($calibrefx_user_ability === 'professor') {
             ?>
-            <p><label><?php _e('Enable Bootstrap', 'calibrefx'); ?></label>
-                <label for="calibrefx-settings-checkbox-enable-bootstrap">
-                    <input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-bootstrap" value="1" <?php checked(1, calibrefx_get_option('enable_bootstrap')); ?> target="calibrefx-settings-enable-bootstrap" class="calibrefx-settings-checkbox"  />
-                </label>
-                <input type="hidden" name="<?php echo $this->settings_field; ?>[enable_bootstrap]" id="calibrefx-settings-enable-bootstrap" value="<?php echo calibrefx_get_option('enable_bootstrap'); ?>" />
-                <span class="description"><?php printf(__('This option will use Twitter Bootstrap as css and javascript libraries.', 'calibrefx'), admin_url('nav-menus.php')); ?></span>
-            </p>
-
-            <hr class="div" />
-
              <p><label><?php _e('Enable Mobile Site', 'calibrefx'); ?></label>
                 <label for="calibrefx-settings-checkbox-enable-mobile">
                     <input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-mobile" value="0" <?php checked(1, calibrefx_get_option('enable_mobile')); ?> target="calibrefx-settings-enable-mobile" class="calibrefx-settings-checkbox"  />
@@ -303,27 +292,32 @@ class CFX_Theme_Settings extends CFX_Admin {
         /**
          * Show setting box inside Theme Settings
          */
-        function custom_script_box() {
-            ?>
-        <p><?php _e("Custom CSS code will be output at <code>wp_head()</code>:", 'calibrefx'); ?></p>
-        <textarea name="<?php echo $this->settings_field; ?>[custom_css]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('custom_css'))); ?></textarea>
-        <p>
-            <span class="description"><?php _e('You can add your custom css codes here. Example: <code>a.hover {color:#ffffff}</code> .', 'calibrefx'); ?></span>
-        </p>
+        function custom_css_box() { ?>
+            <p><?php _e("Custom CSS code will be output at <code>wp_head()</code>:", 'calibrefx'); ?></p>
+                <textarea name="<?php echo $this->settings_field; ?>[custom_css]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('custom_css'))); ?></textarea>
+            <p>
+                <span class="description"><?php _e('You can add your custom css codes here. Example: <code>a.hover {color:#ffffff}</code> .', 'calibrefx'); ?></span>
+            </p>
+        <?php
+    }
 
-        <hr class="div" />
-
+        /**
+         * Show setting box inside Theme Settings
+         */
+        function custom_script_box() { ?>
         <p><?php _e("Header script will be output at <code>wp_head()</code>:", 'calibrefx'); ?></p>
-        <textarea name="<?php echo $this->settings_field; ?>[header_scripts]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('header_scripts'))); ?></textarea>
+            <textarea name="<?php echo $this->settings_field; ?>[header_scripts]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('header_scripts'))); ?></textarea>
         <p>
-            <span class="description"><?php _e('You can add your javascript at the head of the page. For example Google analytics code. <br/>Samples: <code>&lt;script type="text/javascript">alert("Hello World");&lt;/script></code>', 'calibrefx'); ?></span></p>
+            <span class="description"><?php _e('You can add your javascript at the head of the page. For example Google analytics code. <br/>Samples: <code>&lt;script type="text/javascript">alert("Hello World");&lt;/script></code>', 'calibrefx'); ?></span>
+        </p>
 
         <hr class="div" />
 
         <p><?php _e("Footer scripts will be output at <code>wp_footer()</code>:", 'calibrefx'); ?></p>
         <textarea name="<?php echo $this->settings_field; ?>[footer_scripts]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('footer_scripts'))); ?></textarea>
         <p>
-            <span class="description"><?php _e('You can add your javascript at the footer of the page. For example tracking code. <br/>Samples: <code>&lt;script type="text/javascript">alert("Hello World");&lt;/script></code>', 'calibrefx'); ?></span></p>
+            <span class="description"><?php _e('You can add your javascript at the footer of the page. For example tracking code. <br/>Samples: <code>&lt;script type="text/javascript">alert("Hello World");&lt;/script></code>', 'calibrefx'); ?></span>
+        </p>
         <?php
     }
 
@@ -396,7 +390,7 @@ class CFX_Theme_Settings extends CFX_Admin {
 
         <!-- breadcrumb breadcrumb_single -->
         <label for="calibrefx-settings-checkbox-breadcrumb-single">
-            <input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-single" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_single')); ?> target="calibrefx-settings-breadcrumb-single" class="calibrefx-settings-checkbox" /> <?php _e("Posts", 'calibrefx'); ?></label>
+        <input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-single" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_single')); ?> target="calibrefx-settings-breadcrumb-single" class="calibrefx-settings-checkbox" /> <?php _e("Posts", 'calibrefx'); ?></label>
         <input type="hidden" name="<?php echo $this->settings_field; ?>[breadcrumb_single]" id="calibrefx-settings-breadcrumb-single" value="<?php echo calibrefx_get_option('breadcrumb_single'); ?>" />
 
         <!-- breadcrumb breadcrumb_page -->
@@ -519,13 +513,6 @@ class CFX_Theme_Settings extends CFX_Admin {
             </select>
             <span class="description"><?php _e("This is open graph protocol that helo to identify your content. <br/>This will output: <code>&lt;meta property=\"og:type\" content=\"TYPE\"/></code>", 'calibrefx'); ?></span>
         </p>
-        <hr class="div" />
-        <h4><?php _e('Twitter Settings:', 'calibrefx'); ?></h4>
-        <p>
-            <label for="<?php echo $this->settings_field; ?>[twitter_username]"><?php _e('Twiiter Username:', 'calibrefx'); ?></label>
-            <input type="text" size="30" value="<?php echo calibrefx_get_option('twitter_username'); ?>" id="<?php echo $this->settings_field; ?>[twitter_username]" name="<?php echo $this->settings_field; ?>[twitter_username]">
-            <span class="description"><?php _e("This will use for Latest Tweets Widget to show your latest tweets on the sidebar or footer.", 'calibrefx'); ?></span>
-        </p>
         <?php
     }
 
@@ -576,7 +563,7 @@ class CFX_Theme_Settings extends CFX_Admin {
     /**
      * This function to do setting for the email settings
      */
-    function email_setting_box(){ ?>
+    /*function email_setting_box(){ ?>
          <p>
             <label for="<?php echo $this->settings_field; ?>[email_protocol]"><?php _e('Select Mail Protocol:', 'calibrefx');?></label>
             <select name="<?php echo $this->settings_field; ?>[email_protocol]" id="<?php echo $this->settings_field; ?>[email_protocol]">
@@ -683,6 +670,6 @@ class CFX_Theme_Settings extends CFX_Admin {
 
         
     <?php
-    }
+    }*/
 
 }

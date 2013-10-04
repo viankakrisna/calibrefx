@@ -20,7 +20,7 @@
  * @package CalibreFx
  */
 
-require_once CALIBREFX_LIBRARY_URI . '/third-party/minify/Minify.php';
+//require_once CALIBREFX_LIBRARY_URI . '/third-party/minify/Minify.php';
 
 class CFX_Minify {
 

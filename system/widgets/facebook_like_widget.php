@@ -53,7 +53,7 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
             'height' => 250,
         );
 
-        $this->WP_Widget('facebook-like', __('CalibreFx - Facebook Like Box', 'calibrefx'), $widget_ops, $control_ops);
+        $this->WP_Widget('facebook-like', __('Facebook Like Box (CalibreFx)', 'calibrefx'), $widget_ops, $control_ops);
     }
 
     /**

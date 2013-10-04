@@ -70,7 +70,7 @@ function calibrefx_wp_login_url() {
 add_filter('login_headerurl', 'calibrefx_wp_login_url');
 
 function calibrefx_wp_login_title() {
-    return apply_filters('calibrefx_wp_login_title', __('Powered By ') . FRAMEWORK_NAME . ' ' . FRAMEWORK_VERSION);
+    return apply_filters('calibrefx_wp_login_title', __('Powered By ', 'calibrefx') . FRAMEWORK_NAME . ' ' . FRAMEWORK_VERSION);
 }
 
 add_filter('login_headertitle', 'calibrefx_wp_login_title');

@@ -48,7 +48,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 			'description' => __( 'Display feature post with thumbnail', 'calibrefx' ),
 		);
 
-		$this->WP_Widget( 'feature-post', __( 'CalibreFx - Feature Post', 'calibrefx' ), $widget_ops );
+		$this->WP_Widget( 'feature-post', __( 'Feature Post (CalibreFx)', 'calibrefx' ), $widget_ops );
 
 	}
 	
@@ -78,6 +78,9 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 			if ( $featured_posts->have_posts() ) : while ( $featured_posts->have_posts() ) : $featured_posts->the_post();
 				echo '<div class="' . implode( ' ', get_post_class() ) . '">';
 			
+				if ( ! empty( $instance['show_title'] ) )
+					printf( '<h4 class="entry-title"><a href="%s" title="%s">%s</a></h4>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
+				
 				//Show image
 				if ( ! empty( $instance['show_image'] ) )
 					printf(
@@ -87,10 +90,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 						esc_attr( $instance['image_alignment'] ),
 						calibrefx_get_image( array( 'format' => 'html', 'size' => $instance['image_size'], ) )
 					);
-					
-				if ( ! empty( $instance['show_title'] ) )
-					printf( '<h4 class="entry-title"><a href="%s" title="%s">%s</a></h4>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
-					
+
 				if ( ! empty( $instance['show_content'] ) ) {
 					if ( empty( $instance['content_limit'] ) )
 						the_content( $instance['more_text'] );

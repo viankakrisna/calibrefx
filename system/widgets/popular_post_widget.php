@@ -41,7 +41,7 @@ class CFX_Popular_Post_Widget extends WP_Widget {
 			'description' => __( 'Display The Latest Posts', 'calibrefx' ),
 		);
 
-		$this->WP_Widget( 'popular-posts', __( 'Calibrefx - Popular Posts Widget With Thumbnail', 'calibrefx' ), $widget_ops );
+		$this->WP_Widget( 'popular-posts', __( 'Popular Posts Widget (Calibrefx)', 'calibrefx' ), $widget_ops );
 
 	}
 	

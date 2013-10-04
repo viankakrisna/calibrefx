@@ -80,10 +80,15 @@ final class Calibrefx {
         add_theme_support('post-thumbnails');
         add_theme_support('calibrefx-admin-menu');
         add_theme_support('calibrefx-custom-header');
+        add_theme_support('calibrefx-custom-background');
         add_theme_support('calibrefx-default-styles');
         add_theme_support('calibrefx-inpost-layouts');
         add_theme_support('calibrefx-responsive-style');
         add_theme_support('calibrefx-seo');
+
+        if(defined('WP_ENV') && WP_ENV != 'development'){
+            add_theme_support('calibrefx-admin-bar');
+        }
         //add_theme_support('calibrefx-preformance');
 
         if (!current_theme_supports('calibrefx-menus')) {
@@ -96,6 +101,12 @@ final class Calibrefx {
         if (!current_theme_supports('calibrefx-wraps'))
             add_theme_support('calibrefx-wraps', array('header', 'nav', 'subnav', 'inner', 'footer', 'footer-widget'));
         
+        if(is_admin()){
+            if (current_theme_supports('calibrefx-admin-bar')) {
+
+                $this->load->hook('admin_bar');
+            }
+        }
         //@TODO: Will do in better ways for custom post type
         add_post_type_support('post', array('calibrefx-seo', 'calibrefx-layouts'));
         add_post_type_support('page', array('calibrefx-seo', 'calibrefx-layouts'));

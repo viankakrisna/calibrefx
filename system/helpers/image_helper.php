@@ -65,7 +65,7 @@ function calibrefx_get_image($args = array()) {
     $defaults = apply_filters('calibrefx_get_image_default_args', $defaults);
 
     $args = wp_parse_args($args, $defaults);
-
+    
     // Allow child theme to short-circuit this function
     $pre = apply_filters('calibrefx_pre_get_image', false, $args, $post);
     if (false !== $pre)
@@ -74,7 +74,8 @@ function calibrefx_get_image($args = array()) {
     // check for feature image
     if (has_post_thumbnail() && ($args['num'] === 0)) {
         $id = (!empty($args['id']) ? $args['id'] : get_post_thumbnail_id());
-        $html = wp_get_attachment_image($id, $args['size'], false, $args['attr']);
+        //$html = wp_get_attachment_image($id, $args['size'], false, $args['attr']);
+        $html = get_the_post_thumbnail($post->ID, $args['size'], $args['attr']);
         list($url) = wp_get_attachment_image_src($id, $args['size'], false, $args['attr']);
     } else {
         $id = (!empty($args['id']) ? $args['id'] : calibrefx_get_image_id($args['num']));

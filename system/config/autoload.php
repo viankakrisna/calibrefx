@@ -34,7 +34,7 @@ $autoload['libraries'] = array('cache','breadcrumb','security','replacer','form'
 
 $autoload['helpers'] = array('debug','format', 'image', 'html', 'url', 'widget', 
                              'option', 'layout', 'meta_box','nav','post','seo', 
-                             'user','script','admin_menu', 'mobile', 'subscriber');
+                             'user','script','admin_menu', 'mobile');
 
 /*
  *  Auto-load Config files
@@ -46,7 +46,7 @@ $autoload['configs'] = array();
  */
 $autoload['widgets'] = array('Facebook_Comment', 'Facebook_Like', 'Feature_Page_Slider', 
                             'Feature_Page', 'Feature_Post_Slider', 'Feature_Post',
-                            'Subscriber', 'Twitter_Box', 'Twitter_Timeline', 'Latest_Post', 'Popular_Post');
+                            'Subscriber', 'Twitter_Timeline', 'Latest_Post', 'Popular_Post');
 
 /*
  *  Auto-load Config files
@@ -57,9 +57,9 @@ $autoload['models'] = array('theme_settings_m', 'seo_settings_m', 'other_setting
  *  Auto-load Config files
  */
 $autoload['hooks'] = array('header', 'logo', 'script', 'widget','layout', 'menu', 
-                          'login','user','admin_bar','post','inpost','comments', 'footer',
+                          'login','user','post','inpost','comments', 'footer',
                           'sidebar','seo','performance','search','third_party','upgrade', 'ajax', 
-                          'admin_ajax', 'mobile', 'form_submit', 'admin');
+                          'admin_ajax', 'mobile', 'form_submit', 'admin', 'customizer');
 
 /*
  *  Auto-load Shortcode files

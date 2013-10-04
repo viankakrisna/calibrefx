@@ -50,7 +50,7 @@ function calibrefx_footer_scrolltop_shortcode($atts) {
 
     $nofollow = $atts['nofollow'] ? 'rel="nofollow"' : '';
 
-    $output = sprintf('%s<a href="%s" %s><i class="icon-upload icon-white"></i>%s</a>%s', $atts['before'], esc_url($atts['href']), $nofollow, $atts['text'], $atts['after']);
+    $output = sprintf('%s<a href="%s" %s><i class="icon-upload icon-white"></i> %s</a>%s', $atts['before'], esc_url($atts['href']), $nofollow, $atts['text'], $atts['after']);
 
     return apply_filters('calibrefx_footer_scrolltop_shortcode', $output, $atts);
 }
@@ -73,7 +73,7 @@ function calibrefx_footer_copyright_shortcode($atts) {
     );
     $atts = shortcode_atts($defaults, $atts);
 
-    $output = $atts['before'] . $atts['copyright'] . ' ';
+    $output = $atts['before'] . $atts['copyright'];
     if ('' != $atts['first'] && date('Y') != $atts['first'])
         $output .= $atts['first'] . g_ent('&ndash;');
     $output .= date('Y') . $atts['after'];
@@ -92,7 +92,7 @@ add_shortcode('footer_theme_link', 'calibrefx_footer_theme_link_shortcode');
 function calibrefx_footer_theme_link_shortcode($atts) {
 
     $defaults = array(
-        'before' => '&middot;',
+        'before' => '&middot; ',
         'after' => ''
     );
     $atts = shortcode_atts($defaults, $atts);
@@ -116,7 +116,7 @@ add_shortcode('footer_calibrefx_link', 'calibrefx_footer_calibrefx_link_shortcod
 function calibrefx_footer_calibrefx_link_shortcode($atts) {
 
     $defaults = array(
-        'before' => '&middot;',
+        'before' => '&middot; ',
         'after' => ''
     );
     $atts = shortcode_atts($defaults, $atts);
@@ -137,7 +137,7 @@ add_shortcode('footer_wordpress_link', 'calibrefx_footer_wordpress_link_shortcod
 function calibrefx_footer_wordpress_link_shortcode($atts) {
 
     $defaults = array(
-        'before' => '&middot;',
+        'before' => '&middot; ',
         'after' => ''
     );
     $atts = shortcode_atts($defaults, $atts);
@@ -158,7 +158,7 @@ add_shortcode('footer_home_link', 'calibrefx_footer_home_link_shortcode');
 function calibrefx_footer_home_link_shortcode($atts) {
 
     $defaults = array(
-        'before' => '&middot;',
+        'before' => '&middot; ',
         'after' => ''
     );
     $atts = shortcode_atts($defaults, $atts);
