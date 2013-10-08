@@ -980,6 +980,7 @@ input[type="submit"].searchsubmit{
 .social-bookmark{
     display: inline-block;
     margin-right: 5px;
+    vertical-align: top;
 }
 
 .social-bookmark.facebook-like{
