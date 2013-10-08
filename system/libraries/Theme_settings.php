@@ -138,9 +138,9 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_section('layout', __('Layout Settings', 'calibrefx'), $calibrefx_target_form,2);
         calibrefx_add_meta_section('social', __('Social Settings', 'calibrefx'), $calibrefx_target_form,10);
         
-        if($calibrefx_user_ability == 'professor'){
+        /*if($calibrefx_user_ability == 'professor'){
             calibrefx_add_meta_section('email', __('Email Setting', 'calibrefx'), $calibrefx_target_form, 20);
-        }
+        }*/
 
         do_action('calibrefx_theme_settings_meta_section');
 
@@ -166,7 +166,7 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-social-link', __('Social Media Links', 'calibrefx'), array($this, 'social_link'), $this->pagehook, 'main');
         calibrefx_add_meta_box('social', 'professor', 'calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), array($this, 'socials_box'), $this->pagehook, 'side');
 
-        calibrefx_add_meta_box('email', 'professor', 'calibrefx-theme-settings-email', __('Mail Settings', 'calibrefx'), array($this, 'email_setting_box'), $this->pagehook, 'main', 'high');
+        //calibrefx_add_meta_box('email', 'professor', 'calibrefx-theme-settings-email', __('Mail Settings', 'calibrefx'), array($this, 'email_setting_box'), $this->pagehook, 'main', 'high');
 
         do_action('calibrefx_theme_settings_meta_box');
     }
@@ -390,7 +390,7 @@ class CFX_Theme_Settings extends CFX_Admin {
 
         <!-- breadcrumb breadcrumb_single -->
         <label for="calibrefx-settings-checkbox-breadcrumb-single">
-            <input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-single" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_single')); ?> target="calibrefx-settings-breadcrumb-single" class="calibrefx-settings-checkbox" /> <?php _e("Posts", 'calibrefx'); ?></label>
+        <input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-single" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_single')); ?> target="calibrefx-settings-breadcrumb-single" class="calibrefx-settings-checkbox" /> <?php _e("Posts", 'calibrefx'); ?></label>
         <input type="hidden" name="<?php echo $this->settings_field; ?>[breadcrumb_single]" id="calibrefx-settings-breadcrumb-single" value="<?php echo calibrefx_get_option('breadcrumb_single'); ?>" />
 
         <!-- breadcrumb breadcrumb_page -->
@@ -563,7 +563,7 @@ class CFX_Theme_Settings extends CFX_Admin {
     /**
      * This function to do setting for the email settings
      */
-    function email_setting_box(){ ?>
+    /*function email_setting_box(){ ?>
          <p>
             <label for="<?php echo $this->settings_field; ?>[email_protocol]"><?php _e('Select Mail Protocol:', 'calibrefx');?></label>
             <select name="<?php echo $this->settings_field; ?>[email_protocol]" id="<?php echo $this->settings_field; ?>[email_protocol]">
@@ -670,6 +670,6 @@ class CFX_Theme_Settings extends CFX_Admin {
 
         
     <?php
-    }
+    }*/
 
 }

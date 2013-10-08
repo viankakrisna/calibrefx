@@ -63,9 +63,8 @@ add_action('get_header', 'calibrefx_load_scripts');
 function calibrefx_load_scripts() {
     wp_enqueue_script('modernizr');
     wp_enqueue_script('calibrefx-script');
-    if (calibrefx_get_option('enable_bootstrap')) {
-        wp_enqueue_script('calibrefx-bootstrap');
-    }
+    wp_enqueue_script('calibrefx-bootstrap');
+    
     if (is_singular() && get_option('thread_comments') && comments_open()) {
         wp_enqueue_script('comment-reply');
     }

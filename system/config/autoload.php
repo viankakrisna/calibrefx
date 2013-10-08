@@ -34,7 +34,7 @@ $autoload['libraries'] = array('cache','breadcrumb','security','replacer','form'
 
 $autoload['helpers'] = array('debug','format', 'image', 'html', 'url', 'widget', 
                              'option', 'layout', 'meta_box','nav','post','seo', 
-                             'user','script','admin_menu', 'mobile', 'subscriber');
+                             'user','script','admin_menu', 'mobile');
 
 /*
  *  Auto-load Config files

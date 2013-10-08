@@ -1326,7 +1326,7 @@ function calibrefx_post_item($atts, $content = null) {
  * ==============================================================
  */
 
-add_shortcode('contact_form', 'calibrefx_contact_form');
+add_shortcode('contactform', 'calibrefx_contact_form');
 
 function calibrefx_contact_form($atts, $content = null) {
     global $calibrefx, $post;

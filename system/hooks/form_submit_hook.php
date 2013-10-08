@@ -20,7 +20,7 @@
  * @package CalibreFx
  */
 
-add_action('wp_loaded', 'form_submit_handler', 15);
+/*add_action('wp_loaded', 'form_submit_handler', 15);
 function form_submit_handler(){
 	$CFX = & calibrefx_get_instance();
 
@@ -162,7 +162,7 @@ function form_submit_handler(){
 			default : break;
 		}
 	}
-}
+}*/
 
 add_action('calibrefx_after_wrapper', 'form_submit_notification_handler', 20);
 function form_submit_notification_handler(){

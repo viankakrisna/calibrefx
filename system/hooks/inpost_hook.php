@@ -132,11 +132,15 @@ function calibrefx_inpost_layout_save($post_id, $post) {
         delete_post_meta($post_id, '_calibrefx_custom_post_class');
 }
 
-if(current_theme_supports('calibrefx-seo') && (calibrefx_get_option('enable_seo', 'seo_settings_m'))){
-    add_action('admin_menu', 'calibrefx_add_inpost_seo_box');
-}
+// @TODO: Error here 
+/*add_action( 'admin_menu', 'calibrefx_add_seo_inpost_box' );
+function calibrefx_add_seo_inpost_box(){
+    if(current_theme_supports('calibrefx-seo') && (calibrefx_get_option('enable_seo', 'seo_settings_m'))){
+        add_action('admin_menu', 'calibrefx_add_inpost_seo_box');
+    }
+}*/
 
-
+add_action('admin_menu', 'calibrefx_add_inpost_seo_box');
 /**
  * Register a new meta box to the post / page edit screen, so that the user can
  * set SEO options on a per-post or per-page basis.
