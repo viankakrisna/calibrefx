@@ -1128,11 +1128,13 @@ function calibrefx_twitter($atts, $content = null) {
 add_shortcode('tweet', 'calibrefx_tweet');
 
 function calibrefx_tweet($atts, $content = null) {
+    global $post;
+
     extract(shortcode_atts(array(
         'url' => get_permalink(),
         'count' => 'vertical',
         'size' => 'medium',
-        'text' => ''
+        'text' => get_the_content_limit('100', '')
     ), $atts));
     
     $attr = '';
@@ -1198,9 +1200,17 @@ function calibrefx_pinterest($atts, $content = null) {
 add_shortcode('linkedin', 'calibrefx_linkedin');
 
 function calibrefx_linkedin($atts, $content = null){
-    extract(shortcode_atts(array(), $atts));
+    global $post;
 
-    $output = '<span class="social-bookmark linkedin-button"><script type="IN/Share" data-counter="right"></script></span>';
+    extract(shortcode_atts(array(
+        'counter' => 'right',
+        'url' => get_permalink()
+    ), $atts));
+
+    if(!empty($width)) $attr .=' data-counter="'.$counter.'"';
+    if(!empty($url)) $attr .=' data-url="'.$url.'"';
+
+    $output = '<span class="social-bookmark linkedin-button"><script type="IN/Share"'.$attr.'></script></span>';
 
 	wp_enqueue_script( 'calibrefx-linkedin-widget', 'http://platform.linkedin.com/in.js', array(), false, true);
 	
