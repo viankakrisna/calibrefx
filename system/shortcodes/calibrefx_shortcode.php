@@ -1134,7 +1134,7 @@ function calibrefx_tweet($atts, $content = null) {
         'url' => get_permalink(),
         'count' => 'vertical',
         'size' => 'medium',
-        'text' => get_the_content_limit('100', '')
+        'text' => get_the_content_limit('100', '', 0, '', '')
     ), $atts));
     
     $attr = '';
