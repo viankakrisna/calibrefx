@@ -163,7 +163,7 @@ h1, h2, h3, h4, h5, h6{
     color: #fff;
 }
 
-/ Calendar Widget /
+/* Calendar Widget */
 .widget_calendar table,
 .widget_calendar td {
     border: 0;
