@@ -1128,10 +1128,13 @@ function calibrefx_twitter($atts, $content = null) {
 add_shortcode('tweet', 'calibrefx_tweet');
 
 function calibrefx_tweet($atts, $content = null) {
+    global $post;
+
     extract(shortcode_atts(array(
         'url' => get_permalink(),
         'count' => 'vertical',
         'size' => 'medium',
+        'text' => ''
     ), $atts));
     
     $attr = '';
@@ -1139,6 +1142,7 @@ function calibrefx_tweet($atts, $content = null) {
     if(!empty($url)) $attr .=' data-url="'.$url.'"';
     if(!empty($count)) $attr .=' data-count="'.$count.'"';
     if(!empty($size)) $attr .=' data-size="'.$size.'"';
+    if(!empty($text)) $attr .= ' data-text="'.$text.'"';
 
     $output = '<span class="social-bookmark tweet-share"><a href="https://twitter.com/share" class="twitter-share-button"'.$attr.'>Tweet</a></span>';
 
@@ -1196,9 +1200,17 @@ function calibrefx_pinterest($atts, $content = null) {
 add_shortcode('linkedin', 'calibrefx_linkedin');
 
 function calibrefx_linkedin($atts, $content = null){
-    extract(shortcode_atts(array(), $atts));
+    global $post;
 
-    $output = '<span class="social-bookmark linkedin-button"><script type="IN/Share" data-counter="right"></script></span>';
+    extract(shortcode_atts(array(
+        'counter' => 'right',
+        'url' => get_permalink()
+    ), $atts));
+
+    if(!empty($width)) $attr .=' data-counter="'.$counter.'"';
+    if(!empty($url)) $attr .=' data-url="'.$url.'"';
+
+    $output = '<span class="social-bookmark linkedin-button"><script type="IN/Share"'.$attr.'></script></span>';
 
 	wp_enqueue_script( 'calibrefx-linkedin-widget', 'http://platform.linkedin.com/in.js', array(), false, true);
 	
@@ -1326,7 +1338,7 @@ function calibrefx_post_item($atts, $content = null) {
  * ==============================================================
  */
 
-/*add_shortcode('contact_form', 'calibrefx_contact_form');
+add_shortcode('contactform', 'calibrefx_contact_form');
 
 function calibrefx_contact_form($atts, $content = null) {
     global $calibrefx, $post;
@@ -1409,7 +1421,7 @@ function calibrefx_contact_form($atts, $content = null) {
 }
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_contact', CALIBREFX_SHORTCODE_URL . '/form-contact.php', 360, 200, __('Contact Form shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/contact.png');
-*/
+
 /**
  * remove unnecessary paragraf tag
  *  

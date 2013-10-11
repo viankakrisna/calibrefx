@@ -364,6 +364,9 @@ add_action('calibrefx_meta', 'calibrefx_do_fb_og');
  * This function adds dublin core meta in header
  */
 function calibrefx_do_fb_og() {
+
+    if(!current_theme_supports( 'calibrefx-open-graph' )) return;
+
     if(is_home()){
         $url = home_url();
     }else{
