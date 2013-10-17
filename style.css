@@ -277,7 +277,9 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .pagination ul > li > span.hellip{
-	background-color: transparent;	
+    background-color: transparent;  
+    border: 1px solid #ccc;
+    border-right: none;
 }
 
 .pager a {
