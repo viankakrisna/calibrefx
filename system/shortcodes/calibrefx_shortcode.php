@@ -103,11 +103,7 @@ function calibrefx_youtube_thumbnail($atts, $content = null) {
     parse_str($video_query, $vars);
 
     // get image url from youtube
-    $remote = wp_remote_retrieve_body(
-    wp_remote_request(
-            sprintf('http://gdata.youtube.com/feeds/api/videos/'. $vars['v'] .'?v=2&alt=json'), array('timeout' => 100,)
-        )
-    );
+    $remote = wp_remote_retrieve_body(wp_remote_request(sprintf("http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json", $vars['v']), array('timeout' => 100)));
 
     $youtube_data = json_decode($remote, true);
 

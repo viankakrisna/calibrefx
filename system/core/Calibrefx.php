@@ -85,6 +85,7 @@ final class Calibrefx {
         add_theme_support('calibrefx-inpost-layouts');
         add_theme_support('calibrefx-responsive-style');
         add_theme_support('calibrefx-seo');
+        add_theme_support('calibrefx-open-graph');
 
         if(defined('WP_ENV') && WP_ENV != 'development'){
             add_theme_support('calibrefx-admin-bar');
