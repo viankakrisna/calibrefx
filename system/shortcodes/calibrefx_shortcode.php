@@ -1203,6 +1203,8 @@ function calibrefx_linkedin($atts, $content = null){
         'url' => get_permalink()
     ), $atts));
 
+	$attr = '';
+	
     if(!empty($width)) $attr .=' data-counter="'.$counter.'"';
     if(!empty($url)) $attr .=' data-url="'.$url.'"';
 
