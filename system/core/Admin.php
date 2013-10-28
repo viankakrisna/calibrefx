@@ -389,8 +389,7 @@ abstract class CFX_Admin {
 				jQuery('.calibrefx-tab-option li').each(function(){
 					height += jQuery(this).height();
 				});
-				console.info(calibrefx_option.height());
-                console.info(height);
+				
 				if(calibrefx_option.height() < height){
 					calibrefx_option.height(height);
 				}
