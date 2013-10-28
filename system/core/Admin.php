@@ -260,7 +260,7 @@ abstract class CFX_Admin {
         $calibrefx_theme = wp_get_theme();
         ?>
         <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes <?php echo $calibrefx_current_section; ?>">
-            <form method="post" action="<?php echo $this->_submit_url; ?>" enctype="multipart/form-data">
+            <form method="post" action="<?php echo $this->_submit_url; ?>" enctype="multipart/form-data" id="calibrefx-form">
                 <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
                 <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
                 <?php settings_fields($this->settings_field); // important! ?>
