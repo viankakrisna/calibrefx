@@ -59,7 +59,7 @@ function calibrefx_custom_header() {
         'width' => 260,
         'height' => 100,
         'default-text-color' => '333333',
-        'default-image' => '%s/header.png',
+        'default-image' => CALIBREFX_IMAGES_URL . '/header.png',
         'header-text' => true,
         'wp-head-callback' => 'calibrefx_custom_header_style',
         'admin-head-callback' => 'calibrefx_custom_header_admin_style'
@@ -67,10 +67,10 @@ function calibrefx_custom_header() {
 
     /** Define all the constants */
     if (!defined('HEADER_IMAGE_WIDTH') && is_numeric($args['width']))
-        define('HEADER_IMAGE_WIDTH', $args['width']);
+        define('HEADER_IMAGE_WIDTH', apply_filters('calibrefx_logo_width', $args['width']));
 
     if (!defined('HEADER_IMAGE_HEIGHT') && is_numeric($args['height']))
-        define('HEADER_IMAGE_HEIGHT', $args['height']);
+        define('HEADER_IMAGE_HEIGHT', apply_filters('calibrefx_logo_height', $args['height']));
 
     if (!defined('HEADER_TEXTCOLOR') && $args['default-text-color'])
         define('HEADER_TEXTCOLOR', $args['default-text-color']);
@@ -79,7 +79,7 @@ function calibrefx_custom_header() {
         define('HEADER_TEXT', $args['header-text']);
 
     if (!defined('HEADER_IMAGE') && $args['default-image'])
-        define('HEADER_IMAGE', sprintf($args['default-image'], apply_filters('calibrefx_images_url', CALIBREFX_IMAGES_URL)));
+        define('HEADER_IMAGE', apply_filters('calibrefx_logo_url', $args['default-image']));
 
     /** Activate Custom Header */
     add_theme_support( 'custom-header', $args );
