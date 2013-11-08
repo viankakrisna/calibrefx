@@ -558,8 +558,6 @@ class CFX_Theme_Settings extends CFX_Admin {
             <span class="description"><?php _e("This will use for Pinterest link, and it will show if using the Social Widget", 'calibrefx'); ?></span>
         </p>
         <?php
-		
-		do_action('calibrefx_another_social_media_link');
     }
 
     /**
