@@ -51,7 +51,10 @@ function calibrefx_do_breadcrumbs() {
     calibrefx_breadcrumb();
 }
 
-add_action('calibrefx_before_content_wrapper', 'calibrefx_do_content_open', 5);
+if(current_theme_supports('calibrefx-version-1.0'))
+    add_action('calibrefx_before_content_wrapper', 'calibrefx_do_content_open', 5);
+else
+    add_action('calibrefx_before_content', 'calibrefx_do_content_open', 5);
 
 /**
  * Add wrapper after .inner
@@ -60,7 +63,10 @@ function calibrefx_do_content_open() {
     calibrefx_put_wrapper('inner', 'open');
 }
 
-add_action('calibrefx_after_content_wrapper', 'calibrefx_do_content_close', 15);
+if(current_theme_supports('calibrefx-version-1.0'))
+    add_action('calibrefx_after_content_wrapper', 'calibrefx_do_content_close', 15);
+else
+    add_action('calibrefx_after_content', 'calibrefx_do_content_close', 15);
 
 /**
  * Add close wrapper before .inner close

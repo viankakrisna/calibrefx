@@ -59,10 +59,20 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
     $row_class = calibrefx_row_class();
     switch ($output) {
         case 'open':
-            $output = '<div class="wrap '.$row_class.'">';
+            if(current_theme_supports('calibrefx-version-1.0')){
+                $output = '<div class="wrap '.$row_class.'">';
+            }else{
+                $output = '<div class="container"><div class="wrap '.$row_class.'">';
+            }
+            
             break;
         case 'close':
-            $output = '</div><!-- end .wrap -->';
+            if(current_theme_supports('calibrefx-version-1.0')){
+                $output = '</div><!-- end .wrap -->';
+            }else{
+                $output = '</div><!-- end .wrap --></div><!-- end .container -->';
+            }
+
             break;
     }
 
@@ -249,7 +259,11 @@ function calibrefx_layout_selector($args = array()) {
  * @return string
  */
 function calibrefx_row_class() {
-    $rowClass = 'row-fluid';
+    if(current_theme_supports('calibrefx-version-1.0')){
+        $rowClass = 'row-fluid';
+    }else{
+        $rowClass = 'row';
+    }
 
     return apply_filters( 'calibrefx_row_class', $rowClass );
 }
@@ -269,9 +283,28 @@ function row_class() {
  * @return string
  */
 function calibrefx_container_class() {
-    $containerClass = 'container-fluid';
+    $containerClass = '';
+
+    if(current_theme_supports('calibrefx-version-1.0')){
+        $containerClass = 'container-fluid';
+    }else{
+        $layout_type = calibrefx_get_option('layout_type');
+        $calibrefx_layout_wrapper_fixed = calibrefx_get_option('calibrefx_layout_wrapper_fixed');
+
+        if($layout_type == 'fluid'){
+            $containerClass = 'container';
+        }elseif($layout_type == 'static'){
+            if($calibrefx_layout_wrapper_fixed){
+                $containerClass = 'container';
+            }else{
+                $containerClass = '';
+            }
+        }
+    }
 
     return apply_filters( 'calibrefx_container_class', $containerClass );
+
+
 }
 
 function calibrefx_set_layout($layout){

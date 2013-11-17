@@ -282,7 +282,11 @@ function calibrefx() {
 
     do_action('calibrefx_before_content_wrapper');
 
-    $content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_wrapper_class', '' );
+    $content_wrapper_class = '';
+    if(current_theme_supports('calibrefx-version-1.0'))
+        $content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_wrapper_class', '' );
+    else
+        $content_wrapper_class = '';
     ?>
     <div id="content-wrapper" class="<?php echo $content_wrapper_class; ?>" >
         <?php do_action('calibrefx_before_content'); ?>

@@ -51,7 +51,7 @@ function calibrefx_print_doctype() {?>
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <?php
 }
 
@@ -266,11 +266,12 @@ add_action('wp_head', 'calibrefx_print_wrap');
  * Print .wrap style
  */
 function calibrefx_print_wrap() {
-    // For mobile enabled style & width fixed layout
-    if ( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {   
-        // wrapper fixed layout
-        if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
-            $wrap = sprintf('
+    if(current_theme_supports('calibrefx-version-1.0')){
+        // For mobile enabled style & width fixed layout
+        if ( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {   
+            // wrapper fixed layout
+            if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
+                $wrap = sprintf('
 @media (min-width: %dpx){
     #wrapper{
         width: %dpx;
@@ -278,8 +279,8 @@ function calibrefx_print_wrap() {
         margin-right: auto
     }
 }', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
-        }else{
-            $wrap = sprintf('
+            }else{
+                $wrap = sprintf('
 @media (min-width: %dpx){
     .wrap.row-fluid{
          width: %dpx;
@@ -287,23 +288,23 @@ function calibrefx_print_wrap() {
          margin-right: auto
     }
 }', calibrefx_get_option("calibrefx_layout_width")+40, calibrefx_get_option("calibrefx_layout_width"));
+            }
+
+            printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
         }
 
-        printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
-    }
-
-    // For mobile disabled style & width fixed layout
-    if ( !current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {
-        // wrapper fixed layout
-        if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
-            $wrap = sprintf('
+        // For mobile disabled style & width fixed layout
+        if ( !current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {
+            // wrapper fixed layout
+            if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
+                $wrap = sprintf('
 #wrapper{
     width: %dpx;
     margin-left: auto;
     margin-right: auto
 }', calibrefx_get_option("calibrefx_layout_width"));
-        }else{
-            $wrap = sprintf('
+            }else{
+                $wrap = sprintf('
 .wrap.row-fluid{
     width: %dpx;
     margin-left: auto;
@@ -312,12 +313,12 @@ function calibrefx_print_wrap() {
 #header, #nav, #subnav, #inner, #footer, #footer-widget{
     min-width: %dpx;
 }', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
+            }
+
+            printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
         }
 
-        printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
-    }
-
-    $wrap_ie = sprintf('
+        $wrap_ie = sprintf('
 .wrap.row-fluid{
     width: %1$dpx;
     margin-left: auto;
@@ -327,8 +328,22 @@ function calibrefx_print_wrap() {
     min-width: %1$dpx;
 }', calibrefx_get_option("calibrefx_layout_width"));
 
-    if( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {
-        printf('<!--[if lt IE 9]>'."\n".'<style type="text/css">%1$s'."\n".'</style>'."\n".'<![endif]-->'."\n", $wrap_ie);
+        if( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {
+            printf('<!--[if lt IE 9]>'."\n".'<style type="text/css">%1$s'."\n".'</style>'."\n".'<![endif]-->'."\n", $wrap_ie);
+        }
+    }else{
+        if ( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {   
+            $wrap = sprintf('
+.container{
+    width: %dpx;
+}', calibrefx_get_option("calibrefx_layout_width"));
+            
+            printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
+        }
+
+        // @TODO : style for non responsive
+
+        // @TODO : style for ie wrapper
     }
 }
 
@@ -413,8 +428,12 @@ add_action('calibrefx_header', 'calibrefx_do_header_open', 5);
  * Open header markup
  */
 function calibrefx_do_header_open() {
-    $header_class = apply_filters( 'header_class', calibrefx_row_class() );
-    echo '<div id="header" class="'.$header_class.'">';
+    if(current_theme_supports('calibrefx-version-1.0')){
+        $header_class = apply_filters( 'header_class', calibrefx_row_class() );
+        echo '<div id="header" class="'.$header_class.'">';
+    }else{
+        echo '<div id="header">';
+    }
 }
 
 add_action('calibrefx_header', 'calibrefx_do_header_wrapper_open', 10);

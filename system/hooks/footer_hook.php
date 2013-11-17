@@ -128,8 +128,12 @@ add_action('calibrefx_footer', 'calibrefx_do_footer_open', 5);
  * Open footer markup
  */
 function calibrefx_do_footer_open() {
-    $footer_class = apply_filters( 'footer_class', calibrefx_row_class() );
-    echo '<div id="footer" class="'.$footer_class.'">';
+    if(current_theme_supports('calibrefx-version-1.0')){
+        $footer_class = apply_filters( 'footer_class', calibrefx_row_class() );
+        echo '<div id="footer" class="'.$footer_class.'">';
+    }else{
+        echo '<div id="footer">';
+    }
 }
 
 add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_row_open', 7);

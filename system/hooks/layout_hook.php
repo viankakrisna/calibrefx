@@ -145,13 +145,24 @@ function calibrefx_content_span() {
     $site_layout = calibrefx_site_layout();
 
     // don't load sidebar on pages that don't need it
-    if ($site_layout == 'full-width-content')
-        return apply_filters('calibrefx_content_span', 'span12 first');
+    if(current_theme_supports('calibrefx-version-1.0')){
+        if ($site_layout == 'full-width-content')
+            return apply_filters('calibrefx_content_span', 'span12 first');
 
-    if ($site_layout == 'sidebar-content-sidebar')
-        return apply_filters('calibrefx_content_span', 'span6');
+        if ($site_layout == 'sidebar-content-sidebar')
+            return apply_filters('calibrefx_content_span', 'span6');
 
-    return apply_filters('calibrefx_content_span', 'span8');
+        return apply_filters('calibrefx_content_span', 'span8');
+    }else{
+        if ($site_layout == 'full-width-content')
+            return apply_filters('calibrefx_content_span', 'col-lg-12 col-md-12 col-sm-12 col-xs-12 first');
+
+        if ($site_layout == 'sidebar-content-sidebar')
+            return apply_filters('calibrefx_content_span', 'col-lg-6 col-md-6 col-sm-12 col-xs-12');
+
+        return apply_filters('calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12');
+    }
+    
 }
 
 /**
@@ -165,10 +176,17 @@ function calibrefx_sidebar_span() {
     if ($site_layout == 'full-width-content')
         return;
 
-    if ($site_layout == 'sidebar-content-sidebar')
-        return apply_filters('calibrefx_sidebar_span', 'span3');
+    if(current_theme_supports('calibrefx-version-1.0')){
+        if ($site_layout == 'sidebar-content-sidebar')
+            return apply_filters('calibrefx_sidebar_span', 'span3');
 
-    return apply_filters('calibrefx_sidebar_span', 'span4');
+        return apply_filters('calibrefx_sidebar_span', 'span4');
+    }else{
+        if ($site_layout == 'sidebar-content-sidebar')
+            return apply_filters('calibrefx_sidebar_span', 'col-lg-3 col-md-3 col-sm-12 col-xs-12');
+
+        return apply_filters('calibrefx_sidebar_span', 'col-lg-4 col-md-4 col-sm-12 col-xs-12');
+    }
 }
 
 add_action('calibrefx_after_content', 'calibrefx_get_sidebar');

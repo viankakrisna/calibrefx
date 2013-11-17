@@ -151,47 +151,83 @@ function calibrefx_do_nav() {
 
     if (calibrefx_get_option('nav')) {
         if (has_nav_menu('primary')) {
+            if(current_theme_supports('calibrefx-version-1.0')){
+                $args = array(
+                    'theme_location' => 'primary',
+                    'container' => '',
+                    'menu_class' => calibrefx_get_option('nav_fixed_top') ? 'navbar navbar-fixed-top menu-primary menu superfish sf-js-enabled' : 'superfish sf-js-enabled nav menu-primary menu',
+                    'echo' => 0,
+                    'walker' => $calibrefx->walker_nav_menu,
+                );
+            }else{
+                $args = array(
+                    'theme_location' => 'primary',
+                    'container' => '',
+                    'menu_class' => calibrefx_get_option('nav_fixed_top') ? 'navbar navbar-default navbar-fixed-top menu-primary menu superfish sf-js-enabled' : 'superfish sf-js-enabled nav navbar-nav menu-primary menu',
+                    'echo' => 0,
+                    'walker' => $calibrefx->walker_nav_menu,
+                );
+            }
 
-            $args = array(
-                'theme_location' => 'primary',
-                'container' => '',
-                'menu_class' => calibrefx_get_option('nav_fixed_top') ? 'navbar navbar-fixed-top menu-primary menu superfish sf-js-enabled' : 'superfish sf-js-enabled nav menu-primary menu',
-                'echo' => 0,
-                'walker' => $calibrefx->walker_nav_menu,
-            );
             $nav = wp_nav_menu($args);
-        }
-        else{
-            $nav = '<ul id="menu-primary-i" class="superfish sf-js-enabled nav menu-primary menu">
-            <li id="menu-item-812" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-800 current_page_item menu-item-812"><a href="#"><i class="icon-home"></i>&nbsp;&nbsp;Homepage</a></li>
-            <li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-813"><a href="#"><i class="icon-comment"></i>&nbsp;&nbsp;About Us</a></li>
-            <li id="menu-item-817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-817"><a href="#"><i class="icon-envelope-alt"></i>&nbsp;&nbsp;Contact Page</a></li>
-        </ul>';
+        } else{
+            if(current_theme_supports('calibrefx-version-1.0')){
+                $nav = '<ul id="menu-primary-i" class="superfish sf-js-enabled nav menu-primary menu">
+                    <li id="menu-item-812" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-800 current_page_item menu-item-812"><a href="#"><i class="icon-home"></i>&nbsp;&nbsp;Homepage</a></li>
+                    <li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-813"><a href="#"><i class="icon-comment"></i>&nbsp;&nbsp;About Us</a></li>
+                    <li id="menu-item-817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-817"><a href="#"><i class="icon-envelope-alt"></i>&nbsp;&nbsp;Contact Page</a></li>
+                 </ul>';
+            }else{
+                $nav = '<ul id="menu-primary-i" class="superfish sf-js-enabled nav navbar-nav menu-primary menu">
+                    <li id="menu-item-812" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-800 current_page_item menu-item-812"><a href="#"><i class="icon-home"></i>&nbsp;&nbsp;Homepage</a></li>
+                    <li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-813"><a href="#"><i class="icon-comment"></i>&nbsp;&nbsp;About Us</a></li>
+                    <li id="menu-item-817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-817"><a href="#"><i class="icon-envelope-alt"></i>&nbsp;&nbsp;Contact Page</a></li>
+                 </ul>';
+            }
         }
 
         $nav_class = apply_filters( 'nav_class', calibrefx_row_class() );
-        $nav_output = sprintf('
-            <div id="nav" class="navbar %4$s">
-                %2$s
-                <div class="navbar-inner">
-                    <div class="container">
-                        <a class="btn btn-navbar btn-link btn-menu-toggle" data-toggle="collapse" data-target=".nav-collapse">
-							<span class="menu-toggle">%5$s</span>
-						
-							<span class="menu-toggle-icon">
-								<i class="icon-bar"></i>
-								<i class="icon-bar"></i>
-								<i class="icon-bar"></i>
-							</span>
-							<span class="clearfix"></span>
-                        </a>
-						<div class="nav-collapse">%1$s</div>
+
+        if(current_theme_supports('calibrefx-version-1.0')){
+            $nav_output = sprintf('
+                <div id="nav" class="navbar %4$s">
+                    %2$s
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <a class="btn btn-navbar btn-link btn-menu-toggle" data-toggle="collapse" data-target=".nav-collapse">
+    							<span class="menu-toggle">%5$s</span>
+    						
+    							<span class="menu-toggle-icon">
+    								<i class="icon-bar"></i>
+    								<i class="icon-bar"></i>
+    								<i class="icon-bar"></i>
+    							</span>
+    							<span class="clearfix"></span>
+                            </a>
+    						<div class="nav-collapse">%1$s</div>
+                        </div>
+                    %3$s
                     </div>
-                %3$s
                 </div>
-            </div>
-            <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class, __('MENU', 'calibrefx'));
-        
+                <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), $nav_class, __('MENU', 'calibrefx'));
+        }else{
+            $nav_output = sprintf('
+                <div id="nav" class="navbar" role="navigation">
+                    %2$s
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">%4$s</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse">%1$s</div>  
+                    %3$s
+                </div>
+                <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), __('MENU', 'calibrefx'));
+        }
+
         echo apply_filters('calibrefx_do_nav', $nav_output, $nav, $args);
     }
 }
