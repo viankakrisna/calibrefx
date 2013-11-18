@@ -179,9 +179,9 @@ function calibrefx_do_nav() {
                  </ul>';
             }else{
                 $nav = '<ul id="menu-primary-i" class="superfish sf-js-enabled nav navbar-nav menu-primary menu">
-                    <li id="menu-item-812" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-800 current_page_item menu-item-812"><a href="#"><span class="fa-home"></span>&nbsp;&nbsp;Homepage</a></li>
-                    <li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-813"><a href="#"><span class="fa-comment"></span>&nbsp;&nbsp;About Us</a></li>
-                    <li id="menu-item-817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-817"><a href="#"><span class="fa-envelope-o"></span>&nbsp;&nbsp;Contact Page</a></li>
+                    <li id="menu-item-812" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-800 current_page_item menu-item-812"><a href="#"><i class="fa-home"></i>&nbsp;&nbsp;Homepage</a></li>
+                    <li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-813"><a href="#"><i class="fa-comment"></i>&nbsp;&nbsp;About Us</a></li>
+                    <li id="menu-item-817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-817"><a href="#"><i class="fa-envelope-o"></i>&nbsp;&nbsp;Contact Page</a></li>
                  </ul>';
             }
         }
@@ -217,9 +217,7 @@ function calibrefx_do_nav() {
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">%4$s</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                            <span class="fa-bars fa-2x"></span>
                         </button>
                     </div>
                     <div class="collapse navbar-collapse">%1$s</div>  
