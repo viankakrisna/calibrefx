@@ -62,7 +62,8 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
             if(current_theme_supports('calibrefx-version-1.0')){
                 $output = '<div class="wrap '.$row_class.'">';
             }else{
-                $output = '<div class="container"><div class="wrap '.$row_class.'">';
+                //$output = '<div class="container"><div class="wrap '.$row_class.'">';
+                $output = '<div class="container">';
             }
             
             break;
@@ -70,7 +71,8 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
             if(current_theme_supports('calibrefx-version-1.0')){
                 $output = '</div><!-- end .wrap -->';
             }else{
-                $output = '</div><!-- end .wrap --></div><!-- end .container -->';
+                //$output = '</div><!-- end .wrap --></div><!-- end .container -->';
+                $output = '</div><!-- end .container -->';
             }
 
             break;

@@ -187,7 +187,7 @@ img.wp-smiley,
 }
 
 #nav .nav > li > a {
-     
+    padding: 8px 20px;   
 }
 
 #nav .dropdown-menu { /* 1st Level Sub Menu */
@@ -305,6 +305,7 @@ img.wp-smiley,
 /* Widgets
 ------------------------------------------------------------ */
 .widget{
+    padding: 0;
     margin-bottom: 20px;
 }
 

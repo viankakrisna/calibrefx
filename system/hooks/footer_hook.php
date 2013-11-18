@@ -66,8 +66,11 @@ function calibrefx_do_footer_widgets() {
     if ($count_footer_widgets == 0)
         return;
 
-    $span = "span" . strval(floor((12 / $count_footer_widgets)));
-
+    if(current_theme_supports('calibrefx-version-1.0')){
+        $span = "span" . strval(floor((12 / $count_footer_widgets)));
+    }else{
+        $span = "col-lg-" . strval(floor((12 / $count_footer_widgets))) . " col-md-" . strval(floor((12 / $count_footer_widgets))) . " col-sm-12 col-xs-12";
+    }
 
     $sidebar = $wp_registered_sidebars['footer-widget'];
     $sidebar['before_widget'] = '<div id="%1$s" class="widget ' . $span . ' %2$s"><div class="widget-wrap">';
@@ -89,7 +92,12 @@ add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_open');
  * Open footer widget markup
  */
 function calibrefx_do_footer_widget_open(){
-    echo '<div id="footer-widget" ' . get_footer_widget_class() . '>';
+    if(current_theme_supports('calibrefx-version-1.0')){
+        echo '<div id="footer-widget" ' . get_footer_widget_class() . '>';
+    }else{
+        echo '<div id="footer-widget">';
+    }
+
     calibrefx_put_wrapper('footer-widget', 'open'); 
 }
 
@@ -100,7 +108,12 @@ add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_wrapper
  */
 function calibrefx_do_footer_widget_wrapper_open(){
     $footer_widget_wrapper_class = apply_filters( 'footer_widget_wrapper_class', calibrefx_row_class() );
-    echo '<div class="footer-widget-wrapper"><div class="'.$footer_widget_wrapper_class.'">';
+
+    if(current_theme_supports('calibrefx-version-1.0')){
+        echo '<div class="footer-widget-wrapper"><div class="'.$footer_widget_wrapper_class.'">';
+    }else{
+        echo '<div class="footer-widget-wrapper">';
+    }
 }
 
 add_action('calibrefx_after_footer_widget', 'calibrefx_do_footer_widget_wrapper_close');
@@ -109,7 +122,11 @@ add_action('calibrefx_after_footer_widget', 'calibrefx_do_footer_widget_wrapper_
  * Open footer widget markup
  */
 function calibrefx_do_footer_widget_wrapper_close(){
-    echo '</div></div><!--end .footer-widget-wrapper -->';
+    if(current_theme_supports('calibrefx-version-1.0')){
+        echo '</div></div><!--end .footer-widget-wrapper -->';
+    }else{
+        echo '</div><!--end .footer-widget-wrapper -->';
+    }
 }
 
 add_action('calibrefx_after_footer_widget', 'calibrefx_do_footer_widget_close');

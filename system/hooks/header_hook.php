@@ -335,7 +335,7 @@ function calibrefx_print_wrap() {
         if ( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {   
             $wrap = sprintf('
 .container{
-    width: %dpx;
+    max-width: %dpx;
 }', calibrefx_get_option("calibrefx_layout_width"));
             
             printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
@@ -510,6 +510,9 @@ add_action('calibrefx_header', 'calibrefx_do_header', 12);
  * Do Header Callback
  */
 function calibrefx_do_header() {
+    
+    if(!current_theme_supports('calibrefx-version-1.0')) echo '<div class="header-wrapper col-xs-12">';
+
     $header_title_class = apply_filters('header_title_class', 'pull-left', '');
     echo '<div id="header-title" class="'.$header_title_class.'">';
     do_action('calibrefx_site_title');
@@ -523,6 +526,8 @@ function calibrefx_do_header() {
        do_action('calibrefx_header_right_widget');
        echo '</div><!-- end .widget-wrap -->';
     }
+
+    if(!current_theme_supports('calibrefx-version-1.0')) echo '</div><!-- end .header-wrapper -->';
 }
 
 /**
