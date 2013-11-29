@@ -80,9 +80,19 @@ function calibrefx_custom_header() {
 
     if (!defined('HEADER_IMAGE') && $args['default-image'])
         define('HEADER_IMAGE', apply_filters('calibrefx_logo_url', $args['default-image']));
+		
+	$custom_header_args = array(
+		'width' => HEADER_IMAGE_WIDTH,
+        'height' => HEADER_IMAGE_HEIGHT,
+        'default-text-color' => HEADER_TEXTCOLOR,
+        'default-image' => HEADER_IMAGE,
+        'header-text' => HEADER_TEXT,
+        'wp-head-callback' => 'calibrefx_custom_header_style',
+        'admin-head-callback' => 'calibrefx_custom_header_admin_style'
+	);
 
     /** Activate Custom Header */
-    add_theme_support( 'custom-header', $args );
+    add_theme_support( 'custom-header', $custom_header_args );
 }
 
 /**
@@ -100,7 +110,7 @@ function calibrefx_custom_header_style() {
     background: url(%1$s) no-repeat left center; 
     width: %2$s; 
     height: %3$dpx
-}', esc_url(HEADER_IMAGE), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
+}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
 	
     $text = sprintf('
 #title, #title a, #title a:hover{ 
@@ -118,7 +128,7 @@ function calibrefx_custom_header_style() {
     background: url(%1$s) no-repeat left center; 
     width: %2$s;
     height: %3$dpx
-}', esc_url(HEADER_IMAGE), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
+}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
 	
     printf('<style type="text/css">%1$s %2$s</style>'."\n", $header, $text);
 	printf('<!--[if lt IE 9]>'."\n".'<style type="text/css">%1$s</style>'."\n".'<![endif]-->'."\n", $header_ie);
