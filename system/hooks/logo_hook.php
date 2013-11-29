@@ -100,7 +100,7 @@ function calibrefx_custom_header_style() {
     background: url(%1$s) no-repeat left center; 
     width: %2$s; 
     height: %3$dpx
-}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
+}', esc_url(HEADER_IMAGE), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
 	
     $text = sprintf('
 #title, #title a, #title a:hover{ 
@@ -118,7 +118,7 @@ function calibrefx_custom_header_style() {
     background: url(%1$s) no-repeat left center; 
     width: %2$s;
     height: %3$dpx
-}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
+}', esc_url(HEADER_IMAGE), HEADER_IMAGE_WIDTH . 'px', HEADER_IMAGE_HEIGHT);
 	
     printf('<style type="text/css">%1$s %2$s</style>'."\n", $header, $text);
 	printf('<!--[if lt IE 9]>'."\n".'<style type="text/css">%1$s</style>'."\n".'<![endif]-->'."\n", $header_ie);
