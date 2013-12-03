@@ -80,9 +80,19 @@ function calibrefx_custom_header() {
 
     if (!defined('HEADER_IMAGE') && $args['default-image'])
         define('HEADER_IMAGE', apply_filters('calibrefx_logo_url', $args['default-image']));
+		
+	$custom_header_args = array(
+		'width' => HEADER_IMAGE_WIDTH,
+        'height' => HEADER_IMAGE_HEIGHT,
+        'default-text-color' => HEADER_TEXTCOLOR,
+        'default-image' => HEADER_IMAGE,
+        'header-text' => HEADER_TEXT,
+        'wp-head-callback' => 'calibrefx_custom_header_style',
+        'admin-head-callback' => 'calibrefx_custom_header_admin_style'
+	);
 
     /** Activate Custom Header */
-    add_theme_support( 'custom-header', $args );
+    add_theme_support( 'custom-header', $custom_header_args );
 }
 
 /**
