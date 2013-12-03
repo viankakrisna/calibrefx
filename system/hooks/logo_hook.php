@@ -67,19 +67,19 @@ function calibrefx_custom_header() {
 
     /** Define all the constants */
     if (!defined('HEADER_IMAGE_WIDTH') && is_numeric($args['width']))
-        define('HEADER_IMAGE_WIDTH', apply_filters('calibrefx_logo_width', $args['width']));
+        define('HEADER_IMAGE_WIDTH', apply_filters('calibrefx_header_logo_width', $args['width']));
 
     if (!defined('HEADER_IMAGE_HEIGHT') && is_numeric($args['height']))
-        define('HEADER_IMAGE_HEIGHT', apply_filters('calibrefx_logo_height', $args['height']));
+        define('HEADER_IMAGE_HEIGHT', apply_filters('calibrefx_header_logo_height', $args['height']));
 
     if (!defined('HEADER_TEXTCOLOR') && $args['default-text-color'])
-        define('HEADER_TEXTCOLOR', $args['default-text-color']);
+        define('HEADER_TEXTCOLOR', apply_filters('calibrefx_header_text_color', $args['default-text-color']));
 
     if (!defined('HEADER_TEXT') && $args['header-text'])
-        define('HEADER_TEXT', $args['header-text']);
+        define('HEADER_TEXT', apply_filters('calibrefx_header_text', $args['header-text']));
 
     if (!defined('HEADER_IMAGE') && $args['default-image'])
-        define('HEADER_IMAGE', apply_filters('calibrefx_logo_url', $args['default-image']));
+        define('HEADER_IMAGE', apply_filters('calibrefx_header_logo_url', $args['default-image']));
 		
 	$custom_header_args = array(
 		'width' => HEADER_IMAGE_WIDTH,
@@ -101,18 +101,24 @@ function calibrefx_custom_header() {
  *
  */
 function calibrefx_custom_header_style() {
-    /** If no options set, don't waste the output. Do nothing. */
-    if((HEADER_IMAGE == '' && get_header_image() == '') || (HEADER_TEXTCOLOR != 'blank' && get_header_textcolor() != 'blank') || (HEADER_TEXT && display_header_text()))
-		return;
+    $header = '';
+    $text = '';
 
-	$header = sprintf('
+    /** If no options set, don't waste the output. Do nothing. */
+    if((HEADER_IMAGE == '' && get_header_image() == '') || (HEADER_TEXTCOLOR != 'blank' && get_header_textcolor() != 'blank') || (HEADER_TEXT && display_header_text())){
+	   $text = sprintf('
+#title, #title a{ 
+    color: %s
+}'."\n", get_header_textcolor());
+    }else{
+        $header = sprintf('
 #header-title { 
     background: url(%1$s) no-repeat left center; 
     width: %2$spx; 
     height: %3$dpx
 }', esc_url(get_header_image()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
-	
-    $text = sprintf('
+    
+        $text = sprintf('
 #title, #title a, #title a:hover{ 
     display: block; 
     margin: 0; 
@@ -122,16 +128,9 @@ function calibrefx_custom_header_style() {
     width: %dpx; 
     height: %dpx 
 }'."\n", HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
+    }
 
-    $header_ie = sprintf('
-#header-title { 
-    background: url(%1$s) no-repeat left center; 
-    width: %2$spx;
-    height: %3$dpx
-}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
-	
     printf('<style type="text/css">%1$s %2$s</style>'."\n", $header, $text);
-	printf('<!--[if lt IE 9]>'."\n".'<style type="text/css">%1$s</style>'."\n".'<![endif]-->'."\n", $header_ie);
 }
 
 /**
