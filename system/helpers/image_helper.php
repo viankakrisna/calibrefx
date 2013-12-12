@@ -55,6 +55,8 @@ function calibrefx_get_image($args = array()) {
 	
 	if(!$post) return;
 	
+	$id = NULL;
+	
     $defaults = array(
         'format' => 'html',
         'size' => 'full',
@@ -70,7 +72,8 @@ function calibrefx_get_image($args = array()) {
     $pre = apply_filters('calibrefx_pre_get_image', false, $args, $post);
     if (false !== $pre)
         return $pre;
-
+	
+	$url = ''; $html = '';
     // check for feature image
     if (!empty($args['id'])) {
         $id = (!empty($args['id']) ? $args['id'] : calibrefx_get_image_id($args['num']));
