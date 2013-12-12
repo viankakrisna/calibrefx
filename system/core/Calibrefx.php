@@ -87,9 +87,9 @@ final class Calibrefx {
         add_theme_support('calibrefx-seo');
         add_theme_support('calibrefx-open-graph');
 
-        if(defined('WP_ENV') && WP_ENV != 'development'){
+        /*if(defined('WP_ENV') && WP_ENV != 'development'){
             add_theme_support('calibrefx-admin-bar');
-        }
+        }*/
         //add_theme_support('calibrefx-preformance');
 
         if (!current_theme_supports('calibrefx-menus')) {
