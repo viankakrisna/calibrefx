@@ -103,11 +103,7 @@ function calibrefx_youtube_thumbnail($atts, $content = null) {
     parse_str($video_query, $vars);
 
     // get image url from youtube
-    $remote = wp_remote_retrieve_body(
-    wp_remote_request(
-            sprintf('http://gdata.youtube.com/feeds/api/videos/'. $vars['v'] .'?v=2&alt=json'), array('timeout' => 100,)
-        )
-    );
+    $remote = wp_remote_retrieve_body(wp_remote_request(sprintf("http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json", $vars['v']), array('timeout' => 100)));
 
     $youtube_data = json_decode($remote, true);
 
@@ -709,7 +705,8 @@ function calibrefx_slider($atts, $content = '') {
 		'caption' => 0,
         'carousel_visible' => '',
         'carousel_fluid' => '',
-        'wrap' => ''
+        'wrap' => '',
+		'attr' => '',
     ), $atts));
 
     if(!empty($class)) $class = ' '.$class;
@@ -747,7 +744,8 @@ function calibrefx_slider($atts, $content = '') {
     if(!empty($carousel_visible)) $data_cycle .= ' data-cycle-carousel-visible="'.$carousel_visible.'"';
     if(!empty($carousel_fluid)) $data_cycle .= ' data-cycle-carousel-fluid="'.$carousel_fluid.'"';
     if(!empty($wrap)) $data_cycle .= ' data-allow-wrap="'.$wrap.'"';
-    $data_cycle .= ' data-cycle-pause-on-hover="true"';
+	
+    $data_cycle .= ' data-cycle-pause-on-hover="true" data-cycle-loader="wait"';
 
     $html = '';
     $html .= '<div id="'.$id.'" class="slider-container'.$class.'">';
@@ -1128,10 +1126,13 @@ function calibrefx_twitter($atts, $content = null) {
 add_shortcode('tweet', 'calibrefx_tweet');
 
 function calibrefx_tweet($atts, $content = null) {
+    global $post;
+
     extract(shortcode_atts(array(
         'url' => get_permalink(),
         'count' => 'vertical',
         'size' => 'medium',
+        'text' => ''
     ), $atts));
     
     $attr = '';
@@ -1139,6 +1140,7 @@ function calibrefx_tweet($atts, $content = null) {
     if(!empty($url)) $attr .=' data-url="'.$url.'"';
     if(!empty($count)) $attr .=' data-count="'.$count.'"';
     if(!empty($size)) $attr .=' data-size="'.$size.'"';
+    if(!empty($text)) $attr .= ' data-text="'.$text.'"';
 
     $output = '<span class="social-bookmark tweet-share"><a href="https://twitter.com/share" class="twitter-share-button"'.$attr.'>Tweet</a></span>';
 
@@ -1196,9 +1198,19 @@ function calibrefx_pinterest($atts, $content = null) {
 add_shortcode('linkedin', 'calibrefx_linkedin');
 
 function calibrefx_linkedin($atts, $content = null){
-    extract(shortcode_atts(array(), $atts));
+    global $post;
 
-    $output = '<span class="social-bookmark linkedin-button"><script type="IN/Share" data-counter="right"></script></span>';
+    extract(shortcode_atts(array(
+        'counter' => 'right',
+        'url' => get_permalink()
+    ), $atts));
+
+	$attr = '';
+	
+    if(!empty($width)) $attr .=' data-counter="'.$counter.'"';
+    if(!empty($url)) $attr .=' data-url="'.$url.'"';
+
+    $output = '<span class="social-bookmark linkedin-button"><script type="IN/Share"'.$attr.'></script></span>';
 
 	wp_enqueue_script( 'calibrefx-linkedin-widget', 'http://platform.linkedin.com/in.js', array(), false, true);
 	

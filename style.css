@@ -7,7 +7,7 @@
     License: Commercial
     License URI: http://www.calibrefx.com/calibrefx/#license
 	Text Domain: calibrefx
-    Version: 1.0.15
+    Version: 1.0.16
 */
 
 
@@ -163,7 +163,7 @@ h1, h2, h3, h4, h5, h6{
     color: #fff;
 }
 
-/ Calendar Widget /
+/* Calendar Widget */
 .widget_calendar table,
 .widget_calendar td {
     border: 0;
@@ -277,7 +277,9 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .pagination ul > li > span.hellip{
-	background-color: transparent;	
+    background-color: transparent;  
+    border: 1px solid #ccc;
+    border-right: none;
 }
 
 .pager a {

@@ -50,7 +50,21 @@ function calibrefx_post_date_shortcode( $atts ) {
             'label'  => '',
     );
     $atts = shortcode_atts( $defaults, $atts );
-    $display = ( 'relative' == $atts['format'] ) ? calibrefx_human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'calibrefx' ) : get_the_time( $atts['format'] );
+	
+	$display = '';
+	
+	switch($atts['format']){
+		case 'relative' : 
+			$display = calibrefx_human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'calibrefx' );
+			break;
+		case 'time-ago' : 
+			$display = calibrefx_time_ago( get_the_date('Y/m/d') );
+			break;
+		default:
+			$display = get_the_time( $atts['format'] );
+			break;
+	}
+	
     $output = sprintf( '<span class="date published time" title="%5$s">%1$s%3$s%4$s%2$s</span> ', $atts['before'], $atts['after'], $atts['label'], $display, get_the_time( 'c' ) );
     return apply_filters( 'calibrefx_post_date_shortcode', $output, $atts );
 }

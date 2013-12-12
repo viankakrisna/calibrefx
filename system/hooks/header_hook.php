@@ -364,17 +364,16 @@ add_action('calibrefx_meta', 'calibrefx_do_fb_og');
  * This function adds dublin core meta in header
  */
 function calibrefx_do_fb_og() {
-    if(is_home()){
-        $url = home_url();
-    }else{
-        $url = get_permalink();
-    }
 
-    echo '<meta property="fb:admins" content="' . calibrefx_get_option('facebook_admins') . '"/>'."\n";
-    echo '<meta property="og:title" content="' . apply_filters('calibrefx_do_title', get_bloginfo('name')) . '"/>'."\n";
-    echo '<meta property="og:type" content="' . calibrefx_get_option('facebook_og_type') . '"/>'."\n";
-    echo '<meta property="og:url" content="' . $url . '"/>'."\n";
+    if(!current_theme_supports( 'calibrefx-open-graph' )) return;
+
+    echo '<meta property="locale" content="' . calibrefx_og_locale() . '"/>'."\n";
     echo '<meta property="og:site_name" content="' . get_bloginfo('name') . '"/>'."\n";
+    if(calibrefx_get_option('facebook_admins')) echo '<meta property="fb:admins" content="' . calibrefx_get_option('facebook_admins') . '"/>'."\n";
+    if(calibrefx_get_option('facebook_og_type')) echo '<meta property="og:type" content="' . calibrefx_get_option('facebook_og_type') . '"/>'."\n";
+    echo '<meta property="og:title" content="' . calibrefx_og_title() . '"/>'."\n";
+    echo '<meta property="og:url" content="' . calibrefx_og_url() . '"/>'."\n";
+    echo '<meta property="og:description" content="' . calibrefx_og_description() . '"/>'."\n";
     $image = calibrefx_get_image(array('format' => 'url'));
     if ($image) {
         echo '<meta property="og:image" content="' . $image . '"/>'."\n";

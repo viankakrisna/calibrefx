@@ -908,6 +908,7 @@ input[type="submit"].searchsubmit{
 
 .slider{
    position: relative;
+   z-index: 100;
 }
 
 .slider .item{
@@ -981,6 +982,7 @@ input[type="submit"].searchsubmit{
 .social-bookmark{
     display: inline-block;
     margin-right: 5px;
+    vertical-align: top;
 }
 
 .social-bookmark.facebook-like{

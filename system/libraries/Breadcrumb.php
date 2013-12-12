@@ -234,7 +234,7 @@ class CFX_Breadcrumb {
             $crumb = $this->get_breadcrumb_link(
                     get_year_link(get_query_var('year')), sprintf(__('View archives for %s', 'calibrefx'), get_query_var('year')), get_query_var('year'), $this->args['sep']
             );
-            $crumb .= $this->args['labels']['date'] . single_month_title(' ', false);
+            $crumb .= $this->args['labels']['date'] . single_month_title('', false);
         } elseif (is_day()) {
             $crumb = $this->get_breadcrumb_link(
                     get_year_link(get_query_var('year')), sprintf(__('View archives for %s', 'calibrefx'), get_query_var('year')), get_query_var('year'), $this->args['sep']

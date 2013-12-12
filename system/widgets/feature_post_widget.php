@@ -99,7 +99,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 				}
 
 				if ( ! empty( $instance['show_content'] ) ) {
-					echo do_shortcode('[post_date format="relative"]');
+					echo do_shortcode('[post_date format="time-ago"]');
 				}
 
 				echo '</div><!--end post_class()-->' . "\n\n";

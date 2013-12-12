@@ -55,6 +55,8 @@ function calibrefx_get_image($args = array()) {
 	
 	if(!$post) return;
 	
+	$id = NULL;
+	
     $defaults = array(
         'format' => 'html',
         'size' => 'full',
@@ -70,16 +72,17 @@ function calibrefx_get_image($args = array()) {
     $pre = apply_filters('calibrefx_pre_get_image', false, $args, $post);
     if (false !== $pre)
         return $pre;
-
+	
+	$url = ''; $html = '';
     // check for feature image
-    if (has_post_thumbnail() && ($args['num'] === 0)) {
+    if (!empty($args['id'])) {
+        $id = (!empty($args['id']) ? $args['id'] : calibrefx_get_image_id($args['num']));
+        $html = wp_get_attachment_image($id, $args['size'], false, $args['attr']);
+        list($url) = wp_get_attachment_image_src($id, $args['size'], false, $args['attr']);
+    } elseif(has_post_thumbnail() && ($args['num'] === 0)) {
         $id = (!empty($args['id']) ? $args['id'] : get_post_thumbnail_id());
         //$html = wp_get_attachment_image($id, $args['size'], false, $args['attr']);
         $html = get_the_post_thumbnail($post->ID, $args['size'], $args['attr']);
-        list($url) = wp_get_attachment_image_src($id, $args['size'], false, $args['attr']);
-    } else {
-        $id = (!empty($args['id']) ? $args['id'] : calibrefx_get_image_id($args['num']));
-        $html = wp_get_attachment_image($id, $args['size'], false, $args['attr']);
         list($url) = wp_get_attachment_image_src($id, $args['size'], false, $args['attr']);
     }
 
