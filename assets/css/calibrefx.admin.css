@@ -427,6 +427,10 @@ body[class*="calibrefx"] #wpbody-content{
     margin-left: 146px;
 }
 
+.calibrefx-admin-page.version-3-8  #wpcontent, .calibrefx-admin-page.version-3-8  #wpfooter{
+    margin-left: 160px;
+}
+
 .calibrefx-admin-page .auto-fold #wpcontent, .calibrefx-admin-page .auto-fold #wpfooter{
     margin-left: 33px;
 }
@@ -560,6 +564,13 @@ body[class*="calibrefx"] #wpbody-content{
 }
 .calibrefx-ability .calibrefx-ability-professor.active{
     background: url(../img/off-toggle.png) no-repeat;
+}
+.version-3-8 #update-nag{
+	margin-top: 0px;
+	display: block;
+	margin-left: 0px;
+	margin-right: 0px;
+	text-align: center;
 }
 
 @media only screen and (max-width: 900px){
