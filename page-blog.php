@@ -42,21 +42,7 @@ function calibrefx_do_blog_loop() {
     if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); // the loop
 
             do_action('calibrefx_before_post');
-            ?>
-            <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-                <?php do_action('calibrefx_before_post_title'); ?>
-                <?php do_action('calibrefx_post_title'); ?>
-                <?php do_action('calibrefx_after_post_title'); ?>
-
-                    <?php do_action('calibrefx_before_post_content'); ?>
-                <div class="entry-content">
-                <?php do_action('calibrefx_post_content'); ?>
-                </div><!-- end .entry-content -->
-            <?php do_action('calibrefx_after_post_content'); ?>
-
-            </div><!-- end .postclass -->
-            <?php
+            get_template_part( 'content', get_post_format() );
             do_action('calibrefx_after_post');
             $loop_counter++;
 
@@ -99,10 +85,13 @@ add_action('calibrefx_post_content', 'calibrefx_do_blog_content');
  */
 function calibrefx_do_blog_content() {
 
-	if (calibrefx_get_option('content_archive_limit'))
-		the_content_limit((int) calibrefx_get_option('content_archive_limit'), __('[Read more...]', 'calibrefx'));
-	else
-		the_content(__('[Read more...]', 'calibrefx'));
+	if (calibrefx_get_option('content_archive_limit')){
+		$read_more_text = apply_filters( 'calibrefx_readmore_text', __('[Read more...]', 'calibrefx') );
+		the_content_limit((int) calibrefx_get_option('content_archive_limit'), $read_more_text);
+	}
+	else{
+		the_content();
+	}
     
 
     wp_link_pages(array('before' => '<p class="pages">' . __('Pages:', 'calibrefx'), 'after' => '</p>'));
