@@ -38,6 +38,7 @@ function calibrefx_do_blog_loop() {
     $query = new WP_Query('category_name=blog&paged=' . get_query_var('paged'));
     $wp_query = $query;
     
+	$loop_counter = 1;
     if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); // the loop
 
             do_action('calibrefx_before_post');
