@@ -19,6 +19,9 @@
  * @package CalibreFx
  */
 
+version 1.0.18 <23 December 2013> - 
+    * Fix styling for WordPress 3.8
+
 version 1.0.17 <13 December 2013> - 
     * Disable calibrefx admin bar because it will break WordPress 3.8 new admin design
     * Update logo hook
