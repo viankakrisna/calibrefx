@@ -189,9 +189,12 @@ end;
         return '<legend>'.stripslashes($text).'</legend>';
     }
 
-    function build($rows) {
+    function build($rows, $form_open = TRUE, $form_close = TRUE) {
         $this->form_fields = $this->form_table($rows);
-        $output = $this->form_open . $this->form_fields  . $this->form_close;
+		$output = '';
+		if($form_open) $output .= $this->form_open;
+        $output .= $this->form_fields;
+		if($form_close) $output .= $this->form_close;
         return $output;
     }
     
