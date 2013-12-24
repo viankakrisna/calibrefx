@@ -147,7 +147,7 @@ add_action('admin_menu', 'calibrefx_add_inpost_seo_box');
  */
 function calibrefx_add_inpost_seo_box() {
     foreach ((array) get_post_types(array('public' => true)) as $type) {
-        if (post_type_supports($type, 'calibrefx-seo'))
+        if (post_type_supports($type, 'calibrefx-seo') AND current_theme_supports('calibrefx-seo'))
             add_meta_box('calibrefx_inpost_seo_box', __('CalibreFx SEO Settings', 'calibrefx'), 'calibrefx_inpost_seo_box', $type, 'normal', 'high');
     }
 }
