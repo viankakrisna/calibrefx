@@ -40,8 +40,8 @@ function calibrefx_customize_register($wp_customize){
 		'section'       => 'calibrefx_layout_settings',
 		'type'    		=> 'radio',
 						'choices' => array(
-							'fluid' => __( 'Fluid Layout' ),
-							'static'  => __( 'Static Layout' ),
+							'fluid' => __( 'Fluid Layout', 'calibrefx' ),
+							'static'  => __( 'Static Layout', 'calibrefx' ),
 						),
 		'priority'      => 1,
 	) );

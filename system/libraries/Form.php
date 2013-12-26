@@ -131,7 +131,7 @@ class CFX_Form {
 	
 	function texteditor($id, $content){
 		ob_start(); //Start buffering
-		the_editor($content, $id, "", false, 2, false); //print the result
+		wp_editor($content, $id, "", false, 2, false); //print the result
 		$output = ob_get_contents(); //get the result from buffer
 		ob_end_clean(); //close buffer
 	   

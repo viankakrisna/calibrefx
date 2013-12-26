@@ -52,8 +52,8 @@ final class Calibrefx {
         $this->load = calibrefx_load_class('Loader', 'core');
         //Since admin is abstract we don't instantiate
         calibrefx_load_class('Admin', 'core');
-        calibrefx_load_class('Adapter', 'core');
-        calibrefx_load_class('Driver', 'core');
+        // calibrefx_load_class('Adapter', 'core');
+        // calibrefx_load_class('Driver', 'core');
         
         //We fire the engine
         $this->intialize();
@@ -67,6 +67,9 @@ final class Calibrefx {
     public function intialize() {
         add_action('calibrefx_init', array(&$this, 'calibrefx_theme_support'),0);
         add_action('after_setup_theme', array(&$this,'calibrefx_theme_i18N'));
+
+        if ( ! isset( $content_width ) ) 
+            $content_width = apply_filters( 'calibrefx_content_width', 550 );
     }
 
     public function calibrefx_theme_i18N(){
@@ -76,8 +79,11 @@ final class Calibrefx {
      * Add our calibrefx theme support
      */
     public function calibrefx_theme_support() {
+        add_theme_support('html5', array( 'comment-list', 'comment-form', 'search-form' ));
         add_theme_support('menus');
+        add_theme_support('automatic-feed-links');
         add_theme_support('post-thumbnails');
+
         add_theme_support('calibrefx-admin-menu');
         add_theme_support('calibrefx-custom-header');
         add_theme_support('calibrefx-custom-background');
@@ -86,11 +92,6 @@ final class Calibrefx {
         add_theme_support('calibrefx-responsive-style');
         add_theme_support('calibrefx-seo');
         add_theme_support('calibrefx-open-graph');
-
-        /*if(defined('WP_ENV') && WP_ENV != 'development'){
-            add_theme_support('calibrefx-admin-bar');
-        }*/
-        //add_theme_support('calibrefx-preformance');
 
         if (!current_theme_supports('calibrefx-menus')) {
             add_theme_support('calibrefx-menus', array(

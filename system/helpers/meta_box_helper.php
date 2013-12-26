@@ -20,6 +20,9 @@
  * @package CalibreFx
  */
 
+/**
+ * Reset Calibrefx Meta Sections in Theme Settings
+ */
 function calibrefx_clear_meta_section() {
     global $calibrefx_sections;
     unset($calibrefx_sections);

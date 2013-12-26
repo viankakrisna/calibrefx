@@ -132,20 +132,27 @@ class CFX_Logger {
             $message .= '<' . "?php if ( ! defined('CALIBREFX_URI')) exit('No direct script access allowed'); ?" . ">\n\n";
         }
 
-        if (!$fp = @fopen($filepath, FOPEN_WRITE_CREATE)) {
+        /*if (!$fp = @fopen($filepath, FOPEN_WRITE_CREATE)) {
             return FALSE;
-        }
+        }*/
 
         $message .= $level . ' ' . ($level === 'INFO' ? ' -' : '-') . ' ' . date($this->_date_fmt) . ' --> ' . $msg . "\n";
         
-        flock($fp, LOCK_EX);
+        /*flock($fp, LOCK_EX);
         fwrite($fp, $message);
         flock($fp, LOCK_UN);
         fclose($fp);
 
         if (isset($newfile) && $newfile === TRUE) {
             @chmod($filepath, FILE_WRITE_MODE);
-        }
+        }*/
+        global $wp_filesystem;
+        
+        $wp_filesystem->put_contents(
+          $filepath,
+          $message,
+          FOPEN_WRITE_CREATE // predefined mode settings for WP files
+        );
 
         return TRUE;
     }

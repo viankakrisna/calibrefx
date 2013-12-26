@@ -962,7 +962,7 @@ function cronos_alert($atts, $content = null){
     $output .= '<div class="'. $classes .'" style="'. $style .'">';
 
     if($close_button)
-        $output .= '<button type="button" class="close" data-dismiss="alert">×</button>';
+        $output .= '<button type="button" class="close" data-dismiss="alert">x</button>';
 
     $output .= do_shortcode($content);
               

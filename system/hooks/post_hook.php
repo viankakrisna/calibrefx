@@ -307,8 +307,8 @@ add_action('pre_ping', 'calibrefx_no_self_ping');
 /**
  * Disable Self-Pingbacks
  */
-function calibrefx_no_self_ping (&$links) {
-    $home = get_option( 'home' );
+function calibrefx_no_self_ping ($links) {
+    $home =  home_url() ;
 
     foreach ( $links as $l => $link ) :
         //Find the position of the first occurrence of a substring in a string.

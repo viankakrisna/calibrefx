@@ -45,8 +45,8 @@
  * @return	string encrypted data
  */
 function calibrefx_rev_encrypt($message, $key = '09cfb0c36eaa081', $chiper=MCRYPT_RIJNDAEL_256){
-	$CFX =& calibrefx_get_instance();
-	$CFX->load->library('encrypt');
+	global $calibrefx;
+	$calibrefx->load->library('encrypt');
 	
 	if (empty($message) || empty($key)) {
 		return null;
@@ -55,14 +55,14 @@ function calibrefx_rev_encrypt($message, $key = '09cfb0c36eaa081', $chiper=MCRYP
 	if (is_object($message))
 		$message = (array) $message;
 
-	$CFX->encrypt->set_cipher($chiper);
+	$calibrefx->encrypt->set_cipher($chiper);
 
 	if (is_array($message)) {
 		$message = array_map(create_function('$key, $value', 'return $key.":".$value."|";'), array_keys($message), array_values($message));
 		$message = implode($message);
 	}
 
-	return $CFX->encrypt->encode($message, $key);
+	return $calibrefx->encrypt->encode($message, $key);
 }
 
 /**
@@ -76,16 +76,16 @@ function calibrefx_rev_encrypt($message, $key = '09cfb0c36eaa081', $chiper=MCRYP
  * @return	string decrypted data
  */
 function calibrefx_rev_decrypt($message, $key = '09cfb0c36eaa081', $chiper=MCRYPT_RIJNDAEL_256){
-	$CFX =& calibrefx_get_instance();
-	$CFX->load->library('encrypt');
+	global $calibrefx;
+	$calibrefx->load->library('encrypt');
 
 	if (empty($message) || empty($key)) {
 		return null;
 	}
 
-	$CFX->encrypt->set_cipher($chiper);
+	$calibrefx->encrypt->set_cipher($chiper);
 
-	$decrypted_message = $CFX->encrypt->decode($message, $key);
+	$decrypted_message = $calibrefx->encrypt->decode($message, $key);
 
 	if (strpos($decrypted_message, '|') !== false) {
 		$decrypted_message = explode('|', $decrypted_message);

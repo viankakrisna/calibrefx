@@ -19,7 +19,7 @@
  * @package CalibreFx
  */
 
-if(file_exists(CHILD_URI . '/page-contact.php')){
+if(file_exists(CHILD_URI . '/page-contact.php') AND (CHILD_URI != CALIBREFX_URI)){
     include CHILD_URI . '/page-contact.php';
     exit;
 }

@@ -21,7 +21,8 @@
  */
 
 /**
- * Calibrefx Debug Helper
+ * debug_var function
+ * Dump a variable with human readable format
  *
  * @package         CalibreFx
  * @subpackage      Helpers
@@ -47,6 +48,17 @@ if (!function_exists('debug_var')) {
 
 }
 
+/**
+ * debug_var_log function
+ * Dump a variable with human readable format into a log file
+ *
+ * @package         CalibreFx
+ * @subpackage      Helpers
+ * @category        Helpers
+ * @author          CalibreFx Team
+ * @link            http://www.calibrefx.com
+ * 
+ */
 if (!function_exists('debug_var_log')) {
 
     function debug_var_log($var) {
@@ -60,17 +72,39 @@ if (!function_exists('debug_var_log')) {
 
 }
 
+/**
+ * fire_debug function
+ * Dump a variable and send it to FirePHP console, suitable to debug ajax output.
+ *
+ * @package         CalibreFx
+ * @subpackage      Helpers
+ * @category        Helpers
+ * @author          CalibreFx Team
+ * @link            http://www.calibrefx.com
+ * 
+ */
 if (!function_exists('fire_debug')) {
 
     function fire_debug($var) {
-        $CFX = & calibrefx_get_instance();
-        $CFX->load->file(CALIBREFX_LIBRARY_URI . '/third-party/firephp/FirePHP.class.php');
+        global $calibrefx;
+        $calibrefx->load->file(CALIBREFX_LIBRARY_URI . '/third-party/firephp/FirePHP.class.php');
         $firephp = FirePHP::getInstance(true);
         $firephp->log($var);
     }
 
 }
 
+/**
+ * die_dump function
+ * Dump a variable and stop the process.
+ *
+ * @package         CalibreFx
+ * @subpackage      Helpers
+ * @category        Helpers
+ * @author          CalibreFx Team
+ * @link            http://www.calibrefx.com
+ * 
+ */
 if (!function_exists('die_dump')) {
 
     function die_dump() {
@@ -93,6 +127,17 @@ if (!function_exists('die_dump')) {
 
 }
 
+/**
+ * debug_file function
+ * Dump a variable into a file. Suitable for rececive Post back by thirdparty such as PayPal IPN.
+ *
+ * @package         CalibreFx
+ * @subpackage      Helpers
+ * @category        Helpers
+ * @author          CalibreFx Team
+ * @link            http://www.calibrefx.com
+ * 
+ */
 if (!function_exists('debug_file')) {
 
     function debug_file($var = '', $filename = 'debug.txt') {
@@ -113,10 +158,16 @@ if (!function_exists('debug_file')) {
             ob_end_clean(); //close buffer
         }
 
+        global $wp_filesystem;
         $filepath = CALIBREFX_LOG_URI . '/' . $filename;
-        $h = fopen($filepath, 'a+'); //open a file
+        $wp_filesystem->put_contents(
+          $filepath,
+          $output,
+          FOPEN_READ_WRITE_CREATE // predefined mode settings for WP files
+        );
+        /*$h = fopen($filepath, 'a+'); //open a file
         fwrite($h, $output); //write the output text
-        fclose($h); //close file
+        fclose($h); //close file*/
     }
 
 }

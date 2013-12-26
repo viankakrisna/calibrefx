@@ -23,7 +23,7 @@
  * Calibrefx Adapter Class
  *
  * @package		Calibrefx
- * @subpackage          Core
+ * @subpackage  Core
  * @author		CalibreFx Team
  * @since		Version 1.0
  * @link		http://www.calibrefx.com

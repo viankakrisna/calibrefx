@@ -20,6 +20,9 @@
  * @package CalibreFx
  */
 
+/**
+ * Reset calibrefx_admin_menu
+ */
 function calibrefx_clear_admin_menu() {
     global $calibrefx_admin_menu;
     unset($calibrefx_admin_menu);
@@ -72,6 +75,9 @@ function calibrefx_add_admin_submenu($parent_slug, $menu_title, $capability, $me
     );
 }
 
+/**
+ * Add Menu Separator
+ */
 function calibrefx_add_admin_menu_separator($position) {
   global $menu;
   $index = 0;
