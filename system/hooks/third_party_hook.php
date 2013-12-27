@@ -35,9 +35,8 @@ add_action('calibrefx_setup', 'calibrefx_init_third_party');
  * After frameworks is initialized we initialize other third party module
  */
 function calibrefx_init_third_party(){
-    global $oBrowser;
-    
-    $CFX = & calibrefx_get_instance();
-    $CFX->load->file(CALIBREFX_LIBRARY_URI . '/third-party/mobiledetector/mobiledetector.php');
+    global $oBrowser, $calibrefx;
+	    
+    $calibrefx->load->file(CALIBREFX_LIBRARY_URI . '/third-party/mobiledetector/mobiledetector.php');
     $oBrowser = new mobileDetector();
 }

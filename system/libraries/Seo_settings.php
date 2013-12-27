@@ -90,9 +90,9 @@ class CFX_Seo_Settings extends CFX_Admin {
         );
 
         //we need to initialize the model
-        $CFX = & calibrefx_get_instance();
-        $CFX->load->model('seo_settings_m');
-        $this->_model = & $CFX->seo_settings_m;
+        global $calibrefx;
+        $calibrefx->load->model('seo_settings_m');
+        $this->_model = $calibrefx->seo_settings_m;
 
         $this->initialize();
     }
@@ -103,9 +103,9 @@ class CFX_Seo_Settings extends CFX_Admin {
      * $return void
      */
     public function security_filters(){
-        $CFX = & calibrefx_get_instance();
+        global $calibrefx;
         
-        $CFX->security->add_sanitize_filter(
+        $calibrefx->security->add_sanitize_filter(
                 'one_zero', 
                 $this->settings_field,
                 array(
@@ -131,7 +131,7 @@ class CFX_Seo_Settings extends CFX_Admin {
                     'archive_canonical')
         );
         
-        $CFX->security->add_sanitize_filter(
+        $calibrefx->security->add_sanitize_filter(
                 'no_html', 
                 $this->settings_field,
                 array(

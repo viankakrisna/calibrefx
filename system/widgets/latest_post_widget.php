@@ -52,9 +52,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 	 * @param array $instance The settings for the particular instance of the widget
 	 */
 	function widget( $args, $instance ) {
-		global $wp_query;
-
-		$CFX =& calibrefx_get_instance();
+		global $wp_query,$calibrefx;
 
 		extract( $args );
 		$instance = wp_parse_args( (array) $instance, $this->defaults );

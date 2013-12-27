@@ -42,9 +42,9 @@ class CFX_Other_Settings extends CFX_Admin {
         );
 
         //we need to initialize the model
-        $CFX = & calibrefx_get_instance();
-        $CFX->load->model('other_settings_m');
-        $this->_model = & $CFX->other_settings_m;
+        global $calibrefx;
+        $calibrefx->load->model('other_settings_m');
+        $this->_model = $calibrefx->other_settings_m;
 
         add_action( 'calibrefx_before_save_core', array($this,'do_export'));
         add_action( 'calibrefx_before_save_core', array($this,'do_import'));
@@ -57,20 +57,20 @@ class CFX_Other_Settings extends CFX_Admin {
      * $return void
      */
     public function security_filters() {
-        $CFX = & calibrefx_get_instance();
+        global $calibrefx;
 
-        $CFX->security->add_sanitize_filter(
+        $calibrefx->security->add_sanitize_filter(
                 'one_zero', $this->settings_field, array(
             
             )
         );
 
-        $CFX->security->add_sanitize_filter(
+        $calibrefx->security->add_sanitize_filter(
                 'safe_text', $this->settings_field, array(
            )
         );
 
-        $CFX->security->add_sanitize_filter(
+        $calibrefx->security->add_sanitize_filter(
                 'integer', $this->settings_field, array(
             )
         );
@@ -100,9 +100,6 @@ class CFX_Other_Settings extends CFX_Admin {
         // Export - Import
         calibrefx_add_meta_box('importexport', 'basic', 'calibrefx-import-settings', __('Import Settings', 'calibrefx'), array($this, 'import_settings'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('importexport', 'basic', 'calibrefx-export-settings', __('Export Settings', 'calibrefx'), array($this, 'export_settings'), $this->pagehook, 'side', 'high');
-
-        // Autoresponder
-        //calibrefx_add_meta_box('autoresponder', 'basic', 'calibrefx-autoreponder-settings', __('Autoresponder Settings', 'calibrefx'), array($this, 'autoresponder_settings'), $this->pagehook, 'main', 'high');
 
         do_action('calibrefx_other_settings_meta_box');
     }

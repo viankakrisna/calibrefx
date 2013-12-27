@@ -22,8 +22,6 @@
 
 add_action('wp_loaded', 'form_submit_handler', 15);
 function form_submit_handler(){
-	$CFX = & calibrefx_get_instance();
-
 	if ('POST' == $_SERVER['REQUEST_METHOD']){
 		if(!isset($_REQUEST['action'])) return;
 		$action = sanitize_text_field($_REQUEST['action']);
@@ -64,8 +62,6 @@ function form_submit_handler(){
 
 add_action('calibrefx_after_wrapper', 'form_submit_notification_handler', 20);
 function form_submit_notification_handler(){
-	$CFX = & calibrefx_get_instance();
-
 	if(isset($_REQUEST['submitted'])){
 		$submitted = $_REQUEST['submitted'];
 		if(!$submitted) return;

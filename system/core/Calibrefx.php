@@ -34,7 +34,7 @@ final class Calibrefx {
      *
      * @return	object
      */
-    public static function &get_instance() {
+    public static function get_instance() {
         if(self::$instance === null){
             self::$instance = new Calibrefx();
         }
@@ -46,7 +46,7 @@ final class Calibrefx {
      * Constructor
      */
     function __construct() {
-        self::$instance = & $this;
+        self::$instance = $this;
 
         $this->config = calibrefx_load_class('Config', 'core');
         $this->load = calibrefx_load_class('Loader', 'core');

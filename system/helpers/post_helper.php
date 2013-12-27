@@ -87,12 +87,11 @@ function calibrefx_get_custom_post_meta($post_id, $meta_key) {
  */
 function calibrefx_breadcrumb($args = array()) {
 
-    global $_calibrefx_breadcrumb;
+    global $_calibrefx_breadcrumb, $calibrefx;
 
     if (!$_calibrefx_breadcrumb) {
-        $CFX = & calibrefx_get_instance();
-        $CFX->load->library('breadcrumb');
-        $_calibrefx_breadcrumb = & $CFX->breadcrumb;
+        $calibrefx->load->library('breadcrumb');
+        $_calibrefx_breadcrumb = $calibrefx->breadcrumb;
     }
 
     $_calibrefx_breadcrumb->output($args);

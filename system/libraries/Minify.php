@@ -41,7 +41,8 @@ class CFX_Minify {
             'quiet' => true,
         );
 
-        $this->_cfx = & calibrefx_get_instance();
+        global $calibrefx;
+        $this->_cfx = $calibrefx;
 
         $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/third-party/minify/Minify/Controller/CalibrefxMin.php');
 

@@ -45,6 +45,7 @@ define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1380875819'));
  */
 require_once( CALIBREFX_URI . '/system/config/constants.php');
 require_once( CALIBREFX_URI . '/system/core/Common.php' );
+require_once( CALIBREFX_URI . '/system/core/Model.php' );
 
 /*
  * ------------------------------------------------------
@@ -54,7 +55,7 @@ require_once( CALIBREFX_URI . '/system/core/Common.php' );
 require_once( CALIBREFX_URI . '/system/core/Calibrefx.php' );
 
 global $calibrefx;
-$calibrefx = &calibrefx_get_instance();
+$calibrefx = calibrefx_get_instance();
 /** Run the calibrefx_pre_init hook */
 do_action('calibrefx_pre_init');
 

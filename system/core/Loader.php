@@ -279,6 +279,8 @@ class CFX_Loader {
      * @return	void
      */
     public function model($model, $name = '') {
+        global $calibrefx;
+
         if (is_array($model)) {
             foreach ($model as $class) {
                 $this->model($class);
@@ -309,8 +311,8 @@ class CFX_Loader {
             return;
         }
 
-        $CFX = & calibrefx_get_instance();
-        if (isset($CI->$name)) {
+        $calibrefx = calibrefx_get_instance();
+        if (isset($calibrefx->$name)) {
             calibrefx_log_message('error', 'The model name you are loading is the name of a resource that is already being used: ' . $name);
             //show_error('The model name you are loading is the name of a resource that is already being used: ' . $name);
             return;
@@ -323,13 +325,11 @@ class CFX_Loader {
                 continue;
             }
 
-            if (!isset($CFX->Model)) {
-                $CFX->Model = calibrefx_load_class('Model', 'core');
-            }
-
+            /*if (!isset($calibrefx->Model)) {
+                $calibrefx->Model = calibrefx_load_class('Model', 'core');
+            }*/
             require_once($mod_path . '/' . $path . $model . '.php');
-
-            $CFX->$name = new $model();
+            $calibrefx->$name = new $model();
             $this->_loaded_models[] = $name;
             calibrefx_log_message('debug', 'Model loaded: ' . $name);
             return;
@@ -661,6 +661,7 @@ class CFX_Loader {
      * @return	void
      */
     protected function _init_class($class, $prefix = '', $config = FALSE) {
+        global $calibrefx;
         $name = $prefix . $class;
 
         // Is the class name valid?
@@ -674,12 +675,10 @@ class CFX_Loader {
         // Save the class name and object name
         $this->_classes[$class] = $classvar;
 
-        // Instantiate the class
-        $CFX = & calibrefx_get_instance();
         if ($config !== NULL) {
-            $CFX->$classvar = new $name($config);
+            $calibrefx->$classvar = new $name($config);
         } else {
-            $CFX->$classvar = new $name();
+            $calibrefx->$classvar = new $name();
         }
 
         calibrefx_log_message('debug', 'Class loaded: ' . $name);
@@ -695,8 +694,8 @@ class CFX_Loader {
      * @return	void
      */
     public function add_child_path($path) {
-        $CFX = & calibrefx_get_instance();
-        $CFX->config->_config_paths[] = $path . '/config';
+        global $calibrefx;
+        $calibrefx->config->_config_paths[] = $path . '/config';
         $this->_config_paths[] = $path . '/config';
         $this->_library_paths[] = $path . '/libraries';
         $this->_helper_paths[] = $path . '/helpers';

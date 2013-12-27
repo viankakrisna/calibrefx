@@ -40,14 +40,13 @@
  * @return void
  */
 function calibrefx_get_option($key, $model = null) {
-    $CFX = & calibrefx_get_instance();
-    
+    global $calibrefx;    
     if(null === $model){
-        if(!isset($CFX->theme_settings_m)){
-            $CFX->load->model('theme_settings_m');
+        if(!isset($calibrefx->theme_settings_m)){
+            $calibrefx->load->model('theme_settings_m');
         }
         //we load default model
-        $model = $CFX->theme_settings_m;  
+        $model = $calibrefx->theme_settings_m;  
     }
     
     return $model->get($key);
