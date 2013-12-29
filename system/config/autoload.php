@@ -33,7 +33,7 @@ $autoload['libraries'] = array('cache','breadcrumb','security','replacer','form'
  */
 
 $autoload['helpers'] = array('debug','format', 'image', 'html', 'url', 'widget', 
-                             'option', 'layout', 'meta_box','nav','post','seo', 
+                             'option', 'layout', 'meta_box','nav','post', 
                              'user','script','admin_menu', 'mobile', 'opengraph');
 
 /*
@@ -51,14 +51,14 @@ $autoload['widgets'] = array('Facebook_Comment', 'Facebook_Like', 'Feature_Page_
 /*
  *  Auto-load Config files
  */
-$autoload['models'] = array('theme_settings_m', 'seo_settings_m', 'other_settings_m');
+$autoload['models'] = array('theme_settings_m', 'other_settings_m');
 
 /*
  *  Auto-load Config files
  */
-$autoload['hooks'] = array('header', 'logo', 'script', 'widget','layout', 'menu', 
+$autoload['hooks'] = array('module','header', 'logo', 'script', 'widget','layout', 'menu', 
                           'login','user','post','inpost','comments', 'footer',
-                          'sidebar','seo','performance','search','third_party','upgrade', 'ajax', 
+                          'sidebar','performance','search','third_party','upgrade', 'ajax', 
                           'admin_ajax', 'mobile', 'form_submit', 'admin', 'customizer');
 
 /*

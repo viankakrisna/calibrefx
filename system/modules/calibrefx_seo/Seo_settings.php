@@ -23,7 +23,7 @@
  * Calibrefx Seo Setting Class
  *
  * @package		Calibrefx
- * @subpackage          Library
+ * @subpackage  Library
  * @author		CalibreFx Team
  * @since		Version 1.0
  * @link		http://www.calibrefx.com
@@ -91,7 +91,6 @@ class CFX_Seo_Settings extends CFX_Admin {
 
         //we need to initialize the model
         global $calibrefx;
-        $calibrefx->load->model('seo_settings_m');
         $this->_model = $calibrefx->seo_settings_m;
 
         $this->initialize();

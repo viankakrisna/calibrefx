@@ -21,3 +21,6 @@
  */
 require_once(TEMPLATEPATH.'/system/Bootloader.php');
 global $calibrefx;
+
+// calibrefx_activate_module(TEMPLATEPATH.'/system/modules/calibrefx_seo/init.php');
+// calibrefx_deactivate_module(TEMPLATEPATH.'/system/modules/calibrefx_seo/init.php');

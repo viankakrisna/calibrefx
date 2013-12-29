@@ -90,7 +90,7 @@ final class Calibrefx {
         add_theme_support('calibrefx-default-styles');
         add_theme_support('calibrefx-inpost-layouts');
         add_theme_support('calibrefx-responsive-style');
-        add_theme_support('calibrefx-seo');
+        // add_theme_support('calibrefx-seo');
         add_theme_support('calibrefx-open-graph');
 
         if (!current_theme_supports('calibrefx-menus')) {
@@ -112,5 +112,19 @@ final class Calibrefx {
         //@TODO: Will do in better ways for custom post type
         add_post_type_support('post', array('calibrefx-seo', 'calibrefx-layouts'));
         add_post_type_support('page', array('calibrefx-seo', 'calibrefx-layouts'));
+    }
+
+    public function run(){
+        /** Run the calibrefx_pre_init hook */
+        do_action('calibrefx_pre_init');
+
+        /** Run the calibrefx_init hook */
+        do_action('calibrefx_init');
+
+        /** Run the calibrefx_post_init hook */
+        do_action('calibrefx_post_init');
+
+        /** Run the calibrefx_setup hook */
+        do_action('calibrefx_setup');
     }
 }

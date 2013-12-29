@@ -41,7 +41,6 @@ if(get_option('calibrefx_show_settings')){
 }*/
 
 add_action('admin_menu', 'calibrefx_register_admin_menu');
-add_action('calibrefx_add_submenu_page', 'calibrefx_add_seo_settings',10);
 add_action('calibrefx_add_submenu_page', 'calibrefx_add_about_settings',20);
 add_action('calibrefx_add_submenu_page', 'calibrefx_add_extra_settings',30);
 
@@ -77,21 +76,6 @@ function calibrefx_register_settings_sub_menu(){
     if (!current_theme_supports('calibrefx-admin-menu'))
         return;
 
-}
-
-function calibrefx_add_seo_settings(){
-    global $menu, $calibrefx, $calibrefx_user_ability;
-
-    // Disable if programatically disabled
-    if (!current_theme_supports('calibrefx-admin-menu'))
-        return;
-
-    if( $calibrefx_user_ability !== 'professor' OR !current_theme_supports('calibrefx-seo') ){
-        return;
-    }
-
-    $calibrefx->load->library('seo_settings');
-    $calibrefx->seo_settings->pagehook = add_submenu_page('calibrefx', __('Seo Settings', 'calibrefx'), __('Seo Settings', 'calibrefx'), 'edit_theme_options', 'calibrefx-seo', array($calibrefx->seo_settings, 'dashboard'));
 }
 
 function calibrefx_add_about_settings(){

@@ -31,7 +31,7 @@
 do_action('calibrefx_pre');
 
 /** Define Theme Info Constants */
-define('FRAMEWORK_NAME', 'CalibreFx');
+define('FRAMEWORK_NAME', 'Calibrefx');
 define('FRAMEWORK_CODENAME', 'Pink Gibbon');
 define('FRAMEWORK_VERSION', '1.0.18');
 define('FRAMEWORK_DB_VERSION', '1000');
@@ -54,21 +54,25 @@ require_once( CALIBREFX_URI . '/system/core/Model.php' );
  */
 require_once( CALIBREFX_URI . '/system/core/Calibrefx.php' );
 
+//Initialize calibrefx instance
 global $calibrefx;
 $calibrefx = calibrefx_get_instance();
+
+add_action( 'after_setup_theme', function(){
+	global $calibrefx;
+	$calibrefx->run();
+});
 /** Run the calibrefx_pre_init hook */
-do_action('calibrefx_pre_init');
+// do_action('calibrefx_pre_init');
 
 /** Run the calibrefx_init hook */
-do_action('calibrefx_init');
+// do_action('calibrefx_init');
 
 /** Run the calibrefx_post_init hook */
-do_action('calibrefx_post_init');
+// do_action('calibrefx_post_init');
 
 /** Run the calibrefx_setup hook */
-do_action('calibrefx_setup');
-
-calibrefx_log_message('debug', '--- Output Send to Browser ---');
+// do_action('calibrefx_setup');
 
 /* End of file calibrefx.php */
 /* Location: ./calibrefx/calibrefx.php */
