@@ -1,24 +1,12 @@
 <?php defined('CALIBREFX_URL') OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
+/*
+Module Name: Calibrefx Seo Module
+Module URI: http://www.calibrefx.com/module/calibrefx-seo
+Description: Calibrefx SEO Module. An SEO Module made by calibrefx team. Easy to use and extendable.
+Version: 1.0.0
+Author: Calibrefx
+Author URI: http://www.calirbefx.com/
+*/
 
 /**
  * Calibrefx Seo Module

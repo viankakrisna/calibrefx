@@ -52,33 +52,17 @@ final class Calibrefx {
         $this->load = calibrefx_load_class('Loader', 'core');
         //Since admin is abstract we don't instantiate
         calibrefx_load_class('Admin', 'core');
-        // calibrefx_load_class('Adapter', 'core');
-        // calibrefx_load_class('Driver', 'core');
         
-        //We fire the engine
-        $this->intialize();
-        
+        $this->load_theme_support();
+        load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
+
         calibrefx_log_message('debug', 'Calibrefx Class Initialized');
     }
 
     /**
-     * Initialize our hooks
-     */
-    public function intialize() {
-        add_action('calibrefx_init', array(&$this, 'calibrefx_theme_support'),0);
-        add_action('after_setup_theme', array(&$this,'calibrefx_theme_i18N'));
-
-        if ( ! isset( $content_width ) ) 
-            $content_width = apply_filters( 'calibrefx_content_width', 550 );
-    }
-
-    public function calibrefx_theme_i18N(){
-        load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
-    }
-    /**
      * Add our calibrefx theme support
      */
-    public function calibrefx_theme_support() {
+    public function load_theme_support() {
         add_theme_support('html5', array( 'comment-list', 'comment-form', 'search-form' ));
         add_theme_support('menus');
         add_theme_support('automatic-feed-links');
@@ -112,6 +96,9 @@ final class Calibrefx {
         //@TODO: Will do in better ways for custom post type
         add_post_type_support('post', array('calibrefx-seo', 'calibrefx-layouts'));
         add_post_type_support('page', array('calibrefx-seo', 'calibrefx-layouts'));
+
+        if ( ! isset( $content_width ) ) 
+            $content_width = apply_filters( 'calibrefx_content_width', 550 );
     }
 
     public function run(){

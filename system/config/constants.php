@@ -33,6 +33,7 @@
 !defined('CALIBREFX_MODEL_URI') && define('CALIBREFX_MODEL_URI', CALIBREFX_SYS_URI . '/models');
 !defined('CALIBREFX_WIDGET_URI') && define('CALIBREFX_WIDGET_URI', CALIBREFX_SYS_URI . '/widgets');
 !defined('CALIBREFX_HOOK_URI') && define('CALIBREFX_HOOK_URI', CALIBREFX_SYS_URI . '/hooks');
+!defined('CALIBREFX_MODULE_URI') && define('CALIBREFX_MODULE_URI', CALIBREFX_SYS_URI . '/modules');
 
 /** Define Assets Directory Constants */
 !defined('CALIBREFX_IMAGES_URI') && define('CALIBREFX_IMAGES_URI', CALIBREFX_URI . '/assets/img');

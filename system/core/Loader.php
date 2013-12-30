@@ -84,6 +84,13 @@ class CFX_Loader {
     public $_hook_paths = array();
 
     /**
+     * List of paths to load modules from
+     *
+     * @var array
+     */
+    public $_module_paths = array();
+
+    /**
      * List of loaded classes
      *
      * @var array
@@ -133,6 +140,7 @@ class CFX_Loader {
         $this->_shortcode_paths = array(CALIBREFX_SHORTCODE_URI);
         $this->_widget_paths = array(CALIBREFX_WIDGET_URI);
         $this->_hook_paths = array(CALIBREFX_HOOK_URI);
+        $this->_module_paths = array(CALIBREFX_MODULE_URI);
 
         $this->initialize();
 
@@ -703,6 +711,7 @@ class CFX_Loader {
         $this->_shortcode_paths[] = $path . '/shortcodes';
         $this->_widget_paths[] = $path . '/widgets';
         $this->_hook_paths[] = $path . '/hooks';
+        $this->_module_paths[] = $path . '/modules';
     }
 
     // --------------------------------------------------------------------

@@ -32,6 +32,24 @@ function calibrefx_clear_meta_section() {
 }
 
 /**
+ * Check if meta section is exist
+ */
+function calibrefx_is_meta_section_exist($slug){
+    global $calibrefx_sections;
+
+    if (!isset($calibrefx_sections))
+        return false;
+
+    if (!isset($calibrefx_sections[$slug]))
+        return false;
+
+    //if the section already exist then we do nothing
+    if (!empty($calibrefx_sections[$slug])) {
+        return true;
+    }
+}
+
+/**
  * Add Section tab in the Theme Settings
  *
  * @since 1.0.2

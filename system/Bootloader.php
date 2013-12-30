@@ -61,7 +61,8 @@ $calibrefx = calibrefx_get_instance();
 add_action( 'after_setup_theme', function(){
 	global $calibrefx;
 	$calibrefx->run();
-});
+},0);
+
 /** Run the calibrefx_pre_init hook */
 // do_action('calibrefx_pre_init');
 

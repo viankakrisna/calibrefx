@@ -21,7 +21,7 @@
  */
 
 /**
- * Calibrefx Logo Hooks
+ * Calibrefx menu Hooks
  *
  * @package		Calibrefx
  * @subpackage          Hook
@@ -41,7 +41,8 @@ if(get_option('calibrefx_show_settings')){
 }*/
 
 add_action('admin_menu', 'calibrefx_register_admin_menu');
-add_action('calibrefx_add_submenu_page', 'calibrefx_add_about_settings',20);
+add_action('calibrefx_add_submenu_page', 'calibrefx_add_module_settings',20);
+add_action('calibrefx_add_submenu_page', 'calibrefx_add_about_settings',25);
 add_action('calibrefx_add_submenu_page', 'calibrefx_add_extra_settings',30);
 
 // This function adds the top-level menu
@@ -76,6 +77,18 @@ function calibrefx_register_settings_sub_menu(){
     if (!current_theme_supports('calibrefx-admin-menu'))
         return;
 
+}
+
+function calibrefx_add_module_settings(){
+    global $menu, $calibrefx, $calibrefx_user_ability;
+
+    // Disable if programatically disabled
+    if (!current_theme_supports('calibrefx-admin-menu'))
+        return;
+
+    $calibrefx->load->library('module_settings');
+    $calibrefx->module_settings->pagehook = add_submenu_page('calibrefx', __('Modules', 'calibrefx'), __('Modules', 'calibrefx'), 'edit_theme_options', 'calibrefx-module', array($calibrefx->module_settings, 'dashboard'));
+    $calibrefx->load->library('list_module_table', array('screen' => $calibrefx->module_settings->pagehook));
 }
 
 function calibrefx_add_about_settings(){

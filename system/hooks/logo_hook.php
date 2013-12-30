@@ -43,7 +43,6 @@ add_action('after_setup_theme', 'calibrefx_custom_header');
 function calibrefx_custom_header() {
 
     $custom_header = get_theme_support('calibrefx-custom-header');
-
     /** If not active, do nothing */
     if (!$custom_header)
         return;
