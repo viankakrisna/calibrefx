@@ -25,12 +25,12 @@
  *
  * Store config data
  *
- * @package		calibrefxlib
- * @subpackage          Core
- * @category            Config
+ * @package		Core
+ * @category    Config
  * @author		CalibreFx Dev Team
  * @link		http://www.CalibreFx.com
  */
+
 // ------------------------------------------------------------------------
 class CFX_Config {
 

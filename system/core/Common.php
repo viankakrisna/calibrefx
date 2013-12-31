@@ -177,7 +177,7 @@ if (!function_exists('calibrefx_is_loaded')) {
      * @param	string
      * @return	array
      */
-    function &calibrefx_is_loaded($class = '') {
+    function calibrefx_is_loaded($class = '') {
         static $_is_loaded = array();
 
         if ($class !== '') {

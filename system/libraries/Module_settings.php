@@ -95,7 +95,8 @@ class CFX_Module_Settings extends CFX_Admin {
 
                     // check_admin_referer('activate-module_' . $module);
                     
-                    $result = calibrefx_activate_module($module, self_admin_url('admin.php?page=calibrefx-module&error=true&module=' . $module), is_network_admin() );
+                    $result = calibrefx_activate_module($module);
+                    // wp_redirect( admin_url("admin.php?page=calibrefx-module&activate=true"));//&module_status=$status&paged=$page&s=$s") ); // overrides the ?error=true one above
                     break;
                 case 'deactivate': 
                     if ( ! current_user_can('activate_plugins') )
@@ -103,7 +104,8 @@ class CFX_Module_Settings extends CFX_Admin {
 
                     // check_admin_referer('activate-module_' . $module);
                     
-                    $result = calibrefx_deactivate_module($module, self_admin_url('admin.php?page=calibrefx-module&error=true&module=' . $module), is_network_admin() );
+                    $result = calibrefx_deactivate_module($module);
+                    // wp_redirect( admin_url("admin.php?page=calibrefx-module&deactivate=true"));//&module_status=$status&paged=$page&s=$s") ); // overrides the ?error=true one above
                     break;
             }
         }
