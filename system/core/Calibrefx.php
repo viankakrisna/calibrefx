@@ -78,8 +78,9 @@ final class Calibrefx {
         add_theme_support('calibrefx-default-styles');
         add_theme_support('calibrefx-inpost-layouts');
         add_theme_support('calibrefx-responsive-style');
-        // add_theme_support('calibrefx-seo');
         add_theme_support('calibrefx-open-graph');
+        add_theme_support('calibrefx-footer-widgets');
+        add_theme_support('calibrefx-header-right-widgets');
 
         if (!current_theme_supports('calibrefx-menus')) {
             add_theme_support('calibrefx-menus', array(
