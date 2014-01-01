@@ -33,7 +33,10 @@
 global $cfxgenerator;
 
 $cfxgenerator->init = array('calibrefx_register_scripts');
-$cfxgenerator->calibrefx_meta = array('calibrefx_load_scripts', 'calibrefx_load_styles');
+$cfxgenerator->calibrefx_meta = array(
+    array('function' => 'calibrefx_load_scripts', 'priority' => 0), 
+    array('function' => 'calibrefx_load_styles', 'priority' => 0),
+);
 
 /********************
  * FUNCTIONS BELOW  *
