@@ -34,8 +34,12 @@ final class Calibrefx {
      *
      * @return	object
      */
+
     public static function get_instance() {
-        if(self::$instance === null){
+        $instance = wp_cache_get( 'calibrefx' );
+        if($instance === TRUE){
+            self::$instance = $instance;
+        }elseif(self::$instance === null){
             self::$instance = new Calibrefx();
         }
         

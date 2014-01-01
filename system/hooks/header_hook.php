@@ -41,13 +41,7 @@ $cfxgenerator->calibrefx_meta = array(
 
 $cfxgenerator->calibrefx_header = array('calibrefx_header_area');
 
-$cfxgenerator->get_header = array(
-    array(
-        'function'  => function(){
-            remove_action('wp_head', 'wp_generator');
-        },
-    )
-);
+$cfxgenerator->get_header = array('calibrefx_remove_wp_generator');
 
 $cfxgenerator->wp_head = array(
     'calibrefx_print_wrap', 'calibrefx_do_meta_pingback', 'calibrefx_header_scripts',
@@ -88,6 +82,13 @@ function calibrefx_do_html_header(){
     do_action('calibrefx_doctype');
     do_action('calibrefx_title');
     do_action('calibrefx_meta');
+}
+
+/**
+ * Remove WP Generator Tag from header
+ */
+function calibrefx_remove_wp_generator(){
+    remove_action('wp_head', 'wp_generator');
 }
 
 /**

@@ -24,8 +24,8 @@ if(file_exists(CHILD_URI . '/page-blog.php') AND (CHILD_URI != CALIBREFX_URI)){
     exit;
 }
 
-remove_action( 'calibrefx_loop', 'calibrefx_do_loop' );
-add_action('calibrefx_loop', 'calibrefx_do_blog_loop');
+global $cfxgenerator;
+$cfxgenerator->replace('calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_do_blog_loop');
 
 /**
  * CalibreFx Loop for blog bage

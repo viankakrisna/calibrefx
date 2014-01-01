@@ -162,7 +162,7 @@ class CFX_Loader {
         $this->_helpers = array();
         $this->_loaded_models = array();
 
-        $this->do_autoload();
+        // $this->do_autoload();
 
         return $this;
     }
@@ -210,7 +210,7 @@ class CFX_Loader {
                 $this->library($item);
             }
         }
-
+        
         // Load Hooks
         if (isset($autoload['hooks']) && count($autoload['hooks']) > 0) {
             $this->hook($autoload['hooks']);
@@ -261,6 +261,7 @@ class CFX_Loader {
 
                 if (isset($this->_loaded_files[$filepath])) {
                     //File loaded
+                    calibrefx_log_message('debug', 'Config has been loaded from the cache: ' . $config);
                     return;
                 }
 
@@ -288,7 +289,7 @@ class CFX_Loader {
      */
     public function model($model, $name = '') {
         global $calibrefx;
-
+        
         if (is_array($model)) {
             foreach ($model as $class) {
                 $this->model($class);
@@ -316,10 +317,10 @@ class CFX_Loader {
         }
 
         if (in_array($name, $this->_loaded_models, TRUE)) {
+            calibrefx_log_message('debug', 'Model has been loaded from the cache: ' . $name);
             return;
         }
-
-        $calibrefx = calibrefx_get_instance();
+        // $calibrefx = calibrefx_get_instance();
         if (isset($calibrefx->$name)) {
             calibrefx_log_message('error', 'The model name you are loading is the name of a resource that is already being used: ' . $name);
             //show_error('The model name you are loading is the name of a resource that is already being used: ' . $name);
@@ -360,6 +361,7 @@ class CFX_Loader {
     public function helper($helpers = array()) {
         foreach ($this->_prep_filename($helpers, '_helper') as $helper) {
             if (isset($this->_helpers[$helper])) {
+                calibrefx_log_message('debug', 'Helper has been loaded from the cache: ' . $helper);
                 continue;
             }
 
@@ -395,6 +397,7 @@ class CFX_Loader {
         foreach ($widgets as $widget) {
             $widget_name = 'CFX_' . $widget . '_Widget';
             if (isset($this->_loaded_widgets[$widget_name])) {
+                calibrefx_log_message('debug', 'Widget has been loaded from the cache: ' . $widget_name);
                 continue;
             }
 
@@ -431,6 +434,7 @@ class CFX_Loader {
 
                 if (isset($this->_loaded_files[$filepath])) {
                     //File loaded
+                    calibrefx_log_message('debug', 'Hook has been loaded from the cache: ' . $hook);
                     return;
                 }
 
@@ -483,6 +487,7 @@ class CFX_Loader {
 
             if (isset($this->_loaded_files[$filepath])) {
                 //File loaded
+                calibrefx_log_message('debug', 'Shortcode has been loaded from the cache: ' . $shortcode);
                 return;
             }
 
@@ -527,6 +532,7 @@ class CFX_Loader {
             return;
 
         if (isset($this->_loaded_files[$file])) {
+            calibrefx_log_message('debug', 'File has been loaded from the cache: ' . $file);
             //File loaded
             return;
         }
@@ -643,6 +649,12 @@ class CFX_Loader {
                 // Does the file exist? No? Bummer...
                 if (!file_exists($filepath)) {
                     continue;
+                }
+
+                if (isset($this->_loaded_files[$filepath])) {
+                    calibrefx_log_message('debug', 'Library has been loaded from the cache: ' . $file);
+                    //File loaded
+                    return;
                 }
 
                 include_once($filepath);

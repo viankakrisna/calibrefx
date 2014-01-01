@@ -37,7 +37,7 @@ define('FRAMEWORK_VERSION', '1.0.18');
 define('FRAMEWORK_DB_VERSION', '1000');
 define('FRAMEWORK_URL', 'http://www.calibrefx.com');
 define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1380875819'));
-
+// wp_cache_flush();
 /*
  * ------------------------------------------------------
  *  Load the global functions
@@ -48,8 +48,8 @@ require_once( CALIBREFX_URI . '/system/core/Common.php' );
 require_once( CALIBREFX_URI . '/system/core/Model.php' );
 require_once( CALIBREFX_URI . '/system/core/Generator.php' );
 global $calibrefx, $cfxgenerator;
-$cfxgenerator = new CFX_Generator();
-
+$cfxgenerator = CFX_Generator::get_instance();
+// var_dump($cfxgenerator);exit;
 /*
  * ------------------------------------------------------
  *  Load Core Class
@@ -60,12 +60,18 @@ require_once( CALIBREFX_URI . '/system/core/Calibrefx.php' );
 //Initialize calibrefx instance
 $calibrefx = calibrefx_get_instance();
 
-
 add_action( 'after_setup_theme', function(){
 	global $calibrefx, $cfxgenerator;
+	$calibrefx->load->do_autoload();
 	$cfxgenerator->run_hook();
 	$calibrefx->run();
 },0);
+
+add_action( 'wp', function(){
+	global $calibrefx, $cfxgenerator;
+	wp_cache_set( 'calibrefx', $calibrefx );
+	wp_cache_set( 'cfxgenerator', $cfxgenerator );
+} );
 
 
 /** Run the calibrefx_pre_init hook */

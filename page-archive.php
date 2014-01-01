@@ -24,8 +24,8 @@ if (file_exists(CHILD_URI . '/page-archive.php') AND (CHILD_URI != CALIBREFX_URI
     exit;
 }
 
-remove_action('calibrefx_post_content', 'calibrefx_do_post_content');
-add_action('calibrefx_post_content', 'calibrefx_do_archive_content');
+global $cfxgenerator;
+$cfxgenerator->replace('calibrefx_post_content', 'calibrefx_do_post_content', 'calibrefx_do_archive_content');
 
 /**
  * CalibreFx Loop for archive bage
