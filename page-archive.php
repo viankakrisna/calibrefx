@@ -24,7 +24,6 @@ if (file_exists(CHILD_URI . '/page-archive.php') AND (CHILD_URI != CALIBREFX_URI
     exit;
 }
 
-global $cfxgenerator;
 $cfxgenerator->replace('calibrefx_post_content', 'calibrefx_do_post_content', 'calibrefx_do_archive_content');
 
 /**

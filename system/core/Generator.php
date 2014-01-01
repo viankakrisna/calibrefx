@@ -181,8 +181,11 @@ class CFX_Generator{
     	$func_array = $this->_hooks[$old_tag][$keysearch];
     	unset($this->_hooks[$old_tag][$keysearch]);
     	$this->add($new_tag, $func_array['function'], $func_array['priority'], $func_array['args']);
-    	remove_action( $name, $function_old );
-        add_action( $name, $function_new );
+    	if(has_action($old_tag, $function_old)){
+            remove_action( $old_tag, $function_old );
+            add_action( $new_tag, $function_new );
+        }
+        
     	return true;
     }
 
@@ -202,8 +205,13 @@ class CFX_Generator{
 
         if($keysearch == -1) return false;
         $this->_hooks[$tag][$keysearch]['function'] = $function_new;
-        remove_action( $tag, $function_old );
-        add_action( $tag, $function_new );
+        
+        //For late call, then we need to change the action
+        if(has_action($tag, $function_old)){
+            remove_action( $tag, $function_old );
+            add_action( $tag, $function_new );
+        }
+        
         return true;
     }
 
