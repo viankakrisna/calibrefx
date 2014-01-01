@@ -133,7 +133,7 @@ function calibrefx_load_admin_scripts() {
     add_thickbox();
     wp_enqueue_script('theme-preview');
     wp_enqueue_script('calibrefx-admin-bar');
-    wp_enqueue_script('calibrefx_admin_js', CALIBREFX_JS_URL . '/admin.js', array('jquery', 'jquery-sticky'), '');
+    wp_enqueue_script('calibrefx_admin_js', CALIBREFX_JS_URL . '/admin.js', array('jquery', 'jquery-sticky', 'wp-color-picker'), '');
     $params = array(
         'category_checklist_toggle' => __('Select / Deselect All', 'calibrefx'),
         'shortcode_url' => CALIBREFX_SHORTCODE_URL,
@@ -150,6 +150,7 @@ function calibrefx_load_admin_styles() {
     if (current_theme_supports('calibrefx-admin-bar')) {
         wp_enqueue_style('calibrefx-admin-bar-css', CALIBREFX_CSS_URL . '/calibrefx.admin.bar.css', array());
     }
+    wp_enqueue_style( 'wp-color-picker' );
 }
 add_action('admin_init', 'calibrefx_load_admin_styles');
 

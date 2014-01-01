@@ -226,7 +226,8 @@ function calibrefx_header_body_classes($classes) {
     if (!is_active_sidebar('header-right'))
         $classes[] = 'header-full-width';
 
-    if ('image' == calibrefx_get_option('blog_title') || 'blank' == get_header_textcolor())
+    if (current_theme_supports( 'calibrefx-custom-header' ) && 
+        ('image' == calibrefx_get_option('blog_title') || 'blank' == get_header_textcolor()))
         $classes[] = 'header-image';
     
     if(current_theme_supports( 'calibrefx-responsive-style' )){
