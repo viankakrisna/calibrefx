@@ -30,7 +30,16 @@
  * @link		http://www.calibrefx.com
  */
 
-add_action('wp_footer', 'calibrefx_footer_scripts');
+global $cfxgenerator;
+
+$cfxgenerator->calibrefx_before_footer = array('calibrefx_do_footer_widgets');
+$cfxgenerator->calibrefx_footer = array('calibrefx_footer_area');
+$cfxgenerator->calibrefx_footer_content = array('calibrefx_do_footer');
+$cfxgenerator->wp_footer = array('calibrefx_footer_scripts','calibrefx_add_socials_script','calibrefx_add_google_analytics');
+
+/********************
+ * FUNCTIONS BELOW  *
+ ********************/
 
 /**
  * Display the footer scripts, defined in Theme Settings.
@@ -45,8 +54,6 @@ function calibrefx_footer_scripts() {
         calibrefx_custom_field('_calibrefx_scripts');
     }
 }
-
-add_action('calibrefx_before_footer', 'calibrefx_do_footer_widgets');
 
 /**
  * Display the footer widget if the footer widget are active.
@@ -77,108 +84,34 @@ function calibrefx_do_footer_widgets() {
     register_sidebar($sidebar);
 
     if (is_active_sidebar('footer-widget')) {
-        do_action('calibrefx_before_footer_widget');
+        echo '<div id="footer-widget" ' . get_footer_widget_class() . '>';
+        calibrefx_put_wrapper('footer-widget', 'open'); 
+        $footer_widget_wrapper_class = apply_filters( 'footer_widget_wrapper_class', calibrefx_row_class() );
+        echo '<div class="footer-widget-wrapper"><div class="'.$footer_widget_wrapper_class.'">';
+
         dynamic_sidebar('footer-widget');
-		do_action('calibrefx_after_footer_widget');
+
+        echo '</div></div><!--end .footer-widget-wrapper -->';
+        calibrefx_put_wrapper('footer-widget','close');
+        echo '</div><!--end #footer-widget-->';
     }
 }
 
-add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_open');
 
 /**
- * Open footer widget markup
+ * Display Footer area
  */
-function calibrefx_do_footer_widget_open(){
-    echo '<div id="footer-widget" ' . get_footer_widget_class() . '>';
-    calibrefx_put_wrapper('footer-widget', 'open'); 
-}
-
-add_action('calibrefx_before_footer_widget', 'calibrefx_do_footer_widget_wrapper_open');
-
-/**
- * Open footer widget wrapper markup
- */
-function calibrefx_do_footer_widget_wrapper_open(){
-    $footer_widget_wrapper_class = apply_filters( 'footer_widget_wrapper_class', calibrefx_row_class() );
-    echo '<div class="footer-widget-wrapper"><div class="'.$footer_widget_wrapper_class.'">';
-}
-
-add_action('calibrefx_after_footer_widget', 'calibrefx_do_footer_widget_wrapper_close');
-
-/**
- * Open footer widget markup
- */
-function calibrefx_do_footer_widget_wrapper_close(){
-    echo '</div></div><!--end .footer-widget-wrapper -->';
-}
-
-add_action('calibrefx_after_footer_widget', 'calibrefx_do_footer_widget_close');
-
-/**
- * Open footer widget markup
- */
-function calibrefx_do_footer_widget_close(){
-    calibrefx_put_wrapper('footer-widget','close');
-    echo '</div><!--end #footer-widget-->';
-}
-
-add_action('calibrefx_footer', 'calibrefx_do_footer_open', 5);
-
-/**
- * Open footer markup
- */
-function calibrefx_do_footer_open() {
+function calibrefx_footer_area(){
     $footer_class = apply_filters( 'footer_class', calibrefx_row_class() );
     echo '<div id="footer" class="'.$footer_class.'">';
-}
-
-add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_row_open', 7);
-
-/**
- * Open footer wrapper row markup
- */
-function calibrefx_do_footer_wrapper_row_open() {
     calibrefx_put_wrapper('footer', 'open');
-}
-
-add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_open', 9);
-
-/**
- * Open footer wrapper markup
- */
-function calibrefx_do_footer_wrapper_open() {
     echo '<div id="footer-wrapper">';
-}
-
-add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_close', 12);
-
-/**
- * Close footer wrapper markup
- */
-function calibrefx_do_footer_wrapper_close() {
+    do_action( 'calibrefx_footer_content' );
     echo '</div><!-- end #footer-wrapper -->';
-}
-
-add_action('calibrefx_footer', 'calibrefx_do_footer_wrapper_row_close', 15);
-
-/**
- * Close footer wrapper row markup
- */
-function calibrefx_do_footer_wrapper_row_close() {
     calibrefx_put_wrapper('footer', 'close');
-}
-
-add_action('calibrefx_footer', 'calibrefx_do_footer_close', 20);
-
-/**
- * Close footer markup
- */
-function calibrefx_do_footer_close() {
     echo '</div><!-- end #footer -->' . "\n";
 }
-
 add_filter('calibrefx_footer_output', 'do_shortcode', 20);
-add_action('calibrefx_footer', 'calibrefx_do_footer');
 
 /**
  * Do Header Callback
@@ -195,8 +128,6 @@ function calibrefx_do_footer() {
 
     echo apply_filters('calibrefx_footer_output', $output, $backtotop_text, $creds_text);
 }
-
-add_action('wp_footer', 'calibrefx_add_socials_script');
 
 /**
  * Add Social javascript in footer
@@ -221,8 +152,6 @@ fjs.parentNode.insertBefore(js, fjs);
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 </script>'."\n";
 }
-
-add_action('wp_footer', 'calibrefx_add_google_analytics');
 
 /**
  * Add google analytics settings

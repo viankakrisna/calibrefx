@@ -24,22 +24,48 @@
  * Calibrefx Header Hooks
  *
  * @package		Calibrefx
- * @subpackage          Hook
+ * @subpackage  Hook
  * @author		CalibreFx Team
  * @since		Version 1.0
  * @link		http://www.calibrefx.com
  */
+
+global $cfxgenerator;
+
+$cfxgenerator->calibrefx_doctype = array('calibrefx_print_doctype');
+$cfxgenerator->calibrefx_html_header = array( 'calibrefx_do_html_header' );
+$cfxgenerator->calibrefx_meta = array(
+    'calibrefx_do_meta_description', 'calibrefx_do_meta_keywords','calibrefx_do_link_author',
+    'calibrefx_print_favicon', 'calibrefx_print_media_icon','calibrefx_load_stylesheet', 
+    'calibrefx_do_dublin_core', 'calibrefx_do_fb_og');
+
+$cfxgenerator->calibrefx_header = array('calibrefx_header_area');
+
+$cfxgenerator->get_header = array(
+    array(
+        'function'  => function(){
+            remove_action('wp_head', 'wp_generator');
+        },
+    )
+);
+
+$cfxgenerator->wp_head = array(
+    'calibrefx_print_wrap', 'calibrefx_do_meta_pingback', 'calibrefx_header_scripts',
+    'calibrefx_header_custom_styles', 'calirbefx_show_feeds_meta'
+);
+
+/********************
+ * FUNCTIONS BELOW  *
+ ********************/
+
 /**
  * Adds header structures.
+ * 
+ * This function handles the doctype. Default HTML5.
  *
  * @package CalibreFx
  */
-add_action('calibrefx_doctype', 'calibrefx_print_doctype');
-
-/**
- * This function handles the doctype. Default HTML5.
- */
-function calibrefx_print_doctype() {?>
+function calibrefx_print_doctype() { ?>
 <!doctype html <?php language_attributes(); ?>>
 <!--[if lt IE 7 ]> <html class="ie ltie9 ie6 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie ltie9 ie7 no-js" lang="<?php bloginfo('language'); ?>" <?php html_xmlns();?>> <![endif]-->
@@ -55,7 +81,14 @@ function calibrefx_print_doctype() {?>
 <?php
 }
 
-add_action('calibrefx_meta', 'calibrefx_do_meta_description');
+/**
+ * Display All the header requirements
+ */
+function calibrefx_do_html_header(){
+    do_action('calibrefx_doctype');
+    do_action('calibrefx_title');
+    do_action('calibrefx_meta');
+}
 
 /**
  * Print meta description, get from blog description
@@ -70,8 +103,6 @@ function calibrefx_do_meta_description() {
     }
 }
 
-add_action('calibrefx_meta', 'calibrefx_do_meta_keywords');
-
 /**
  * Print meta keywords
  * Will be override by seo addon later
@@ -84,8 +115,6 @@ function calibrefx_do_meta_keywords() {
         echo '<meta name="keywords" content="' . esc_attr($keywords) . '" />' . "\n";
     }
 }
-
-add_action('calibrefx_meta', 'calibrefx_do_link_author');
 
 /**
  * Print meta keywords
@@ -105,8 +134,6 @@ function calibrefx_do_link_author() {
         echo '<link rel="publisher" content="' . esc_attr($link_publisher) . '" />' . "\n";
     }
 }
-
-add_action('calibrefx_meta', 'calibrefx_print_favicon');
 
 /**
  * Print outs favicon
@@ -136,12 +163,10 @@ function calibrefx_print_favicon() {
         echo '<link rel="Shortcut Icon" href="' . esc_url($favicon) . '" type="image/x-icon" />' . "\n";
 }
 
-add_action('calibrefx_meta', 'calibrefx_print_media57_icon');
-
 /**
- * Print outs media icon for apple touch 57x57x in pixels
+ * Print outs media icon for apple touch
  */
-function calibrefx_print_media57_icon() {
+function calibrefx_print_media_icon() {
 
     //allow overriding
     $pre = apply_filters('calibrefx_pre_load_media57_icon', false);
@@ -157,16 +182,7 @@ function calibrefx_print_media57_icon() {
 
     if ($media57)
         echo '<link rel="apple-touch-icon" href="' . esc_url($media57) . '"/>' . "\n";
-}
 
-add_action('calibrefx_meta', 'calibrefx_print_media72_icon');
-
-/**
- * Print outs media icon for apple touch 72x72 pixels
- */
-function calibrefx_print_media72_icon() {
-
-    //allow overriding
     $pre = apply_filters('calibrefx_pre_load_media72_icon', false);
 
     if ($pre !== false)
@@ -180,33 +196,21 @@ function calibrefx_print_media72_icon() {
 
     if ($media72)
         echo '<link rel="apple-touch-icon" sizes="72x72" href="' . esc_url($media72) . '"/>' . "\n";
-}
 
-add_action('calibrefx_meta', 'calibrefx_print_media114_icon');
-
-/**
- * Print outs media icon for apple touch 114x114 pixels
- */
-function calibrefx_print_media114_icon() {
-
-    //allow overriding
     $pre = apply_filters('calibrefx_pre_load_media114_icon', false);
 
     if ($pre !== false)
         $media114 = $pre;
-    elseif (file_exists(CALIBREFX_IMAGES_URI . '/ico/media-72x72.png'))
-        $media114 = CALIBREFX_IMAGES_URL . '/ico/media-72x72.png';
+    elseif (file_exists(CALIBREFX_IMAGES_URI . '/ico/media-114x114.png'))
+        $media114 = CALIBREFX_IMAGES_URL . '/ico/media-114x114.png';
     else
-        $media114 = CALIBREFX_IMAGES_URL . '/media-72x72.png';
+        $media114 = CALIBREFX_IMAGES_URL . '/media-114x114.png';
 
     $media114 = apply_filters('calibrefx_media114_url', $media114);
 
     if ($media114)
         echo '<link rel="apple-touch-icon" sizes="114x114" href="' . esc_url($media114) . '"/>' . "\n";
 }
-
-//always load the child theme stylesheet at the end for overriding
-add_action('calibrefx_meta', 'calibrefx_load_stylesheet');
 
 /**
  * This function loads the stylesheet.
@@ -215,27 +219,6 @@ add_action('calibrefx_meta', 'calibrefx_load_stylesheet');
  */
 function calibrefx_load_stylesheet() {
     wp_enqueue_style('calibrefx-child-style', get_bloginfo('stylesheet_url'));
-}
-
-add_action('calibrefx_html_header', 'calibrefx_do_html_header');
-
-/**
- * Print html header
- */
-function calibrefx_do_html_header() {
-    do_action('calibrefx_doctype');
-    do_action('calibrefx_title');
-    do_action('calibrefx_meta');
-}
-
-add_action('get_header', 'calibrefx_doc_head_control');
-
-/**
- * Remove unnecessary code that WordPress puts in the <head>
- */
-function calibrefx_doc_head_control() {
-
-    remove_action('wp_head', 'wp_generator');
 }
 
 add_action('calibrefx_title', 'wp_title');
@@ -259,8 +242,6 @@ add_filter('wp_title', 'calibrefx_do_title_wrap', 20);
 function calibrefx_do_title_wrap($title) {
     return is_feed() || is_admin() ? $title : sprintf("<title>%s</title>\n", $title);
 }
-
-add_action('wp_head', 'calibrefx_print_wrap');
 
 /**
  * Print .wrap style
@@ -332,8 +313,6 @@ function calibrefx_print_wrap() {
     }
 }
 
-add_action('wp_head', 'calibrefx_do_meta_pingback');
-
 /**
  * This function adds the pingback meta tag to the <head> so that other
  * sites can know how to send a pingback to our site.
@@ -345,8 +324,6 @@ function calibrefx_do_meta_pingback() {
     }
 }
 
-add_action('calibrefx_meta', 'calibrefx_do_dublin_core');
-
 /**
  * This function adds dublin core meta in header
  */
@@ -355,10 +332,7 @@ function calibrefx_do_dublin_core() {
     echo '<meta name="DC.description" content="' . apply_filters('calibrefx_seo_description', get_bloginfo('description')) . '">'."\n";
     echo '<meta name="DC.subject" content="' . apply_filters('calibrefx_do_title', get_bloginfo('name')) . '">'."\n";
     echo '<meta name="DC.language" content="' . get_bloginfo('language') . '">' . "\n";
-//    echo '<meta name="DC.creator" content="'.calibrefx_get_author().'">';
 }
-
-add_action('calibrefx_meta', 'calibrefx_do_fb_og');
 
 /**
  * This function adds dublin core meta in header
@@ -380,8 +354,6 @@ function calibrefx_do_fb_og() {
     }
 }
 
-add_action('wp_head', 'calibrefx_header_scripts');
-
 /**
  * Echo the header scripts, defined in Theme Settings.
  */
@@ -389,8 +361,6 @@ function calibrefx_header_scripts() {
 
     echo apply_filters('calibrefx_header_scripts', stripslashes(calibrefx_get_option('header_scripts')));
 }
-
-add_action('wp_head', 'calibrefx_header_custom_styles');
 
 /**
  * Echo the header custom styles, defined in Theme Settings.
@@ -407,43 +377,6 @@ function calibrefx_header_custom_styles() {
     }
 }
 
-add_action('calibrefx_header', 'calibrefx_do_header_open', 5);
-
-/**
- * Open header markup
- */
-function calibrefx_do_header_open() {
-    $header_class = apply_filters( 'header_class', calibrefx_row_class() );
-    echo '<div id="header" class="'.$header_class.'">';
-}
-
-add_action('calibrefx_header', 'calibrefx_do_header_wrapper_open', 10);
-
-/**
- * Put header wrapper open
- */
-function calibrefx_do_header_wrapper_open(){
-    calibrefx_put_wrapper('header', 'open');
-}
-
-add_action('calibrefx_header', 'calibrefx_do_header_wrapper_close', 15);
-
-/**
- * Put header wrapper close
- */
-function calibrefx_do_header_wrapper_close(){
-    calibrefx_put_wrapper('header', 'close');
-}
-
-add_action('calibrefx_header', 'calibrefx_do_header_close', 20);
-
-/**
- * Close header markup
- */
-function calibrefx_do_header_close() {
-    echo '</div><!--end #header-->';
-}
-
 add_action('calibrefx_site_title', 'calibrefx_do_site_title');
 
 /**
@@ -455,12 +388,13 @@ function calibrefx_do_site_title() {
     // Set what goes inside the wrapping tags
     $inside = sprintf('<a href="%s" title="%s">%s</a>', trailingslashit(home_url()), esc_attr(get_bloginfo('name')), get_bloginfo('name'));
 
-    // Determine which wrapping tags to use
-    //$wrap = is_home() ? 'h1' : 'p';
     // Build the Title
-    $title = sprintf('<h1 id="title">%s</h1>', $inside);
+    if(is_home() ||is_front_page()){
+        $title = sprintf('<h1 id="title">%s</h1>', $inside);
+    }else{
+        $title = sprintf('<h2 id="title">%s</h2>', $inside);
+    }
 
-    // Echo (filtered)
     echo apply_filters('calibrefx_seo_title', $title, $inside, $wrap = '');
 }
 
@@ -485,7 +419,17 @@ function calibrefx_do_site_description() {
     echo apply_filters('calibrefx_seo_description', $description, $inside, $wrap);
 }
 
-add_action('calibrefx_header', 'calibrefx_do_header', 12);
+/**
+ * Markup the header area
+ */
+function calibrefx_header_area(){
+    $header_class = apply_filters( 'header_class', calibrefx_row_class() );
+    echo '<div id="header" class="'.$header_class.'">';
+    calibrefx_put_wrapper('header', 'open');
+    calibrefx_do_header();
+    calibrefx_put_wrapper('header', 'close');
+    echo '</div><!--end #header-->';
+}
 
 /**
  * Do Header Callback
@@ -509,14 +453,13 @@ function calibrefx_do_header() {
 /**
  * Print header right widget
  */
-add_action('calibrefx_header_right_widget','calibrefx_do_header_right_widget');
 function calibrefx_do_header_right_widget(){
     if (is_active_sidebar('header-right')) {
         dynamic_sidebar('header-right');
     }
 }
+add_action('calibrefx_header_right_widget','calibrefx_do_header_right_widget');
 
-add_filter('feed_link', 'calibrefx_feed_links_filter', 10, 2);
 
 /**
  * Filter the feed URI if the user has input a custom feed URI.
@@ -535,8 +478,7 @@ function calibrefx_feed_links_filter($output, $feed) {
 
     return $output;
 }
-
-add_action('wp_head', 'calirbefx_show_feeds_meta');
+add_filter('feed_link', 'calibrefx_feed_links_filter', 10, 2);
 
 /**
  * Show Feed Meta

@@ -98,6 +98,32 @@ function calibrefx_breadcrumb($args = array()) {
 }
 
 /**
+ * CalibreFx default loop
+ *
+ * It outputs basic wrapping HTML, but uses hooks to do most of its
+ * content output like Title, Content, Post information, and Comments.
+ *
+ */
+function calibrefx_default_loop() {
+
+    $loop_counter = 0;
+    if (have_posts()) : 
+        while (have_posts()) : the_post(); // the loop
+            do_action('calibrefx_before_post');
+            get_template_part( 'content', get_post_format() );
+            do_action('calibrefx_after_post');
+            $loop_counter++;
+
+        endwhile;/** end of one post * */
+        //Disable by Ivan because too many hooks
+        //do_action('calibrefx_after_post_loop');
+
+    else : /** if no posts exist * */
+        do_action('calibrefx_no_post');
+    endif;/** end loop * */
+}
+
+/**
  * Echoes post navigation in Older Posts / Newer Posts format.
  */
 function calibrefx_older_newer_posts_nav() {

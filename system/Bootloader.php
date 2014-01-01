@@ -46,6 +46,9 @@ define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1380875819'));
 require_once( CALIBREFX_URI . '/system/config/constants.php');
 require_once( CALIBREFX_URI . '/system/core/Common.php' );
 require_once( CALIBREFX_URI . '/system/core/Model.php' );
+require_once( CALIBREFX_URI . '/system/core/Generator.php' );
+global $calibrefx, $cfxgenerator;
+$cfxgenerator = new CFX_Generator();
 
 /*
  * ------------------------------------------------------
@@ -55,13 +58,15 @@ require_once( CALIBREFX_URI . '/system/core/Model.php' );
 require_once( CALIBREFX_URI . '/system/core/Calibrefx.php' );
 
 //Initialize calibrefx instance
-global $calibrefx;
 $calibrefx = calibrefx_get_instance();
 
+
 add_action( 'after_setup_theme', function(){
-	global $calibrefx;
+	global $calibrefx, $cfxgenerator;
+	$cfxgenerator->run_hook();
 	$calibrefx->run();
 },0);
+
 
 /** Run the calibrefx_pre_init hook */
 // do_action('calibrefx_pre_init');

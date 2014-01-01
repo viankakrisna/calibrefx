@@ -30,7 +30,15 @@
  * @link		http://www.calibrefx.com
  */
 
-add_action('init', 'calibrefx_register_scripts');
+global $cfxgenerator;
+
+$cfxgenerator->init = array('calibrefx_register_scripts');
+$cfxgenerator->calibrefx_meta = array('calibrefx_load_scripts', 'calibrefx_load_styles');
+
+/********************
+ * FUNCTIONS BELOW  *
+ ********************/
+
 /**
  * This function register our style and script files
  */
@@ -53,8 +61,8 @@ function calibrefx_register_scripts(){
     wp_register_style('font-awesome', CALIBREFX_CSS_URL . '/font-awesome.min.css');
     wp_register_style('font-awesome-ie', CALIBREFX_CSS_URL . '/font-awesome-ie7.min.css');
 }
+// add_action('init', 'calibrefx_register_scripts');
 
-add_action('get_header', 'calibrefx_load_scripts');
 /**
  * Load default calibrefx scripts
  * 
@@ -73,8 +81,8 @@ function calibrefx_load_scripts() {
     wp_enqueue_script('jquery.cycle2.optional');
     wp_localize_script('calibrefx-script', 'cfx_ajax', array('ajaxurl' => admin_url('admin-ajax.php'), 'ajax_action' => 'cfx_ajax', '_ajax_nonce' => wp_create_nonce( 'calibrefx_ajax_nonce')));
 }
+// add_action('get_header', 'calibrefx_load_scripts');
 
-add_action('calibrefx_meta', 'calibrefx_load_styles',5);
 
 /**
  * Load default calibrefx styles
@@ -114,8 +122,6 @@ function calibrefx_load_styles() {
     }
 }
 
-add_action('admin_init', 'calibrefx_load_admin_scripts');
-
 /**
  * This function loads the admin JS files
  *
@@ -132,8 +138,8 @@ function calibrefx_load_admin_scripts() {
     );
     wp_localize_script('calibrefx_admin_js', 'calibrefx_local', $params);
 }
+add_action('admin_init', 'calibrefx_load_admin_scripts');
 
-add_action('admin_init', 'calibrefx_load_admin_styles');
 
 function calibrefx_load_admin_styles() {
     wp_enqueue_style('calibrefx-admin-css', CALIBREFX_CSS_URL . '/calibrefx.admin.css', array());
@@ -142,11 +148,14 @@ function calibrefx_load_admin_styles() {
         wp_enqueue_style('calibrefx-admin-bar-css', CALIBREFX_CSS_URL . '/calibrefx.admin.bar.css', array());
     }
 }
+add_action('admin_init', 'calibrefx_load_admin_styles');
 
 function calibrefx_remove_script_version( $src ){
 	$parts = explode( '?', $src );
-	return $parts[0];
+    if(strpos($src, $_SERVER['HTTP_HOST']) !== FALSE)
+	   return $parts[0];
+
+    return $src;
 }
 add_filter( 'script_loader_src', 'calibrefx_remove_script_version', 15, 1 );
 add_filter( 'style_loader_src', 'calibrefx_remove_script_version', 15, 1 );
-

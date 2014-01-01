@@ -20,7 +20,29 @@
  * @package CalibreFx
  */
 
-add_action('wp_loaded', 'form_submit_handler', 15);
+global $cfxgenerator;
+
+$cfxgenerator->wp_loaded = array(
+	array(
+		'function' => 'form_submit_handler',
+		'priority'	=> 15
+	),
+);
+
+$cfxgenerator->calibrefx_after_wrapper = array(
+	array(
+		'function' => 'form_submit_notification_handler',
+		'priority'	=> 20
+	)
+);
+
+
+/********************
+ * FUNCTIONS BELOW  *
+ ********************/
+/**
+ * Handle form submit from contact form
+ */
 function form_submit_handler(){
 	if ('POST' == $_SERVER['REQUEST_METHOD']){
 		if(!isset($_REQUEST['action'])) return;
@@ -59,8 +81,8 @@ function form_submit_handler(){
 		}
 	}
 }
+// add_action('wp_loaded', 'form_submit_handler', 15);
 
-add_action('calibrefx_after_wrapper', 'form_submit_notification_handler', 20);
 function form_submit_notification_handler(){
 	if(isset($_REQUEST['submitted'])){
 		$submitted = $_REQUEST['submitted'];
@@ -103,3 +125,4 @@ function form_submit_notification_handler(){
 		</script>
 	';	
 }
+// add_action('calibrefx_after_wrapper', 'form_submit_notification_handler', 20);

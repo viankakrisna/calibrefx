@@ -24,13 +24,20 @@
  * Calibrefx Widget Hooks
  *
  * @package		Calibrefx
- * @subpackage          Hook
+ * @subpackage  Hook
  * @author		CalibreFx Team
  * @since		Version 1.0
  * @link		http://www.calibrefx.com
  */
 
-add_action('calibrefx_setup', 'calibrefx_register_default_widget');
+global $cfxgenerator;
+
+$cfxgenerator->calibrefx_setup = array('calibrefx_register_default_widget');
+$cfxgenerator->init = array('calibrefx_register_additional_widget');
+
+/********************
+ * FUNCTIONS BELOW  *
+ ********************/
 
 /**
  * This function registers all the default CalibreFx widget.
@@ -50,7 +57,6 @@ function calibrefx_register_default_widget() {
     ));
 }
 
-add_action('after_setup_theme', 'calibrefx_register_additional_widget');
 
 /**
  * This function registers additional CalibreFx widget.
@@ -76,3 +82,4 @@ function calibrefx_register_additional_widget() {
         ));
     }
 }
+// add_action('after_setup_theme', 'calibrefx_register_additional_widget');

@@ -30,7 +30,14 @@
  * @link		http://www.calibrefx.com
  */
 
-add_action('calibrefx_setup', 'calibrefx_init_third_party');
+global $cfxgenerator;
+
+$cfxgenerator->calibrefx_setup = array('calibrefx_init_third_party');
+
+/********************
+ * FUNCTIONS BELOW  *
+ ********************/
+
 /**
  * After frameworks is initialized we initialize other third party module
  */

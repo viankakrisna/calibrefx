@@ -84,6 +84,12 @@ final class Calibrefx {
                 )
             );
         }
+
+        $menus = get_theme_support('calibrefx-menus');
+        foreach ($menus as $menu) {
+            register_nav_menus($menu);
+        }
+
         if (!current_theme_supports('calibrefx-wraps'))
             add_theme_support('calibrefx-wraps', array('header', 'nav', 'subnav', 'inner', 'footer', 'footer-widget'));
         

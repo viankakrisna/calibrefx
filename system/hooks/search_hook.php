@@ -30,7 +30,6 @@
  * @link		http://www.calibrefx.com
  */
 
-add_filter('get_search_form', 'calibrefx_search_form');
 /**
  * Using a filter, we're replacing the default search form structure
  */
@@ -52,3 +51,4 @@ function calibrefx_search_form() {
 
     return apply_filters('calibrefx_search_form', $form, $search_text, $button_text);
 }
+add_filter('get_search_form', 'calibrefx_search_form');

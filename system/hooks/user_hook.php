@@ -29,7 +29,10 @@
  * @since		Version 1.0
  * @link		http://www.calibrefx.com
  */
-add_action('init', 'calibrefx_set_user_ability', 15);
+
+global $cfxgenerator;
+
+$cfxgenerator->init = array('calibrefx_set_user_ability');
 
 function calibrefx_set_user_ability() {
     global $calibrefx_user_ability, $current_user;
@@ -43,16 +46,13 @@ function calibrefx_set_user_ability() {
     $calibrefx_user_ability = get_user_meta($current_user->ID, 'ability', true);
 }
 
-add_filter('user_contactmethods', 'calibrefx_user_another_social_fields', 10, 1);
 function calibrefx_user_another_social_fields($methods){
     $methods['youtube_channel'] = __('Youtube Channel', 'calibrefx');
     $methods['linkedin_profile'] = __('Linkedin Profile', 'calibrefx');
 
     return $methods;
 }
-
-add_action('show_user_profile', 'calibrefx_user_archive_fields');
-add_action('edit_user_profile', 'calibrefx_user_archive_fields');
+add_filter('user_contactmethods', 'calibrefx_user_another_social_fields', 10, 1);
 
 /**
  * Adds fields for author archives contents to the user edit screen.
@@ -104,9 +104,9 @@ function calibrefx_user_archive_fields($user) {
     </table>
     <?php
 }
+add_action('show_user_profile', 'calibrefx_user_archive_fields');
+add_action('edit_user_profile', 'calibrefx_user_archive_fields');
 
-add_action('personal_options_update', 'calibrefx_user_meta_save');
-add_action('edit_user_profile_update', 'calibrefx_user_meta_save');
 
 /**
  * Adds / updates user meta when user edit page is saved.
@@ -129,8 +129,8 @@ function calibrefx_user_meta_save($user_id) {
     foreach ($meta as $key => $value)
         update_user_meta($user_id, $key, $value);
 }
-
-add_filter('get_the_author_calibrefx_author_box_single', 'calibrefx_author_box_single_default_on', 10, 2);
+add_action('personal_options_update', 'calibrefx_user_meta_save');
+add_action('edit_user_profile_update', 'calibrefx_user_meta_save');
 
 /**
  * This is a special filter function to be used to conditionally force
@@ -143,3 +143,4 @@ function calibrefx_author_box_single_default_on($value, $user_id) {
     else
         return $value;
 }
+add_filter('get_the_author_calibrefx_author_box_single', 'calibrefx_author_box_single_default_on', 10, 2);

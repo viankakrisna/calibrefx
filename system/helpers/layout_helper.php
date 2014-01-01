@@ -314,3 +314,37 @@ function calibrefx_layout_sidebar_content(){
 function calibrefx_layout_sidebar_content_sidebar(){
     return 'sidebar-content-sidebar';
 }
+
+/**
+ * This function/filter adds content span*
+ */
+function calibrefx_content_span() {
+    // get the layout
+    $site_layout = calibrefx_site_layout();
+
+    // don't load sidebar on pages that don't need it
+    if ($site_layout == 'full-width-content')
+        return apply_filters('calibrefx_content_span', 'span12 first');
+
+    if ($site_layout == 'sidebar-content-sidebar')
+        return apply_filters('calibrefx_content_span', 'span6');
+
+    return apply_filters('calibrefx_content_span', 'span8');
+}
+
+/**
+ * This function/filter adds sidebar span*
+ */
+function calibrefx_sidebar_span() {
+    // get the layout
+    $site_layout = calibrefx_site_layout();
+
+    // don't load sidebar on pages that don't need it
+    if ($site_layout == 'full-width-content')
+        return;
+
+    if ($site_layout == 'sidebar-content-sidebar')
+        return apply_filters('calibrefx_sidebar_span', 'span3');
+
+    return apply_filters('calibrefx_sidebar_span', 'span4');
+}

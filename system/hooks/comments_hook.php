@@ -24,13 +24,26 @@
  * Calibrefx Comments Hooks
  *
  * @package		Calibrefx
- * @subpackage          Hook
+ * @subpackage  Hook
  * @author		CalibreFx Team
  * @since		Version 1.0
  * @link		http://www.calibrefx.com
  */
 
-add_action( 'calibrefx_after_post', 'calibrefx_get_comments_template' );
+global $cfxgenerator;
+
+$cfxgenerator->calibrefx_after_post = array('calibrefx_get_comments_template');
+$cfxgenerator->calibrefx_comments = array('calibrefx_do_comments');
+$cfxgenerator->calibrefx_pings = array('calibrefx_do_pings');
+$cfxgenerator->calibrefx_list_comments = array('calibrefx_default_list_comments');
+$cfxgenerator->calibrefx_list_pings = array('calibrefx_default_list_pings');
+$cfxgenerator->calibrefx_comment_form = array('calibrefx_do_comment_form');
+
+
+/********************
+ * FUNCTIONS BELOW  *
+ ********************/
+
 /**
  * Output the comments at the end of posts / pages.
  *
@@ -60,8 +73,8 @@ function calibrefx_get_comments_template() {
         }
     }
 }
+// add_action( 'calibrefx_after_post', 'calibrefx_get_comments_template' );
 
-add_action( 'calibrefx_comments', 'calibrefx_do_comments' );
 /**
  * Echo CalibreFx default comment structure.
  *
@@ -101,8 +114,8 @@ function calibrefx_do_comments() {
         <?php
     }
 }
+// add_action( 'calibrefx_comments', 'calibrefx_do_comments' );
 
-add_action( 'calibrefx_pings', 'calibrefx_do_pings' );
 /**
  * Echo CalibreFx default trackback structure.
  *
@@ -131,10 +144,9 @@ function calibrefx_do_pings() {
     else {
         echo apply_filters( 'calibrefx_no_pings_text', '' );
     }
-
 }
+// add_action( 'calibrefx_pings', 'calibrefx_do_pings' );
 
-add_action( 'calibrefx_list_comments', 'calibrefx_default_list_comments' );
 /**
  * Outputs the comment list to the <code>calibrefx_comment_list()</code> hook.
  */
@@ -147,8 +159,8 @@ function calibrefx_default_list_comments() {
     $args = apply_filters( 'calibrefx_comment_list_args', $args );
     wp_list_comments( $args );
 }
+// add_action( 'calibrefx_list_comments', 'calibrefx_default_list_comments' );
 
-add_action( 'calibrefx_list_pings', 'calibrefx_default_list_pings' );
 /**
  * Outputs the ping list to the <code>calibrefx_ping_list()</code> hook.
  *
@@ -158,48 +170,8 @@ function calibrefx_default_list_pings() {
     $args = apply_filters( 'calibrefx_ping_list_args', $args );
     wp_list_comments( $args );
 }
+// add_action( 'calibrefx_list_pings', 'calibrefx_default_list_pings' );
 
-/**
- * Comment callback for {@link calibrefx_default_comment_list()}.
- *
- */
-function calibrefx_comment_callback( $comment, $args, $depth ) {
-
-    $GLOBALS['comment'] = $comment; ?>
-
-    <li <?php comment_class(); ?> id="comment-<?php comment_ID() ?>">
-
-    <?php do_action( 'calibrefx_before_comment' ); ?>
-
-    <div class="comment-author vcard">
-            <?php echo get_avatar( $comment, $size = $args['avatar_size'] ); ?>
-            <?php printf( __( '<cite class="fn">%s</cite> <span class="says">%s:</span>', 'calibrefx' ), get_comment_author_link(), apply_filters( 'comment_author_says_text', __( 'says', 'calibrefx' ) ) ); ?>
-    </div><!-- end .comment-author -->
-
-    <div class="comment-meta commentmetadata">
-            <a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><?php printf( __( '%1$s at %2$s', 'calibrefx' ), get_comment_date(), get_comment_time() ); ?></a>
-            <?php edit_comment_link( __( 'Edit', 'calibrefx' ),  '&bull; ', '' ); ?>
-    </div><!-- end .comment-meta -->
-
-    <div class="comment-content">
-            <?php if ($comment->comment_approved == '0') : ?>
-                    <p class="alert"><?php echo apply_filters( 'calibrefx_comment_awaiting_moderation', __( 'Your comment is awaiting moderation.', 'calibrefx' ) ); ?></p>
-            <?php endif; ?>
-
-            <?php comment_text(); ?>
-    </div><!-- end .comment-content -->
-
-    <div class="reply">
-            <?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-    </div>
-
-    <?php do_action( 'calibrefx_after_comment' );
-
-    /** No ending </li> tag because of comment threading */
-
-}
-
-add_action( 'calibrefx_comment_form', 'calibrefx_do_comment_form' );
 /**
  * Defines the comment form, hooked to <code>calibrefx_comment_form()</code>
  *
@@ -211,10 +183,9 @@ function calibrefx_do_comment_form() {
 		return;
 
 	comment_form();
-
 }
+// add_action( 'calibrefx_comment_form', 'calibrefx_do_comment_form' );
 
-add_filter( 'comment_form_defaults', 'calibrefx_comment_form_args' );
 /**
  * Filters the default comment form arguments, used by <code>comment_form()</code>
  *
@@ -265,4 +236,44 @@ function calibrefx_comment_form_args( $defaults ) {
 
     /** Return filterable array of $args, along with other optional variables */
     return apply_filters( 'calibrefx_comment_form_args', $args, $user_identity, $id, $commenter, $req, $aria_req );
+}
+add_filter( 'comment_form_defaults', 'calibrefx_comment_form_args' );
+
+/**
+ * Comment callback for {@link calibrefx_default_comment_list()}.
+ *
+ */
+function calibrefx_comment_callback( $comment, $args, $depth ) {
+
+    $GLOBALS['comment'] = $comment; ?>
+
+    <li <?php comment_class(); ?> id="comment-<?php comment_ID() ?>">
+
+    <?php do_action( 'calibrefx_before_comment' ); ?>
+
+    <div class="comment-author vcard">
+            <?php echo get_avatar( $comment, $size = $args['avatar_size'] ); ?>
+            <?php printf( __( '<cite class="fn">%s</cite> <span class="says">%s:</span>', 'calibrefx' ), get_comment_author_link(), apply_filters( 'comment_author_says_text', __( 'says', 'calibrefx' ) ) ); ?>
+    </div><!-- end .comment-author -->
+
+    <div class="comment-meta commentmetadata">
+            <a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><?php printf( __( '%1$s at %2$s', 'calibrefx' ), get_comment_date(), get_comment_time() ); ?></a>
+            <?php edit_comment_link( __( 'Edit', 'calibrefx' ),  '&bull; ', '' ); ?>
+    </div><!-- end .comment-meta -->
+
+    <div class="comment-content">
+            <?php if ($comment->comment_approved == '0') : ?>
+                    <p class="alert"><?php echo apply_filters( 'calibrefx_comment_awaiting_moderation', __( 'Your comment is awaiting moderation.', 'calibrefx' ) ); ?></p>
+            <?php endif; ?>
+
+            <?php comment_text(); ?>
+    </div><!-- end .comment-content -->
+
+    <div class="reply">
+            <?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+    </div>
+
+    <?php do_action( 'calibrefx_after_comment' );
+
+    /** No ending </li> tag because of comment threading */
 }

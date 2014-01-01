@@ -34,7 +34,7 @@ $autoload['libraries'] = array('cache','breadcrumb','security','replacer','form'
 
 $autoload['helpers'] = array('debug','format', 'image', 'html', 'url', 'widget', 
                              'option', 'layout', 'meta_box','nav','post', 
-                             'user','script','admin_menu', 'mobile', 'opengraph');
+                             'user','script','admin', 'mobile', 'opengraph');
 
 /*
  *  Auto-load Config files
@@ -56,9 +56,9 @@ $autoload['models'] = array('theme_settings_m', 'other_settings_m');
 /*
  *  Auto-load Config files
  */
-$autoload['hooks'] = array('module','header', 'logo', 'script', 'widget','layout', 'menu', 
+$autoload['hooks'] = array('module','header', 'script', 'widget','layout', 'menu', 
                           'login','user','post','inpost','comments', 'footer',
-                          'sidebar','performance','search','third_party','upgrade', 'ajax', 
+                          'performance','search','third_party','upgrade', 'ajax', 
                           'admin_ajax', 'mobile', 'form_submit', 'admin', 'customizer');
 
 /*
