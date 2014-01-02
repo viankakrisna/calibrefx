@@ -907,6 +907,7 @@ input[type="submit"].searchsubmit{
 
 .slider{
    position: relative;
+   z-index: 100;
 }
 
 .slider .item{
