@@ -119,14 +119,13 @@ function calibrefx_do_subnav() {
             $subnav = wp_nav_menu($args);
         }
 
-        $subnav_class = apply_filters( 'subnav_class', calibrefx_row_class() ) ;
         $subnav_output = sprintf('
-			<div id="subnav" class="subnav %4$s">
+			<div id="subnav">
                 %2$s
 				%1$s
                 %3$s
 			</div>
-            <!-- end #subnav -->', $subnav, calibrefx_put_wrapper('subnav', 'open', false), calibrefx_put_wrapper('subnav', 'close', false), $subnav_class);
+            <!-- end #subnav -->', $subnav, calibrefx_put_wrapper('subnav', 'open', false), calibrefx_put_wrapper('subnav', 'close', false));
 
         echo apply_filters('calibrefx_do_subnav', $subnav_output, $subnav, $args);
     }

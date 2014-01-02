@@ -84,10 +84,10 @@ class CFX_Popular_Post_Widget extends WP_Widget {
 					echo '
 						<li>
 							<div class="'.calibrefx_row_class().' latest-post-item">
-								<div class="span4 latest-post-thumb">
+								<div class="latest-post-thumb col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<a href="'.get_permalink().'" class="thumbnail">'.$img.'</a>
 								</div>
-								<div class="span8 latest-post-detail">
+								<div class="latest-post-detail col-lg-8 col-md-8 col-sm-8 col-xs-8">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-info">'.do_shortcode('[post_date]').'</p>
 								</div>
@@ -98,7 +98,7 @@ class CFX_Popular_Post_Widget extends WP_Widget {
 					echo '
 						<li>
 							<div class="'.calibrefx_row_class().' latest-post-item">
-								<div class="span12 latest-post-detail">
+								<div class="latest-post-detail col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-date">'.date($date_format, get_the_time('U')).'</p>
 								</div>

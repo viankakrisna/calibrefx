@@ -671,6 +671,7 @@ blockquote{
 #comments ol,
 #comments ul{
     margin: 0px;	
+    padding: 0px;
 }
 #comments .comment-list .comment-content > ul{
 	margin-bottom: 10px;
