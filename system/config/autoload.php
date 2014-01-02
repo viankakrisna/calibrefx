@@ -25,7 +25,7 @@ defined('CALIBREFX_URL') OR exit();
  * Auto-load Libraries
  */
 
-$autoload['libraries'] = array('cache','breadcrumb','security','replacer','form', 
+$autoload['libraries'] = array('breadcrumb','security','replacer','form', 
 							   'shortcode', 'walker_nav_menu_edit');
 
 /*
@@ -33,8 +33,8 @@ $autoload['libraries'] = array('cache','breadcrumb','security','replacer','form'
  */
 
 $autoload['helpers'] = array('debug','format', 'image', 'html', 'url', 'widget', 
-                             'option', 'layout', 'meta_box','nav','post','seo', 
-                             'user','script','admin_menu', 'mobile', 'opengraph');
+                             'option', 'layout', 'meta_box','nav','post', 
+                             'user','script','admin', 'mobile', 'opengraph');
 
 /*
  *  Auto-load Config files
@@ -51,14 +51,14 @@ $autoload['widgets'] = array('Facebook_Comment', 'Facebook_Like', 'Feature_Page_
 /*
  *  Auto-load Config files
  */
-$autoload['models'] = array('theme_settings_m', 'seo_settings_m', 'other_settings_m');
+$autoload['models'] = array('theme_settings_m', 'other_settings_m');
 
 /*
  *  Auto-load Config files
  */
-$autoload['hooks'] = array('header', 'logo', 'script', 'widget','layout', 'menu', 
+$autoload['hooks'] = array('module','header', 'script', 'widget','layout', 'menu', 
                           'login','user','post','inpost','comments', 'footer',
-                          'sidebar','seo','performance','search','third_party','upgrade', 'ajax', 
+                          'performance','search','third_party','upgrade', 'ajax', 
                           'admin_ajax', 'mobile', 'form_submit', 'admin', 'customizer');
 
 /*

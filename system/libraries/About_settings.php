@@ -36,13 +36,13 @@ class CFX_About_Settings extends CFX_Admin {
      * Constructor - Initializes
      */
     function __construct() {
+        global $calibrefx;
         $this->page_id = 'calibrefx-about';
         $this->settings_field = apply_filters('calibrefx_about_field', 'calibrefx-about');
         
         //we need to initialize the model
-        $CFX = & calibrefx_get_instance();
-        $CFX->load->model('theme_settings_m');
-        $this->_model = & $CFX->theme_settings_m;
+        $calibrefx->load->model('theme_settings_m');
+        $this->_model = $calibrefx->theme_settings_m;
         
         $this->initialize();
     }
@@ -75,7 +75,7 @@ class CFX_About_Settings extends CFX_Admin {
     public function meta_boxes() {
         calibrefx_add_meta_box('system', 'basic', 'calibrefx-about-version', __('Information', 'calibrefx'), array(&$this,'info_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('system', 'basic', 'calibrefx-latest-news', __('Latest News', 'calibrefx'), array(&$this,'latest_news_box'), $this->pagehook, 'main', 'high');
-        calibrefx_add_meta_box('system', 'basic', 'calibrefx-latest-tweets', __('<span class="twitter-logo"></span>Latest Tweets', 'calibrefx'), array(&$this,'latest_tweets_box'), $this->pagehook, 'side');
+        //calibrefx_add_meta_box('system', 'basic', 'calibrefx-latest-tweets', __('<span class="twitter-logo"></span>Latest Tweets', 'calibrefx'), array(&$this,'latest_tweets_box'), $this->pagehook, 'side');
 
         calibrefx_add_meta_box('team', 'basic', 'calibrefx-the-team', __('The CalibreFX Team', 'calibrefx'), array(&$this,'the_team'), $this->pagehook, 'main');
     }
@@ -236,7 +236,7 @@ class CFX_About_Settings extends CFX_Admin {
         echo "</div>";
     }
 
-    public function latest_tweets_box() {
+    /*public function latest_tweets_box() {
         $twitter_id = 'calibrefx';
         $postnum = 5;
         $twitter_duration = 0;
@@ -262,7 +262,6 @@ class CFX_About_Settings extends CFX_Admin {
             } elseif (is_object($json) && $json->error) {
                 $tweets[] = '<li>' . __('The Twitter API returned an error while processing your request. Please try again.', 'calibrefx') . '</li>' . "\n";
             } else {
-                /** Build the tweets array */
                 foreach ((array) $json as $tweet) {
                     if (!empty($tweets[(int) $postnum - 1]))
                         break;
@@ -273,22 +272,18 @@ class CFX_About_Settings extends CFX_Admin {
                     $tweets[] = '<li>' . calibrefx_tweet_linkify($tweet->text) . ' <span style="font-size: 85%;">' . $timeago_link . '</span></li>' . "\n";
                 }
 
-                /** Just in case */
                 $tweets = array_slice((array) $tweets, 0, (int) $postnum);
 
                 $time = ( absint($twitter_duration) * 60 );
 
-                /** Save them in transient */
                 set_transient($twitter_id . '-' . $postnum . '-' . $twitter_duration, $tweets, $time);
             }
         }
-
-
 
         foreach ((array) $tweets as $tweet)
             echo $tweet;
 
         echo '</ul>' . "\n";
-    }
+    }*/
 
 }

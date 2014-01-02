@@ -19,13 +19,12 @@
  * @package CalibreFx
  */
 
-if (file_exists(CHILD_URI . '/page-archive.php')) {
+if (file_exists(CHILD_URI . '/page-archive.php') AND (CHILD_URI != CALIBREFX_URI)) {
     include CHILD_URI . '/page-archive.php';
     exit;
 }
 
-remove_action('calibrefx_post_content', 'calibrefx_do_post_content');
-add_action('calibrefx_post_content', 'calibrefx_do_archive_content');
+$cfxgenerator->replace('calibrefx_post_content', 'calibrefx_do_post_content', 'calibrefx_do_archive_content');
 
 /**
  * CalibreFx Loop for archive bage

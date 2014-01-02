@@ -48,7 +48,7 @@ if (!function_exists('get_config')) {
      * @param	array
      * @return	array
      */
-    function &get_config($replace = array()) {
+    function get_config($replace = array()) {
         static $_config;
 
         if (isset($_config)) {
@@ -90,7 +90,7 @@ if (!function_exists('config_item')) {
         static $_config_item = array();
 
         if (!isset($_config_item[$item])) {
-            $config = & get_config();
+            $config = get_config();
 
             if (!isset($config[$item])) {
                 return FALSE;
@@ -177,7 +177,7 @@ if (!function_exists('calibrefx_is_loaded')) {
      * @param	string
      * @return	array
      */
-    function &calibrefx_is_loaded($class = '') {
+    function calibrefx_is_loaded($class = '') {
         static $_is_loaded = array();
 
         if ($class !== '') {
@@ -191,7 +191,7 @@ if (!function_exists('calibrefx_is_loaded')) {
 
 if (!function_exists('calibrefx_get_instance')) {
 
-    function &calibrefx_get_instance() {
+    function calibrefx_get_instance() {
         return Calibrefx::get_instance();
     }
 
@@ -270,6 +270,35 @@ if (!function_exists('is_php')) {
 
         return $_is_php[$version];
     }
+}
+
+// ------------------------------------------------------------------------
+/**
+ * Get all active calibrefx modules
+ * 
+ * @return bool
+ */
+if (!function_exists('calibrefx_get_active_modules')) {
+
+    function calibrefx_get_active_modules() {
+        global $active_modules;
+        $modules = array();
+        $active_modules = (array) get_option( 'calibrefx_active_modules', array() );
+
+        if ( empty( $active_modules ) )
+            return $modules;
+
+        foreach ( $active_modules as $module ) {
+            if ( '.php' == substr( $module, -4 ) // $module must end with '.php'
+                && file_exists( $module ) // $module must exist
+                )
+            $modules[] = $module;
+        }
+
+        /*update_option( 'calibrefx_active_modules', $modules );*/
+
+        return $modules;
+    }
 
 }
 
@@ -282,11 +311,7 @@ function calibrefx() {
 
     do_action('calibrefx_before_content_wrapper');
 
-    $content_wrapper_class = '';
-    if(current_theme_supports('calibrefx-version-1.0'))
-        $content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_wrapper_class', '' );
-    else
-        $content_wrapper_class = '';
+    $content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_wrapper_class', '' );
     ?>
     <div id="content-wrapper" class="<?php echo $content_wrapper_class; ?>" >
         <?php do_action('calibrefx_before_content'); ?>

@@ -75,9 +75,9 @@ class CFX_Theme_Settings extends CFX_Admin {
         );
 
         //we need to initialize the model
-        $CFX = & calibrefx_get_instance();
-        $CFX->load->model('theme_settings_m');
-        $this->_model = & $CFX->theme_settings_m;
+        global $calibrefx;
+        $calibrefx->load->model('theme_settings_m');
+        $this->_model = $calibrefx->theme_settings_m;
 
         $this->initialize();
     }

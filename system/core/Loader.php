@@ -84,6 +84,13 @@ class CFX_Loader {
     public $_hook_paths = array();
 
     /**
+     * List of paths to load modules from
+     *
+     * @var array
+     */
+    public $_module_paths = array();
+
+    /**
      * List of loaded classes
      *
      * @var array
@@ -133,6 +140,7 @@ class CFX_Loader {
         $this->_shortcode_paths = array(CALIBREFX_SHORTCODE_URI);
         $this->_widget_paths = array(CALIBREFX_WIDGET_URI);
         $this->_hook_paths = array(CALIBREFX_HOOK_URI);
+        $this->_module_paths = array(CALIBREFX_MODULE_URI);
 
         $this->initialize();
 
@@ -154,7 +162,7 @@ class CFX_Loader {
         $this->_helpers = array();
         $this->_loaded_models = array();
 
-        $this->do_autoload();
+        // $this->do_autoload();
 
         return $this;
     }
@@ -202,7 +210,7 @@ class CFX_Loader {
                 $this->library($item);
             }
         }
-
+        
         // Load Hooks
         if (isset($autoload['hooks']) && count($autoload['hooks']) > 0) {
             $this->hook($autoload['hooks']);
@@ -253,6 +261,7 @@ class CFX_Loader {
 
                 if (isset($this->_loaded_files[$filepath])) {
                     //File loaded
+                    calibrefx_log_message('debug', 'Config has been loaded from the cache: ' . $config);
                     return;
                 }
 
@@ -279,6 +288,8 @@ class CFX_Loader {
      * @return	void
      */
     public function model($model, $name = '') {
+        global $calibrefx;
+        
         if (is_array($model)) {
             foreach ($model as $class) {
                 $this->model($class);
@@ -306,11 +317,11 @@ class CFX_Loader {
         }
 
         if (in_array($name, $this->_loaded_models, TRUE)) {
+            calibrefx_log_message('debug', 'Model has been loaded from the cache: ' . $name);
             return;
         }
-
-        $CFX = & calibrefx_get_instance();
-        if (isset($CI->$name)) {
+        // $calibrefx = calibrefx_get_instance();
+        if (isset($calibrefx->$name)) {
             calibrefx_log_message('error', 'The model name you are loading is the name of a resource that is already being used: ' . $name);
             //show_error('The model name you are loading is the name of a resource that is already being used: ' . $name);
             return;
@@ -323,13 +334,11 @@ class CFX_Loader {
                 continue;
             }
 
-            if (!isset($CFX->Model)) {
-                $CFX->Model = calibrefx_load_class('Model', 'core');
-            }
-
+            /*if (!isset($calibrefx->Model)) {
+                $calibrefx->Model = calibrefx_load_class('Model', 'core');
+            }*/
             require_once($mod_path . '/' . $path . $model . '.php');
-
-            $CFX->$name = new $model();
+            $calibrefx->$name = new $model();
             $this->_loaded_models[] = $name;
             calibrefx_log_message('debug', 'Model loaded: ' . $name);
             return;
@@ -352,6 +361,7 @@ class CFX_Loader {
     public function helper($helpers = array()) {
         foreach ($this->_prep_filename($helpers, '_helper') as $helper) {
             if (isset($this->_helpers[$helper])) {
+                calibrefx_log_message('debug', 'Helper has been loaded from the cache: ' . $helper);
                 continue;
             }
 
@@ -387,6 +397,7 @@ class CFX_Loader {
         foreach ($widgets as $widget) {
             $widget_name = 'CFX_' . $widget . '_Widget';
             if (isset($this->_loaded_widgets[$widget_name])) {
+                calibrefx_log_message('debug', 'Widget has been loaded from the cache: ' . $widget_name);
                 continue;
             }
 
@@ -423,6 +434,7 @@ class CFX_Loader {
 
                 if (isset($this->_loaded_files[$filepath])) {
                     //File loaded
+                    calibrefx_log_message('debug', 'Hook has been loaded from the cache: ' . $hook);
                     return;
                 }
 
@@ -475,6 +487,7 @@ class CFX_Loader {
 
             if (isset($this->_loaded_files[$filepath])) {
                 //File loaded
+                calibrefx_log_message('debug', 'Shortcode has been loaded from the cache: ' . $shortcode);
                 return;
             }
 
@@ -519,6 +532,7 @@ class CFX_Loader {
             return;
 
         if (isset($this->_loaded_files[$file])) {
+            calibrefx_log_message('debug', 'File has been loaded from the cache: ' . $file);
             //File loaded
             return;
         }
@@ -637,6 +651,12 @@ class CFX_Loader {
                     continue;
                 }
 
+                if (isset($this->_loaded_files[$filepath])) {
+                    calibrefx_log_message('debug', 'Library has been loaded from the cache: ' . $file);
+                    //File loaded
+                    return;
+                }
+
                 include_once($filepath);
                 $this->_loaded_files[] = $filepath;
                 return $this->_init_class($class, 'CFX_', $params);
@@ -661,6 +681,7 @@ class CFX_Loader {
      * @return	void
      */
     protected function _init_class($class, $prefix = '', $config = FALSE) {
+        global $calibrefx;
         $name = $prefix . $class;
 
         // Is the class name valid?
@@ -674,12 +695,10 @@ class CFX_Loader {
         // Save the class name and object name
         $this->_classes[$class] = $classvar;
 
-        // Instantiate the class
-        $CFX = & calibrefx_get_instance();
         if ($config !== NULL) {
-            $CFX->$classvar = new $name($config);
+            $calibrefx->$classvar = new $name($config);
         } else {
-            $CFX->$classvar = new $name();
+            $calibrefx->$classvar = new $name();
         }
 
         calibrefx_log_message('debug', 'Class loaded: ' . $name);
@@ -695,8 +714,8 @@ class CFX_Loader {
      * @return	void
      */
     public function add_child_path($path) {
-        $CFX = & calibrefx_get_instance();
-        $CFX->config->_config_paths[] = $path . '/config';
+        global $calibrefx;
+        $calibrefx->config->_config_paths[] = $path . '/config';
         $this->_config_paths[] = $path . '/config';
         $this->_library_paths[] = $path . '/libraries';
         $this->_helper_paths[] = $path . '/helpers';
@@ -704,6 +723,7 @@ class CFX_Loader {
         $this->_shortcode_paths[] = $path . '/shortcodes';
         $this->_widget_paths[] = $path . '/widgets';
         $this->_hook_paths[] = $path . '/hooks';
+        $this->_module_paths[] = $path . '/modules';
     }
 
     // --------------------------------------------------------------------

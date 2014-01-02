@@ -87,15 +87,40 @@ function calibrefx_get_custom_post_meta($post_id, $meta_key) {
  */
 function calibrefx_breadcrumb($args = array()) {
 
-    global $_calibrefx_breadcrumb;
+    global $_calibrefx_breadcrumb, $calibrefx;
 
     if (!$_calibrefx_breadcrumb) {
-        $CFX = & calibrefx_get_instance();
-        $CFX->load->library('breadcrumb');
-        $_calibrefx_breadcrumb = & $CFX->breadcrumb;
+        $calibrefx->load->library('breadcrumb');
+        $_calibrefx_breadcrumb = $calibrefx->breadcrumb;
     }
 
     $_calibrefx_breadcrumb->output($args);
+}
+
+/**
+ * CalibreFx default loop
+ *
+ * It outputs basic wrapping HTML, but uses hooks to do most of its
+ * content output like Title, Content, Post information, and Comments.
+ *
+ */
+function calibrefx_default_loop() {
+
+    $loop_counter = 0;
+    if (have_posts()) : 
+        while (have_posts()) : the_post(); // the loop
+            do_action('calibrefx_before_post');
+            get_template_part( 'content', get_post_format() );
+            do_action('calibrefx_after_post');
+            $loop_counter++;
+
+        endwhile;/** end of one post * */
+        //Disable by Ivan because too many hooks
+        //do_action('calibrefx_after_post_loop');
+
+    else : /** if no posts exist * */
+        do_action('calibrefx_no_post');
+    endif;/** end loop * */
 }
 
 /**

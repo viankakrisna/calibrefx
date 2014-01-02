@@ -23,13 +23,31 @@
 /**
  * Calibrefx Layout Hooks
  *
- * @package		Calibrefx
- * @subpackage          Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
+ * @package     Calibrefx
+ * @subpackage  Hook
+ * @author      CalibreFx Team
+ * @since       Version 1.0
+ * @link        http://www.calibrefx.com
  */
-add_action('calibrefx_init', 'calibrefx_setup_layout', 0);
+
+global $cfxgenerator;
+
+$cfxgenerator->init = array('calibrefx_custom_background', 'calibrefx_custom_header');
+$cfxgenerator->calibrefx_init = array(
+    array(
+        'function' => 'calibrefx_setup_layout',
+        'priority' => 0,
+    )
+);
+$cfxgenerator->calibrefx_after_content = array('calibrefx_get_sidebar');
+$cfxgenerator->calibrefx_before_content = array('calibrefx_get_sidebar_alt');
+
+$cfxgenerator->calibrefx_sidebar = array('calibrefx_do_sidebar');
+$cfxgenerator->calibrefx_sidebar_alt = array('calibrefx_do_sidebar_alt');
+
+/********************
+ * FUNCTIONS BELOW  *
+ ********************/
 
 /**
  * Register all the available layout
@@ -62,7 +80,100 @@ function calibrefx_setup_layout() {
     );
 }
 
-add_filter('body_class', 'calibrefx_layout_body_class');
+/**
+ * This function will show sidebar after the content
+ */
+function calibrefx_get_sidebar() {
+
+    // get the layout
+    $site_layout = calibrefx_site_layout();
+
+    // don't load sidebar on pages that don't need it
+    if ($site_layout == 'full-width-content')
+        return;
+
+    // output the primary sidebar
+    get_sidebar();
+}
+
+/**
+ * This function will show sidebar after the content
+ */
+function calibrefx_get_sidebar_alt() {
+
+    // get the layout
+    $site_layout = calibrefx_site_layout();
+
+    // don't load sidebar on pages that don't need it
+    if ($site_layout == 'full-width-content' ||
+            $site_layout == 'content-sidebar' ||
+            $site_layout == 'sidebar-content')
+        return;
+
+    // output the primary sidebar
+    get_sidebar('alt');
+}
+
+/**
+ * Primary Sidebar Content
+ */
+function calibrefx_do_sidebar() {
+
+    if (!dynamic_sidebar('sidebar')) {
+
+        $output = '<div class="widget widget_text"><div class="widget-wrap">';
+        $output .= '<h4 class="widgettitle">';
+        $output .= __('Primary Sidebar Widget Area', 'calibrefx');
+        $output .= '</h4>';
+        $output .= '<div class="textwidget"><p>';
+        $output .= sprintf(__('This is the Primary Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'calibrefx'), admin_url('widgets.php'));
+        $output .= '</p></div>';
+        $output .= '</div></div>';
+        
+        echo apply_filters('calibrefx_sidebar_default', $output);
+    }
+}
+
+/**
+ * Alternate Sidebar Content
+ */
+function calibrefx_do_sidebar_alt() {
+
+    if (!dynamic_sidebar('sidebar-alt')) {
+
+        $output = '<div class="widget widget_text"><div class="widget-wrap">';
+        $output .=  '<h4 class="widgettitle">';
+        $output .= __('Secondary Sidebar Widget Area', 'calibrefx');
+        $output .=  '</h4>';
+        $output .=  '<div class="textwidget"><p>';
+        $output .= sprintf(__('This is the Secondary Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'calibrefx'), admin_url('widgets.php'));
+        $output .=  '</p></div>';
+        $output .=  '</div></div>';
+        
+        echo apply_filters('calibrefx_sidebar_alt_default', $output);
+    }
+}
+
+/**
+ * This function will activate the custom background from WordPress
+ *
+ * It gets arguments passed through add_theme_support(), defines the constants,
+ * and calls calibrefx_custom_background().
+ *
+ * @return void
+ */
+function calibrefx_custom_background() {
+
+    $custom_background = get_theme_support('calibrefx-custom-background');
+
+    /** If not active, do nothing */
+    if (!$custom_background)
+        return;
+
+    $args = apply_filters( 'calibrefx_custom_background_args', array( 'default-color' => 'EDEDEB' ) );
+    
+    add_theme_support( 'custom-background', $args );
+}
 
 /**
  * This function/filter adds custom body class(es) to the
@@ -84,8 +195,7 @@ function calibrefx_layout_body_class($classes) {
 
     return $classes;
 }
-
-add_filter('post_class', 'calibrefx_post_class');
+add_filter('body_class', 'calibrefx_layout_body_class');
 
 /**
  * Add class row/row-fluid to post
@@ -101,8 +211,7 @@ function calibrefx_post_class($classes) {
 
     return $classes;
 }
-
-add_filter('body_class', 'calibrefx_header_body_classes');
+add_filter('post_class', 'calibrefx_post_class');
 
 /**
  * This function/filter adds new classes to the <body>
@@ -117,7 +226,8 @@ function calibrefx_header_body_classes($classes) {
     if (!is_active_sidebar('header-right'))
         $classes[] = 'header-full-width';
 
-    if ('image' == calibrefx_get_option('blog_title') || 'blank' == get_header_textcolor())
+    if (current_theme_supports( 'calibrefx-custom-header' ) && 
+        ('image' == calibrefx_get_option('blog_title') || 'blank' == get_header_textcolor()))
         $classes[] = 'header-image';
     
     if(current_theme_supports( 'calibrefx-responsive-style' )){
@@ -136,115 +246,120 @@ function calibrefx_header_body_classes($classes) {
     // return filtered $classes
     return $classes;
 }
+add_filter('body_class', 'calibrefx_header_body_classes');
+
 
 /**
- * This function/filter adds content span*
- */
-function calibrefx_content_span() {
-    // get the layout
-    $site_layout = calibrefx_site_layout();
-
-    // don't load sidebar on pages that don't need it
-    if(current_theme_supports('calibrefx-version-1.0')){
-        if ($site_layout == 'full-width-content')
-            return apply_filters('calibrefx_content_span', 'span12 first');
-
-        if ($site_layout == 'sidebar-content-sidebar')
-            return apply_filters('calibrefx_content_span', 'span6');
-
-        return apply_filters('calibrefx_content_span', 'span8');
-    }else{
-        if ($site_layout == 'full-width-content')
-            return apply_filters('calibrefx_content_span', 'col-lg-12 col-md-12 col-sm-12 col-xs-12 first');
-
-        if ($site_layout == 'sidebar-content-sidebar')
-            return apply_filters('calibrefx_content_span', 'col-lg-6 col-md-6 col-sm-12 col-xs-12');
-
-        return apply_filters('calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12');
-    }
-    
-}
-
-/**
- * This function/filter adds sidebar span*
- */
-function calibrefx_sidebar_span() {
-    // get the layout
-    $site_layout = calibrefx_site_layout();
-
-    // don't load sidebar on pages that don't need it
-    if ($site_layout == 'full-width-content')
-        return;
-
-    if(current_theme_supports('calibrefx-version-1.0')){
-        if ($site_layout == 'sidebar-content-sidebar')
-            return apply_filters('calibrefx_sidebar_span', 'span3');
-
-        return apply_filters('calibrefx_sidebar_span', 'span4');
-    }else{
-        if ($site_layout == 'sidebar-content-sidebar')
-            return apply_filters('calibrefx_sidebar_span', 'col-lg-3 col-md-3 col-sm-12 col-xs-12');
-
-        return apply_filters('calibrefx_sidebar_span', 'col-lg-4 col-md-4 col-sm-12 col-xs-12');
-    }
-}
-
-add_action('calibrefx_after_content', 'calibrefx_get_sidebar');
-
-/**
- * This function will show sidebar after the content
- */
-function calibrefx_get_sidebar() {
-
-    // get the layout
-    $site_layout = calibrefx_site_layout();
-
-    // don't load sidebar on pages that don't need it
-    if ($site_layout == 'full-width-content')
-        return;
-
-    // output the primary sidebar
-    get_sidebar();
-}
-
-add_action('calibrefx_before_content', 'calibrefx_get_sidebar_alt');
-
-/**
- * This function will show sidebar after the content
- */
-function calibrefx_get_sidebar_alt() {
-
-    // get the layout
-    $site_layout = calibrefx_site_layout();
-
-    // don't load sidebar on pages that don't need it
-    if ($site_layout == 'full-width-content' ||
-            $site_layout == 'content-sidebar' ||
-            $site_layout == 'sidebar-content')
-        return;
-
-    // output the primary sidebar
-    get_sidebar('alt');
-}
-
-add_action('after_setup_theme', 'calibrefx_custom_background');
-/**
- * This function will activate the custom background from WordPress
+ * This function will activate the custom header image from WordPress
  *
  * It gets arguments passed through add_theme_support(), defines the constants,
- * and calls calibrefx_custom_background().
+ * and calls add_custom_image_header().
  *
  * @return void
  */
-function calibrefx_custom_background() {
+function calibrefx_custom_header() {
 
-    $custom_background = get_theme_support('calibrefx-custom-background');
-
+    $custom_header = get_theme_support('calibrefx-custom-header');
     /** If not active, do nothing */
-    if (!$custom_background)
+    if (!$custom_header)
         return;
 
-    $args = apply_filters( 'calibrefx_custom_background_args', array( 'default-color' => 'EDEDEB' ) );
+    /** Blog title option is obsolete when custom header is active */
+    add_filter('calibrefx_pre_get_option_blog_title', '__return_empty_array');
+
+    /** Cast, if necessary */
+    $custom_header = isset($custom_header[0]) && is_array($custom_header[0]) ? $custom_header[0] : array();
+
+    /** Merge defaults with passed arguments */
+    $args = wp_parse_args($custom_header, array(
+        'width' => 260,
+        'height' => 100,
+        'default-text-color' => '333333',
+        'default-image' => CALIBREFX_IMAGES_URL . '/header.png',
+        'header-text' => true,
+        'wp-head-callback' => 'calibrefx_custom_header_style',
+        'admin-head-callback' => 'calibrefx_custom_header_admin_style'
+            ));
+
+    /** Define all the constants */
+    if (!defined('HEADER_IMAGE_WIDTH') && is_numeric($args['width']))
+        define('HEADER_IMAGE_WIDTH', apply_filters('calibrefx_header_logo_width', $args['width']));
+
+    if (!defined('HEADER_IMAGE_HEIGHT') && is_numeric($args['height']))
+        define('HEADER_IMAGE_HEIGHT', apply_filters('calibrefx_header_logo_height', $args['height']));
+
+    if (!defined('HEADER_TEXTCOLOR') && $args['default-text-color'])
+        define('HEADER_TEXTCOLOR', apply_filters('calibrefx_header_text_color', $args['default-text-color']));
+
+    if (!defined('HEADER_TEXT') && $args['header-text'])
+        define('HEADER_TEXT', apply_filters('calibrefx_header_text', $args['header-text']));
+
+    if (!defined('HEADER_IMAGE') && $args['default-image'])
+        define('HEADER_IMAGE', apply_filters('calibrefx_header_logo_url', $args['default-image']));
+        
+    $custom_header_args = array(
+        'width' => HEADER_IMAGE_WIDTH,
+        'height' => HEADER_IMAGE_HEIGHT,
+        'default-text-color' => HEADER_TEXTCOLOR,
+        'default-image' => HEADER_IMAGE,
+        'header-text' => HEADER_TEXT,
+        'wp-head-callback' => 'calibrefx_custom_header_style',
+        'admin-head-callback' => 'calibrefx_custom_header_admin_style'
+    );
+
+    /** Activate Custom Header */
+    add_theme_support( 'custom-header', $custom_header_args );
+}
+
+/**
+ * Header callback. It outputs special CSS to the document
+ * head, modifying the look of the header based on user input.
+ *
+ */
+function calibrefx_custom_header_style() {
+    $header = '';
+    $text = '';
+
+    /** If no options set, don't waste the output. Do nothing. */
+    if((HEADER_IMAGE == '' && get_header_image() == '') || (HEADER_TEXTCOLOR != 'blank' && get_header_textcolor() != 'blank') || (HEADER_TEXT && display_header_text())){
+       $text = sprintf('
+#title, #title a{ 
+    color: %s
+}'."\n", get_header_textcolor());
+    }else{
+        $header = sprintf('
+#header-title { 
+    background: url(%1$s) no-repeat left center; 
+    width: %2$spx; 
+    height: %3$dpx
+}', esc_url(get_header_image()), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
     
-    add_theme_support( 'custom-background', $args );
+        $text = sprintf('
+#title, #title a, #title a:hover{ 
+    display: block; 
+    margin: 0; 
+    overflow: hidden; 
+    padding: 0;
+    text-indent: -9999px; 
+    width: %dpx; 
+    height: %dpx 
+}'."\n", HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT);
+    }
+
+    printf('<style type="text/css">%1$s %2$s</style>'."\n", $header, $text);
+}
+
+/**
+ * Header admin callback. It outputs special CSS to the admin
+ * document head, modifying the look of the header area based on user input.
+ *
+ * Will probably need to be overridden in the child theme with a custom callback.
+ */
+function calibrefx_custom_header_admin_style() {
+
+    $headimg = sprintf('.appearance_page_custom-header #headimg { background: url(%s) no-repeat; min-height: %spx; }', get_header_image(), HEADER_IMAGE_HEIGHT);
+    $h1 = sprintf('#headimg h1, #headimg h1 a { color: #%s; font-size: 24px; font-weight: normal; line-height: 30px; margin: 20px 0 0; text-decoration: none; }', esc_html(get_header_textcolor()));
+    $desc = sprintf('#headimg #desc { color: #%s; font-size: 12px; font-style: italic; line-height: 1; margin: 0; }', esc_html(get_header_textcolor()));
+
+    printf('<style type="text/css">%1$s %2$s %3$s</style>', $headimg, $h1, $desc);
 }

@@ -30,8 +30,6 @@
  * @link		http://www.calibrefx.com
  */
 class CFX_Curl {
-
-    private $_cfx;    // Calibrefx instance
     private $response;    // Contains the cURL response for debug
     private $session;     // Contains the cURL handler for a session
     private $url;      // URL of the session
@@ -42,7 +40,6 @@ class CFX_Curl {
     public $info;      // Returned after request (elapsed time, etc)
 
     function __construct($url = '') {
-        $this->_cfx = & calibrefx_get_instance();
         calibrefx_log_message('debug', 'cURL Class Initialized');
 
         if (!$this->is_enabled()) {
@@ -225,12 +222,12 @@ class CFX_Curl {
 
     // Start a session from a URL
     public function create($url) {
+        global $calibrefx;
         // Reset the class
         $this->set_defaults();
 
         // If no a protocol in URL, assume its a CI link
         if (!preg_match('!^\w+://! i', $url)) {
-            $this->_cfx->load->helper('url');
             $url = site_url($url);
         }
 

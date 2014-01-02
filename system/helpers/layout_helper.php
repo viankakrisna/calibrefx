@@ -53,28 +53,18 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
     if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
         return '';
 
-    if (calibrefx_layout_is_fluid() /*|| !current_theme_supports('calibrefx-responsive-style')*/)
+    if (calibrefx_layout_is_fluid())
         return '';
 
     $row_class = calibrefx_row_class();
     switch ($output) {
         case 'open':
-            if(current_theme_supports('calibrefx-version-1.0')){
-                $output = '<div class="wrap '.$row_class.'">';
-            }else{
-                //$output = '<div class="container"><div class="wrap '.$row_class.'">';
-                $output = '<div class="container">';
-            }
+            $output = '<div class="container">';
             
             break;
         case 'close':
-            if(current_theme_supports('calibrefx-version-1.0')){
-                $output = '</div><!-- end .wrap -->';
-            }else{
-                //$output = '</div><!-- end .wrap --></div><!-- end .container -->';
-                $output = '</div><!-- end .container -->';
-            }
-
+            $output = '</div><!-- end .container -->';
+            
             break;
     }
 
@@ -261,12 +251,8 @@ function calibrefx_layout_selector($args = array()) {
  * @return string
  */
 function calibrefx_row_class() {
-    if(current_theme_supports('calibrefx-version-1.0')){
-        $rowClass = 'row-fluid';
-    }else{
-        $rowClass = 'row';
-    }
-
+    $rowClass = 'row';
+    
     return apply_filters( 'calibrefx_row_class', $rowClass );
 }
 
@@ -287,26 +273,20 @@ function row_class() {
 function calibrefx_container_class() {
     $containerClass = '';
 
-    if(current_theme_supports('calibrefx-version-1.0')){
-        $containerClass = 'container-fluid';
-    }else{
-        $layout_type = calibrefx_get_option('layout_type');
-        $calibrefx_layout_wrapper_fixed = calibrefx_get_option('calibrefx_layout_wrapper_fixed');
+    $layout_type = calibrefx_get_option('layout_type');
+    $calibrefx_layout_wrapper_fixed = calibrefx_get_option('calibrefx_layout_wrapper_fixed');
 
-        if($layout_type == 'fluid'){
+    if($layout_type == 'fluid'){
+        $containerClass = 'container';
+    }elseif($layout_type == 'static'){
+        if($calibrefx_layout_wrapper_fixed){
             $containerClass = 'container';
-        }elseif($layout_type == 'static'){
-            if($calibrefx_layout_wrapper_fixed){
-                $containerClass = 'container';
-            }else{
-                $containerClass = '';
-            }
+        }else{
+            $containerClass = '';
         }
     }
-
+    
     return apply_filters( 'calibrefx_container_class', $containerClass );
-
-
 }
 
 function calibrefx_set_layout($layout){
@@ -348,4 +328,38 @@ function calibrefx_layout_sidebar_content(){
  */
 function calibrefx_layout_sidebar_content_sidebar(){
     return 'sidebar-content-sidebar';
+}
+
+/**
+ * This function/filter adds content span*
+ */
+function calibrefx_content_span() {
+    // get the layout
+    $site_layout = calibrefx_site_layout();
+
+    // don't load sidebar on pages that don't need it
+    if ($site_layout == 'full-width-content')
+        return apply_filters('calibrefx_content_span', 'col-lg-12 col-md-12 col-sm-12 col-xs-12 first');
+
+    if ($site_layout == 'sidebar-content-sidebar')
+        return apply_filters('calibrefx_content_span', 'col-lg-6 col-md-6 col-sm-12 col-xs-12');
+
+    return apply_filters('calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12');
+}
+
+/**
+ * This function/filter adds sidebar span*
+ */
+function calibrefx_sidebar_span() {
+    // get the layout
+    $site_layout = calibrefx_site_layout();
+
+    // don't load sidebar on pages that don't need it
+    if ($site_layout == 'full-width-content')
+        return;
+
+    if ($site_layout == 'sidebar-content-sidebar')
+        return apply_filters('calibrefx_sidebar_span', 'col-lg-3 col-md-3 col-sm-12 col-xs-12');
+
+    return apply_filters('calibrefx_sidebar_span', 'col-lg-4 col-md-4 col-sm-12 col-xs-12');
 }

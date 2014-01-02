@@ -36,7 +36,7 @@
  *
  */
 function calibrefx_get_site_url() {
-    $url = str_replace('.', '-', str_replace('http://', '', get_bloginfo('url')));
+    $url = str_replace('.', '-', str_replace('http://', '', home_url()));
     return $url;
 }
 

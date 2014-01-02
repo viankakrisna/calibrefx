@@ -115,7 +115,7 @@ function calibrefx_og_title(){
 			$title = __( 'Archive for ', 'calibrefx' ) . post_type_archive_title('', false) . ' - ' .get_bloginfo( 'name' );
 		}
 	} elseif ( is_404() ){
-		$title = __( 'Not Found' ) . ' - ' .get_bloginfo( 'name' );
+		$title = __( 'Not Found', 'calibrefx' ) . ' - ' .get_bloginfo( 'name' );
 	}
 
 	return apply_filters( 'calibrefx_og_title', $title );

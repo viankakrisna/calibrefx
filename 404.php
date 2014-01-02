@@ -18,10 +18,8 @@
  * @package CalibreFx
  */
  
-/** Remove default loop **/
-remove_action( 'calibrefx_loop', 'calibrefx_do_loop' );
+$cfxgenerator->replace('calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_404');
 
-add_action( 'calibrefx_loop', 'calibrefx_404' );
 /**
  * This function outputs a 404 "Not Found" error message
  *

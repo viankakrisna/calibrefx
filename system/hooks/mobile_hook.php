@@ -30,7 +30,22 @@
  * @link		http://www.calibrefx.com
  */
 
-add_action('calibrefx_setup', 'calibrefx_detect_mobile_browser', 15);
+global $cfxgenerator;
+
+$cfxgenerator->calibrefx_setup = array(
+    array(
+        'function' => 'calibrefx_detect_mobile_browser',
+        'priority' => 15,
+    )
+);
+
+/********************
+ * FUNCTIONS BELOW  *
+ ********************/
+
+/**
+ * If mobile site is enable and there is a mobile template, then display mobile layout on mobile
+ */
 function calibrefx_detect_mobile_browser(){
 	global $oBrowser,$calibrefx;
 

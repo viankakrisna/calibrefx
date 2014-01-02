@@ -75,6 +75,7 @@ abstract class CFX_Admin {
         add_action('calibrefx_hidden_fields', array($this,'hidden_fields'));
         add_action('admin_init', array($this, 'register_settings'), 5);
         add_action('admin_init', array($this, 'settings_init'), 20);
+        add_filter('admin_body_class', 'calibrefx_admin_body_class', 20, 1);
 
         add_action('admin_notices', array($this, 'notices'));
 
@@ -187,7 +188,7 @@ abstract class CFX_Admin {
         return $calibrefx->theme_settings_m->save($_newvalue);
     }
 
-    /**array_merge
+    /**
      * Register the settings option in wp_options.
      *
      * @return null Returns early if not on the correct admin page.
@@ -211,8 +212,6 @@ abstract class CFX_Admin {
                 calibrefx_admin_redirect($this->page_id, array('error' => 'true'));
             exit;
         }
-
-        add_filter('admin_body_class', 'calibrefx_admin_body_class', 20, 1);
     }
 
     /**

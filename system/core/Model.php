@@ -59,15 +59,15 @@ class CFX_Model {
     }
 
     public function get($key) {
-        $this->_cfx = & calibrefx_get_instance();
+        $this->_cfx = calibrefx_get_instance();
 
         if (!isset($this->_cfx->cache)) {
-            $this->_cfx->cache = & calibrefx_load_class('cache', 'libraries');
+            $this->_cfx->cache = calibrefx_load_class('cache', 'libraries');
         }
 
         $options = $this->_cfx->cache->cache_get($this->_setting_field, $this->_setting_field);
 
-        if ($options && isset($options[$key])) {
+        if ($options AND isset($options[$key])) {
             return stripslashes($options[$key]);
         }
 

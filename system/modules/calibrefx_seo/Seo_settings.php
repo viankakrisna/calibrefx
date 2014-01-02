@@ -23,7 +23,7 @@
  * Calibrefx Seo Setting Class
  *
  * @package		Calibrefx
- * @subpackage          Library
+ * @subpackage  Library
  * @author		CalibreFx Team
  * @since		Version 1.0
  * @link		http://www.calibrefx.com
@@ -90,9 +90,8 @@ class CFX_Seo_Settings extends CFX_Admin {
         );
 
         //we need to initialize the model
-        $CFX = & calibrefx_get_instance();
-        $CFX->load->model('seo_settings_m');
-        $this->_model = & $CFX->seo_settings_m;
+        global $calibrefx;
+        $this->_model = $calibrefx->seo_settings_m;
 
         $this->initialize();
     }
@@ -103,9 +102,9 @@ class CFX_Seo_Settings extends CFX_Admin {
      * $return void
      */
     public function security_filters(){
-        $CFX = & calibrefx_get_instance();
+        global $calibrefx;
         
-        $CFX->security->add_sanitize_filter(
+        $calibrefx->security->add_sanitize_filter(
                 'one_zero', 
                 $this->settings_field,
                 array(
@@ -131,7 +130,7 @@ class CFX_Seo_Settings extends CFX_Admin {
                     'archive_canonical')
         );
         
-        $CFX->security->add_sanitize_filter(
+        $calibrefx->security->add_sanitize_filter(
                 'no_html', 
                 $this->settings_field,
                 array(
@@ -407,17 +406,17 @@ class CFX_Seo_Settings extends CFX_Admin {
         <p>
             <label for="<?php echo $this->settings_field; ?>[home_title]"><?php _e('Home Title:', 'calibrefx'); ?></label>
             <input type="text" size="80" value="<?php echo $this->_model->get('home_title'); ?>" id="<?php echo $this->settings_field; ?>[home_title]" name="<?php echo $this->settings_field; ?>[home_title]">
-            <span class="description">If you leave the home title field blank, your site’s title will be used instead.</span>
+            <span class="description">If you leave the home title field blank, your site's title will be used instead.</span>
         </p>
         <p>
             <label for="<?php echo $this->settings_field; ?>[home_meta_description]"><?php _e('Home Meta Description:', 'calibrefx'); ?></label>
             <textarea cols="70" rows="3" id="<?php echo $this->settings_field; ?>[home_meta_description]" name="<?php echo $this->settings_field; ?>[home_meta_description]"><?php echo $this->_model->get('home_meta_description'); ?></textarea>
-            <span class="description">If you leave the home title field blank, your site’s title will be used instead.</span>
+            <span class="description">If you leave the home title field blank, your site's title will be used instead.</span>
         </p>
         <p>
             <label for="<?php echo $this->settings_field; ?>[home_meta_keywords]"><?php _e('Home Meta Keywords:', 'calibrefx'); ?></label>
             <input type="text" size="80" value="<?php echo $this->_model->get('home_meta_keywords'); ?>" id="<?php echo $this->settings_field; ?>[home_meta_keywords]" name="<?php echo $this->settings_field; ?>[home_meta_keywords]">
-            <span class="description">If you leave the home title field blank, your site’s title will be used instead.</span>
+            <span class="description">If you leave the home title field blank, your site'qs title will be used instead.</span>
         </p>
 
         <h4>Homepage Robots Meta Tags:</h4>

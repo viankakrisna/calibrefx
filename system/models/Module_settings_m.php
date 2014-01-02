@@ -21,29 +21,18 @@
  */
 
 /**
- * Calibrefx Third Party Hooks
+ * Module Settings Model Class
  *
  * @package		Calibrefx
- * @subpackage  Hook
+ * @subpackage          Model
  * @author		CalibreFx Team
  * @since		Version 1.0
  * @link		http://www.calibrefx.com
  */
 
-global $cfxgenerator;
-
-$cfxgenerator->calibrefx_setup = array('calibrefx_init_third_party');
-
-/********************
- * FUNCTIONS BELOW  *
- ********************/
-
-/**
- * After frameworks is initialized we initialize other third party module
- */
-function calibrefx_init_third_party(){
-    global $oBrowser, $calibrefx;
-	    
-    $calibrefx->load->file(CALIBREFX_LIBRARY_URI . '/third-party/mobiledetector/mobiledetector.php');
-    $oBrowser = new mobileDetector();
+class Module_settings_m extends CFX_Model{
+    
+    public function __construct() {
+        parent::__construct(apply_filters('calibrefx_settings_field', 'calibrefx-settings'));
+    }
 }

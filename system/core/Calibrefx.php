@@ -34,8 +34,12 @@ final class Calibrefx {
      *
      * @return	object
      */
-    public static function &get_instance() {
-        if(self::$instance === null){
+
+    public static function get_instance() {
+        $instance = wp_cache_get( 'calibrefx' );
+        if($instance === TRUE){
+            self::$instance = $instance;
+        }elseif(self::$instance === null){
             self::$instance = new Calibrefx();
         }
         
@@ -46,51 +50,37 @@ final class Calibrefx {
      * Constructor
      */
     function __construct() {
-        self::$instance = & $this;
+        self::$instance = $this;
 
         $this->config = calibrefx_load_class('Config', 'core');
         $this->load = calibrefx_load_class('Loader', 'core');
         //Since admin is abstract we don't instantiate
         calibrefx_load_class('Admin', 'core');
-        calibrefx_load_class('Adapter', 'core');
-        calibrefx_load_class('Driver', 'core');
         
-        //We fire the engine
-        $this->intialize();
-        
+        $this->load_theme_support();
+        load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
+
         calibrefx_log_message('debug', 'Calibrefx Class Initialized');
     }
 
     /**
-     * Initialize our hooks
-     */
-    public function intialize() {
-        add_action('calibrefx_init', array(&$this, 'calibrefx_theme_support'),0);
-        add_action('after_setup_theme', array(&$this,'calibrefx_theme_i18N'));
-    }
-
-    public function calibrefx_theme_i18N(){
-        load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
-    }
-    /**
      * Add our calibrefx theme support
      */
-    public function calibrefx_theme_support() {
+    public function load_theme_support() {
+        add_theme_support('html5', array( 'comment-list', 'comment-form', 'search-form' ));
         add_theme_support('menus');
+        add_theme_support('automatic-feed-links');
         add_theme_support('post-thumbnails');
+
         add_theme_support('calibrefx-admin-menu');
         add_theme_support('calibrefx-custom-header');
         add_theme_support('calibrefx-custom-background');
         add_theme_support('calibrefx-default-styles');
         add_theme_support('calibrefx-inpost-layouts');
         add_theme_support('calibrefx-responsive-style');
-        add_theme_support('calibrefx-seo');
         add_theme_support('calibrefx-open-graph');
-
-        /*if(defined('WP_ENV') && WP_ENV != 'development'){
-            add_theme_support('calibrefx-admin-bar');
-        }*/
-        //add_theme_support('calibrefx-preformance');
+        add_theme_support('calibrefx-footer-widgets');
+        add_theme_support('calibrefx-header-right-widgets');
 
         if (!current_theme_supports('calibrefx-menus')) {
             add_theme_support('calibrefx-menus', array(
@@ -99,6 +89,12 @@ final class Calibrefx {
                 )
             );
         }
+
+        $menus = get_theme_support('calibrefx-menus');
+        foreach ($menus as $menu) {
+            register_nav_menus($menu);
+        }
+
         if (!current_theme_supports('calibrefx-wraps'))
             add_theme_support('calibrefx-wraps', array('header', 'nav', 'subnav', 'inner', 'footer', 'footer-widget'));
         
@@ -111,5 +107,22 @@ final class Calibrefx {
         //@TODO: Will do in better ways for custom post type
         add_post_type_support('post', array('calibrefx-seo', 'calibrefx-layouts'));
         add_post_type_support('page', array('calibrefx-seo', 'calibrefx-layouts'));
+
+        if ( ! isset( $content_width ) ) 
+            $content_width = apply_filters( 'calibrefx_content_width', 550 );
+    }
+
+    public function run(){
+        /** Run the calibrefx_pre_init hook */
+        do_action('calibrefx_pre_init');
+
+        /** Run the calibrefx_init hook */
+        do_action('calibrefx_init');
+
+        /** Run the calibrefx_post_init hook */
+        do_action('calibrefx_post_init');
+
+        /** Run the calibrefx_setup hook */
+        do_action('calibrefx_setup');
     }
 }

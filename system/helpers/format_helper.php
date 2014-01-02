@@ -287,3 +287,23 @@ function calibrefx_tweet_linkify($text) {
 
     return $text;
 }
+
+/**
+ * Search value in array recursively
+ */
+function array_r( $needle, $haystack, $strict=true, $path=array() )
+{
+    if( !is_array($haystack) ) {
+        return false;
+    }
+    foreach( $haystack as $key => $val ) {
+        if( is_array($val) && $subPath = array_r($needle, $val, $strict, $path) ) {
+            $path = array_merge($path, array($key), $subPath);
+            return $path;
+        } elseif( (!$strict && $val == $needle) || ($strict && $val === $needle) ) {
+            $path[] = $key;
+            return $path;
+        }
+    }
+    return false;
+}

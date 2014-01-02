@@ -30,7 +30,6 @@
  * @link		http://www.calibrefx.com
  */
 
-add_filter('get_search_form', 'calibrefx_search_form');
 /**
  * Using a filter, we're replacing the default search form structure
  */
@@ -43,21 +42,13 @@ function calibrefx_search_form() {
     $onfocus = " onfocus=\"if (this.value == '$search_text') {this.value = '';}\"";
     $onblur = " onblur=\"if (this.value == '') {this.value = '$search_text';}\"";
 
-    if(current_theme_supports('calibrefx-version-1.0')){
-        $form = '
-            <form method="get" class="searchform '.calibrefx_row_class().'" action="' . home_url() . '/" >
-                    <input type="text" value="'. $search_text .'" name="s" class="s span9"'. $onfocus . $onblur .' />
-                    <input type="submit" class="searchsubmit span3" value="'. $button_text .'" />
-            </form>
-        ';
-    }else{
-        $form = '
-            <form method="get" class="searchform '.calibrefx_row_class().'" action="' . home_url() . '/" >
-                    <div class="seach-form-col col-lg-9 col-md-9 col-sm-12 col-xs-12"><input type="text" value="'. $search_text .'" name="s" class="s"'. $onfocus . $onblur .' /></div>
-                    <div class="seach-form-col col-lg-3 col-md-3 col-sm-12 col-xs-12"><input type="submit" class="searchsubmit" value="'. $button_text .'" /></div>
-            </form>
-        ';
-    }
+    $form = '
+        <form method="get" class="searchform '.calibrefx_row_class().'" action="' . home_url() . '/" >
+            <div class="seach-form-col col-lg-8 col-md-8 col-sm-12 col-xs-12"><input type="text" value="'. $search_text .'" name="s" class="s"'. $onfocus . $onblur .' /></div>
+            <div class="seach-form-col col-lg-4 col-md-4 col-sm-12 col-xs-12"><input type="submit" class="searchsubmit" value="'. $button_text .'" /></div>
+        </form>
+    ';
     
     return apply_filters('calibrefx_search_form', $form, $search_text, $button_text);
 }
+add_filter('get_search_form', 'calibrefx_search_form');

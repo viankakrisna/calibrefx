@@ -146,6 +146,12 @@ class CFX_Logger {
         if (isset($newfile) && $newfile === TRUE) {
             @chmod($filepath, FILE_WRITE_MODE);
         }
+        /*global $wp_filesystem;
+        $wp_filesystem->put_contents(
+          $filepath,
+          $message,
+          FOPEN_WRITE_CREATE // predefined mode settings for WP files
+        );*/
 
         return TRUE;
     }

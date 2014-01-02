@@ -30,27 +30,21 @@
  * @link        http://www.calibrefx.com
  */
 
-add_action('calibrefx_setup', 'calibrefx_init_seo_hook');
+add_action( 'calibrefx_seo', 'calibrefx_init_seo_hook' );
 function calibrefx_init_seo_hook(){
     global $calibrefx;
-    
     //developer can deactivate this from the functions.php
-    if(current_theme_supports('calibrefx-seo') && ($calibrefx->seo_settings_m->get('enable_seo'))){
-        init_seo_feature_hook();
+    if($calibrefx->seo_settings_m->get('enable_seo')){
+        add_filter('calibrefx_do_title', 'calibrefx_seo_title');
+        add_filter('calibrefx_do_meta_description', 'calibrefx_seo_description');
+        add_filter('calibrefx_do_meta_keywords', 'calibrefx_seo_keywords');
+        add_filter('calibrefx_do_link_author', 'calibrefx_link_author');
+        add_filter('calibrefx_do_link_publisher', 'calibrefx_link_publisher');
+        add_action('calibrefx_meta', 'calibrefx_do_meta_robot');
+        add_action('wp_head', 'calibrefx_canonical', 5);
+        add_action('template_redirect', 'calibrefx_custom_redirect', 5);
     }
 }
-
-function init_seo_feature_hook(){
-    add_filter('calibrefx_do_title', 'calibrefx_seo_title');
-    add_filter('calibrefx_do_meta_description', 'calibrefx_seo_description');
-    add_filter('calibrefx_do_meta_keywords', 'calibrefx_seo_keywords');
-    add_filter('calibrefx_do_link_author', 'calibrefx_link_author');
-    add_filter('calibrefx_do_link_publisher', 'calibrefx_link_publisher');
-    add_action('calibrefx_meta', 'calibrefx_do_meta_robot');
-    add_action('wp_head', 'calibrefx_canonical', 5);
-    add_action('template_redirect', 'calibrefx_custom_redirect', 5);
-}
-
 
 /**
  * Generate SEO title based on the format given
@@ -425,5 +419,120 @@ function calibrefx_custom_redirect(){
     if(!empty($cf)){
         wp_redirect( $cf, 301 );
         exit;
+    }
+}
+
+add_action('admin_menu', 'calibrefx_add_inpost_seo_box');
+/**
+ * Register a new meta box to the post / page edit screen, so that the user can
+ * set SEO options on a per-post or per-page basis.
+ */
+function calibrefx_add_inpost_seo_box() {
+    global $calibrefx;
+    foreach ((array) get_post_types(array('public' => true)) as $type) {
+        if (post_type_supports($type, 'calibrefx-seo') AND current_theme_supports('calibrefx-seo') && $calibrefx->seo_settings_m->get('enable_seo'))
+            add_meta_box('calibrefx_inpost_seo_box', __('CalibreFx SEO Settings', 'calibrefx'), 'calibrefx_inpost_seo_box', $type, 'normal', 'high');
+    }
+}
+
+/**
+ * Show inpost seo box
+ */
+function calibrefx_inpost_seo_box() {
+    wp_nonce_field('calibrefx_inpost_seo_action', 'calibrefx_inpost_seo_nonce');
+    ?>
+
+    <p><label for="calibrefx_title"><b><?php _e('Custom Document Title', 'calibrefx'); ?></b> <abbr title="&lt;title&gt; Tag">[?]</abbr> <span class="hide-if-no-js"><?php printf(__('Characters Used: %s', 'calibrefx'), '<span id="calibrefx_title_chars">' . strlen(calibrefx_get_custom_field('_calibrefx_title')) . '</span>'); ?></span></label></p>
+    <p><input class="large-text" type="text" name="calibrefx_seo[_calibrefx_title]" id="calibrefx_title" value="<?php echo esc_attr(calibrefx_get_custom_field('_calibrefx_title')); ?>" /></p>
+
+    <p><label for="calibrefx_description"><b><?php _e('Custom Post/Page Meta Description', 'calibrefx'); ?></b> <abbr title="&lt;meta name=&quot;description&quot; /&gt;">[?]</abbr> <span class="hide-if-no-js"><?php printf(__('Characters Used: %s', 'calibrefx'), '<span id="calibrefx_description_chars">' . strlen(calibrefx_get_custom_field('_calibrefx_description')) . '</span>'); ?></span></label></p>
+    <p><textarea class="large-text" name="calibrefx_seo[_calibrefx_description]" id="calibrefx_description" rows="4" cols="4"><?php echo esc_textarea(calibrefx_get_custom_field('_calibrefx_description')); ?></textarea></p>
+
+    <p><label for="calibrefx_keywords"><b><?php _e('Custom Post/Page Meta Keywords, comma separated', 'calibrefx'); ?></b> <abbr title="&lt;meta name=&quot;keywords&quot; /&gt;">[?]</abbr></label></p>
+    <p><input class="large-text" type="text" name="calibrefx_seo[_calibrefx_keywords]" id="calibrefx_keywords" value="<?php echo esc_attr(calibrefx_get_custom_field('_calibrefx_keywords')); ?>" /></p>
+
+    <p><label for="calibrefx_canonical"><b><?php _e('Custom Canonical URI', 'calibrefx'); ?></b> <a href="http://www.mattcutts.com/blog/canonical-link-tag/" target="_blank" title="&lt;link rel=&quot;canonical&quot; /&gt;">[?]</a></label></p>
+    <p><input class="large-text" type="text" name="calibrefx_seo[_calibrefx_canonical_uri]" id="calibrefx_canonical" value="<?php echo esc_url(calibrefx_get_custom_field('_calibrefx_canonical_uri')); ?>" /></p>
+
+    <p><label for="calibrefx_redirect"><b><?php _e('Custom Redirect URI', 'calibrefx'); ?></b> <a href="http://www.google.com/support/webmasters/bin/answer.py?hl=en&amp;answer=93633" target="_blank" title="301 Redirect">[?]</a></label></p>
+    <p><input class="large-text" type="text" name="calibrefx_seo[_calibrefx_redirect_url]" id="calibrefx_redirect_url" value="<?php echo esc_url(calibrefx_get_custom_field('_calibrefx_redirect_url')); ?>" /></p>
+
+    <br />
+
+    <p><b><?php _e('Robots Meta Settings', 'calibrefx'); ?></b></p>
+
+    <p>
+        <input type="checkbox" name="calibrefx_seo[_calibrefx_noindex]" id="calibrefx_noindex" value="1" <?php checked(calibrefx_get_custom_field('_calibrefx_noindex')); ?> />
+        <label for="calibrefx_noindex"><?php printf(__('Apply %s to this post/page', 'calibrefx'), '<code>noindex</code>'); ?> <a href="http://www.robotstxt.org/meta.html" target="_blank">[?]</a></label><br />
+
+        <input type="checkbox" name="calibrefx_seo[_calibrefx_nofollow]" id="calibrefx_nofollow" value="1" <?php checked(calibrefx_get_custom_field('_calibrefx_nofollow')); ?> />
+        <label for="calibrefx_nofollow"><?php printf(__('Apply %s to this post/page', 'calibrefx'), '<code>nofollow</code>'); ?> <a href="http://www.robotstxt.org/meta.html" target="_blank">[?]</a></label><br />
+
+        <input type="checkbox" name="calibrefx_seo[_calibrefx_noarchive]" id="calibrefx_noarchive" value="1" <?php checked(calibrefx_get_custom_field('_calibrefx_noarchive')); ?> />
+        <label for="calibrefx_nofollow"><?php printf(__('Apply %s to this post/page', 'calibrefx'), '<code>noarchive</code>'); ?> <a href="http://www.ezau.com/latest/articles/no-archive.shtml" target="_blank">[?]</a></label>
+    </p>
+
+    <br />
+
+    <p><label for="calibrefx_scripts"><b><?php _e('Custom Tracking/Conversion Code', 'calibrefx'); ?></b></label></p>
+    <p><textarea class="large-text" rows="4" cols="4" name="calibrefx_seo[_calibrefx_scripts]" id="calibrefx_scripts"><?php echo esc_textarea(calibrefx_get_custom_field('_calibrefx_scripts')); ?></textarea></p>
+    <?php
+}
+
+add_action('save_post', 'calibrefx_inpost_seo_save', 1, 2);
+
+/**
+ * Save the SEO settings when we save a post or page.
+ */
+function calibrefx_inpost_seo_save($post_id, $post) {
+    global $calibrefx;
+    
+    if(!in_array($post->post_type, get_post_types(array('public' => true)))) return $post->ID;
+    
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+        return;
+    if (defined('DOING_AJAX') && DOING_AJAX)
+        return;
+    if (defined('DOING_CRON') && DOING_CRON)
+        return;
+    
+    if(!$calibrefx->security->verify_nonce('calibrefx_inpost_seo_action','calibrefx_inpost_seo_nonce')){    
+        return $post_id;
+    }
+
+    if (( 'page' == $_POST['post_type'] && !current_user_can('edit_page', $post->ID) ) || !current_user_can('edit_post', $post->ID))
+        return $post->ID;
+
+    /** Don't try to store data during revision save */
+    if ('revision' == $post->post_type)
+        return;
+
+    /** Define all as false, to be trumped by user submission */
+    $seo_post_defaults = array(
+        '_calibrefx_title' => '',
+        '_calibrefx_description' => '',
+        '_calibrefx_keywords' => '',
+        '_calibrefx_canonical_uri' => '',
+        '_calibrefx_redirect_url' => '',
+        '_calibrefx_noindex' => 0,
+        '_calibrefx_nofollow' => 0,
+        '_calibrefx_noarchive' => 0,
+        '_calibrefx_scripts' => '',
+    );
+
+    /** Merge defaults with user submission */
+    $calibrefx_seo = wp_parse_args($_POST['calibrefx_seo'], $seo_post_defaults);
+
+    /** Loop through values, to potentially store or delete as custom field */
+    foreach ((array) $calibrefx_seo as $key => $value) {
+        /** Sanitize the title, description, and tags before storage */
+        if (in_array($key, array('_calibrefx_title', '_calibrefx_description', '_calibrefx_keywords')))
+            $value = esc_html(strip_tags($value));
+
+        /** Save, or delete if the value is empty */
+        if ($value)
+            update_post_meta($post->ID, $key, $value);
+        else
+            delete_post_meta($post->ID, $key);
     }
 }

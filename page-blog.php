@@ -19,13 +19,12 @@
  * @package CalibreFx
  */
 
-if(file_exists(CHILD_URI . '/page-blog.php')){
+if(file_exists(CHILD_URI . '/page-blog.php') AND (CHILD_URI != CALIBREFX_URI)){
     include CHILD_URI . '/page-blog.php';
     exit;
 }
 
-remove_action( 'calibrefx_loop', 'calibrefx_do_loop' );
-add_action('calibrefx_loop', 'calibrefx_do_blog_loop');
+$cfxgenerator->replace('calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_do_blog_loop');
 
 /**
  * CalibreFx Loop for blog bage

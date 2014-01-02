@@ -25,12 +25,12 @@
  *
  * Store config data
  *
- * @package		calibrefxlib
- * @subpackage          Core
- * @category            Config
+ * @package		Core
+ * @category    Config
  * @author		CalibreFx Dev Team
  * @link		http://www.CalibreFx.com
  */
+
 // ------------------------------------------------------------------------
 class CFX_Config {
 
@@ -62,7 +62,7 @@ class CFX_Config {
      * Sets the $config data from the primary config.php file as a class variable
      */
     public function __construct() {
-        $this->config = & get_config();
+        $this->config = get_config();
         calibrefx_log_message('debug', 'Config Class Initialized');
     }
 

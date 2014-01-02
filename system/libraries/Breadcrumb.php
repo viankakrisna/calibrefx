@@ -56,10 +56,12 @@ class CFX_Breadcrumb {
         /** Default arguments * */
         $this->args = array(
             'home' => __('Home', 'calibrefx'),
-            'sep' => ' <span class="divider">/</span> ',
-            'list_sep' => ', ',
-            'prefix' => '<div class="breadcrumb-container" xmlns:v="http://rdf.data-vocabulary.org/#"><ul class="breadcrumb" itemprop="breadcrumb">',
-            'suffix' => '</ul></div>',
+            'sep' => '',
+            'list_sep' => '',
+            'container_open' => '<div class="breadcrumb-container" xmlns:v="http://rdf.data-vocabulary.org/#">',
+            'container_close' => '</div>',
+            'prefix' => '<ol class="breadcrumb" itemprop="breadcrumb">',
+            'suffix' => '</ol>',
             'heirarchial_attachments' => true,
             'heirarchial_categories' => true,
             'display' => true,
@@ -87,7 +89,7 @@ class CFX_Breadcrumb {
         /** Merge and Filter user and default arguments * */
         $this->args = apply_filters('calibrefx_breadcrumb_args', wp_parse_args($args, $this->args));
         
-        return $this->args['prefix'] .'<li class="labels">'. $this->args['labels']['prefix'] .'</li>'. $this->build_crumbs() . $this->args['suffix'];
+        return $this->args['container_open'] . '<span class="breadcrumb-label">' . $this->args['labels']['prefix'] . '</span>' . $this->args['prefix'] . $this->build_crumbs() . $this->args['suffix'] . $this->args['container_close'];
     }
 
     /**
