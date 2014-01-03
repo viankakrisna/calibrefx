@@ -22,6 +22,7 @@
 
 global $cfx_shortcode;
  
+/* Site URL */
 add_shortcode( 'site_url', 'calibrefx_site_url' );
 
 function calibrefx_site_url($atts, $content = null){
@@ -33,6 +34,7 @@ function calibrefx_site_url($atts, $content = null){
     return site_url( $path, $scheme );
 }
 
+/* Home URL */
 add_shortcode( 'home_url', 'calibrefx_site_url' );
 
 function calibrefx_home_url($atts, $content = null){
@@ -49,6 +51,8 @@ function calibrefx_home_url($atts, $content = null){
  * Video Section
  * ==============================================================
  */
+
+/* Youtube */
 add_shortcode('youtube', 'calibrefx_youtube');
 
 function calibrefx_youtube($atts, $content = null) {
@@ -64,6 +68,7 @@ function calibrefx_youtube($atts, $content = null) {
     return '<div class="flexible-container youtube"><iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . $content . '" frameborder="0" allowfullscreen></iframe></div>';
 }
 
+/* Vimeo */
 add_shortcode('vimeo', 'calibrefx_vimeo');
 
 function calibrefx_vimeo($atts, $content = null) {
@@ -80,6 +85,7 @@ function calibrefx_vimeo($atts, $content = null) {
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_video', CALIBREFX_SHORTCODE_URL . '/form-video.php', 360, 240, __('Video shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/video.png');
 
+/* Youtube Thumbnail */
 add_shortcode('youtube_thumbnail', 'calibrefx_youtube_thumbnail');
 
 function calibrefx_youtube_thumbnail($atts, $content = null) {
@@ -143,6 +149,8 @@ function calibrefx_youtube_thumbnail($atts, $content = null) {
  * Typography Section
  * ==============================================================
  */
+
+/* Text */
 add_shortcode('text', 'calibrefx_text');
 
 function calibrefx_text($atts, $content = '') {
@@ -155,6 +163,7 @@ function calibrefx_text($atts, $content = '') {
                 'style' => '',
                 'weight' => '',
                 'type' => 'normal',
+                'id' => ''
                     ), $atts));
 
     $classes = 'text';
@@ -173,20 +182,18 @@ function calibrefx_text($atts, $content = '') {
         $elm = 'span';
     elseif($type == 'paragraph')
         $elm = 'p';
-    elseif($type == 'cite')
-        $elm = 'cite';
-    elseif($type == 'blockquote')
-        $elm = 'blockquote';
     elseif($type == 'div')
         $elm = 'div';
 
+    $attr = '';
+    if(!empty($id)) $attr .= ' id="' . $id . '"';
 
-
-    return $before . '<'. $elm .' class="' . $classes . '">' . do_shortcode($content) . '</' . $elm . '>' . $after;
+    return $before . '<'. $elm .' class="' . $classes . '"'.$attr.'>' . do_shortcode($content) . '</' . $elm . '>' . $after;
 }
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_text', CALIBREFX_SHORTCODE_URL . '/form-texts.php', 360, 280, __('Text shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/text.png');
 
+/* Bold */
 add_shortcode('bold', 'calibrefx_bold');
 
 function calibrefx_bold($atts, $content = '') {
@@ -198,6 +205,7 @@ function calibrefx_bold($atts, $content = '') {
     return $before . '<strong>' . do_shortcode($content) . '</strong>' . $after;
 }
 
+/* Italic */
 add_shortcode('italic', 'calibrefx_italic');
 
 function calibrefx_italic($atts, $content = '') {
@@ -209,6 +217,7 @@ function calibrefx_italic($atts, $content = '') {
     return $before . '<i>' . do_shortcode($content) . '</i>' . $after;
 }
 
+/* Em */
 add_shortcode('em', 'calibrefx_em');
 
 function calibrefx_em($atts, $content = '') {
@@ -220,6 +229,7 @@ function calibrefx_em($atts, $content = '') {
     return $before . '<em>' . do_shortcode($content) . '</em>' . $after;
 }
 
+/* Cite */
 add_shortcode('cite', 'calibrefx_cite');
 
 function calibrefx_cite($atts, $content = '') {
@@ -231,6 +241,7 @@ function calibrefx_cite($atts, $content = '') {
     return $before . '<cite>' . do_shortcode($content) . '</cite>' . $after;
 }
 
+/* Blockquote */
 add_shortcode('blockquote', 'calibrefx_blockquote');
 
 function calibrefx_blockquote($atts, $content = '') {
@@ -259,7 +270,7 @@ function calibrefx_icon($atts, $content = '') {
                     ), $atts));
 					
 	$attr = '';
-	$classes = 'icon';
+	$classes = 'glyphicon';
 	
 	if(!empty($name)) $classes .= ' '.$name;
 	if(!empty($class)) $classes .= ' '.$class;
@@ -285,9 +296,19 @@ function calibrefx_img($atts, $content = null) {
                 'height' => '',
                 'title' => '',
                 'class' => '',
+                'alt' => '',
+                'id' => '',
                     ), $atts));
 
-    return $before . '<img src="' . do_shortcode($content) . '" title="' . $title . '" width="' . $width . '" height="' . $height . '" class="' . $class . '"/>' . $after;
+    $attr = '';
+    if(!empty($width)) $attr .= ' width="' . $width . '"';
+    if(!empty($height)) $attr .= ' height="' . $height . '"';
+    if(!empty($title)) $attr .= ' title="' . $title . '"';
+    if(!empty($class)) $attr .= ' width="' . $class . '"';
+    if(!empty($alt)) $attr .= ' alt="' . $alt . '"';
+    if(!empty($id)) $attr .= ' id="' . $id . '"';
+
+    return $before . '<img src="' . do_shortcode($content) . '"'.$attr.' />' . $after;
 }
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_image', CALIBREFX_SHORTCODE_URL . '/form-image.php', 360, 280, __('Image shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/image.png');
@@ -297,6 +318,8 @@ $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_image', CALI
  * User Section
  * ==============================================================
  */
+
+/* Loggedin User First Name */
 add_shortcode('user_firstname', 'calibrefx_user_firstname');
 
 function calibrefx_user_firstname($atts, $content = '') {
@@ -311,6 +334,7 @@ function calibrefx_user_firstname($atts, $content = '') {
     return $before . $current_user->user_firstname . $after;
 }
 
+/* Loggedin User Last Name */
 add_shortcode('user_lastname', 'calibrefx_user_lastname');
 
 function calibrefx_user_lastname($atts, $content = '') {
@@ -325,6 +349,7 @@ function calibrefx_user_lastname($atts, $content = '') {
     return $before . $current_user->user_lastname . $after;
 }
 
+/* Loggedin User Email Address */
 add_shortcode('user_email', 'calibrefx_user_email');
 
 function calibrefx_user_email($atts, $content = '') {
@@ -352,12 +377,12 @@ function calibrefx_button($atts, $content = '') {
                 'after' => '',
                 'class' => '',
                 'style' => '',
+                'state' => '',
                 'id' => '',
                 'url' => '#',
                 'type' => '',
                 'size' => '',
                 'icon' => '',
-                'icon_color' => '',
                 'rel' => 'nofollow'
                     ), $atts));
 
@@ -368,15 +393,21 @@ function calibrefx_button($atts, $content = '') {
         $classes .= ' btn-' . $type;
     if (!empty($size))
         $classes .= ' btn-' . $size;
+    if (!empty($state))
+        $classes .= ' ' . $state;
 
-    $icon_class = '';
-    if (!empty($icon_color))
-        $icon_class .= ' icon-'.$icon_color;
+    $attr = '';
+    if (!empty($style))
+        $attr .= ' style="' . $style . '"';
+    if (!empty($rel))
+        $attr .= ' rel="' . $rel . '"';
+    if (!empty($id))
+        $attr .= ' id="' . $id . '"';
 
     if (!empty($icon)) {
-        return $before . '<a href="' . $url . '" class="' . $classes . '" style="' . $style . '" rel="'.$rel.'"><i class="icon-'.$icon.$icon_class.'"></i>' . do_shortcode($content) . '</a>' . $after;
+        return $before . '<a href="' . $url . '" class="' . $classes . '"'.$attr.'><i class="glyphicon glyphicon-'.$icon.'"></i>' . do_shortcode($content) . '</a>' . $after;
     } else {
-        return $before . '<a href="' . $url . '" class="' . $classes . '" style="' . $style . '" rel="'.$rel.'">' . do_shortcode($content) . '</a>' . $after;
+        return $before . '<a href="' . $url . '" class="' . $classes . '"'.$attr.'>' . do_shortcode($content) . '</a>' . $after;
     }
 }
 
@@ -403,7 +434,7 @@ function calibrefx_tooltip($atts, $content = '') {
     $classes  = ' class="'.$class.'"';
     $ids = ' id="'.$id.'"';
 
-    return $before.'<a href="'.$url.'" data-toggle="tooltip" data-placement="'.$position.'" data-original-title="'.$text.'"'.$classes.$ids.'>'.advance_shortcode_unautop($content).'</a>'.$after;
+    return $before.'<a href="'.$url.'" data-toggle="tooltip" data-placement="'.$position.'" title="'.$text.'"'.$classes.$ids.'>'.advance_shortcode_unautop($content).'</a>'.$after;
 }
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_tooltips', CALIBREFX_SHORTCODE_URL . '/form-tooltips.php', 360, 380, __('Tooltips shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/tooltips.png');
@@ -448,6 +479,8 @@ $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_dropcaps', C
  * List
  * ==============================================================
  */
+
+/* Main List Element */
 add_shortcode('list', 'calibrefx_list');
 
 function calibrefx_list($atts, $content = '') {
@@ -469,6 +502,7 @@ function calibrefx_list($atts, $content = '') {
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_list', CALIBREFX_SHORTCODE_URL . '/form-list.php', 360, 200, __('List shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/list.png');
 
+/* List Element */
 add_shortcode('li', 'calibrefx_list_item');
 
 function calibrefx_list_item($atts, $content = '') {
@@ -524,6 +558,7 @@ function calibrefx_column($atts, $content = '') {
     $before = '';
     $after = '';
     $classes = '';
+    $attr = '';
 
     if (!empty($class))
         $classes .= ' ' . $class;
@@ -565,6 +600,7 @@ function calibrefx_one_half_column($atts, $content = '') {
     $before = '';
     $after = '';
     $classes = '';
+    $attr = '';
 
     if (!empty($class))
         $classes .= ' ' . $class;
@@ -606,6 +642,7 @@ function calibrefx_one_third_column($atts, $content = '') {
     $before = '';
     $after = '';
     $classes = '';
+    $attr = '';
 
     if (!empty($class))
         $classes .= ' ' . $class;
@@ -647,6 +684,7 @@ function calibrefx_two_third_column($atts, $content = '') {
     $before = '';
     $after = '';
     $classes = '';
+    $attr = '';
 
     if (!empty($class))
         $classes .= ' ' . $class;
@@ -688,6 +726,7 @@ function calibrefx_one_fourth_column($atts, $content = '') {
     $before = '';
     $after = '';
     $classes = '';
+    $attr = '';
 
     if (!empty($class))
         $classes .= ' ' . $class;
@@ -716,7 +755,7 @@ function calibrefx_one_fourth_column($atts, $content = '') {
 /* Three Fourth */
 add_shortcode('three_fourth', 'calibrefx_three_fourth_column');
 
-function calibrefx_one_fourth_column($atts, $content = '') {
+function calibrefx_three_fourth_column($atts, $content = '') {
     extract(shortcode_atts(array(
                 'class' => '',
                 'style' => '',
@@ -729,6 +768,7 @@ function calibrefx_one_fourth_column($atts, $content = '') {
     $before = '';
     $after = '';
     $classes = '';
+    $attr = '';
 
     if (!empty($class))
         $classes .= ' ' . $class;
@@ -754,7 +794,6 @@ function calibrefx_one_fourth_column($atts, $content = '') {
     return $before . '<div class="' . $classes . '"'.$attr.'>' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
 }
 
-
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_column', CALIBREFX_SHORTCODE_URL . '/form-cols.php', 360, 220, __('Column shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/cols.png');
 
 /**
@@ -771,11 +810,13 @@ function calibrefx_separator($atts, $content = '') {
                 'style' => '',
                     ), $atts));
 
-    $classes = " separator ".calibrefx_row_class();
+    $classes = " separator ";
     if (!empty($class))
         $classes .= ' '.$class;
 
-    return '<div class="' . $classes . ' separator" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
+    $attr = '';
+    if (!empty($style)) $attr .= ' style="' . $style . '"';
+    return '<div class="' . $classes . '" style="'.$style.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_separator', CALIBREFX_SHORTCODE_URL . '/form-separator.php', 360, 200, __('Separator shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/separator.png');
@@ -802,10 +843,17 @@ function calibrefx_headline($atts, $content = '') {
         'bottom_separator' => 0,
     ), $atts));
 
+    $attr = '';
+    if (!empty($id)) $attr .= ' id="' . $id . '"';
+    if (!empty($style)) $attr .= ' style="' . $style . '"';
+
+    $classes = 'headline';
+    if (!empty($class)) $classes .= ' ' . $class;
+
     $html = '';
-    $html .= '<div class="headline '.$class.'" id="'.$id.'">';
+    $html .= '<div class="'.$class.'"'.$attr.'>';
     if($top_separator) $html .= '<div class="headline-separator top"></div>';
-    $html .= '<div class="headline-content '.calibrefx_row_class().'">';
+    $html .= '<div class="headline-content">';
     $html .= advance_shortcode_unautop($content);
     $html .= '</div>';
     if($bottom_separator) $html .= '<div class="headline-separator bottom"></div>';
@@ -933,6 +981,7 @@ function calibrefx_slider($atts, $content = '') {
             $pager_class .= $chars[rand(0, $size - 1)];
         }
     }
+
     $style_item = '';
     if(!empty($width)) $style_item .= 'width:'.$width.';';
     if(!empty($height)) $style_item .= 'height:'.$height.';';
@@ -962,8 +1011,11 @@ function calibrefx_slider($atts, $content = '') {
 	
     $data_cycle .= ' data-cycle-pause-on-hover="true"';
 
+    $attr = '';
+    if(!empty($id)) $attr .= ' id="'.$id.'"';
+
     $html = '';
-    $html .= '<div id="'.$id.'" class="slider-container'.$class.'">';
+    $html .= '<div class="slider-container'.$class.'"'.$attr.'>';
     $html .= '<div class="slider-wrapper">';
     $html .= '<div class="slider cycle-slideshow"'.$data_cycle.$style.'>';
 	if($caption) $html .= '<div class="cycle-overlay"></div>';
@@ -1114,7 +1166,7 @@ function calibrefx_togglebox($atts, $content = null) {
 
     if(!empty($class)) $class = ' '.$class;
 
-    return $before . '<div class="accordion'.$class.'" id="'.$id.'">' . advance_shortcode_unautop($content) . '</div>' . $after;
+    return $before . '<div class="panel-group'.$class.'" id="'.$id.'">' . advance_shortcode_unautop($content) . '</div>' . $after;
 }
 
 add_shortcode('togglebox_item', 'calibrefx_togglebox_item');
@@ -1130,14 +1182,16 @@ function calibrefx_togglebox_item($atts, $content = null){
     $class = '';
     if($in) $class = ' in';
 
-    $output = '<div class="accordion-group">
-        <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#'.$togglebox_id.'" href="#'.$togglebox_id.'-'.$id.'">
-                '.$title.'
-            </a>
+    $output = '<div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#'.$togglebox_id.'" href="#'.$togglebox_id.'-'.$id.'">
+                    '.$title.'
+                </a>
+            </h4>
         </div>
-        <div id="'.$togglebox_id.'-'.$id.'" class="accordion-body collapse'.$class.'">
-            <div class="accordion-inner">
+        <div id="'.$togglebox_id.'-'.$id.'" class="panel-collapse collapse'.$class.'">
+            <div class="panel-body">
                 '.advance_shortcode_unautop($content).'
             </div>
         </div>
@@ -1154,19 +1208,20 @@ $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_togglebox', 
  * ==============================================================
  */
 
-add_shortcode('alert', 'cronos_alert');
-function cronos_alert($atts, $content = null){
+add_shortcode('alert', 'calibrefx_alert');
+function calibrefx_alert($atts, $content = null){
     extract(shortcode_atts(array(        
         'close_button' => 1,
         'class' => '',
         'type' => '',
         'option' => '',
         'style' => '',
+        'id' => ''
     ), $atts));
     
     $output = '';
 
-    $classes = 'alert';
+    $classes = 'alert alert-dismissable';
     if (!empty($class))
         $classes .= ' ' . $class;
     if (!empty($type))
@@ -1174,10 +1229,16 @@ function cronos_alert($atts, $content = null){
     if (!empty($option))
         $classes .= ' alert-' . $option;
 
-    $output .= '<div class="'. $classes .'" style="'. $style .'">';
+    $attr = '';
+    if (!empty($style))
+        $attr .= ' style="' . $style . '"';
+    if (!empty($id))
+        $attr .= ' id="' . $id . '"';
+
+    $output .= '<div class="' . $classes . '"' . $attr . '>';
 
     if($close_button)
-        $output .= '<button type="button" class="close" data-dismiss="alert">x</button>';
+        $output .= '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
 
     $output .= do_shortcode($content);
               
@@ -1192,37 +1253,35 @@ function cronos_alert($atts, $content = null){
  * ==============================================================
  */
 
-add_shortcode('bar', 'cronos_bar');
-function cronos_bar($atts, $content = null){
+add_shortcode('bar', 'calibrefx_bar');
+function calibrefx_bar($atts, $content = null){
     extract(shortcode_atts(array(        
         'active' => 0,
         'class' => '',
-        'type' => '',
         'option' => '',
         'style' => '',
+        'id' => '',
     ), $atts));
-    
-    global $bar_item;
-    $bar_item = '';
-
-
-    $content = do_shortcode($content);
 
     $output = '';
 
     $classes = 'progress';
     if (!empty($class))
         $classes .= ' ' . $class;
-    if (!empty($type))
-        $classes .= ' progress-' . $type;
     if (!empty($option))
         $classes .= ' progress-' . $option;
     if (!empty($active) && $active == '1')
         $classes .= ' active';
 
-    $output .= '<div class="'. $classes .'" style="'. $style .'">';    
+    $attr = '';
+    if (!empty($style))
+        $attr .= ' style="' . $style . '"';
+    if (!empty($id))
+        $attr .= ' id="' . $id . '"';
 
-    $output .= $bar_item;
+    $output .= '<div class="'. $classes .'"' . $attr . '>';    
+
+    $output .= do_shortcode( advance_shortcode_unautop($content) );
               
     $output .= '</div>';
 
@@ -1242,27 +1301,22 @@ function cronos_bar_item($atts, $content = null){
         'title' => '',
         'class' => '',
         'type' => '',
-        'option' => '',
         'style' => '',
     ), $atts));
-    
-    global $bar_item;
 
     $output = '';
 
-    $classes = 'bar';
+    $classes = 'progress-bar';
     if (!empty($class))
         $classes .= ' ' . $class;
     if (!empty($type))
-        $classes .= ' bar-' . $type;
-    if (!empty($option))
-        $classes .= ' bar-' . $option;
+        $classes .= ' progress-bar-' . $type;
 
     $styles = '';
-    if (!empty($style))
-        $styles .= ' ' . $style;
     if (!empty($length))
-        $styles .= ' width:' . $length;
+        $styles .= 'width:' . $length . ';';
+    if (!empty($style))
+        $styles .= $style;
 
     $output .= '<div class="'. $classes .'" style="'. $styles .'">'; 
     $output .= $title;          
