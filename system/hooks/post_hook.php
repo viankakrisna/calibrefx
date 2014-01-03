@@ -165,9 +165,17 @@ add_filter('calibrefx_post_meta', 'do_shortcode', 20);
  */
 function calibrefx_do_post_image() {
     if (!is_singular()) {
-        $default_post_image_size = apply_filters( 'content_thumbnail', 'thumbnail' );
-        $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_image_size, 'attr' => array('class' => 'pull-left alignleft post-image')));
-        printf('<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute('echo=0'), $img);
+        $default_post_archive_image_size = apply_filters( 'post_archive_image_size', 'thumbnail' );
+        $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_archive_image_size, 'attr' => array('class' => 'alignleft post-image')));
+        
+        if($img)
+            printf('<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute('echo=0'), $img);
+    } elseif (is_single()){
+        $default_post_single_image_size = apply_filters( 'post_single_image_size', 'full' );
+        $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_archive_image_size, 'attr' => array('class' => 'alignnone post-image')));
+        
+        if($img)
+            printf('<p class="post-featured-image">%s</a>', $img);
     }
 }
 

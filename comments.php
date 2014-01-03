@@ -15,7 +15,6 @@
  *
  * CalibreFx Comment template
  *
- * @package SalesVenture
  */
 
 if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) && 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) )

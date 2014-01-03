@@ -236,15 +236,15 @@ class CFX_Breadcrumb {
             $crumb = $this->get_breadcrumb_link(
                     get_year_link(get_query_var('year')), sprintf(__('View archives for %s', 'calibrefx'), get_query_var('year')), get_query_var('year'), $this->args['sep']
             );
-            $crumb .= $this->args['labels']['date'] . single_month_title('', false);
+            $crumb .= '<li typeof="v:Breadcrumb">' . $this->args['labels']['date'] . single_month_title('', false) . '</li>';
         } elseif (is_day()) {
             $crumb = $this->get_breadcrumb_link(
                     get_year_link(get_query_var('year')), sprintf(__('View archives for %s', 'calibrefx'), get_query_var('year')), get_query_var('year'), $this->args['sep']
             );
-            $crumb .= $this->get_breadcrumb_link(
+            $crumb .= '<li typeof="v:Breadcrumb">' . $this->get_breadcrumb_link(
                     get_month_link(get_query_var('year'), get_query_var('monthnum')), sprintf(__('View archives for %s %s', 'calibrefx'), $wp_locale->get_month(get_query_var('monthnum')), get_query_var('year')), $wp_locale->get_month(get_query_var('monthnum')), $this->args['sep']
-            );
-            $crumb .= $this->args['labels']['date'] . get_query_var('day') . date('S', mktime(0, 0, 0, 1, get_query_var('day')));
+            ) . '</li>';
+            $crumb .= '<li typeof="v:Breadcrumb">' . $this->args['labels']['date'] . get_query_var('day') . date('S', mktime(0, 0, 0, 1, get_query_var('day'))) . '</li>';
         } elseif (is_author()) {
             $crumb = $this->args['labels']['author'] . esc_html($wp_query->queried_object->display_name);
         } elseif (is_post_type_archive()) {

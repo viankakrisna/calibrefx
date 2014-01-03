@@ -58,6 +58,11 @@ body{
     margin-right: auto;
 }
 
+img{
+	max-width: 100%;
+	height: auto;
+}
+
 img.alignleft {
     margin: 5px 20px 5px 0;
 }
@@ -90,7 +95,7 @@ img.wp-smiley,
     border-radius: 3px;
     margin-top: 5px;
 	margin-bottom: 10px;
-    padding: 5px 0;
+    padding: 5px;
     text-align: center;
 	max-width: 100%;
 }
@@ -206,7 +211,7 @@ img.wp-smiley,
 }
 
 #nav .navbar-collapse{
-	padding: 0px;
+	
 }
 
 #nav .btn-menu-toggle{
@@ -464,10 +469,6 @@ img.wp-smiley,
     margin-bottom: 20px;	
 }
 
-.entry-content p:first-child{
-    margin-top: 0px;
-}
-
 .entry-content p.pages{
 	clear: both;
 }
@@ -488,6 +489,11 @@ img.wp-smiley,
 
 blockquote{
     font-style: italic;
+}
+
+blockquote cite{
+	display: inline-block;
+	padding-top: 10px;
 }
 
 /* Post Info
@@ -511,7 +517,7 @@ blockquote{
     padding: 10px;
 }
 
-.avatar, .featuredpage img, .featuredpost img, .post-image {
+.avatar{
     padding: 4px;
 	height: auto;
 }
@@ -556,30 +562,8 @@ blockquote{
     margin-top: 20px;
 }
 
-#author,
-#comment,
-#email,
-#url {
-    padding: 5px;
-    width: 250px;
-    margin: 0px;
-}
-
-.comment-form-author,
-.comment-form-url{
-    margin: 0px 0px 20px;
-}
-
 .help-block{
-    margin-bottom: 7px;
-    margin-top: 3px;
     font-size: 0.9em;
-}
-
-#comment {
-    height: 150px;
-    margin: 0px 0px 10px;
-    width: 98%;
 }
 
 #reply-title{
@@ -598,6 +582,7 @@ blockquote{
 
 .ping-list {
     margin: 0 0 40px;
+	padding: 0px;
 }
 
 .comment-list ol,
@@ -625,14 +610,15 @@ blockquote{
     padding: 4px;
 }
 
-.comment-list p,
-.ping-list p {
-    margin: 10px 5px 10px 0;
-}
-
 .comment-list cite,
 .ping-list cite {
     font-style: normal;
+}
+
+.comment-list blockquote cite,
+.ping-list blockquote cite {
+    display: inline-block;
+	padding-top: 10px;
 }
 
 .commentmetadata {

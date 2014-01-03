@@ -494,10 +494,13 @@ function calibrefx_row($atts, $content = '') {
                 'id' => '',
                     ), $atts));
 
-    $classes = '';
+    $attr = '';
+    $classes = calibrefx_row_class();
     if (!empty($class)) $classes .= ' ' . $class;
+    if (!empty($style)) $attr .= ' style="' . $style . '"';
+    if (!empty($id)) $attr .= ' id="' . $id . '"';
 
-    return '<div class="' . $classes . ' '.calibrefx_row_class().'" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
+    return '<div class="' . $classes . '"'.$attr.'>' . do_shortcode(advance_shortcode_unautop($content)) . '</div>';
 }
 
 /**
@@ -528,6 +531,7 @@ function calibrefx_column($atts, $content = '') {
         $classes .= ' ' . $cols;
     if (!empty($align))
         $classes .= ' ' . $align;
+
     if (!empty($first)) {
         if ($first == 'yes') {
             $before = '<div class="'.calibrefx_row_class().'">';
@@ -539,8 +543,217 @@ function calibrefx_column($atts, $content = '') {
         }
     }
 
-    return $before . '<div class="' . $classes . '" style="'.$style.'" id="'.$id.'">' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
+    if (!empty($style)) $attr .= ' style="' . $style . '"';
+    if (!empty($id)) $attr .= ' id="' . $id . '"';
+
+    return $before . '<div class="' . $classes . '"'.$attr.'>' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
 }
+
+/* One Half */
+add_shortcode('one_half', 'calibrefx_one_half_column');
+
+function calibrefx_one_half_column($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'class' => '',
+                'style' => '',
+                'align' => '',
+                'last' => 'no',
+                'first' => 'no',
+                'id' => ''
+                    ), $atts));
+
+    $before = '';
+    $after = '';
+    $classes = '';
+
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($cols))
+        $classes .= ' col-lg-6 col-md-6 col-sm-12 col-xs-12';
+    if (!empty($align))
+        $classes .= ' ' . $align;
+
+    if (!empty($first)) {
+        if ($first == 'yes') {
+            $before = '<div class="'.calibrefx_row_class().'">';
+        }
+    }
+    if (!empty($last)) {
+        if ($last == 'yes') {
+            $after = '</div>';
+        }
+    }
+
+    if (!empty($style)) $attr .= ' style="' . $style . '"';
+    if (!empty($id)) $attr .= ' id="' . $id . '"';
+
+    return $before . '<div class="' . $classes . '"'.$attr.'>' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
+}
+
+/* One Third */
+add_shortcode('one_third', 'calibrefx_one_third_column');
+
+function calibrefx_one_third_column($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'class' => '',
+                'style' => '',
+                'align' => '',
+                'last' => 'no',
+                'first' => 'no',
+                'id' => ''
+                    ), $atts));
+
+    $before = '';
+    $after = '';
+    $classes = '';
+
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($cols))
+        $classes .= ' col-lg-4 col-md-4 col-sm-12 col-xs-12';
+    if (!empty($align))
+        $classes .= ' ' . $align;
+
+    if (!empty($first)) {
+        if ($first == 'yes') {
+            $before = '<div class="'.calibrefx_row_class().'">';
+        }
+    }
+    if (!empty($last)) {
+        if ($last == 'yes') {
+            $after = '</div>';
+        }
+    }
+
+    if (!empty($style)) $attr .= ' style="' . $style . '"';
+    if (!empty($id)) $attr .= ' id="' . $id . '"';
+
+    return $before . '<div class="' . $classes . '"'.$attr.'>' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
+}
+
+/* Two Third */
+add_shortcode('two_third', 'calibrefx_two_third_column');
+
+function calibrefx_two_third_column($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'class' => '',
+                'style' => '',
+                'align' => '',
+                'last' => 'no',
+                'first' => 'no',
+                'id' => ''
+                    ), $atts));
+
+    $before = '';
+    $after = '';
+    $classes = '';
+
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($cols))
+        $classes .= ' col-lg-8 col-md-8 col-sm-12 col-xs-12';
+    if (!empty($align))
+        $classes .= ' ' . $align;
+
+    if (!empty($first)) {
+        if ($first == 'yes') {
+            $before = '<div class="'.calibrefx_row_class().'">';
+        }
+    }
+    if (!empty($last)) {
+        if ($last == 'yes') {
+            $after = '</div>';
+        }
+    }
+
+    if (!empty($style)) $attr .= ' style="' . $style . '"';
+    if (!empty($id)) $attr .= ' id="' . $id . '"';
+
+    return $before . '<div class="' . $classes . '"'.$attr.'>' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
+}
+
+/* One Fourth */
+add_shortcode('one_fourth', 'calibrefx_one_fourth_column');
+
+function calibrefx_one_fourth_column($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'class' => '',
+                'style' => '',
+                'align' => '',
+                'last' => 'no',
+                'first' => 'no',
+                'id' => ''
+                    ), $atts));
+
+    $before = '';
+    $after = '';
+    $classes = '';
+
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($cols))
+        $classes .= ' col-lg-3 col-md-3 col-sm-12 col-xs-12';
+    if (!empty($align))
+        $classes .= ' ' . $align;
+
+    if (!empty($first)) {
+        if ($first == 'yes') {
+            $before = '<div class="'.calibrefx_row_class().'">';
+        }
+    }
+    if (!empty($last)) {
+        if ($last == 'yes') {
+            $after = '</div>';
+        }
+    }
+
+    if (!empty($style)) $attr .= ' style="' . $style . '"';
+    if (!empty($id)) $attr .= ' id="' . $id . '"';
+
+    return $before . '<div class="' . $classes . '"'.$attr.'>' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
+}
+
+/* Three Fourth */
+add_shortcode('three_fourth', 'calibrefx_three_fourth_column');
+
+function calibrefx_one_fourth_column($atts, $content = '') {
+    extract(shortcode_atts(array(
+                'class' => '',
+                'style' => '',
+                'align' => '',
+                'last' => 'no',
+                'first' => 'no',
+                'id' => ''
+                    ), $atts));
+
+    $before = '';
+    $after = '';
+    $classes = '';
+
+    if (!empty($class))
+        $classes .= ' ' . $class;
+    if (!empty($cols))
+        $classes .= ' col-lg-9 col-md-9 col-sm-12 col-xs-12';
+    if (!empty($align))
+        $classes .= ' ' . $align;
+
+    if (!empty($first)) {
+        if ($first == 'yes') {
+            $before = '<div class="'.calibrefx_row_class().'">';
+        }
+    }
+    if (!empty($last)) {
+        if ($last == 'yes') {
+            $after = '</div>';
+        }
+    }
+
+    if (!empty($style)) $attr .= ' style="' . $style . '"';
+    if (!empty($id)) $attr .= ' id="' . $id . '"';
+
+    return $before . '<div class="' . $classes . '"'.$attr.'>' . do_shortcode(advance_shortcode_unautop($content)) . '</div>' . $after;
+}
+
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_column', CALIBREFX_SHORTCODE_URL . '/form-cols.php', 360, 220, __('Column shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/cols.png');
 

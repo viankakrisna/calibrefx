@@ -73,7 +73,6 @@ function calibrefx_get_comments_template() {
         }
     }
 }
-// add_action( 'calibrefx_after_post', 'calibrefx_get_comments_template' );
 
 /**
  * Echo CalibreFx default comment structure.
@@ -93,9 +92,11 @@ function calibrefx_do_comments() {
                 <ol class="comment-list">
                         <?php do_action( 'calibrefx_list_comments' ); ?>
                 </ol>
-                <div class="navigation">
-                        <div class="alignleft"><?php previous_comments_link() ?></div>
-                        <div class="alignright"><?php next_comments_link() ?></div>
+                <div class="comment-navigation">
+                    <ul class="pager">
+                        <li class="previous"><?php previous_comments_link() ?></li>
+                        <li class="next"><?php next_comments_link() ?></li>
+                    </ul>
                 </div>
         </div><!--end #comments-->
         <?php
@@ -198,26 +199,26 @@ function calibrefx_comment_form_args( $defaults ) {
     $req       = get_option( 'require_name_email' );
     $aria_req  = ( $req ? ' aria-required="true"' : '' );
 
-    $author = '<p class="comment-form-author">' .
+    $author = '<div class="form-group comment-form-author">' .
               '<label for="author" class="comment-form-label">'.__('Your Name (required)','calibrefx').'</label>' .
-              '<input id="author" name="author" type="text" class="required" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" tabindex="1"' . $aria_req . ' />' .
-              '</p><!-- #form-section-author .form-section -->';
+              '<input id="author" name="author" type="text" class="form-control required" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" tabindex="1"' . $aria_req . ' />' .
+              '</div><!-- #form-section-author .form-section -->';
 
-    $email = '<p class="comment-form-email">' .
+    $email = '<div class="form-group comment-form-email">' .
              '<label for="email" class="comment-form-label">'.__('Your Email (required)','calibrefx').'</label>' .
-             '<input id="email" name="email" type="text" class="required" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' />' .
+             '<input id="email" name="email" type="text" class="form-control required" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' />' .
              '<span class="help-block">'.__('Your email will be keep safe and won\'t be shared with third party','calibrefx').'</span>'.
-             '</p><!-- #form-section-email .form-section -->';
+             '</div><!-- #form-section-email .form-section -->';
 
-    $url = '<p class="comment-form-url">' .
+    $url = '<div class="form-group comment-form-url">' .
            '<label for="url" class="comment-form-label">'.__('Your Website Url','calibrefx').'</label>' .
-           '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" />' .
+           '<input id="url" name="url" type="text" class="form-control url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" />' .
            '<span class="help-block">'.__('(start with http://)','calibrefx').'</span>'.
-           '</p><!-- #form-section-url .form-section -->';
+           '</div><!-- #form-section-url .form-section -->';
 
-    $comment_field = '<p class="comment-form-comment">' .
-                     '<textarea id="comment" name="comment" cols="45" rows="8" tabindex="4" aria-required="true"></textarea>' .
-                     '</p><!-- #form-section-comment .form-section -->';
+    $comment_field = '<div class="form-group comment-form-comment">' .
+                     '<textarea id="comment" name="comment" class="form-control required" cols="45" rows="8" tabindex="4" aria-required="true"></textarea>' .
+                     '</div><!-- #form-section-comment .form-section -->';
 
     $args = array(
             'fields'               => array(
