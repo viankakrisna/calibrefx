@@ -181,11 +181,6 @@ img.wp-smiley,
     padding-right: 20px;
 }
 
-#nav .navbar-inner{
-    padding: 0px;
-	min-height: 34px;
-}
-
 #nav .nav > li > a {
      
 }
@@ -208,6 +203,10 @@ img.wp-smiley,
 #nav .nav > li > .dropdown-menu .dropdown-menu{ /* 2nd, 3rd, ... level submenus */
     left: 100%;
     top: -4px;
+}
+
+#nav .navbar-collapse{
+	padding: 0px;
 }
 
 #nav .btn-menu-toggle{
@@ -741,22 +740,10 @@ blockquote{
 
 /* Search Form
 ------------------------------------------------------------ */
-#submit {
-    margin-bottom:0;
-    cursor: pointer;
-    padding: 5px 10px;
-}
-
-form.searchform{
-    display: block;
-}
-
-input[type=text].s{
-    
-}
-
 input[type="submit"].searchsubmit{
-    vertical-align: top
+    vertical-align: top;
+	
+    border-radius: 0px 4px 4px 0px !important;
 }
 
 /* Footer Widgets
@@ -797,6 +784,17 @@ input[type="submit"].searchsubmit{
 
 /* Breadcrumb
 ------------------------------------------------------------ */
+.breadcrumb-container{
+	background: #f5f5f5;
+	border-radius: 4px;
+	padding: 0 15px;
+}
+.breadcrumb-container .breadcrumb{
+	display: inline-block;
+	background: none;
+	margin-bottom: 0;
+	padding: 7px 15px 7px 10px;
+}
 .breadcrumb .labels{
     padding-right: 5px;
 }

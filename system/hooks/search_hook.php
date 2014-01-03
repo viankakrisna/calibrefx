@@ -47,7 +47,7 @@ function calibrefx_search_form() {
             <div class="input-group">
                 <input type="text" value="'. $search_text .'" name="s" class="s form-control"'. $onfocus . $onblur .' />
                 <span class="input-group-btn">
-                    <input type="submit" class="searchsubmit form-control" value="'. $button_text .'" />
+                    <input type="submit" class="searchsubmit form-control btn btn-primary" value="'. $button_text .'" />
                 </span>
             </div>
         </form>
