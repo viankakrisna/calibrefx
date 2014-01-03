@@ -181,9 +181,9 @@ class CFX_Generator{
     	$func_array = $this->_hooks[$old_tag][$keysearch];
     	unset($this->_hooks[$old_tag][$keysearch]);
     	$this->add($new_tag, $func_array['function'], $func_array['priority'], $func_array['args']);
-    	if(has_action($old_tag, $function_old)){
-            remove_action( $old_tag, $function_old );
-            add_action( $new_tag, $function_new );
+    	if(has_action($old_tag, $function)){
+            remove_action( $old_tag, $function );
+            add_action( $new_tag, $function );
         }
         
     	return true;
