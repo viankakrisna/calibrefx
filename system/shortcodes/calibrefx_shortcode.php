@@ -1541,6 +1541,8 @@ function calibrefx_post_item($atts, $content = null) {
         "style" => '',
     ), $atts)); 
 
+    if(empty($post_id)) return;
+
     $args = array();
 
     if($post_type != 'post'){
