@@ -211,7 +211,7 @@ function calibrefx_post_class($classes) {
 
     return $classes;
 }
-//add_filter('post_class', 'calibrefx_post_class');
+add_filter('post_class', 'calibrefx_post_class');
 
 /**
  * This function/filter adds new classes to the <body>
