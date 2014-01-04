@@ -334,6 +334,7 @@ input[type=text].s{
     box-shadow: none;
     color: #2f2f2f;
     font-weight: normal;
+    border-radius: 4px 0px 0px 4px !important;
 }
 
 input[type="submit"].searchsubmit{	

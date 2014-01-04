@@ -131,12 +131,13 @@ function calibrefx_older_newer_posts_nav() {
     $older_link = get_next_posts_link(apply_filters('calibrefx_older_link_text', '&larr; ') . __('Older Posts', 'calibrefx'));
     $newer_link = get_previous_posts_link(apply_filters('calibrefx_newer_link_text', __('Newer Posts', 'calibrefx') . ' &rarr;'));
 
-    $older = $older_link ? '<div class="previous">' . $older_link . '</div>' : '';
-    $newer = $newer_link ? '<div class="next">' . $newer_link . '</div>' : '';
+    $older = $older_link ? '<li class="previous">' . $older_link . '</li>' : '';
+    $newer = $newer_link ? '<li class="next">' . $newer_link . '</li>' : '';
 
-    $pagination_class = apply_filters( 'calibrefx_older_newer_pagination_class', 'navigation pager' );
+    $pagination_class = apply_filters( 'calibrefx_older_newer_pagination_class', '' );
+    $pagination_container_class = apply_filters( 'calibrefx_older_newer_pagination_container_class', '' );
 
-    $nav = '<div class="'.$pagination_class.'">' . $older . $newer . '</div><!-- end .navigation -->';
+    $nav = '<div class="pagination-container older-newer-pager '.$pagination_container_class.'"><ul class="pager '.$pagination_class.'">' . $older . $newer . '</ul></div>';
 
     if ($older || $newer)
         echo $nav;
@@ -151,12 +152,13 @@ function calibrefx_prev_next_posts_nav() {
     $prev_link = get_previous_posts_link(apply_filters('calibrefx_prev_link_text', '&larr; ' . __('Previous Page', 'calibrefx')));
     $next_link = get_next_posts_link(apply_filters('calibrefx_next_link_text', __('Next Page', 'calibrefx') . ' &rarr;'));
 
-    $prev = $prev_link ? '<div class="previous">' . $prev_link . '</div>' : '';
-    $next = $next_link ? '<div class="next">' . $next_link . '</div>' : '';
+    $prev = $prev_link ? '<li class="previous">' . $prev_link . '</li>' : '';
+    $next = $next_link ? '<li class="next">' . $next_link . '</li>' : '';
 
-    $pagination_class = apply_filters( 'calibrefx_prev_next_pagination_class', 'navigation pager' );
+    $pagination_class = apply_filters( 'calibrefx_prev_next_pagination_class', '' );
+    $pagination_container_class = apply_filters( 'calibrefx_prev_next_pagination_container_class', '' );
 
-    $nav = '<div class="'.$pagination_class.'">' . $prev . $next . '</div><!-- end .navigation -->';
+    $nav = '<div class="pagination-container prev-next-pager '.$pagination_container_class.'"><ul class="pager '.$pagination_class.'">' . $prev . $next . '</ul></div>';
 
     if ($prev || $next)
         echo $nav;
@@ -203,9 +205,10 @@ function calibrefx_numeric_posts_nav() {
         $links[] = $paged + 1;
     }
 
-    $pagination_class = apply_filters( 'calibrefx_numeric_pagination_class', 'navigation pagination pagination-right' );
+    $pagination_class = apply_filters( 'calibrefx_numeric_pagination_class', 'pagination-right' );
+    $pagination_container_class = apply_filters( 'calibrefx_numeric_pagination_container_class', '' );
 
-    echo '<div class="'.$pagination_class.'"><ul>' . "\n";
+    echo '<div class="pagination-container paginantion-numeric '.$pagination_container_class.'"><ul class="pagination '.$pagination_class.'">' . "\n";
 
     /** 	Previous Post Link */
     if (get_previous_posts_link())
@@ -218,7 +221,7 @@ function calibrefx_numeric_posts_nav() {
         printf('<li%s><a href="%s">%s</a></li>' . "\n", $class, get_pagenum_link(1), '1');
 
         if (!in_array(2, $links))
-            echo '<li><span class="hellip">&hellip;</span></li>';
+            echo '<li class="disabled"><span class="hellip">&hellip;</span></li>';
     }
 
     /** 	Link to current page, plus 2 pages in either direction if necessary */
@@ -231,7 +234,7 @@ function calibrefx_numeric_posts_nav() {
     /** 	Link to last page, plus ellipses if necessary */
     if (!in_array($max, $links)) {
         if (!in_array($max - 1, $links))
-            echo '<li><span class="hellip">&hellip;</span></li>' . "\n";
+            echo '<li class="disabled"><span class="hellip">&hellip;</span></li>' . "\n";
 
         $class = $paged == $max ? ' class="active"' : '';
         printf('<li%s><a href="%s">%s</a></li>' . "\n", $class, get_pagenum_link($max), $max);

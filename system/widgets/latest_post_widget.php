@@ -64,7 +64,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 					
 		$query = new WP_Query(array(
 			'posts_per_page' => $instance['num_posts'],
-			'orderby' => 'ID',
+			'orderby' => 'date',
 			'order' => 'DESC',
 			'ignore_sticky_posts' => true
 		));

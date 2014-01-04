@@ -50,7 +50,7 @@ function calibrefx_footer_scrolltop_shortcode($atts) {
 
     $nofollow = $atts['nofollow'] ? 'rel="nofollow"' : '';
 
-    $output = sprintf('%s<a href="%s" %s><i class="icon-upload icon-white"></i> %s</a>%s', $atts['before'], esc_url($atts['href']), $nofollow, $atts['text'], $atts['after']);
+    $output = sprintf('%s<a href="%s" %s><i class="fa fa-chevron-circle-up"></i> %s</a>%s', $atts['before'], esc_url($atts['href']), $nofollow, $atts['text'], $atts['after']);
 
     return apply_filters('calibrefx_footer_scrolltop_shortcode', $output, $atts);
 }
@@ -64,7 +64,6 @@ add_shortcode('footer_copyright', 'calibrefx_footer_copyright_shortcode');
  * @return string
  */
 function calibrefx_footer_copyright_shortcode($atts) {
-
     $defaults = array(
         'copyright' => '&copy;',
         'first' => '',
@@ -76,7 +75,7 @@ function calibrefx_footer_copyright_shortcode($atts) {
     $output = $atts['before'] . $atts['copyright'];
     if ('' != $atts['first'] && date('Y') != $atts['first'])
         $output .= $atts['first'] . g_ent('&ndash;');
-    $output .= date('Y') . $atts['after'];
+    $output .= ' ' . date('Y') . $atts['after'];
 
     return apply_filters('calibrefx_footer_copyright_shortcode', $output, $atts);
 }
@@ -116,8 +115,8 @@ add_shortcode('footer_calibrefx_link', 'calibrefx_footer_calibrefx_link_shortcod
 function calibrefx_footer_calibrefx_link_shortcode($atts) {
 
     $defaults = array(
-        'before' => '&middot; ',
-        'after' => ''
+        'before' => '',
+        'after' => ' &middot;'
     );
     $atts = shortcode_atts($defaults, $atts);
 
@@ -137,8 +136,8 @@ add_shortcode('footer_wordpress_link', 'calibrefx_footer_wordpress_link_shortcod
 function calibrefx_footer_wordpress_link_shortcode($atts) {
 
     $defaults = array(
-        'before' => '&middot; ',
-        'after' => ''
+        'before' => '',
+        'after' => ' &middot;'
     );
     $atts = shortcode_atts($defaults, $atts);
 
