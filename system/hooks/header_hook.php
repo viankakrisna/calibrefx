@@ -248,6 +248,7 @@ function calibrefx_do_title_wrap($title) {
  * Print .wrap style
  */
 function calibrefx_print_wrap() {
+    $wrap = '';
     if ( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {   
         if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
             
