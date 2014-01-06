@@ -39,7 +39,7 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
 			'image_size' => '',
 			'caption' => 0,
             'display_link' => 0,
-            'nav' => '0'
+            'nav' => 0
         );
 
         $widget_ops = array(
@@ -116,6 +116,9 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
 			$loop_counter++;
         endwhile;    
         endif;
+
+        wp_reset_query();
+        wp_reset_postdata();
 		
         echo '</div><!-- end .post-slider -->';
 

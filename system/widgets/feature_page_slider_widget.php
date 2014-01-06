@@ -38,6 +38,7 @@ class CFX_Feature_Page_Slider_Widget extends WP_Widget {
             'image_size' => '',
             'caption' => 0,
             'display_link' => 0,
+            'nav' => 0
         );
 
         $widget_ops = array(
@@ -63,7 +64,17 @@ class CFX_Feature_Page_Slider_Widget extends WP_Widget {
 
         $q = new WP_Query(array('post__in' => $page_ids, 'post_type'=>'page', 'orderby' => 'id', 'order' => 'ASC'));
 
-       echo $before_widget;
+        $pager_class = '';
+        if($instance['nav']){
+            // Create custom ID for pager
+            $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            $size = strlen($chars);
+            for ($i = 0; $i < 8; $i++) {
+                $pager_class .= $chars[rand(0, $size - 1)];
+            }
+        }
+
+        echo $before_widget;
 
         if(!empty($instance['title']))
             echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
@@ -73,6 +84,7 @@ class CFX_Feature_Page_Slider_Widget extends WP_Widget {
         $attr .= ' data-cycle-speed="'.$instance['speed'].'"';
         $attr .= ' data-cycle-fx="'.$instance['fx'].'"';
         $attr .= ' data-cycle-slides="> div.page-slider-item"';
+        if($instance['nav']) $attr .= ' data-cycle-prev="#slider-prev-'.$pager_class.'" data-cycle-next="#slider-next-'.$pager_class.'"';
 
         echo '<div class="page-slider-wrapper">';
         echo '<div class="page-slider cycle-slideshow"'.$attr.'>';
@@ -105,8 +117,12 @@ class CFX_Feature_Page_Slider_Widget extends WP_Widget {
             $loop_counter++;
         endwhile;    
         endif;
+
+        wp_reset_query();
+        wp_reset_postdata();
         
         echo '</div><!-- end .post-slider -->';
+        if($instance['nav']) echo '<a href="#" class="slider-nav slider-prev" id="slider-prev-'.$pager_class.'">&laquo; prev</a><a href="#" class="slider-nav slider-next" id="slider-next-'.$pager_class.'">next &raquo;</a>';
         echo '</div><!-- end .post-slider-wrapper -->';
         
         echo $after_widget;
@@ -172,6 +188,14 @@ class CFX_Feature_Page_Slider_Widget extends WP_Widget {
                 ?>
             </select>
         </p>	
+
+        <p>
+            <label for="<?php echo $this->get_field_id('nav'); ?>"><?php _e('Show Navigation', 'calibrefx'); ?>:</label>
+            <select id="<?php echo $this->get_field_id('nav'); ?>" name="<?php echo $this->get_field_name('nav'); ?>">
+                <option value="1"<?php if($instance['nav'] == '1') echo ' selected="selected"'?>>Yes</option>
+                <option value="0"<?php if($instance['nav'] == '0') echo ' selected="selected"'?>>No</option>
+            </select>
+        </p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('caption'); ?>"><?php _e('Show Caption', 'calibrefx'); ?>:</label>

@@ -44,7 +44,6 @@ $cfxgenerator->calibrefx_before_content = array('calibrefx_get_sidebar_alt');
 
 $cfxgenerator->calibrefx_sidebar = array('calibrefx_do_sidebar');
 $cfxgenerator->calibrefx_sidebar_alt = array('calibrefx_do_sidebar_alt');
-
 /********************
  * FUNCTIONS BELOW  *
  ********************/

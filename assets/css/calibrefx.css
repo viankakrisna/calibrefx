@@ -336,7 +336,7 @@ img.wp-smiley,
 }
 
 .widget-wrap ul li{
-    padding: 12px 16px 12px 5px;	
+    padding: 10px 0px;	
 }
 
 #footer-widgets .widget-area h4 {
@@ -456,7 +456,7 @@ img.wp-smiley,
 
 /* Post
 ------------------------------------------------------------ */
-.post{
+div[id*="post"]{
     margin: 0px 0 10px;
 }
 

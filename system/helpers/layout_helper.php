@@ -191,13 +191,14 @@ function calibrefx_get_layout($context) {
  * @return string
  */
 function calibrefx_site_layout() {
+    global $post;
 
     $site_layout = calibrefx_get_option('site_layout'); 
 
     // Use default layout as a fallback, if necessary
     if (!calibrefx_get_layout($site_layout)) {
         $site_layout = calibrefx_get_default_layout();
-    }
+    } 
 
     $front_content = get_option('show_on_front');
 
@@ -335,7 +336,7 @@ function calibrefx_layout_sidebar_content_sidebar(){
  */
 function calibrefx_content_span() {
     // get the layout
-    $site_layout = calibrefx_site_layout();
+    $site_layout = calibrefx_site_layout(); 
 
     // don't load sidebar on pages that don't need it
     if ($site_layout == 'full-width-content')

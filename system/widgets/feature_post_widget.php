@@ -69,6 +69,8 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 			'showposts' => $instance['post_num'],
 		);
 		$featured_posts = new WP_Query( $query_args );
+
+		remove_filter('post_class', 'calibrefx_post_class');
 		
 		echo $before_widget . '<div class="feature-post">';
 
@@ -98,8 +100,8 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 						the_content_limit( (int) $instance['content_limit'], esc_html( $instance['more_text'] ) );
 				}
 
-				if ( ! empty( $instance['show_content'] ) ) {
-					echo do_shortcode('[post_date format="time-ago"]');
+				if ( $instance['show_date'] ) {
+					echo do_shortcode('[post_date format="relative"]');
 				}
 
 				echo '</div><!--end post_class()-->' . "\n\n";
