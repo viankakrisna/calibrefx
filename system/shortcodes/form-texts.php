@@ -38,9 +38,20 @@
                     var text_style = document.getElementById('text_style').value;
                     var text_type = document.getElementById('text_type').value;
                     var text_weight = document.getElementById('text_weight').value;
-	
-                    shortcodeRetazec = '[text color="' + text_color + '" font="' + text_font + '" style="' + text_style + '" type="' + text_type + '" weight="' + text_weight + '"]'+medziShortcodom+'[/text]';
-        
+                    var custom_class = document.getElementById('custom_class').value;
+                    var custom_id = document.getElementById('custom_id').value;
+
+                    var attr = '';
+                    if(text_color != ''){ attr += ' color="' + text_color + '"'; }
+                    if(text_font != ''){ attr += ' font="' + text_font + '"'; }
+                    if(text_style != ''){ attr += ' style="' + text_style + '"'; }
+                    if(text_type != ''){ attr += ' type="' + text_type + '"'; }
+                    if(text_weight != ''){ attr += ' weight="' + text_weight + '"'; }
+                    if(custom_class != ''){ attr += ' class="' + custom_class + '"'; }
+                    if(custom_id != ''){ attr += ' id="' + custom_id + '"'; }
+
+                    shortcodeRetazec = '[text' + attr + ']'+medziShortcodom+'[/text]';    
+                    
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
                         //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
@@ -69,9 +80,9 @@
                 </ul>
             </div>
 
-            <div class="panel_wrapper" style="height: 200px;">
+            <div class="panel_wrapper" style="height: 265px;">
 
-                <div id="textTab" class="panel current" style="height: 200px">
+                <div id="textTab" class="panel current" style="height: 265px">
 
                     <fieldset>        
                         <legend>Text Style</legend><br />  
@@ -146,12 +157,22 @@
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="text_type">Text Type:</label></td>                          <td>                    
                                     <select name="text_type" id="text_type" style="width: 210px">     
                                         <option value="normal">Normal</option>    
-										<option value="paragraph">Paragraph</option>	
-                                        <option value="cite">Cite</option>
-                                        <option value="blockquote">Blockquote</option>     
+										<option value="paragraph">Paragraph</option>
                                         <option value="div">Div</option>                                                       
                                     </select><br />      
                                     <em style="font-size: 9px; color: #999;">Select text type.</em>                
+                                </td>                    
+                            </tr>  
+                            <!-- Text ID -->       
+                            <tr>                 
+                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="custom_id">Custom ID:</label></td>                          <td>                    
+                                    <input type="text" name="custom_id" id="custom_id" style="width: 210px" />              
+                                </td>                    
+                            </tr>   
+                            <!-- Text Classes -->       
+                            <tr>                 
+                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="custom_class">Custom Class:</label></td>                          <td>                    
+                                    <input type="text" name="custom_class" id="custom_class" style="width: 210px" />             
                                 </td>                    
                             </tr>                                     
                         </table>     

@@ -101,12 +101,13 @@
                             <tr>                 
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="dropcaps_font">Font family:</label></td>                          <td>                    
                                     <select name="dropcaps_font" id="dropcaps_font" style="width: 210px">     
+                                        <option value="">Default</option>     
                                         <option value="arial">Arial</option>                  
                                         <option value="verdana">Verdana</option>
                                         <option value="times">Times New Roman</option>  
                                         <option value="geneva">Geneva</option>  
                                         <option value="courier">Courier New</option>  
-                                        <option value="sans">font-family: MS Sans Serif</option>
+                                        <option value="sans">MS Sans Serif</option>
                                         <option value="system">System</option>
                                         <option value="georgia">Georgia</option>                                   
                                     </select><br />      

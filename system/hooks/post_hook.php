@@ -172,7 +172,7 @@ function calibrefx_do_post_image() {
             printf('<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute('echo=0'), $img);
     } elseif (is_single()){
         $default_post_single_image_size = apply_filters( 'post_single_image_size', 'full' );
-        $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_archive_image_size, 'attr' => array('class' => 'alignnone post-image')));
+        $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_single_image_size, 'attr' => array('class' => 'alignnone post-image')));
         
         if($img)
             printf('<p class="post-featured-image">%s</a>', $img);

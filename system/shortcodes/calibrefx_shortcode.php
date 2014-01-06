@@ -191,7 +191,7 @@ function calibrefx_text($atts, $content = '') {
     return $before . '<'. $elm .' class="' . $classes . '"'.$attr.'>' . do_shortcode($content) . '</' . $elm . '>' . $after;
 }
 
-$cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_text', CALIBREFX_SHORTCODE_URL . '/form-texts.php', 360, 280, __('Text shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/text.png');
+$cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_text', CALIBREFX_SHORTCODE_URL . '/form-texts.php', 360, 360, __('Text shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/text.png');
 
 /* Bold */
 add_shortcode('bold', 'calibrefx_bold');
@@ -377,12 +377,13 @@ function calibrefx_button($atts, $content = '') {
                 'after' => '',
                 'class' => '',
                 'style' => '',
-                'state' => '',
+                'active' => '',
+                'disabled' => '',
+                'block' => '',
                 'id' => '',
                 'url' => '#',
                 'type' => '',
                 'size' => '',
-                'icon' => '',
                 'rel' => 'nofollow'
                     ), $atts));
 
@@ -393,8 +394,12 @@ function calibrefx_button($atts, $content = '') {
         $classes .= ' btn-' . $type;
     if (!empty($size))
         $classes .= ' btn-' . $size;
-    if (!empty($state))
-        $classes .= ' ' . $state;
+    if (!empty($active))
+        $classes .= ' active';
+    if (!empty($disabled))
+        $classes .= ' disabled';
+    if (!empty($block))
+        $classes .= ' btn-block';
 
     $attr = '';
     if (!empty($style))
@@ -404,14 +409,10 @@ function calibrefx_button($atts, $content = '') {
     if (!empty($id))
         $attr .= ' id="' . $id . '"';
 
-    if (!empty($icon)) {
-        return $before . '<a href="' . $url . '" class="' . $classes . '"'.$attr.'><i class="glyphicon glyphicon-'.$icon.'"></i>' . do_shortcode($content) . '</a>' . $after;
-    } else {
-        return $before . '<a href="' . $url . '" class="' . $classes . '"'.$attr.'>' . do_shortcode($content) . '</a>' . $after;
-    }
+    return $before . '<a href="' . $url . '" class="' . $classes . '"'.$attr.'>' . do_shortcode($content) . '</a>' . $after;
 }
 
-$cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_buttons', CALIBREFX_SHORTCODE_URL . '/form-buttons.php', 360, 420, __('Button shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/buttons.png');
+$cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_buttons', CALIBREFX_SHORTCODE_URL . '/form-buttons.php', 420, 540, __('Button shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/buttons.png');
 
 /**
  * ==============================================================
@@ -602,10 +603,9 @@ function calibrefx_one_half_column($atts, $content = '') {
     $classes = '';
     $attr = '';
 
+    $classes .= 'col-lg-6 col-md-6 col-sm-12 col-xs-12';
     if (!empty($class))
         $classes .= ' ' . $class;
-    if (!empty($cols))
-        $classes .= ' col-lg-6 col-md-6 col-sm-12 col-xs-12';
     if (!empty($align))
         $classes .= ' ' . $align;
 
@@ -644,10 +644,9 @@ function calibrefx_one_third_column($atts, $content = '') {
     $classes = '';
     $attr = '';
 
+    $classes .= 'col-lg-4 col-md-4 col-sm-12 col-xs-12';
     if (!empty($class))
         $classes .= ' ' . $class;
-    if (!empty($cols))
-        $classes .= ' col-lg-4 col-md-4 col-sm-12 col-xs-12';
     if (!empty($align))
         $classes .= ' ' . $align;
 
@@ -686,10 +685,9 @@ function calibrefx_two_third_column($atts, $content = '') {
     $classes = '';
     $attr = '';
 
+    $classes .= ' col-lg-8 col-md-8 col-sm-12 col-xs-12';
     if (!empty($class))
-        $classes .= ' ' . $class;
-    if (!empty($cols))
-        $classes .= ' col-lg-8 col-md-8 col-sm-12 col-xs-12';
+        $classes .= ' ' . $class; 
     if (!empty($align))
         $classes .= ' ' . $align;
 
@@ -728,10 +726,9 @@ function calibrefx_one_fourth_column($atts, $content = '') {
     $classes = '';
     $attr = '';
 
+    $classes .= ' col-lg-3 col-md-3 col-sm-12 col-xs-12';
     if (!empty($class))
         $classes .= ' ' . $class;
-    if (!empty($cols))
-        $classes .= ' col-lg-3 col-md-3 col-sm-12 col-xs-12';
     if (!empty($align))
         $classes .= ' ' . $align;
 
@@ -770,10 +767,9 @@ function calibrefx_three_fourth_column($atts, $content = '') {
     $classes = '';
     $attr = '';
 
+    $classes .= ' col-lg-9 col-md-9 col-sm-12 col-xs-12';
     if (!empty($class))
-        $classes .= ' ' . $class;
-    if (!empty($cols))
-        $classes .= ' col-lg-9 col-md-9 col-sm-12 col-xs-12';
+        $classes .= ' ' . $class;   
     if (!empty($align))
         $classes .= ' ' . $align;
 
@@ -939,7 +935,7 @@ function calibrefx_gmap($atts, $content = '') {
     return $before . '<div class="flexible-container gmaps"><iframe width="' . $width . '" height="' . $height . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . html_entity_decode($src) . '&output=embed" class="' . $class . '"></iframe></div>' . $after;
 }
 
-$cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps', CALIBREFX_SHORTCODE_URL . '/form-gmaps.php', 470, 240, __('Google map shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/googlemaps.png');
+$cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps', CALIBREFX_SHORTCODE_URL . '/form-gmaps.php', 470, 360, __('Google map shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/googlemaps.png');
 
 /**
  * ==============================================================

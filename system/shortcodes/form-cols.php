@@ -36,9 +36,17 @@
                     var col_width = document.getElementById('col_width').value;	
                     var is_last = document.getElementById('is_last').value;	
                     var is_first = document.getElementById('is_first').value; 
+                    var custom_class = document.getElementById('custom_class').value;
+                    var custom_id = document.getElementById('custom_id').value;
+
+                    var attr = '';
+                    if(is_last != ''){ attr += ' last="' + is_last + '"'; }
+                    if(is_first != ''){ attr += ' first="' + is_first + '"'; }
+                    if(custom_class != ''){ attr += ' class="' + custom_class + '"'; }
+                    if(custom_id != ''){ attr += ' id="' + custom_id + '"'; }
 		
                     //shortcodeRetazec = '["'+col_width+'" last="'+is_last+'" ]'+medziShortcodom+'[/"'+col_width+'"] ';
-                    shortcodeRetazec = '[column cols="' + col_width + '" last=' + is_last + ' first=' + is_first + ']' + medziShortcodom + '[/column]';
+                    shortcodeRetazec = '[' + col_width + attr + ']' + medziShortcodom + '[/'+col_width+']';
 		
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
@@ -80,11 +88,11 @@
                             <tr>                 
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="col_width">Column:</label></td>                          <td>                    
                                     <select name="col_width" id="col_width" style="width: 250px">                       
-                                        <option value="span6">One half</option>
-                                        <option value="span4">One third</option>  
-                                        <option value="span8">Two thirds</option>  
-                                        <option value="span3">One fourth</option>  
-                                        <option value="span9">Three fourths</option>                                               
+                                        <option value="one_half">One half</option>
+                                        <option value="one_third">One third</option>  
+                                        <option value="two_third">Two thirds</option>  
+                                        <option value="one_fourth">One fourth</option>  
+                                        <option value="three_fourth">Three fourths</option>                                               
                                     </select><br />      
                                     <em style="font-size: 9px; color: #999;">Select width of the col.</em>                
                                 </td>                    
@@ -110,6 +118,25 @@
                                 </td>                    
                             </tr>                                 
                         </table>     
+                    </fieldset>
+
+                    <fieldset>        
+                        <legend>Attributes</legend><br />
+
+                        <table border="0" cellpadding="4" cellspacing="0">
+                             <!-- Text ID -->       
+                            <tr>                 
+                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="custom_id">Custom ID:</label></td>                          <td>                    
+                                    <input type="text" name="custom_id" id="custom_id" style="width: 210px" />              
+                                </td>                    
+                            </tr>   
+                            <!-- Text Classes -->       
+                            <tr>                 
+                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="custom_class">Custom Class:</label></td>                          <td>                    
+                                    <input type="text" name="custom_class" id="custom_class" style="width: 210px" />             
+                                </td>                    
+                            </tr>           
+                        </table>            
                     </fieldset>
                 </div><!-- /#colTab -->
 

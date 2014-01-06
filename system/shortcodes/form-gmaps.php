@@ -79,7 +79,7 @@
                 </ul>
             </div>
 
-            <div class="panel_wrapper" style="height: 160px;">
+            <div class="panel_wrapper" style="height: 240px;">
 
                 <div id="googlemapsTab" class="panel current" style="height: 160px;">
 
@@ -107,7 +107,7 @@
                             <tr>                 
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="googlemaps_src">Source:</label></td>
                                 <td>                    
-                                    <input type="text" name="googlemapsSrc" id="googlemapsSrc" value="" style="width: 220px" /><br /> 
+                                    <textarea name="googlemapsSrc" id="googlemapsSrc" style="width: 220px" rows="8"></textarea><br /> 
                                     <em style="font-size: 9px; color: #999999;">Something like: http://maps.google.com/?ie=UTF8&ll=48.109265,14.205322&spn=0.324145,0.590515&t=h&z=11</em>                  
                                 </td>                    
                             </tr>                                
