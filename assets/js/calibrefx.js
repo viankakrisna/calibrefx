@@ -8,17 +8,14 @@ jQuery(document).ready(function($) {
 	$("#commentform, #calibrefx_contact_form").validate();
 	
 	$('#header .menu, .superfish').superfish({
-		delay		: 200,
-		animation	: {opacity:'show'},
-		dropShadows : false
+		cssArrows: false,
+		delay: 200
 	});
 	
-	$('.scrolltop a').click(
-		function (e) {
-			e.preventDefault()
-			$('html, body').animate({scrollTop: '0px'}, 800);
-		}
-	);
+	$('.scrolltop a').click(function(e){
+		e.preventDefault()
+		$('html, body').animate({scrollTop: '0px'}, 800);
+	});
 	
 	$('body').tooltip({
       	selector: "a[data-toggle=tooltip], label.form-tooltip"

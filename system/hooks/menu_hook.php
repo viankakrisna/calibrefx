@@ -57,14 +57,14 @@ function calibrefx_do_nav() {
             $args = array(
                 'theme_location' => 'primary',
                 'container' => '',
-                'menu_class' => calibrefx_get_option('nav_fixed_top') ? 'navbar navbar-default navbar-fixed-top menu-primary menu superfish sf-js-enabled' : 'superfish sf-js-enabled nav navbar-nav menu-primary menu',
+                'menu_class' => calibrefx_get_option('nav_fixed_top') ? 'navbar navbar-default navbar-fixed-top menu-primary menu superfish' : 'nav navbar-nav menu-primary menu superfish',
                 'echo' => 0,
                 'walker' => $calibrefx->walker_nav_menu,
             );
             
             $nav = wp_nav_menu($args);
         }else{
-            $nav = '<ul id="menu-primary-i" class="superfish sf-js-enabled nav navbar-nav menu-primary menu">
+            $nav = '<ul id="menu-primary-i" class="superfish nav navbar-nav menu-primary menu">
                     <li id="menu-item-812" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-800 current_page_item menu-item-812"><a href="#"><i class="fa fa-home"></i>&nbsp;&nbsp;Homepage</a></li>
                     <li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-813"><a href="#"><i class="fa fa-comment"></i>&nbsp;&nbsp;About Us</a></li>
                     <li id="menu-item-817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-817"><a href="#"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Contact Page</a></li>
@@ -111,7 +111,7 @@ function calibrefx_do_subnav() {
             $args = array(
                 'theme_location' => 'secondary',
                 'container' => '',
-                'menu_class' => 'nav nav-pills menu-secondary menu superfish sf-js-enabled',
+                'menu_class' => 'nav nav-pills menu-secondary menu superfish',
                 'echo' => 0,
                 'walker' => new CFX_Walker_Nav_menu(),
             );
