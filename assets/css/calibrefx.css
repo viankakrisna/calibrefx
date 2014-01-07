@@ -161,7 +161,7 @@ img.wp-smiley,
     text-indent: -9999px;
 }
 
-.header-right{
+#header-right{
     margin-top: 10px;
 }
 
@@ -360,6 +360,11 @@ img.wp-smiley,
 
 .widget_calendar a {
     display: block;
+}
+
+/* Subscriber Widget */
+#header-right .subscriber-widget form#subscribe{
+	max-width: 300px;
 }
 
 /* Slider Widget */
@@ -966,7 +971,7 @@ input[type="submit"].searchsubmit{
 .social-bookmark{
     display: inline-block;
     margin-right: 5px;
-    vertical-align: top;
+    vertical-align: bottom;
 }
 
 .social-bookmark.facebook-like{

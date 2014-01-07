@@ -407,7 +407,7 @@ function calibrefx_do_header_right_widget(){
         dynamic_sidebar('header-right');
     }
 }
-add_action('calibrefx_header_right_widget','calibrefx_do_header_right_widget');
+add_action('calibrefx_header_right_widget', 'calibrefx_do_header_right_widget');
 
 
 /**

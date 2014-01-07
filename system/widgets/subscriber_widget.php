@@ -60,15 +60,23 @@ class CFX_Subscriber_Widget extends WP_Widget {
 
 			if ( ! empty( $instance['title'] ) )
 				echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
-
-			echo wpautop( $instance['text'] ); // We run KSES on update
-
+			
+			if($instance['text']){
+				echo '<div class="subscriber-text">';
+				echo wpautop( $instance['text'] ); // We run KSES on update
+				echo '</div>';
+			}
+			
 			if ( ! empty( $instance['id'] ) ) : ?>
 			<form id="subscribe" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open( 'http://feedburner.google.com/fb/a/mailverify?uri=<?php echo esc_js( $instance['id'] ); ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
-				<input type="text" value="<?php echo esc_attr( $instance['input_text'] ); ?>" id="subbox" onfocus="if ( this.value == '<?php echo esc_js( $instance['input_text'] ); ?>') { this.value = ''; }" onblur="if ( this.value == '' ) { this.value = '<?php echo esc_js( $instance['input_text'] ); ?>'; }" name="email" />
+				<div class="input-group">
+					<input type="text" value="<?php echo esc_attr( $instance['input_text'] ); ?>" id="subbox" onfocus="if ( this.value == '<?php echo esc_js( $instance['input_text'] ); ?>') { this.value = ''; }" onblur="if ( this.value == '' ) { this.value = '<?php echo esc_js( $instance['input_text'] ); ?>'; }" name="email" class="form-control" />
+					<span class="input-group-btn">
+						<input type="submit" value="<?php echo esc_attr( $instance['button_text'] ); ?>" id="subbutton" class="form-control btn btn-default" />
+					</span>
+				</div>
 				<input type="hidden" name="uri" value="<?php echo esc_attr( $instance['id'] ); ?>" />
 				<input type="hidden" name="loc" value="<?php echo esc_attr( get_locale() ); ?>" />
-				<input type="submit" value="<?php echo esc_attr( $instance['button_text'] ); ?>" id="subbutton" />
 			</form>
 			<?php endif;
 
