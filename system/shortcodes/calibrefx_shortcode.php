@@ -1379,15 +1379,6 @@ function calibrefx_fblike($atts, $content = null) {
     return $output;
 }
 
-add_shortcode('twitter', 'calibrefx_twitter');
-
-function calibrefx_twitter($atts, $content = null) {
-    $calibrefx_twitter = calibrefx_get_option('calibrefx_twitter');
-    if ($calibrefx_twitter)
-        $output = "<script type='text/javascript' src='http://twittercounter.com/embed/{$calibrefx_twitter}/ffffff/111111'></script>";
-    return $output;
-}
-
 add_shortcode('tweet', 'calibrefx_tweet');
 
 function calibrefx_tweet($atts, $content = null) {
