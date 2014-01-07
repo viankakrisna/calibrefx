@@ -250,14 +250,12 @@ function calibrefx_do_title_wrap($title) {
 function calibrefx_print_wrap() {
     $wrap = '';
     if ( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {   
-        if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
-            
-        }else{
-            $wrap = sprintf('
+
+        $wrap = sprintf('
 .container{
-    max-width: %dpx;
+max-width: %dpx;
 }', calibrefx_get_option("calibrefx_layout_width"));
-        }
+        
     }
 
     printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);

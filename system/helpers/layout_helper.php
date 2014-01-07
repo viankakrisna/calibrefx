@@ -40,6 +40,10 @@ function calibrefx_layout_is_fluid() {
     return calibrefx_get_option('layout_type') == 'fluid';
 }
 
+function calibrefx_layout_is_fixed_wrapper() {
+    return calibrefx_get_option('calibrefx_layout_wrapper_fixed');
+}
+
 /**
  * Put wrappers into the structure
  *
@@ -53,7 +57,7 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
     if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
         return '';
 
-    if (calibrefx_layout_is_fluid())
+    if (calibrefx_layout_is_fluid() || calibrefx_layout_is_fixed_wrapper())
         return '';
 
     $row_class = calibrefx_row_class();
