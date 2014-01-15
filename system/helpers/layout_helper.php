@@ -206,11 +206,18 @@ function calibrefx_site_layout() {
 
     $front_content = get_option('show_on_front');
 
-    $custom_layout = calibrefx_get_custom_field('site_layout');
+    $custom_layout = false;
 
-    if((is_home() && $front_content == 'posts') || (is_front_page() && $front_content == 'posts')){
-        $custom_layout = false;
+    if(is_single() OR is_page()){
+        $custom_layout = calibrefx_get_custom_field('site_layout');
     }
+
+    /*if( (is_home() && $front_content == 'posts') OR 
+        (is_front_page() && $front_content == 'posts') OR
+        is_archive() OR is_search() 
+    ){
+        $custom_layout = false;
+    }*/
 
     if ($custom_layout) {
         return esc_attr(apply_filters('calibrefx_site_layout', $custom_layout));
