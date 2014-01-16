@@ -320,14 +320,15 @@ abstract class CFX_Admin {
                                 <div class="postbox-container main-postbox">
                                     <?php
                                     calibrefx_do_meta_sections($calibrefx_current_section, $this->pagehook, 'main', null);
-                                    ?>
-                                </div>
-
-                                <div class="postbox-container side-postbox">
-                                    <?php
                                     calibrefx_do_meta_sections($calibrefx_current_section, $this->pagehook, 'side', null);
                                     ?>
                                 </div>
+
+                                <!-- <div class="postbox-container side-postbox">
+                                    <?php
+                                    //calibrefx_do_meta_sections($calibrefx_current_section, $this->pagehook, 'side', null);
+                                    ?>
+                                </div> -->
                                 <div class="clear"></div>
                             </div>
                             <div class="clear"></div>
