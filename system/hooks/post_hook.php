@@ -238,12 +238,21 @@ function calibrefx_do_no_post() {
 function calibrefx_posts_nav() {
     $nav = calibrefx_get_option('posts_nav');
 
-    if ('prev-next' == $nav)
-        calibrefx_prev_next_posts_nav();
-    elseif ('numeric' == $nav)
-        calibrefx_numeric_posts_nav();
-    else
-        calibrefx_older_newer_posts_nav();
+    switch ($nav) {
+        case 'disabled':
+            //do nothing
+            break;
+        case 'numeric':
+            calibrefx_numeric_posts_nav();
+            break;
+        case 'prev-next':
+            calibrefx_prev_next_posts_nav();
+            break;
+        case 'older-newer':
+        default:
+            calibrefx_older_newer_posts_nav();
+            break;
+    }
 }
 
 /**

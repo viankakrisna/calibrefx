@@ -363,6 +363,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                     'older-newer' => __('older/Newer', 'calibrefx'),
                     'prev-next' => __('Previous/Next', 'calibrefx'),
                     'numeric' => __('Numeric', 'calibrefx'),
+                    'disabled' => __('Disabled', 'calibrefx'),
                     )
             );
 

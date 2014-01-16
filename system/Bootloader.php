@@ -28,11 +28,11 @@ do_action('calibrefx_pre');
 
 /** Define Theme Info Constants */
 define('FRAMEWORK_NAME', 'Calibrefx');
-define('FRAMEWORK_CODENAME', 'Pink Gibbon');
-define('FRAMEWORK_VERSION', '1.0.18');
+define('FRAMEWORK_CODENAME', 'Red Penguin');
+define('FRAMEWORK_VERSION', '1.1.0b');
 define('FRAMEWORK_DB_VERSION', '1000');
 define('FRAMEWORK_URL', 'http://www.calibrefx.com');
-define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1380875819'));
+define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1389684516'));
 /*
  * ------------------------------------------------------
  *  Load the global functions
