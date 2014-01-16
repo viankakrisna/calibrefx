@@ -103,7 +103,7 @@ function calibrefx_do_footer_widgets() {
 function calibrefx_footer_area(){
     echo '<div id="footer">';
     calibrefx_put_wrapper('footer', 'open');
-    echo '<div id="footer-wrapper">';
+    echo '<div id="footer-wrapper" class="clearfix">';
     do_action( 'calibrefx_footer_content' );
     echo '</div><!-- end #footer-wrapper -->';
     calibrefx_put_wrapper('footer', 'close');

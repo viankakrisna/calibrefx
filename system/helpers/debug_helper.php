@@ -224,11 +224,11 @@ if (!function_exists('dump_hook')) {
             if( is_string( $function['function'] ) )
                 echo $function['function'];
 
-            elseif( is_string( $function['function']()[0] ) )
-                 echo $function['function'][0] . ' -> ' . $function['function'][1];
+            // elseif( is_string( $function['function']()[0] ) )
+            //      echo $function['function'][0] . ' -> ' . $function['function'][1];
 
-            elseif( is_object( $function['function']()[0] ) )
-                echo "(object) " . get_class( $function['function'][0] ) . ' -> ' . $function['function'][1];
+            // elseif( is_object( $function['function']()[0] ) )
+            //     echo "(object) " . get_class( $function['function'][0] ) . ' -> ' . $function['function'][1];
 
             else
                 print_r($function);
