@@ -45,7 +45,11 @@ h1, h2, h3, h4, h5, h6{
 ------------------------------------------------------------ */
 
 #header{
-    
+    height: 110px;
+}
+
+#title {
+margin-top: 20px;
 }
 
 /* Primary Navigation
@@ -163,61 +167,115 @@ h1, h2, h3, h4, h5, h6{
     top: 0;
 }
 
+
+
+
+/* Inner
+------------------------------------------------------------ */
+
+#inner {
+    margin-top: 0;
+
+    padding: 35px 0 0 0;
+}
+
 /* Widgets
 ------------------------------------------------------------ */
+
 .widget{
-    border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 0;
+}
+
+#sidebar .widget{
+    background: #fff;
+    padding: 0px 25px 5px;
+	margin-bottom: 0;
+}
+
+#sidebar .widget + .widget{
+	margin-top: 30px;	
+}
+
+#sidebar .widgettitle{
+    background: #585858;
+    padding: 10px 25px;
+    color: #fff;
+    margin: 0 -25px 5px;
+}
+
+/* Footer Widget
+------------------------------------------------------------ */
+
+#footer-widget{
+    padding: 35px 0;
 }
 
 #footer-widget .widget{
-	border-bottom: none;
+    margin-top: 0;
+    
 }
 
-.widget-wrap ul li{	
-    border-bottom: 1px solid #e5e5e5;
+#footer-widget .widgettitle{
+    color: #848a96;
+    
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #DCDCDD;
 }
 
-.widget-wrap ul li:last-child{
-    border-bottom: none;	
+/* {List Base} Widget
+------------------------------------------------------------ */
+
+#sidebar .widget-wrap ul li + li{	
+    border-top: 1px solid #e5e5e5;
 }
 
-#footer-widgets .widget-area h4 {
-    background: none;
-    border: none;
-    color: #fff;
+#footer-widget .widget-wrap ul li{   
+    padding: 0 0;
+    margin-bottom: 10px;
+}
+ 
+
+/* Search Widget
+------------------------------------------------------------ */
+
+#sidebar .widget.widget_search{
+    background: transparent;
+    padding: 0;
 }
 
-/* Calendar Widget */
-.widget_calendar table,
-.widget_calendar td {
-    border: 0;
-    border-collapse: separate;
-    border-spacing: 1px;
+/* Subscriber Widget
+------------------------------------------------------------ */
+
+#sidebar .subscriber-widget .widgettitle{
+    margin-bottom: 18px;    
+} 
+
+
+/* Facebook Widget
+------------------------------------------------------------ */
+#footer-widget .facebook-like-widget .widgettitle{
+    margin-bottom: 25px;
+	
 }
 
-.widget_calendar caption {
-    font-size: 14px;
+/* Twitter Timeline Widget
+------------------------------------------------------------ */
+#footer-widget .twitter-timeline-widget .widgettitle{
+    margin-bottom: 25px;
+	
 }
 
-.widget_calendar th,
-.widget_calendar td {
-    text-align: center;
-}
 
-.widget_calendar a:hover {
-    background-color: rgba(0, 0, 0, 0.15);
-}
 
-.widget_calendar tbody td {
-    background-color: rgba(255, 255, 255, 0.5);
-}
+/* Breadcrumb
+------------------------------------------------------------ */
 
-.site-footer .widget_calendar tbody td {
-    background-color: rgba(255, 255, 255, 0.05);
-}
+.breadcrumb-container {
+    background: #E9E9EA;
 
-.widget_calendar tbody .pad, .site-footer .widget_calendar tbody .pad {
-    background-color: transparent;
+    border-radius: 0;
+    margin-bottom: 30px;
 }
 
 /* Post
@@ -226,21 +284,38 @@ h1, h2, h3, h4, h5, h6{
 .page h2.entry-title,
 .post h1.entry-title,
 .page h1.entry-title{
-    border-bottom: 1px solid #e5e5e5;	
+    margin: 0 0 10px;
+	
+    padding: 0 10px 5px;
 }
 
 .post h2.entry-title a,
 .page h2.entry-title a,
 .page h1.entry-title a{
     text-decoration: none;
-    color: #101010;
+    color: inherit;
+}
+
+.blog .post, 
+.archive .post {
+    background: #fff;
+    padding: 15px 12px 20px;
+    margin-bottom: 35px;
+}
+
+.entry-content {
+    margin: 0 0 30px;
+    padding: 0 10px;
 }
 
 /* Post Info
 ------------------------------------------------------------ */
 .post-info {
     font-size: 0.8em;
-    color: #2D373D;
+    color: #8A94A1;
+    border-bottom: 1px solid #E9EEF1;
+    padding: 0 10px 7px;
+    margin: 0 0 17px;
 }
 
 .vcard a{
@@ -254,7 +329,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .vcard .fn{
-    font-weight: bold;
+    font-weight: inherit;
 }
 
 .post-comments a{
@@ -267,6 +342,9 @@ h1, h2, h3, h4, h5, h6{
 .post-meta {
     clear: both;
     font-size: 0.85em;
+    padding: 15px 10px;
+    border-top: 1px solid #E9EEF1;
+    border-bottom: 1px solid #E9EEF1;
 }
 
 /* Author Box
@@ -365,15 +443,11 @@ input[type=text].s{
     box-shadow: none;
     color: #2f2f2f;
     font-weight: normal;
-    border-radius: 4px 0px 0px 4px !important;
 }
 
 input[type="submit"].searchsubmit{	
     border: none;
-    background: #e5e5e5;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;	
+    background: #e5e5e5;	
     color: #2f2f2f;
 }
 

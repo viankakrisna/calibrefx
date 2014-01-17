@@ -501,7 +501,7 @@ img.wp-smiley,
 
 /* Post
 ------------------------------------------------------------ */
-div[id*="post"]{
+div[id*="post-"]{
     margin: 0px 0 10px;
 }
 
@@ -774,7 +774,7 @@ blockquote cite{
 ------------------------------------------------------------ */
 input[type="submit"].searchsubmit{
     vertical-align: top;
-	
+		
     border-radius: 0px 4px 4px 0px !important;
 }
 
