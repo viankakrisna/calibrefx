@@ -28,6 +28,20 @@ h1, h2, h3, h4, h5, h6{
     font-family: Verdana, sans-serif;
 }
 
+table {
+    border-bottom: 1px solid #ededed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 14px;
+    line-height: 2;
+    margin: 0 0 20px;
+    width: 100%;
+}
+
+select{
+    max-width: 100%;
+}
+
 /* Wrapper Style 
 ------------------------------------------------------------ */
 .layout-wrapper-fixed #wrapper {
@@ -186,17 +200,17 @@ margin-top: 20px;
 	margin-bottom: 0;
 }
 
-#sidebar .widget{
+#inner .widget{
     background: #fff;
     padding: 0px 25px 5px;
 	margin-bottom: 0;
 }
 
-#sidebar .widget + .widget{
+#inner .widget + .widget{
 	margin-top: 30px;	
 }
 
-#sidebar .widgettitle{
+#inner .widgettitle{
     background: #585858;
     padding: 10px 25px;
     color: #fff;
@@ -226,7 +240,7 @@ margin-top: 20px;
 /* {List Base} Widget
 ------------------------------------------------------------ */
 
-#sidebar .widget-wrap ul li + li{	
+#inner .widget-wrap ul li + li{	
     border-top: 1px solid #e5e5e5;
 }
 
@@ -239,16 +253,37 @@ margin-top: 20px;
 /* Search Widget
 ------------------------------------------------------------ */
 
-#sidebar .widget.widget_search{
+#inner .widget.widget_search{
     background: transparent;
     padding: 0;
+}
+
+#inner .widget.widget_search .widgettitle{
+	display: none;
 }
 
 /* Subscriber Widget
 ------------------------------------------------------------ */
 
-#sidebar .subscriber-widget .widgettitle{
-    margin-bottom: 18px;    
+#inner .subscriber-widget{
+    background: #3C71A7;
+
+    padding: 30px 30px;
+    margin: 0;
+    border-left: 5px solid #005B7D;
+}
+
+#inner .subscriber-widget .widgettitle{
+    background: transparent;    
+    margin: 0 0 20px;
+    padding: 0;
+} 
+
+#inner .subscriber-widget .btn{
+    background-color: #00AEEF;
+    
+    border-color: transparent;
+    color: #fff;
 } 
 
 
@@ -266,6 +301,43 @@ margin-top: 20px;
 	
 }
 
+/* Archive & Category Widget
+------------------------------------------------------------ */
+#inner .widget_archive select,
+#inner .widget_categories select{
+    margin: 15px 0;
+	
+}
+
+/* Calendar Widget
+------------------------------------------------------------ */
+.widget_calendar{
+    
+}
+
+.widget_calendar table{
+	background: #DDDDDD;
+}
+
+.widget_calendar table, .widget_calendar td {
+border: 0;
+border-collapse: separate;
+border-spacing: 1px;
+}
+
+.widget_calendar th, .widget_calendar td {
+padding: 0;
+text-align: center;
+}
+
+.widget_calendar tbody td {
+background-color: #fff;
+}
+
+.widget_calendar caption {
+font-size: 14px;
+margin: 0;
+} 
 
 
 /* Breadcrumb
