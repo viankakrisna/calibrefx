@@ -519,8 +519,9 @@ input[type=text].s{
 
 input[type="submit"].searchsubmit{	
     border: none;
-    background: #e5e5e5;	
-    color: #2f2f2f;
+    background: #00AEEF;	
+    color: #fff;
+    border-radius: 0 !important;
 }
 
 input[type="submit"].searchsubmit:hover{
