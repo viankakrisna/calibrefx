@@ -157,7 +157,7 @@ class CFX_Breadcrumb {
 
         $crumb = $this->args['labels']['404'];
 
-        return apply_filters('calibrefx_404_crumb', '<li typeof="v:Breadcrumb">'.$crumb.'</li>', $this->args);
+        return apply_filters('calibrefx_404_crumb', '<li>'.$crumb.'</li>', $this->args);
     }
 
     /**
