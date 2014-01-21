@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
 	});
 	
 	$('body').tooltip({
-      	selector: "a[data-toggle=tooltip], label.form-tooltip"
+      	selector: "a[data-toggle=tooltip], label.form-tooltip, #wp-calendar a"
     });
 
     $('#content .entry-content table, #comments .comment-content table').addClass('table table-bordered').wrap('<div class="table-responsive"></div>');
