@@ -201,7 +201,7 @@ add_filter('body_class', 'calibrefx_layout_body_class');
  */
 function calibrefx_post_class($classes) {
 
-    $classes[] = calibrefx_row_class();
+    //$classes[] = calibrefx_row_class();
 
     $custom_post = calibrefx_get_custom_field('_calibrefx_custom_post_class');
     if (!empty($custom_post)) {
