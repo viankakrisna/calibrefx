@@ -186,9 +186,9 @@ function calibrefx_layout_body_class($classes) {
     if ($site_layout)
         $classes[] = $site_layout;
 
-    if(calibrefx_get_option('calibrefx_layout_wrapper_fixed')){
+    if(calibrefx_layout_is_fixed_wrapper() && calibrefx_layout_is_static()){
         $classes[] = 'layout-wrapper-fixed';
-    }else{
+    }elseif(calibrefx_layout_is_static() && !calibrefx_layout_is_fixed_wrapper()){
         $classes[] = 'layout-wrapper-fluid';
     }
 

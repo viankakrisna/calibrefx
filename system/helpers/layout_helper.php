@@ -61,7 +61,7 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
     if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
         return '';
 
-    if (calibrefx_layout_is_fixed_wrapper())
+    if (calibrefx_layout_is_fixed_wrapper() && calibrefx_layout_is_static())
         return '';
 
     $row_class = calibrefx_row_class();
@@ -281,7 +281,7 @@ function row_class() {
  */
 function calibrefx_container_class() {
     $containerClass = '';
-    
+
     if(calibrefx_layout_is_fluid()){
         $containerClass = '';
     }elseif(calibrefx_layout_is_static()){
