@@ -164,12 +164,15 @@ add_filter('calibrefx_post_meta', 'do_shortcode', 20);
  * Post Image
  */
 function calibrefx_do_post_image() {
-    if (!is_singular()) {
-        $default_post_archive_image_size = apply_filters( 'post_archive_image_size', 'thumbnail' );
-        $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_archive_image_size, 'attr' => array('class' => 'alignleft post-image')));
+    if (!is_singular()) { // This is an archive page
+        if(calibrefx_get_option('content_archive_limit')){
+            $default_post_archive_image_size = apply_filters( 'post_archive_image_size', 'thumbnail' );
+            $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_archive_image_size, 'attr' => array('class' => 'alignleft post-image')));
+            
+            if($img)
+                printf('<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute('echo=0'), $img);
+        }
         
-        if($img)
-            printf('<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute('echo=0'), $img);
     } elseif (is_single()){
         $default_post_single_image_size = apply_filters( 'post_single_image_size', 'full' );
         $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_single_image_size, 'attr' => array('class' => 'alignnone post-image')));
