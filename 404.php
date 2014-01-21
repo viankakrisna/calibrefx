@@ -32,13 +32,8 @@ function calibrefx_404() { ?>
 		<div class="entry-content">
 			<p><?php printf( __( 'The page you are looking for no longer exists. Perhaps you can return back to the site\'s <a href="%s">homepage</a> and see if you can find what you are looking for. Or, you can try finding it with the information below.', 'calibrefx' ), home_url() ); ?></p>
 
-			<div class="<?php row_class(); ?>">
+			<div>
 				<div class="archive-page">
-
-					<h4><?php _e( 'Pages:', 'calibrefx' ); ?></h4>
-					<ul>
-						<?php wp_list_pages( 'title_li=' ); ?>
-					</ul>
 
 					<h4><?php _e( 'Categories:', 'calibrefx' ); ?></h4>
 					<ul>
@@ -65,6 +60,8 @@ function calibrefx_404() { ?>
 					</ul>
 
 				</div><!-- end .archive-page-->
+
+				<div class="clearfix"></div>
 			</div>
 
 		</div><!-- end .entry-content -->
