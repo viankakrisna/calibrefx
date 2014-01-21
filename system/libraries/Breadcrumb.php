@@ -232,11 +232,11 @@ class CFX_Breadcrumb {
             $crumb = $this->args['labels']['tax'] . $this->get_term_parents($term->term_id, $term->taxonomy);
         } elseif (is_year()) {
             $crumb = $this->args['labels']['date'] . get_query_var('year');
-        } elseif (is_month()) {
+        } elseif (is_month()) { 
             $crumb = $this->get_breadcrumb_link(
                     get_year_link(get_query_var('year')), sprintf(__('View archives for %s', 'calibrefx'), get_query_var('year')), get_query_var('year'), $this->args['sep']
             );
-            $crumb .= '<li typeof="v:Breadcrumb">' . $this->args['labels']['date'] . single_month_title('', false) . '</li>';
+            $crumb .= '<li typeof="v:Breadcrumb">' . $this->args['labels']['date'] . single_month_title(' ', false) . '</li>';
         } elseif (is_day()) {
             $crumb = $this->get_breadcrumb_link(
                     get_year_link(get_query_var('year')), sprintf(__('View archives for %s', 'calibrefx'), get_query_var('year')), get_query_var('year'), $this->args['sep']
