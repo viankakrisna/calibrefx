@@ -40,6 +40,10 @@ function calibrefx_layout_is_fluid() {
     return calibrefx_get_option('layout_type') == 'fluid';
 }
 
+function calibrefx_layout_is_static() {
+    return calibrefx_get_option('layout_type') == 'static';
+}
+
 function calibrefx_layout_is_fixed_wrapper() {
     return calibrefx_get_option('calibrefx_layout_wrapper_fixed');
 }
@@ -57,7 +61,7 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
     if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
         return '';
 
-    if (calibrefx_layout_is_fluid() || calibrefx_layout_is_fixed_wrapper())
+    if (calibrefx_layout_is_fixed_wrapper())
         return '';
 
     $row_class = calibrefx_row_class();
@@ -277,14 +281,11 @@ function row_class() {
  */
 function calibrefx_container_class() {
     $containerClass = '';
-
-    $layout_type = calibrefx_get_option('layout_type');
-    $calibrefx_layout_wrapper_fixed = calibrefx_get_option('calibrefx_layout_wrapper_fixed');
-
-    if($layout_type == 'fluid'){
-        $containerClass = 'container';
-    }elseif($layout_type == 'static'){
-        if($calibrefx_layout_wrapper_fixed){
+    
+    if(calibrefx_layout_is_fluid()){
+        $containerClass = '';
+    }elseif(calibrefx_layout_is_static()){
+        if(calibrefx_layout_is_fixed_wrapper()){
             $containerClass = 'container';
         }else{
             $containerClass = '';
