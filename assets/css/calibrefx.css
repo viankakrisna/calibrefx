@@ -501,16 +501,11 @@ img.wp-smiley,
 
 /* Post
 ------------------------------------------------------------ */
-div[id*="post-"]{
-    margin: 0px 0 10px;
-}
-
 .entry-content{
     margin: 15px 0;
 }
 
-.blog .post,
-.archive .post{
+.hentry{
     margin-bottom: 20px;	
 }
 

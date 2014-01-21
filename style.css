@@ -14,7 +14,7 @@
 /* General
 ------------------------------------------------------------ */
 body{
-	background-color: #F4F4F6;
+	background-color: #FFF;
 	color: #404040;
 	font-size: 14px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -34,14 +34,14 @@ select{
 
 /* Wrapper Style 
 ------------------------------------------------------------ */
-.layout-wrapper-fixed #wrapper {
-    background-color: #FFFFFF;
+.layout-wrapper-fixed #wrapper {    
     border-color: #DDDDDD #CCCCCC #999999;
     border-style: solid;
     border-width: 1px;
 }
 
 #wrapper {
+	background-color: #F4F4F4;
 }
 
 /* Header
@@ -56,6 +56,11 @@ margin-top: 20px;
 
 /* Primary Navigation
 ------------------------------------------------------------ */
+
+.layout-wrapper-fixed #nav{
+    margin-left: 0;
+    margin-right: 0;
+}
 
 .navbar {
     border: 0;
@@ -178,7 +183,7 @@ margin-top: 20px;
 #inner {
     margin-top: 0;
 
-    padding: 35px 0 0 0;
+    padding: 35px 0 10px 0;
 }
 
 /* Widgets
@@ -376,8 +381,7 @@ margin: 0;
     color: inherit;
 }
 
-.blog .post, 
-.archive .post {
+.hentry{
     background: #fff;
     padding: 15px 12px 20px;
     margin-bottom: 35px;
@@ -437,6 +441,32 @@ margin: 0;
 
 .author-box .avatar {
     background-color: #FFFFFF;
+}
+
+
+/* Comment
+------------------------------------------------------------ */
+#comments {
+    background: #fff;
+    padding: 25px 22px;
+    margin-bottom: 35px;
+}
+
+#comments h3{
+    margin-top: 0;
+}
+
+#respond{
+    font-weight: normal;
+    list-style-type: none;
+    margin: 15px 0 5px;
+    padding: 15px;
+    background-color: #fff;
+}
+
+#comments #respond{
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
 }
 
 /* Pagination
