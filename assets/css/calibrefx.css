@@ -327,15 +327,13 @@ img.wp-smiley,
 }
 
 .sidebar-content #content{
-    float:right;
+    float: right;
     margin-left: 0;
     margin-right: 0;
 }
 
-.sidebar-content #sidebar{
-    float:left;
-    margin-left:0;
-    margin-right: 0;
+#content-sidebar{
+    float: right;
 }
 
 /* Sidebar
@@ -344,10 +342,20 @@ img.wp-smiley,
 
 }
 
+.sidebar-content #sidebar{
+    float: left;
+    margin-left: 0;
+    margin-right: 0;
+}
+
 /* Sidebar Alt
 ------------------------------------------------------------ */
 #sidebar-alt{
     margin-right: 0px;
+}
+
+.sidebar-content-sidebar #sidebar{
+    float: left;
 }
 
 /* Widgets

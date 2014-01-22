@@ -44,9 +44,39 @@ $cfxgenerator->calibrefx_before_content = array('calibrefx_get_sidebar_alt');
 
 $cfxgenerator->calibrefx_sidebar = array('calibrefx_do_sidebar');
 $cfxgenerator->calibrefx_sidebar_alt = array('calibrefx_do_sidebar_alt');
+
+$cfxgenerator->wp = array(
+    array(
+        'function' => 'calibrefx_setup_custom_layout',
+        'priority' => 0,
+    )
+);
+
 /********************
  * FUNCTIONS BELOW  *
  ********************/
+
+function calibrefx_setup_custom_layout(){
+    global $cfxgenerator;
+
+    $site_layout = calibrefx_site_layout();
+
+    if($site_layout == 'sidebar-content-sidebar'){
+        $cfxgenerator->move('calibrefx_before_content', 'calibrefx_after_content', 'calibrefx_get_sidebar_alt', 15);
+        
+        add_action('calibrefx_before_content','calibrefx_sidebar_content_sidebar_wrapper_open');
+        add_action('calibrefx_after_content','calibrefx_sidebar_content_sidebar_wrapper_close');
+    }
+}
+
+function calibrefx_sidebar_content_sidebar_wrapper_open(){
+    echo '<div id="content-sidebar" class="'.calibrefx_content_sidebar_span().'"><div class="'.calibrefx_row_class().'">';
+}
+
+function calibrefx_sidebar_content_sidebar_wrapper_close(){
+    echo '</div></div>';
+}
+
 
 /**
  * Register all the available layout
@@ -232,7 +262,7 @@ function calibrefx_header_body_classes($classes) {
     if(current_theme_supports( 'calibrefx-responsive-style' )){
         $classes[] = 'responsive';
     }else{
-        $classes[] = 'non-responsive';
+        $classes[] = 'non-responsive'; 
     }   
 
     if(calibrefx_layout_is_fluid()){
