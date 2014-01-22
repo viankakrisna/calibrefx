@@ -650,3 +650,27 @@ input[type="color"]:focus,
         border-radius: 0px;
     } 
 }
+
+@media (max-width: 767px){
+    .navbar-default .navbar-brand {
+        color: #FFF;
+    }
+    
+    .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+        color: #FFF;    
+    }
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #FFF;
+    }
+
+    #nav .nav > li > a {
+        border-top: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #nav .dropdown-menu {
+        padding-left: 10px;
+    }
+}

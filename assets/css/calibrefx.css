@@ -219,7 +219,8 @@ img.wp-smiley,
 }
 
 #nav .dropdown-menu { /* 1st Level Sub Menu */
-    padding: 4px 0;
+    padding-top: 4px;
+    padding-bottom: 4px;
     margin: 0px;
 }
 
@@ -236,26 +237,6 @@ img.wp-smiley,
 #nav .nav > li > .dropdown-menu .dropdown-menu{ /* 2nd, 3rd, ... level submenus */
     left: 100%;
     top: -4px;
-}
-
-#nav .navbar-collapse{
-	
-}
-
-#nav .btn-menu-toggle{
-	float: none;
-	text-align: left;
-	line-height: 14px;
-	border: none;
-	background: transparent;
-}
-
-#nav .btn-menu-toggle .menu-toggle-icon{
-	float: right;
-}
-
-#nav .btn-menu-toggle .menu-toggle{
-	float: left;	
 }
 
 /* Secondary Navigation
@@ -334,10 +315,6 @@ img.wp-smiley,
     float: right;
     margin-left: 0;
     margin-right: 0;
-}
-
-#content-sidebar{
-    float: right;
 }
 
 /* Sidebar
@@ -1083,10 +1060,19 @@ input[type="submit"].searchsubmit{
     margin-bottom: 0px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
+
     #header-right .widget{
         max-width: 300px;
     }
+
+    #content-sidebar{
+        float: right;
+    }
+}
+
+@media (min-width: 768px) {
+    
 }
 
 @media (max-width: 767px) { /* For 480px media */
@@ -1101,6 +1087,76 @@ input[type="submit"].searchsubmit{
         margin-right: auto;
         margin-left: auto;
     }
+	
+	.navbar {
+		min-height: initial;
+	}
+
+    .navbar-toggle {
+		width: 100%;
+		float: none;		
+		margin: 0;
+		border: 0;	
+		padding: 15px 0px;
+		outline: none;
+    }
+
+    .container>.navbar-header {
+        margin-right: 0;
+        margin-left: 0;
+    }
+	
+	.container>.navbar-collapse{
+		max-height: none;	
+	}
+	
+	.navbar-collapse {
+		border-top: 0;
+		box-shadow: none;
+	}
+
+    .navbar-default .navbar-brand {
+        padding: 0;    
+        color: #777;
+    }
+	
+	.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+		color: #777;	
+	}
+
+    .menu-toggle-icon{
+        float: right;    
+        margin-top: 3px;
+    }
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #777;
+    }
+
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+        background-color: transparent;
+    }
+
+    .navbar-nav {
+        margin-top: 0;
+    }
+
+    .dropdown-menu {
+        position: static;    
+        float: none;
+        padding-left: 10px;
+    }
+
+
+
+    #nav .dropdown-menu {
+        padding-top: 0;
+        padding-bottom: 0;
+    
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+}
 }
 
 @media (max-width: 469px) { /* For 320px media */
