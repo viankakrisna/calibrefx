@@ -1141,7 +1141,7 @@ input[type="submit"].searchsubmit{
         margin-top: 0;
     }
 
-    .dropdown-menu {
+    #nav .dropdown-menu {
         position: static;    
         float: none;
         padding-left: 10px;
