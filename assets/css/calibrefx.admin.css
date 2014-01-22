@@ -50,9 +50,8 @@ hr.div {
 }
 
 .main-postbox, .side-postbox{
-    width: 48%;
-    float: left;
-    margin: 0 0 0 2%;
+    width: 100%;
+    float: none;
 }
 .side-postbox{
     margin: 0 1%;
@@ -201,35 +200,35 @@ body[class*="calibrefx"] #wpbody-content{
 }
 
 .calibrefx-header{
-    background: #e9eded;
+    background: #f0f0f0;
     width: auto;
-    height: 90px;
+    height: 110px;
     position: relative;
 }
 
 .calibrefx-option-logo{
     float: left;
-    margin: 17px 0 0 28px;
-    background: url(../img/calibrefx-setting-page-logo.png) no-repeat;
+    margin: 16px 0 0 26px;
+    background: url(../img/calibrefx-logo.png) no-repeat;
 }
 
 .calibrefx-option-logo a {
     display: block;
-    height: 57px;
-    width: 258px;
+    height: 66px;
+    width: 298px;
     text-decoration: none;
 }
 
 .calibrefx-content{
     border-top: none;
-    background: #fff;
+    background: #f0f0f0;
     position: relative;
 }
 
 .calibrefx-submit-button {
-    margin: 0;
-    background: #16222c;
-    height: 47px;
+    margin: 0 12px 0 0;
+    height: 40px;
+    float: right;
 }
 
 .calibrefx-submit-button.calibrefx-bottom{
@@ -239,20 +238,18 @@ body[class*="calibrefx"] #wpbody-content{
 .calibrefx-submit-button .calibrefx-h2-button {
     cursor: pointer;
     font-weight: bold;
-    padding: 0 13px 0 9px;
-    margin: 12px 30px 0 0;
-    font-size: 12px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 3px;
+    font-size: 18px;
+    height: 40px;
+    width: 140px;
+    border-radius: 6px;
     float: right;
     border: none;
-    background: #efefef;
+    background: #00aeef;
 }
 
 .calibrefx-submit-button .calibrefx-settings-reset-button{
     margin-right: 7px;
-    color: #374756;
+    color: #fff;
 }
 
 .calibrefx-submit-button .calibrefx-settings-submit-button{
@@ -260,21 +257,13 @@ body[class*="calibrefx"] #wpbody-content{
     background: #008bbf;
 }
 
-.calibrefx-submit-button i{
-    width: 21px;
-    height: 21px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 8px;
-    position: relative;
-}
-
-.calibrefx-submit-button .icon-save{  
-    background: url(../img/icon-save.png) no-repeat;
-}
-
-.calibrefx-submit-button .icon-reset{  
-    background: url(../img/icon-reset.png) no-repeat;
+span.calibrefx-info{
+    display: block;
+    width: 28px;
+    height: 28px;
+    background: url(../img/icon-info.png) no-repeat center center;
+    float: right;
+    margin: 10px 0px 10px 0;
 }
 
 .calibrefx-submit-button p.copyright{
@@ -319,17 +308,15 @@ body[class*="calibrefx"] #wpbody-content{
 .calibrefx-tab{
     zoom: 1;
     position: relative;
-    background: #23303c;
+    background: #f0f0f0;
     padding-left: 27px;
 }
 
 .calibrefx-tab ul.calibrefx-tab-option{
     list-style: none;
-    position: relative;
-    width: 263px;
+    width: 204px;
     word-wrap: break-word;
     margin: 0;    
-    background: #008bbf url(../img/tabs_bg.jpg) repeat-y;
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -338,39 +325,39 @@ body[class*="calibrefx"] #wpbody-content{
 .calibrefx-tab ul.calibrefx-tab-option li{
     position: relative;
     display: block;
-    margin: 0;
+    margin: 0 0 8px;
     overflow: visible;
 }
 
 .calibrefx-tab ul.calibrefx-tab-option li a{
     text-decoration: none;
     display: block;
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
+    color: #7e7e7e;
+    font-size: 18px;
+    font-weight: 600;
     line-height: 20px;
-    padding-left: 91px;
     position: relative;
     outline: none;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li:hover,
-.calibrefx-tab ul.calibrefx-tab-option li.current{
-    background-color: #fff;
+	background: #fff;
+	border: 1px solid #e3e3e3;
+	border-left: none;
 }
 
 .calibrefx-tab ul.calibrefx-tab-option li:hover a,
 .calibrefx-tab ul.calibrefx-tab-option li.current a{
-    color: #374756;
+    color: #ffffff;
+	background: #00aeef;
+	border: 1px solid #e3e3e3;
+	border-left: none;
 }
 
-.calibrefx-tab ul.calibrefx-tab-option li.current span {
+.calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
     position: absolute;
-    left: -8px;
+    left: -16px;
     top: 0px;
     bottom: 0px;
-    width: 8px;
-    background: #008bbf;
+    width: 16px;
+    background: #414042;
 }
 
 .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-container{
@@ -387,35 +374,10 @@ body[class*="calibrefx"] #wpbody-content{
     position: relative;
 }
 
-.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon,
-.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-active{
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: -16px 0px 0px -16px;
-    border: none;
-    outline: none;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-active{
-    display: none;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li.current .calibrefx-section-icon,
-.calibrefx-tab ul.calibrefx-tab-option li:hover .calibrefx-section-icon{
-    display: none;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li.current .calibrefx-section-icon-active,
-.calibrefx-tab ul.calibrefx-tab-option li:hover .calibrefx-section-icon-active{
-    display: block;
-}
 
 .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
-    width: 132px;
-    padding: 23px 10px 23px 30px;
+    width: 174px;
+    padding: 17px 0px 17px 30px;
 }
 
 .calibrefx-admin-page #wpbody-content .metabox-holder {
@@ -436,12 +398,10 @@ body[class*="calibrefx"] #wpbody-content{
 }
 
 .calibrefx-option{
-    margin-left: 263px;
+    margin-left: 223px;
     min-height: 411px;
-    padding-bottom: 13px;
-    margin-right: 30px;
-    background: #ffffff;
-    padding-top: 15px;
+    margin-right: 12px;
+    background: #f0f0f0;
 }
 
 .calibrefx-option .meta-box-sortables{
@@ -449,38 +409,36 @@ body[class*="calibrefx"] #wpbody-content{
 }
 
 .calibrefx-option .postbox{
-    border: none;
+    border: 1px solid #e3e3e3;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
-    background: #eeeeee;
+    background: #ffffff;
 }
 
 .calibrefx-option .postbox h3.hndle{
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
-    border-bottom: 5px solid #046082;
-    padding: 10px 10px;
-    font-size: 14px;
-    font-weight: bold;
+    border: none;
+    padding: 12px 30px;
+    font-size: 20px;
+    font-weight: 600;
     color: #fff;
-    background: #008bbf;
-    font-family: arial;
-    letter-spacing: 0px;
+    background: #ffffff;
     text-shadow: none;
     margin-bottom: 0px;
 }
 
 .calibrefx-option .postbox h3.hndle span{
-    font-weight: bold;
-    color: #fff;
+    font-weight: 600;
+    color: #414042;
 }
 
 .calibrefx-option .postbox .inside{
-    padding: 20px;
+    padding: 10px 30px 20px;
     margin: 0px;
-    background: #eeeeee;
+    background: #ffffff;
 }
 
 .calibrefx-option .postbox .handlediv{
@@ -501,7 +459,9 @@ body[class*="calibrefx"] #wpbody-content{
 .calibrefx-option .postbox h6{
     margin-top: 0px;
     margin-bottom: 10px;
-    color: #6b6b6b;
+    color: #414042;
+    font-weight: 600;
+    font-size: 20px;
 }
 
 .calibrefx-option .postbox p{
