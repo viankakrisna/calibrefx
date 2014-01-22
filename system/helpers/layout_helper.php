@@ -344,13 +344,23 @@ function calibrefx_content_span() {
     $site_layout = calibrefx_site_layout(); 
 
     // don't load sidebar on pages that don't need it
-    if ($site_layout == 'full-width-content')
-        return apply_filters('calibrefx_content_span', 'col-lg-12 col-md-12 col-sm-12 col-xs-12 first');
+    if( current_theme_supports('calibrefx-responsive-style') ){
+        if ($site_layout == 'full-width-content')
+            return apply_filters('calibrefx_content_span', 'col-lg-12 col-md-12 col-sm-12 col-xs-12 first');
 
-    if ($site_layout == 'sidebar-content-sidebar')
-        return apply_filters('calibrefx_content_span', 'col-lg-6 col-md-6 col-sm-12 col-xs-12');
+        if ($site_layout == 'sidebar-content-sidebar')
+            return apply_filters('calibrefx_content_span', 'col-lg-6 col-md-6 col-sm-12 col-xs-12');
 
-    return apply_filters('calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12');
+        return apply_filters('calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12');
+    }else{
+         if ($site_layout == 'full-width-content')
+            return apply_filters('calibrefx_content_span', 'col-xs-12 first');
+
+        if ($site_layout == 'sidebar-content-sidebar')
+            return apply_filters('calibrefx_content_span', 'col-xs-6');
+
+        return apply_filters('calibrefx_content_span', 'col-xs-8');
+    }
 }
 
 /**
@@ -364,8 +374,15 @@ function calibrefx_sidebar_span() {
     if ($site_layout == 'full-width-content')
         return;
 
-    if ($site_layout == 'sidebar-content-sidebar')
-        return apply_filters('calibrefx_sidebar_span', 'col-lg-3 col-md-3 col-sm-12 col-xs-12');
+    if( current_theme_supports('calibrefx-responsive-style') ){
+        if ($site_layout == 'sidebar-content-sidebar')
+            return apply_filters('calibrefx_sidebar_span', 'col-lg-3 col-md-3 col-sm-12 col-xs-12');
 
-    return apply_filters('calibrefx_sidebar_span', 'col-lg-4 col-md-4 col-sm-12 col-xs-12');
+        return apply_filters('calibrefx_sidebar_span', 'col-lg-4 col-md-4 col-sm-12 col-xs-12');
+    }else{
+        if ($site_layout == 'sidebar-content-sidebar')
+            return apply_filters('calibrefx_sidebar_span', 'col-xs-3');
+
+        return apply_filters('calibrefx_sidebar_span', 'col-xs-4');
+    }
 }
