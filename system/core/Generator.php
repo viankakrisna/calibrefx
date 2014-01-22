@@ -166,7 +166,7 @@ class CFX_Generator{
     /**
      * Move a function to another hook
      */
-    public function move($old_tag, $new_tag, $function){
+    public function move($old_tag, $new_tag, $function, $priority = 10){
     	if(!isset($this->_hooks[$old_tag])) return;
     	
     	$keysearch = -1;
@@ -183,7 +183,7 @@ class CFX_Generator{
     	$this->add($new_tag, $func_array['function'], $func_array['priority'], $func_array['args']);
     	if(has_action($old_tag, $function)){
             remove_action( $old_tag, $function );
-            add_action( $new_tag, $function );
+            add_action( $new_tag, $function, $priority );
         }
         
     	return true;
