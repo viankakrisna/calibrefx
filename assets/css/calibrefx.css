@@ -834,13 +834,13 @@ input[type="submit"].searchsubmit{
 .breadcrumb-container{
 	background: #f5f5f5;
 	border-radius: 4px;
-	padding: 0 15px;
+	padding: 7px 15px;
 }
 .breadcrumb-container .breadcrumb{
 	display: inline-block;
 	background: none;
 	margin-bottom: 0;
-	padding: 7px 15px 7px 10px;
+	padding: 0;
 }
 .breadcrumb .labels{
     padding-right: 5px;
