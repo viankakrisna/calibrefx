@@ -33,6 +33,10 @@ body{
 	word-wrap: break-word;
 }
 
+select{
+    max-width: 100%;
+}
+
 .size-auto, 
 .size-full,
 .size-large,
@@ -518,6 +522,10 @@ img.wp-smiley,
 }
 
 .hentry{
+    margin-bottom: 20px;	
+}
+
+.hentry .btn{
     margin-bottom: 20px;	
 }
 
