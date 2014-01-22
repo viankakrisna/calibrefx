@@ -33,6 +33,10 @@ body{
 	word-wrap: break-word;
 }
 
+select{
+    max-width: 100%;
+}
+
 .size-auto, 
 .size-full,
 .size-large,

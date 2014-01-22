@@ -28,10 +28,6 @@ h1, h2, h3, h4, h5, h6{
     font-family: Verdana, sans-serif;
 }
 
-select{
-    max-width: 100%;
-}
-
 /* Wrapper Style 
 ------------------------------------------------------------ */
 .layout-wrapper-fixed #wrapper {    
@@ -46,9 +42,6 @@ select{
 
 /* Header
 ------------------------------------------------------------ */
-
-#header{
-}
 
 #title {
 margin-top: 20px;
@@ -183,7 +176,7 @@ margin-top: 20px;
 #inner {
     margin-top: 0;
 
-    padding: 35px 0 10px 0;
+    padding: 35px 0;
 }
 
 /* Widgets
@@ -218,8 +211,8 @@ margin-top: 20px;
 }
 
 #footer-widget .widget{
-    margin-top: 0;
-    
+    margin-top: 0;    
+    margin-bottom: 20px;
 }
 
 #footer-widget .widgettitle{
