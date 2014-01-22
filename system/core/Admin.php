@@ -269,23 +269,15 @@ abstract class CFX_Admin {
                     <div class="calibrefx-option-logo">
                         <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
                     </div>
-                    <div class="calibrefx-ability">
-                        <span class="calibrefx-ability-label"><?php _e('Advanced Mode', 'calibrefx'); ?></span>
-                        <?php
-                            if($calibrefx_user_ability == 'professor'){
-                                echo '<a href="'.admin_url("admin.php?page=".$this->page_id."&ability=basic&section=" . $calibrefx_current_section).'" class="calibrefx-ability-professor"></a>';
-                            }else{
-                                echo '<a href="'.admin_url("admin.php?page=".$this->page_id."&ability=professor&section=" . $calibrefx_current_section).'" class="calibrefx-ability-basic"></a>';
-                            }
-                        ?>
-                    </div>
-                </div>
-                <div class="calibrefx-content">
                     <div class="calibrefx-submit-button">
-                        <p class="calibrefx-site-description"><?php echo $calibrefx_theme->{'Description'}; ?></p>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="icon-save"></i><?php _e('Save Settings', 'calibrefx') ?></button>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" value="1" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');"><i class="icon-reset"></i><?php _e('Reset Settings', 'calibrefx'); ?></button>
                     </div>
+
+                    <span class="calibrefx-info" title=""></span>
+                </div>
+                <div class="calibrefx-content">
+                    
                     <div class="metabox-holder">
                         <div class="calibrefx-tab">
                             <ul class="calibrefx-tab-option">
@@ -302,15 +294,9 @@ abstract class CFX_Admin {
 
                                     echo "<li$current_class>
                                             <a href=\"$section_link\">
-                                                <div class=\"calibrefx-section-icon-container\">
-                                                    <div class=\"calibrefx-section-icon-wrapper\">
-                                                        <img class=\"calibrefx-section-icon\" src=\"".$icon."\" />
-                                                        <img class=\"calibrefx-section-icon-active\" src=\"".$active_icon."\" />
-                                                    </div>
-                                                </div>
-                                                <div class=\"calibrefx-section-link\">" . $section['title'] . "</div>
+                                                <span class=\"calibrefx-section-link\">" . $section['title'] . "</span>
+                                                <span class=\"calibrefx-section-link-additional\"></span>
                                             </a>
-                                            <span></span>
                                         </li>";
                                 }
                                 ?>
