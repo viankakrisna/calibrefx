@@ -102,17 +102,14 @@ function calibrefx_do_comments() {
         <?php
     }
     /** No comments so far */
-    else {?>
-        <div id="comments">
-                <?php
-                /** Comments are open, but there are no comments */
-                if ( 'open' == $post->comment_status )
-                        echo apply_filters( 'calibrefx_no_comments_text', '' );
-                else /** Comments are closed */
-                        echo apply_filters( 'calibrefx_comments_closed_text', '' );
-                ?>
-        </div><!--end #comments-->
-        <?php
+    else {
+        echo '<div id="comments" class="no-comments">';
+        /** Comments are open, but there are no comments */
+        if ( 'open' == $post->comment_status )
+                echo apply_filters( 'calibrefx_no_comments_text', '' );
+        else /** Comments are closed */
+                echo apply_filters( 'calibrefx_comments_closed_text', '' );
+        echo '</div><!--end #comments-->';
     }
 }
 // add_action( 'calibrefx_comments', 'calibrefx_do_comments' );

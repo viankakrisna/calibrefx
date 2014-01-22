@@ -71,7 +71,9 @@ function calibrefx_print_doctype() { ?>
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<?php if ( current_theme_supports('calibrefx-responsive-style') ){ ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<?php } ?>
 <?php
 }
 
@@ -256,6 +258,17 @@ function calibrefx_print_wrap() {
 max-width: %dpx;
 }', calibrefx_get_option("calibrefx_layout_width"));
         
+    }
+
+    if ( !current_theme_supports('calibrefx-responsive-style') ){
+        $wrap = sprintf('
+body{
+    min-width: %dpx;
+}
+.container{
+    max-width: none;
+    width: %dpx;
+}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
     }
 
     printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);

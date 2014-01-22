@@ -73,23 +73,33 @@ function calibrefx_do_nav() {
 
         $nav_class = apply_filters( 'nav_class', calibrefx_row_class() );
 
-        $nav_output = sprintf('
-            <div id="nav" class="navbar navbar-default">
-                %2$s
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="navbar-brand">%4$s</span>
+        if( current_theme_supports('calibrefx-responsive-style') ){
+            $nav_output = sprintf('
+                <div id="nav" class="navbar navbar-default">
+                    %2$s
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="navbar-brand">%4$s</span>
 
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" role="navigation">%1$s</div>  
+                    %3$s
                 </div>
-                <div class="collapse navbar-collapse" role="navigation">%1$s</div>  
-                %3$s
-            </div>
-            <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), __('MENU', 'calibrefx'));
-        
+                <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false), __('MENU', 'calibrefx'));
+        }else{
+            $nav_output = sprintf('
+                <div id="nav" class="navbar navbar-default">
+                    %2$s
+                    %1$s
+                    %3$s
+                </div>
+                <!-- end #nav -->', $nav, calibrefx_put_wrapper('nav', 'open', false), calibrefx_put_wrapper('nav', 'close', false));
+        }
+
         echo apply_filters('calibrefx_do_nav', $nav_output, $nav, $args);
     }
 }

@@ -231,7 +231,10 @@ function calibrefx_header_body_classes($classes) {
     
     if(current_theme_supports( 'calibrefx-responsive-style' )){
         $classes[] = 'responsive';
+    }else{
+        $classes[] = 'non-responsive';
     }   
+
     if(calibrefx_layout_is_fluid()){
         $classes[] = 'fluid';
     }else{

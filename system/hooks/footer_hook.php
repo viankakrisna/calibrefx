@@ -73,8 +73,11 @@ function calibrefx_do_footer_widgets() {
     if ($count_footer_widgets == 0)
         return;
 
-    $span = "col-lg-" . strval(floor((12 / $count_footer_widgets))) . " col-md-" . strval(floor((12 / $count_footer_widgets))) . " col-sm-12 col-xs-12";
-    
+    if( current_theme_supports('calibrefx-responsive-style') )
+        $span = "col-lg-" . strval(floor((12 / $count_footer_widgets))) . " col-md-" . strval(floor((12 / $count_footer_widgets))) . " col-sm-12 col-xs-12";
+    else
+        $span = "col-xs-" . strval(floor((12 / $count_footer_widgets)));
+
     $sidebar = $wp_registered_sidebars['footer-widget'];
     $sidebar['before_widget'] = '<div id="%1$s" class="widget ' . $span . ' %2$s"><div class="widget-wrap">';
 	$sidebar['after_widget'] = '</div></div>';
