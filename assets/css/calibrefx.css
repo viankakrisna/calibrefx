@@ -517,6 +517,10 @@ img.wp-smiley,
     margin-bottom: 20px;	
 }
 
+.hentry .btn{
+    margin-bottom: 20px;	
+}
+
 .entry-content p.pages{
 	clear: both;
 }

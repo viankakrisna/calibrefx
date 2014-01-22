@@ -110,6 +110,11 @@ margin-top: 20px;
     padding: 0;
 }
 
+#nav .dropdown-menu > li > a {
+	color: #F2F5F7;
+	padding: 8px 20px;
+}
+
 #nav .dropdown-menu > li > a:focus,
 #nav .dropdown-menu > li > a:hover,
 #nav .dropdown-menu > li:hover > a,
@@ -117,6 +122,10 @@ margin-top: 20px;
 #nav .dropdown-menu > li.current-menu-ancestor > a{
     background: #2C323C;
     color: #fff;    
+}
+
+#nav .nav > li > .dropdown-menu .dropdown-menu {
+top: 0;
 }
 
 /* Secondary Navigation
@@ -152,6 +161,7 @@ margin-top: 20px;
 
 #subnav .dropdown-menu > li > a{
     color: #F2F5F7;
+    padding: 8px 20px;
 }
 
 #subnav .dropdown-menu > li > a:focus,
