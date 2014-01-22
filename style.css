@@ -207,7 +207,7 @@ margin-top: 20px;
 ------------------------------------------------------------ */
 
 #footer-widget{
-    padding: 35px 0;
+    padding: 35px 0 15px;
 }
 
 #footer-widget .widget{
@@ -443,6 +443,10 @@ margin: 0;
     background: #fff;
     padding: 25px 22px;
     margin-bottom: 35px;
+}
+
+#comments.no-comments {
+    display: none;
 }
 
 #comments h3{
