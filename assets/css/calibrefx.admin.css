@@ -232,7 +232,7 @@ body[class*="calibrefx"] #wpbody-content{
 }
 
 .calibrefx-submit-button.calibrefx-bottom{
-    background: #23303c;
+    padding-bottom: 10px;
 }
 
 .calibrefx-submit-button .calibrefx-h2-button {
@@ -421,7 +421,7 @@ span.calibrefx-info{
     -moz-border-radius: 0px;
     border-radius: 0px;
     border: none;
-    padding: 12px 30px;
+    padding: 13px 30px;
     font-size: 20px;
     font-weight: 600;
     color: #fff;
@@ -431,12 +431,12 @@ span.calibrefx-info{
 }
 
 .calibrefx-option .postbox h3.hndle span{
-    font-weight: 600;
     color: #414042;
+    font-size: inherit;
 }
 
 .calibrefx-option .postbox .inside{
-    padding: 10px 30px 20px;
+    padding: 0px 30px 20px;
     margin: 0px;
     background: #ffffff;
 }
@@ -444,11 +444,29 @@ span.calibrefx-info{
 .calibrefx-option .postbox .handlediv{
     height: 39px;
     width: 39px;
-    background: url(../img/icon-arrow-down.png) no-repeat center center;
+    margin-top: 8px;
+    margin-right: 8px;
+}
+
+.calibrefx-option .postbox .handlediv{
+	background: url(../img/arrow-up.png) no-repeat center center;
+}
+
+.calibrefx-option .postbox.closed .handlediv{
+	background: url(../img/arrow-down.png) no-repeat center center;	
+}
+
+.calibrefx-option .postbox .handlediv:before {
+	display: none !important;	
 }
 
 .calibrefx-option .postbox:hover .handlediv{
-    background: url(../img/icon-arrow-down.png) no-repeat center center !important;
+    
+}
+
+.js .calibrefx-option .postbox:hover .handlediv,
+.calibrefx-option .postbox:hover .handlediv {
+	margin-right: 8px!important;
 }
 
 .calibrefx-option .postbox h1,
@@ -471,13 +489,9 @@ span.calibrefx-info{
 
 .calibrefx-option .postbox p,
 .calibrefx-option .postbox span,
-.calibrefx-option .postbox label,
 .calibrefx-option .postbox div{
-    color: #6b6b6b;
-}
-
-.calibrefx-option .postbox .description{
-    color: #949494;
+    color: #909090;
+    font-size: 14px;
 }
 
 .calibrefx-option .postbox span.description{
@@ -490,47 +504,131 @@ span.calibrefx-info{
     right: 8px;
 }
 
-.calibrefx-ability{
-    position: absolute;
-    top: 50px;
-    right: 30px;
-    height: 25px;
-    line-height: 25px;
-}
-
-.calibrefx-ability-label{
-    color: #535353;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    display: inline-block !important;
-    vertical-align: top;
-}
-
-.calibrefx-ability a{
-    display: inline-block;
-    width: 64px;
-    height: 25px;
-    outline: none;
-}
-.calibrefx-ability .calibrefx-ability-basic{
-    background: url(../img/off-toggle.png) no-repeat;
-}
-.calibrefx-ability .calibrefx-ability-basic.active{
-    background: url(../img/on-toggle.png) no-repeat;
-}
-.calibrefx-ability .calibrefx-ability-professor{
-    background: url(../img/on-toggle.png) no-repeat;
-}
-.calibrefx-ability .calibrefx-ability-professor.active{
-    background: url(../img/off-toggle.png) no-repeat;
-}
 .version-3-8 #update-nag{
 	margin-top: 0px;
 	display: block;
 	margin-left: 0px;
 	margin-right: 0px;
 	text-align: center;
+}
+
+/* CalibreFX Ver1.1 Admin Style */
+.postbox h3.section-title{
+	padding-left: 0px;
+	border-bottom: 1px solid #d7d7d7;
+	font-size: 18px;
+}
+
+.section-row:before,
+.section-row:after{
+	display: table;
+	content: ' ';
+	line-height: 0px;
+}
+
+.section-row:after{
+	clear: both;
+}
+
+.section-col{
+	float: left;
+	width: 45%;
+	border-right: 1px solid #d7d7d7;
+	padding-right: 3%;
+}
+
+.section-col.last{
+	border-right: none;	
+	padding-left: 3%;
+	padding-right: 0px;
+}	
+
+.section-col.noborder{
+	border: none;
+}	
+
+.section-line{
+	border-bottom: 1px solid #d7d7d7;
+	padding: 13px 15px;
+}
+
+.section-line.last{
+	border-bottom: none;
+}
+
+.calibrefx-option .postbox .label-highlight{
+	color: #414042;
+	font-size 18px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.calibrefx-option .postbox .inside{
+	font-size: 14px;
+}
+
+.calibrefx-option .postbox .description{
+    font-style: normal;
+	font-size: 14px;
+	color: #909090;
+	background: url(../img/icon-info-small.png) no-repeat 15px 1px;
+	padding-left: 50px;
+}
+
+.calibrefx-option .postbox .label{
+	color: #414042;
+}
+
+.section-input{
+	padding: 10px 0px;
+}
+
+.section-label-checkbox{
+	display: inline-block;
+	width: 40%;
+}
+
+.section-box{
+	border: 1px solid #d7d7d7;
+	padding: 13px;
+}
+
+.calibrefx_content_archive{
+	width: 100%;
+	display: block;
+}
+
+.calibrefx_content_archive_limit.calibrefx_content_limit_setting{
+	margin-top: 15px;
+}
+
+.calibrefx_content_archive_limit.calibrefx_content_limit_setting label{
+	margin-bottom: 15px;	
+	display: block;
+}
+
+.calibrefx_content_archive_limit.calibrefx_content_limit_setting input{
+	width: 50%;
+	display: inline-block;	
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+#breadcrumb-settings, #content-archives-settings,
+#comment-settings, #facebook-comment-settings{
+	margin-bottom: 30px;
+}
+
+#post-navigation-settings{
+	margin-bottom: 30px;
+}
+
+.calibrefx-option .postbox p.enable-trackback{
+	padding-top: 10px;
+}
+
+#side-sortables{
+	display: none;
 }
 
 @media only screen and (max-width: 900px){

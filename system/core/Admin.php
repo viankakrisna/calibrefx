@@ -323,7 +323,6 @@ abstract class CFX_Admin {
                         </div>
                     </div>
                     <div class="calibrefx-submit-button calibrefx-bottom">
-                        <p class="copyright">Copyright &copy; <?php echo date('Y'); ?> <?php echo $calibrefx_theme->{'Name'}; ?>. Developed by <?php echo $calibrefx_theme->{'AuthorURI'}; ?><?php echo $calibrefx_theme->{'Author'}; ?>.</p>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="icon-save"></i><?php _e('Save Settings', 'calibrefx') ?></button>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');"><i class="icon-reset"></i><?php _e('Reset Settings', 'calibrefx'); ?></button>
                     </div>

@@ -1,5 +1,5 @@
 var calibrefx_toggles = {
-    "content_archive":["#calibrefx-settings\\[content_archive\\]","#calibrefx_content_limit_setting","full"],
+    "content_archive":["#calibrefx-settings\\[content_archive\\]",".calibrefx_content_limit_setting","full"],
     "layout_type":["#calibrefx-settings\\[layout_type\\]","#calibrefx_layout_width","static"],
     "email_protocol":["#calibrefx-settings\\[email_protocol\\]","#email_setting_box_content","smtp"]
 };
