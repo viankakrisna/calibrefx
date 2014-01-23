@@ -467,12 +467,11 @@ img.wp-smiley,
 }
 .latest-posts-widget ul, 
 .popular-posts-widget ul{
-    margin: 10px 0px 0px;
+	
 }
 .latest-posts-widget .widget-wrap ul li,
 .popular-posts-widget .widget-wrap ul li{
-    margin: 0px 0px 15px;
-    padding: 0px 0px 15px;
+	
 }
 .latest-posts-widget .widget-wrap ul li:last-child,
 .popular-posts-widget .widget-wrap ul li:last-child{
