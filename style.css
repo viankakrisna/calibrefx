@@ -230,6 +230,10 @@ top: 0;
     border-top: 1px solid #e5e5e5;
 }
 
+#inner .widget-wrap ul ul li + li{	
+    border-top: 0;
+}
+
 #footer-widget .widget-wrap ul li{   
     padding: 0 0;
     margin-bottom: 10px;

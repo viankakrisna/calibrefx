@@ -369,7 +369,11 @@ img.wp-smiley,
 }
 
 .widget-wrap ul li{
-    padding: 10px 0px;	
+    padding: 10px 0;
+}
+
+.widget-wrap ul ul li{
+    padding: 0 0 0 10px;
 }
 
 #footer-widgets .widget-area h4 {
@@ -765,7 +769,6 @@ blockquote cite{
 /* Search Form
 ------------------------------------------------------------ */
 input[type="submit"].searchsubmit{
-    vertical-align: top;
 		
     border-radius: 0px 4px 4px 0px !important;
 }
