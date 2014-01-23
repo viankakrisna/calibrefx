@@ -1087,6 +1087,27 @@ input[type="submit"].searchsubmit{
         margin-right: auto;
         margin-left: auto;
     }
+
+    #header-title {
+        width: 100% !important;            
+        float: none !important;
+    
+        text-align: center;
+        background-position: center center !important;
+}
+
+    .header-image #title-area, .header-image #title {
+        display: inline-block;
+    }
+
+    #header-right {
+        float: none !important;
+        width: 100%;
+    }
+    
+    
+
+
 	
 	.navbar {
 		min-height: initial;
@@ -1156,7 +1177,10 @@ input[type="submit"].searchsubmit{
         border: 0;
         background: transparent;
         box-shadow: none;
-}
+    }
+
+
+
 }
 
 @media (max-width: 469px) { /* For 320px media */

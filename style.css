@@ -245,7 +245,7 @@ top: 0;
 }
 
 #inner .widget.widget_search .widgettitle{
-	display: none;
+    margin:0 0 10px 0;
 }
 
 /* Subscriber Widget
@@ -579,6 +579,10 @@ input[type="submit"].searchsubmit:hover{
 	color: #FFFFFF;
 }
 
+#footer-wrapper{
+	position: relative;
+}
+
 #footer a, #footer a:hover{
     text-decoration: none;
     color: #919193;
@@ -586,6 +590,24 @@ input[type="submit"].searchsubmit:hover{
 
 .credits, .scrolltop {
     padding: 14px 0px;
+}
+
+.scrolltop{
+    position: absolute;
+    
+    top: 0px;
+    right: 0px;
+    width: 48px;
+    height: 48px;
+    background: #919193 url(assets/img/scroll-top-arrow.png) center center no-repeat;
+    padding: 0;
+}
+
+.scrolltop a{
+	height: 48px;
+	width: 48px;
+	display: inline-block;
+	text-indent: -999em;
 }
 
 /* Form Style
@@ -672,5 +694,18 @@ input[type="color"]:focus,
 
     #nav .dropdown-menu {
         padding-left: 10px;
+    }
+
+    #footer-widget {
+        padding-bottom: 50px;
+    }
+
+    #footer {
+    text-align: center;
+        
+    }
+
+    .scrolltop {
+        top: -48px;
     }
 }
