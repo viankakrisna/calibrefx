@@ -627,7 +627,7 @@ span.calibrefx-info{
 	padding-top: 10px;
 }
 
-#side-sortables{
+.calibrefx-option #side-sortables{
 	display: none;
 }
 
