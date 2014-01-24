@@ -150,7 +150,7 @@ top: 0;
 }
 
 #subnav .dropdown-menu{
-    background-color: #38404D;
+    background-color: #A8A8AD;
     border: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -160,7 +160,7 @@ top: 0;
 }
 
 #subnav .dropdown-menu > li > a{
-    color: #F2F5F7;
+    color: #fff;
     padding: 8px 20px;
 }
 
@@ -169,7 +169,7 @@ top: 0;
 #subnav .dropdown-menu > li:hover > a,
 #subnav .dropdown-menu > li.active > a,
 #subnav .dropdown-menu > li.current-menu-ancestor > a{
-    background: #2C323C;    
+    background: #9B9BA1;    
 }
 
 #subnav .nav > li > .dropdown-menu .dropdown-menu {
@@ -191,18 +191,10 @@ top: 0;
 /* Widgets
 ------------------------------------------------------------ */
 
-.widget{
-	margin-bottom: 0;
-}
-
 #inner .widget{
     background: #fff;
     padding: 0px 25px 5px;
-	margin-bottom: 0;
-}
-
-#inner .widget + .widget{
-	margin-top: 30px;	
+	margin-bottom: 30px;
 }
 
 #inner .widgettitle{
@@ -221,7 +213,6 @@ top: 0;
 
 #footer-widget .widget{
     margin-top: 0;    
-    margin-bottom: 20px;
 }
 
 #footer-widget .widgettitle{
@@ -239,6 +230,10 @@ top: 0;
     border-top: 1px solid #e5e5e5;
 }
 
+#inner .widget-wrap ul ul li + li{	
+    border-top: 0;
+}
+
 #footer-widget .widget-wrap ul li{   
     padding: 0 0;
     margin-bottom: 10px;
@@ -254,7 +249,7 @@ top: 0;
 }
 
 #inner .widget.widget_search .widgettitle{
-	display: none;
+    margin:0 0 10px 0;
 }
 
 /* Subscriber Widget
@@ -264,7 +259,6 @@ top: 0;
     background: #3C71A7;
 
     padding: 30px 30px;
-    margin: 0;
     border-left: 5px solid #005B7D;
 }
 
@@ -588,6 +582,10 @@ input[type="submit"].searchsubmit:hover{
 	color: #FFFFFF;
 }
 
+#footer-wrapper{
+	position: relative;
+}
+
 #footer a, #footer a:hover{
     text-decoration: none;
     color: #919193;
@@ -595,6 +593,24 @@ input[type="submit"].searchsubmit:hover{
 
 .credits, .scrolltop {
     padding: 14px 0px;
+}
+
+.scrolltop{
+    position: absolute;
+    
+    top: 0px;
+    right: 0px;
+    width: 48px;
+    height: 48px;
+    background: #919193 url(assets/img/scroll-top-arrow.png) center center no-repeat;
+    padding: 0;
+}
+
+.scrolltop a{
+	height: 48px;
+	width: 48px;
+	display: inline-block;
+	text-indent: -999em;
 }
 
 /* Form Style
@@ -658,4 +674,41 @@ input[type="color"]:focus,
    .navbar {
         border-radius: 0px;
     } 
+}
+
+@media (max-width: 767px){
+    .navbar-default .navbar-brand {
+        color: #FFF;
+    }
+    
+    .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+        color: #FFF;    
+    }
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #FFF;
+    }
+
+    #nav .nav > li > a {
+        border-top: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #nav .dropdown-menu {
+        padding-left: 10px;
+    }
+
+    #footer-widget {
+        padding-bottom: 50px;
+    }
+
+    #footer {
+    text-align: center;
+        
+    }
+
+    .scrolltop {
+        top: -48px;
+    }
 }

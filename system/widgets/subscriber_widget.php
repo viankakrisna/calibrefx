@@ -72,7 +72,7 @@ class CFX_Subscriber_Widget extends WP_Widget {
 				<div class="input-group">
 					<input type="text" value="<?php echo esc_attr( $instance['input_text'] ); ?>" id="subbox" onfocus="if ( this.value == '<?php echo esc_js( $instance['input_text'] ); ?>') { this.value = ''; }" onblur="if ( this.value == '' ) { this.value = '<?php echo esc_js( $instance['input_text'] ); ?>'; }" name="email" class="form-control" />
 					<span class="input-group-btn">
-						<input type="submit" value="<?php echo esc_attr( $instance['button_text'] ); ?>" id="subbutton" class="form-control btn btn-default" />
+						<input type="submit" value="<?php echo esc_attr( $instance['button_text'] ); ?>" id="subbutton" class="btn btn-default" />
 					</span>
 				</div>
 				<input type="hidden" name="uri" value="<?php echo esc_attr( $instance['id'] ); ?>" />

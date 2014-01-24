@@ -79,11 +79,12 @@ function calibrefx_do_nav() {
                     %2$s
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="navbar-brand">%4$s</span>
-
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                            <span class="navbar-brand">%4$s</span>                            
+                            <span class="menu-toggle-icon">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </span>
                         </button>
                     </div>
                     <div class="collapse navbar-collapse" role="navigation">%1$s</div>  
