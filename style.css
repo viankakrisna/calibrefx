@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 #wrapper {
-	background-color: #F4F4F4;
+	background-color: #ededf0;
 }
 
 /* Header
@@ -60,7 +60,7 @@ margin-top: 20px;
 }
 
 .navbar-default {
-	background-color: #585858;
+	background-color: #1a1a1a;
 }
 
 #nav .navbar-inner{
@@ -132,13 +132,13 @@ top: 0;
 ------------------------------------------------------------ */
 #subnav {
     padding: 0px 0px;
-    background: #E9E9EA;
+    background: #2a2a2a;
 }
 
 #subnav .nav > li > a{
-    color: #8A94A1;
-    padding-top: 21px;
-    padding-bottom: 21px;
+    color: #E4E4E4;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 #subnav .nav > li > a:hover,
@@ -146,7 +146,7 @@ top: 0;
 #subnav .nav > li:hover > a,
 #subnav .nav > li.current-menu-ancestor > a{
     background-color: transparent;
-    color: #005B7D;    
+    color: #FFFFFF;    
 }
 
 #subnav .dropdown-menu{
@@ -198,7 +198,7 @@ top: 0;
 }
 
 #inner .widgettitle{
-    background: #585858;
+    background: #2a2a2a;
     padding: 10px 25px;
     color: #fff;
     margin: 0 -25px 5px;
@@ -346,15 +346,11 @@ font-size: 14px;
 margin: 0;
 } 
 
-
-
-
 /* Breadcrumb
 ------------------------------------------------------------ */
 
 .breadcrumb-container {
-    background: #E9E9EA;
-
+    background: #FFFFFF;
     border-radius: 0;
     margin-bottom: 30px;
 }
@@ -578,7 +574,7 @@ input[type="submit"].searchsubmit:hover{
 /* Footer
 ------------------------------------------------------------ */
 #footer{
-	background: #C8C9CC;
+	background: #2a2a2a;
 	color: #FFFFFF;
 }
 
@@ -602,7 +598,7 @@ input[type="submit"].searchsubmit:hover{
     right: 0px;
     width: 48px;
     height: 48px;
-    background: #919193 url(assets/img/scroll-top-arrow.png) center center no-repeat;
+    background: #585858 url(assets/img/scroll-top-arrow.png) center center no-repeat;
     padding: 0;
 }
 
