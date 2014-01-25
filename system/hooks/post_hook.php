@@ -274,3 +274,13 @@ function calibrefx_no_self_ping ($links) {
     endforeach;
 }
 add_action('pre_ping', 'calibrefx_no_self_ping');
+
+function add_featured_image_to_feed($content) {
+  global $post;
+  if ( has_post_thumbnail( $post->ID ) ){
+    $content = '' . get_the_post_thumbnail( $post->ID, 'post-thumbnail-image' ) . '' . $content;
+    }
+  return $content;
+}
+add_filter('the_excerpt_rss', 'add_featured_image_to_feed', 1000, 1);
+add_filter('the_content_feed', 'add_featured_image_to_feed', 1000, 1);
