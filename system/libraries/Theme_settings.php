@@ -207,14 +207,24 @@ class CFX_Theme_Settings extends CFX_Admin {
      */
     function analytics_setting(){
     ?>
-        <h3 class="section-title">
-            <label for="analytic_id"><?php _e('Google Analytics ID', 'calibrefx'); ?></strong>
-        </h3>
-        <div class="section-input">
-            <input type="text" name="<?php echo $this->settings_field; ?>[analytic_id]" id="analytic_id" value="<?php echo esc_attr(calibrefx_get_option('analytic_id')); ?>" />
-        </div>
+        <div id="analytics-settings">
+            <h3 class="section-title">
+                <label for="analytic_id"><?php _e('Google Analytics ID', 'calibrefx'); ?></label>
+            </h3>
 
-        <p class="description"><?php _e('Enter your google analytics ID, example: <strong>UA-xxxxxxxx-x</strong>', 'calibrefx'); ?></p>
+            <div class="section-row">
+                <div class="section-col">
+                    <input type="text" name="<?php echo $this->settings_field; ?>[analytic_id]" id="analytic_id" value="<?php echo esc_attr(calibrefx_get_option('analytic_id')); ?>" />
+                </div>
+                <div class="section-col noborder">
+                    <div class="section-desc">
+                        <p class="description">
+                            <?php _e('Enter your google analytics ID, example: <strong>UA-xxxxxxxx-x</strong>', 'calibrefx'); ?>
+                        </p>     
+                    </div>
+                </div>   
+            </div>
+        </div>
     <?php
         do_action('calibrefx_analytic_settings_meta_box');
     }
@@ -413,6 +423,32 @@ class CFX_Theme_Settings extends CFX_Admin {
      */
     function layout_box() {
         global $calibrefx_user_ability;
+        ?>
+        <div id="mobile-settings">
+            <div class="section-row">
+                <div class="section-col">
+                    <p>
+                        <label for="calibrefx-settings-checkbox-enable-mobile"><?php _e('Enable Mobile Site', 'calibrefx'); ?></label>
+                    </p>
+                    <input type="checkbox" name="" id="calibrefx-settings-checkbox-enable-mobile" value="0" <?php checked(1, calibrefx_get_option('enable_mobile')); ?> target="calibrefx-settings-enable-mobile" class="calibrefx-settings-checkbox"  />
+                </div>
+                <div class="section-col noborder">
+                    <div class="section-desc">
+                        <p class="description">
+                            <?php _e('You can choose your navigation format. Choices: Numeric, Older-Newer, or Previous-Next', 'calibrefx'); ?>
+                        </p>     
+                    </div>
+                </div>   
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <?php
         if ($calibrefx_user_ability === 'professor') {
             ?>
              <p><label><?php _e('Enable Mobile Site', 'calibrefx'); ?></label>
