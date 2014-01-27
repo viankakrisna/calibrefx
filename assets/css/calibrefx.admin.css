@@ -295,7 +295,7 @@ span.calibrefx-info{
 }
 
 .calibrefx-content div.updated{
-    margin: 0px 2% 15px 2%;
+    margin: 0px 0 15px 0;
 }
 
 .calibrefx-content h2{
@@ -630,6 +630,33 @@ span.calibrefx-info{
 .calibrefx-option #side-sortables{
 	display: none;
 }
+
+#footer-script-settings{
+	padding-top: 20px;
+}
+
+.calibrefx-option .postbox p.facebook-admins-settings{
+	margin-bottom: 30px;
+}
+
+.calibrefx-option .postbox p.facebook-page-settings{
+	margin-bottom: 60px
+}
+
+#social-link-settings .section-desc p{
+	margin-bottom: 14px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid #d7d7d7;
+}
+
+#social-link-settings .section-desc p:first-child {
+	padding-top: 10px
+}	
+
+#social-link-settings .section-desc p:last-child{
+	border-bottom: none;	
+}
+
 
 @media only screen and (max-width: 900px){
     #wpcontent, #footer {
