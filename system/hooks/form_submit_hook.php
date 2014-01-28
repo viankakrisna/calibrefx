@@ -81,7 +81,6 @@ function form_submit_handler(){
 		}
 	}
 }
-// add_action('wp_loaded', 'form_submit_handler', 15);
 
 function form_submit_notification_handler(){
 	if(isset($_REQUEST['submitted'])){
@@ -91,31 +90,38 @@ function form_submit_notification_handler(){
 		return;
 	}
 
-	$message = ''; $error = false;
-	switch ($_GET['type']) {
-		case 'contactform':
-			$message = apply_filters('calibrefx_contact_form_message', __('Your message has been sent. Thank you for submitting your message.', 'calibrefx'));
-			break;
-		
-		case 'autoresponder':
-			$message = apply_filters('calibrefx_autoresponder_message', __('Your detail has been submitted. Please check your inbox, and confirm your subscription.', 'calibrefx'));
-			break;
+	$message = apply_filters('calibrefx_form_submit_message', array(
+		'content' => __('Thank you for your submission.', 'calibrefx'),
+		'error' => false
+	));
+	if(isset($_GET['type']) && !empty($_GET['type'])){
+		switch ($_GET['type']) {
+			case 'contactform':
+				$message['content'] = apply_filters('calibrefx_contact_form_message', __('Your message has been sent. Thank you for submitting your message.', 'calibrefx'));
+				break;
+			
+			case 'autoresponder':
+				$message['content'] = apply_filters('calibrefx_autoresponder_message', __('Your detail has been submitted. Please check your inbox, and confirm your subscription.', 'calibrefx'));
+				break;
 
-		default:
-			$message = apply_filters('calibrefx_other_form_submit_message', __('Your message has been submitted.'));
-			$error = apply_filters('calibrefx_other_form_submit_status', false);
-			break;
+			default:
+				break;
+		}
 	}
 
-	if($error) $alert_success = ' alert-error';
+	if($message['error']) $alert_success = ' alert-danger';
 	else $alert_success = ' alert-success';
 
 	echo '
-		<div class="modal hide fade" id="submit-notice">
-			<div class="modal-body">
-			    <div class="alert'.$alert_success.'">
-				  	<button type="button" class="close" data-dismiss="modal">&times;</button>
-					'.$message.'
+		<div class="modal fade" id="submit-notice">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="alert'.$alert_success.'">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							'.stripslashes($message['content']).'
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -126,4 +132,3 @@ function form_submit_notification_handler(){
 		</script>
 	';	
 }
-// add_action('calibrefx_after_wrapper', 'form_submit_notification_handler', 20);
