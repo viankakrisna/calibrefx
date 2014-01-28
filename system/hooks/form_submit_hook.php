@@ -102,7 +102,8 @@ function form_submit_notification_handler(){
 			break;
 
 		default:
-			# code...
+			$message = apply_filters('calibrefx_other_form_submit_message', __('Your message has been submitted.'));
+			$error = apply_filters('calibrefx_other_form_submit_status', false);
 			break;
 	}
 

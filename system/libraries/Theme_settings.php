@@ -592,7 +592,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             </div>
         </div>
 
-        <h3 class="section-title"><?php _e('Feed Settings', 'calibrefx'); ?></h3>
+        <h3 class="section-title"><?php _e('Social Link Settings', 'calibrefx'); ?></h3>
         <div id="social-link-settings">
             <div class="section-row">
                 <div class="section-col">
