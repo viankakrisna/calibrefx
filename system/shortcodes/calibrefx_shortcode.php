@@ -1551,8 +1551,7 @@ function calibrefx_post_item($atts, $content = null) {
     $html = '';
 
     if($query->have_posts()) :
-		$post_class = '';
- 
+        $post_class ='';
         foreach(get_post_class() as $class_item => $val){
             $post_class .= ' '.$val;
         }
