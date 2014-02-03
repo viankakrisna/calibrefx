@@ -784,4 +784,7 @@ span.calibrefx-info{
     #wpbody select{
         margin-right: 4px;
     }
+    hr.div{
+        margin-bottom: 30px;
+    }
 }
