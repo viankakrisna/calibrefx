@@ -81,7 +81,7 @@ hr.div {
     text-align: center;
 }
 .calibrefx-layout-selector label.box img {
-    max-width: 85px;
+    max-width: 83px;
     border: 3px solid transparent;
     margin-bottom: 5px;
 }
@@ -590,7 +590,7 @@ span.calibrefx-info{
 
 .section-label-checkbox{
 	display: inline-block;
-	width: 40%;
+	width: 48%;
 }
 
 .section-box{
@@ -662,6 +662,20 @@ span.calibrefx-info{
 	border-bottom: none;	
 }
 
+/*MEDIA QUERY RESPONSIVE------------------*/
+
+@media only screen and (max-width: 1080px){
+    .section-label-checkbox{
+        width: 56%;
+    }
+    span.calibrefx-info{
+        height: 30px;
+        background-position: 0px 0px;
+        display: block;
+        position: relative;
+        top: -10px;
+    }
+}
 
 @media only screen and (max-width: 900px){
     #wpcontent, #footer {
@@ -727,6 +741,7 @@ span.calibrefx-info{
 	#comment-feed-settings .section-col.last{
 		padding-top: 5px;
 	}
+
 }
 
 @media only screen and (max-width: 782px){
@@ -734,8 +749,6 @@ span.calibrefx-info{
 		position: relative;
 		top: 0px;
 		left: 0px;
-		
-	
 		width:  auto;
 }
 	
@@ -752,7 +765,6 @@ span.calibrefx-info{
 	
 	.main-postbox{
 		margin: 0px;
-	
 		width: 100%;
 		float: none;
 }
@@ -768,8 +780,6 @@ span.calibrefx-info{
 	.calibrefx-tab ul.calibrefx-tab-option li {
 		display: inline-block;	
 		width: 33.33%;
-		
-	
 		text-align: center;
 	}
 	
@@ -787,4 +797,12 @@ span.calibrefx-info{
     hr.div{
         margin-bottom: 30px;
     }
+    
+}
+
+@media only screen and (max-width: 720px){
+    .calibrefx-layout-selector label.box img{
+        max-width: 90px;
+    }
+
 }
