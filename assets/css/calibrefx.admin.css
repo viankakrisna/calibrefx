@@ -797,12 +797,36 @@ span.calibrefx-info{
     hr.div{
         margin-bottom: 30px;
     }
+   
     
 }
 
 @media only screen and (max-width: 720px){
     .calibrefx-layout-selector label.box img{
-        max-width: 90px;
+        max-width: 100px;
+    }
+    .calibrefx-content{
+        margin-top:100px ;
+    }
+    .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
+       padding: 14px;
+        font-size: 16px;
+    }
+   
+}
+
+@media (min-width: 480px) and (max-width: 719px) {
+    .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
+        font-size: 14px;
+         padding: 14px;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 479px){
+    .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
+        padding: 12px;
+        font-size: 13px;
     }
 
 }
