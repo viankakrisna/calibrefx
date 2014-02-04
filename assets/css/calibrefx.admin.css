@@ -81,7 +81,7 @@ hr.div {
     text-align: center;
 }
 .calibrefx-layout-selector label.box img {
-    max-width: 85px;
+    max-width: 83px;
     border: 3px solid transparent;
     margin-bottom: 5px;
 }
@@ -382,6 +382,7 @@ span.calibrefx-info{
 .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
     width: 174px;
     padding: 17px 0px 17px 30px;
+
 }
 
 .calibrefx-admin-page #wpbody-content .metabox-holder {
@@ -589,7 +590,7 @@ span.calibrefx-info{
 
 .section-label-checkbox{
 	display: inline-block;
-	width: 40%;
+	width: 48%;
 }
 
 .section-box{
@@ -661,6 +662,20 @@ span.calibrefx-info{
 	border-bottom: none;	
 }
 
+/*MEDIA QUERY RESPONSIVE------------------*/
+
+@media only screen and (max-width: 1080px){
+    .section-label-checkbox{
+        width: 56%;
+    }
+    span.calibrefx-info{
+        height: 30px;
+        background-position: 0px 0px;
+        display: block;
+        position: relative;
+        top: -10px;
+    }
+}
 
 @media only screen and (max-width: 900px){
     #wpcontent, #footer {
@@ -726,6 +741,7 @@ span.calibrefx-info{
 	#comment-feed-settings .section-col.last{
 		padding-top: 5px;
 	}
+
 }
 
 @media only screen and (max-width: 782px){
@@ -733,8 +749,6 @@ span.calibrefx-info{
 		position: relative;
 		top: 0px;
 		left: 0px;
-		
-	
 		width:  auto;
 }
 	
@@ -743,14 +757,14 @@ span.calibrefx-info{
 		margin-right: 0px;
 	}
 	
-	.calibrefx-admin-page.branch-3-8 #wpcontent, .calibrefx-admin-page.branch-3-8 #wpfooter {
+	.calibrefx-admin-page.branch-3-8 #wpcontent, 
+    .calibrefx-admin-page.branch-3-8 #wpfooter {
 		margin-left: 0px;	
 		padding-right: 10px;
 	}
 	
 	.main-postbox{
 		margin: 0px;
-	
 		width: 100%;
 		float: none;
 }
@@ -766,8 +780,6 @@ span.calibrefx-info{
 	.calibrefx-tab ul.calibrefx-tab-option li {
 		display: inline-block;	
 		width: 33.33%;
-		
-	
 		text-align: center;
 	}
 	
@@ -777,6 +789,44 @@ span.calibrefx-info{
 	}	
 	
 	.calibrefx-tab ul.calibrefx-tab-option li a {
-		
+		border-left: 1px solid #e3e3e3;
 	}
+    #wpbody select{
+        margin-right: 4px;
+    }
+    hr.div{
+        margin-bottom: 30px;
+    }
+   
+    
+}
+
+@media only screen and (max-width: 720px){
+    .calibrefx-layout-selector label.box img{
+        max-width: 100px;
+    }
+    .calibrefx-content{
+        margin-top:100px ;
+    }
+    .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
+       padding: 14px;
+        font-size: 16px;
+    }
+   
+}
+
+@media (min-width: 480px) and (max-width: 719px) {
+    .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
+        font-size: 14px;
+         padding: 14px;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 479px){
+    .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
+        padding: 12px;
+        font-size: 13px;
+    }
+
 }
