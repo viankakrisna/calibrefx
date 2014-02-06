@@ -290,10 +290,10 @@ function calibrefx_do_meta_pingback() {
  * This function adds dublin core meta in header
  */
 function calibrefx_do_dublin_core() {
-    echo '<meta name="DC.title" content="' . apply_filters('calibrefx_do_title', get_bloginfo('name')) . '">'."\n";
-    echo '<meta name="DC.description" content="' . apply_filters('calibrefx_seo_description', get_bloginfo('description')) . '">'."\n";
-    echo '<meta name="DC.subject" content="' . apply_filters('calibrefx_do_title', get_bloginfo('name')) . '">'."\n";
-    echo '<meta name="DC.language" content="' . get_bloginfo('language') . '">' . "\n";
+    echo '<meta name="DC.title" content="' . apply_filters('calibrefx_do_title', get_bloginfo('name')) . '" />'."\n";
+    echo '<meta name="DC.description" content="' . apply_filters('calibrefx_seo_description', get_bloginfo('description')) . '" />'."\n";
+    echo '<meta name="DC.subject" content="' . apply_filters('calibrefx_do_title', get_bloginfo('name')) . '" />'."\n";
+    echo '<meta name="DC.language" content="' . get_bloginfo('language') . '" />' . "\n";
 }
 
 /**
