@@ -4,11 +4,11 @@
  *
  * WordPress Themes Framework by CalibreFx Team
  *
- * @package     CalibreFx
- * @author      CalibreFx Team
+ * @package     Calibrefx
+ * @author      Calibreworks Team
  * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
+ * @copyright   Copyright (c) 2012-2014, CalibreWorks. (http://www.calibreworks.com/)
+ * @license     Commercial
  * @link        http://www.calibrefx.com
  * @filesource 
  *
@@ -29,10 +29,10 @@ do_action('calibrefx_pre');
 /** Define Theme Info Constants */
 define('FRAMEWORK_NAME', 'Calibrefx');
 define('FRAMEWORK_CODENAME', 'Red Penguin');
-define('FRAMEWORK_VERSION', '1.1.0b');
+define('FRAMEWORK_VERSION', '1.1.0');
 define('FRAMEWORK_DB_VERSION', '1000');
 define('FRAMEWORK_URL', 'http://www.calibrefx.com');
-define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1390781748'));
+define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1391652284'));
 /*
  * ------------------------------------------------------
  *  Load the global functions
