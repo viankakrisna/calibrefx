@@ -201,3 +201,9 @@ function calibrefx_og_description(){
 
 	return apply_filters( 'calibrefx_og_description', $desc );
 }
+
+function calibrefx_og_image(){
+	$image = calibrefx_get_image(array('format' => 'url'));
+    
+	return apply_filters( 'calibrefx_og_image', $image );
+}

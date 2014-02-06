@@ -309,10 +309,12 @@ function calibrefx_do_fb_og() {
     echo '<meta property="og:title" content="' . calibrefx_og_title() . '"/>'."\n";
     echo '<meta property="og:url" content="' . calibrefx_og_url() . '"/>'."\n";
     echo '<meta property="og:description" content="' . calibrefx_og_description() . '"/>'."\n";
-    $image = calibrefx_get_image(array('format' => 'url'));
+    $image = calibrefx_og_image();
     if ($image) {
         echo '<meta property="og:image" content="' . $image . '"/>'."\n";
     }
+	
+	do_action('calibrefx_do_another_fb_og');
 }
 
 /**
