@@ -32,7 +32,7 @@ define('FRAMEWORK_CODENAME', 'Red Penguin');
 define('FRAMEWORK_VERSION', '1.1.0b');
 define('FRAMEWORK_DB_VERSION', '1000');
 define('FRAMEWORK_URL', 'http://www.calibrefx.com');
-define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1389684516'));
+define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1390781748'));
 /*
  * ------------------------------------------------------
  *  Load the global functions
