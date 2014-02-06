@@ -302,16 +302,16 @@ function calibrefx_do_dublin_core() {
 function calibrefx_do_fb_og() {
     if(!current_theme_supports( 'calibrefx-open-graph' )) return;
 
-    echo '<meta property="locale" content="' . calibrefx_og_locale() . '"/>'."\n";
-    echo '<meta property="og:site_name" content="' . get_bloginfo('name') . '"/>'."\n";
-    if(calibrefx_get_option('facebook_admins')) echo '<meta property="fb:admins" content="' . calibrefx_get_option('facebook_admins') . '"/>'."\n";
-    if(calibrefx_get_option('facebook_og_type')) echo '<meta property="og:type" content="' . calibrefx_get_option('facebook_og_type') . '"/>'."\n";
-    echo '<meta property="og:title" content="' . calibrefx_og_title() . '"/>'."\n";
-    echo '<meta property="og:url" content="' . calibrefx_og_url() . '"/>'."\n";
-    echo '<meta property="og:description" content="' . calibrefx_og_description() . '"/>'."\n";
+    echo '<meta property="locale" content="' . calibrefx_og_locale() . '" />'."\n";
+    echo '<meta property="og:site_name" content="' . get_bloginfo('name') . '" />'."\n";
+    if(calibrefx_get_option('facebook_admins')) echo '<meta property="fb:admins" content="' . calibrefx_get_option('facebook_admins') . '" />'."\n";
+    if(calibrefx_get_option('facebook_og_type')) echo '<meta property="og:type" content="' . calibrefx_get_option('facebook_og_type') . '" />'."\n";
+    echo '<meta property="og:title" content="' . calibrefx_og_title() . '" />'."\n";
+    echo '<meta property="og:url" content="' . calibrefx_og_url() . '" />'."\n";
+    echo '<meta property="og:description" content="' . calibrefx_og_description() . '" />'."\n";
     $image = calibrefx_og_image();
     if ($image) {
-        echo '<meta property="og:image" content="' . $image . '"/>'."\n";
+        echo '<meta property="og:image" content="' . $image . '" />'."\n";
     }
 	
 	do_action('calibrefx_do_another_fb_og');
