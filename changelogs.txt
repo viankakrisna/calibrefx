@@ -19,8 +19,21 @@
  * @package CalibreFx
  */
 
+version 1.1.0 <6 February 2014> - 
+    * Upgrade to bootstrap3
+    * Create default style for calibrefx front end
+    * Much better mobile responsive
+    * New Admin Backend UI
+    * Add CFX Generator for automatic action hook
+    * Better Performance and cache
+    * Security enchanced
+    * Now support modules activation and deactivation
+
+---
+
 version 1.0.18 <23 December 2013> - 
     * Fix styling for WordPress 3.8
+    * End of development cycle
 
 version 1.0.17 <13 December 2013> - 
     * Disable calibrefx admin bar because it will break WordPress 3.8 new admin design
