@@ -34,11 +34,5 @@ wp_head();
 do_action('calibrefx_before_header');
 do_action('calibrefx_header');
 do_action('calibrefx_after_header');
-
-if(current_theme_supports('calibrefx-version-1.0')){
-	$inner_class = apply_filters( 'inner_class', calibrefx_row_class() );
-	echo '<div id="inner" class="'.$inner_class.'">';
-}else{
-	echo '<div id="inner">';
-}
 ?>
+<div id="inner">
