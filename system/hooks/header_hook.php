@@ -60,7 +60,7 @@ $cfxgenerator->wp_head = array(
  * @package CalibreFx
  */
 function calibrefx_print_doctype() { ?>
-<!doctype html <?php language_attributes(); ?>>
+<!doctype html>
 <!--[if lt IE 7 ]><html class="ie ltie9 ie6 no-js" lang="<?php bloginfo('language'); ?>"><![endif]-->
 <!--[if IE 7 ]><html class="ie ltie9 ie7 no-js" lang="<?php bloginfo('language'); ?>"><![endif]-->
 <!--[if IE 8 ]><html class="ie ltie9 ie8 no-js" lang="<?php bloginfo('language'); ?>"><![endif]-->
