@@ -173,7 +173,7 @@ function calibrefx_og_description(){
 	if ( is_home() || is_front_page() ){
 		$desc = get_bloginfo('description');
 	} elseif ( is_singular() ){
-		$desc = get_the_content_limit( calibrefx_get_option('content_archive_limit'), '', 0, '', '' );
+		$desc = calibrefx_truncate_phrase( $post->post_content, calibrefx_get_option('content_archive_limit') );
 	} elseif ( is_archive() ){
 		if( is_category() ){
 			$desc = category_description( get_query_var( 'cat' ) );
