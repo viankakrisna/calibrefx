@@ -22,4 +22,6 @@ jQuery(document).ready(function($) {
     });
 
     $('#content .entry-content table, #comments .comment-content table').addClass('table table-bordered').wrap('<div class="table-responsive"></div>');
+
+    $('#commentform #submit').addClass('btn btn-primary');
 });
