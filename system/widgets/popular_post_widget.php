@@ -33,7 +33,9 @@ class CFX_Popular_Post_Widget extends WP_Widget {
 			'title'       	=> '',
 			'num_posts'  	=> '5',
 			'show_thumbnail' => 0,
-			'image_size' => 'thumbnail'
+			'image_size' => 'thumbnail',
+			'show_detail' => 0,
+			'detail_length' => 100
 		);
 
 		$widget_ops = array(
@@ -90,6 +92,7 @@ class CFX_Popular_Post_Widget extends WP_Widget {
 								<div class="latest-post-detail col-lg-8 col-md-8 col-sm-8 col-xs-8">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-info">'.do_shortcode('[post_date]').'</p>
+									'.(($instance['show_detail']) ? calibrefx_get_content_limit($instance['detail_length']) : '').'
 								</div>
 							</div>
 						</li>
@@ -101,6 +104,7 @@ class CFX_Popular_Post_Widget extends WP_Widget {
 								<div class="latest-post-detail col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-date">'.date($date_format, get_the_time('U')).'</p>
+									'.(($instance['show_detail']) ? calibrefx_get_content_limit($instance['detail_length']) : '').'
 								</div>
 							</div>
 						</li>
@@ -145,6 +149,16 @@ class CFX_Popular_Post_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'num_posts' ); ?>"><?php _e( 'Number of posts to show', 'calibrefx' ); ?>:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'num_posts' ); ?>" name="<?php echo $this->get_field_name( 'num_posts' ); ?>" value="<?php echo absint( $instance['num_posts'] ); ?>" size="3" />
+		</p>
+		
+		<p>
+			<input id="<?php echo $this->get_field_id( 'show_detail' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_detail' ); ?>" value="1"<?php checked( $instance['show_detail'] ); ?> />
+			<label for="<?php echo $this->get_field_id( 'show_detail' ); ?>"><?php _e( 'Show Content', 'calibrefx' ); ?></label>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id( 'detail_length' ); ?>"><?php _e( 'Content Length', 'calibrefx' ); ?>:</label>
+			<input type="text" id="<?php echo $this->get_field_id( 'detail_length' ); ?>" name="<?php echo $this->get_field_name( 'detail_length' ); ?>" value="<?php echo absint( $instance['detail_length'] ); ?>" size="3" />
 		</p>
 
 		<hr class="div" />
