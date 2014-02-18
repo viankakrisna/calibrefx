@@ -213,7 +213,7 @@ function calibrefx_site_layout() {
     $custom_layout = false;
 
     if(is_single() OR is_page()){
-        $custom_layout = calibrefx_get_custom_field('site_layout');
+        $custom_layout = get_post_meta($post->ID, 'site_layout', true);
     }
 
     if ($custom_layout) {
@@ -341,7 +341,7 @@ function calibrefx_layout_sidebar_content_sidebar(){
  */
 function calibrefx_content_span() {
     // get the layout
-    $site_layout = calibrefx_site_layout(); 
+    $site_layout = calibrefx_site_layout();
 
     // don't load sidebar on pages that don't need it
     if( current_theme_supports('calibrefx-responsive-style') ){
@@ -357,7 +357,7 @@ function calibrefx_content_span() {
             return apply_filters('calibrefx_content_span', 'col-xs-12 first');
 
         if ($site_layout == 'sidebar-content-sidebar')
-            return apply_filters('calibrefx_content_span', 'col-xs-6');
+            return apply_filters('calibrefx_content_span', 'col-xs-8');
 
         return apply_filters('calibrefx_content_span', 'col-xs-8');
     }

@@ -92,7 +92,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 								<div class="latest-post-detail col-lg-8 col-md-8 col-sm-8 col-xs-8">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-info">'.do_shortcode('[post_date]').'</p>
-									'.(($instance['show_detail']) ? calibrefx_get_content_limit($instance['detail_length']) : '').'
+									'.(($instance['show_detail']) ? get_the_content_limit($instance['detail_length']) : '').'
 								</div>
 							</div>
 						</li>
@@ -104,7 +104,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 								<div class="latest-post-detail col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-date">'.date($date_format, get_the_time('U')).'</p>
-									'.(($instance['show_detail']) ? calibrefx_get_content_limit($instance['detail_length']) : '').'
+									'.(($instance['show_detail']) ? get_the_content_limit($instance['detail_length']) : '').'
 								</div>
 							</div>
 						</li>
