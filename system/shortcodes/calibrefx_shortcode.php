@@ -1388,7 +1388,12 @@ function calibrefx_tweet($atts, $content = null) {
         'url' => get_permalink(),
         'count' => 'vertical',
         'size' => 'medium',
-        'text' => ''
+        'text' => '',
+		'related' => '',
+		'via' => '',
+		'lang' => '',
+		'hashtags' => '',
+		'dnt' => ''
     ), $atts));
     
     $attr = '';
@@ -1397,6 +1402,11 @@ function calibrefx_tweet($atts, $content = null) {
     if(!empty($count)) $attr .=' data-count="'.$count.'"';
     if(!empty($size)) $attr .=' data-size="'.$size.'"';
     if(!empty($text)) $attr .= ' data-text="'.$text.'"';
+	if(!empty($related)) $attr .=' data-related="'.$related.'"';
+    if(!empty($via)) $attr .=' data-via="'.$via.'"';
+    if(!empty($lang)) $attr .=' data-lang="'.$lang.'"';
+    if(!empty($hashtags)) $attr .= ' data-hashtags="'.$hashtags.'"';
+	if(!empty($dnt)) $attr .= ' data-dnt="'.$dnt.'"';
 
     $output = '<span class="social-bookmark tweet-share"><a href="https://twitter.com/share" class="twitter-share-button"'.$attr.'>Tweet</a></span>';
 
