@@ -303,7 +303,7 @@ class CFX_Breadcrumb {
             $post_type = get_query_var('post_type');
             $post_type_object = get_post_type_object($post_type);
 
-            $crumb = $this->get_breadcrumb_link(get_post_type_archive_link($post_type), sprintf(__('View all %s', 'calibrefx'), $post_type_object->labels->name), $post_type_object->labels->name);
+            $crumb = '<li typeof="v:Breadcrumb">'.$this->get_breadcrumb_link(get_post_type_archive_link($post_type), sprintf(__('View all %s', 'calibrefx'), $post_type_object->labels->name), $post_type_object->labels->name).'</li>';
 
             $crumb .= $this->args['sep'] . '<li typeof="v:Breadcrumb">'.single_post_title('', false).'</li>';
         }
