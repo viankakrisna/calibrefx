@@ -264,6 +264,7 @@ class CFX_Breadcrumb {
 
         global $post;
 
+        $crumb = '';
         if (is_attachment()) {
             $crumb = '';
             if ($this->args['heirarchial_attachments']) { // if showing attachment parent
