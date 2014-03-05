@@ -15,9 +15,6 @@
  * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
  * this file under any circumstances. 
  *
- * This define the framework constants
- *
- * @package CalibreFx
  */
 
 /**
@@ -39,18 +36,24 @@
  * @author Ivan Kristianto
  **/
 function calibrefx_mobile_themes_exist(){
-	return file_exists(CHILD_URI . '/mobile');
+	return file_exists(CHILD_MOBILE_URI);
 }
 
 
 /**
- * calibrefx_get_mobile_theme
+ * calibrefx_get_mobile_template
  * this function will return the mobile folder from the child themes folder
- * this will use in add_filter 'template' & 'stylesheet'
+ * this will use in add_filter 'template_directory'
  *
  * @return string
- * @author Ivan Kristianto
+ * @author Hilaladdiyar
  **/
-function calibrefx_get_mobile_theme(){
-	return 'mobile';
+function calibrefx_get_mobile_template($template){
+	$mobile_template = str_replace(CHILD_URI, CHILD_MOBILE_URI, $template);
+
+	if(file_exists($mobile_template)){
+		return $mobile_template;
+	}else{
+		return $template;	
+	}
 }

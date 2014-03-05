@@ -170,6 +170,7 @@ class CFX_Breadcrumb {
 
         global $wp_query;
 
+        $crumb = '';
         if ('page' == $this->on_front && is_front_page()) {
             // Don't do anything - we're on the front page and we've already dealt with that elsewhere.
             $crumb = $this->get_home_crumb();
@@ -223,6 +224,7 @@ class CFX_Breadcrumb {
 
         global $wp_query, $wp_locale;
 
+        $crumb = '';
         if (is_category()) {
             $crumb = $this->args['labels']['category'] . $this->get_term_parents(get_query_var('cat'), 'category');
         } elseif (is_tag()) {
@@ -264,8 +266,8 @@ class CFX_Breadcrumb {
 
         global $post;
 
+        $crumb = '';
         if (is_attachment()) {
-            $crumb = '';
             if ($this->args['heirarchial_attachments']) { // if showing attachment parent
                 $attachment_parent = get_post($post->post_parent);
                 $crumb = $this->get_breadcrumb_link(

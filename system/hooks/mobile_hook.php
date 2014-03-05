@@ -47,20 +47,15 @@ $cfxgenerator->calibrefx_setup = array(
  * If mobile site is enable and there is a mobile template, then display mobile layout on mobile
  */
 function calibrefx_detect_mobile_browser(){
-	global $oBrowser,$calibrefx;
+	global $oBrowser,$calibrefx; 
 
-	if(is_admin() || !$oBrowser->isMobile() || !calibrefx_get_option('enable_mobile') || !calibrefx_mobile_themes_exist()){
+	if(is_admin() || !$oBrowser->isMobile() || !get_theme_support('mobile-site') || !calibrefx_mobile_themes_exist()){
 		return;
 	}
-	
-	//@TODO: overwrite themes here
-	// add_filter('theme_root', 'calibrefx_set_mobile_themes_folder');
-	// add_filter('theme_root_uri', 'calibrefx_set_mobile_themes_uri');
-	add_filter('stylesheet', 'calibrefx_get_mobile_theme');
-	add_filter('template', 'calibrefx_get_mobile_theme');
-	add_filter('calibrefx_site_layout', 'calibrefx_layout_full_width');
 
-	remove_action('calibrefx_after_header', 'calibrefx_do_nav');
-	remove_action('calibrefx_after_header', 'calibrefx_do_subnav');
-	remove_action('calibrefx_before_loop', 'calibrefx_do_breadcrumbs');
+	add_filter('template_include', 'calibrefx_get_mobile_template');
+
+	if(file_exists(CHILD_MOBILE_URI . '/mobile.php')){
+		include_once CHILD_MOBILE_URI . '/mobile.php';
+	}
 }

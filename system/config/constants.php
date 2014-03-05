@@ -67,6 +67,10 @@ define('CHILD_CSS_URL', CHILD_URL . '/assets/css');
 !defined('DIR_READ_MODE') && define('DIR_READ_MODE', 0755);
 !defined('DIR_WRITE_MODE') && define('DIR_WRITE_MODE', 0777);
 
+/** Mobile Template Constants */
+define('CHILD_MOBILE_URI', CHILD_URI . '/mobile');
+define('CHILD_MOBILE_URL', CHILD_URL . '/mobile');
+
 /*
   |--------------------------------------------------------------------------
   | File Stream Modes
