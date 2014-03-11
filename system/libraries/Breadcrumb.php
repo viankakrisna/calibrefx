@@ -365,7 +365,7 @@ class CFX_Breadcrumb {
             $chain[] = $parent->name;
         }
 
-        return join($this->args['sep'], $chain);
+        return join(apply_filters('calibrefx_term_parent_separator', '&raquo;'), $chain);
     }
 
     /**
