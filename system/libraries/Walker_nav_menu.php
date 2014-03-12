@@ -48,7 +48,7 @@ class CFX_Walker_Nav_menu extends Walker_Nav_Menu {
 
         $icon_html = '';
         if(isset($item->custom_icon) && !empty($item->custom_icon)){
-            $icon_html = '<i class="'. $item->custom_icon .'"></i>&nbsp;&nbsp;';
+            $icon_html = '<i class="'. $item->custom_icon .'"></i><span>&nbsp;&nbsp;</span>';
         }
 
 
