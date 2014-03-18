@@ -46,7 +46,7 @@ $autoload['configs'] = array();
  */
 $autoload['widgets'] = array('Facebook_Comment', 'Facebook_Like', 'Feature_Page_Slider', 
                             'Feature_Page', 'Feature_Post_Slider', 'Feature_Post',
-                            'Subscriber', 'Twitter_Timeline', 'Latest_Post', 'Popular_Post');
+                            'Subscriber', 'Twitter_Timeline', 'Latest_Post', 'Popular_Post', 'Social');
 
 /*
  *  Auto-load Config files
