@@ -38,7 +38,7 @@ function calibrefx_initialize_module(){
 		include_once( $module );
 	}
 }
-add_action( 'calibrefx_post_init','calibrefx_initialize_module' );
+add_action( 'calibrefx_post_init', 'calibrefx_initialize_module' );
 
 
 /**
@@ -65,10 +65,6 @@ function calibrefx_is_module_active($module){
 	
 	return in_array($module, $active_modules);
 }
-
-
-// calibrefx_activate_module(TEMPLATEPATH.'/system/modules/calibrefx_seo/init.php');
-// calibrefx_deactivate_module(TEMPLATEPATH.'/system/modules/calibrefx_seo/init.php');
 
 /**
  * Deactivate a module
