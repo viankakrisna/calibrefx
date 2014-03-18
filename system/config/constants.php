@@ -53,6 +53,7 @@ define('CHILD_CACHE_URI', CHILD_URI . '/cache');
 define('CHILD_IMAGES_URI', CHILD_URI . '/assets/img');
 define('CHILD_JS_URI', CHILD_URI . '/assets/js');
 define('CHILD_CSS_URI', CHILD_URI . '/assets/css');
+define('CHILD_MODULE_URI', CHILD_URI . '/app/modules');
 
 /** Define CALIBREFX Child URL Location Constant */
 define('CHILD_URL', get_stylesheet_directory_uri());

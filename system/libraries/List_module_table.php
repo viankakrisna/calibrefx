@@ -266,7 +266,10 @@ class CFX_List_Module_Table extends WP_List_Table {
             // 'delete' => '',
         );
 
+        // $module_file = file_exists( CALIBREFX_MODULE_URI . '/' . $module_file )? CALIBREFX_MODULE_URI . '/' . $module_file : CHILD_MODULE_URI . '/' . $module_file;
+
         $is_active = calibrefx_is_module_active( $module_file );
+        
         if ( $is_active ) {
             $actions['deactivate'] = '<a href="' . wp_nonce_url('admin.php?page=calibrefx-module&action=deactivate&amp;module=' . $module_file . '&amp;module_status=' . $context . '&amp;paged=' . $page . '&amp;s=' . $s, 'deactivate-module_' . $module_file) . '" title="' . esc_attr__('Deactivate this plugin') . '">' . __('Deactivate') . '</a>';
         } else {
