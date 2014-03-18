@@ -90,11 +90,7 @@ jQuery(document).ready(function($){
 		
 		if($(this).is(':checked')){
 			$('#' + id).val('1');
-			
-			console.info($('#' + id));
 		}else{
-			console.info('unchecked');
-		
 			$('#' + id).val('0');
 		}
 	});
@@ -109,7 +105,6 @@ jQuery(document).ready(function($){
         };
         
         $.post(ajaxurl, data, function(response) {
-            console.info(response);
             $('#send-mail-res').html(response.message);
         }, "json");
 
