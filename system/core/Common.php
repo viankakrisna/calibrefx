@@ -290,9 +290,13 @@ if (!function_exists('calibrefx_get_active_modules')) {
 
         foreach ( $active_modules as $module ) {
             if ( '.php' == substr( $module, -4 ) // $module must end with '.php'
-                && file_exists( $module ) // $module must exist
+                && (
+                    file_exists( CALIBREFX_MODULE_URI . '/' . $module ) OR
+                    file_exists( CHILD_MODULE_URI . '/' . $module )
+                ) // $module must exist
                 )
             $modules[] = $module;
+            //$modules[] = file_exists( CALIBREFX_MODULE_URI . '/' . $module )? CALIBREFX_MODULE_URI . '/' . $module : CHILD_MODULE_URI . '/' . $module;
         }
 
         /*update_option( 'calibrefx_active_modules', $modules );*/

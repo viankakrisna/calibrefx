@@ -34,7 +34,9 @@
  * Initialize a module and include it in the process
  */
 function calibrefx_initialize_module(){
+
 	foreach (calibrefx_get_active_modules() as $module) {
+		$module = file_exists( CALIBREFX_MODULE_URI . '/' . $module )? CALIBREFX_MODULE_URI . '/' . $module : CHILD_MODULE_URI . '/' . $module;
 		include_once( $module );
 	}
 }
@@ -46,23 +48,30 @@ add_action( 'calibrefx_post_init','calibrefx_initialize_module' );
  */
 function calibrefx_activate_module($module){
 	$active_modules = calibrefx_get_active_modules();
+
 	//windows compatibility
 	$module = str_replace("\\", "/", $module);
 	$module = str_replace("//", "/", $module);
-
+	
 	if(!in_array($module, $active_modules)){
 		$active_modules[] = $module;
+		
 		update_option( 'calibrefx_active_modules', $active_modules );
+		return true;
 	}
-	return true;
+	return false;
 }
 
 function calibrefx_is_module_active($module){
 	$active_modules = calibrefx_get_active_modules();
-
+	
 	//windows compatibility
 	$module = str_replace("\\", "/", $module);
-	
+	$CALIBREFX_MODULE_URI = str_replace("\\", "/", CALIBREFX_MODULE_URI);
+	$CHILD_MODULE_URI = str_replace("\\", "/", CHILD_MODULE_URI);
+	$module = str_replace($CALIBREFX_MODULE_URI . '/', '', $module);
+	$module = str_replace($CHILD_MODULE_URI . '/', '', $module);
+
 	return in_array($module, $active_modules);
 }
 
@@ -78,7 +87,7 @@ function calibrefx_deactivate_module($module){
 	//windows compatibility
 	$module = str_replace("\\", "/", $module);
 	$module = str_replace("//", "/", $module);
-	
+
 	if(in_array($module, $active_modules)){
 		$key = array_search($module, $active_modules);
 
@@ -144,9 +153,11 @@ function get_modules(){
 		if ( empty ( $module_data['Name'] ) )
 			continue;
 
+		$module_file = str_replace(CALIBREFX_MODULE_URI . '/', '', $module_file);
+		$module_file = str_replace(CHILD_MODULE_URI . '/', '', $module_file);
+
 		$cfx_modules[$module_file] = $module_data;
 	}
-
 	return $cfx_modules;
 }
 
