@@ -509,7 +509,8 @@ span.calibrefx-info{
     right: 8px;
 }
 
-.version-3-8 #update-nag{
+.branch-3-8 #update-nag,
+.branch-3-8 .update-nag{
 	margin-top: 0px;
 	display: block;
 	margin-left: 0px;
