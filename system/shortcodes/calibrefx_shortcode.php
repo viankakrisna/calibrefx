@@ -920,22 +920,19 @@ function calibrefx_feed_url(){
  * Google Maps
  * ==============================================================
  */
-add_shortcode('gmaps', 'calibrefx_gmap');
+add_shortcode('gmap', 'calibrefx_gmap');
 
 function calibrefx_gmap($atts, $content = '') {
     extract(shortcode_atts(array(
-                'before' => '',
-                'after' => '',
-                'class' => '',
-                'width' => '',
-                'height' => '',
-                'src' => ''
-                    ), $atts));
+        'before' => '',
+        'after' => '',
+        'class' => ''
+    ), $atts));
 
-    return $before . '<div class="flexible-container gmaps"><iframe width="' . $width . '" height="' . $height . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' . html_entity_decode($src) . '&output=embed" class="' . $class . '"></iframe></div>' . $after;
+    return $before . '<div class="flexible-container gmaps">' . $content . '</div>' . $after;
 }
 
-$cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps', CALIBREFX_SHORTCODE_URL . '/form-gmaps.php', 470, 360, __('Google map shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/googlemaps.png');
+$cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_gmaps', CALIBREFX_SHORTCODE_URL . '/form-gmaps.php', 470, 260, __('Google map shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/googlemaps.png');
 
 /**
  * ==============================================================

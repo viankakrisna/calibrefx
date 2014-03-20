@@ -33,18 +33,14 @@
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var googlemapsWidth = document.getElementById('googlemapsWidth').value;	
-                    var googlemapsHeight = document.getElementById('googlemapsHeight').value;
                     var googlemapsSrc = document.getElementById('googlemapsSrc').value;
 
-                    if ( (googlemapsWidth != '' ) && (googlemapsHeight != '' ) ) {
-                        //shortcodeRetazec
-                        shortcodeRetazec = '[gmaps width="' + googlemapsWidth + '" height="' + googlemapsHeight + '" src="' + googlemapsSrc +'"]';		
-			
+                    if ( googlemapsSrc != '' ) {
+                        shortcodeRetazec = '[gmap]' + googlemapsSrc + '[/gmap]';		
                     } else {
-			
-                        alert('Opps! You have to insert dimension of the slider.');
-			
+                        alert("Please enter google map embed code.");
+
+                        return false;
                     }
 		
 		
@@ -79,36 +75,20 @@
                 </ul>
             </div>
 
-            <div class="panel_wrapper" style="height: 240px;">
+            <div class="panel_wrapper" style="height: 179px;">
 
-                <div id="googlemapsTab" class="panel current" style="height: 160px;">
+                <div id="googlemapsTab" class="panel current" style="height: 180px;">
 
                     <fieldset>        
                         <legend>Google map</legend><br />  
 
-                        <table border="0" cellpadding="4" cellspacing="0">                
-                            <!-- width-->       
-                            <tr>                 
-                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="googlemaps_width">Width (px):</label></td>
-                                <td>                    
-                                    <input type="text" name="googlemapsWidth" id="googlemapsWidth" value="500" style="width: 220px" /><br /> 
-                                    <em style="font-size: 9px; color: #999999;">Width of map canvas in pixels.</em>                  
-                                </td>                    
-                            </tr>   
-                            <!-- height-->       
-                            <tr>                 
-                                <td nowrap="nowrap" style="vertical-align: text-top;"><label for="googlemaps_width">Height (px):</label></td>
-                                <td>                    
-                                    <input type="text" name="googlemapsHeight" id="googlemapsHeight" value="300" style="width: 220px" /><br /> 
-                                    <em style="font-size: 9px; color: #999999;">Height of map canvas in pixels.</em>                  
-                                </td>                    
-                            </tr> 				  
+                        <table border="0" cellpadding="4" cellspacing="0">				  
                             <!-- src-->       
                             <tr>                 
                                 <td nowrap="nowrap" style="vertical-align: text-top;"><label for="googlemaps_src">Source:</label></td>
                                 <td>                    
-                                    <textarea name="googlemapsSrc" id="googlemapsSrc" style="width: 220px" rows="8"></textarea><br /> 
-                                    <em style="font-size: 9px; color: #999999;">Something like: http://maps.google.com/?ie=UTF8&ll=48.109265,14.205322&spn=0.324145,0.590515&t=h&z=11</em>                  
+                                    <textarea name="googlemapsSrc" id="googlemapsSrc" style="width: 330px" rows="10" placeholder='Example: <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7527831053085!2d106.82347299999999!3d-6.163853449999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d9881b132b%3A0xe268d076bd69fb6!2sCalibreWorks+-+Web+Design+%26+Development+in+Jakarta!5e0!3m2!1sid!2sid!4v1395311668046" width="600" height="450" frameborder="0" style="border:0"></iframe>'></textarea><br /> 
+                                    <em style="font-size: 9px; color: #999999;">Insert google map embed code. You can find the tutorial <a href="https://support.google.com/maps/answer/3544418" target="_blank">here</a>.</em>                  
                                 </td>                    
                             </tr>                                
                         </table>     
