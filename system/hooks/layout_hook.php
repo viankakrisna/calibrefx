@@ -47,7 +47,7 @@ $cfxgenerator->calibrefx_sidebar_alt = array('calibrefx_do_sidebar_alt');
 
 $cfxgenerator->wp = array(
     array(
-        'function' => 'calibrefx_setup_custom_layout',
+        'function' => 'calibrefx_setup_custom_layout', 'calibrefx_header_body_classes_filter',
         'priority' => 0,
     )
 );
@@ -278,8 +278,10 @@ function calibrefx_header_body_classes($classes) {
     // return filtered $classes
     return $classes;
 }
-add_filter('body_class', 'calibrefx_header_body_classes');
 
+function calibrefx_header_body_classes_filter(){
+    add_filter('body_class', 'calibrefx_header_body_classes');  
+}
 
 /**
  * This function will activate the custom header image from WordPress

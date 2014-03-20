@@ -226,17 +226,21 @@ top: 0;
 /* {List Base} Widget
 ------------------------------------------------------------ */
 
-#inner .widget-wrap ul li + li{	
+.widget-wrap ul li + li{	
     border-top: 1px solid #e5e5e5;
 }
 
-#inner .widget-wrap ul ul li + li{	
+.widget-wrap ul ul li + li{	
     border-top: 0;
 }
 
 #footer-widget .widget-wrap ul li{   
     padding: 0 0;
     margin-bottom: 10px;
+}
+
+#footer-widget .widget-wrap ul li + li{	
+    border-top: none;
 }
  
 
