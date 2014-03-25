@@ -32,7 +32,12 @@
 
 global $cfxgenerator;
 
-$cfxgenerator->calibrefx_before_content_wrapper = array('calibrefx_do_inner_wrap_open');
+$cfxgenerator->calibrefx_before_content_wrapper = array(
+    array(
+        'function' => 'calibrefx_do_inner_wrap_open',
+        'priority' => 5
+    )
+);
 
 $cfxgenerator->calibrefx_before_content = array();
 $cfxgenerator->calibrefx_before_loop = array('calibrefx_do_breadcrumbs');
@@ -57,8 +62,12 @@ $cfxgenerator->calibrefx_loop = array('calibrefx_do_loop');
 $cfxgenerator->calibrefx_after_loop = array('calibrefx_posts_nav');
 $cfxgenerator->calibrefx_after_content = array();
 
-
-$cfxgenerator->calibrefx_after_content_wrapper = array('calibrefx_do_inner_wrap_close');
+$cfxgenerator->calibrefx_after_content_wrapper = array(
+    array(
+        'function' => 'calibrefx_do_inner_wrap_close',
+        'priority' => 15
+    )
+);
 
 /********************
  * FUNCTIONS BELOW  *
