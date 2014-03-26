@@ -65,16 +65,20 @@ class CFX_Form {
     /**
      * Create a Checkbox input field
      */
-    function checkbox($id = "", $value = "", $checked = "", $text = "", $atts = array()) {
+    function checkbox($id = "", $value = "", $checked = "", $text = "", $inline = false, $atts = array()) {
         $attr = '';
         foreach($atts as $key => $val){
             $attr .= ' ' . $key . '="' . $val .'"';
         }
 
-        return '<div class="checkbox"><label><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label></div>';
+        if($inline){
+            return '<label class="checkbox-inline"><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label>';
+        }else{
+            return '<div class="checkbox"><label><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label></div>';
+        }
     }
 
-    function mass_checkboxes($id = "", $array_data = array(), $checked = array(), $maxrow = 20) {
+    function mass_checkboxes($id = "", $array_data = array(), $checked = array(), $maxrow = 20, $inline = false) {
         $output = "";
         $totalcol = ceil(count($array_data) / $maxrow); 
 
@@ -87,9 +91,9 @@ class CFX_Form {
                 $data = $array_data[$i];
 				
 				if(array_key_exists($data['id'], $checked)){
-					$output .= $this->checkbox( $id, $data['id'], $checked[$data['id']], $data['name'] );
+					$output .= $this->checkbox( $id, $data['id'], $checked[$data['id']], $data['name'], $inline );
 				}else{
-					$output .= $this->checkbox( $id, $data['id'], '', $data['name'] );
+					$output .= $this->checkbox( $id, $data['id'], '', $data['name'], $inline );
 				}
                 
             }
