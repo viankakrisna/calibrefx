@@ -57,7 +57,7 @@ function calibrefx_do_nav() {
             $args = array(
                 'theme_location' => 'primary',
                 'container' => '',
-                'menu_class' => calibrefx_get_option('nav_fixed_top') ? 'navbar navbar-default navbar-fixed-top menu-primary menu superfish' : 'nav navbar-nav menu-primary menu superfish',
+                'menu_class' => calibrefx_get_option('nav_fixed_top') ? 'navbar navbar-nav navbar-fixed-top menu-primary menu superfish' : 'nav navbar-nav menu-primary menu superfish',
                 'echo' => 0,
                 'walker' => $calibrefx->walker_nav_menu,
             );
