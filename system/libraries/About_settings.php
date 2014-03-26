@@ -63,8 +63,8 @@ class CFX_About_Settings extends CFX_Admin {
 
         calibrefx_add_meta_section('system', __('System Information', 'calibrefx'), 'options.php', 1);
         calibrefx_add_meta_section('team', __('The CalibreFX Team', 'calibrefx'), 'options.php', 2);
-        calibrefx_add_meta_section('support', __('Support', 'calibrefx'), 'options.php', 3);
-        calibrefx_add_meta_section('item', __('Recommended Items', 'calibrefx'), 'options.php', 4);
+        // calibrefx_add_meta_section('support', __('Support', 'calibrefx'), 'options.php', 3);
+        // calibrefx_add_meta_section('item', __('Recommended Items', 'calibrefx'), 'options.php', 4);
 
         $calibrefx_current_section = 'system';
         if (!empty($_GET['section'])) {
