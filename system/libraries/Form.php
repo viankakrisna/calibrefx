@@ -37,35 +37,48 @@ class CFX_Form {
     /**
      * Open form
      */
-    function open($id, $action, $method='post', $enctype = true) {
-        if($enctype) $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal" enctype="multipart/form-data">';
-        else $this->form_open = '<form action="'.$action.'" method="'.$method.'" id="'.$id.'" class="form-horizontal">';
+    function open($id = "", $action = "", $method = 'post', $enctype = true) {
+        if($enctype) $this->form_open = '<form action=" ' . $action . '" method=" ' .$method . '" id="' . $id . '" class="form-horizontal" enctype="multipart/form-data" role="form">';
+        else $this->form_open = '<form action="' . $action . '" method="' . $method . '" id="' . $id . '" class="form-horizontal" role="form">';
         return $this;
     }
 
     /**
      * Create a label field
      */
-    function label($id, $value = "") {
-        return '<label for="' . $id . '">' . $value . '</label>';
+    function label($id = "", $text = "", $class = "control-label col-sm-2") {
+        return '<label for="' . $id . '"' . ($class ? ' class="' . $class . '"' : '') . '>' . $text . '</label>';
     }
 
     /**
      * Create a hidden input field
      */
-    function hidden($id, $value = "", $class = "", $attr = "") {
-        return '<input class="hidden ' . $class . '" type="hidden" id="' . $id . '" name="' . $id . '" value="' . $value . '" ' . $attr . ' />';
+    function hidden($id = "", $value = "", $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+
+        return '<input type="hidden" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . $attr . ' />';
     }
 
     /**
      * Create a Checkbox input field
      */
-    function checkbox($id, $value = "", $checked = "", $text = "") {
-        $id2 = str_replace(array('[', ']'), '', $id);
-        return '<input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked($value, $checked, false) . ' class="' . $id2 . '" />' . $text;
+    function checkbox($id = "", $value = "", $checked = "", $text = "", $inline = false, $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+
+        if($inline){
+            return '<label class="checkbox-inline"><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label>';
+        }else{
+            return '<div class="checkbox"><label><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label></div>';
+        }
     }
 
-    function mass_checkboxes($id, $array_data = array(), $checked = array(), $maxrow = 20) {
+    function mass_checkboxes($id = "", $array_data = array(), $checked = array(), $maxrow = 20, $inline = false) {
         $output = "";
         $totalcol = ceil(count($array_data) / $maxrow); 
 
@@ -78,9 +91,9 @@ class CFX_Form {
                 $data = $array_data[$i];
 				
 				if(array_key_exists($data['id'], $checked)){
-					$output .= '<label class="checkbox-label">' . $this->checkbox($id, $data['id'], $checked[$data['id']], $data['name']) . '</label>';
+					$output .= $this->checkbox( $id, $data['id'], $checked[$data['id']], $data['name'], $inline );
 				}else{
-					$output .= '<label class="checkbox-label">' . $this->checkbox($id, $data['id'], '', $data['name']) . '</label>';
+					$output .= $this->checkbox( $id, $data['id'], '', $data['name'], $inline );
 				}
                 
             }
@@ -93,45 +106,61 @@ class CFX_Form {
     /**
      * Create a Checkbox input field
      */
-    function radio($id, $name = "", $value = "", $checked = "", $text = "") {
-        return '<label for="'.$id.'" class="radio-label"><input type="radio" id="' . $id . '" name="' . $name . '" value="' . $value . '"' . checked($value, $checked, false) . '/>' . $text . '</label>';
+    function radio($id = "", $value = "", $checked = "", $text = "", $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+
+        return '<div class="radio"><label for="' . $id . '"><input type="radio" id="' . $id . '" name="' . $name . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . '/>' . $text . '</label></div>';
     }
 
     /**
      * Create a Text input field
      */
-    function textinput($id, $value = "", $readonly = "", $class = "", $attr = "") {
-		return '<input class="text '.$class.'" type="text" id="' . $id . '" name="' . $id . '" size="30" value="' . stripslashes($value) . '" ' . $attr . ' ' . $readonly . '/>';
+    function textinput($id = "", $value = "", $class = "", $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+
+		return '<input type="text" id="' . $id . '" name="' . $id . '" value="' . stripslashes( $value ) . '" class="form-control' . ( $class ? ' '.$class : '' ) . '"' . $attr . ' />';
     }
 	
 	/**
      * Create a Text input field
      */
-    function password($id, $value = "", $readonly = "", $class = "", $attr = "") {
-		return '<input class="text ' . $class . '" type="password" id="' . $id . '" name="' . $id . '" size="30" value="' . stripslashes($value) . '" ' . $attr . ' ' . $readonly . '/>';
+    function password($id = "", $value = "", $class = "", $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+
+		return '<input type="password" id="' . $id . '" name="' . $id . '" value="' . stripslashes( $value ) . '" class="form-control ' . ( $class ? ' '.$class : '' ) . '"' . $attr . ' />';
     }
 
     /**
      * Create a Text title
      */
-    function title($text, $class = "") {
+    function title($text = "", $class = "") {
         return '<h2 class="' . $class . '">' . $text . '</h2>';
     }
 
     /**
      * Create a Text area field
      */
-    function textarea($id, $value = "", $disabled = "", $class = "", $attr = "") {
-		if($disabled){
-			return '<textarea class="textarea ' . $class . '" id="' . $id . '" rows="6" cols="70" name="' . $id . '" disabled="' . $disabled. '" ' . $attr . '>' . stripslashes($value) . '</textarea>';
-		}else{
-			return '<textarea class="textarea ' . $class . '" id="' . $id . '" rows="6" cols="70" name="' . $id . '" ' . $attr . '>' . stripslashes($value) . '</textarea>';
-		}
+    function textarea($id = "", $value = "", $class = "", $atts = array()) {
+		$attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+
+		return '<textarea id="' . $id . '" name="' . $id . '" class="form-control ' . ( $class ? ' ' . $class : '' ) . '"' . $attr . '>' . stripslashes( $value ) . '</textarea>';
     }
 	
-	function texteditor($id, $content){
+	function texteditor($id = "", $content = ""){
 		ob_start(); //Start buffering
-		wp_editor($content, $id, "", false, 2, false); //print the result
+		wp_editor( $content, $id, "", false, 2, false ); //print the result
 		$output = ob_get_contents(); //get the result from buffer
 		ob_end_clean(); //close buffer
 	   
@@ -141,60 +170,37 @@ class CFX_Form {
     /**
      * Create a dropdown field
      */
-    function select($id, $options = "", $value = "", $multiple = false, $class = "", $attr = "") {
-        $output = '<select class="select ' . $class . '" name="' . $id . '" id="' . $id . '" ' . $attr . '>';
-        foreach ($options as $val => $name) {
-            $sel = '';
-            if ($value == $val)
-                $sel = ' selected="selected"';
-            if ($name == '')
-                $name = $val;
-            $output .= '<option value="' . $val . '"' . $sel . '>' . stripslashes($name) . '</option>';
+    function select($id = "", $options = array(), $value = "", $class = "", $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
         }
+
+        $output = '<select name="' . $id . '" id="' . $id . '" class="form-control' . ( $class ? ' ' . $class : '' ) . '"' . $attr . '>';
+        foreach ($options as $val => $name) {
+            $output .= '<option value="' . $val . '"' . selected( $val, $value, false ) . '>' . stripslashes( $name ) . '</option>';
+        }
+
         $output .= '</select>';
         return $output;
     }
 
     /**
-     * Create a potbox widget
-     */
-    function postbox($id, $title, $content) {
-        echo <<<end
-		<div id="{$id}" class="postbox">
-			<div class="handlediv" title="Click to toggle"><br /></div>
-			<h3 class="hndle"><span>{$title}</span></h3>
-			<div class="inside">
-				{$content}
-			</div>
-		</div>
-end;
-    }
-
-    function postbox_nopadding($id, $title, $content) {
-        echo <<<end
-		<div id="{$id}" class="postbox">
-			<div class="handlediv" title="Click to toggle"><br /></div>
-			<h3 class="hndle"><span>{$title}</span></h3>
-			<div class="inside nopadding">
-				{$content}
-			</div>
-		</div>
-end;
-    }
-
-    /**
      * Create a legend text
      */
-    function legend($text) {
+    function legend($text = "") {
         return '<legend>'.stripslashes($text).'</legend>';
     }
 
-    function build($rows, $form_open = TRUE, $form_close = TRUE) {
+    function build($rows = array(), $form_open = TRUE, $form_close = TRUE) {
         $this->form_fields = $this->form_table($rows);
+
 		$output = '';
 		if($form_open) $output .= $this->form_open;
+
         $output .= $this->form_fields;
 		if($form_close) $output .= $this->form_close;
+
         return $output;
     }
     
@@ -203,8 +209,13 @@ end;
      *
      * @param array $args 'action' URL for form action, 'post_id' ID for preset parent ID
      */
-    function upload_form($id) {
-        $output = '<input type="file" name="'.$id.'" id="'.$id.'" size="50" />';
+    function upload_form($id = "", $class = "", $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+
+        $output = '<input type="file" name="' . $id . '" id="' . $id . '" class="form-control' . ( $class ? ' ' . $class : '' ) . '"' . $attr . '/>';
     
         return $output;
     }
@@ -212,11 +223,52 @@ end;
     /**
      * Create a save button
      */
-    function save_button($text = '') {
+    function save_button($id = "", $text = "", $class = "", $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+
         if ($text == '')
             $text = "Update Options &raquo;"; 
         
-        return '<button type="submit" class="btn">' . $text . '</button>';
+        return '<button type="submit" id="' . $id . '" class="btn' . ( $class ? ' ' . $class : '' ) . '"' . $attr . '>' . $text . '</button>';
+    }
+
+    /**
+     * Create a button
+     */
+    function button($id = "", $type = "button", $text = "", $class = "", $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+        
+        return '<button type="' . $type . '" id="' . $id . '" class="btn' . ( $class ? ' ' . $class : '' ) . '"' . $attr . '>' . $text . '</button>';
+    }
+
+    /**
+     * Create a input submit button
+     */
+    function input_submit_button($id = "", $text = "", $class = "", $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+        
+        return '<input type="submit" id="' . $id . '" name="' . $id . '" value="' . $text . '" class="btn' . ( $class ? ' ' . $class : '' ) . '"' . $attr . ' />';
+    }
+
+    /**
+     * Create a input button
+     */
+    function input_button($id = "", $type = "button", $text = "", $class = "", $atts = array()) {
+        $attr = '';
+        foreach($atts as $key => $val){
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+        
+        return '<input type="'. $type .'" id="' . $id . '" name="' . $id . '" value="' . $text . '" class="btn' . ( $class ? ' ' . $class : '' ) . '"' . $attr . ' />';
     }
 
     /**
@@ -228,16 +280,9 @@ end;
         $i = 1;
         foreach ($rows as $row) {
             $class = '';
-            // if ($i > 1) {
-            //     $class .= 'bws_row';
-            // }
-            // if ($i % 2 == 0) {
-            //     $class .= ' even';
-            // }
-
             if (!empty($row['label'])) {
 
-                $content .= '<div class="control-group">';
+                $content .= '<div class="form-group">';
 
                 $tooltip = '';
 				$tooltip_class = '';
@@ -246,28 +291,36 @@ end;
                     $tooltip_class = ' form-tooltip';    
                 }
 
-                if (isset($row['id']) && $row['id'] != '')
-                    $content .= '<label class="control-label'.$tooltip_class.'" for="' . $row['id'] . '"'.$tooltip.'>' . $row['label'] . ':</label>';
-                else
-                    $content .= '<label class="control-label'.$tooltip_class.'"'.$tooltip.'>' . $row['label'] . ':</label>';
+                if(!isset($row['label_column']) && $row['label_column'] == '') $row['label_column'] = 'col-sm-2';
 
-                $content .= '   <div class="controls">';
+                if (isset($row['id']) && $row['id'] != '')
+                    $content .= '<label class="control-label ' . $row['label_column'] . ' ' . $tooltip_class . '" for="' . $row['id'] . '"' . $tooltip . '>' . $row['label'] . ':</label>';
+                else
+                    $content .= '<label class="control-label ' . $row['label_column'] . ' ' . $tooltip_class . '"' . $tooltip . '>' . $row['label'] . ':</label>';
+
+
+                if(!isset($row['input_column']) && $row['input_column'] == '') $row['input_column'] = 'col-sm-10';
+                $content .= '<div class="' . $row['input_column'] . '">';
+
+                if(isset($row['before_content']) && !empty($row['before_content'])) $content .= $row['before_content'];
                 $content .= $row['content'];
+                if(isset($row['after_content']) && !empty($row['after_content'])) $content .= $row['after_content'];
+
                 if (isset($row['desc']) && !empty($row['desc'])) {
-                    $content .= '       <span class="help-block">' . $row['desc'] . '</span>';
+                    $content .= '<span class="help-block">' . $row['desc'] . '</span>';
                 }
-                $content .= '   </div>';
+                $content .= '</div>';
 
                 $content .= '</div>';
             } else {
                 if(isset($row['input_wrapper']) && $row['input_wrapper'] == 'no'){
                     $content .= $row['content'];
                 }else{
-                    $content .= '<div class="control-group">';                
+                    $content .= '<div class="form-group">';                
 
-                    $content .= '   <div class="controls">';
+                    $content .= '<div class="col-sm-12">';
                     $content .= $row['content'];                
-                    $content .= '   </div>';
+                    $content .= '</div>';
 
                     $content .= '</div>';
                 }   
@@ -277,43 +330,5 @@ end;
         }
         
         return $content;
-    }
-
-    function news($title = '', $feedurl = '', $limit=10) {
-        include_once(ABSPATH . WPINC . '/feed.php');
-        if (empty($feedurl)) {
-            $feedurl = 'http://www.calibrefx.com/feed';
-        }
-		
-		if(empty($title)){
-			$title = 'Latest from CalibreFx.com';
-		}
-		
-        $rss = fetch_feed($feedurl);
-        $rss_items = $rss->get_items(0, $rss->get_item_quantity($limit));
-        $content = '<ul>';
-        if (!$rss_items) {
-            $content .= '<li>no news items, feed might be broken...</li>';
-        } else {
-            foreach ($rss_items as $item) {
-                $content .= '<li>';
-                $content .= '<a class="rssitems" href="' . esc_url($item->get_permalink(), $protocolls = null, 'display') . '">' . htmlentities($item->get_title()) . '</a> ';
-                $content .= '</li>';
-            }
-        }
-        $content .= '<li class="rss"><a href="' . $feedurl . '">Subscribe with RSS</a></li>';
-        $content .= '</ul>';
-		
-		
-        $this->postbox('latestnews', $title, $content);
-    }
-
-    function text_limit($text, $limit, $finish = ' [&hellip;]') {
-        if (strlen($text) > $limit) {
-            $text = substr($text, 0, $limit);
-            $text = substr($text, 0, - ( strlen(strrchr($text, ' ')) ));
-            $text .= $finish;
-        }
-        return $text;
     }
 }
