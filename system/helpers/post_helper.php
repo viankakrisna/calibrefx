@@ -128,7 +128,7 @@ function calibrefx_default_loop() {
  */
 function calibrefx_older_newer_posts_nav() {
 
-    $older_link = get_next_posts_link(apply_filters('calibrefx_older_link_text', '&larr; ') . __('Older Posts', 'calibrefx'));
+    $older_link = get_next_posts_link(apply_filters('calibrefx_older_link_text', '&larr; ' . __('Older Posts', 'calibrefx')));
     $newer_link = get_previous_posts_link(apply_filters('calibrefx_newer_link_text', __('Newer Posts', 'calibrefx') . ' &rarr;'));
 
     $older = $older_link ? '<li class="previous">' . $older_link . '</li>' : '';
