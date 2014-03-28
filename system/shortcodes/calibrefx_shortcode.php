@@ -1377,7 +1377,6 @@ function calibrefx_fblike($atts, $content = null) {
 }
 
 add_shortcode('tweet', 'calibrefx_tweet');
-
 function calibrefx_tweet($atts, $content = null) {
     global $post;
 
