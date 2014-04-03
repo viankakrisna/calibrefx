@@ -45,7 +45,7 @@ $cfxgenerator->calibrefx_before_content = array('calibrefx_get_sidebar_alt');
 $cfxgenerator->calibrefx_sidebar = array('calibrefx_do_sidebar');
 $cfxgenerator->calibrefx_sidebar_alt = array('calibrefx_do_sidebar_alt');
 
-$cfxgenerator->wp = array(
+$cfxgenerator->get_header = array(
     array(
         'function' => 'calibrefx_setup_custom_layout',
         'priority' => 0,

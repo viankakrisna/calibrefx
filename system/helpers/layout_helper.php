@@ -410,3 +410,73 @@ function calibrefx_content_sidebar_span(){
         return apply_filters('calibrefx_sidebar_span', 'col-xs-9');
     }
 }
+
+function col_class(){
+    $numargs = func_num_args();
+
+    if( current_theme_supports('calibrefx-responsive-style') ){
+        if($numargs == 4){
+            return 'col-xs-'. func_get_arg(0) .' col-sm-'. func_get_arg(1) .' col-md-'. func_get_arg(2) .' col-lg-'. func_get_arg(3);
+        }
+        elseif($numargs == 3){
+            return 'col-xs-'. func_get_arg(0) .' col-sm-'. func_get_arg(1) .' col-md-'. func_get_arg(2) .' col-lg-'. func_get_arg(2);
+        }
+        elseif($numargs == 2){
+            return 'col-xs-'. func_get_arg(0) .' col-sm-'. func_get_arg(0) .' col-md-'. func_get_arg(1) .' col-lg-'. func_get_arg(1);
+        }
+        elseif($numargs == 1){
+            return 'col-xs-'. func_get_arg(0) .' col-sm-'. func_get_arg(0) .' col-md-'. func_get_arg(0) .' col-lg-'. func_get_arg(0);
+        }
+    }
+    else{
+        if($numargs == 4){
+            return 'col-xs-'. func_get_arg(3);
+        }
+        elseif($numargs == 3){
+            return 'col-xs-'. func_get_arg(2);
+        }
+        elseif($numargs == 2){
+            return 'col-xs-'. func_get_arg(1);
+        }
+        elseif($numargs == 1){
+            return 'col-xs-'. func_get_arg(0);
+        }
+    }
+
+    return FALSE;
+}
+
+function col_offset_class(){
+    $numargs = func_num_args();
+
+    if( current_theme_supports('calibrefx-responsive-style') ){
+        if($numargs == 4){
+            return 'col-xs-offset-'. func_get_arg(0) .' col-sm-offset-'. func_get_arg(1) .' col-md-offset-'. func_get_arg(2) .' col-lg-offset-'. func_get_arg(3);
+        }
+        elseif($numargs == 3){
+            return 'col-xs-offset-'. func_get_arg(0) .' col-sm-offset-'. func_get_arg(1) .' col-md-offset-'. func_get_arg(2) .' col-lg-offset-'. func_get_arg(2);
+        }
+        elseif($numargs == 2){
+            return 'col-xs-offset-'. func_get_arg(0) .' col-sm-offset-'. func_get_arg(0) .' col-md-offset-'. func_get_arg(1) .' col-lg-offset-'. func_get_arg(1);
+        }
+        elseif($numargs == 1){
+            return 'col-xs-offset-'. func_get_arg(0) .' col-sm-offset-'. func_get_arg(0) .' col-md-offset-'. func_get_arg(0) .' col-lg-offset-'. func_get_arg(0);
+        }
+    }
+    else{
+        if($numargs == 4){
+            return 'col-xs-offset-'. func_get_arg(3);
+        }
+        elseif($numargs == 3){
+            return 'col-xs-offset-'. func_get_arg(2);
+        }
+        elseif($numargs == 2){
+            return 'col-xs-offset-'. func_get_arg(1);
+        }
+        elseif($numargs == 1){
+            return 'col-xs-offset-'. func_get_arg(0);
+        }
+    }
+
+    return FALSE;
+}
