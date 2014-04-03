@@ -131,6 +131,8 @@ class CFX_Social_Widget extends WP_Widget {
         $output = '';
         $output .= '<div class="social-media-wrapper"><ul class="social-media-list '.$instance['layout'].'">';
 
+        $output .= apply_filters( 'calibrefx_social_widget_before_list', '');
+
         if(!empty($fb_url)){
             $output .= '<li class="facebook">
                     <a href="'.$fb_url.'" title="'.__('View us on facebook', 'calibrefx').'" target="_blank">
@@ -184,6 +186,8 @@ class CFX_Social_Widget extends WP_Widget {
                     </a>
                 </li>';
         }
+
+        $output .= apply_filters( 'calibrefx_social_widget_after_list', '');
 
         $output .= '</ul></div>';
 

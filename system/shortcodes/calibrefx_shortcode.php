@@ -1315,8 +1315,6 @@ function cronos_bar_item($atts, $content = null){
     $output .= $title;          
     $output .= '</div>';
 
-    $bar_item .= $output;
-
     return $output;
 }
 
