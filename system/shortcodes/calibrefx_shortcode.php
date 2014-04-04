@@ -792,6 +792,29 @@ function calibrefx_three_fourth_column($atts, $content = '') {
 
 $cfx_shortcode->calibrefx_add_shortcode_button('calibrefx_shortcode_column', CALIBREFX_SHORTCODE_URL . '/form-cols.php', 360, 220, __('Column shortcode', 'calibrefx'), CALIBREFX_IMAGES_URL . '/shortcode/form/cols.png');
 
+
+add_shortcode("tbrow", "calibrefx_tbrow");
+function calibrefx_tbrow( $atts, $content = null ) {
+    return "<div class='row'>".do_shortcode(advance_shortcode_unautop($content))."</div>";
+}
+
+add_shortcode("tbcol", "calibrefx_tbcol");
+function calibrefx_tbcol( $atts, $content = null ) {
+    extract(shortcode_atts(array(
+        "col" => "1",
+        "offset" => "",
+    ), $atts));
+
+    $offset_class = "";
+    if($offset != ""){
+        $offset_class = " ". col_offset_class(explode(',',$offset));
+    }
+
+    return "<div class='". col_class(explode(',',$col)) ."$offset_class'>".do_shortcode(advance_shortcode_unautop($content))."</div>";
+}
+
+
+
 /**
  * ==============================================================
  * Separator
