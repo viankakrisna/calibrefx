@@ -412,35 +412,76 @@ function calibrefx_content_sidebar_span(){
 }
 
 function col_class(){
+
     $numargs = func_num_args();
 
-    if( current_theme_supports('calibrefx-responsive-style') ){
-        if($numargs == 4){
-            return 'col-xs-'. func_get_arg(0) .' col-sm-'. func_get_arg(1) .' col-md-'. func_get_arg(2) .' col-lg-'. func_get_arg(3);
+    if($numargs == 1 && is_array(func_get_arg(0)) ){
+
+        $opts = func_get_arg(0);
+        $numopt = count(func_get_arg(0));
+
+        if($numopt == 4){
+            $opt0 = $opts[0];
+            $opt1 = $opts[1];
+            $opt2 = $opts[2];
+            $opt3 = $opts[3];
         }
-        elseif($numargs == 3){
-            return 'col-xs-'. func_get_arg(0) .' col-sm-'. func_get_arg(1) .' col-md-'. func_get_arg(2) .' col-lg-'. func_get_arg(2);
+        elseif($numopt == 3){
+            $opt0 = $opts[0];
+            $opt1 = $opts[1];
+            $opt2 = $opts[2];
+            $opt3 = $opts[2];
         }
-        elseif($numargs == 2){
-            return 'col-xs-'. func_get_arg(0) .' col-sm-'. func_get_arg(0) .' col-md-'. func_get_arg(1) .' col-lg-'. func_get_arg(1);
+        elseif($numopt == 2){
+            $opt0 = $opts[0];
+            $opt1 = $opts[0];
+            $opt2 = $opts[1];
+            $opt3 = $opts[1];
         }
-        elseif($numargs == 1){
-            return 'col-xs-'. func_get_arg(0) .' col-sm-'. func_get_arg(0) .' col-md-'. func_get_arg(0) .' col-lg-'. func_get_arg(0);
+        elseif($numopt == 1){
+            $opt0 = $opts[0];
+            $opt1 = $opts[0];
+            $opt2 = $opts[0];
+            $opt3 = $opts[0];
         }
+        
     }
     else{
-        if($numargs == 4){
-            return 'col-xs-'. func_get_arg(3);
+
+        $numopt = $numargs;
+
+        if($numopt == 4){
+            $opt0 = func_get_arg(0);
+            $opt1 = func_get_arg(1);
+            $opt2 = func_get_arg(2);
+            $opt3 = func_get_arg(3);
         }
-        elseif($numargs == 3){
-            return 'col-xs-'. func_get_arg(2);
+        elseif($numopt == 3){
+            $opt0 = func_get_arg(0);
+            $opt1 = func_get_arg(1);
+            $opt2 = func_get_arg(2);
+            $opt3 = func_get_arg(2);
         }
-        elseif($numargs == 2){
-            return 'col-xs-'. func_get_arg(1);
+        elseif($numopt == 2){
+            $opt0 = func_get_arg(0);
+            $opt1 = func_get_arg(0);
+            $opt2 = func_get_arg(1);
+            $opt3 = func_get_arg(1);
         }
-        elseif($numargs == 1){
-            return 'col-xs-'. func_get_arg(0);
+        elseif($numopt == 1){
+            $opt0 = func_get_arg(0);
+            $opt1 = func_get_arg(0);
+            $opt2 = func_get_arg(0);
+            $opt3 = func_get_arg(0);
         }
+
+    }
+
+    if( current_theme_supports('calibrefx-responsive-style') ){
+        return 'col-xs-'. $opt0 .' col-sm-'. $opt1 .' col-md-'. $opt2 .' col-lg-'. $opt3;
+    }
+    else{
+        return 'col-xs-'. $opt3;
     }
 
     return FALSE;
@@ -449,33 +490,73 @@ function col_class(){
 function col_offset_class(){
     $numargs = func_num_args();
 
-    if( current_theme_supports('calibrefx-responsive-style') ){
-        if($numargs == 4){
-            return 'col-xs-offset-'. func_get_arg(0) .' col-sm-offset-'. func_get_arg(1) .' col-md-offset-'. func_get_arg(2) .' col-lg-offset-'. func_get_arg(3);
+    if($numargs == 1 && is_array(func_get_arg(0)) ){
+
+        $opts = func_get_arg(0);
+        $numopt = count(func_get_arg(0));
+
+        if($numopt == 4){
+            $opt0 = $opts[0];
+            $opt1 = $opts[1];
+            $opt2 = $opts[2];
+            $opt3 = $opts[3];
         }
-        elseif($numargs == 3){
-            return 'col-xs-offset-'. func_get_arg(0) .' col-sm-offset-'. func_get_arg(1) .' col-md-offset-'. func_get_arg(2) .' col-lg-offset-'. func_get_arg(2);
+        elseif($numopt == 3){
+            $opt0 = $opts[0];
+            $opt1 = $opts[1];
+            $opt2 = $opts[2];
+            $opt3 = $opts[2];
         }
-        elseif($numargs == 2){
-            return 'col-xs-offset-'. func_get_arg(0) .' col-sm-offset-'. func_get_arg(0) .' col-md-offset-'. func_get_arg(1) .' col-lg-offset-'. func_get_arg(1);
+        elseif($numopt == 2){
+            $opt0 = $opts[0];
+            $opt1 = $opts[0];
+            $opt2 = $opts[1];
+            $opt3 = $opts[1];
         }
-        elseif($numargs == 1){
-            return 'col-xs-offset-'. func_get_arg(0) .' col-sm-offset-'. func_get_arg(0) .' col-md-offset-'. func_get_arg(0) .' col-lg-offset-'. func_get_arg(0);
+        elseif($numopt == 1){
+            $opt0 = $opts[0];
+            $opt1 = $opts[0];
+            $opt2 = $opts[0];
+            $opt3 = $opts[0];
         }
+        
     }
     else{
-        if($numargs == 4){
-            return 'col-xs-offset-'. func_get_arg(3);
+
+        $numopt = $numargs;
+
+        if($numopt == 4){
+            $opt0 = func_get_arg(0);
+            $opt1 = func_get_arg(1);
+            $opt2 = func_get_arg(2);
+            $opt3 = func_get_arg(3);
         }
-        elseif($numargs == 3){
-            return 'col-xs-offset-'. func_get_arg(2);
+        elseif($numopt == 3){
+            $opt0 = func_get_arg(0);
+            $opt1 = func_get_arg(1);
+            $opt2 = func_get_arg(2);
+            $opt3 = func_get_arg(2);
         }
-        elseif($numargs == 2){
-            return 'col-xs-offset-'. func_get_arg(1);
+        elseif($numopt == 2){
+            $opt0 = func_get_arg(0);
+            $opt1 = func_get_arg(0);
+            $opt2 = func_get_arg(1);
+            $opt3 = func_get_arg(1);
         }
-        elseif($numargs == 1){
-            return 'col-xs-offset-'. func_get_arg(0);
+        elseif($numopt == 1){
+            $opt0 = func_get_arg(0);
+            $opt1 = func_get_arg(0);
+            $opt2 = func_get_arg(0);
+            $opt3 = func_get_arg(0);
         }
+
+    }
+
+    if( current_theme_supports('calibrefx-responsive-style') ){
+        return 'col-xs-offset-'. $opt0 .' col-sm-offset-'. $opt1 .' col-md-offset-'. $opt2 .' col-lg-offset-'. $opt3;        
+    }
+    else{
+        return 'col-xs-offset-'. $opt3;
     }
 
     return FALSE;
