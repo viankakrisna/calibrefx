@@ -110,6 +110,16 @@ jQuery(document).ready(function($){
 
         return false;
     });
+
+    $('.show_advanced').live('click', function(){
+        var parent = $(this).parents('.widget');
+
+        if($(this).is(':checked')){
+            parent.find('.advanced-widget-options').slideDown();
+        }else{
+            parent.find('.advanced-widget-options').slideUp();
+        }
+    });
 });
 
 function calibrefx_confirm( text ) {

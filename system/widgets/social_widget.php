@@ -72,61 +72,6 @@ class CFX_Social_Widget extends WP_Widget {
 
         if(!empty($instance['title']))
             echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
-        
-        /*
-        <div class="social-media-wrapper">
-            <ul class="social-media-list <?php echo $instance['layout']; ?>">
-                <?php if(!empty($fb_url)){ ?>
-                <li class="facebook">
-                    <a href="<?php echo $fb_url; ?>" title="<?php _e('View us on facebook', 'calibrefx'); ?>">
-                        <i class="social-icon icon-facebook<?php echo $instance['icon_style']; ?> icon-fixed-width <?php echo $instance['icon_size']; ?>"></i>
-                        <?php if($instance['layout'] == 'vertical') echo ' <span class="social-media-label">'.stripslashes($instance['label_facebook']).'</span>'; ?>
-                    </a>
-                </li>
-                <?php } ?>
-                <?php if(!empty($tw_url)){ ?>
-                <li class="twitter">
-                    <a href="<?php echo $tw_url; ?>" title="<?php _e('View us on twitter', 'calibrefx'); ?>">
-                        <i class="social-icon icon-twitter<?php echo $instance['icon_style']; ?> icon-fixed-width <?php echo $instance['icon_size']; ?>"></i>
-                        <?php if($instance['layout'] == 'vertical') echo ' <span class="social-media-label">'.stripslashes($instance['label_twitter']).'</span>'; ?>
-                    </a>
-                </li>
-                <?php } ?>
-                <?php if(!empty($gplus_url)){ ?>
-                <li class="gplus">
-                    <a href="<?php echo $gplus_url; ?>" title="<?php _e('View us on google+', 'calibrefx'); ?>">
-                        <i class="social-icon icon-google-plus<?php echo $instance['icon_style']; ?> icon-fixed-width <?php echo $instance['icon_size']; ?>"></i>
-                        <?php if($instance['layout'] == 'vertical') echo ' <span class="social-media-label">'.stripslashes($instance['label_gplus']).'</span>'; ?>
-                    </a>
-                </li>
-                <?php } ?>
-                <?php if(!empty($youtube_url)){ ?>
-                <li class="youtube">
-                    <a href="<?php echo $youtube_url; ?>" title="<?php _e('View our youtube channel', 'calibrefx'); ?>">
-                        <i class="social-icon icon-youtube<?php echo $instance['icon_style']; ?> icon-fixed-width <?php echo $instance['icon_size']; ?>"></i>
-                        <?php if($instance['layout'] == 'vertical') echo ' <span class="social-media-label">'.stripslashes($instance['label_youtube']).'</span>'; ?>
-                    </a>
-                </li>
-                <?php } ?>
-                <?php if(!empty($pinterest_profile)){ ?>
-                <li class="pinterest">
-                    <a href="<?php echo $pinterest_profile; ?>" title="<?php _e('View us on pinterest', 'calibrefx'); ?>">
-                        <i class="social-icon icon-pinterest<?php echo $instance['icon_style']; ?> icon-fixed-width <?php echo $instance['icon_size']; ?>"></i>
-                        <?php if($instance['layout'] == 'vertical') echo ' <span class="social-media-label">'.stripslashes($instance['label_pinterest']).'</span>'; ?>
-                    </a>
-                </li>
-                <?php } ?>
-                <?php if(!empty($linkedin_profile)){ ?>
-                <li class="linkedin">
-                    <a href="<?php echo $linkedin_profile; ?>" title="<?php _e('View us on linkedin', 'calibrefx'); ?>">
-                        <i class="social-icon icon-linkedin<?php echo $instance['icon_style']; ?> icon-fixed-width <?php echo $instance['icon_size']; ?>"></i>
-                        <?php if($instance['layout'] == 'vertical') echo ' <span class="social-media-label">'.stripslashes($instance['label_linkedin']).'</span>'; ?>
-                    </a>
-                </li>
-                <?php } ?>
-            </ul>
-        </div>
-        */
 
         $output = '';
         $output .= '<div class="social-media-wrapper"><ul class="social-media-list '.$instance['layout'].'">';

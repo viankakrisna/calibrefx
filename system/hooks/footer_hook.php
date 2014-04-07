@@ -79,6 +79,9 @@ function calibrefx_do_footer_widgets() {
         $span = "col-xs-" . strval(floor((12 / $count_footer_widgets)));
 
     $sidebar = $wp_registered_sidebars['footer-widget'];
+
+    $footer_widget_column = apply_filters( 'calibrefx_footer_widget_column_span', $span ); 
+
     $sidebar['before_widget'] = '<div id="%1$s" class="widget ' . $span . ' %2$s"><div class="widget-wrap">';
 	$sidebar['after_widget'] = '</div></div>';
 
