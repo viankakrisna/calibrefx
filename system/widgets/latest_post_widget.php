@@ -81,15 +81,18 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 				$img = calibrefx_get_image(array('format' => 'html', 'size' => $instance['image_size']));
 				$img = (!empty($img) ? $img : '<img src="'.$no_post_thumbnail.'" />');
 				$date_format = get_option( 'date_format' );
+				$item_class = apply_filters('calibrefx_latest_posts_item_class', calibrefx_row_class());
+				$image_class = apply_filters('calibrefx_latest_posts_image_class', col_class(12,4,4)); 
+				$content_class = apply_filters('calibrefx_latest_posts_content_class', col_class(12,8,8));
 
 				if($instance['show_thumbnail']){
 					echo '
 						<li>
-							<div class="'.calibrefx_row_class().' latest-post-item">
-								<div class="latest-post-thumb col-lg-4 col-md-4 col-sm-4 col-xs-4">
+							<div class="'.$item_class.' latest-post-item">
+								<div class="latest-post-thumb '. $image_class .'">
 									<a href="'.get_permalink().'" class="thumbnail">'.$img.'</a>
 								</div>
-								<div class="latest-post-detail col-lg-8 col-md-8 col-sm-8 col-xs-8">
+								<div class="latest-post-detail '. $content_class .'">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-info">'.do_shortcode('[post_date]').'</p>
 									'.(($instance['show_detail']) ? get_the_content_limit($instance['detail_length']) : '').'
