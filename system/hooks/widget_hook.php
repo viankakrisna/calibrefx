@@ -83,7 +83,7 @@ function calibrefx_register_additional_widget() {
     }
 }
 
-add_filter('in_widget_form', 'calibrefx_custom_widget_attributes', 10, 3);
+//add_filter('in_widget_form', 'calibrefx_custom_widget_attributes', 10, 3);
 function calibrefx_custom_widget_attributes($widget, $return, $instance){
     if(!isset($instance['custom_widget_class'])) $instance['custom_widget_class'] = '';
     if(!isset($instance['custom_icon_class'])) $instance['custom_icon_class'] = '';
@@ -117,14 +117,14 @@ function calibrefx_custom_widget_attributes($widget, $return, $instance){
 <?php
 }
 
-add_filter('widget_update_callback', 'sukm_widget_callback', 20, 2);
+//add_filter('widget_update_callback', 'sukm_widget_callback', 20, 2);
 function sukm_widget_callback($instance, $new_instance){
     if(empty($new_instance['show_advanced'])) $new_instance['show_advanced'] = 0;
 
     return $new_instance;
 }
 
-add_filter('widget_display_callback', 'sukm_custom_class_widget', 10, 3);
+//add_filter('widget_display_callback', 'sukm_custom_class_widget', 10, 3);
 function sukm_custom_class_widget($instance, $widget, $args){
     if (isset($instance['custom_widget_class'])) {
         $widget_classname = $widget->widget_options['classname'];
