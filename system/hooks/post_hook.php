@@ -179,7 +179,7 @@ function calibrefx_do_post_image() {
             $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_archive_image_size, 'attr' => array('class' => 'alignleft post-image')));
             
             if($img)
-                printf('<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute('echo=0'), apply_filters( 'post_archive_image', $img ));
+                printf('<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute('echo=0'), apply_filters( 'post_archive_image', $img, $img ));
         }
         
     } elseif (is_single()){
@@ -187,7 +187,7 @@ function calibrefx_do_post_image() {
         $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_single_image_size, 'attr' => array('class' => 'alignnone post-image')));
         
         if($img)
-            printf('<p class="post-featured-image">%s</p>', apply_filters( 'post_single_image', $img ));
+            printf('<p class="post-featured-image">%s</p>', apply_filters( 'post_single_image', $img, $img ));
     }
 }
 
