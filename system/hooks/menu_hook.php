@@ -109,10 +109,12 @@ function calibrefx_do_nav() {
  * This function is for displaying the "Secondary Navigation" bar.
  */
 function calibrefx_do_subnav() {
-
+    global $calibrefx;
     /** Do nothing if menu not supported */
     if (!calibrefx_nav_menu_supported('secondary'))
         return;
+
+    $calibrefx->load->library('walker_nav_menu');
 
     $subnav = '';
     $args = '';
