@@ -34,13 +34,12 @@
  * Initialize a module and include it in the process
  */
 function calibrefx_initialize_module(){
-
 	foreach (calibrefx_get_active_modules() as $module) {
 		$module = file_exists( CALIBREFX_MODULE_URI . '/' . $module )? CALIBREFX_MODULE_URI . '/' . $module : CHILD_MODULE_URI . '/' . $module;
 		include_once( $module );
 	}
 }
-add_action( 'calibrefx_post_init', 'calibrefx_initialize_module' );
+add_action( 'calibrefx_init', 'calibrefx_initialize_module', 20 );
 
 
 /**
@@ -71,7 +70,6 @@ function calibrefx_is_module_active($module){
 	$CHILD_MODULE_URI = str_replace("\\", "/", CHILD_MODULE_URI);
 	$module = str_replace($CALIBREFX_MODULE_URI . '/', '', $module);
 	$module = str_replace($CHILD_MODULE_URI . '/', '', $module);
-
 	return in_array($module, $active_modules);
 }
 
