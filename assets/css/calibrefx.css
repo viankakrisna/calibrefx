@@ -420,6 +420,10 @@ img.wp-smiley,
     opacity: .5;
     width: 100%;
 }
+.rgba .cycle-overlay { 
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.5);
+}
 .cycle-overlay > *{
     padding-left: 15px;
     padding-right: 15px;

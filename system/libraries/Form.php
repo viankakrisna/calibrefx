@@ -78,7 +78,7 @@ class CFX_Form {
         }
     }
 
-    function mass_checkboxes($id = "", $array_data = array(), $checked = array(), $maxrow = 20, $inline = false) {
+    function mass_checkboxes($id = "", $array_data = array(), $checked = array(), $maxrow = 20, $inline = false, $atts = array()) {
         $output = "";
         $totalcol = ceil(count($array_data) / $maxrow); 
 
@@ -91,9 +91,9 @@ class CFX_Form {
                 $data = $array_data[$i];
 				
 				if(array_key_exists($data['id'], $checked)){
-					$output .= $this->checkbox( $id, $data['id'], $checked[$data['id']], $data['name'], $inline );
+					$output .= $this->checkbox( $id, $data['id'], $checked[$data['id']], $data['name'], $inline, $atts );
 				}else{
-					$output .= $this->checkbox( $id, $data['id'], '', $data['name'], $inline );
+					$output .= $this->checkbox( $id, $data['id'], '', $data['name'], $inline, $atts );
 				}
                 
             }

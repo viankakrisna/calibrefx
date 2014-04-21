@@ -668,6 +668,20 @@ span.calibrefx-info{
     margin-top: -3px;
 }
 
+.advanced-widget-options{
+    display: none;
+}
+
+.advanced-widget-options p{
+    margin: 0 0 2px;
+}
+
+#widgets-right .widgets-holder-wrap .advanced-widget-options .description{
+    margin-top: 0px !important;
+    padding: 0px;
+    margin-bottom: 10px;
+}
+
 /*MEDIA QUERY RESPONSIVE------------------*/
 
 @media only screen and (max-width: 1080px){
