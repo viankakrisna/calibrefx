@@ -167,8 +167,8 @@ class CFX_List_Table extends WP_List_Table {
         $this->_column_headers = array($columns, $hidden, $sortable);
         $this->process_bulk_action();
         
-        $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'id'; //If no sort, default to title
-        $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'asc'; //If no order, default to asc
+        $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : $this->_settings['orderby']; //If no sort, default to title
+        $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : $this->_settings['order']; //If no order, default to asc
         $current_page = $this->get_pagenum();
         $search = (!empty($_REQUEST['s'])) ? $_REQUEST['s'] : '';
         
