@@ -163,3 +163,15 @@ function calibrefx_add_meta_box($section, $ability, $id, $title, $callback, $scr
         "callback_args" => $callback_args,
     );
 }
+
+/**
+ * Add a meta box option form.
+ *
+ * @since 1.1.0
+ *
+ */
+function calibrefx_add_meta_option($metabox_id) {
+    global $calibrefx_sections;
+
+    
+}
