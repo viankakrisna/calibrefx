@@ -165,13 +165,64 @@ function calibrefx_add_meta_box($section, $ability, $id, $title, $callback, $scr
 }
 
 /**
- * Add a meta box option form.
- *
- * @since 1.1.0
- *
+ * calibrefx_add_meta_option create option fields for theme settings
+ * 
+ * @param  string $metabox_id  metabox id where the settings display
+ * @param  string $group_title the title of the options group
+ * @param  array $options store theme options, accepted: option_name, option_type, option_values, option_description
+ * @return void
  */
-function calibrefx_add_meta_option($metabox_id) {
-    global $calibrefx_sections;
+function calibrefx_add_meta_option($metabox_id, $group_id, $group_title, $options) {
+    global $calibrefx_meta_options;
 
+    if(!is_array($calibrefx_meta_options)) $calibrefx_meta_options = array();
+
+    if(!empty($calibrefx_meta_options[$metabox_id][$group_id])){
+        $options = array_merge($calibrefx_meta_options[$metabox_id][$group_id]['options'], $options);
+    }
     
+    $calibrefx_meta_options[$metabox_id][$group_id] = array(
+            'title' => $group_title,
+            'options'  => $options
+        );
 }
+
+/**
+ * Output All the meta options based on given metabox id
+ * 
+ * @param  Object $settings_obj Screen Object
+ * @param  string $metabox_id   Meta box id
+ * @return void
+ */
+function calibrefx_do_meta_options($settings_obj, $metabox_id){
+    global $calibrefx_meta_options;
+
+    if( !isset($calibrefx_meta_options[$metabox_id]) OR 
+        !is_array($calibrefx_meta_options[$metabox_id]) ) 
+        return false;
+
+    $settings_field = $settings_obj->settings_field;
+    foreach ($calibrefx_meta_options[$metabox_id] as $option_group_key => $option_group) {
+    ?>
+        <h3 class="section-title"><? $option_group['title'] ?></h3>
+        <div id="<?= $option_group_key ?>">
+            <div class="section-row">
+                <div class="section-col">
+                <?php
+                    foreach ($option_group['options'] as $option) {
+                        ?>
+                        <p>
+                            <label for="<?= $settings_field ?>[<?= $option['option_name'] ?>]"><?= $option['option_label'] ?></label>
+                            <input type="text" size="30" value="<?php calibrefx_option($option['option_name']); ?>" 
+                                id="<?= $settings_field ?>[<?= $option['option_name'] ?>" 
+                                name="<?= $settings_field ?>[<?= $option['option_name'] ?>">
+                        </p>
+                        <?php
+                    }
+                ?>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+}   
