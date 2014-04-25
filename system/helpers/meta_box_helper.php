@@ -165,6 +165,25 @@ function calibrefx_add_meta_box($section, $ability, $id, $title, $callback, $scr
 }
 
 /**
+ * [calibrefx_add_meta_group description]
+ * @param  [type] $metabox_id  [description]
+ * @param  [type] $group_id    [description]
+ * @param  [type] $group_title [description]
+ * @return [type]              [description]
+ */
+function calibrefx_add_meta_group($metabox_id, $group_id, $group_title){
+    global $calibrefx_meta_options;
+
+    if(!is_array($calibrefx_meta_options)) $calibrefx_meta_options = array();
+
+
+    $calibrefx_meta_options[$group_id] = array(
+        'title' => $group_title,
+        'metabox' => $metabox_id);
+    // $calibrefx_meta_options[$metabox_id][$group_id] = array('title' => $group_title);
+}
+
+/**
  * calibrefx_add_meta_option create option fields for theme settings
  * 
  * @param  string $metabox_id  metabox id where the settings display
@@ -172,19 +191,19 @@ function calibrefx_add_meta_box($section, $ability, $id, $title, $callback, $scr
  * @param  array $options store theme options, accepted: option_name, option_type, option_values, option_description
  * @return void
  */
-function calibrefx_add_meta_option($metabox_id, $group_id, $group_title, $options) {
+function calibrefx_add_meta_option($group_id, $option_name, $option_label, $options, $priority) {
     global $calibrefx_meta_options;
 
     if(!is_array($calibrefx_meta_options)) $calibrefx_meta_options = array();
 
-    if(!empty($calibrefx_meta_options[$metabox_id][$group_id])){
+    $options = array_merge(array('option_label' => $option_label), $options);
+
+    /*if(!empty($calibrefx_meta_options[$metabox_id][$group_id])){
         $options = array_merge($calibrefx_meta_options[$metabox_id][$group_id]['options'], $options);
-    }
+    }*/
+
     
-    $calibrefx_meta_options[$metabox_id][$group_id] = array(
-            'title' => $group_title,
-            'options'  => $options
-        );
+    $calibrefx_meta_options[$group_id]['options'][$priority][$option_name] = $options;
 }
 
 /**
@@ -195,29 +214,46 @@ function calibrefx_add_meta_option($metabox_id, $group_id, $group_title, $option
  * @return void
  */
 function calibrefx_do_meta_options($settings_obj, $metabox_id){
-    global $calibrefx_meta_options;
+    global $calibrefx_meta_options, $calibrefx;
 
-    if( !isset($calibrefx_meta_options[$metabox_id]) OR 
+    $calibrefx->load->library('form');
+    // die_dump($calibrefx_meta_options);
+
+    /*if( !isset($calibrefx_meta_options[$metabox_id]) OR 
         !is_array($calibrefx_meta_options[$metabox_id]) ) 
-        return false;
+        return false;*/
 
     $settings_field = $settings_obj->settings_field;
-    foreach ($calibrefx_meta_options[$metabox_id] as $option_group_key => $option_group) {
+    foreach ($calibrefx_meta_options as $option_group_id => $option_group) {
+
+        if($option_group['metabox'] != $metabox_id) continue;
+
+        $options = $option_group['options'];
+        if(!$options) continue;
+        
+        // $options = ksort($option_group['options']);
+
+        ksort($options);
     ?>
         <h3 class="section-title"><? $option_group['title'] ?></h3>
-        <div id="<?= $option_group_key ?>">
+        <div id="<?= $option_group_id ?>">
             <div class="section-row">
                 <div class="section-col">
                 <?php
-                    foreach ($option_group['options'] as $option) {
+                    foreach ($options as $option_priority) {
+                        foreach ($option_priority as $option_name => $option) {
                         ?>
                         <p>
-                            <label for="<?= $settings_field ?>[<?= $option['option_name'] ?>]"><?= $option['option_label'] ?></label>
-                            <input type="text" size="30" value="<?php calibrefx_option($option['option_name']); ?>" 
-                                id="<?= $settings_field ?>[<?= $option['option_name'] ?>" 
-                                name="<?= $settings_field ?>[<?= $option['option_name'] ?>">
+                            <label for="<?= $settings_field ?>[<?= $option_name ?>]"><?= $option['option_label'] ?></label>
+                            <!-- <input type="text" size="30" value="<?php calibrefx_option($option_name); ?>" 
+                                id="<?= $settings_field ?>[<?= $option_name ?>" 
+                                name="<?= $settings_field ?>[<?= $option_name ?>"> -->
+                            <?php 
+                                echo $calibrefx->form->textinput($settings_field."[".$option_name."]", calibrefx_get_option($option_name));
+                            ?>
                         </p>
                         <?php
+                        }
                     }
                 ?>
                 </div>
