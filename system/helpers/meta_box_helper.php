@@ -216,6 +216,8 @@ function calibrefx_add_meta_option($group_id, $option_name, $option_label, $opti
 function calibrefx_do_meta_options($settings_obj, $metabox_id){
     global $calibrefx_meta_options, $calibrefx;
 
+    do_action($metabox_id.'_options');
+
     $calibrefx->load->library('form');
     // die_dump($calibrefx_meta_options);
 
@@ -227,6 +229,7 @@ function calibrefx_do_meta_options($settings_obj, $metabox_id){
     foreach ($calibrefx_meta_options as $option_group_id => $option_group) {
 
         if($option_group['metabox'] != $metabox_id) continue;
+        if(empty($option_group['options'])) continue;
 
         $options = $option_group['options'];
         if(!$options) continue;
@@ -235,7 +238,7 @@ function calibrefx_do_meta_options($settings_obj, $metabox_id){
 
         ksort($options);
     ?>
-        <h3 class="section-title"><? $option_group['title'] ?></h3>
+        <h3 class="section-title"><?= $option_group['title'] ?></h3>
         <div id="<?= $option_group_id ?>">
             <div class="section-row">
                 <div class="section-col">
