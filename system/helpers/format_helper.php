@@ -307,3 +307,29 @@ function array_r( $needle, $haystack, $strict=true, $path=array() )
     }
     return false;
 }
+
+/**
+ * Convert CSV file to Array with key values
+ */
+if(!function_exists('csv_to_array')){
+    function csv_to_array($csvfile, $delimiter=','){
+
+        if(!file_exists($csvfile)) return false;
+
+        $handle = fopen($csvfile, "r");
+
+        $header = NULL;
+        $data = array();
+        while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
+
+            if(!$header)
+                $header = $row;
+            else
+                $data[] = array_combine($header, $row);
+        }
+
+        fclose($handle);
+
+        return $data;
+    }
+}
