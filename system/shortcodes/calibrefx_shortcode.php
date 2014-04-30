@@ -1212,7 +1212,7 @@ function calibrefx_togglebox_item($atts, $content = null){
     $output = '<div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#'.$togglebox_id.'" href="#'.$togglebox_id.'-'.$id.'">
+                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#'.$togglebox_id.'" href="#'.$togglebox_id.'-'.$id.'">
                     '.$title.'
                 </a>
             </h4>
