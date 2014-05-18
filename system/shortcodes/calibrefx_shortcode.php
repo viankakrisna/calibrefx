@@ -797,9 +797,17 @@ function calibrefx_tbel( $atts, $content = null ) {
     extract(shortcode_atts(array(
         "id" => "",
         "class" => "",
+        "src" => "",
     ), $atts));
-    return "<div id='$id' class='$class'>".do_shortcode(advance_shortcode_unautop($content))."</div>";
+
+    $style = '';
+    if($src){
+        $style .= 'background-image: url('. $src .');';
+    }
+
+    return "<div id='$id' class='$class' style='$style'>".do_shortcode(advance_shortcode_unautop($content))."</div>";
 }
+
 
 add_shortcode("tbcontainer", "calibrefx_tbcontainer");
 function calibrefx_tbcontainer( $atts, $content = null ) {
@@ -1212,7 +1220,7 @@ function calibrefx_togglebox_item($atts, $content = null){
     $output = '<div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#'.$togglebox_id.'" href="#'.$togglebox_id.'-'.$id.'">
+                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#'.$togglebox_id.'" href="#'.$togglebox_id.'-'.$id.'">
                     '.$title.'
                 </a>
             </h4>

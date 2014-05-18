@@ -624,6 +624,10 @@ class CFX_Theme_Settings extends CFX_Admin {
                         <label for="<?php echo $this->settings_field; ?>[pinterest_profile]"><?php _e('Pinterest Profile Link:', 'calibrefx'); ?></label>
                         <input type="text" size="30" value="<?php echo calibrefx_get_option('pinterest_profile'); ?>" id="<?php echo $this->settings_field; ?>[pinterest_profile]" name="<?php echo $this->settings_field; ?>[pinterest_profile]">
                     </p>
+                     <p>
+                        <label for="<?php echo $this->settings_field; ?>[instagram_profile]"><?php _e('Instagram Profile Link:', 'calibrefx'); ?></label>
+                        <input type="text" size="30" value="<?php echo calibrefx_get_option('instagram_profile'); ?>" id="<?php echo $this->settings_field; ?>[instagram_profile]" name="<?php echo $this->settings_field; ?>[instagram_profile]">
+                    </p>
                 </div>
                 <div class="section-col last">
                     <div class="section-desc">
@@ -640,6 +644,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                         <p><?php _e("This will use for Linkedin link, and it will show if using the Social Widget", 'calibrefx'); ?></p>
                         
                         <p><?php _e("This will use for Pinterest link, and it will show if using the Social Widget", 'calibrefx'); ?></p>
+                        <p><?php _e("This will use for Intagram link, and it will show if using the Social Widget", 'calibrefx'); ?></p>
                     </div>
                 </div>   
             </div>
