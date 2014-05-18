@@ -69,15 +69,16 @@ abstract class CFX_Admin {
 
         $this->settings_field = $this->_model->get_settings_field();
         
-        //define our security filter
-        $this->security_filters();
         
         add_action('calibrefx_hidden_fields', array($this,'hidden_fields'));
         add_action('admin_init', array($this, 'register_settings'), 5);
         add_action('admin_init', array($this, 'settings_init'), 20);
         add_filter('admin_body_class', 'calibrefx_admin_body_class', 20, 1);
-
+        
         add_action('admin_notices', array($this, 'notices'));
+        
+        //We add the security layer here
+        $this->security_filters();
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
 

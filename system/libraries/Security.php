@@ -75,7 +75,9 @@ class CFX_Security {
      * @return boolean Returns true when complete
      */
     public function add_sanitize_filter($filter, $field, $keys) {
-
+        //Get the persistent filter from database
+        $this->options = $this->get_sanitize_filter($field);
+        
         if (is_array($keys)) {
             foreach ($keys as $key) {
                 $this->options[$field][$key] = $filter;
@@ -86,18 +88,37 @@ class CFX_Security {
             $this->options[$field][$keys] = $filter;
         }
 
-        //add_filter('sanitize_option_' . $field, array(&$this, 'sanitize_input'), 10, 2);
+        wp_cache_set( $field.'_filters', $this->options );
+        update_option( $field.'_filters', $this->options );
 
         return true;
+    }
+
+    public function get_sanitize_filter($field) {
+
+        //first we get the cache
+        $current_filters = wp_cache_get( $field.'_filters' );
+
+        //no cache available try from db
+        if($current_filters === false){
+            $current_filters = get_option( $field.'_filters' );
+        }
+
+        //if still no data we initialize it
+        if(!$current_filters) $current_filters = array();
+
+        //merge with the current option filter
+        $this->options = array_merge($current_filters, $this->options);
+
+        return $this->options;
+
     }
 
     public function do_sanitize_filter($filter, $new_value) {
 
         $available_filters = $this->get_available_filters();
-
         if (!in_array($filter, array_keys($available_filters)))
             return $new_value;
-
         return call_user_func($available_filters[$filter], $new_value);
     }
 

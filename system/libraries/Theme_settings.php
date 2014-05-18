@@ -545,143 +545,177 @@ class CFX_Theme_Settings extends CFX_Admin {
      * This function socials_integrated_box is to show social media setting
      */
     function socials_integrated_box() {
-        ?>
-        <h3 class="section-title"><?php _e('Facebook Settings', 'calibrefx'); ?></h3>
-        <div id="facebook-settings">
-            <div class="section-row">
-                <div class="section-col">
-                    <p class="facebook-admins-settings">
-                        <label for="<?php echo $this->settings_field; ?>[facebook_admins]"><?php _e('Facebook Admin ID:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_admins'); ?>" id="<?php echo $this->settings_field; ?>[facebook_admins]" name="<?php echo $this->settings_field; ?>[facebook_admins]">
-                    </p>
+        global $calibrefx;
+    
+        calibrefx_add_meta_group('themesocial-settings', 'facebook-settings', __('Facebook Settings', 'calibrefx'));
+        calibrefx_add_meta_group('themesocial-settings', 'social-settings', __('Social Link Settings', 'calibrefx'));
+        calibrefx_add_meta_group('themesocial-settings', 'feed-settings', __('RSS Feed Settings', 'calibrefx'));
 
-                    <p class="facebook-page-settings">
-                        <label for="<?php echo $this->settings_field; ?>[facebook_og_type]"><?php _e('Facebook Page Type:', 'calibrefx'); ?></label>
-                        <select name="<?php echo $this->settings_field; ?>[facebook_og_type]" id="<?php echo $this->settings_field; ?>[facebook_og_type]">
-                        <?php
-                        $page_types = apply_filters(
-                                'calibrefx_facebook_og_types', array(
-                                'article' => 'Article',
-                                'website' => 'Website',
-                                'blog' => 'Blog',
-                                'movie' => 'Movie',
-                                'song' => 'Song',
-                                'product' => 'Product',
-                                'book' => 'Book',
-                                'food' => 'Food',
-                                'drink' => 'Drink',
-                                'activity' => 'Activity',
-                                'sport' => 'Sport',
-                                )
-                        );
-                        foreach ((array) $page_types as $value => $name)
-                            echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('facebook_og_type'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";
-                        ?>
-                        </select>
-                    </p>
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <?php _e("This will be use for Facebook Insight. <br/>This will output: <code>&lt;meta property=\"fb:admins\" content=\"YOUR ADMIN ID HERE\"/></code> Read More about this <a href='https://developers.facebook.com/docs/insights/' target='_blank'>here</a>.", 'calibrefx'); ?>
-                        
-                        <hr class="div" />
+        add_action( 'themesocial-settings_options', function(){
+            calibrefx_add_meta_option(
+                'facebook-settings',  // group id
+                'facebook_admins', // field id and option name
+                __('Facebook Admin ID'), // Label
+                array(
+                    'option_type' => 'textinput',
+                    'option_default' => 'anyvalue',
+                    'option_filter' => 'safe_text',
+                    'option_description' => __("This will be use for Facebook Insight. <br/>This will output: <code>&lt;meta property=\"fb:admins\" content=\"YOUR ADMIN ID HERE\"/></code> Read More about this <a href='https://developers.facebook.com/docs/insights/' target='_blank'>here</a>.", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
 
-                        <?php _e("This is open graph protocol that helo to identify your content. <br/>This will output: <code>&lt;meta property=\"og:type\" content=\"TYPE\"/></code>", 'calibrefx'); ?>
-                    </div>
-                </div>   
-            </div>
-        </div>
+            calibrefx_add_meta_option(
+                    'facebook-settings',  // group id
+                    'facebook_og_type', // field id and option name
+                    __('Facebook Page Type'), // Label
+                    array(
+                        'option_type' => 'select',
+                        'option_items' => apply_filters(
+                                        'calibrefx_facebook_og_types', array(
+                                        'article' => 'Article',
+                                        'website' => 'Website',
+                                        'blog' => 'Blog',
+                                        'movie' => 'Movie',
+                                        'song' => 'Song',
+                                        'product' => 'Product',
+                                        'book' => 'Book',
+                                        'food' => 'Food',
+                                        'drink' => 'Drink',
+                                        'activity' => 'Activity',
+                                        'sport' => 'Sport',
+                                        )
+                                ),
+                        'option_default' => 'website',
+                        'option_filter' => 'safe_text',
+                        'option_description' => __("This is open graph protocol that helo to identify your content. <br/>This will output: <code>&lt;meta property=\"og:type\" content=\"TYPE\"/></code>", 'calibrefx'),
+                    ), // Settings config
+                    5 //Priority
+            );
+        } );
 
-        <h3 class="section-title"><?php _e('Social Link Settings', 'calibrefx'); ?></h3>
-        <div id="social-link-settings">
-            <div class="section-row">
-                <div class="section-col">
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[gplus_profile]"><?php _e('Google+ Profile Link:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('gplus_profile'); ?>" id="<?php echo $this->settings_field; ?>[gplus_profile]" name="<?php echo $this->settings_field; ?>[gplus_profile]">
-                    </p>
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[gplus_page]"><?php _e('Google+ Page Link:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('gplus_page'); ?>" id="<?php echo $this->settings_field; ?>[gplus_page]" name="<?php echo $this->settings_field; ?>[gplus_page]">
-                    </p>
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[facebook_fanpage]"><?php _e('Facebook Page Link:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('facebook_fanpage'); ?>" id="<?php echo $this->settings_field; ?>[facebook_fanpage]" name="<?php echo $this->settings_field; ?>[facebook_fanpage]">
-                    </p>
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[twitter_profile]"><?php _e('Twitter Profile Link:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('twitter_profile'); ?>" id="<?php echo $this->settings_field; ?>[twitter_profile]" name="<?php echo $this->settings_field; ?>[twitter_profile]">
-                    </p>
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[youtube_channel]"><?php _e('Youtube Channel Link:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('youtube_channel'); ?>" id="<?php echo $this->settings_field; ?>[youtube_channel]" name="<?php echo $this->settings_field; ?>[youtube_channel]">
-                    </p>
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[linkedin_profile]"><?php _e('Linkedin Profile Link:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('linkedin_profile'); ?>" id="<?php echo $this->settings_field; ?>[linkedin_profile]" name="<?php echo $this->settings_field; ?>[linkedin_profile]">
-                    </p>
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[pinterest_profile]"><?php _e('Pinterest Profile Link:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('pinterest_profile'); ?>" id="<?php echo $this->settings_field; ?>[pinterest_profile]" name="<?php echo $this->settings_field; ?>[pinterest_profile]">
-                    </p>
-                     <p>
-                        <label for="<?php echo $this->settings_field; ?>[instagram_profile]"><?php _e('Instagram Profile Link:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('instagram_profile'); ?>" id="<?php echo $this->settings_field; ?>[instagram_profile]" name="<?php echo $this->settings_field; ?>[instagram_profile]">
-                    </p>
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <p><?php _e("This will output <code>&lt;link rel=\"author\" href=\"YOUR GOOGLE+ LINK HERE\"/></code> in html head", 'calibrefx'); ?></p>
-                        
-                        <p><?php _e("This will use for Google Page For Business link, and it will show if using the Social Widget", 'calibrefx'); ?></p>
-                        
-                        <p><?php _e("This will use for Facebook Page link, and it will show if using the Social Widget", 'calibrefx'); ?></p>
-                        
-                        <p><?php _e("This will use for Twitter link, and it will show if using the Social Widget", 'calibrefx'); ?></p>
-                        
-                        <p><?php _e("This will use for Youtube Channel link, and it will show if using the Social Widget", 'calibrefx'); ?></p>
-                        
-                        <p><?php _e("This will use for Linkedin link, and it will show if using the Social Widget", 'calibrefx'); ?></p>
-                        
-                        <p><?php _e("This will use for Pinterest link, and it will show if using the Social Widget", 'calibrefx'); ?></p>
-                        <p><?php _e("This will use for Intagram link, and it will show if using the Social Widget", 'calibrefx'); ?></p>
-                    </div>
-                </div>   
-            </div>
-        </div>
+        add_action( 'themesocial-settings_options', function() {
+            calibrefx_add_meta_option(
+                    'social-settings',  // group id
+                    'gplus_profile', // field id and option name
+                    __('Google+ Profile Link'), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_text',
+                        'option_description' => __("This will output <code>&lt;link rel=\"author\" href=\"YOUR GOOGLE+ LINK HERE\"/></code> in html head.", 'calibrefx'),
+                    ), // Settings config
+                    1 //Priority
+            );
 
-        <h3 class="section-title"><?php _e('Feed Settings', 'calibrefx'); ?></h3>
-        <div id="main-feed-settings">
-            <div class="section-row">
-                <div class="section-col" style="padding-bottom:14px;">
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[feed_uri]"><?php _e('Main Feed URL:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('feed_uri'); ?>" id="<?php echo $this->settings_field; ?>[feed_uri]" name="<?php echo $this->settings_field; ?>[feed_uri]">
-                    </p>
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <p><?php _e("You can replace WordPress builtin Feed URL using this options. For sample you want to use feedburner instead. Sample: http://feeds2.feedburner.com/calibrefx.", 'calibrefx'); ?></p>
-                        <hr class="div" style="margin:0" />
-                    </div>
-                </div>   
-            </div>
-        </div>
-        <div id="comment-feed-settings">
-            <div class="section-row">
-                <div class="section-col">
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[comments_feed_uri]"><?php _e('Comment Feed URL:', 'calibrefx'); ?></label>
-                        <input type="text" size="30" value="<?php echo calibrefx_get_option('comments_feed_uri'); ?>" id="<?php echo $this->settings_field; ?>[comments_feed_uri]" name="<?php echo $this->settings_field; ?>[comments_feed_uri]">
-                    </p>
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <p><?php _e("You can replace WordPress builtin Feed URL using this options. For sample you want to use feedburner instead. Sample: http://feeds2.feedburner.com/calibrefxcomment.", 'calibrefx'); ?></p>
-                    </div>
-                </div>   
-            </div>
-        </div>
-        <?php
+            calibrefx_add_meta_option(
+                    'social-settings',  // group id
+                    'gplus_page', // field id and option name
+                    __('Google+ Page Link'), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_text',
+                        'option_description' => __("This will use for Google Page For Business link, and it will show if using the Social Widget", 'calibrefx'),
+                    ), // Settings config
+                    5 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                    'social-settings',  // group id
+                    'facebook_fanpage', // field id and option name
+                    __('Facebook Page Link'), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_text',
+                        'option_description' => __("This will use for Facebook Page link, and it will show if using the Social Widget", 'calibrefx'),
+                    ), // Settings config
+                    10 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                    'social-settings',  // group id
+                    'twitter_profile', // field id and option name
+                    __('Twitter Profile Link'), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_text',
+                        'option_description' => __("This will use for Twitter link, and it will show if using the Social Widget", 'calibrefx'),
+                    ), // Settings config
+                    15 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                    'social-settings',  // group id
+                    'youtube_channel', // field id and option name
+                    __('Youtube Channel Link'), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_text',
+                        'option_description' => __("This will use for Youtube Channel link, and it will show if using the Social Widget", 'calibrefx'),
+                    ), // Settings config
+                    20 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                    'social-settings',  // group id
+                    'linkedin_profile', // field id and option name
+                    __('Linkedin Profile Link'), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_text',
+                        'option_description' => __("This will use for Linkedin link, and it will show if using the Social Widget", 'calibrefx'),
+                    ), // Settings config
+                    25 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                    'social-settings',  // group id
+                    'pinterest_profile', // field id and option name
+                    __('Pinterest Profile Link'), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_text',
+                        'option_description' => __("This will use for Pinterest link, and it will show if using the Social Widget", 'calibrefx'),
+                    ), // Settings config
+                    30 //Priority
+            );
+        } );
+
+        add_action( 'themesocial-settings_options', function() {
+            calibrefx_add_meta_option(
+                    'feed-settings',  // group id
+                    'feed_uri', // field id and option name
+                    __('Main Feed URL'), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_text',
+                        'option_description' => __("You can replace WordPress builtin Feed URL using this options. For sample you want to use feedburner instead. Sample: http://feeds2.feedburner.com/calibrefx.", 'calibrefx'),
+                    ), // Settings config
+                    1 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                    'feed-settings',  // group id
+                    'comments_feed_uri', // field id and option name
+                    __('Comment Feed URL'), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_text',
+                        'option_description' => __("You can replace WordPress builtin Feed URL using this options. For sample you want to use feedburner instead. Sample: http://feeds2.feedburner.com/calibrefxcomment.", 'calibrefx'),
+                    ), // Settings config
+                    2 //Priority
+            );
+        } );
+
+        calibrefx_do_meta_options($calibrefx->theme_settings, 'themesocial-settings');
     }
 }
+

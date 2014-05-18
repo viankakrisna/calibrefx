@@ -192,11 +192,17 @@ function calibrefx_add_meta_group($metabox_id, $group_id, $group_title){
  * @return void
  */
 function calibrefx_add_meta_option($group_id, $option_name, $option_label, $options, $priority) {
-    global $calibrefx_meta_options;
+    global $calibrefx_meta_options, $calibrefx;
 
     if(!is_array($calibrefx_meta_options)) $calibrefx_meta_options = array();
 
     $options = array_merge(array('option_label' => $option_label), $options);
+    //add sanitize filter
+    $calibrefx->security->add_sanitize_filter(
+                $options['option_filter'], 
+                'calibrefx-settings', 
+                $option_name);
+
 
     /*if(!empty($calibrefx_meta_options[$metabox_id][$group_id])){
         $options = array_merge($calibrefx_meta_options[$metabox_id][$group_id]['options'], $options);
