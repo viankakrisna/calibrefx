@@ -202,7 +202,6 @@ function calibrefx_add_meta_option($group_id, $option_name, $option_label, $opti
         $options = array_merge($calibrefx_meta_options[$metabox_id][$group_id]['options'], $options);
     }*/
 
-    
     $calibrefx_meta_options[$group_id]['options'][$priority][$option_name] = $options;
 }
 
@@ -252,8 +251,23 @@ function calibrefx_do_meta_options($settings_obj, $metabox_id){
                                 id="<?= $settings_field ?>[<?= $option_name ?>" 
                                 name="<?= $settings_field ?>[<?= $option_name ?>"> -->
                             <?php 
-                                echo $calibrefx->form->textinput($settings_field."[".$option_name."]", calibrefx_get_option($option_name));
+                                switch ($option['option_type']) {
+                                    case 'textinput':
+                                    case 'textarea':
+                                    case 'password':
+                                        echo $calibrefx->form->{$option['option_type']}($settings_field."[".$option_name."]", calibrefx_get_option($option_name));
+                                        break;
+                                    
+                                    case 'checkbox':
+                                    case 'radio':
+                                    case 'select':
+                                        echo $calibrefx->form->{$option['option_type']}($settings_field."[".$option_name."]", $option['option_items'],calibrefx_get_option($option_name));
+                                        break;
+                                }
                             ?>
+                        </p>
+                        <p class="description">
+                            <?php echo $option['option_description']; ?>
                         </p>
                         <?php
                         }
