@@ -129,11 +129,7 @@ class CFX_Theme_Settings extends CFX_Admin {
 
         calibrefx_add_meta_section('general', __('General Settings', 'calibrefx'), $calibrefx_target_form, 1);
         calibrefx_add_meta_section('layout', __('Layout Settings', 'calibrefx'), $calibrefx_target_form,2);
-        calibrefx_add_meta_section('social', __('Social Settings', 'calibrefx'), $calibrefx_target_form,10);
-        
-        /*if($calibrefx_user_ability == 'professor'){
-            calibrefx_add_meta_section('email', __('Email Setting', 'calibrefx'), $calibrefx_target_form, 20);
-        }*/
+        calibrefx_add_meta_section('social', __('Social Settings', 'calibrefx'), $calibrefx_target_form,10);    
 
         do_action('calibrefx_theme_settings_meta_section');
 
@@ -146,10 +142,10 @@ class CFX_Theme_Settings extends CFX_Admin {
     public function meta_boxes() {
         calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), array($this, 'navigation_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-content', __('Content Setting', 'calibrefx'), array($this, 'content_setting'), $this->pagehook, 'main');
-        calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-analytics', __('Google Analytics Setting', 'calibrefx'), array($this, 'analytics_setting'), $this->pagehook, 'main');
+        
+        calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-tracking', __('Website Tracking Setting', 'calibrefx'), array($this, 'tracking_setting'), $this->pagehook, 'main');
 
         calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), array($this, 'layout_box'), $this->pagehook, 'main', 'high');
-        // calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-custom-css', __('Themes Custom CSS', 'calibrefx'), array($this, 'custom_css_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-custom-script', __('Themes Advanced Customization', 'calibrefx'), array($this, 'custom_script_box'), $this->pagehook, 'main', 'low');
 
         calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-socials', __('Social Integration', 'calibrefx'), array($this, 'socials_integrated_box'), $this->pagehook, 'main');
@@ -169,6 +165,42 @@ class CFX_Theme_Settings extends CFX_Admin {
      * Show navigation setting box
      */
     function navigation_box() {
+        global $calibrefx;
+
+        calibrefx_add_meta_group('themenavigation-settings', 'navigation-settings', __('Menu Settings', 'calibrefx'));
+
+        add_action( 'themenavigation-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'navigation-settings',  // group id
+                'nav', // field id and option name
+                __('Primary Navigation'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("You can assign primary menu from the Apperances > Menu", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                'navigation-settings',  // group id
+                'subnav', // field id and option name
+                __('Secondary Navigation'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("You can assign secondary menu from the Apperances > Menu", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
+        });
+
+        calibrefx_do_meta_options($calibrefx->theme_settings, 'themenavigation-settings');
+        /*
         ?>
         <h3 class="section-title">Menu Navigation</h3>
 
@@ -196,33 +228,35 @@ class CFX_Theme_Settings extends CFX_Admin {
 
          <p class="description"><?php printf(__('Please build a <a href="%s">custom menu</a>, then assign it to the proper Menu Location.', 'calibrefx'), admin_url('nav-menus.php')); ?></p>
         <?php
-
+    
         do_action('calibrefx_navigation_settings_meta_box');
+        */
     }
 
     /**
      * Show google analytic setting box
      */
-    function analytics_setting(){
-    ?>
-        <div id="analytics-settings">
-            <h3 class="section-title">
-                <label for="analytic_id"><?php _e('Google Analytics ID', 'calibrefx'); ?></label>
-            </h3>
+    function tracking_setting(){
+        global $calibrefx;
 
-            <div class="section-row">
-                <div class="section-col">
-                    <input type="text" name="<?php echo $this->settings_field; ?>[analytic_id]" id="analytic_id" value="<?php echo esc_attr(calibrefx_get_option('analytic_id')); ?>" />
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <?php _e('Enter your google analytics ID, example: <strong>UA-xxxxxxxx-x</strong>', 'calibrefx'); ?>
-                    </div>
-                </div>   
-            </div>
-        </div>
-    <?php
-        do_action('calibrefx_analytic_settings_meta_box');
+        calibrefx_add_meta_group('themetracking-settings', 'google-analytics-settings', __('Google Anlytic Settings', 'calibrefx'));
+
+        add_action( 'themetracking-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'google-analytics-settings',  // group id
+                'analytic_id', // field id and option name
+                __('Google Analytics ID'), // Label
+                array(
+                    'option_type' => 'textinput',
+                    'option_default' => '',
+                    'option_filter' => 'no_html',
+                    'option_description' => __("Enter your google analytics ID, example: <strong>UA-xxxxxxxx-x</strong>", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
+        });
+
+        calibrefx_do_meta_options($calibrefx->theme_settings, 'themetracking-settings');
     }
 
     /**
@@ -477,26 +511,6 @@ class CFX_Theme_Settings extends CFX_Admin {
                 <div class="section-col last">
                     <div class="section-desc">
                         <?php _e('You can choose your general layout type. You can override this from the post/page editor.', 'calibrefx'); ?> 
-                    </div>
-                </div>   
-            </div>
-        </div>
-        <?php
-        }
-
-    /**
-     * Show setting box inside Theme Settings
-     */
-    function custom_css_box() { ?>
-        <div id="custom-css-settings">
-            <div class="section-row">
-                <div class="section-col">
-                    <p><?php _e("Custom CSS code will be output at <code>wp_head()</code>:", 'calibrefx'); ?></p>
-                    <textarea name="<?php echo $this->settings_field; ?>[custom_css]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('custom_css'))); ?></textarea>
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <?php _e('You can add your custom css codes here. Example: <code>a.hover {color:#ffffff}</code> .', 'calibrefx'); ?>
                     </div>
                 </div>   
             </div>

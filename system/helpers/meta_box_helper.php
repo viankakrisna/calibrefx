@@ -252,21 +252,25 @@ function calibrefx_do_meta_options($settings_obj, $metabox_id){
                         foreach ($option_priority as $option_name => $option) {
                         ?>
                         <p>
-                            <label for="<?= $settings_field ?>[<?= $option_name ?>]"><?= $option['option_label'] ?></label>
-                            <!-- <input type="text" size="30" value="<?php calibrefx_option($option_name); ?>" 
-                                id="<?= $settings_field ?>[<?= $option_name ?>" 
-                                name="<?= $settings_field ?>[<?= $option_name ?>"> -->
                             <?php 
                                 switch ($option['option_type']) {
                                     case 'textinput':
                                     case 'textarea':
                                     case 'password':
+                                        echo '<label for="'.$settings_field.'['.$option_name.']">'.$option["option_label"].'</label>';
                                         echo $calibrefx->form->{$option['option_type']}($settings_field."[".$option_name."]", calibrefx_get_option($option_name));
                                         break;
                                     
                                     case 'checkbox':
+                                        echo $calibrefx->form->{$option['option_type']}($settings_field."-checkbox-".$option_name, $option['option_items'],
+                                            calibrefx_get_option($option_name), $option['option_label'], false, 
+                                            array("target" => $settings_field."-".$option_name, "class" => "calibrefx-settings-checkbox"));
+                                        echo $calibrefx->form->hidden($settings_field."[".$option_name."]", calibrefx_get_option($option_name), 
+                                            array("id" => $settings_field."-".$option_name));
+                                        break;
                                     case 'radio':
                                     case 'select':
+                                        echo '<label for="'.$settings_field.'['.$option_name.']">'.$option["option_label"].'</label>';
                                         echo $calibrefx->form->{$option['option_type']}($settings_field."[".$option_name."]", $option['option_items'],calibrefx_get_option($option_name));
                                         break;
                                 }

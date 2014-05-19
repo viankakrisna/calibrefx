@@ -58,8 +58,12 @@ class CFX_Form {
         foreach($atts as $key => $val){
             $attr .= ' ' . $key . '="' . $val .'"';
         }
+        if(!isset($atts["id"])){
+            return '<input type="hidden" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . $attr . ' />';
+        }else{
+            return '<input type="hidden" name="' . $id . '" value="' . $value . '"' . $attr . ' />';
+        }
 
-        return '<input type="hidden" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . $attr . ' />';
     }
 
     /**
