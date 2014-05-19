@@ -149,13 +149,10 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-analytics', __('Google Analytics Setting', 'calibrefx'), array($this, 'analytics_setting'), $this->pagehook, 'main');
 
         calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), array($this, 'layout_box'), $this->pagehook, 'main', 'high');
-        calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-custom-css', __('Themes Custom CSS', 'calibrefx'), array($this, 'custom_css_box'), $this->pagehook, 'main', 'high');
-        calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-custom-script', __('Themes Custom Script', 'calibrefx'), array($this, 'custom_script_box'), $this->pagehook, 'main', 'low');
+        // calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-custom-css', __('Themes Custom CSS', 'calibrefx'), array($this, 'custom_css_box'), $this->pagehook, 'main', 'high');
+        calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-custom-script', __('Themes Advanced Customization', 'calibrefx'), array($this, 'custom_script_box'), $this->pagehook, 'main', 'low');
 
-        //calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-feeds', __('Feeds Setting', 'calibrefx'), array($this, 'feeds_box'), $this->pagehook, 'main');
-        //calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-social-link', __('Social Media Links', 'calibrefx'), array($this, 'social_link'), $this->pagehook, 'main');
-        //calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-socials', __('Social Settings', 'calibrefx'), array($this, 'socials_box'), $this->pagehook, 'main');
-        calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-socials', __('Social Integrated', 'calibrefx'), array($this, 'socials_integrated_box'), $this->pagehook, 'main');
+        calibrefx_add_meta_box('social', 'basic', 'calibrefx-theme-settings-socials', __('Social Integration', 'calibrefx'), array($this, 'socials_integrated_box'), $this->pagehook, 'main');
 
         do_action('calibrefx_theme_settings_meta_box');
     }
@@ -510,35 +507,54 @@ class CFX_Theme_Settings extends CFX_Admin {
     /**
      * Show setting box inside Theme Settings
      */
-    function custom_script_box() { ?>
-        <div id="head-script-settings">
-            <div class="section-row">
-                <div class="section-col">
-                    <p><?php _e("Header script will be output at <code>wp_head()</code>:", 'calibrefx'); ?></p>
-                    <textarea name="<?php echo $this->settings_field; ?>[header_scripts]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('header_scripts'))); ?></textarea>
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <?php _e('You can add your javascript at the head of the page. For example Google analytics code. <br/>Samples: <code>&lt;script type="text/javascript">alert("Hello World");&lt;/script></code>', 'calibrefx'); ?>
-                    </div>
-                </div>   
-            </div>
-        </div>
+    function custom_script_box() { 
+        global $calibrefx;
+        
+        calibrefx_add_meta_group('themelayout-script-settings', 'custom-css-settings', __('Style Customization', 'calibrefx'));
+        calibrefx_add_meta_group('themelayout-script-settings', 'custom-script-settings', __('Javascript Customization', 'calibrefx'));
+        
+        add_action( 'themelayout-script-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'custom-css-settings',  // group id
+                'custom_css', // field id and option name
+                __('Custom CSS code will be output at <code>wp_head()</code>'), // Label
+                array(
+                    'option_type' => 'textarea',
+                    'option_default' => '',
+                    'option_filter' => 'no_html',
+                    'option_description' => __("You can add your custom css codes here. Example: <code>a.hover {color:#ffffff}</code>.", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
 
-        <div id="footer-script-settings">
-            <div class="section-row">
-                <div class="section-col">
-                    <p><?php _e("Footer scripts will be output at <code>wp_footer()</code>:", 'calibrefx'); ?></p>
-                    <textarea name="<?php echo $this->settings_field; ?>[footer_scripts]" cols="78" rows="8"><?php echo stripslashes(esc_textarea(calibrefx_get_option('footer_scripts'))); ?></textarea>
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <?php _e('You can add your javascript at the footer of the page. For example tracking code. <br/>Samples: <code>&lt;script type="text/javascript">alert("Hello World");&lt;/script></code>', 'calibrefx'); ?>
-                    </div>
-                </div>   
-            </div>
-        </div>
-        <?php
+            calibrefx_add_meta_option(
+                'custom-script-settings',  // group id
+                'header_scripts', // field id and option name
+                __('Header script will be output at <code>wp_head()</code>'), // Label
+                array(
+                    'option_type' => 'textarea',
+                    'option_default' => '',
+                    'option_filter' => 'safe_js',
+                    'option_description' => __("You can add your javascript at the head of the page. For example Google analytics code. <br/>Samples: <code>&lt;script type=\"text/javascript\">alert(\"Hello World\");&lt;/script></code>.", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                'custom-script-settings',  // group id
+                'footer_scripts', // field id and option name
+                __('Footer scripts will be output at <code>wp_footer()</code>'), // Label
+                array(
+                    'option_type' => 'textarea',
+                    'option_default' => '',
+                    'option_filter' => 'safe_js',
+                    'option_description' => __("You can add your javascript at the footer of the page. For example Google analytics code. <br/>Samples: <code>&lt;script type=\"text/javascript\">alert(\"Hello World\");&lt;/script></code>.", 'calibrefx'),
+                ), // Settings config
+                5 //Priority
+            );
+        });
+
+        calibrefx_do_meta_options($calibrefx->theme_settings, 'themelayout-script-settings');
     }
 
     /**
@@ -546,7 +562,7 @@ class CFX_Theme_Settings extends CFX_Admin {
      */
     function socials_integrated_box() {
         global $calibrefx;
-    
+
         calibrefx_add_meta_group('themesocial-settings', 'facebook-settings', __('Facebook Settings', 'calibrefx'));
         calibrefx_add_meta_group('themesocial-settings', 'social-settings', __('Social Link Settings', 'calibrefx'));
         calibrefx_add_meta_group('themesocial-settings', 'feed-settings', __('RSS Feed Settings', 'calibrefx'));
