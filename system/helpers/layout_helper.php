@@ -213,7 +213,7 @@ function calibrefx_site_layout() {
     $custom_layout = false;
 
     if(is_single() OR is_page()){
-        $custom_layout = get_post_meta($post->ID, 'site_layout', true);
+        $custom_layout = get_post_meta($post->ID, '_calibrefx_layout', true);
     }
 
     if ($custom_layout) {

@@ -320,4 +320,135 @@ function calibrefx_do_meta_options($settings_obj, $metabox_id){
         </div>
     <?php
     }
-}   
+}
+
+function calibrefx_add_post_meta_boxes($slug, $title, $callback, $post_types = array('post', 'page'), $priority = 'high'){
+    global $calibrefx_post_sections;
+
+    //$key = $priority . '-' . $slug;
+    if (!isset($calibrefx_post_sections))
+        $calibrefx_post_sections = array();
+
+    if (!isset($calibrefx_post_sections[$slug]))
+        $calibrefx_post_sections[$slug] = array();
+
+    //if the section already exist then we do nothing
+    if (!empty($calibrefx_post_sections[$slug])) {
+        return;
+    }
+    $calibrefx_post_sections[$slug] = array(
+        'title' => $title,
+        'post_types' => $post_types,
+        'priority' => $priority,
+        'callback'  => $callback
+    );
+}
+
+function calibrefx_add_post_meta_options($slug, $option_name, $option_label, $options, $priority, $atts = array()) {
+    global $calibrefx_post_meta_options, $calibrefx;
+
+    if(!is_array($calibrefx_post_meta_options)) $calibrefx_post_meta_options = array();
+
+    $options = array_merge(array('option_label' => $option_label), $options);
+    //add sanitize filter
+    /*if(!empty($options['option_filter'])){
+        $calibrefx->security->add_sanitize_filter(
+                    $options['option_filter'], 
+                    'calibrefx-settings', 
+                    $option_name);
+    }*/
+
+    /*if(!empty($calibrefx_meta_options[$metabox_id][$group_id])){
+        $options = array_merge($calibrefx_meta_options[$metabox_id][$group_id]['options'], $options);
+    }*/
+
+    $calibrefx_post_meta_options[$slug]['options'][$priority][$option_name] = $options;
+}
+
+/**
+ * Output All the meta options based on given metabox id
+ * 
+ * @param  Object $settings_obj Screen Object
+ * @param  string $metabox_id   Meta box id
+ * @return void
+ */
+function calibrefx_do_post_meta_options($slug){
+    global $calibrefx_post_meta_options, $calibrefx;
+    if(empty($calibrefx_post_meta_options[$slug])) return;
+
+    do_action($slug.'_options');
+
+    $calibrefx->load->library('form');
+    
+    foreach ($calibrefx_post_meta_options[$slug] as $options) {
+        if(empty($options)) continue;
+        ksort($options);
+                
+        foreach ($options as $option_priority) {
+            foreach ($option_priority as $option_name => $option) {
+                //backward compatibility
+                if(empty($option['option_attr'])) $option['option_attr'] = array();
+                $attr = '';
+                foreach($option['option_attr'] as $key => $val){
+                    $attr .= ' ' . $key . '="' . $val .'"';
+                }
+            ?>
+            <p <?= $attr ?> >
+                <?php 
+                    switch ($option['option_type']) {
+                        case 'hidden':
+                            echo $calibrefx->form->hidden($option_name, calibrefx_get_custom_field($option_name), $option['option_attr']);
+                            break;
+                        case 'textinput':
+                        case 'textarea':
+                        case 'password':
+                            //we need to extract the class from the array
+                            $classes = "";
+                            if(isset($option['option_attr']['class'])){
+                                $classes = $option['option_attr']['class'];
+                                unset($option['option_attr']['class']);
+                            }
+                            echo '<label for="'.$option_name.'">'.$option["option_label"].'</label> ';
+                            echo $calibrefx->form->{$option['option_type']}($option_name, calibrefx_get_custom_field($option_name), $classes, $option['option_attr']);
+                            break;
+                        
+                        /*case 'checkbox':
+                            $classes = "calibrefx-settings-checkbox";
+                            if(isset($option['option_attr']['class'])){
+                                $classes .= ' '.$option['option_attr']['class'];
+                                unset($option['option_attr']['class']);
+                            }
+                            $attr = array_merge(array("target" => $settings_field."-".$option_name, "class" => $classes), $option['option_attr']);
+                            echo $calibrefx->form->{$option['option_type']}($settings_field."-checkbox-".$option_name, $option['option_items'],
+                                calibrefx_get_custom_field($option_name), $option['option_label'], false, 
+                                $attr);
+                            echo $calibrefx->form->hidden($option_name, calibrefx_get_custom_field($option_name), 
+                                array("id" => $settings_field."-".$option_name));
+                            break;
+                        case 'radio':
+                        case 'select':
+                            echo '<label for="'.$option_name . '">'.$option["option_label"].'</label>';
+                            echo $calibrefx->form->{$option['option_type']}($option_name, $option['option_items'],calibrefx_get_custom_field($option_name), '', $option['option_attr']);
+                            break;*/
+                        case 'custom':
+                            if(isset($option['option_custom'])){
+                                echo '<label for="'.$option_name . '">'.$option["option_label"].'</label>';
+                                echo $option['option_custom'];
+                            }
+                            break;
+
+                    }
+                ?>
+            </p>
+            <?php 
+                if(!empty($option['option_description'])) :
+            ?>
+                <p class="description">
+                    <?php echo $option['option_description']; ?>
+                </p>
+            <?php
+                endif;
+            }
+        }
+    }
+}
