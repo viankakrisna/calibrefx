@@ -142,7 +142,7 @@ class CFX_Theme_Settings extends CFX_Admin {
     public function meta_boxes() {
         calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), array($this, 'navigation_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-content', __('Content Setting', 'calibrefx'), array($this, 'content_setting'), $this->pagehook, 'main');
-        
+        calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-comment', __('Post Comment Setting', 'calibrefx'), array($this, 'comment_setting'), $this->pagehook, 'main');
         calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-tracking', __('Website Tracking Setting', 'calibrefx'), array($this, 'tracking_setting'), $this->pagehook, 'main');
 
         calibrefx_add_meta_box('layout', 'basic', 'calibrefx-theme-settings-layout', __('Default Layout Settings', 'calibrefx'), array($this, 'layout_box'), $this->pagehook, 'main', 'high');
@@ -200,37 +200,6 @@ class CFX_Theme_Settings extends CFX_Admin {
         });
 
         calibrefx_do_meta_options($calibrefx->theme_settings, 'themenavigation-settings');
-        /*
-        ?>
-        <h3 class="section-title">Menu Navigation</h3>
-
-        <div class="section-row">
-            <div class="section-col">
-                <?php if (calibrefx_nav_menu_supported('primary')) : ?>
-                <div class="section-line">
-                    <label for="calibrefx-settings-checkbox-nav"><span class="label-highlight"><input type="checkbox" name="" target="calibrefx-settings-nav" value="1" id="calibrefx-settings-checkbox-nav" class="calibrefx-settings-checkbox" <?php checked(1, calibrefx_get_option('nav')); ?> /> <?php _e("Primary Navigation", 'calibrefx'); ?></span></label>
-                    <input type="hidden" name="<?php echo $this->settings_field; ?>[nav]" id="calibrefx-settings-nav" value="<?php echo calibrefx_get_option('nav'); ?>" />
-                </div>
-                <?php endif; ?>
-                <?php if (calibrefx_nav_menu_supported('secondary')) : ?>
-                <div class="section-line last">
-                    <label for="calibrefx-settings-checkbox-subnav"><span class="label-highlight"><input type="checkbox" name="" target="calibrefx-settings-subnav" id="calibrefx-settings-checkbox-subnav" value="1" class="calibrefx-settings-checkbox" <?php checked(1, calibrefx_get_option('subnav')); ?> /> <?php _e("Secondary Navigation", 'calibrefx'); ?></span></label>
-                    <input type="hidden" name="<?php echo $this->settings_field; ?>[subnav]" id="calibrefx-settings-subnav" value="<?php echo calibrefx_get_option('subnav'); ?>" />
-                </div>
-                <?php endif; ?>
-            </div>
-            <div class="section-col last">
-                <div class="section-desc">
-                    <?php _e('You can assign your primary menu from Appreances > Menus.', 'calibrefx'); ?>
-                </div>
-            </div>   
-        </div>
-
-         <p class="description"><?php printf(__('Please build a <a href="%s">custom menu</a>, then assign it to the proper Menu Location.', 'calibrefx'), admin_url('nav-menus.php')); ?></p>
-        <?php
-    
-        do_action('calibrefx_navigation_settings_meta_box');
-        */
     }
 
     /**
@@ -263,259 +232,322 @@ class CFX_Theme_Settings extends CFX_Admin {
      * Show content box
      */
     function content_setting(){
-    ?>
-        <div id="breadcrumb-settings">
-            <h3 class="section-title"><?php _e('Breadcrumbs', 'calibrefx'); ?></h3>
+        global $calibrefx;
 
-            <p><?php _e("Show Breadcrumb on:", 'calibrefx'); ?></p>
+        calibrefx_add_meta_group('content-settings', 'breadcrumb-settings', __('Breadcrumb Settings', 'calibrefx'));
+        calibrefx_add_meta_group('content-settings', 'content-archives-settings', __('Category Page Settings', 'calibrefx'));
+        calibrefx_add_meta_group('content-settings', 'post-navigation-settings', __('Post Navigation Settings', 'calibrefx'));
+        
+        //For breadcrumb settings        
+        add_action( 'content-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'breadcrumb-settings',  // group id
+                'breadcrumb_home', // field id and option name
+                __('Show Breadcrumb on Homepage','calibrefx'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
 
-            <div class="section-row">
-                <div class="section-col">
-                    <div class="section-box">
-                        <!-- breadcrumb breadcrumb_home -->
-                        <label for="calibrefx-settings-checkbox-breadcrumb-home" class="section-label-checkbox">
-                            <input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-home" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_home')); ?> target="calibrefx-settings-breadcrumb-home" class="calibrefx-settings-checkbox" /> <?php _e("Front Page", 'calibrefx'); ?>
-                        </label>
-                        <input type="hidden" name="<?php echo $this->settings_field; ?>[breadcrumb_home]" id="calibrefx-settings-breadcrumb-home" value="<?php echo calibrefx_get_option('breadcrumb_home'); ?>" />
+            calibrefx_add_meta_option(
+                'breadcrumb-settings',  // group id
+                'breadcrumb_single', // field id and option name
+                __('Show Breadcrumb on Blog Post','calibrefx'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                5 //Priority
+            );
 
-                        <!-- breadcrumb breadcrumb_single -->
-                        <label for="calibrefx-settings-checkbox-breadcrumb-single" class="section-label-checkbox">
-                            <input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-single" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_single')); ?> target="calibrefx-settings-breadcrumb-single" class="calibrefx-settings-checkbox" /> <?php _e("Posts", 'calibrefx'); ?>
-                        </label>
-                        <input type="hidden" name="<?php echo $this->settings_field; ?>[breadcrumb_single]" id="calibrefx-settings-breadcrumb-single" value="<?php echo calibrefx_get_option('breadcrumb_single'); ?>" />
+            calibrefx_add_meta_option(
+                'breadcrumb-settings',  // group id
+                'breadcrumb_page', // field id and option name
+                __('Show Breadcrumb on Static Page:'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                10 //Priority
+            );
 
-                        <!-- breadcrumb breadcrumb_page -->
-                        <label for="calibrefx-settings-checkbox-breadcrumb-page" class="section-label-checkbox">
-                            <input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-page" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_page')); ?> target="calibrefx-settings-breadcrumb-page" class="calibrefx-settings-checkbox" /> <?php _e("Pages", 'calibrefx'); ?>
-                        </label>
-                        <input type="hidden" name="<?php echo $this->settings_field; ?>[breadcrumb_page]" id="calibrefx-settings-breadcrumb-page" value="<?php echo calibrefx_get_option('breadcrumb_page'); ?>" />
+            calibrefx_add_meta_option(
+                'breadcrumb-settings',  // group id
+                'breadcrumb_archive', // field id and option name
+                __('Show Breadcrumb on Archive/Category Page','calibrefx'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                15 //Priority
+            );
 
-                        <!-- breadcrumb breadcrumb_archive -->
-                        <label for="calibrefx-settings-checkbox-breadcrumb-archive" class="section-label-checkbox">
-                            <input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-archive" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_archive')); ?> target="calibrefx-settings-breadcrumb-archive" class="calibrefx-settings-checkbox" /> <?php _e("Archives", 'calibrefx'); ?>
-                        </label>
-                        <input type="hidden" name="<?php echo $this->settings_field; ?>[breadcrumb_archive]" id="calibrefx-settings-breadcrumb-archive" value="<?php echo calibrefx_get_option('breadcrumb_archive'); ?>" />
-
-                        <!-- breadcrumb breadcrumb_404 -->
-                        <label for="calibrefx-settings-checkbox-breadcrumb-404" class="section-label-checkbox">
-                            <input type="checkbox" name="" id="calibrefx-settings-checkbox-breadcrumb-404" value="1" <?php checked(1, calibrefx_get_option('breadcrumb_404')); ?> target="calibrefx-settings-breadcrumb-404" class="calibrefx-settings-checkbox" /> <?php _e("404 Page", 'calibrefx'); ?>
-                        </label>
-                        <input type="hidden" name="<?php echo $this->settings_field; ?>[breadcrumb_404]" id="calibrefx-settings-breadcrumb-404" value="<?php echo calibrefx_get_option('breadcrumb_404'); ?>" />
-                    </div>
-                </div>
-                <div class="section-col noborder">
-                    <div class="section-desc">
-                        <p class="description"><?php _e('You can choose where you want to show breadcrumb (sitemap navigation) links.', 'calibrefx'); ?></p>
-                    </div>
-                </div>   
-            </div>
-        </div>
-
-        <div id="content-archives-settings">
-            <h3 class="section-title"><?php _e('Content Archives', 'calibrefx'); ?></h3>
-
-            <p><label for="<?php echo $this->settings_field; ?>[content_archive]"><?php _e('Select one of the following:', 'calibrefx'); ?></label></p>
-
-            <div class="section-row">
-                <div class="section-col">
-                    
-                    <select name="<?php echo $this->settings_field; ?>[content_archive]" id="<?php echo $this->settings_field; ?>[content_archive]" class="calibrefx_content_archive">
-                    <?php
-                    $archive_display = apply_filters(
+            calibrefx_add_meta_option(
+                'breadcrumb-settings',  // group id
+                'breadcrumb_404', // field id and option name
+                __('Show Breadcrumb on 404 Page','calibrefx'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
+        });
+    
+        //For content archive settings
+        add_action( 'content-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'content-archives-settings',  // group id
+                'content_archive', // field id and option name
+                __('How do you want to show the excerpt of the content on blog post list?','calibrefx'), // Label
+                array(
+                    'option_type' => 'select',
+                    'option_items' => apply_filters(
                             'calibrefx_archive_display_options', array(
-                            'full' => __('Display post content', 'calibrefx'),
-                            'excerpts' => __('Display post excerpts', 'calibrefx'),
-                            )
-                    );
-                    foreach ((array) $archive_display as $value => $name)
-                        echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('content_archive'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";
-                    ?>
-                    </select>
-                        
-                    <div class="calibrefx_content_limit_setting calibrefx_content_archive_limit">
-                        <label for="<?php echo $this->settings_field; ?>[content_archive_limit]"><?php _e('Limit content to', 'calibrefx'); ?></label>
-                        <input type="text" name="<?php echo $this->settings_field; ?>[content_archive_limit]" value="<?php echo esc_attr(calibrefx_get_option('content_archive_limit')); ?>" size="3" /><?php _e('characters', 'calibrefx'); ?>
-                    </div>
+                                    'full' => __('Display post content', 'calibrefx'),
+                                    'excerpts' => __('Display post excerpts', 'calibrefx'),
+                                )
+                            ),
+                    'option_default' => 'full',
+                    'option_filter' => 'safe_text',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
 
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <div class="calibrefx_content_limit_setting">
-                            <?php _e('This option will limit the text and strip all formatting from the text displayed. Use this option, with "Display post content" in the selected box above.', 'calibrefx'); ?>
-                        </div>
-                    </div>
-                </div>   
-            </div>
-        </div>
+            calibrefx_add_meta_option(
+                'content-archives-settings',  // group id
+                'content_archive_limit', // field id and option name
+                __('Limit total characters for your content excerpt (fill with 0 if you want to show full content)'), // Label
+                array(
+                    'option_type' => 'textinput',
+                    'option_default' => '500',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                    'option_attr' => array("class" => "calibrefx_content_limit_setting"),
+                ), // Settings config
+                5 //Priority
+            );
+        });
 
-        <div id="comment-settings">
-            <h3 class="section-title"><?php _e('Comments', 'calibrefx'); ?></h3>
-
-            <div class="section-row">
-                <div class="section-col">
-                    <p><?php _e('Enable Comments', 'calibrefx'); ?></p>
-
-                    <!-- comment comments_posts -->
-                    <label for="calibrefx-settings-checkbox-comments-posts" class="section-label-checkbox">
-                        <input type="checkbox" name="" id="calibrefx-settings-checkbox-comments-posts" value="1" <?php checked(1, calibrefx_get_option('comments_posts')); ?> target="calibrefx-settings-comments-posts" class="calibrefx-settings-checkbox" /> <?php _e("on posts?", 'calibrefx'); ?>
-                    </label>
-                    <input type="hidden" name="<?php echo $this->settings_field; ?>[comments_posts]" id="calibrefx-settings-comments-posts" value="<?php echo calibrefx_get_option('comments_posts'); ?>" />
-
-                    <!-- comment comments_pages -->
-                    <label for="calibrefx-settings-checkbox-comments-pages" class="section-label-checkbox">
-                        <input type="checkbox" name="" id="calibrefx-settings-checkbox-comments-pages" value="1" <?php checked(1, calibrefx_get_option('comments_pages')); ?> target="calibrefx-settings-comments-pages" class="calibrefx-settings-checkbox" /> <?php _e("on pages?", 'calibrefx'); ?>
-                    </label>
-                    <input type="hidden" name="<?php echo $this->settings_field; ?>[comments_pages]" id="calibrefx-settings-comments-pages" value="<?php echo calibrefx_get_option('comments_pages'); ?>" />
-                
-                    <p class="enable-trackback"><?php _e('Enable Trackbacks', 'calibrefx'); ?></p>
-
-                    <!-- trackback trackbacks_posts -->
-                    <label for="calibrefx-settings-checkbox-trackbacks-posts" class="section-label-checkbox">
-                        <input type="checkbox" name="" id="calibrefx-settings-checkbox-trackbacks-posts" value="1" <?php checked(1, calibrefx_get_option('trackbacks_posts')); ?> target="calibrefx-settings-trackbacks-posts" class="calibrefx-settings-checkbox" /> <?php _e("on posts?", 'calibrefx'); ?>
-                    </label>
-                    <input type="hidden" name="<?php echo $this->settings_field; ?>[trackbacks_posts]" id="calibrefx-settings-trackbacks-posts" value="<?php echo calibrefx_get_option('trackbacks_posts'); ?>" />
-
-                    <!-- trackback trackbacks_pages -->
-                    <label for="calibrefx-settings-checkbox-trackbacks-pages" class="section-label-checkbox">
-                        <input type="checkbox" name="" id="calibrefx-settings-checkbox-trackbacks-pages" value="1" <?php checked(1, calibrefx_get_option('trackbacks_pages')); ?> target="calibrefx-settings-trackbacks-pages" class="calibrefx-settings-checkbox" /> <?php _e("on pages?", 'calibrefx'); ?>
-                    </label>
-                    <input type="hidden" name="<?php echo $this->settings_field; ?>[trackbacks_pages]" id="calibrefx-settings-trackbacks-pages" value="<?php echo calibrefx_get_option('trackbacks_pages'); ?>" />
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <?php _e("You can generally enabled/disabled comments and trackbacks per post/page.", 'calibrefx'); ?>
-                    </div>
-                </div>   
-            </div>
-        </div>
-
-        <div id="facebook-comment-settings">
-            <div class="section-row">
-                <div class="section-col">
-                    <p>
-                        <?php _e('Enable Facebook Comments', 'calibrefx'); ?>
-                    </p>
-
-                    <label for="calibrefx-settings-checkbox-facebook-comments">
-                        <input type="checkbox" name="" id="calibrefx-settings-checkbox-facebook-comments" value="1" <?php checked(1, calibrefx_get_option('facebook_comments')); ?> target="calibrefx-settings-facebook-comments" class="calibrefx-settings-checkbox" /><?php _e('Enabled', 'calibrefx'); ?>
-                    </label>
-                    <input type="hidden" name="<?php echo $this->settings_field; ?>[facebook_comments]" id="calibrefx-settings-facebook-comments" value="<?php echo calibrefx_get_option('facebook_comments'); ?>" />
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                       <?php _e("This will override the default comments form with facebook comments form", 'calibrefx'); ?>
-                    </div>
-                </div>   
-            </div>
-        </div>
-
-        <div id="post-navigation-settings">
-            <h3 class="section-title"><?php _e('Post Navigations', 'calibrefx'); ?></h3>
-
-            <div class="section-row">
-                <div class="section-col">
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[posts_nav]"><?php _e('Select Post Navigation:', 'calibrefx'); ?></label>
-                    </p>
-
-                    <select name="<?php echo $this->settings_field; ?>[posts_nav]" id="<?php echo $this->settings_field; ?>[posts_nav]">
-                    <?php
-                    $postnav_display = apply_filters(
+        //For post navigation settings
+        add_action( 'content-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'post-navigation-settings',  // group id
+                'posts_nav', // field id and option name
+                __('How do you want to show the post navigation?','calibrefx'), // Label
+                array(
+                    'option_type' => 'select',
+                    'option_items' => apply_filters(
                             'calibrefx_post_navigation_options', array(
-                            'older-newer' => __('older/Newer', 'calibrefx'),
+                            'older-newer' => __('Older/Newer', 'calibrefx'),
                             'prev-next' => __('Previous/Next', 'calibrefx'),
                             'numeric' => __('Numeric', 'calibrefx'),
-                            'disabled' => __('Disabled', 'calibrefx'),
+                            'disabled' => __('Don\'t show navigation' , 'calibrefx'),
                             )
-                    );
+                        ),
+                    'option_default' => 'older-newer',
+                    'option_filter' => 'safe_text',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
+        });
 
-                    foreach ((array) $postnav_display as $value => $name)
-                        echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('posts_nav'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";
-                    ?>
-                    </select>
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <?php _e('You can choose your navigation format. Choices: Numeric, Older-Newer, or Previous-Next', 'calibrefx'); ?>   
-                    </div>
-                </div>   
-            </div>
-        </div>
-    <?php
+        calibrefx_do_meta_options($calibrefx->theme_settings, 'content-settings');
+        //do_action('calibrefx_content_settings_meta_box');
+    }
 
-        do_action('calibrefx_content_settings_meta_box');
+    /**
+     * Show Comment Settings Box
+     */
+    function comment_setting(){
+        global $calibrefx;
+
+        calibrefx_add_meta_group('comment-settings', 'comment-display-settings', __('Comment', 'calibrefx'));
+        calibrefx_add_meta_group('comment-settings', 'trackback-display-settings', __('Trackback', 'calibrefx'));
+        calibrefx_add_meta_group('comment-settings', 'comment-social-settings', __('Social Comment Integration', 'calibrefx'));
+        
+        //For Comment Display settings
+        add_action( 'comment-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'comment-display-settings',  // group id
+                'comments_posts', // field id and option name
+                __('Show comment on post?','calibrefx'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
+            calibrefx_add_meta_option(
+                'comment-display-settings',  // group id
+                'comments_pages', // field id and option name
+                __('Show comment on page?','calibrefx'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                5 //Priority
+            );
+        });
+
+        //For Trackback Display settings
+        add_action( 'comment-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'trackback-display-settings',  // group id
+                'trackbacks_posts', // field id and option name
+                __('Show trackback on post?','calibrefx'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
+            calibrefx_add_meta_option(
+                'trackback-display-settings',  // group id
+                'trackbacks_pages', // field id and option name
+                __('Show trackback on page?','calibrefx'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                5 //Priority
+            );
+        });
+
+        //For Social Comment Integration
+        add_action( 'comment-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'comment-social-settings',  // group id
+                'facebook_comments', // field id and option name
+                __('Replace WordPress Comment with Facebook Comments?','calibrefx'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
+        });
+
+        calibrefx_do_meta_options($calibrefx->theme_settings, 'comment-settings');
     }
 
     /**
      * Show default layout box
      */
     function layout_box() {
-        global $calibrefx_user_ability;
-        ?>
-        <h3 class="section-title"><?php _e('Layout Settings', 'calibrefx'); ?></h3>
+        global $calibrefx;
 
-        <div id="layout-settings">
-            <div class="section-row">
-                <div class="section-col">
-                    <p>
-                        <label for="<?php echo $this->settings_field; ?>[layout_type]">Layout Type:</label>
-                        <select name="<?php echo $this->settings_field; ?>[layout_type]" id="<?php echo $this->settings_field; ?>[layout_type]">
-                        <?php
-                        $layout_type = apply_filters(
-                                'calibrefx_layout_type_options', array(
-                                'static' => __('Static Layout', 'calibrefx'),
+        calibrefx_add_meta_group('layout-settings', 'layout-general-settings', __('Layout Settings', 'calibrefx'));
+        calibrefx_add_meta_group('layout-settings', 'layout-type-settings', __('General Layout Settings', 'calibrefx'));
+
+         //For Layout Settings
+        add_action( 'layout-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'layout-general-settings',  // group id
+                'layout_type', // field id and option name
+                __('How would you like the main layout of the website?','calibrefx'), // Label
+                array(
+                    'option_type' => 'select',
+                    'option_items' => apply_filters(
+                            'calibrefx_layout_type_options', array(
+                                'static' => __('Fix Width Layout', 'calibrefx'),
                                 'fluid' => __('Fluid Layout', 'calibrefx'),
-                                )
-                        );
-                        foreach ((array) $layout_type as $value => $name)
-                            echo '<option value="' . esc_attr($value) . '"' . selected(calibrefx_get_option('layout_type'), esc_attr($value), false) . '>' . esc_html($name) . '</option>' . "\n";
-                        ?>
-                        </select>
-                    </p>
-                    <div id="calibrefx_layout_width">
-                        <p>
-                            <label for="<?php echo $this->settings_field; ?>[calibrefx_layout_width]"><?php _e('Layout Width', 'calibrefx'); ?>: </label>
-                            <input type="text" name="<?php echo $this->settings_field; ?>[calibrefx_layout_width]" value="<?php echo esc_attr(calibrefx_get_option('calibrefx_layout_width')); ?>" size="3" style="width:40%;display:inline-block" /> <?php _e('pixels', 'calibrefx'); ?>
-                        </p>
+                            )
+                        ),
+                    'option_default' => 'older-newer',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                ), // Settings config
+                1 //Priority
+            );
 
-                        <p>
-                            <label for="calibrefx_layout_wrapper_fixed_input">
-                                <input type="checkbox" name="" value="1" class="calibrefx-settings-checkbox" id="calibrefx_layout_wrapper_fixed_input" target="calibrefx_layout_wrapper_fixed" <?php checked(1, calibrefx_get_option('calibrefx_layout_wrapper_fixed')); ?> /> <?php _e("Use fixed wrapper", 'calibrefx'); ?> 
-                            </label>
-                            <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_layout_wrapper_fixed]" id="calibrefx_layout_wrapper_fixed" value="<?php echo calibrefx_get_option('calibrefx_layout_wrapper_fixed') ?>" />
-                        </p>
+            calibrefx_add_meta_option(
+                'layout-general-settings',  // group id
+                'calibrefx_layout_width', // field id and option name
+                __('Layout Width (pixels)', 'calibrefx'), // Label
+                array(
+                    'option_type' => 'textinput',
+                    'option_default' => '940',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                    'option_attr' => array("class" => "calibrefx_layout_width"),
+                ), // Settings config
+                5 //Priority
+            );
 
-                        <p><small><?php _e('You can put maximum width in pixel size. Default: 960', 'calibrefx'); ?></small></p>
-                    </div>
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <?php _e('You can choose between static layout and fluid layout. If in static layout you need to put the max width size.', 'calibrefx'); ?>    
-                    </div>
-                </div>   
-            </div>
-        </div>
+            calibrefx_add_meta_option(
+                'layout-general-settings',  // group id
+                'calibrefx_layout_wrapper_fixed', // field id and option name
+                __('Use Wrapper Border Box','calibrefx'), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '',
+                    'option_filter' => 'integer',
+                    'option_description' => __("", 'calibrefx'),
+                    'option_attr' => array("class" => "calibrefx_layout_width"),
+                ), // Settings config
+                6 //Priority
+            );
+        });
 
-        <h3 class="section-title"><?php _e('General Layout Type', 'calibrefx'); ?></h3>
+        //For General Layout Settings
+        add_action( 'layout-settings_options', function(){            
+            calibrefx_add_meta_option(
+                'layout-type-settings',  // group id
+                'site_layout', // field id and option name
+                __('Pick your general layout column','calibrefx'), // Label
+                array(
+                    'option_type' => 'custom',
+                    'option_custom' => calibrefx_layout_selector(array(
+                            'name' => $this->settings_field . '[site_layout]', 
+                            'selected' => calibrefx_get_option('site_layout'),
+                            'echo' => false)),
+                    'option_default' => '',
+                    'option_filter' => '',
+                    'option_description' => __("", 'calibrefx'),
+                    'option_attr' => array("class" => "calibrefx-layout-selector"),
+                ), // Settings config
+                1 //Priority
+            );
+        });        
+        
+        calibrefx_do_meta_options($calibrefx->theme_settings, 'layout-settings');
 
-        <div id="layout-type-settings">
-            <div class="section-row">
-                <div class="section-col">
-                    <p class="calibrefx-layout-selector">
-                    <?php
-                    calibrefx_layout_selector(array('name' => $this->settings_field . '[site_layout]', 'selected' => calibrefx_get_option('site_layout')));
-                    ?>
-                    <div class="clear"></div>
-                    </p>
-                </div>
-                <div class="section-col last">
-                    <div class="section-desc">
-                        <?php _e('You can choose your general layout type. You can override this from the post/page editor.', 'calibrefx'); ?> 
-                    </div>
-                </div>   
-            </div>
-        </div>
-        <?php
     }
 
     /**

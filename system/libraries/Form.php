@@ -78,7 +78,7 @@ class CFX_Form {
         if($inline){
             return '<label class="checkbox-inline"><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label>';
         }else{
-            return '<div class="checkbox"><label><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label></div>';
+            return '<label><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label>';
         }
     }
 

@@ -191,18 +191,19 @@ function calibrefx_add_meta_group($metabox_id, $group_id, $group_title){
  * @param  array $options store theme options, accepted: option_name, option_type, option_values, option_description
  * @return void
  */
-function calibrefx_add_meta_option($group_id, $option_name, $option_label, $options, $priority) {
+function calibrefx_add_meta_option($group_id, $option_name, $option_label, $options, $priority, $atts = array()) {
     global $calibrefx_meta_options, $calibrefx;
 
     if(!is_array($calibrefx_meta_options)) $calibrefx_meta_options = array();
 
     $options = array_merge(array('option_label' => $option_label), $options);
     //add sanitize filter
-    $calibrefx->security->add_sanitize_filter(
-                $options['option_filter'], 
-                'calibrefx-settings', 
-                $option_name);
-
+    if(!empty($options['option_filter'])){
+        $calibrefx->security->add_sanitize_filter(
+                    $options['option_filter'], 
+                    'calibrefx-settings', 
+                    $option_name);
+    }
 
     /*if(!empty($calibrefx_meta_options[$metabox_id][$group_id])){
         $options = array_merge($calibrefx_meta_options[$metabox_id][$group_id]['options'], $options);
@@ -250,36 +251,67 @@ function calibrefx_do_meta_options($settings_obj, $metabox_id){
                 <?php
                     foreach ($options as $option_priority) {
                         foreach ($option_priority as $option_name => $option) {
+                            //backward compatibility
+                            if(empty($option['option_attr'])) $option['option_attr'] = array();
+                            $attr = '';
+                            foreach($option['option_attr'] as $key => $val){
+                                $attr .= ' ' . $key . '="' . $val .'"';
+                            }
                         ?>
-                        <p>
+                        <p <?= $attr ?> >
                             <?php 
                                 switch ($option['option_type']) {
+                                    case 'hidden':
+                                        echo $calibrefx->form->hidden($settings_field."[".$option_name."]", calibrefx_get_option($option_name), $option['option_attr']);
+                                        break;
                                     case 'textinput':
                                     case 'textarea':
                                     case 'password':
+                                        //we need to extract the class from the array
+                                        $classes = "";
+                                        if(isset($option['option_attr']['class'])){
+                                            $classes = $option['option_attr']['class'];
+                                            unset($option['option_attr']['class']);
+                                        }
                                         echo '<label for="'.$settings_field.'['.$option_name.']">'.$option["option_label"].'</label>';
-                                        echo $calibrefx->form->{$option['option_type']}($settings_field."[".$option_name."]", calibrefx_get_option($option_name));
+                                        echo $calibrefx->form->{$option['option_type']}($settings_field."[".$option_name."]", calibrefx_get_option($option_name), $classes, $option['option_attr']);
                                         break;
                                     
                                     case 'checkbox':
+                                        $classes = "calibrefx-settings-checkbox";
+                                        if(isset($option['option_attr']['class'])){
+                                            $classes .= ' '.$option['option_attr']['class'];
+                                            unset($option['option_attr']['class']);
+                                        }
+                                        $attr = array_merge(array("target" => $settings_field."-".$option_name, "class" => $classes), $option['option_attr']);
                                         echo $calibrefx->form->{$option['option_type']}($settings_field."-checkbox-".$option_name, $option['option_items'],
                                             calibrefx_get_option($option_name), $option['option_label'], false, 
-                                            array("target" => $settings_field."-".$option_name, "class" => "calibrefx-settings-checkbox"));
+                                            $attr);
                                         echo $calibrefx->form->hidden($settings_field."[".$option_name."]", calibrefx_get_option($option_name), 
                                             array("id" => $settings_field."-".$option_name));
                                         break;
                                     case 'radio':
                                     case 'select':
                                         echo '<label for="'.$settings_field.'['.$option_name.']">'.$option["option_label"].'</label>';
-                                        echo $calibrefx->form->{$option['option_type']}($settings_field."[".$option_name."]", $option['option_items'],calibrefx_get_option($option_name));
+                                        echo $calibrefx->form->{$option['option_type']}($settings_field."[".$option_name."]", $option['option_items'],calibrefx_get_option($option_name), '', $option['option_attr']);
                                         break;
+                                    case 'custom':
+                                        if(isset($option['option_custom'])){
+                                            echo $option['option_custom'];
+                                        }
+                                        break;
+
                                 }
                             ?>
                         </p>
-                        <p class="description">
-                            <?php echo $option['option_description']; ?>
-                        </p>
+                        <?php 
+                            if(!empty($option['option_description'])) :
+                        ?>
+                            <p class="description">
+                                <?php echo $option['option_description']; ?>
+                            </p>
                         <?php
+                            endif;
                         }
                     }
                 ?>
