@@ -34,6 +34,7 @@ function calibrefx_add_inpost_layout_box(){
     if (!current_theme_supports('calibrefx-inpost-layouts'))
         return;
 
+    //Add Post Meta Box
     calibrefx_add_post_meta_boxes(
         'calibrefx_inpost_layout_box', //slug
         __('Calibrefx Custom Layout', 'calibrefx'), //title
@@ -42,7 +43,8 @@ function calibrefx_add_inpost_layout_box(){
         }, //callback
         array('post', 'page') //post types
     );
-    // die_dump(calibrefx_get_custom_field('_calibrefx_layout'));
+
+    //Add post meta option to post layout box
     calibrefx_add_post_meta_options(
         'calibrefx_inpost_layout_box', //slug
         '_calibrefx_layout', //option name
