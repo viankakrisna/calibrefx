@@ -7,7 +7,7 @@
  * @author      CalibreFx Team
  * @authorlink  http://www.calibrefx.com
  * @copyright   Copyright (c) 2012 - 2013, CalibreWorks. (http://www.calibreworks.com/)
- * @license     Commercial
+ * @license     GNU/GPL v2
  * @link        http://www.calibrefx.com
  *
  * CalibreFx Readme file
