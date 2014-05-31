@@ -4,12 +4,12 @@
  *
  * CalibreFx Plugin Libraries
  *
- * @package		calibrefxlib
- * @author		CalibreFx Dev Team
- * @copyright	Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @license		http://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- * @link		http://www.CalibreFx.com
- * @since		Version 1.0
+ * @package     calibrefxlib
+ * @author      CalibreFx Dev Team
+ * @copyright   Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
+ * @license     http://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
+ * @link        http://www.CalibreFx.com
+ * @since       Version 1.0
  * @filesource
  */
  
@@ -18,11 +18,11 @@
  *
  * CalibreFx Forms Library
  *
- * @package		calibrefxlib
- * @subpackage	Library
- * @category	Form Library
- * @author		CalibreFx Dev Team
- * @link		http://www.CalibreFx.com
+ * @package     calibrefxlib
+ * @subpackage  Library
+ * @category    Form Library
+ * @author      CalibreFx Dev Team
+ * @link        http://www.CalibreFx.com
  */
 // ------------------------------------------------------------------------
 
@@ -58,8 +58,12 @@ class CFX_Form {
         foreach($atts as $key => $val){
             $attr .= ' ' . $key . '="' . $val .'"';
         }
+        if(!isset($atts["id"])){
+            return '<input type="hidden" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . $attr . ' />';
+        }else{
+            return '<input type="hidden" name="' . $id . '" value="' . $value . '"' . $attr . ' />';
+        }
 
-        return '<input type="hidden" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . $attr . ' />';
     }
 
     /**
@@ -74,7 +78,7 @@ class CFX_Form {
         if($inline){
             return '<label class="checkbox-inline"><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label>';
         }else{
-            return '<div class="checkbox"><label><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label></div>';
+            return '<label><input type="checkbox" id="' . $id . '" name="' . $id . '" value="' . $value . '"' . checked( $value, $checked, false ) . $attr . ' />' . $text . '</label>';
         }
     }
 
@@ -89,12 +93,12 @@ class CFX_Form {
                 if (($i + 1) > count($array_data))
                     break;
                 $data = $array_data[$i];
-				
-				if(array_key_exists($data['id'], $checked)){
-					$output .= $this->checkbox( $id, $data['id'], $checked[$data['id']], $data['name'], $inline, $atts );
-				}else{
-					$output .= $this->checkbox( $id, $data['id'], '', $data['name'], $inline, $atts );
-				}
+                
+                if(array_key_exists($data['id'], $checked)){
+                    $output .= $this->checkbox( $id, $data['id'], $checked[$data['id']], $data['name'], $inline, $atts );
+                }else{
+                    $output .= $this->checkbox( $id, $data['id'], '', $data['name'], $inline, $atts );
+                }
                 
             }
             $output .= '</div>';
@@ -124,10 +128,10 @@ class CFX_Form {
             $attr .= ' ' . $key . '="' . $val .'"';
         }
 
-		return '<input type="text" id="' . $id . '" name="' . $id . '" value="' . stripslashes( $value ) . '" class="form-control' . ( $class ? ' '.$class : '' ) . '"' . $attr . ' />';
+        return '<input type="text" id="' . $id . '" name="' . $id . '" value="' . stripslashes( $value ) . '" class="form-control' . ( $class ? ' '.$class : '' ) . '"' . $attr . ' />';
     }
-	
-	/**
+    
+    /**
      * Create a Text input field
      */
     function password($id = "", $value = "", $class = "", $atts = array()) {
@@ -136,7 +140,7 @@ class CFX_Form {
             $attr .= ' ' . $key . '="' . $val .'"';
         }
 
-		return '<input type="password" id="' . $id . '" name="' . $id . '" value="' . stripslashes( $value ) . '" class="form-control ' . ( $class ? ' '.$class : '' ) . '"' . $attr . ' />';
+        return '<input type="password" id="' . $id . '" name="' . $id . '" value="' . stripslashes( $value ) . '" class="form-control ' . ( $class ? ' '.$class : '' ) . '"' . $attr . ' />';
     }
 
     /**
@@ -150,22 +154,22 @@ class CFX_Form {
      * Create a Text area field
      */
     function textarea($id = "", $value = "", $class = "", $atts = array()) {
-		$attr = '';
+        $attr = '';
         foreach($atts as $key => $val){
             $attr .= ' ' . $key . '="' . $val .'"';
         }
 
-		return '<textarea id="' . $id . '" name="' . $id . '" class="form-control ' . ( $class ? ' ' . $class : '' ) . '"' . $attr . '>' . stripslashes( $value ) . '</textarea>';
+        return '<textarea id="' . $id . '" name="' . $id . '" class="form-control ' . ( $class ? ' ' . $class : '' ) . '"' . $attr . '>' . stripslashes( $value ) . '</textarea>';
     }
-	
-	function texteditor($id = "", $content = ""){
-		ob_start(); //Start buffering
-		wp_editor( $content, $id, "", false, 2, false ); //print the result
-		$output = ob_get_contents(); //get the result from buffer
-		ob_end_clean(); //close buffer
-	   
-	   return $output;
-	}
+    
+    function texteditor($id = "", $content = ""){
+        ob_start(); //Start buffering
+        wp_editor( $content, $id, "", false, 2, false ); //print the result
+        $output = ob_get_contents(); //get the result from buffer
+        ob_end_clean(); //close buffer
+       
+       return $output;
+    }
 
     /**
      * Create a dropdown field
@@ -195,11 +199,11 @@ class CFX_Form {
     function build($rows = array(), $form_open = TRUE, $form_close = TRUE) {
         $this->form_fields = $this->form_table($rows);
 
-		$output = '';
-		if($form_open) $output .= $this->form_open;
+        $output = '';
+        if($form_open) $output .= $this->form_open;
 
         $output .= $this->form_fields;
-		if($form_close) $output .= $this->form_close;
+        if($form_close) $output .= $this->form_close;
 
         return $output;
     }
@@ -285,13 +289,13 @@ class CFX_Form {
                 $content .= '<div class="form-group">';
 
                 $tooltip = '';
-				$tooltip_class = '';
+                $tooltip_class = '';
                 if(isset($row['tooltip']) && $row['tooltip'] != ''){
                     $tooltip .= ' data-toggle="tooltip" data-original-title="'.stripslashes($row['tooltip']).'" data-placement="right"';
                     $tooltip_class = ' form-tooltip';    
                 }
 
-                if(!isset($row['label_column']) && $row['label_column'] == '') $row['label_column'] = 'col-sm-2';
+                if(!isset($row['label_column'])) $row['label_column'] = 'col-sm-2';
 
                 if (isset($row['id']) && $row['id'] != '')
                     $content .= '<label class="control-label ' . $row['label_column'] . ' ' . $tooltip_class . '" for="' . $row['id'] . '"' . $tooltip . '>' . $row['label'] . ':</label>';
@@ -299,7 +303,7 @@ class CFX_Form {
                     $content .= '<label class="control-label ' . $row['label_column'] . ' ' . $tooltip_class . '"' . $tooltip . '>' . $row['label'] . ':</label>';
 
 
-                if(!isset($row['input_column']) && $row['input_column'] == '') $row['input_column'] = 'col-sm-10';
+                if(!isset($row['input_column'])) $row['input_column'] = 'col-sm-10';
                 $content .= '<div class="' . $row['input_column'] . '">';
 
                 if(isset($row['before_content']) && !empty($row['before_content'])) $content .= $row['before_content'];

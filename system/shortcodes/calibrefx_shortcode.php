@@ -264,18 +264,18 @@ function calibrefx_icon($atts, $content = '') {
     extract(shortcode_atts(array(
                 'before' => '',
                 'after' => '',
-				'name' => '',
-				'class' => '',
-				'style' => '',
+                'name' => '',
+                'class' => '',
+                'style' => '',
                     ), $atts));
-					
-	$attr = '';
-	$classes = 'glyphicon';
-	
-	if(!empty($name)) $classes .= ' '.$name;
-	if(!empty($class)) $classes .= ' '.$class;
-	
-	if(!empty($style)) $attr .= ' style="'.$style.'"';
+                    
+    $attr = '';
+    $classes = 'glyphicon';
+    
+    if(!empty($name)) $classes .= ' '.$name;
+    if(!empty($class)) $classes .= ' '.$class;
+    
+    if(!empty($style)) $attr .= ' style="'.$style.'"';
 
     return $before . '<i class="'.$classes.'"'.$attr.'></i>' . $after;
 }
@@ -998,11 +998,11 @@ function calibrefx_slider($atts, $content = '') {
         'auto_height' => 0,
         'height' => '',
         'width' => '',
-		'caption' => 0,
+        'caption' => 0,
         'carousel_visible' => '',
         'carousel_fluid' => '',
         'wrap' => '',
-		'attr' => '',
+        'attr' => '',
         'loader' => 'wait'
     ), $atts));
 
@@ -1028,22 +1028,22 @@ function calibrefx_slider($atts, $content = '') {
     $data_cycle .= ' data-cycle-timeout="'.$interval.'"';
     if(!empty($speed)) $data_cycle .= ' data-cycle-speed="'.$speed.'"';
     if(!empty($slide_elm)){
-		if($caption){
-			$data_cycle .= ' data-cycle-slides="'.$slide_elm.':not(.cycle-overlay)"';
-			$data_cycle .= ' data-cycle-overlay-fx-sel="div.cycle-overlay"';
-		}else{
-			$data_cycle .= ' data-cycle-slides="'.$slide_elm.'"';
-		}
-	}
+        if($caption){
+            $data_cycle .= ' data-cycle-slides="'.$slide_elm.':not(.cycle-overlay)"';
+            $data_cycle .= ' data-cycle-overlay-fx-sel="div.cycle-overlay"';
+        }else{
+            $data_cycle .= ' data-cycle-slides="'.$slide_elm.'"';
+        }
+    }
     if($pager) $data_cycle .= ' data-cycle-pager="#'.$pager_class.'" data-cycle-pager-template=\'<a href="#" class="slider-pager-item">{{slideNum}}</a>\'';
     if($next_prev) $data_cycle .= ' data-cycle-prev="#slider-prev-'.$pager_class.'" data-cycle-next="#slider-next-'.$pager_class.'"';
     if($auto_height !== 0) $data_cycle .= ' data-cycle-auto-height="'.$auto_height.'"';
-	if($caption) $data_cycle .= ' data-cycle-caption-plugin=caption2';
+    if($caption) $data_cycle .= ' data-cycle-caption-plugin=caption2';
     if(!empty($carousel_visible)) $data_cycle .= ' data-cycle-carousel-visible="'.$carousel_visible.'"';
     if(!empty($carousel_fluid)) $data_cycle .= ' data-cycle-carousel-fluid="'.$carousel_fluid.'"';
     if(!empty($wrap)) $data_cycle .= ' data-allow-wrap="'.$wrap.'"';
     if(!empty($loader)) $data_cycle .= ' data-allow-loader="'.$loader.'"';
-	
+    
     $data_cycle .= ' data-cycle-pause-on-hover="true"';
 
     $attr = '';
@@ -1053,7 +1053,7 @@ function calibrefx_slider($atts, $content = '') {
     $html .= '<div class="slider-container'.$class.'"'.$attr.'>';
     $html .= '<div class="slider-wrapper">';
     $html .= '<div class="slider cycle-slideshow"'.$data_cycle.$style.'>';
-	if($caption) $html .= '<div class="cycle-overlay"></div>';
+    if($caption) $html .= '<div class="cycle-overlay"></div>';
     $html .= advance_shortcode_unautop($content);
     $html .= '</div><!-- end .slider -->';
     if($pager) $html  .= '<div id="'.$pager_class.'" class="slider-pager"></div><!-- end .slider-pager -->';
@@ -1074,14 +1074,14 @@ function calibrefx_slider_item($atts, $content = '') {
         'src' => '',
         'url' => '',
         'title' => '',
-		'desc' => ''
+        'desc' => ''
     ), $atts));
-	
-	if(!empty($url) && $url != '#'){
-		return '<div class="item ' . $class . '" data-cycle-title=\'<a href="'.$url.'">'.$title.'</a>\' data-cycle-desc="'.$desc.'">' . $before . '<a href="'.$url.'" title="'.$title.'"><img src="' . $src . '" alt="'.$title.'" /></a>'  . $after . '</div>';
-	}else{
-		return '<div class="item ' . $class . '" data-cycle-title="'.$title.'" data-cycle-desc="'.$desc.'">' . $before . '<img src="' . $src . '" alt="'.$title.'" />'  . $after . '</div>';
-	}
+    
+    if(!empty($url) && $url != '#'){
+        return '<div class="item ' . $class . '" data-cycle-title=\'<a href="'.$url.'">'.$title.'</a>\' data-cycle-desc="'.$desc.'">' . $before . '<a href="'.$url.'" title="'.$title.'"><img src="' . $src . '" alt="'.$title.'" /></a>'  . $after . '</div>';
+    }else{
+        return '<div class="item ' . $class . '" data-cycle-title="'.$title.'" data-cycle-desc="'.$desc.'">' . $before . '<img src="' . $src . '" alt="'.$title.'" />'  . $after . '</div>';
+    }
 }
 
 add_shortcode('slider_caption', 'calibrefx_slider_caption');
@@ -1425,11 +1425,11 @@ function calibrefx_tweet($atts, $content = null) {
         'count' => 'vertical',
         'size' => 'medium',
         'text' => '',
-		'related' => '',
-		'via' => '',
-		'lang' => '',
-		'hashtags' => '',
-		'dnt' => ''
+        'related' => '',
+        'via' => '',
+        'lang' => '',
+        'hashtags' => '',
+        'dnt' => ''
     ), $atts));
     
     $attr = '';
@@ -1438,11 +1438,11 @@ function calibrefx_tweet($atts, $content = null) {
     if(!empty($count)) $attr .=' data-count="'.$count.'"';
     if(!empty($size)) $attr .=' data-size="'.$size.'"';
     if(!empty($text)) $attr .= ' data-text="'.$text.'"';
-	if(!empty($related)) $attr .=' data-related="'.$related.'"';
+    if(!empty($related)) $attr .=' data-related="'.$related.'"';
     if(!empty($via)) $attr .=' data-via="'.$via.'"';
     if(!empty($lang)) $attr .=' data-lang="'.$lang.'"';
     if(!empty($hashtags)) $attr .= ' data-hashtags="'.$hashtags.'"';
-	if(!empty($dnt)) $attr .= ' data-dnt="'.$dnt.'"';
+    if(!empty($dnt)) $attr .= ' data-dnt="'.$dnt.'"';
 
     $output = '<span class="social-bookmark tweet-share"><a href="https://twitter.com/share" class="twitter-share-button"'.$attr.'>Tweet</a></span>';
 
@@ -1507,15 +1507,15 @@ function calibrefx_linkedin($atts, $content = null){
         'url' => get_permalink()
     ), $atts));
 
-	$attr = '';
-	
+    $attr = '';
+    
     if(!empty($width)) $attr .=' data-counter="'.$counter.'"';
     if(!empty($url)) $attr .=' data-url="'.$url.'"';
 
     $output = '<span class="social-bookmark linkedin-button"><script type="IN/Share"'.$attr.'></script></span>';
 
-	wp_enqueue_script( 'calibrefx-linkedin-widget', 'http://platform.linkedin.com/in.js', array(), false, true);
-	
+    wp_enqueue_script( 'calibrefx-linkedin-widget', 'http://platform.linkedin.com/in.js', array(), false, true);
+    
     return $output;
 }
 
@@ -1662,7 +1662,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Name','calibrefx'),
         'desc' => __('Fill with your name','calibrefx'),
         'tooltip' => __('Your name','calibrefx'),
-        'content' => $calibrefx->form->textinput('name', '', '', 'required'),
+        'content' => $calibrefx->form->textinput('name', '', 'required'),
     );
 
     $rows[] = array(
@@ -1670,7 +1670,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Email','calibrefx'),
         'desc' => __('Fill with your email','calibrefx'),
         'tooltip' => __('Your email','calibrefx'),
-        'content' => $calibrefx->form->textinput('email', '', '', 'required email'),
+        'content' => $calibrefx->form->textinput('email', '', 'required email'),
     );
 
     $rows[] = array(
@@ -1678,7 +1678,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Subject','calibrefx'),
         'desc' => __('Your subject','calibrefx'),
         'tooltip' => __('Your subject','calibrefx'),
-        'content' => $calibrefx->form->textinput('subject', '', '', 'required'),
+        'content' => $calibrefx->form->textinput('subject', '', 'required'),
     );
 
     $rows[] = array(
@@ -1686,7 +1686,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Message','calibrefx'),
         'desc' => __('Your message','calibrefx'),
         'tooltip' => __('Your message','calibrefx'),
-        'content' => $calibrefx->form->textarea('message', '', '', 'required'),
+        'content' => $calibrefx->form->textarea('message', '', 'required'),
     );
 
     $rows[] = array(
@@ -1718,7 +1718,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => '',
         'desc' => '',
         'tooltip' => '',
-        'content' => $calibrefx->form->save_button('Submit'),
+        'content' => $calibrefx->form->save_button('Submit', 'Send'),
     );
 
     return $calibrefx->form->open('calibrefx_contact_form', get_permalink( $post->ID ), 'post', false )->build($rows);
@@ -1764,7 +1764,7 @@ add_filter('widget_text', 'do_shortcode');
 
 add_action('after_setup_theme', 'calibrefx_shortode_tinymce_init');
 function calibrefx_shortode_tinymce_init(){
-	global $cfx_shortcode;
-	
-	$cfx_shortcode->calibrefx_shortcode_button_init();
+    global $cfx_shortcode;
+    
+    $cfx_shortcode->calibrefx_shortcode_button_init();
 }
