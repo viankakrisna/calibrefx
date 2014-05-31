@@ -19,5 +19,5 @@ Official Website http://www.calibrefx.com
 * Header Right - This is the widgeted area that appears at the top right of the header. If it is active then CalibreFx style will follow the Partial Header style otherwise it will follow the Full Image Header Style, if image header is selected. 
 
 
-<strong>Documentation</strong>
+## Documentation
 Please visit Our [Documentation](http://docs.calibrefx.com).
