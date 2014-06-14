@@ -295,7 +295,7 @@ class CFX_Form {
                     $tooltip_class = ' form-tooltip';    
                 }
 
-                if(!isset($row['label_column']) && $row['label_column'] == '') $row['label_column'] = 'col-sm-2';
+                if(!isset($row['label_column'])) $row['label_column'] = 'col-sm-2';
 
                 if (isset($row['id']) && $row['id'] != '')
                     $content .= '<label class="control-label ' . $row['label_column'] . ' ' . $tooltip_class . '" for="' . $row['id'] . '"' . $tooltip . '>' . $row['label'] . ':</label>';
@@ -303,7 +303,7 @@ class CFX_Form {
                     $content .= '<label class="control-label ' . $row['label_column'] . ' ' . $tooltip_class . '"' . $tooltip . '>' . $row['label'] . ':</label>';
 
 
-                if(!isset($row['input_column']) && $row['input_column'] == '') $row['input_column'] = 'col-sm-10';
+                if(!isset($row['input_column'])) $row['input_column'] = 'col-sm-10';
                 $content .= '<div class="' . $row['input_column'] . '">';
 
                 if(isset($row['before_content']) && !empty($row['before_content'])) $content .= $row['before_content'];

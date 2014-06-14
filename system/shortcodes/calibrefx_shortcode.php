@@ -1662,7 +1662,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Name','calibrefx'),
         'desc' => __('Fill with your name','calibrefx'),
         'tooltip' => __('Your name','calibrefx'),
-        'content' => $calibrefx->form->textinput('name', '', '', 'required'),
+        'content' => $calibrefx->form->textinput('name', '', 'required'),
     );
 
     $rows[] = array(
@@ -1670,7 +1670,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Email','calibrefx'),
         'desc' => __('Fill with your email','calibrefx'),
         'tooltip' => __('Your email','calibrefx'),
-        'content' => $calibrefx->form->textinput('email', '', '', 'required email'),
+        'content' => $calibrefx->form->textinput('email', '', 'required email'),
     );
 
     $rows[] = array(
@@ -1678,7 +1678,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Subject','calibrefx'),
         'desc' => __('Your subject','calibrefx'),
         'tooltip' => __('Your subject','calibrefx'),
-        'content' => $calibrefx->form->textinput('subject', '', '', 'required'),
+        'content' => $calibrefx->form->textinput('subject', '', 'required'),
     );
 
     $rows[] = array(
@@ -1686,7 +1686,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => __('Message','calibrefx'),
         'desc' => __('Your message','calibrefx'),
         'tooltip' => __('Your message','calibrefx'),
-        'content' => $calibrefx->form->textarea('message', '', '', 'required'),
+        'content' => $calibrefx->form->textarea('message', '', 'required'),
     );
 
     $rows[] = array(
@@ -1718,7 +1718,7 @@ function calibrefx_contact_form($atts, $content = null) {
         'label' => '',
         'desc' => '',
         'tooltip' => '',
-        'content' => $calibrefx->form->save_button('Submit'),
+        'content' => $calibrefx->form->save_button('Submit', 'Send'),
     );
 
     return $calibrefx->form->open('calibrefx_contact_form', get_permalink( $post->ID ), 'post', false )->build($rows);
