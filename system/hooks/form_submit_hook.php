@@ -29,7 +29,7 @@ $cfxgenerator->wp_loaded = array(
 	),
 );
 
-//@todo: need fix here
+//@todo: need fix header_remove()
 /*$cfxgenerator->calibrefx_after_wrapper = array(
 	array(
 		'function' => 'form_submit_notification_handler',
@@ -45,6 +45,8 @@ $cfxgenerator->wp_loaded = array(
  * Handle form submit from contact form
  */
 function form_submit_handler(){
+	global $calibrefx;
+
 	if ('POST' != $_SERVER['REQUEST_METHOD']) return;
 
 	if(!isset($_POST['action'])) return;
@@ -61,7 +63,6 @@ function form_submit_handler(){
 			$message = sanitize_text_field( $_POST['message'] );
 			$target = sanitize_text_field( $_POST['target'] );
 			$redirect = sanitize_text_field( $_POST['redirect'] );
-
 			$output_message = '';
 			$output_message .= 'Name : '.$name."\n";
 			$output_message .= 'Email : '.$email."\n";
@@ -74,8 +75,9 @@ function form_submit_handler(){
 			$headers = 'From: '.get_option('blogname').' <'.get_option('admin_email').'>' . "\r\n";
 
 			@wp_mail( $target , __('Contact Us Form Submitted on ','calibrefx').get_option('blogname'), $output_message, $headers);
+			$calibrefx->notification->set_flashmessage(apply_filters('calibrefx_contact_form_message', __('Your message has been sent. Thank you for submitting your message.', 'calibrefx')), 'success');
 
-			wp_redirect( $redirect.'?submitted=true&type=contactform' ); exit;
+			wp_redirect( $redirect ); exit;
 
 			break;
 		default : break;
@@ -85,7 +87,7 @@ function form_submit_handler(){
 }
 
 //@todo: need fix here
-function form_submit_notification_handler(){
+/*function form_submit_notification_handler(){
 	if(isset($_REQUEST['submitted'])){
 		$submitted = $_REQUEST['submitted'];
 		if(!$submitted) return;
@@ -112,8 +114,6 @@ function form_submit_notification_handler(){
 		}
 	}
 
-	do_action_ref_array('form_submit_handler', $message);
-
 	if($message['error']) $alert_success = ' alert-danger';
 	else $alert_success = ' alert-success';
 
@@ -136,4 +136,4 @@ function form_submit_notification_handler(){
 			});
 		</script>
 	';	
-}
+}*/

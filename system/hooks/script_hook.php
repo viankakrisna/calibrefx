@@ -47,6 +47,7 @@ $cfxgenerator->calibrefx_meta = array(
  */
 function calibrefx_register_scripts(){   
     wp_register_style('calibrefx-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css');
+    wp_register_style('calibrefx-bootstrap-theme', CALIBREFX_CSS_URL . '/bootstrap-theme.min.css');
     wp_register_style('calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css');
     wp_register_style('font-awesome', CALIBREFX_CSS_URL . '/font-awesome.min.css');
     wp_register_style('jquery-superfish', CALIBREFX_CSS_URL . '/superfish.css');
