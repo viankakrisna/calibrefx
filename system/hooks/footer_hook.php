@@ -32,10 +32,23 @@
 
 global $cfxgenerator;
 
-$cfxgenerator->calibrefx_before_footer = array('calibrefx_do_footer_widgets');
-$cfxgenerator->calibrefx_footer = array('calibrefx_footer_area');
-$cfxgenerator->calibrefx_footer_content = array('calibrefx_do_footer');
-$cfxgenerator->wp_footer = array('calibrefx_footer_scripts','calibrefx_add_socials_script','calibrefx_add_google_analytics');
+$cfxgenerator->calibrefx_before_footer = array(
+    array('function' => 'calibrefx_do_footer_widgets', 'priority' => 10)
+);
+
+$cfxgenerator->calibrefx_footer = array(
+    array('function' => 'calibrefx_footer_area', 'priority' => 10)
+);
+
+$cfxgenerator->calibrefx_footer_content = array(
+    array('function' => 'calibrefx_do_footer', 'priority' => 10)
+);
+
+$cfxgenerator->wp_footer = array(
+    array('function' => 'calibrefx_add_socials_script', 'priority' => 10),
+    array('function' => 'calibrefx_add_google_analytics', 'priority' => 15),
+    array('function' => 'calibrefx_footer_scripts', 'priority' => 20),
+);
 
 /********************
  * FUNCTIONS BELOW  *

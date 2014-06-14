@@ -25,16 +25,17 @@ global $cfxgenerator;
 $cfxgenerator->wp_loaded = array(
 	array(
 		'function' => 'form_submit_handler',
-		'priority'	=> 15
+		'priority'	=> 99
 	),
 );
 
-$cfxgenerator->calibrefx_after_wrapper = array(
+//@todo: need fix header_remove()
+/*$cfxgenerator->calibrefx_after_wrapper = array(
 	array(
 		'function' => 'form_submit_notification_handler',
-		'priority'	=> 20
+		'priority'	=> 99
 	)
-);
+);*/
 
 
 /********************
@@ -44,45 +45,49 @@ $cfxgenerator->calibrefx_after_wrapper = array(
  * Handle form submit from contact form
  */
 function form_submit_handler(){
-	if ('POST' == $_SERVER['REQUEST_METHOD']){
-		if(!isset($_REQUEST['action'])) return;
-		$action = sanitize_text_field($_REQUEST['action']);
+	global $calibrefx;
 
-		if (!$action)
-			return; //no action, do nothing
+	if ('POST' != $_SERVER['REQUEST_METHOD']) return;
 
-		switch ($action) {
-			case 'contact-form':
+	if(!isset($_POST['action'])) return;
 
-				$name = sanitize_text_field( $_POST['name'] );
-				$email = sanitize_text_field( $_POST['email'] );
-				$subject = sanitize_text_field( $_POST['subject'] );
-				$message = sanitize_text_field( $_POST['message'] );
-				$target = sanitize_text_field( $_POST['target'] );
-				$redirect = sanitize_text_field( $_POST['redirect'] );
+	$action = sanitize_text_field($_POST['action']);
+	if (!$action)
+		return; //no action, do nothing
 
-				$output_message = '';
-				$output_message .= 'Name : '.$name."\n";
-				$output_message .= 'Email : '.$email."\n";
-				$output_message .= 'Subject : '.$subject."\n";
-				$output_message .= 'Message : '.$message."\r\n";
+	switch ($action) {
+		case 'contact-form':
+			$name = sanitize_text_field( $_POST['name'] );
+			$email = sanitize_text_field( $_POST['email'] );
+			$subject = sanitize_text_field( $_POST['subject'] );
+			$message = sanitize_text_field( $_POST['message'] );
+			$target = sanitize_text_field( $_POST['target'] );
+			$redirect = sanitize_text_field( $_POST['redirect'] );
+			$output_message = '';
+			$output_message .= 'Name : '.$name."\n";
+			$output_message .= 'Email : '.$email."\n";
+			$output_message .= 'Subject : '.$subject."\n";
+			$output_message .= 'Message : '.$message."\r\n";
 
-				if($target == 'ADMIN_EMAIL') $target = get_option('admin_email');
-				if(empty($redirect)) $redirect = site_url();
+			if($target == 'ADMIN_EMAIL') $target = get_option('admin_email');
+			if(empty($redirect)) $redirect = site_url();
 
-				$headers = 'From: '.get_option('blogname').' <'.get_option('admin_email').'>' . "\r\n";
+			$headers = 'From: '.get_option('blogname').' <'.get_option('admin_email').'>' . "\r\n";
 
-				@wp_mail( $target , __('Contact Us Form Submitted on ','calibrefx').get_option('blogname'), $output_message, $headers);
+			@wp_mail( $target , __('Contact Us Form Submitted on ','calibrefx').get_option('blogname'), $output_message, $headers);
+			$calibrefx->notification->set_flashmessage(apply_filters('calibrefx_contact_form_message', __('Your message has been sent. Thank you for submitting your message.', 'calibrefx')), 'success');
 
-				wp_redirect( $redirect.'?submitted=true&type=contactform' ); exit;
+			wp_redirect( $redirect ); exit;
 
-				break;
-			default : break;
-		}
+			break;
+		default : break;
 	}
+
+	do_action('form_submit_handler', $action);
 }
 
-function form_submit_notification_handler(){
+//@todo: need fix here
+/*function form_submit_notification_handler(){
 	if(isset($_REQUEST['submitted'])){
 		$submitted = $_REQUEST['submitted'];
 		if(!$submitted) return;
@@ -131,4 +136,4 @@ function form_submit_notification_handler(){
 			});
 		</script>
 	';	
-}
+}*/

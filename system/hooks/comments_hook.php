@@ -32,12 +32,29 @@
 
 global $cfxgenerator;
 
-$cfxgenerator->calibrefx_after_post = array('calibrefx_get_comments_template');
-$cfxgenerator->calibrefx_comments = array('calibrefx_do_comments');
-$cfxgenerator->calibrefx_pings = array('calibrefx_do_pings');
-$cfxgenerator->calibrefx_list_comments = array('calibrefx_default_list_comments');
-$cfxgenerator->calibrefx_list_pings = array('calibrefx_default_list_pings');
-$cfxgenerator->calibrefx_comment_form = array('calibrefx_do_comment_form');
+$cfxgenerator->calibrefx_after_post = array(
+    array('function' => 'calibrefx_get_comments_template', 'priority' => 10)
+);
+
+$cfxgenerator->calibrefx_comments = array(
+    array('function' => 'calibrefx_do_comments', 'priority' => 10)
+);
+
+$cfxgenerator->calibrefx_pings = array(
+    array('function' => 'calibrefx_do_pings', 'priority' => 10)
+);
+
+$cfxgenerator->calibrefx_list_comments = array(
+    array('function' => 'calibrefx_default_list_comments', 'priority' => 10)
+);
+
+$cfxgenerator->calibrefx_list_pings = array(
+    array('function' => 'calibrefx_default_list_pings', 'priority' => 10)
+);
+
+$cfxgenerator->calibrefx_comment_form = array(
+    array('function' => 'calibrefx_do_comment_form', 'priority' => 10)
+);
 
 
 /********************

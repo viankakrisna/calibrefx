@@ -32,7 +32,9 @@
 
 global $cfxgenerator;
 
-$cfxgenerator->init = array('calibrefx_set_user_ability');
+$cfxgenerator->init = array(
+    array('function' => 'calibrefx_set_user_ability', 'priority' => 0)
+);
 
 function calibrefx_set_user_ability() {
     global $calibrefx_user_ability, $current_user;

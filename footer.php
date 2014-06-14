@@ -20,14 +20,12 @@
  *
  * @package CalibreFx
  */
-echo '</div><!-- end #inner -->';
+do_action( 'calibrefx_after_inner' ); 
 
 do_action('calibrefx_before_footer');
 do_action('calibrefx_footer');
 do_action('calibrefx_after_footer');
-?>
-</div><!-- end #wrapper -->
-<?php
+
 do_action('calibrefx_after_wrapper');
 wp_footer(); //wp_footer funtion for plugins
 ?>
