@@ -184,8 +184,7 @@ top: 0;
 
 #inner {
     margin-top: 0;
-
-    padding: 35px 0;
+    padding: 20px 0;
 }
 
 /* Widgets
@@ -208,7 +207,7 @@ top: 0;
 ------------------------------------------------------------ */
 
 #footer-widget{
-    padding: 35px 0 15px;
+    padding: 20px 0 15px;
 }
 
 #footer-widget .widget{

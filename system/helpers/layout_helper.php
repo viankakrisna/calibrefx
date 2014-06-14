@@ -64,7 +64,6 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
     if (calibrefx_layout_is_fixed_wrapper() && calibrefx_layout_is_static())
         return '';
 
-    $row_class = calibrefx_row_class();
     switch ($output) {
         case 'open':
             $output = '<div class="container">';
