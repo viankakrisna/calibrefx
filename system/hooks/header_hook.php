@@ -39,9 +39,13 @@ $cfxgenerator->calibrefx_meta = array(
     'calibrefx_print_favicon', 'calibrefx_print_media_icon','calibrefx_load_stylesheet', 
     'calibrefx_do_dublin_core', 'calibrefx_do_fb_og');
 
-$cfxgenerator->calibrefx_header = array('calibrefx_header_area');
+$cfxgenerator->calibrefx_header = array( 
+        array('function' => 'calibrefx_header_area', 'priority' => 10)
+    );
 
-$cfxgenerator->get_header = array('calibrefx_remove_wp_generator');
+$cfxgenerator->get_header = array(
+        array('function' => 'calibrefx_remove_wp_generator', 'priority' => 0)
+    );
 
 $cfxgenerator->wp_head = array(
     'calibrefx_print_wrap', 'calibrefx_do_meta_pingback', 'calibrefx_header_scripts',

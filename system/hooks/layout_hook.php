@@ -32,25 +32,34 @@
 
 global $cfxgenerator;
 
-$cfxgenerator->init = array('calibrefx_custom_background', 'calibrefx_custom_header');
-$cfxgenerator->calibrefx_init = array(
-    array(
-        'function' => 'calibrefx_setup_layout',
-        'priority' => 0,
-    )
+$cfxgenerator->init = array(
+    array('function' => 'calibrefx_custom_background', 'priority' => 0), 
+    array('function' => 'calibrefx_custom_header', 'priority' => 5)
 );
-$cfxgenerator->calibrefx_after_content = array('calibrefx_get_sidebar');
-$cfxgenerator->calibrefx_before_content = array('calibrefx_get_sidebar_alt');
 
-$cfxgenerator->calibrefx_sidebar = array('calibrefx_do_sidebar');
-$cfxgenerator->calibrefx_sidebar_alt = array('calibrefx_do_sidebar_alt');
+$cfxgenerator->calibrefx_init = array(
+    array('function' => 'calibrefx_setup_layout', 'priority' => 0)
+);
+
+$cfxgenerator->calibrefx_after_content = array(
+    array('function' => 'calibrefx_get_sidebar', 'priority' => 10)
+);
+
+$cfxgenerator->calibrefx_before_content = array(
+    array('function' => 'calibrefx_get_sidebar_alt', 'priority' => 10)
+);
+
+$cfxgenerator->calibrefx_sidebar = array(
+    array('function' => 'calibrefx_do_sidebar', 'priority' => 10)
+);
+
+$cfxgenerator->calibrefx_sidebar_alt = array(
+    array('function' => 'calibrefx_do_sidebar_alt', 'priority' => 10)
+);
 
 $cfxgenerator->get_header = array(
-    array(
-        'function' => 'calibrefx_setup_custom_layout',
-        'priority' => 0,
-    ),
-	'calibrefx_header_body_classes_filter'
+    array('function' => 'calibrefx_setup_custom_layout','priority' => 0),
+    array('function' => 'calibrefx_header_body_classes_filter','priority' => 0)
 );
 
 /********************

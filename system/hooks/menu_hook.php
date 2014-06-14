@@ -32,7 +32,10 @@
 
 
 global $cfxgenerator;
-$cfxgenerator->calibrefx_after_header = array('calibrefx_do_nav','calibrefx_do_subnav');
+$cfxgenerator->calibrefx_after_header = array(
+    array('function' => 'calibrefx_do_nav', 'priority' => 10),
+    array('function' => 'calibrefx_do_subnav', 'priority' => 15)
+);
 
 /********************
  * FUNCTIONS BELOW  *
