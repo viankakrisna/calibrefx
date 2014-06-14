@@ -140,8 +140,8 @@ class CFX_Theme_Settings extends CFX_Admin {
     }
 
     public function meta_boxes() {
-        calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), array($this, 'navigation_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-content', __('Content Setting', 'calibrefx'), array($this, 'content_setting'), $this->pagehook, 'main');
+        calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-navigation', __('Navigation Settings', 'calibrefx'), array($this, 'navigation_box'), $this->pagehook, 'main', 'high');
         calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-comment', __('Post Comment Setting', 'calibrefx'), array($this, 'comment_setting'), $this->pagehook, 'main');
         calibrefx_add_meta_box('general', 'basic', 'calibrefx-theme-settings-tracking', __('Website Tracking Setting', 'calibrefx'), array($this, 'tracking_setting'), $this->pagehook, 'main');
 

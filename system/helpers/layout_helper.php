@@ -265,6 +265,8 @@ function calibrefx_layout_selector($args = array()) {
         );
     }
 
+    $output .= "<div style='clear:both;'></div>";
+
     /** Echo or Return output */
     if ($args['echo'])
         echo $output;
