@@ -33,10 +33,7 @@
 global $cfxgenerator;
 
 $cfxgenerator->calibrefx_setup = array(
-    array(
-        'function' => 'calibrefx_detect_mobile_browser',
-        'priority' => 15,
-    )
+    array('function' => 'calibrefx_detect_mobile_browser','priority' => 15)
 );
 
 /********************
