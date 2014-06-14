@@ -8,7 +8,7 @@
  * @author      Calibreworks Team
  * @authorlink  http://www.calibrefx.com
  * @copyright   Copyright (c) 2012-2014, CalibreWorks. (http://www.calibreworks.com/)
- * @license     Commercial
+ * @license     GNU/GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
  *
@@ -29,7 +29,7 @@ do_action('calibrefx_pre');
 /** Define Theme Info Constants */
 define('FRAMEWORK_NAME', 'Calibrefx');
 define('FRAMEWORK_CODENAME', 'Red Penguin');
-define('FRAMEWORK_VERSION', '1.1.1');
+define('FRAMEWORK_VERSION', '1.1.2');
 define('FRAMEWORK_DB_VERSION', '1000');
 define('FRAMEWORK_URL', 'http://www.calibrefx.com');
 define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1400033811'));
