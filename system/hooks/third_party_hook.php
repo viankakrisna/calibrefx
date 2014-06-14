@@ -32,7 +32,9 @@
 
 global $cfxgenerator;
 
-$cfxgenerator->calibrefx_setup = array('calibrefx_init_third_party');
+$cfxgenerator->calibrefx_setup = array(
+	array('function' => 'calibrefx_init_third_party', 'priority' => 0)
+);
 
 /********************
  * FUNCTIONS BELOW  *

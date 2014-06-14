@@ -33,40 +33,55 @@
 global $cfxgenerator;
 
 $cfxgenerator->calibrefx_before_content_wrapper = array(
-    array(
-        'function' => 'calibrefx_do_inner_wrap_open',
-        'priority' => 5
-    )
+    array('function' => 'calibrefx_do_inner_wrap_open','priority' => 5)
 );
 
 $cfxgenerator->calibrefx_before_content = array();
 $cfxgenerator->calibrefx_before_loop = array('calibrefx_do_breadcrumbs');
-$cfxgenerator->calibrefx_loop = array('calibrefx_do_loop');
+$cfxgenerator->calibrefx_loop = array(
+        array('function' => 'calibrefx_do_loop', 'priority' => 10)
+    );
 
     //This is inside the loop: calibrefx_do_loop
     $cfxgenerator->calibrefx_before_post = array();
 
     //This is inside content.php
     $cfxgenerator->calibrefx_before_post_title = array();
-    $cfxgenerator->calibrefx_post_title = array('calibrefx_do_post_title');
+    $cfxgenerator->calibrefx_post_title = array(
+            array('function' => 'calibrefx_do_post_title', 'priority' => 10)
+        );
     $cfxgenerator->calibrefx_after_post_title = array();
 
-    $cfxgenerator->calibrefx_before_post_content = array('calibrefx_post_info');   
-    $cfxgenerator->calibrefx_post_content = array('calibrefx_do_post_image', 'calibrefx_do_post_content');
-    $cfxgenerator->calibrefx_after_post_content = array('calibrefx_post_meta');
-    $cfxgenerator->calibrefx_no_post = array('calibrefx_do_no_post');
+    $cfxgenerator->calibrefx_before_post_content = array(
+            array('function' => 'calibrefx_post_info','priority' => 10)
+        );
+
+    $cfxgenerator->calibrefx_post_content = array(
+        array('function' => 'calibrefx_do_post_image','priority' => 10), 
+        array('function' => 'calibrefx_do_post_content','priority' => 15)
+    );
+
+    $cfxgenerator->calibrefx_after_post_content = array(
+        array('function' => 'calibrefx_post_meta','priority' => 10)
+    );
+    
+    $cfxgenerator->calibrefx_no_post = array(
+        array('function' => 'calibrefx_do_no_post','priority' => 10)
+    );
     //End of content.php
-    $cfxgenerator->calibrefx_after_post = array('calibrefx_do_author_box_single');
+    
+    $cfxgenerator->calibrefx_after_post = array(
+        array('function' => 'calibrefx_do_author_box_single','priority' => 10)
+    );
     //Loop End here
 
-$cfxgenerator->calibrefx_after_loop = array('calibrefx_posts_nav');
+$cfxgenerator->calibrefx_after_loop = array(
+    array('function' => 'calibrefx_posts_nav','priority' => 20)
+);
 $cfxgenerator->calibrefx_after_content = array();
 
 $cfxgenerator->calibrefx_after_content_wrapper = array(
-    array(
-        'function' => 'calibrefx_do_inner_wrap_close',
-        'priority' => 15
-    )
+    array('function' => 'calibrefx_do_inner_wrap_close','priority' => 15)
 );
 
 /********************
@@ -174,20 +189,20 @@ add_filter('calibrefx_post_meta', 'do_shortcode', 20);
  */
 function calibrefx_do_post_image() {
     if (!is_singular()) { // This is an archive page
-        if(calibrefx_get_option('content_archive_limit')){
-            $default_post_archive_image_size = apply_filters( 'post_archive_image_size', 'thumbnail' );
-            $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_archive_image_size, 'attr' => array('class' => 'alignleft post-image')));
-            
-            if($img)
-                printf('<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute('echo=0'), apply_filters( 'post_archive_image', $img, $img ));
+        $default_post_archive_image_size = apply_filters( 'post_archive_image_size', 'thumbnail' );
+        $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_archive_image_size, 'attr' => array('class' => 'alignleft post-image')));
+        
+        if($img){
+            printf('<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute('echo=0'), apply_filters( 'post_archive_image', $img, $img ));
         }
         
     } else {
         $default_post_single_image_size = apply_filters( 'post_single_image_size', 'full' );
         $img = calibrefx_get_image(array('format' => 'html', 'size' => $default_post_single_image_size, 'attr' => array('class' => 'alignnone post-image')));
         
-        if($img)
+        if($img){
             printf('<p class="post-featured-image">%s</p>', apply_filters( 'post_single_image', $img, $img ));
+        }
     }
 }
 
