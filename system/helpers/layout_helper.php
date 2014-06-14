@@ -54,10 +54,9 @@ function calibrefx_layout_is_fixed_wrapper() {
  * @access public
  * @return string
  */
-function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">', $echo = true) {
+function calibrefx_put_wrapper($context = '', $output = '<div class="container">', $echo = true) {
 
     $calibrefx_context_wrappers = get_theme_support('calibrefx-wraps');
-
     if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
         return '';
 
@@ -79,6 +78,26 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="wrap row">'
         echo $output;
     else
         return $output;
+}
+
+function calibrefx_add_wrapper($name){
+    $calibrefx_context_wrappers = get_theme_support('calibrefx-wraps');
+    $calibrefx_context_wrappers = $calibrefx_context_wrappers[0];
+
+    if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
+        return '';
+    
+    $calibrefx_context_wrappers[] = $name;
+    add_theme_support('calibrefx-wraps', $calibrefx_context_wrappers);
+}
+
+function calibrefx_remove_wrapper($name){
+    $calibrefx_context_wrappers = get_theme_support('calibrefx-wraps');
+    $calibrefx_context_wrappers = $calibrefx_context_wrappers[0];
+    $key = array_search($name, $calibrefx_context_wrappers);
+    unset($calibrefx_context_wrappers[$key]);
+
+    add_theme_support('calibrefx-wraps', $calibrefx_context_wrappers);
 }
 
 /**
