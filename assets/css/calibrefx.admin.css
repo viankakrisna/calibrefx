@@ -99,6 +99,16 @@ hr.div {
     border: 3px solid #ccc;
 }
 
+.calibrefx-admin-page .wp-picker-container,
+.calibrefx-admin-page .wp-picker-input-wrap{
+    width: 100%;
+    /*display: block;*/
+}
+
+.calibrefx-admin-page .wp-color-picker{
+    width: 100%;
+}
+
 /**
  * Twitter Latest Tweet Style 
 **/

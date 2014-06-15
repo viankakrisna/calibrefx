@@ -234,7 +234,7 @@ function calibrefx_do_meta_options($settings_obj, $metabox_id){
     $settings_field = $settings_obj->settings_field;
     foreach ($calibrefx_meta_options as $option_group_id => $option_group) {
 
-        if($option_group['metabox'] != $metabox_id) continue;
+        if(!isset($option_group['metabox']) OR $option_group['metabox'] != $metabox_id) continue;
         if(empty($option_group['options'])) continue;
 
         $options = $option_group['options'];
@@ -276,7 +276,27 @@ function calibrefx_do_meta_options($settings_obj, $metabox_id){
                                             echo '<label for="'.$settings_field.'['.$option_name.']">'.$option["option_label"].'</label>';
                                             echo $calibrefx->form->{$option['option_type']}($settings_field."[".$option_name."]", calibrefx_get_option($option_name), $classes, $option['option_attr']);
                                             break;
-                                        
+                                        case 'upload':
+                                            //we need to extract the class from the array
+                                            $classes = "";
+                                            if(isset($option['option_attr']['class'])){
+                                                $classes = $option['option_attr']['class'];
+                                                unset($option['option_attr']['class']);
+                                            }
+
+                                            $option_name_id = $option_name . '_id';
+
+                                            echo '<div class="preview_image image_preview" id="preview_'.$option_name.'"><img src="'.calibrefx_get_option($option_name).'" /></div>';
+                                            echo '<label for="'.$settings_field.'['.$option_name.']">'.$option["option_label"].'</label>';
+                                            echo $calibrefx->form->textinput($settings_field."[".$option_name."]", calibrefx_get_option($option_name), $classes, $option['option_attr']);
+                                            echo $calibrefx->form->hidden($settings_field."[".$option_name_id."]", calibrefx_get_option($option_name_id), array("id" => $option_name_id, "class" => "image_id"));
+                                            echo '<div class="upload_button_div">
+                                                    <span class="button upload_image_button" id="upload_custom_logo">Upload Image</span>
+                                                    <span class="button image_reset_button hide image_reset" id="reset_custom_logo">Remove</span>
+                                                    <div class="clear"></div>
+                                                </div>';
+                                            break;
+
                                         case 'checkbox':
                                             $classes = "calibrefx-settings-checkbox";
                                             if(isset($option['option_attr']['class'])){
