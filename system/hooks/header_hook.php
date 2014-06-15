@@ -88,6 +88,7 @@ function calibrefx_do_html_header(){
     do_action('calibrefx_doctype');
     do_action('calibrefx_title');
     do_action('calibrefx_meta');
+    wp_head();
 }
 
 /**

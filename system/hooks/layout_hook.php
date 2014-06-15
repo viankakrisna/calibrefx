@@ -41,6 +41,22 @@ $cfxgenerator->calibrefx_init = array(
     array('function' => 'calibrefx_setup_layout', 'priority' => 0)
 );
 
+$cfxgenerator->calibrefx_wrapper = array(
+    array('function' => 'calibrefx_do_open_wrapper', 'priority' => 0)
+);
+
+$cfxgenerator->calibrefx_after_wrapper = array(
+    array('function' => 'calibrefx_do_close_wrapper','priority'  => 99)
+);
+
+$cfxgenerator->calibrefx_inner = array(
+    array('function' => 'calibrefx_do_open_inner', 'priority' => 0)
+);
+
+$cfxgenerator->calibrefx_after_inner = array(
+    array('function' => 'calibrefx_do_close_inner','priority'  => 99)
+);
+
 $cfxgenerator->calibrefx_after_content = array(
     array('function' => 'calibrefx_get_sidebar', 'priority' => 10)
 );
@@ -76,6 +92,52 @@ function calibrefx_setup_custom_layout(){
         
         add_action('calibrefx_before_content','calibrefx_sidebar_content_sidebar_wrapper_open');
         add_action('calibrefx_after_content','calibrefx_sidebar_content_sidebar_wrapper_close');
+    }
+}
+
+/**
+ * Open #wrapper div
+ */
+function calibrefx_do_open_wrapper(){
+    global $calibrefx;
+
+    $wrapper_class = apply_filters( 'wrapper_class', calibrefx_container_class() );
+    echo '<div id="wrapper" class="'.$wrapper_class.'">';
+    $calibrefx->is_wrapper_open = true;
+
+}
+
+/**
+ * Open #inner div
+ */
+function calibrefx_do_close_wrapper(){
+    global $calibrefx;
+
+    if(isset($calibrefx->is_wrapper_open)){
+        echo '</div><!-- end #wrapper -->';
+    }
+}
+
+/**
+ * Open #inner div
+ */
+function calibrefx_do_open_inner(){
+    global $calibrefx;
+
+    $inner_class = apply_filters( 'inner_class', '' );
+    echo '<div id="inner" class="'.$inner_class.'">';
+    $calibrefx->is_inner_open = true;
+
+}
+
+/**
+ * Open #inner div
+ */
+function calibrefx_do_close_inner(){
+    global $calibrefx;
+
+    if(isset($calibrefx->is_inner_open)){
+        echo '</div><!-- end #inner -->';
     }
 }
 

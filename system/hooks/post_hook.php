@@ -37,7 +37,10 @@ $cfxgenerator->calibrefx_before_content_wrapper = array(
 );
 
 $cfxgenerator->calibrefx_before_content = array();
-$cfxgenerator->calibrefx_before_loop = array('calibrefx_do_breadcrumbs');
+$cfxgenerator->calibrefx_before_loop = array(
+    array('function' => 'calibrefx_do_breadcrumbs', 'priority' => 10),
+    array('function' => 'calibrefx_do_notification', 'priority' => 20),
+);
 $cfxgenerator->calibrefx_loop = array(
         array('function' => 'calibrefx_do_loop', 'priority' => 10)
     );
@@ -105,6 +108,15 @@ function calibrefx_do_breadcrumbs() {
         return;
 
     calibrefx_breadcrumb();
+}
+
+/**
+ * Display Flash notification when user do submit form
+ */
+function calibrefx_do_notification(){
+    global $calibrefx;
+
+    $calibrefx->notification->show_flashmessage();
 }
 
 /**
