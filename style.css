@@ -7,7 +7,7 @@
     License: GNU/GPL v2
     License URI: http://www.calibrefx.com/calibrefx/#license
 	Text Domain: calibrefx
-    Version: 1.1.2
+    Version: 1.2.0b
 */
 
 
@@ -184,8 +184,7 @@ top: 0;
 
 #inner {
     margin-top: 0;
-
-    padding: 35px 0;
+    padding: 20px 0;
 }
 
 /* Widgets
@@ -194,7 +193,7 @@ top: 0;
 #inner .widget{
     background: #fff;
     padding: 0px 25px 5px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 #inner .widgettitle{
@@ -208,7 +207,7 @@ top: 0;
 ------------------------------------------------------------ */
 
 #footer-widget{
-    padding: 35px 0 15px;
+    padding: 20px 0 15px;
 }
 
 #footer-widget .widget{
@@ -262,7 +261,7 @@ top: 0;
 #inner .subscriber-widget{
     background: #3C71A7;
 
-    padding: 30px 30px;
+    padding: 20px 20px;
     border-left: 5px solid #005B7D;
 }
 
@@ -356,7 +355,7 @@ margin: 0;
 .breadcrumb-container {
     background: #FFFFFF;
     border-radius: 0;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 /* Post
@@ -380,11 +379,11 @@ margin: 0;
 .hentry{
     background: #fff;
     padding: 15px 12px 20px;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
 }
 
 .entry-content {
-    margin: 0 0 30px;
+    margin: 0 0 20px;
     padding: 0 10px;
 }
 

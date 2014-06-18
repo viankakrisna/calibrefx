@@ -24,4 +24,11 @@ jQuery(document).ready(function($) {
     $('#content .entry-content table:not(.no-table-style), #comments .comment-content table:not(.no-table-style)').addClass('table table-bordered').wrap('<div class="table-responsive"></div>');
 
     $('#commentform #submit').addClass('btn btn-primary');
+
+
+	$('.mobile-main-menu').bind('click touchstart', function(){
+		$('#wrapper').toggleClass('m');
+
+		return false;
+	});
 });

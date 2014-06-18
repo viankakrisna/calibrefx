@@ -19,20 +19,16 @@
  */
  
 do_action('calibrefx_html_header');
-
-wp_head();
-
 ?>
 </head>
 <body <?php body_onload(); ?> <?php body_class(); ?>>
+
 <?php 
-	do_action( 'calibrefx_before_wrapper' ); 
-	$wrapper_class = apply_filters( 'wrapper_class', calibrefx_container_class() );
-?>
-<div id="wrapper" class="<?php echo $wrapper_class; ?>">
-<?php
+do_action( 'calibrefx_before_wrapper' ); 
+do_action( 'calibrefx_wrapper' ); 
+	
 do_action('calibrefx_before_header');
 do_action('calibrefx_header');
 do_action('calibrefx_after_header');
-?>
-<div id="inner">
+
+do_action( 'calibrefx_inner' ); 

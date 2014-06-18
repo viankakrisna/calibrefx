@@ -32,8 +32,13 @@
 
 global $cfxgenerator;
 
-$cfxgenerator->calibrefx_setup = array('calibrefx_register_default_widget');
-$cfxgenerator->init = array('calibrefx_register_additional_widget');
+$cfxgenerator->calibrefx_setup = array(
+    array('function' => 'calibrefx_register_default_widget', 'priority' => 10)
+);
+
+$cfxgenerator->init = array(
+    array('function' => 'calibrefx_register_additional_widget', 'priority' => 10)
+);
 
 /********************
  * FUNCTIONS BELOW  *

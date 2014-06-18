@@ -19,6 +19,16 @@
  * @package CalibreFx
  */
 
+version 1.2.0 <???> - 
+    * Flash notification handler
+    * Better form submit handler
+    * Allow developer to programatically remove wrapper and inner div
+    * New Admin UI Style
+    * Option to turn of responsive layout
+    * Make a better 404 page
+    * Improve the way to add new themeoption and postmeta option
+
+
 version 1.1.1 <14 Mei 2014> - 
     * Add new helper functions for easier mobile responsive layout
     * Fix for WP 3.9
