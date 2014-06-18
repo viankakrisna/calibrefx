@@ -31,4 +31,40 @@ jQuery(document).ready(function($) {
 
 		return false;
 	});
+
+	$('#mobile-nav .navbar-nav>li').append('<span class="mobile-arrow"><i class="icon-mobile-arrow"></i></span>');
+
+	$('#mobile-nav .navbar-nav>li span.mobile-arrow').bind('touchstart', function(){
+		$this = $(this);
+		$li = $this.parent();
+		$anchor = $li.children('a')
+		$ul = $li.children('ul');
+
+
+		$allLi = $('#mobile-nav .navbar-nav>li');
+		$allUl = $('#mobile-nav .navbar-nav>li>ul');
+
+		if($ul.length > 0){
+
+			if($li.hasClass('mobile-open')){
+				$allUl.slideUp();
+				$allLi.removeClass('mobile-open');
+			}
+			else{
+			 	$allUl.slideUp();				
+				$allLi.removeClass('mobile-open');
+
+				$ul.slideDown();
+				$li.addClass('mobile-open');
+			}
+
+			
+		}
+		else{
+			if($anchor.attr('href') != '#') window.location = $anchor.attr('href');
+			else return false;
+		}
+
+		return false;
+	})
 });

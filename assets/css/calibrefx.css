@@ -1283,7 +1283,7 @@ input[type="submit"].searchsubmit{
 #mobile-nav .navbar-nav>li>a{
     color: #333333;
     background: #E7E7E7;
-    padding: 20px 15px 20px 60px;
+    padding: 20px 15px 20px 20px;
     border-bottom: 1px solid #FFFFFF;
     font-size: 16px;
     position: relative;
@@ -1296,11 +1296,11 @@ input[type="submit"].searchsubmit{
     content: '';
     width: 55px;
     height: 55px;
-    border-left: 1px solid #395478;
+    border-left: 1px solid #ffffff;
 }
 
 #mobile-nav .navbar-nav>li span.mobile-arrow i.icon-mobile-arrow{    
-    background: url(assets/img/mobile/ig-menu-arrow.png) center center no-repeat;    
+    background: url(../img/ig-menu-arrow.png) center center no-repeat;    
     width: 55px;
     height: 55px;
     display: block;
@@ -1350,12 +1350,12 @@ input[type="submit"].searchsubmit{
 }
 
 #mobile-nav .dropdown-menu>li>a{
-    padding: 16px 20px 17px 60px;
-    
-    background: #395478;
+   padding: 16px 20px 17px 20px;
+    background: #818181;
     color: #fff;
-    border-bottom: 1px solid #496892;
+    border-bottom: 1px solid #eee;
     font-size: 16px;
+    white-space:normal;
 }
 
 
