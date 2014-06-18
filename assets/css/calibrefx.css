@@ -1284,7 +1284,7 @@ input[type="submit"].searchsubmit{
     color: #333333;
     background: #E7E7E7;
     padding: 20px 15px 20px 20px;
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #CACACA;
     font-size: 16px;
     position: relative;
 }
@@ -1296,7 +1296,7 @@ input[type="submit"].searchsubmit{
     content: '';
     width: 55px;
     height: 55px;
-    border-left: 1px solid #ffffff;
+    border-left: 1px solid #CACACA;
 }
 
 #mobile-nav .navbar-nav>li span.mobile-arrow i.icon-mobile-arrow{    
