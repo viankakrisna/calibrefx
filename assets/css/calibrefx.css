@@ -1224,7 +1224,7 @@ input[type="submit"].searchsubmit{
 }
 
 #mobile-nav{
-    background: #2C4260;
+    background: #A8A8A8;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -1281,10 +1281,10 @@ input[type="submit"].searchsubmit{
 }
 
 #mobile-nav .navbar-nav>li>a{
-    color: #fff;
-    background: #4C6C98; 
-    padding: 17px 15px 17px 60px;
-    border-bottom: 1px solid #3B577C;
+    color: #333333;
+    background: #E7E7E7;
+    padding: 20px 15px 20px 60px;
+    border-bottom: 1px solid #FFFFFF;
     font-size: 16px;
     position: relative;
 }
@@ -1359,5 +1359,25 @@ input[type="submit"].searchsubmit{
 }
 
 
+.mobile-header-top{
+    height: 55px;
+}
+
+.mobile-header-top a{
+    padding: 10px;
+    display: inline-block;
+    color: #ffffff;
+}
+.mobile-header-top a:hover{
+    color: #eeeeee;
+}
+.mobile-header-top a i{
+    background: url(../img/icon-menu-mobile.png) center center no-repeat;
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    padding-left: 35px;
+    vertical-align: middle;
+}
 
 
