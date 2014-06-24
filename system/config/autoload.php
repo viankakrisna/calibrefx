@@ -57,7 +57,7 @@ $autoload['models'] = array('theme_settings_m', 'other_settings_m');
  *  Auto-load Config files
  */
 $autoload['hooks'] = array('module','header', 'script', 'widget','layout', 'menu', 
-                          'login','user','post','inpost','comments', 'footer',
+                          'user','post','inpost','comments', 'footer',
                           'performance','search','third_party','upgrade', 'ajax', 
                           'admin_ajax', 'mobile', 'form_submit', 'admin', 'customizer');
 
