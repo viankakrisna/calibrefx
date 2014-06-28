@@ -24,4 +24,47 @@ jQuery(document).ready(function($) {
     $('#content .entry-content table:not(.no-table-style), #comments .comment-content table:not(.no-table-style)').addClass('table table-bordered').wrap('<div class="table-responsive"></div>');
 
     $('#commentform #submit').addClass('btn btn-primary');
+
+
+	$('.mobile-main-menu').bind('click touchstart', function(){
+		$('#wrapper').toggleClass('m');
+
+		return false;
+	});
+
+	$('#mobile-nav .navbar-nav>li').append('<span class="mobile-arrow"><i class="icon-mobile-arrow"></i></span>');
+
+	$('#mobile-nav .navbar-nav>li span.mobile-arrow').bind('touchstart', function(){
+		$this = $(this);
+		$li = $this.parent();
+		$anchor = $li.children('a')
+		$ul = $li.children('ul');
+
+
+		$allLi = $('#mobile-nav .navbar-nav>li');
+		$allUl = $('#mobile-nav .navbar-nav>li>ul');
+
+		if($ul.length > 0){
+
+			if($li.hasClass('mobile-open')){
+				$allUl.slideUp();
+				$allLi.removeClass('mobile-open');
+			}
+			else{
+			 	$allUl.slideUp();				
+				$allLi.removeClass('mobile-open');
+
+				$ul.slideDown();
+				$li.addClass('mobile-open');
+			}
+
+			
+		}
+		else{
+			if($anchor.attr('href') != '#') window.location = $anchor.attr('href');
+			else return false;
+		}
+
+		return false;
+	})
 });

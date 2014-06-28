@@ -1,6 +1,20 @@
+/*------------------------------------------------------------------
+Project : calibrefx
+Project
+Version : 0.0.1
+Author : calibrefx team
+URL :
+--------------------------------------------------------------------
+
+/*------------------------------------------------------------------
+[. Global Styles]
+------------------------------------------------------------------*/
 body{
-	word-wrap: break-word;
+    word-wrap: break-word;
 }
+/*-----------------------------------------------------------------
+General public
+------------------------------------------------------------------*/
 
 /** A dividing horizontal rule **/
 hr.div {
@@ -17,6 +31,178 @@ hr.div {
     top: -3px;
 }
 
+/*------------------------------------------------------------------
+[. Header Styles]
+------------------------------------------------------------------*/
+
+.calibrefx-header{
+    background: #f0f0f0;
+    width: auto;
+    height: 110px;
+    position: relative;
+}
+
+.calibrefx-option-logo{
+    float: left;
+    margin: 16px 0 0 26px;
+    background: url(../img/calibrefx-logo.png) no-repeat;
+}
+
+.calibrefx-option-logo a {
+    display: block;
+    height: 66px;
+    width: 298px;
+    text-decoration: none;
+}
+
+/*------------------------------------------------------------------
+[. Sidebar Styles]
+------------------------------------------------------------------*/
+.calibrefx-tab{
+    zoom: 1;
+    position: relative;
+    background: #f0f0f0;
+    padding-left: 27px;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option{
+    list-style: none;
+    width: 204px;
+    word-wrap: break-word;
+    margin: 0;    
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li{
+    position: relative;
+    display: block;
+    margin: 0 0 8px;
+    overflow: visible;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li a{
+    text-decoration: none;
+    display: block;
+    color: #7e7e7e;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 20px;
+    position: relative;
+    outline: none;
+    background: #fff;
+    border: 1px solid #e3e3e3;
+    border-left: none;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li:hover a,
+.calibrefx-tab ul.calibrefx-tab-option li.current a{
+    color: #ffffff;
+    background: #00aeef;
+    border: 1px solid #e3e3e3;
+    border-left: none;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
+    position: absolute;
+    left: -16px;
+    top: 0px;
+    bottom: 0px;
+    width: 16px;
+    background: #414042;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-container{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 91px;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-wrapper{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+
+.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
+    width: 174px;
+    padding: 17px 0px 17px 30px;
+
+}
+
+/*------------------------------------------------------------------
+[. content]
+------------------------------------------------------------------*/
+/* About Page Style*/
+#calibrefx-about-page #icon-options-general.icon32{
+    width: 36px;
+    height: 39px;
+    background: url(../img/icon-36.png) no-repeat;
+    margin-top: 5px;
+}
+
+.clear{
+    float: clear;
+}
+
+.the-team-container{
+    margin-left: -2%;
+}
+
+.the-team{
+    width: 31%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    float: left;
+}
+
+.the-team h4{
+    font-size: 10px;
+    line-height: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+.the-team h4 a{
+    text-decoration: none;
+    color: #404040;
+}
+
+.the-team .image{
+    float: left;
+}
+
+.the-team .frame{  
+    box-shadow:0px 0px 4px #ccc;  
+    
+    border: 6px solid #fff;
+    border-radius: 5px;
+}
+
+.the-team .frame .inset{
+    line-height: 0;
+}
+
+.the-team .frame .inset img{
+    box-shadow:inset 0px 2px 3px #333;  
+    border-radius: 3px;
+    width: 75px;
+    height: 75px
+}       
+
+.the-team .description{
+    line-height: 20px;
+    margin-left: 95px;
+}
+
+.the-team .description p{
+    margin: 0 0 10px;
+}
+
 /** Metabox Styles **/
 .calibrefx-metaboxes{
     width: 100%;
@@ -30,7 +216,7 @@ hr.div {
 .calibrefx-metaboxes input[type=text], 
 .calibrefx-metaboxes textarea{
     display: block;
-	width: 100%;
+    width: 100%;
     padding: 7px 5px 6px;
     border: 1px solid #e9e9e9;
     -webkit-border-radius: 0px;
@@ -92,9 +278,7 @@ hr.div {
     border: 3px solid #ccc;
 }
 
-/**
- * Twitter Latest Tweet Style 
-**/
+/* Twitter Latest Tweet Style */
 ul.twitter-tweets li {
      margin-bottom: 5px;
     font-size: 13px
@@ -108,84 +292,18 @@ ul.twitter-tweets li span a{
 
 }
 .twitter-logo{
-	background: url(../img/icon-twitter.png) no-repeat;
-	width: 24px;
-	height: 24px;
-	float: left;
-	display: block;
-	margin-top: -3px;
-	margin-right: 8px;
-}
-
-/**
- * About Page Style
-**/
-#calibrefx-about-page #icon-options-general.icon32{
-	width: 36px;
-	height: 39px;
-	background: url(../img/icon-36.png) no-repeat;
-	margin-top: 5px;
-}
-
-.clear{
-    float: clear;
-}
-
-.the-team-container{
-    margin-left: -2%;
-}
-
-.the-team{
-    width: 31%;
-    margin-left: 2%;
-    margin-bottom: 2%;
+    background: url(../img/icon-twitter.png) no-repeat;
+    width: 24px;
+    height: 24px;
     float: left;
+    display: block;
+    margin-top: -3px;
+    margin-right: 8px;
 }
 
-.the-team h4{
-    font-size: 10px;
-    line-height: 20px;
-    margin: 0;
-    text-align: center;
-}
-
-.the-team h4 a{
-    text-decoration: none;
-    color: #404040;
-}
-
-.the-team .image{
-    float: left;
-}
-
-.the-team .frame{  
-    box-shadow:0px 0px 4px #ccc;  
-    
-    border: 6px solid #fff;
-    border-radius: 5px;
-}
-
-.the-team .frame .inset{
-    line-height: 0;
-}
-
-.the-team .frame .inset img{
-    box-shadow:inset 0px 2px 3px #333;  
-    border-radius: 3px;
-    width: 75px;
-    height: 75px
-}       
-
-.the-team .description{
-    line-height: 20px;
-    margin-left: 95px;
-}
-
-.the-team .description p{
-    margin: 0 0 10px;
-}
-
-/* re-style */
+/*-----------------------------------------------------------------
+ re-style 
+------------------------------------------------------------------*/
 body[class*="calibrefx"] #wpbody{
     margin: 0px;
 }
@@ -203,25 +321,6 @@ body[class*="calibrefx"] #wpbody-content{
     margin: 0px;
 }
 
-.calibrefx-header{
-    background: #f0f0f0;
-    width: auto;
-    height: 110px;
-    position: relative;
-}
-
-.calibrefx-option-logo{
-    float: left;
-    margin: 16px 0 0 26px;
-    background: url(../img/calibrefx-logo.png) no-repeat;
-}
-
-.calibrefx-option-logo a {
-    display: block;
-    height: 66px;
-    width: 298px;
-    text-decoration: none;
-}
 
 .calibrefx-content{
     border-top: none;
@@ -305,86 +404,9 @@ span.calibrefx-info{
 .calibrefx-content h2{
     margin: 0 2%;
     height: 0px;
-	padding: 0px;
+    padding: 0px;
     visibility: hidden;
 }
-
-.calibrefx-tab{
-    zoom: 1;
-    position: relative;
-    background: #f0f0f0;
-    padding-left: 27px;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option{
-    list-style: none;
-    width: 204px;
-    word-wrap: break-word;
-    margin: 0;    
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li{
-    position: relative;
-    display: block;
-    margin: 0 0 8px;
-    overflow: visible;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li a{
-    text-decoration: none;
-    display: block;
-    color: #7e7e7e;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 20px;
-    position: relative;
-    outline: none;
-	background: #fff;
-	border: 1px solid #e3e3e3;
-	border-left: none;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li:hover a,
-.calibrefx-tab ul.calibrefx-tab-option li.current a{
-    color: #ffffff;
-	background: #00aeef;
-	border: 1px solid #e3e3e3;
-	border-left: none;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
-    position: absolute;
-    left: -16px;
-    top: 0px;
-    bottom: 0px;
-    width: 16px;
-    background: #414042;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-container{
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    width: 91px;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-wrapper{
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-
-.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
-    width: 174px;
-    padding: 17px 0px 17px 30px;
-
-}
-
 .calibrefx-admin-page #wpbody-content .metabox-holder {
     padding-top: 0px;
     border-bottom: 0px;
@@ -454,15 +476,15 @@ span.calibrefx-info{
 }
 
 .calibrefx-option .postbox .handlediv{
-	background: url(../img/arrow-up.png) no-repeat center center;
+    background: url(../img/arrow-up.png) no-repeat center center;
 }
 
 .calibrefx-option .postbox.closed .handlediv{
-	background: url(../img/arrow-down.png) no-repeat center center;	
+    background: url(../img/arrow-down.png) no-repeat center center; 
 }
 
 .calibrefx-option .postbox .handlediv:before {
-	display: none !important;	
+    display: none !important;   
 }
 
 .calibrefx-option .postbox:hover .handlediv{
@@ -471,7 +493,7 @@ span.calibrefx-info{
 
 .js .calibrefx-option .postbox:hover .handlediv,
 .calibrefx-option .postbox:hover .handlediv {
-	margin-right: 8px!important;
+    margin-right: 8px!important;
 }
 
 .calibrefx-option .postbox h1,
@@ -511,156 +533,156 @@ span.calibrefx-info{
 
 .branch-3-8 #update-nag,
 .branch-3-8 .update-nag{
-	margin-top: 0px;
-	display: block;
-	margin-left: 0px;
-	margin-right: 0px;
-	text-align: center;
+    margin-top: 0px;
+    display: block;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-align: center;
 }
 
 /* CalibreFX Ver1.1 Admin Style */
 .postbox h3.section-title{
-	padding-left: 0px;
-	border-bottom: 1px solid #d7d7d7;
-	font-size: 18px;
+    padding-left: 0px;
+    border-bottom: 1px solid #d7d7d7;
+    font-size: 18px;
 }
 
 .section-row:before,
 .section-row:after{
-	display: table;
-	content: ' ';
-	line-height: 0px;
+    display: table;
+    content: ' ';
+    line-height: 0px;
 }
 
 .section-row:after{
-	clear: both;
+    clear: both;
 }
 
 .section-col{
-	float: left;
-	width: 45%;
-	border-right: 1px solid #d7d7d7;
-	padding-right: 3%;
+    float: left;
+    width: 45%;
+    border-right: 1px solid #d7d7d7;
+    padding-right: 3%;
 }
 
 .section-col.last{
-	border-right: none;	
-	padding-left: 3%;
-	padding-right: 0px;
-}	
+    border-right: none; 
+    padding-left: 3%;
+    padding-right: 0px;
+}   
 
 .section-col.noborder{
-	border: none;
-}	
+    border: none;
+}   
 
 .section-line{
-	border-bottom: 1px solid #d7d7d7;
-	padding: 13px 15px;
+    border-bottom: 1px solid #d7d7d7;
+    padding: 13px 15px;
 }
 
 .section-line.last{
-	border-bottom: none;
+    border-bottom: none;
 }
 
 .calibrefx-option .postbox .label-highlight{
-	color: #414042;
-	font-size 18px;
-	font-weight: bold;
-	font-size: 18px;
+    color: #414042;
+    font-size 18px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .calibrefx-option .postbox .inside{
-	font-size: 14px;
+    font-size: 14px;
 }
 
 .calibrefx-option .postbox .description{
     font-style: normal;
-	font-size: 14px;
-	color: #909090;
-	background: url(../img/icon-info-small.png) no-repeat 15px 1px;
-	padding-left: 50px;
+    font-size: 14px;
+    color: #909090;
+    background: url(../img/icon-info-small.png) no-repeat 15px 1px;
+    padding-left: 50px;
 }
 
 .calibrefx-option .postbox .label{
-	color: #414042;
+    color: #414042;
 }
 
 .section-input{
-	padding: 10px 0px;
+    padding: 10px 0px;
 }
 
 .section-label-checkbox{
-	display: inline-block;
-	width: 48%;
+    display: inline-block;
+    width: 48%;
 }
 
 .section-box{
-	border: 1px solid #d7d7d7;
-	padding: 13px;
+    border: 1px solid #d7d7d7;
+    padding: 13px;
 }
 
 .calibrefx_content_archive{
-	width: 100%;
-	display: block;
+    width: 100%;
+    display: block;
 }
 
 .calibrefx_content_archive_limit.calibrefx_content_limit_setting{
-	margin-top: 15px;
+    margin-top: 15px;
 }
 
 .calibrefx_content_archive_limit.calibrefx_content_limit_setting label{
-	margin-bottom: 15px;	
-	display: block;
+    margin-bottom: 15px;    
+    display: block;
 }
 
 .calibrefx_content_archive_limit.calibrefx_content_limit_setting input{
-	width: 50%;
-	display: inline-block;	
-	vertical-align: middle;
-	margin-right: 10px;
+    width: 50%;
+    display: inline-block;  
+    vertical-align: middle;
+    margin-right: 10px;
 }
 
 #breadcrumb-settings, #content-archives-settings,
 #comment-settings, #facebook-comment-settings{
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 #post-navigation-settings{
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .calibrefx-option .postbox p.enable-trackback{
-	padding-top: 10px;
+    padding-top: 10px;
 }
 
 .calibrefx-option #side-sortables{
-	display: none;
+    display: none;
 }
 
 #footer-script-settings{
-	padding-top: 20px;
+    padding-top: 20px;
 }
 
 .calibrefx-option .postbox p.facebook-admins-settings{
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .calibrefx-option .postbox p.facebook-page-settings{
-	margin-bottom: 60px
+    margin-bottom: 60px
 }
 
 #social-link-settings .section-desc p{
-	padding: 15px 0px;
-	border-bottom: 1px solid #d7d7d7;
-	margin-bottom: 0px;
+    padding: 15px 0px;
+    border-bottom: 1px solid #d7d7d7;
+    margin-bottom: 0px;
 }
 
 #social-link-settings .section-desc p:first-child {
-/* 	padding-top: 10px */
-}	
+/*  padding-top: 10px */
+}   
 
 #social-link-settings .section-desc p:last-child{
-	border-bottom: none;	
+    border-bottom: none;    
 }
 
 #adminmenu .wp-menu-image img {
@@ -682,8 +704,9 @@ span.calibrefx-info{
     margin-bottom: 10px;
 }
 
-/*MEDIA QUERY RESPONSIVE------------------*/
-
+/*------------------------------------------------------------------
+[. MEDIA QUERY RESPONSIVE]
+------------------------------------------------------------------*/
 @media only screen and (max-width: 1080px){
     .section-label-checkbox{
         width: 56%;
@@ -707,118 +730,120 @@ span.calibrefx-info{
         float: left;
         margin: 0 2%;
     }
-	
-	.calibrefx-admin-page.branch-3-8  #wpcontent, .calibrefx-admin-page.branch-3-8  #wpfooter{
-		margin-left: 40px;
-	}
-	
-	.section-col{
-		float: none;
-		border: none;
-		width: auto;
-	}
-	
-	.section-col.last,
-	.section-col.noborder{
-		padding: 20px 0px;
+    
+    .calibrefx-admin-page.branch-3-8  #wpcontent, .calibrefx-admin-page.branch-3-8  #wpfooter{
+        margin-left: 40px;
+    }
+    
+    .section-col{
+        float: none;
+        border: none;
+        width: auto;
+    }
+    
+    .section-col.last,
+    .section-col.noborder{
+        padding: 20px 0px;
 
-	}
-	
-	#breadcrumb-settings, #content-archives-settings,
-	#comment-settings, #facebook-comment-settings{
-		margin-bottom: 20px;	
-	}
-	
-	.calibrefx-option .postbox p.facebook-page-settings {
-		margin-bottom: 0px;	
-	}	
-	
-	.calibrefx-option .postbox p.facebook-admins-settings {
-		margin-bottom: 20px;	
-	}
-	
-	#social-link-settings .section-desc p:first-child {
-		padding-top: 0px;	
-	}
-	
-	#social-link-settings .section-desc p {
-		margin-bottom: 10px;
-		padding-bottom: 10px;
-	}
-	
-	#main-feed-settings .section-col {
-		padding: 0px 0px 5px!important;
-	}	
-	
-	#main-feed-settings .section-col .section-desc p{
-		margin-bottom: 20px;	
-	}
-	
-	#main-feed-settings .section-col .section-desc hr.div{
-		margin-bottom: 12px !important;
-	}
-	
-	#comment-feed-settings .section-col.last{
-		padding-top: 5px;
-	}
+    }
+    
+    #breadcrumb-settings, #content-archives-settings,
+    #comment-settings, #facebook-comment-settings{
+        margin-bottom: 20px;    
+    }
+    
+    .calibrefx-option .postbox p.facebook-page-settings {
+        margin-bottom: 0px; 
+    }   
+    
+    .calibrefx-option .postbox p.facebook-admins-settings {
+        margin-bottom: 20px;    
+    }
+    
+    #social-link-settings .section-desc p:first-child {
+        padding-top: 0px;   
+    }
+    
+    #social-link-settings .section-desc p {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    
+    #main-feed-settings .section-col {
+        padding: 0px 0px 5px!important;
+    }   
+    
+    #main-feed-settings .section-col .section-desc p{
+        margin-bottom: 20px;    
+    }
+    
+    #main-feed-settings .section-col .section-desc hr.div{
+        margin-bottom: 12px !important;
+    }
+    
+    #comment-feed-settings .section-col.last{
+        padding-top: 5px;
+    }
 
 }
 
 @media only screen and (max-width: 782px){
-	.calibrefx-tab ul.calibrefx-tab-option {
-		position: relative;
-		top: 0px;
-		left: 0px;
-		width:  auto;
+    .auto-fold #wpcontent{
+         margin-left: 0px;
+         padding: 20px;
+    }
+    .calibrefx-tab ul.calibrefx-tab-option {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width:  auto;
 }
-	
-	.calibrefx-option {
-		margin-left: 0px;	
-		margin-right: 0px;
-	}
-	
-	.calibrefx-admin-page.branch-3-8 #wpcontent, 
+    
+    .calibrefx-option {
+        margin-left: 0px;   
+        margin-right: 0px;
+    }
+    
+    .calibrefx-admin-page.branch-3-8 #wpcontent, 
     .calibrefx-admin-page.branch-3-8 #wpfooter {
-		margin-left: 0px;	
-		padding-right: 10px;
-	}
-	
-	.main-postbox{
-		margin: 0px;
-		width: 100%;
-		float: none;
+        margin-left: 0px;   
+        padding-right: 10px;
+    }
+    
+    .main-postbox{
+        margin: 0px;
+        width: 100%;
+        float: none;
 }
-	
-	.calibrefx-tab {
-		padding-left: 0px;
-	}
-	
-	.calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
-		display: none;
-	}
-	
-	.calibrefx-tab ul.calibrefx-tab-option li {
-		display: inline-block;	
-		width: 33.33%;
-		text-align: center;
-	}
-	
-	.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link {
-		width: auto;
-		padding: 17px 0px;
-	}	
-	
-	.calibrefx-tab ul.calibrefx-tab-option li a {
-		border-left: 1px solid #e3e3e3;
-	}
+    
+    .calibrefx-tab {
+        padding-left: 0px;
+    }
+    
+    .calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
+        display: none;
+    }
+    
+    .calibrefx-tab ul.calibrefx-tab-option li {
+        display: inline-block;  
+        width: 33.33%;
+        text-align: center;
+    }
+    
+    .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link {
+        width: auto;
+        padding: 17px 0px;
+    }   
+    
+    .calibrefx-tab ul.calibrefx-tab-option li a {
+        border-left: 1px solid #e3e3e3;
+    }
     #wpbody select{
         margin-right: 4px;
     }
     hr.div{
         margin-bottom: 30px;
     }
-   
-    
 }
 
 @media only screen and (max-width: 720px){
@@ -832,7 +857,6 @@ span.calibrefx-info{
        padding: 14px;
         font-size: 16px;
     }
-   
 }
 
 @media (min-width: 480px) and (max-width: 719px) {
@@ -848,5 +872,21 @@ span.calibrefx-info{
         padding: 12px;
         font-size: 13px;
     }
+    .calibrefx-tab ul.calibrefx-tab-option li{
+       display: inline-block;
+        width: 50%;
+    }
+    .calibrefx-submit-button .calibrefx-h2-button{
+        width: auto;
+        margin: 0px;
+        padding: 6px 10px;
+        margin-right: 10px;
+        font-size: 14px;
+   }
+   .calibrefx-option-logo{
+    margin: 0px;
+    background-size: 100%;
+    width: 100%;
+   }
 
 }
