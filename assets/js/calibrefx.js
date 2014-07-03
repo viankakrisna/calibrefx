@@ -7,16 +7,26 @@ special.scrollstart = {setup: function() {var timer, handler =  function(evt) {v
 special.scrollstop = {latency: 300,setup: function() {var timer, handler = function(evt) {var _self = this, _args = arguments;if (timer) {clearTimeout(timer);}timer = setTimeout( function(){timer = null;evt.type = 'scrollstop';jQuery.event.handle.apply(_self, _args);}, special.scrollstop.latency);};jQuery(this).bind('scroll', handler).data(uid2, handler);},teardown: function() { jQuery(this).unbind( 'scroll', jQuery(this).data(uid2) );}};
 })();
 
-	jQuery(window).load(function(){
-	   NProgress.done();
+jQuery(window).load(function(){
+   NProgress.done();
+
+});
+
+
+jQuery(document).ready(function() {
+
+	NProgress.configure({ 
+
+		ease: 'ease', speed: 1000,
+		trickle: false,
+		showSpinner: false,
+		parent: '#wrapper'
 
 	});
 
+	NProgress.start();
 
-	jQuery(document).ready(function() {
-	   NProgress.start();
-
-	});
+});
 
 jQuery(document).ready(function($) {
 
