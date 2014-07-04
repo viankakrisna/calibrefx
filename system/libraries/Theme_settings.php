@@ -666,6 +666,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                         'option_default' => '',
                         'option_filter' => 'safe_text',
                         'option_description' => __("This will output <code>&lt;link rel=\"author\" href=\"YOUR GOOGLE+ LINK HERE\"/></code> in html head.", 'calibrefx'),
+                        'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     1 //Priority
             );
@@ -679,6 +680,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                         'option_default' => '',
                         'option_filter' => 'safe_text',
                         'option_description' => __("This will use for Google Page For Business link, and it will show if using the Social Widget", 'calibrefx'),
+                        'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     5 //Priority
             );
@@ -692,6 +694,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                         'option_default' => '',
                         'option_filter' => 'safe_text',
                         'option_description' => __("This will use for Facebook Page link, and it will show if using the Social Widget", 'calibrefx'),
+                        'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     10 //Priority
             );
@@ -705,6 +708,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                         'option_default' => '',
                         'option_filter' => 'safe_text',
                         'option_description' => __("This will use for Twitter link, and it will show if using the Social Widget", 'calibrefx'),
+                        'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     15 //Priority
             );
@@ -718,6 +722,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                         'option_default' => '',
                         'option_filter' => 'safe_text',
                         'option_description' => __("This will use for Youtube Channel link, and it will show if using the Social Widget", 'calibrefx'),
+                        'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     20 //Priority
             );
@@ -731,6 +736,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                         'option_default' => '',
                         'option_filter' => 'safe_text',
                         'option_description' => __("This will use for Linkedin link, and it will show if using the Social Widget", 'calibrefx'),
+                        'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     25 //Priority
             );
@@ -744,6 +750,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                         'option_default' => '',
                         'option_filter' => 'safe_text',
                         'option_description' => __("This will use for Pinterest link, and it will show if using the Social Widget", 'calibrefx'),
+                        'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     30 //Priority
             );
@@ -758,7 +765,8 @@ class CFX_Theme_Settings extends CFX_Admin {
                         'option_type' => 'textinput',
                         'option_default' => '',
                         'option_filter' => 'safe_text',
-                        'option_description' => __("You can replace WordPress builtin Feed URL using this options. For sample you want to use feedburner instead. Sample: http://feeds2.feedburner.com/calibrefx.", 'calibrefx'),
+                        'option_description' => __("You can replace WordPress builtin Feed URL using this options. For sample you want to use feedburner instead. <br/>Sample: <code>http://feeds2.feedburner.com/calibrefx.</code>", 'calibrefx'),
+                        'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     1 //Priority
             );
@@ -771,7 +779,8 @@ class CFX_Theme_Settings extends CFX_Admin {
                         'option_type' => 'textinput',
                         'option_default' => '',
                         'option_filter' => 'safe_text',
-                        'option_description' => __("You can replace WordPress builtin Feed URL using this options. For sample you want to use feedburner instead. Sample: http://feeds2.feedburner.com/calibrefxcomment.", 'calibrefx'),
+                        'option_description' => __("You can replace WordPress builtin Feed URL using this options. For sample you want to use feedburner instead. <br/>Sample: <code>http://feeds2.feedburner.com/calibrefxcomment.</code>", 'calibrefx'),
+                        'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     2 //Priority
             );
