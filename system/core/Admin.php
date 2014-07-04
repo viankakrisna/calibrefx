@@ -271,7 +271,6 @@ abstract class CFX_Admin {
                         <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
                     </div>
                     <div class="calibrefx-submit-button">
-                        <span class="calibrefx-info" title=""></span>
                         <div class="clear"></div>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><?php _e('Save Settings', 'calibrefx') ?></button>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" value="1" onclick="return calibrefx_confirm('<?php echo esc_js(__('Are you sure you want to reset?', 'calibrefx')); ?>');"><?php _e('Reset Settings', 'calibrefx'); ?></button>
