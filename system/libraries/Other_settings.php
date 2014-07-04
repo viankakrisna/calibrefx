@@ -247,10 +247,6 @@ if(isset($_POST['name']) && isset($_POST['url']) ){
                 display: none;
             }
 
-            .calibrefx-metaboxes span {
-                display: inline;
-            }
-
             .control-group{
                 margin-bottom: 12px;
             }
