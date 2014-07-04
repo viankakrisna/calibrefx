@@ -1,6 +1,20 @@
+/*------------------------------------------------------------------
+Project : calibrefx
+Project
+Version : 0.0.1
+Author : calibrefx team
+URL :
+--------------------------------------------------------------------
+
+/*------------------------------------------------------------------
+[. Global Styles]
+------------------------------------------------------------------*/
 body{
-	word-wrap: break-word;
+    word-wrap: break-word;
 }
+/*-----------------------------------------------------------------
+General public
+------------------------------------------------------------------*/
 
 /** A dividing horizontal rule **/
 hr.div {
@@ -17,131 +31,118 @@ hr.div {
     top: -3px;
 }
 
-/** Metabox Styles **/
-.calibrefx-metaboxes{
-    width: 100%;
-    margin: 0px;
+/*------------------------------------------------------------------
+[. Header Styles]
+------------------------------------------------------------------*/
+
+.calibrefx-header{
+    background: #f0f0f0;
+    width: auto;
+    height: 110px;
+    position: relative;
 }
 
-.calibrefx-metaboxes span{
-    display: block;
-}
-
-.calibrefx-metaboxes label {
-    color: #585858;
-}
-
-.calibrefx-metaboxes input[type=text], 
-.calibrefx-metaboxes textarea{
-    display: block;
-	width: 100%;
-    padding: 7px 5px 6px;
-    border: 1px solid #e9e9e9;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    color: #6b6b6b; 
-    box-shadow: none;
-}
-
-.calibrefx-metaboxes select{
-    padding: 7px 5px 6px;
-    height: 37px;
-    border: 1px solid #e9e9e9;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    color: #6b6b6b;
-    width: 100%;
-    box-shadow: none;
-}
-
-.calibrefx-submit-button{
-    margin-top: 10px;
-}
-
-.main-postbox, .side-postbox{
-    width: 100%;
-    float: none;
-}
-.side-postbox{
-    margin: 0 1%;
-}
-
-.main-postbox-wider{
-    width: 60%;
+.calibrefx-option-logo{
     float: left;
-    margin: 0 10px;
+    margin: 16px 0 0 26px;
+    background: url(../img/calibrefx-logo.png) no-repeat;
 }
 
-.calibrefx-layout-selector input {
-    display: none;
-    text-align: center;
-}
-.calibrefx-layout-selector input#default-layout {
-    display: inline;
-}
-.calibrefx-layout-selector label.box {
+.calibrefx-option-logo a {
     display: block;
-    float: left;
-    margin: 10px 0 10px 0;
-    text-align: center;
-}
-.calibrefx-layout-selector label.box img {
-    max-width: 83px;
-    border: 3px solid transparent;
-    margin-bottom: 5px;
-}
-.calibrefx-layout-selector label.box img:hover {
-    border: 3px solid #ddd;
-}
-.calibrefx-layout-selector label.box.selected img {
-    border: 3px solid #ccc;
+    height: 66px;
+    width: 298px;
+    text-decoration: none;
 }
 
-.calibrefx-admin-page .wp-picker-container,
-.calibrefx-admin-page .wp-picker-input-wrap{
+/*------------------------------------------------------------------
+[. Sidebar Styles]
+------------------------------------------------------------------*/
+.calibrefx-tab{
+    zoom: 1;
+    position: relative;
+    background: #f0f0f0;
+    padding-left: 27px;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option{
+    list-style: none;
+    width: 204px;
+    word-wrap: break-word;
+    margin: 0;    
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li{
+    position: relative;
+    display: block;
+    margin: 0 0 8px;
+    overflow: visible;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li a{
+    text-decoration: none;
+    display: block;
+    color: #7e7e7e;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 20px;
+    position: relative;
+    outline: none;
+    background: #fff;
+    border: 1px solid #e3e3e3;
+    border-left: none;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li:hover a,
+.calibrefx-tab ul.calibrefx-tab-option li.current a{
+    color: #ffffff;
+    background: #00aeef;
+    border: 1px solid #e3e3e3;
+    border-left: none;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
+    position: absolute;
+    left: -16px;
+    top: 0px;
+    bottom: 0px;
+    width: 16px;
+    background: #414042;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-container{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 91px;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-wrapper{
     width: 100%;
-    /*display: block;*/
+    height: 100%;
+    position: relative;
 }
 
-.calibrefx-admin-page .wp-color-picker{
-    width: 100%;
-}
 
-/**
- * Twitter Latest Tweet Style 
-**/
-ul.twitter-tweets li {
-     margin-bottom: 5px;
-    font-size: 13px
-}
-ul.twitter-tweets li a{
-    font-family: Georgia, arial;
-text-decoration: none;
-}
-ul.twitter-tweets li span a{
-    font-family: arial;
+.calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
+    width: 174px;
+    padding: 17px 0px 17px 30px;
 
 }
-.twitter-logo{
-	background: url(../img/icon-twitter.png) no-repeat;
-	width: 24px;
-	height: 24px;
-	float: left;
-	display: block;
-	margin-top: -3px;
-	margin-right: 8px;
-}
 
-/**
- * About Page Style
-**/
+/*------------------------------------------------------------------
+[. content]
+------------------------------------------------------------------*/
+/* About Page Style*/
 #calibrefx-about-page #icon-options-general.icon32{
-	width: 36px;
-	height: 39px;
-	background: url(../img/icon-36.png) no-repeat;
-	margin-top: 5px;
+    width: 36px;
+    height: 39px;
+    background: url(../img/icon-36.png) no-repeat;
+    margin-top: 5px;
 }
 
 .clear{
@@ -202,7 +203,107 @@ ul.twitter-tweets li span a{
     margin: 0 0 10px;
 }
 
-/* re-style */
+/** Metabox Styles **/
+.calibrefx-metaboxes{
+    width: 100%;
+    margin: 0px;
+}
+
+.calibrefx-metaboxes span{
+    display: block;
+}
+
+.calibrefx-metaboxes input[type=text], 
+.calibrefx-metaboxes textarea{
+    display: block;
+    width: 100%;
+    padding: 7px 5px 6px;
+    border: 1px solid #e9e9e9;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    color: #6b6b6b; 
+}
+
+.calibrefx-metaboxes select{
+    padding: 5px;
+    height: 30px;
+    border: 1px solid #e9e9e9;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    color: #6b6b6b;
+}
+
+.calibrefx-submit-button{
+    margin-top: 10px;
+}
+
+.main-postbox, .side-postbox{
+    width: 100%;
+    float: none;
+}
+.side-postbox{
+    margin: 0 1%;
+}
+
+.main-postbox-wider{
+    width: 60%;
+    float: left;
+    margin: 0 10px;
+}
+
+.calibrefx-layout-selector input {
+    display: none;
+    text-align: center;
+}
+.calibrefx-layout-selector input#default-layout {
+    display: inline;
+}
+.calibrefx-layout-selector label.box {
+    display: block;
+    float: left;
+    margin: 10px 0 10px 0;
+    text-align: center;
+}
+.calibrefx-layout-selector label.box img {
+    max-width: 83px;
+    border: 3px solid transparent;
+    margin-bottom: 5px;
+}
+.calibrefx-layout-selector label.box img:hover {
+    border: 3px solid #ddd;
+}
+.calibrefx-layout-selector label.box.selected img {
+    border: 3px solid #ccc;
+}
+
+/* Twitter Latest Tweet Style */
+ul.twitter-tweets li {
+     margin-bottom: 5px;
+    font-size: 13px
+}
+ul.twitter-tweets li a{
+    font-family: Georgia, arial;
+text-decoration: none;
+}
+ul.twitter-tweets li span a{
+    font-family: arial;
+
+}
+.twitter-logo{
+    background: url(../img/icon-twitter.png) no-repeat;
+    width: 24px;
+    height: 24px;
+    float: left;
+    display: block;
+    margin-top: -3px;
+    margin-right: 8px;
+}
+
+/*-----------------------------------------------------------------
+ re-style 
+------------------------------------------------------------------*/
 body[class*="calibrefx"] #wpbody{
     margin: 0px;
 }
@@ -259,10 +360,10 @@ body[class*="calibrefx"] #wpbody-content{
 .calibrefx-submit-button .calibrefx-h2-button {
     cursor: pointer;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     height: 40px;
-    padding: 0 20px;
-    border-radius: 0px;
+    width: 140px;
+    border-radius: 6px;
     float: right;
     border: none;
     background: #00aeef;
@@ -322,7 +423,7 @@ span.calibrefx-info{
 .calibrefx-content h2{
     margin: 0 2%;
     height: 0px;
-	padding: 0px;
+    padding: 0px;
     visibility: hidden;
 }
 
@@ -374,10 +475,10 @@ span.calibrefx-info{
 
 .calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
     position: absolute;
-    left: -10px;
+    left: -16px;
     top: 0px;
     bottom: 0px;
-    width: 10px;
+    width: 16px;
     background: #414042;
 }
 
@@ -453,8 +554,8 @@ span.calibrefx-info{
 }
 
 .calibrefx-option .postbox h3.hndle span{
-    color: #00aeef;
-    font-size: 26px;
+    color: #414042;
+    font-size: inherit;
 }
 
 .calibrefx-option .postbox .inside{
@@ -472,9 +573,6 @@ span.calibrefx-info{
 
 .calibrefx-option .postbox .handlediv{
     background: url(../img/arrow-up.png) no-repeat center center;
-    border: 1px solid #ccc;
-    width: 30px;
-    height: 30px;
 }
 
 .calibrefx-option .postbox.closed .handlediv{
@@ -489,14 +587,9 @@ span.calibrefx-info{
     
 }
 
-.js .calibrefx-option .postbox .handlediv,
-.calibrefx-option .postbox .handlediv {
-    margin-top: 15px !important;
-}
-
 .js .calibrefx-option .postbox:hover .handlediv,
 .calibrefx-option .postbox:hover .handlediv {
-    margin-right: 8px!important;
+	margin-right: 8px!important;
 }
 
 .calibrefx-option .postbox h1,
@@ -598,16 +691,12 @@ span.calibrefx-info{
 	font-size: 14px;
 }
 
-.calibrefx-option .postbox .option-item{
-    margin-bottom: 0px;
-}
-
 .calibrefx-option .postbox .description{
     font-style: normal;
-	font-size: 12px;
-	color: #909090;
-	/*background: url(../img/icon-info-small.png) no-repeat 15px 1px;
-	padding-left: 50px;*/
+    font-size: 14px;
+    color: #909090;
+    background: url(../img/icon-info-small.png) no-repeat 15px 1px;
+    padding-left: 50px;
 }
 
 .calibrefx-option .postbox .label{
@@ -794,11 +883,15 @@ span.calibrefx-info{
 }
 
 @media only screen and (max-width: 782px){
-	.calibrefx-tab ul.calibrefx-tab-option {
-		position: relative;
-		top: 0px;
-		left: 0px;
-		width:  auto;
+    .auto-fold #wpcontent{
+         margin-left: 0px;
+         padding: 20px;
+    }
+    .calibrefx-tab ul.calibrefx-tab-option {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width:  auto;
 }
 	
 	.calibrefx-option {
