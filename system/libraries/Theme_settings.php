@@ -534,7 +534,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                 array(
                     'option_type' => 'custom',
                     'option_custom' => calibrefx_layout_selector(array(
-                            'name' => $this->settings_field . '[site_layout]', 
+                            'name' => 'calibrefx-settings[site_layout]', 
                             'selected' => calibrefx_get_option('site_layout'),
                             'echo' => false)),
                     'option_default' => '',

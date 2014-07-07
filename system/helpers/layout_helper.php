@@ -65,7 +65,7 @@ function calibrefx_put_wrapper($context = '', $output = '<div class="container">
 
     switch ($output) {
         case 'open':
-            $output = '<div class="container">';
+            $output = '<div class="'.calibrefx_container_class().'">';
             
             break;
         case 'close':
@@ -303,7 +303,7 @@ function calibrefx_container_class() {
     $containerClass = '';
 
     if(calibrefx_layout_is_fluid()){
-        $containerClass = '';
+        $containerClass = 'container-fluid';
     }elseif(calibrefx_layout_is_static()){
         if(calibrefx_layout_is_fixed_wrapper()){
             $containerClass = 'container';
