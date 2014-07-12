@@ -71,9 +71,9 @@ abstract class CFX_Admin {
         
         
         add_action( 'calibrefx_hidden_fields', array( $this,'hidden_fields' ) );
-        add_action( 'admin_init', array( $this, 'register_settings' ), 5);
-        add_action( 'admin_init', array( $this, 'settings_init' ), 20);
-        add_filter( 'admin_body_class', 'calibrefx_admin_body_class', 20, 1);
+        add_action( 'admin_init', array( $this, 'register_settings' ), 5 );
+        add_action( 'admin_init', array( $this, 'settings_init' ), 20 );
+        add_filter( 'admin_body_class', 'calibrefx_admin_body_class', 20, 1 );
         
         add_action( 'admin_notices', array( $this, 'notices' ) );
         
@@ -85,18 +85,9 @@ abstract class CFX_Admin {
         do_action( 'calibrefx_before_save_core' );
 
         /** Add a sanitizer/validator */
-        add_filter( 'pre_update_option_' . $this->settings_field, array(&$this, 'save' ), 10, 2);
+        add_filter( 'pre_update_option_' . $this->settings_field, array( &$this, 'save' ), 10, 2 );
 
         do_action( 'calibrefx_after_save_core' );
-        
-        //Removed by Fadhel
-        //This will allow to cross save calibrefx themes settings
-        /*if( $this->settings_field != $calibrefx->theme_settings_m->get_settings_field() ) {
-            do_action( 'calibrefx_before_save_core' );
-            $this->save_core();
-            do_action( 'calibrefx_after_save_core' );
-            //add_filter( 'pre_update_option_' . $calibrefx->theme_settings_m->get_settings_field(), array(&$this, 'save_core' ), 10, 2);            
-        }*/
     }
 
     /**
@@ -129,13 +120,13 @@ abstract class CFX_Admin {
      *
      * $return array
      */
-    public function save( $_newvalue, $_oldvalue) { 
+    public function save( $_newvalue, $_oldvalue ) { 
         //We merge newvalue and oldvalue
-        if (isset( $_newvalue['reset']) ) {
+        if ( isset( $_newvalue['reset'] ) ) {
             return $_newvalue;
         }
 
-        if( !empty( $_POST['calibrefx_do_import']) ) {
+        if( !empty( $_POST['calibrefx_do_import'] ) ) {
             return $_newvalue;
         }
         
@@ -143,18 +134,18 @@ abstract class CFX_Admin {
         $_newvalue = $_POST[$this->settings_field]; 
         
         //merge value from old settings
-        if(!is_array( $_oldvalue) ) $_oldvalue = array();
-        if(!is_array( $_newvalue) ) $_newvalue = array();
+        if( !is_array( $_oldvalue) ) $_oldvalue = array();
+        if( !is_array( $_newvalue) ) $_newvalue = array();
         
         $_newvalue = array_merge( $_oldvalue, $_newvalue);
         
         //We merge with default value too
-        $_newvalue = array_merge((array)$this->default_settings, $_newvalue);
+        $_newvalue = array_merge( (array)$this->default_settings, $_newvalue );
 
         if(!empty( $_newvalue) ) {
             //We sanitizing
             global $calibrefx;
-            $_newvalue = $calibrefx->security->sanitize_input( $this->settings_field, $_newvalue);
+            $_newvalue = $calibrefx->security->sanitize_input( $this->settings_field, $_newvalue );
         }
         
         return $_newvalue;
@@ -170,23 +161,23 @@ abstract class CFX_Admin {
 
         $calibrefx_settings_field = $calibrefx->theme_settings_m->get_settings_field(); 
         
-        if(!isset( $_POST[$calibrefx_settings_field]) ) return;
+        if( !isset( $_POST[$calibrefx_settings_field]) ) return;
 
         //Get the value from post settings
         $_newvalue = $_POST[$calibrefx_settings_field];
         
-        if(empty( $_newvalue) ) return;
+        if( empty( $_newvalue) ) return;
 
         $_oldvalue = $calibrefx->theme_settings_m->get_all();
         
         //merge value from old settings
-        $_newvalue = array_merge( $_oldvalue, $_newvalue);
+        $_newvalue = array_merge( $_oldvalue, $_newvalue );
         
         //We merge with default value too
-        $_newvalue = array_merge((array)$calibrefx->theme_settings->default_settings, $_newvalue);
+        $_newvalue = array_merge( (array)$calibrefx->theme_settings->default_settings, $_newvalue );
 
         //@TODO: Need to sanitize before save
-        return $calibrefx->theme_settings_m->save( $_newvalue);
+        return $calibrefx->theme_settings_m->save( $_newvalue );
     }
 
     /**
@@ -197,20 +188,23 @@ abstract class CFX_Admin {
     public function register_settings() {
 
         /** If this page doesn't store settings, no need to register them */
-        if (!$this->settings_field)
+        if ( !$this->settings_field ){
             return;
+        }
 
-        register_setting( $this->settings_field, $this->settings_field);
-        add_option( $this->settings_field, $this->default_settings);
+        register_setting( $this->settings_field, $this->settings_field );
+        add_option( $this->settings_field, $this->default_settings );
 
-        if (!isset( $_REQUEST['page']) || $_REQUEST['page'] != $this->page_id)
+        if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] != $this->page_id ){
             return;
+        }
 
-        if (calibrefx_get_option( 'reset', $this->_model) ) {
-            if (update_option( $this->settings_field, $this->default_settings) )
+        if ( calibrefx_get_option( 'reset', $this->_model ) ) {
+            if ( update_option( $this->settings_field, $this->default_settings ) ){
                 calibrefx_admin_redirect( $this->page_id, array( 'reset' => 'true' ) );
-            else
+            } else {
                 calibrefx_admin_redirect( $this->page_id, array( 'error' => 'true' ) );
+            }
             exit;
         }
     }
@@ -221,18 +215,19 @@ abstract class CFX_Admin {
      * @return null Returns early if not on the correct admin page.
      */
     public function notices() {
-
-        if (!isset( $_REQUEST['page']) || $_REQUEST['page'] != $this->page_id)
+        if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] != $this->page_id ){
             return;
+        }
         
-        if (isset( $_REQUEST['settings-updated']) && $_REQUEST['settings-updated'] == 'true' )
+        if ( isset( $_REQUEST['settings-updated']) && $_REQUEST['settings-updated'] == 'true' ){
             echo '<div id="message" class="updated"><p><strong>' . __( 'Settings saved.', 'calibrefx' ) . '</strong></p></div>';
-        elseif (isset( $_REQUEST['reset']) && 'true' == $_REQUEST['reset'])
+        } elseif ( isset( $_REQUEST['reset'] ) && 'true' == $_REQUEST['reset'] ) {
             echo '<div id="message" class="updated"><p><strong>' . __( 'Settings reset.', 'calibrefx' ) . '</strong></p></div>';
-        elseif (isset( $_REQUEST['error']) && $_REQUEST['error'] == 'true' )
+        } elseif ( isset( $_REQUEST['error'] ) && $_REQUEST['error'] == 'true' ){
             echo '<div id="message" class="updated"><p><strong>' . __( 'Settings not saved. Error occured.', 'calibrefx' ) . '</strong></p></div>';
-        elseif (isset( $_REQUEST['import']) && $_REQUEST['import'] == 'true' )
+        } elseif ( isset( $_REQUEST['import'] ) && $_REQUEST['import'] == 'true' ){
             echo '<div id="message" class="updated"><p><strong>' . __( 'Import Settings Success.', 'calibrefx' ) . '</strong></p></div>';
+        }
     }
 
     public function settings_init() {
@@ -253,9 +248,11 @@ abstract class CFX_Admin {
     }
 
     public function dashboard() {
-        global $calibrefx_sections, $calibrefx_current_section, $calibrefx_user_ability;
+        global $calibrefx_sections, 
+               $calibrefx_current_section, 
+               $calibrefx_user_ability;
+
         $this->_submit_url = apply_filters( 'calibrefx_'.$calibrefx_current_section.'_form_url', 'options.php' );
-        //$this->_submit_url = str_replace( 'php', '.php', $this->_submit_url);
 
         $calibrefx_theme = wp_get_theme();
         ?>
@@ -263,7 +260,7 @@ abstract class CFX_Admin {
             <form method="post" action="<?php echo $this->_submit_url; ?>" enctype="multipart/form-data" id="calibrefx-form">
                 <?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false); ?>
                 <?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false); ?>
-                <?php settings_fields( $this->settings_field); // important! ?>
+                <?php settings_fields( $this->settings_field ); // important! ?>
                 <?php do_action( 'calibrefx_hidden_fields' ); ?>
 
                 <div class="calibrefx-header">
@@ -284,20 +281,20 @@ abstract class CFX_Admin {
                         <div class="calibrefx-tab">
                             <ul class="calibrefx-tab-option">
                                 <?php
-                                foreach ( $calibrefx_sections as $section) {
-                                    $current_class = ( $calibrefx_current_section === $section['slug']) ? ' class="current"' : '';
-                                    $section_link = admin_url( 'admin.php?page=' . $this->page_id . '&section=' . $section['slug']);
+                                foreach ( $calibrefx_sections as $section ) {
+                                    $current_class = ( $calibrefx_current_section === $section['slug'] ) ? ' class="current"' : '';
+                                    $section_link = admin_url( 'admin.php?page=' . $this->page_id . '&section=' . $section['slug'] );
                                     
                                     $icon = $section['icon'];
                                     $active_icon = $section['active_icon'];
 
-                                    $icon = (!empty( $icon) ? $icon : CALIBREFX_IMAGES_URL.'/icon-sections/icon-general-settings.png' );
-                                    $active_icon = (!empty( $active_icon) ? $active_icon : CALIBREFX_IMAGES_URL.'/icon-sections/icon-general-settings-active.png' );
+                                    $icon = ( !empty( $icon ) ? $icon : CALIBREFX_IMAGES_URL.'/icon-sections/icon-general-settings.png' );
+                                    $active_icon = ( !empty( $active_icon ) ? $active_icon : CALIBREFX_IMAGES_URL.'/icon-sections/icon-general-settings-active.png' );
 
                                     echo "<li$current_class>
-                                            <a href=\"$section_link\">
-                                                <span class=\"calibrefx-section-link\">" . $section['title'] . "</span>
-                                                <span class=\"calibrefx-section-link-additional\"></span>
+                                            <a href='$section_link'>
+                                                <span class='calibrefx-section-link'>" . $section['title'] . "</span>
+                                                <span class='calibrefx-section-link-additional'></span>
                                             </a>
                                         </li>";
                                 }
@@ -307,16 +304,11 @@ abstract class CFX_Admin {
                                 <h2><?php echo $calibrefx_sections[$calibrefx_current_section]['title']; ?></h2>
                                 <div class="postbox-container main-postbox">
                                     <?php
-                                    calibrefx_do_meta_sections( $calibrefx_current_section, $this->pagehook, 'main', null);
-                                    calibrefx_do_meta_sections( $calibrefx_current_section, $this->pagehook, 'side', null);
+                                    calibrefx_do_meta_sections( $calibrefx_current_section, $this->pagehook, 'main', null );
+                                    calibrefx_do_meta_sections( $calibrefx_current_section, $this->pagehook, 'side', null );
                                     ?>
                                 </div>
 
-                                <!-- <div class="postbox-container side-postbox">
-                                    <?php
-                                    //calibrefx_do_meta_sections( $calibrefx_current_section, $this->pagehook, 'side', null);
-                                    ?>
-                                </div> -->
                                 <div class="clear"></div>
                             </div>
                             <div class="clear"></div>
@@ -332,7 +324,7 @@ abstract class CFX_Admin {
         </div>
         <script type="text/javascript">
             //<![CDATA[
-            jQuery(document).ready( function( $) {
+            jQuery(document).ready( function( $ ) {
                 // close postboxes that should be closed
                 $( '.if-js-closed' ).removeClass( 'if-js-closed' ).addClass( 'closed' );
                 // postboxes setup
@@ -342,7 +334,7 @@ abstract class CFX_Admin {
                     var visible = $( 'div.postbox:visible' ).length, side = $( '#post-body #side-sortables' );
 
                     $( '#<?php echo $this->pagehook; ?> .meta-box-sortables:visible' ).each(function(n, el) {
-                        var t = $(this);
+                        var t = $( this );
 
                         if ( visible == 1 || t.children( '.postbox:visible' ).length )
                             t.removeClass( 'empty-container' );
@@ -365,7 +357,7 @@ abstract class CFX_Admin {
                 });
 				
 				
-				setTimeout(function() { equalize_option_height() }, 400);	
+				setTimeout( function() { equalize_option_height() }, 400 );	
             });
 			
 			equalize_option_height = function() {
@@ -373,12 +365,12 @@ abstract class CFX_Admin {
 					calibrefx_option = jQuery( '.calibrefx-option' ),
 					height = 0;
 				
-				jQuery( '.calibrefx-tab-option li' ).each(function() {
+				jQuery( '.calibrefx-tab-option li' ).each( function() {
 					height += jQuery(this).height();
 				});
 				
-				if(calibrefx_option.height() < height) {
-					calibrefx_option.height(height);
+				if( calibrefx_option.height() < height ) {
+					calibrefx_option.height( height );
 				}
 			}
             //]]>

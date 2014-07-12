@@ -62,7 +62,7 @@ add_action( 'after_setup_theme', function() {
 	$calibrefx->load->do_autoload();
 	$cfxgenerator->run_hook();
 	$calibrefx->run();
-},0);
+},0 );
 
 add_action( 'wp', function() {
 	global $calibrefx, $cfxgenerator;

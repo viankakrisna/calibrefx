@@ -80,44 +80,44 @@ class CFX_Config {
         $file = ( $file === '' ) ? 'config' : str_replace( '.php', '', $file);
         $found = $loaded = FALSE;
 
-        $check_locations = array( $file);
+        $check_locations = array( $file );
 
-        foreach ( $this->_config_paths as $path) {
-            foreach ( $check_locations as $location) {
+        foreach ( $this->_config_paths as $path ) {
+            foreach ( $check_locations as $location ) {
                 $file_path = $path . '/' . $location . '.php';
 
-                if (in_array( $file_path, $this->is_loaded, TRUE) ) {
+                if ( in_array( $file_path, $this->is_loaded, TRUE ) ) {
                     $loaded = TRUE;
                     continue 2;
                 }
 
-                if (file_exists( $file_path) ) {
+                if ( file_exists( $file_path ) ) {
                     $found = TRUE;
                     break;
                 }
             }
 
-            if ( $found === FALSE) {
+            if ( $found === FALSE ) {
                 continue;
             }
 
-            include( $file_path);
+            include( $file_path );
 
-            if (!isset( $config) OR !is_array( $config) ) {
+            if (!isset( $config ) OR !is_array( $config ) ) {
                 return FALSE;
             }
 
-            $this->config = array_merge( $this->config, $config);
+            $this->config = array_merge( $this->config, $config );
 
             $this->is_loaded[] = $file_path;
-            unset( $config);
+            unset( $config );
 
             $loaded = TRUE;
-            calibrefx_log_message( 'debug', 'Config file loaded: ' . $file_path);
+            calibrefx_log_message( 'debug', 'Config file loaded: ' . $file_path );
             break;
         }
 
-        if ( $loaded === FALSE) {
+        if ( $loaded === FALSE ) {
             return FALSE;
         }
 
@@ -132,8 +132,8 @@ class CFX_Config {
      * @param	string	the config item name
      * @return	string
      */
-    public function get_item( $item) {
-        return isset( $this->config[$item]) ? $this->config[$item] : FALSE;
+    public function get_item( $item ) {
+        return isset( $this->config[$item] ) ? $this->config[$item] : FALSE;
     }
     
     // --------------------------------------------------------------------
@@ -144,7 +144,7 @@ class CFX_Config {
      * @param	string	the config item name
      * @return	void
      */
-    public function set_item( $item) {
+    public function set_item( $item ) {
         $this->config[$item] = $value;
     }
 

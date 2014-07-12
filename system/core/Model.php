@@ -58,36 +58,41 @@ class CFX_Model {
         return $this->_setting_field;
     }
 
-    public function get( $key) {
+    public function get( $key ) {
         $this->_cfx = calibrefx_get_instance();
 
-        if (!isset( $this->_cfx->cache) ) {
+        if ( !isset( $this->_cfx->cache ) ) {
             $this->_cfx->cache = calibrefx_load_class( 'cache', 'libraries' );
         }
 
-        $options = $this->_cfx->cache->cache_get( $this->_setting_field, $this->_setting_field);
+        $options = $this->_cfx->cache->cache_get( $this->_setting_field, $this->_setting_field );
 
-        if ( $options AND isset( $options[$key]) ) {
-			if(is_array( $options[$key]) ) return $options[$key];
-            else return stripslashes( $options[$key]);
+        if ( $options AND isset( $options[$key] ) ) {
+			if( is_array( $options[$key] ) ) {
+                return $options[$key];
+            } else {
+                return stripslashes( $options[$key] );
+            }
         }
 
-        $options = apply_filters( 'calibrefx_options', get_option( $this->_setting_field), $this->_setting_field);
+        $options = apply_filters( 'calibrefx_options', get_option( $this->_setting_field ), $this->_setting_field );
 
-        $this->_cfx->cache->cache_set( $this->_setting_field, $options, $this->_setting_field);
+        $this->_cfx->cache->cache_set( $this->_setting_field, $options, $this->_setting_field );
 
-        if(!isset( $options[$key]) ) return false;
+        if( !isset( $options[$key] ) ) {
+            return false;
+        }
         
-        return stripslashes( $options[$key]);
+        return stripslashes( $options[$key] );
     }
 
     public function get_all() {
-        $options = apply_filters( 'calibrefx_options', get_option( $this->_setting_field), $this->_setting_field);
+        $options = apply_filters( 'calibrefx_options', get_option( $this->_setting_field ), $this->_setting_field );
         return $options;
     }
 
-    public function save( $value) {
-        return update_option( $this->_setting_field, $value);
+    public function save( $value ) {
+        return update_option( $this->_setting_field, $value );
     }
 
 }
