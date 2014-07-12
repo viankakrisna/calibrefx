@@ -35,8 +35,8 @@
  */
 function calibrefx_get_script() {
     $file = $_SERVER["SCRIPT_NAME"];
-    $break = Explode( '/', $file);
-    $pfile = $break[count( $break) - 1];
+    $break = explode( '/', $file);
+    $pfile = $break[count( $break ) - 1];
     return $pfile;
 }
 
@@ -48,5 +48,6 @@ function calibrefx_get_script() {
  * @author Ivan Kristianto
  **/
 function cfx_is_ajax_request() {
-	return ( ! empty( $_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower( $_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest' );
+	return ( !empty( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && 
+		strtolower( $_SERVER['HTTP_X_REQUESTED_WITH'] ) === 'xmlhttprequest' );
 }
