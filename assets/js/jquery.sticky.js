@@ -7,7 +7,7 @@
 // Website: http://labs.anthonygarand.com/sticky
 // Description: Makes an element on the page stick on the screen as you scroll
 
-(function($) {
+(function( $) {
     var defaults = {
             topSpacing: 0,
             bottomSpacing: 0,
@@ -29,7 +29,7 @@
                     etse = elementTop - s.topSpacing - extra;
                 if (scrollTop <= etse) {
                     if (s.currentTop !== null) {
-                        s.stickyElement.css('position', '').css('top', '').removeClass(s.className);
+                        s.stickyElement.css( 'position', '' ).css( 'top', '' ).removeClass(s.className);
                         s.currentTop = null;
                     }
                 }
@@ -41,7 +41,7 @@
                         newTop = s.topSpacing;
                     }
                     if (s.currentTop != newTop) {
-                        s.stickyElement.css('position', 'fixed').css('top', newTop).addClass(s.className);
+                        s.stickyElement.css( 'position', 'fixed' ).css( 'top', newTop).addClass(s.className);
                         s.currentTop = newTop;
                     }
                 }
@@ -53,11 +53,11 @@
 
     // should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
     if (window.addEventListener) {
-        window.addEventListener('scroll', scroller, false);
-        window.addEventListener('resize', resizer, false);
+        window.addEventListener( 'scroll', scroller, false);
+        window.addEventListener( 'resize', resizer, false);
     } else if (window.attachEvent) {
-        window.attachEvent('onscroll', scroller);
-        window.attachEvent('onresize', resizer);
+        window.attachEvent( 'onscroll', scroller);
+        window.attachEvent( 'onresize', resizer);
     }
 
     $.fn.sticky = function(options) {
@@ -67,16 +67,16 @@
             if (o.center)
                 var centerElement = "margin-left:auto;margin-right:auto;";
 
-            stickyId = stickyElement.attr('id');
+            stickyId = stickyElement.attr( 'id' );
             stickyElement
-                .wrapAll('<div id="' + stickyId + 'StickyWrapper" style="' + centerElement + '"></div>')
-                .css('width', stickyElement.width());
+                .wrapAll( '<div id="' + stickyId + 'StickyWrapper" style="' + centerElement + '"></div>' )
+                .css( 'width', stickyElement.width() );
             var elementHeight = stickyElement.outerHeight(),
                 stickyWrapper = stickyElement.parent();
             stickyWrapper
-                .css('width', stickyElement.outerWidth())
-                .css('height', elementHeight)
-                .css('clear', stickyElement.css('clear'));
+                .css( 'width', stickyElement.outerWidth() )
+                .css( 'height', elementHeight)
+                .css( 'clear', stickyElement.css( 'clear' ) );
             sticked.push({
                 topSpacing: o.topSpacing,
                 bottomSpacing: o.bottomSpacing,

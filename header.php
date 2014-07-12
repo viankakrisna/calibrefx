@@ -18,7 +18,7 @@
  * @package CalibreFx
  */
  
-do_action('calibrefx_html_header');
+do_action( 'calibrefx_html_header' );
 ?>
 </head>
 <body <?php body_onload(); ?> <?php body_class(); ?>>
@@ -27,8 +27,8 @@ do_action('calibrefx_html_header');
 do_action( 'calibrefx_before_wrapper' ); 
 do_action( 'calibrefx_wrapper' ); 
 	
-do_action('calibrefx_before_header');
-do_action('calibrefx_header');
-do_action('calibrefx_after_header');
+do_action( 'calibrefx_before_header' );
+do_action( 'calibrefx_header' );
+do_action( 'calibrefx_after_header' );
 
 do_action( 'calibrefx_inner' ); 

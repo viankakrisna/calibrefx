@@ -4,12 +4,12 @@
  * here. Your javascript should grab settings from customizer controls, and 
  * then make any necessary changes to the page using jQuery.
  */
-(function( $ ){
+(function( $ ) {
 	var api = wp.customize;
 	//Update site title color in real time...
 	// wp.customize( 'mytheme_options[link_textcolor]', function( value ) {
 	// 	value.bind( function( newval ) {
-	// 		$('a').css('color', newval );
+	// 		$( 'a' ).css( 'color', newval );
 	// 	} );
 	// } );
 	api.Control = api.Class.extend({
@@ -42,15 +42,15 @@
 
 			control.elements = [];
 
-			nodes  = this.container.find('[data-customize-setting-link]');
+			nodes  = this.container.find( '[data-customize-setting-link]' );
 			radios = {};
 
 			nodes.each( function() {
 				var node = $(this),
 					name;
 
-				if ( node.is(':radio') ) {
-					name = node.prop('name');
+				if ( node.is( ':radio' ) ) {
+					name = node.prop( 'name' );
 					if ( radios[ name ] )
 						return;
 
@@ -58,7 +58,7 @@
 					node = nodes.filter( '[name="' + name + '"]' );
 				}
 
-				api( node.data('customizeSettingLink'), function( setting ) {
+				api( node.data( 'customizeSettingLink' ), function( setting ) {
 					var element = new api.Element( node );
 					control.elements.push( element );
 					element.sync( setting );
@@ -71,7 +71,7 @@
 
 		dropdownInit: function() {
 			var control  = this,
-				statuses = this.container.find('.dropdown-status'),
+				statuses = this.container.find( '.dropdown-status' ),
 				params   = this.params,
 				update   = function( to ) {
 					if ( typeof	to === 'string' && params.statuses && params.statuses[ to ] )
@@ -90,10 +90,10 @@
 				event.preventDefault();
 
 				if (!toggleFreeze)
-					control.container.toggleClass('open');
+					control.container.toggleClass( 'open' );
 
-				if ( control.container.hasClass('open') )
-					control.container.parent().parent().find('li.library-selected').focus();
+				if ( control.container.hasClass( 'open' ) )
+					control.container.parent().parent().find( 'li.library-selected' ).focus();
 
 				// Don't want to fire focus and click at same time
 				toggleFreeze = true;

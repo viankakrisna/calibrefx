@@ -5,7 +5,7 @@
 
   if (typeof define === 'function' && define.amd) {
     define(factory);
-  } else if (typeof exports === 'object') {
+  } else if (typeof exports === 'object' ) {
     module.exports = factory();
   } else {
     root.NProgress = factory();
@@ -42,7 +42,7 @@
     var key, value;
     for (key in options) {
       value = options[key];
-      if (value !== undefined && options.hasOwnProperty(key)) Settings[key] = value;
+      if (value !== undefined && options.hasOwnProperty(key) ) Settings[key] = value;
     }
 
     return this;
@@ -76,10 +76,10 @@
 
     queue(function(next) {
       // Set positionUsing if it hasn't already been set
-      if (Settings.positionUsing === '') Settings.positionUsing = NProgress.getPositioningCSS();
+      if (Settings.positionUsing === '' ) Settings.positionUsing = NProgress.getPositioningCSS();
 
       // Add transition
-      css(bar, barPositionCSS(n, speed, ease));
+      css(bar, barPositionCSS(n, speed, ease) );
 
       if (n === 1) {
         // Fade out
@@ -149,7 +149,7 @@
   NProgress.done = function(force) {
     if (!force && !NProgress.status) return this;
 
-    return NProgress.inc(0.3 + 0.5 * Math.random()).set(1);
+    return NProgress.inc(0.3 + 0.5 * Math.random() ).set(1);
   };
 
   /**
@@ -162,7 +162,7 @@
     if (!n) {
       return NProgress.start();
     } else {
-      if (typeof amount !== 'number') {
+      if (typeof amount !== 'number' ) {
         amount = (1 - n) * clamp(Math.random() * n, 0.1, 0.95);
       }
 
@@ -184,7 +184,7 @@
   (function() {
     var initial = 0, current = 0;
     
-    NProgress.promise = function($promise) {
+    NProgress.promise = function( $promise) {
       if (!$promise || $promise.state() == "resolved") {
         return this;
       }
@@ -217,11 +217,11 @@
    */
 
   NProgress.render = function(fromStart) {
-    if (NProgress.isRendered()) return document.getElementById('nprogress');
+    if (NProgress.isRendered() ) return document.getElementById( 'nprogress' );
 
-    addClass(document.documentElement, 'nprogress-busy');
+    addClass(document.documentElement, 'nprogress-busy' );
     
-    var progress = document.createElement('div');
+    var progress = document.createElement( 'div' );
     progress.id = 'nprogress';
     progress.innerHTML = Settings.template;
 
@@ -232,7 +232,7 @@
     
     css(bar, {
       transition: 'all 0 linear',
-      transform: 'translate3d(' + perc + '%,0,0)'
+      transform: 'translate3d( ' + perc + '%,0,0)'
     });
 
     if (!Settings.showSpinner) {
@@ -241,7 +241,7 @@
     }
 
     if (parent != document.body) {
-      addClass(parent, 'nprogress-custom-parent');
+      addClass(parent, 'nprogress-custom-parent' );
     }
 
     parent.appendChild(progress);
@@ -253,9 +253,9 @@
    */
 
   NProgress.remove = function() {
-    removeClass(document.documentElement, 'nprogress-busy');
-    removeClass(document.querySelector(Settings.parent), 'nprogress-custom-parent')
-    var progress = document.getElementById('nprogress');
+    removeClass(document.documentElement, 'nprogress-busy' );
+    removeClass(document.querySelector(Settings.parent), 'nprogress-custom-parent' )
+    var progress = document.getElementById( 'nprogress' );
     progress && removeElement(progress);
   };
 
@@ -264,7 +264,7 @@
    */
 
   NProgress.isRendered = function() {
-    return !!document.getElementById('nprogress');
+    return !!document.getElementById( 'nprogress' );
   };
 
   /**
@@ -276,10 +276,10 @@
     var bodyStyle = document.body.style;
 
     // Sniff prefixes
-    var vendorPrefix = ('WebkitTransform' in bodyStyle) ? 'Webkit' :
-                       ('MozTransform' in bodyStyle) ? 'Moz' :
-                       ('msTransform' in bodyStyle) ? 'ms' :
-                       ('OTransform' in bodyStyle) ? 'O' : '';
+    var vendorPrefix = ( 'WebkitTransform' in bodyStyle) ? 'Webkit' :
+                       ( 'MozTransform' in bodyStyle) ? 'Moz' :
+                       ( 'msTransform' in bodyStyle) ? 'ms' :
+                       ( 'OTransform' in bodyStyle) ? 'O' : '';
 
     if (vendorPrefix + 'Perspective' in bodyStyle) {
       // Modern browsers with 3D support, e.g. Webkit, IE10
@@ -321,10 +321,10 @@
   function barPositionCSS(n, speed, ease) {
     var barCSS;
 
-    if (Settings.positionUsing === 'translate3d') {
-      barCSS = { transform: 'translate3d('+toBarPerc(n)+'%,0,0)' };
-    } else if (Settings.positionUsing === 'translate') {
-      barCSS = { transform: 'translate('+toBarPerc(n)+'%,0)' };
+    if (Settings.positionUsing === 'translate3d' ) {
+      barCSS = { transform: 'translate3d( '+toBarPerc(n)+'%,0,0)' };
+    } else if (Settings.positionUsing === 'translate' ) {
+      barCSS = { transform: 'translate( '+toBarPerc(n)+'%,0)' };
     } else {
       barCSS = { 'margin-left': toBarPerc(n)+'%' };
     }
@@ -367,7 +367,7 @@
         cssProps    = {};
 
     function camelCase(string) {
-      return string.replace(/^-ms-/, 'ms-').replace(/-([\da-z])/gi, function(match, letter) {
+      return string.replace(/^-ms-/, 'ms-' ).replace(/-([\da-z])/gi, function(match, letter) {
         return letter.toUpperCase();
       });
     }
@@ -389,7 +389,7 @@
 
     function getStyleProp(name) {
       name = camelCase(name);
-      return cssProps[name] || (cssProps[name] = getVendorProp(name));
+      return cssProps[name] || (cssProps[name] = getVendorProp(name) );
     }
 
     function applyCss(element, prop, value) {
@@ -405,7 +405,7 @@
       if (args.length == 2) {
         for (prop in properties) {
           value = properties[prop];
-          if (value !== undefined && properties.hasOwnProperty(prop)) applyCss(element, prop, value);
+          if (value !== undefined && properties.hasOwnProperty(prop) ) applyCss(element, prop, value);
         }
       } else {
         applyCss(element, args[1], args[2]);
@@ -419,7 +419,7 @@
 
   function hasClass(element, name) {
     var list = typeof element == 'string' ? element : classList(element);
-    return list.indexOf(' ' + name + ' ') >= 0;
+    return list.indexOf( ' ' + name + ' ' ) >= 0;
   }
 
   /**
@@ -430,7 +430,7 @@
     var oldList = classList(element),
         newList = oldList + name;
 
-    if (hasClass(oldList, name)) return; 
+    if (hasClass(oldList, name) ) return; 
 
     // Trim the opening space.
     element.className = newList.substring(1);
@@ -444,10 +444,10 @@
     var oldList = classList(element),
         newList;
 
-    if (!hasClass(element, name)) return;
+    if (!hasClass(element, name) ) return;
 
     // Replace the class name.
-    newList = oldList.replace(' ' + name + ' ', ' ');
+    newList = oldList.replace( ' ' + name + ' ', ' ' );
 
     // Trim the opening and closing spaces.
     element.className = newList.substring(1, newList.length - 1);
@@ -460,7 +460,7 @@
    */
 
   function classList(element) {
-    return (' ' + (element.className || '') + ' ').replace(/\s+/gi, ' ');
+    return ( ' ' + (element.className || '' ) + ' ' ).replace(/\s+/gi, ' ' );
   }
 
   /**

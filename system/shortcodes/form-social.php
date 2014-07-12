@@ -12,8 +12,8 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('social_text').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'social_text' ).value = medziShortcodom;
                 }		
             }
 	
@@ -23,17 +23,17 @@
                 var shortcodeRetazec;
 		
                 // instancie tabov
-                var socialTab_instancia = document.getElementById('socialTab');	
+                var socialTab_instancia = document.getElementById( 'socialTab' );	
 		
                 // Column ==============================================================
         
                 // je tab aktivny?
-                if (socialTab_instancia.className.indexOf('current') != -1) {
+                if (socialTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var display_social = document.getElementById('display_social').value;
+                    var display_social = document.getElementById( 'display_social' ).value;
            
 		
                     if ( display_social == 'all' ) {
@@ -48,9 +48,9 @@
         
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
-                        //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                        tinyMCEPopup.editor.execCommand('mceRepaint');
+                        //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                        tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                        tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                         tinyMCEPopup.close();
                     }
 		
@@ -70,7 +70,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="socialTabID" class="current"><span><a href="javascript:mcTabs.displayTab('socialTabID','socialTab');" onmousedown="return false;">Social bookmarks</a></span></li>            
+                    <li id="socialTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'socialTabID','socialTab' );" onmousedown="return false;">Social bookmarks</a></span></li>            
                 </ul>
             </div>
 

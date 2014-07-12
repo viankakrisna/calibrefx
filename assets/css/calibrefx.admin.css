@@ -722,7 +722,7 @@ span.calibrefx-info{
 /*------------------------------------------------------------------
 [. MEDIA QUERY RESPONSIVE]
 ------------------------------------------------------------------*/
-@media only screen and (max-width: 1080px){
+@media only screen and (max-width: 1080px) {
     .section-label-checkbox{
         width: 56%;
     }
@@ -735,7 +735,7 @@ span.calibrefx-info{
     }
 }
 
-@media only screen and (max-width: 900px){
+@media only screen and (max-width: 900px) {
     #wpcontent, #footer {
         margin-left: 32px;
     }
@@ -802,7 +802,7 @@ span.calibrefx-info{
 
 }
 
-@media only screen and (max-width: 782px){
+@media only screen and (max-width: 782px) {
     .auto-fold #wpcontent{
          margin-left: 0px;
          padding: 20px;
@@ -861,7 +861,7 @@ span.calibrefx-info{
     }
 }
 
-@media only screen and (max-width: 720px){
+@media only screen and (max-width: 720px) {
     .calibrefx-layout-selector label.box img{
         max-width: 100px;
     }
@@ -882,7 +882,7 @@ span.calibrefx-info{
 
 }
 
-@media (min-width: 320px) and (max-width: 479px){
+@media (min-width: 320px) and (max-width: 479px) {
     .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
         padding: 12px;
         font-size: 13px;

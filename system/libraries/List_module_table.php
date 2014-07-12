@@ -1,5 +1,5 @@
 <?php 
-defined('CALIBREFX_URL') OR exit();
+defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -46,8 +46,8 @@ class CFX_List_Module_Table extends WP_List_Table {
         if ( isset( $_REQUEST['module_status'] ) && in_array( $_REQUEST['module_status'], array( 'active', 'inactive', 'recently_activated', 'upgrade', 'mustuse', 'dropins', 'search' ) ) )
             $status = $_REQUEST['module_status'];
 
-        if ( isset($_REQUEST['s']) )
-            $_SERVER['REQUEST_URI'] = add_query_arg('s', wp_unslash($_REQUEST['s']) );
+        if ( isset( $_REQUEST['s']) )
+            $_SERVER['REQUEST_URI'] = add_query_arg( 's', wp_unslash( $_REQUEST['s']) );
         $page = $this->get_pagenum();
     }
 
@@ -56,7 +56,7 @@ class CFX_List_Module_Table extends WP_List_Table {
     }
 
     function ajax_user_can() {
-        return current_user_can('activate_plugins');
+        return current_user_can( 'activate_plugins' );
     }
 
     function prepare_items() {
@@ -101,7 +101,7 @@ class CFX_List_Module_Table extends WP_List_Table {
             $status = 'all';
 
         $this->items = array();
-        // die_dump($modules);
+        // die_dump( $modules);
         foreach ( $modules[ $status ] as $module_file => $module_data ) {
             // Translate, Don't Apply Markup, Sanitize HTML
             $this->items[$module_file] = _get_module_data_markup_translate( $module_file, $module_data, false, true );
@@ -185,7 +185,7 @@ class CFX_List_Module_Table extends WP_List_Table {
 
             if ( 'search' != $type ) {
                 $status_links[$type] = sprintf( "<a href='%s' %s>%s</a>",
-                    add_query_arg('plugin_status', $type, 'plugins.php'),
+                    add_query_arg( 'plugin_status', $type, 'plugins.php' ),
                     ( $type == $status ) ? ' class="current"' : '',
                     sprintf( $text, number_format_i18n( $count ) )
                     );
@@ -221,7 +221,7 @@ class CFX_List_Module_Table extends WP_List_Table {
     function extra_tablenav( $which ) {
         global $status;
 
-        if ( ! in_array($status, array('recently_activated', 'mustuse', 'dropins') ) )
+        if ( ! in_array( $status, array( 'recently_activated', 'mustuse', 'dropins' ) ) )
             return;
 
         echo '<div class="alignleft actions">';
@@ -237,7 +237,7 @@ class CFX_List_Module_Table extends WP_List_Table {
     }
 
     function current_action() {
-        if ( isset($_POST['clear-recent-list']) )
+        if ( isset( $_POST['clear-recent-list']) )
             return 'clear-recent-list';
 
         return parent::current_action();
@@ -271,13 +271,13 @@ class CFX_List_Module_Table extends WP_List_Table {
         $is_active = calibrefx_is_module_active( $module_file );
         
         if ( $is_active ) {
-            $actions['deactivate'] = '<a href="' . wp_nonce_url('admin.php?page=calibrefx-module&action=deactivate&amp;module=' . $module_file . '&amp;module_status=' . $context . '&amp;paged=' . $page . '&amp;s=' . $s, 'deactivate-module_' . $module_file) . '" title="' . esc_attr__('Deactivate this plugin') . '">' . __('Deactivate') . '</a>';
+            $actions['deactivate'] = '<a href="' . wp_nonce_url( 'admin.php?page=calibrefx-module&action=deactivate&amp;module=' . $module_file . '&amp;module_status=' . $context . '&amp;paged=' . $page . '&amp;s=' . $s, 'deactivate-module_' . $module_file) . '" title="' . esc_attr__( 'Deactivate this plugin' ) . '">' . __( 'Deactivate' ) . '</a>';
         } else {
-            $actions['activate'] = '<a href="' . wp_nonce_url('admin.php?page=calibrefx-module&action=activate&amp;module=' . $module_file . '&amp;module_status=' . $context . '&amp;paged=' . $page . '&amp;s=' . $s, 'activate-module_' . $module_file) . '" title="' . esc_attr__('Activate this plugin') . '" class="edit">' . __('Activate') . '</a>';
+            $actions['activate'] = '<a href="' . wp_nonce_url( 'admin.php?page=calibrefx-module&action=activate&amp;module=' . $module_file . '&amp;module_status=' . $context . '&amp;paged=' . $page . '&amp;s=' . $s, 'activate-module_' . $module_file) . '" title="' . esc_attr__( 'Activate this plugin' ) . '" class="edit">' . __( 'Activate' ) . '</a>';
         } // end if $is_active
 
         $class = $is_active ? 'active' : 'inactive';
-        $checkbox_id =  "checkbox_" . md5($module_data['Name']);
+        $checkbox_id =  "checkbox_" . md5( $module_data['Name']);
         if ( in_array( $status, array( 'mustuse', 'dropins' ) ) ) {
             $checkbox = '';
         } else {

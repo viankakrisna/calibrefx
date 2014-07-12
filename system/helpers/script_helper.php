@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -35,8 +35,8 @@
  */
 function calibrefx_get_script() {
     $file = $_SERVER["SCRIPT_NAME"];
-    $break = Explode('/', $file);
-    $pfile = $break[count($break) - 1];
+    $break = Explode( '/', $file);
+    $pfile = $break[count( $break) - 1];
     return $pfile;
 }
 
@@ -47,6 +47,6 @@ function calibrefx_get_script() {
  * @return boolean
  * @author Ivan Kristianto
  **/
-function cfx_is_ajax_request(){
-	return ( ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
+function cfx_is_ajax_request() {
+	return ( ! empty( $_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower( $_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest' );
 }

@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -141,7 +141,7 @@ class CFX_Feature_Page_Widget extends WP_Widget {
 				<?php
 				$sizes = calibrefx_get_additional_image_sizes();
 				foreach ( (array) $sizes as $name => $size )
-					echo '<option value="' . $name . '" ' . selected( $name, $instance['image_size'], FALSE ) . '>' . $name . ' (' . $size['width'] . 'x' . $size['height'] . ')</option>';
+					echo '<option value="' . $name . '" ' . selected( $name, $instance['image_size'], FALSE ) . '>' . $name . ' ( ' . $size['width'] . 'x' . $size['height'] . ' )</option>';
 				?>
 			</select>
 		</p>

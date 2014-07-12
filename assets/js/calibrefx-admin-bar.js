@@ -1,52 +1,52 @@
 // use jQuery and hoverIntent if loaded
 if ( typeof(jQuery) != 'undefined' ) {
 	if ( typeof(jQuery.fn.hoverIntent) == 'undefined' )
-		(function(a){a.fn.hoverIntent=function(l,j){var m={sensitivity:7,interval:100,timeout:0};m=a.extend(m,j?{over:l,out:j}:l);var o,n,h,d;var e=function(f){o=f.pageX;n=f.pageY};var c=function(g,f){f.hoverIntent_t=clearTimeout(f.hoverIntent_t);if((Math.abs(h-o)+Math.abs(d-n))<m.sensitivity){a(f).unbind("mousemove",e);f.hoverIntent_s=1;return m.over.apply(f,[g])}else{h=o;d=n;f.hoverIntent_t=setTimeout(function(){c(g,f)},m.interval)}};var i=function(g,f){f.hoverIntent_t=clearTimeout(f.hoverIntent_t);f.hoverIntent_s=0;return m.out.apply(f,[g])};var b=function(q){var f=this;var g=(q.type=="mouseover"?q.fromElement:q.toElement)||q.relatedTarget;while(g&&g!=this){try{g=g.parentNode}catch(q){g=this}}if(g==this){if(a.browser.mozilla){if(q.type=="mouseout"){f.mtout=setTimeout(function(){k(q,f)},30)}else{if(f.mtout){f.mtout=clearTimeout(f.mtout)}}}return}else{if(f.mtout){f.mtout=clearTimeout(f.mtout)}k(q,f)}};var k=function(p,f){var g=jQuery.extend({},p);if(f.hoverIntent_t){f.hoverIntent_t=clearTimeout(f.hoverIntent_t)}if(p.type=="mouseover"){h=g.pageX;d=g.pageY;a(f).bind("mousemove",e);if(f.hoverIntent_s!=1){f.hoverIntent_t=setTimeout(function(){c(g,f)},m.interval)}}else{a(f).unbind("mousemove",e);if(f.hoverIntent_s==1){f.hoverIntent_t=setTimeout(function(){i(g,f)},m.timeout)}}};return this.mouseover(b).mouseout(b)}})(jQuery);
+		(function(a) {a.fn.hoverIntent=function(l,j) {var m={sensitivity:7,interval:100,timeout:0};m=a.extend(m,j?{over:l,out:j}:l);var o,n,h,d;var e=function(f) {o=f.pageX;n=f.pageY};var c=function(g,f) {f.hoverIntent_t=clearTimeout(f.hoverIntent_t);if((Math.abs(h-o)+Math.abs(d-n) )<m.sensitivity) {a(f).unbind("mousemove",e);f.hoverIntent_s=1;return m.over.apply(f,[g])}else{h=o;d=n;f.hoverIntent_t=setTimeout(function() {c(g,f)},m.interval)}};var i=function(g,f) {f.hoverIntent_t=clearTimeout(f.hoverIntent_t);f.hoverIntent_s=0;return m.out.apply(f,[g])};var b=function(q) {var f=this;var g=(q.type=="mouseover"?q.fromElement:q.toElement)||q.relatedTarget;while(g&&g!=this) {try{g=g.parentNode}catch(q) {g=this}}if(g==this) {if(a.browser.mozilla) {if(q.type=="mouseout") {f.mtout=setTimeout(function() {k(q,f)},30)}else{if(f.mtout) {f.mtout=clearTimeout(f.mtout)}}}return}else{if(f.mtout) {f.mtout=clearTimeout(f.mtout)}k(q,f)}};var k=function(p,f) {var g=jQuery.extend({},p);if(f.hoverIntent_t) {f.hoverIntent_t=clearTimeout(f.hoverIntent_t)}if(p.type=="mouseover") {h=g.pageX;d=g.pageY;a(f).bind("mousemove",e);if(f.hoverIntent_s!=1) {f.hoverIntent_t=setTimeout(function() {c(g,f)},m.interval)}}else{a(f).unbind("mousemove",e);if(f.hoverIntent_s==1) {f.hoverIntent_t=setTimeout(function() {i(g,f)},m.timeout)}}};return this.mouseover(b).mouseout(b)}})(jQuery);
 
-	jQuery(document).ready(function($){
-		var refresh = function(i, el){ // force the browser to refresh the tabbing index
-			var node = $(el), tab = node.attr('tabindex');
+	jQuery(document).ready(function( $) {
+		var refresh = function(i, el) { // force the browser to refresh the tabbing index
+			var node = $(el), tab = node.attr( 'tabindex' );
 			if ( tab )
-				node.attr('tabindex', '0').attr('tabindex', tab);
+				node.attr( 'tabindex', '0' ).attr( 'tabindex', tab);
 		};
 
-		$('#calibrefx-admin-bar-top').removeClass('nojq').removeClass('nojs').find('li.menupop').hoverIntent({
-			over: function(e){
-				$(this).addClass('hover');
+		$( '#calibrefx-admin-bar-top' ).removeClass( 'nojq' ).removeClass( 'nojs' ).find( 'li.menupop' ).hoverIntent({
+			over: function(e) {
+				$(this).addClass( 'hover' );
 			},
-			out: function(e){
-				$(this).removeClass('hover');
+			out: function(e) {
+				$(this).removeClass( 'hover' );
 			},
 			timeout: 180,
 			sensitivity: 7,
 			interval: 100
 		});
 
-		$('#wp-admin-bar-get-shortlink').click(function(e){
+		$( '#wp-admin-bar-get-shortlink' ).click(function(e) {
 			e.preventDefault();
-			$(this).addClass('selected').children('.shortlink-input').blur(function(){
-				$(this).parents('#wp-admin-bar-get-shortlink').removeClass('selected');
+			$(this).addClass( 'selected' ).children( '.shortlink-input' ).blur(function() {
+				$(this).parents( '#wp-admin-bar-get-shortlink' ).removeClass( 'selected' );
 			}).focus().select();
 		});
 
-		$('#calibrefx-admin-bar-top li.menupop > .ab-item').bind('keydown.adminbar', function(e){
+		$( '#calibrefx-admin-bar-top li.menupop > .ab-item' ).bind( 'keydown.adminbar', function(e) {
 			if ( e.which != 13 )
 				return;
 
-			var target = $(e.target), wrap = target.closest('ab-sub-wrapper');
+			var target = $(e.target), wrap = target.closest( 'ab-sub-wrapper' );
 
 			e.stopPropagation();
 			e.preventDefault();
 
 			if ( !wrap.length )
-				wrap = $('#calibrefx-admin-bar-top .quicklinks');
+				wrap = $( '#calibrefx-admin-bar-top .quicklinks' );
 
-			wrap.find('.menupop').removeClass('hover');
-			target.parent().toggleClass('hover');
-			target.siblings('.ab-sub-wrapper').find('.ab-item').each(refresh);
+			wrap.find( '.menupop' ).removeClass( 'hover' );
+			target.parent().toggleClass( 'hover' );
+			target.siblings( '.ab-sub-wrapper' ).find( '.ab-item' ).each(refresh);
 		}).each(refresh);
 
-		$('#calibrefx-admin-bar-top .ab-item').bind('keydown.adminbar', function(e){
+		$( '#calibrefx-admin-bar-top .ab-item' ).bind( 'keydown.adminbar', function(e) {
 			if ( e.which != 27 )
 				return;
 
@@ -55,8 +55,8 @@ if ( typeof(jQuery) != 'undefined' ) {
 			e.stopPropagation();
 			e.preventDefault();
 
-			target.closest('.hover').removeClass('hover').children('.ab-item').focus();
-			target.siblings('.ab-sub-wrapper').find('.ab-item').each(refresh);
+			target.closest( '.hover' ).removeClass( 'hover' ).children( '.ab-item' ).focus();
+			target.siblings( '.ab-sub-wrapper' ).find( '.ab-item' ).each(refresh);
 		});
 
 	});
@@ -66,11 +66,11 @@ if ( typeof(jQuery) != 'undefined' ) {
 			if (obj.addEventListener)
 				obj.addEventListener(type, fn, false);
 			else if (obj.attachEvent)
-				obj.attachEvent('on' + type, function() { return fn.call(obj, window.event);});
+				obj.attachEvent( 'on' + type, function() { return fn.call(obj, window.event);});
 		},
 
-		aB, hc = new RegExp('\\bhover\\b', 'g'), q = [],
-		rselected = new RegExp('\\bselected\\b', 'g'),
+		aB, hc = new RegExp( '\\bhover\\b', 'g' ), q = [],
+		rselected = new RegExp( '\\bselected\\b', 'g' ),
 
 		/**
 		 * Get the timeout ID of the given element
@@ -94,7 +94,7 @@ if ( typeof(jQuery) != 'undefined' ) {
 					id = getTOID(t);
 					if ( id )
 						clearTimeout( id );
-					t.className = t.className ? ( t.className.replace(hc, '') + ' hover' ) : 'hover';
+					t.className = t.className ? ( t.className.replace(hc, '' ) + ' hover' ) : 'hover';
 					hovering = t;
 				}
 				t = t.parentNode;
@@ -124,7 +124,7 @@ if ( typeof(jQuery) != 'undefined' ) {
 				}
 
 				if ( ! inA )
-					q[i][1].className = q[i][1].className ? q[i][1].className.replace(hc, '') : '';
+					q[i][1].className = q[i][1].className ? q[i][1].className.replace(hc, '' ) : '';
 			}
 		},
 
@@ -133,7 +133,7 @@ if ( typeof(jQuery) != 'undefined' ) {
 				if( 'LI' == t.nodeName.toUpperCase() ) {
 					(function(t) {
 						var to = setTimeout(function() {
-							t.className = t.className ? t.className.replace(hc, '') : '';
+							t.className = t.className ? t.className.replace(hc, '' ) : '';
 						}, 500);
 						q[q.length] = [to, t];
 					})(t);
@@ -163,12 +163,12 @@ if ( typeof(jQuery) != 'undefined' ) {
 				e.preventDefault();
 			e.returnValue = false;
 
-			if ( -1 == t.className.indexOf('selected') )
+			if ( -1 == t.className.indexOf( 'selected' ) )
 				t.className += ' selected';
 
 			for ( i = 0, l = t.childNodes.length; i < l; i++ ) {
 				node = t.childNodes[i];
-				if ( node.className && -1 != node.className.indexOf('shortlink-input') ) {
+				if ( node.className && -1 != node.className.indexOf( 'shortlink-input' ) ) {
 					node.focus();
 					node.select();
 					node.onblur = function() {
@@ -181,13 +181,13 @@ if ( typeof(jQuery) != 'undefined' ) {
 		};
 
 		addEvent(w, 'load', function() {
-			aB = d.getElementById('wpadminbar');
+			aB = d.getElementById( 'wpadminbar' );
 
 			if ( d.body && aB ) {
 				d.body.appendChild( aB );
 
 				if ( aB.className )
-					aB.className = aB.className.replace(/nojs/, '');
+					aB.className = aB.className.replace(/nojs/, '' );
 
 				addEvent(aB, 'mouseover', function(e) {
 					addHoverClass( e.target || e.srcElement );

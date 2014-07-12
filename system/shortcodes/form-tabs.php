@@ -14,15 +14,15 @@
             function insertShortcode() {
                 var shortcode_output, shortcode_attr;
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
-                var tabs_instancia = document.getElementById('tabs');
+                var tabs_instancia = document.getElementById( 'tabs' );
                 // who is active ?
-                if (tabs_instancia.className.indexOf('current') != -1) {
-                    var tab_id = document.getElementById('tab_id').value;
-                    var tab_class = document.getElementById('tab_class').value;
-                    var tab_heading = document.getElementById('tab_heading').value;
-                    var tab_elm = document.getElementById('tab_elm').value;
+                if (tabs_instancia.className.indexOf( 'current' ) != -1) {
+                    var tab_id = document.getElementById( 'tab_id' ).value;
+                    var tab_class = document.getElementById( 'tab_class' ).value;
+                    var tab_heading = document.getElementById( 'tab_heading' ).value;
+                    var tab_elm = document.getElementById( 'tab_elm' ).value;
                    
-                    if(tab_heading != '') {
+                    if(tab_heading != '' ) {
                         var headings = tab_heading.split("|");
                         var headingsStringLength = headings.length;
                         var tabSlides = '';
@@ -31,7 +31,7 @@
                         var elements_length = elements.length;
                         var tab_elements = '';
 
-                        if(elements == '' || headingsStringLength != elements_length){
+                        if(elements == '' || headingsStringLength != elements_length) {
                             for(i=0;i<headingsStringLength;i++) {
                                 elements[i] = 'tab'+i;
                             }
@@ -42,21 +42,21 @@
                         }
 
                         shortcode_attr = '';
-                        if(tab_id != '') shortcode_attr += ' id="'+tab_id+'"';
-                        if(tab_class != '') shortcode_attr += ' class="'+tab_class+'"';
+                        if(tab_id != '' ) shortcode_attr += ' id="'+tab_id+'"';
+                        if(tab_class != '' ) shortcode_attr += ' class="'+tab_class+'"';
 
                         shortcode_output = '[tabs headings="'+tab_heading+'" tab="'+tab_elm+'"'+shortcode_attr+'] '+tabSlides+'[/tabs] ';
                     } else {
-                        alert('Oops! You have to type in 1 tab heading. ');
+                        alert( 'Oops! You have to type in 1 tab heading. ' );
                     }
                 }
                 if(window.tinyMCE) {
-                    //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcode_output);
-                    tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcode_output);
+                    //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcode_output);
+                    tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcode_output);
                     //Peforms a clean up of the current editor HTML. 
-                    //tinyMCEPopup.editor.execCommand('mceCleanup');
+                    //tinyMCEPopup.editor.execCommand( 'mceCleanup' );
                     //Repaints the editor. Sometimes the browser has graphic glitches. 
-                    tinyMCEPopup.editor.execCommand('mceRepaint');
+                    tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                     tinyMCEPopup.close();
                 }
                 return;
@@ -72,7 +72,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="tabsID" class="current"><span><a href="javascript:mcTabs.displayTab('tabsID','tabs');" onmousedown="return false;">Tabs</a></span></li>
+                    <li id="tabsID" class="current"><span><a href="javascript:mcTabs.displayTab( 'tabsID','tabs' );" onmousedown="return false;">Tabs</a></span></li>
                 </ul>
             </div>
             <div class="panel_wrapper"  style="height: 260px;">

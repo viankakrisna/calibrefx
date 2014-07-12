@@ -12,9 +12,9 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('youtubeID').value = medziShortcodom;
-                    document.getElementById('vimeoID').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'youtubeID' ).value = medziShortcodom;
+                    document.getElementById( 'vimeoID' ).value = medziShortcodom;
                 }		
             }
 	
@@ -24,16 +24,16 @@
                 var shortcodeRetazec;
 		
                 // ziskaj hodnoty z formu			
-                var top_separator = document.getElementById('top_separator').value;	
-                var bottom_separator = document.getElementById('bottom_separator').value;
+                var top_separator = document.getElementById( 'top_separator' ).value;	
+                var bottom_separator = document.getElementById( 'bottom_separator' ).value;
 
                 shortcodeRetazec = '[headline top_separator="' + top_separator + '" bottom_separator="' + bottom_separator + '"][h2]YOUR HEADLINE TEXT HERE[/h2][/headline]';
                 
                 //vloz shortcode a repaint editor
                 if(window.tinyMCE) {
-                    //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                    tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                    tinyMCEPopup.editor.execCommand('mceRepaint');
+                    //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                    tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                    tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                     tinyMCEPopup.close();
                 }
 		
@@ -53,7 +53,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="headlineID" class="current"><span><a href="javascript:mcTabs.displayTab('headlineID','headlineTab');" onmousedown="return false;">Headline</a></span></li>      
+                    <li id="headlineID" class="current"><span><a href="javascript:mcTabs.displayTab( 'headlineID','headlineTab' );" onmousedown="return false;">Headline</a></span></li>      
                 </ul>
             </div>
 

@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -33,7 +33,7 @@
 global $cfxgenerator;
 
 $cfxgenerator->calibrefx_setup = array(
-    array('function' => 'calibrefx_detect_mobile_browser','priority' => 15)
+    array( 'function' => 'calibrefx_detect_mobile_browser','priority' => 15)
 );
 
 /********************
@@ -43,35 +43,35 @@ $cfxgenerator->calibrefx_setup = array(
 /**
  * If mobile site is enable and there is a mobile template, then display mobile layout on mobile
  */
-function calibrefx_detect_mobile_browser(){
+function calibrefx_detect_mobile_browser() {
 	global $oBrowser,$calibrefx; 
 
-	if(is_admin() || !$oBrowser->isMobile()) {
+	if(is_admin() || !$oBrowser->isMobile() ) {
 		return;
 	}
 
-	add_filter('body_class', 'calibrefx_mobile_body_class');
+	add_filter( 'body_class', 'calibrefx_mobile_body_class' );
 
-	remove_action('calibrefx_after_header', 'calibrefx_do_nav');
+	remove_action( 'calibrefx_after_header', 'calibrefx_do_nav' );
 
-	add_action('calibrefx_before_header', 'calibrefx_do_top_mobile_nav');	
+	add_action( 'calibrefx_before_header', 'calibrefx_do_top_mobile_nav' );	
 
 	add_action( 'calibrefx_before_wrapper', 'calibrefx_mobile_open_nav' ); 
 	add_action( 'calibrefx_after_wrapper', 'calibrefx_mobile_close_nav' ); 
 
-	if(!get_theme_support('mobile-site') || !calibrefx_mobile_themes_exist()){
+	if(!get_theme_support( 'mobile-site' ) || !calibrefx_mobile_themes_exist() ) {
 		return;
 	}
 
-	add_filter('template_include', 'calibrefx_get_mobile_template');
+	add_filter( 'template_include', 'calibrefx_get_mobile_template' );
 
-	if(file_exists(CHILD_MOBILE_URI . '/mobile.php')){
+	if(file_exists(CHILD_MOBILE_URI . '/mobile.php' ) ) {
 		include_once CHILD_MOBILE_URI . '/mobile.php';
 	}
 }
 
 
-function calibrefx_mobile_body_class($body_classes){
+function calibrefx_mobile_body_class( $body_classes) {
     global $post;
     
     $body_classes[] = 'mobile';
@@ -79,7 +79,7 @@ function calibrefx_mobile_body_class($body_classes){
     return $body_classes;
 }
 
-function calibrefx_do_top_mobile_nav(){
+function calibrefx_do_top_mobile_nav() {
 	?>
 	<div id="top-mobile-nav" class="navbar navbar-default">
         <div class="mobile-header-top">
@@ -90,7 +90,7 @@ function calibrefx_do_top_mobile_nav(){
 }
 
 
-function calibrefx_mobile_open_nav(){
+function calibrefx_mobile_open_nav() {
 	?>
 	<div id="super-wrapper">
 		<div class="mobile-sidebar">
@@ -101,7 +101,7 @@ function calibrefx_mobile_open_nav(){
 }
 
 
-function calibrefx_mobile_close_nav(){
+function calibrefx_mobile_close_nav() {
 	?>
 	
 	</div>
@@ -112,10 +112,10 @@ function calibrefx_mobile_close_nav(){
 function calibrefx_do_mobile_nav() {
     global $calibrefx;
     /** Do nothing if menu not supported */
-    if (!calibrefx_nav_menu_supported('primary'))
+    if (!calibrefx_nav_menu_supported( 'primary' ) )
         return;
     
-    $calibrefx->load->library('walker_nav_menu');
+    $calibrefx->load->library( 'walker_nav_menu' );
 
     $nav = '';
     $args = '';
@@ -125,12 +125,12 @@ function calibrefx_do_mobile_nav() {
     $args = array(
         'menu' => 'mobile-menu',
         'container' => '',
-        'menu_class' => calibrefx_get_option('nav_fixed_top') ? 'navbar navbar-default navbar-fixed-top menu-primary menu ' : 'nav navbar-nav menu-primary menu ',
+        'menu_class' => calibrefx_get_option( 'nav_fixed_top' ) ? 'navbar navbar-default navbar-fixed-top menu-primary menu ' : 'nav navbar-nav menu-primary menu ',
         'echo' => 0,
         'walker' => $calibrefx->walker_nav_menu,
     );
     
-    $nav = wp_nav_menu($args);
+    $nav = wp_nav_menu( $args);
     
 
     $nav_class = apply_filters( 'nav_class', calibrefx_row_class() );
@@ -140,12 +140,12 @@ function calibrefx_do_mobile_nav() {
     </div>';*/
 
     
-    $nav_output = sprintf('
+    $nav_output = sprintf( '
         <div id="mobile-nav" class="navbar navbar-default">
              %1$s
         </div>
         <!-- end #mobile-nav -->', $nav);
 
-    echo apply_filters('calibrefx_do_nav', $nav_output, $nav, $args);
+    echo apply_filters( 'calibrefx_do_nav', $nav_output, $nav, $args);
     
 }

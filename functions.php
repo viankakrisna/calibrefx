@@ -19,7 +19,7 @@
 /**
  * Include CalibreFx WordPress Themes Framework
  */
-require_once(TEMPLATEPATH.'/system/Bootloader.php');
+require_once( TEMPLATEPATH.'/system/Bootloader.php' );
 global $calibrefx;
 
 // Stop! Do not add any more code here. Customize it via hook or modules.

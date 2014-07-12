@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -33,6 +33,6 @@
 class Seo_settings_m extends CFX_Model{
     
     public function __construct() {
-        parent::__construct(apply_filters('calibrefx_seo_settings_field', 'calibrefx-seo-settings'));
+        parent::__construct(apply_filters( 'calibrefx_seo_settings_field', 'calibrefx-seo-settings' ) );
     }
 }

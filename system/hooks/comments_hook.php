@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -33,27 +33,27 @@
 global $cfxgenerator;
 
 $cfxgenerator->calibrefx_after_post = array(
-    array('function' => 'calibrefx_get_comments_template', 'priority' => 10)
+    array( 'function' => 'calibrefx_get_comments_template', 'priority' => 10)
 );
 
 $cfxgenerator->calibrefx_comments = array(
-    array('function' => 'calibrefx_do_comments', 'priority' => 10)
+    array( 'function' => 'calibrefx_do_comments', 'priority' => 10)
 );
 
 $cfxgenerator->calibrefx_pings = array(
-    array('function' => 'calibrefx_do_pings', 'priority' => 10)
+    array( 'function' => 'calibrefx_do_pings', 'priority' => 10)
 );
 
 $cfxgenerator->calibrefx_list_comments = array(
-    array('function' => 'calibrefx_default_list_comments', 'priority' => 10)
+    array( 'function' => 'calibrefx_default_list_comments', 'priority' => 10)
 );
 
 $cfxgenerator->calibrefx_list_pings = array(
-    array('function' => 'calibrefx_default_list_pings', 'priority' => 10)
+    array( 'function' => 'calibrefx_default_list_pings', 'priority' => 10)
 );
 
 $cfxgenerator->calibrefx_comment_form = array(
-    array('function' => 'calibrefx_do_comment_form', 'priority' => 10)
+    array( 'function' => 'calibrefx_do_comment_form', 'priority' => 10)
 );
 
 
@@ -69,18 +69,18 @@ $cfxgenerator->calibrefx_comment_form = array(
  *
  */
 function calibrefx_get_comments_template() {
-    $is_facebook_comment_enabled = calibrefx_get_option('facebook_comments');
+    $is_facebook_comment_enabled = calibrefx_get_option( 'facebook_comments' );
 
-    $comment_box_title = apply_filters( 'calibrefx_comment_box_title',  __( 'Leave us your thought', 'calibrefx' ));
+    $comment_box_title = apply_filters( 'calibrefx_comment_box_title',  __( 'Leave us your thought', 'calibrefx' ) );
 
-    if(!$is_facebook_comment_enabled){
+    if(!$is_facebook_comment_enabled) {
         if ( is_single() && ( calibrefx_get_option( 'trackbacks_posts' ) || calibrefx_get_option( 'comments_posts' ) ) )
             comments_template( '', true );
         elseif ( is_page() && ( calibrefx_get_option( 'trackbacks_pages' ) || calibrefx_get_option( 'comments_pages' ) ) )
             comments_template( '', true );
     }else{
 
-        if((is_page() && calibrefx_get_option('comments_pages')) || (is_single() && calibrefx_get_option('comments_posts'))){
+        if((is_page() && calibrefx_get_option( 'comments_pages' ) ) || (is_single() && calibrefx_get_option( 'comments_posts' ) )) {
             echo '<div id="comments">';
             echo '<h3 id="reply-title">'.$comment_box_title.'</h3>';
 
@@ -214,20 +214,20 @@ function calibrefx_comment_form_args( $defaults ) {
     $aria_req  = ( $req ? ' aria-required="true"' : '' );
 
     $author = '<div class="form-group comment-form-author">' .
-              '<label for="author" class="comment-form-label">'.__('Your Name (required)','calibrefx').'</label>' .
+              '<label for="author" class="comment-form-label">'.__( 'Your Name (required)','calibrefx' ).'</label>' .
               '<input id="author" name="author" type="text" class="form-control required" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" tabindex="1"' . $aria_req . ' />' .
               '</div><!-- #form-section-author .form-section -->';
 
     $email = '<div class="form-group comment-form-email">' .
-             '<label for="email" class="comment-form-label">'.__('Your Email (required)','calibrefx').'</label>' .
+             '<label for="email" class="comment-form-label">'.__( 'Your Email (required)','calibrefx' ).'</label>' .
              '<input id="email" name="email" type="text" class="form-control required" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' />' .
-             '<span class="help-block">'.__('Your email will be keep safe and won\'t be shared with third party','calibrefx').'</span>'.
+             '<span class="help-block">'.__( 'Your email will be keep safe and won\'t be shared with third party','calibrefx' ).'</span>'.
              '</div><!-- #form-section-email .form-section -->';
 
     $url = '<div class="form-group comment-form-url">' .
-           '<label for="url" class="comment-form-label">'.__('Your Website Url','calibrefx').'</label>' .
+           '<label for="url" class="comment-form-label">'.__( 'Your Website Url','calibrefx' ).'</label>' .
            '<input id="url" name="url" type="text" class="form-control url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" />' .
-           '<span class="help-block">'.__('(start with http://)','calibrefx').'</span>'.
+           '<span class="help-block">'.__( '(start with http://)','calibrefx' ).'</span>'.
            '</div><!-- #form-section-url .form-section -->';
 
     $comment_field = '<div class="form-group comment-form-comment">' .
@@ -277,7 +277,7 @@ function calibrefx_comment_callback( $comment, $args, $depth ) {
     </div><!-- end .comment-meta -->
 
     <div class="comment-content">
-            <?php if ($comment->comment_approved == '0') : ?>
+            <?php if ( $comment->comment_approved == '0' ) : ?>
                     <p class="alert"><?php echo apply_filters( 'calibrefx_comment_awaiting_moderation', __( 'Your comment is awaiting moderation.', 'calibrefx' ) ); ?></p>
             <?php endif; ?>
 

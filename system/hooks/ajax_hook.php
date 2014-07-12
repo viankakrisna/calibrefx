@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -30,8 +30,8 @@
  * @link		http://www.calibrefx.com
  */
 
-add_action('wp_ajax_cfx_ajax', 'calibrefx_ajax');
-add_action('wp_ajax_nopriv_cfx_ajax', 'calibrefx_ajax');
+add_action( 'wp_ajax_cfx_ajax', 'calibrefx_ajax' );
+add_action( 'wp_ajax_nopriv_cfx_ajax', 'calibrefx_ajax' );
 
 /**
  * Run any action to do ajax
@@ -39,27 +39,27 @@ add_action('wp_ajax_nopriv_cfx_ajax', 'calibrefx_ajax');
 function calibrefx_ajax() {
 	check_ajax_referer( 'calibrefx_ajax_nonce', '_ajax_nonce' );
 	header("Content-Type: application/json");
-    do_action('calibrefx_do_ajax');
+    do_action( 'calibrefx_do_ajax' );
     exit;
 }
 
 /*
 SAMPLE SCRIPT FOR AJAX CALL
 
-add_action('calibrefx_do_ajax', 'test_ajax');
+add_action( 'calibrefx_do_ajax', 'test_ajax' );
 function test_ajax() {
-    if($_REQUEST['do'] == "test"){
-    	echo json_encode(array("TEST" => $_REQUEST['data']));
+    if( $_REQUEST['do'] == "test") {
+    	echo json_encode(array("TEST" => $_REQUEST['data']) );
     }
 }
 
 
-add_action('wp_head', 'my_action_javascript');
+add_action( 'wp_head', 'my_action_javascript' );
 
 function my_action_javascript() {
 ?>
 	<script type="text/javascript" >
-	jQuery(document).ready(function($) {
+	jQuery(document).ready(function( $) {
 
 		jQuery.ajax({
 			url: cfx_ajax.ajaxurl,
@@ -67,7 +67,7 @@ function my_action_javascript() {
 			dataType:  'json',
 			success: function(response) { 
 				console.log(response);
-				//alert('Got this from the server: ' + response.TEST);
+				//alert( 'Got this from the server: ' + response.TEST);
 			},
 		});
 	});

@@ -12,8 +12,8 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('text_text').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'text_text' ).value = medziShortcodom;
                 }		
             }
 	
@@ -23,40 +23,40 @@
                 var shortcodeRetazec;
 		
                 // instancie tabov
-                var textTab_instancia = document.getElementById('textTab');	
+                var textTab_instancia = document.getElementById( 'textTab' );	
 		
                 // Column ==============================================================
         
                 // je tab aktivny?
-                if (textTab_instancia.className.indexOf('current') != -1) {
+                if (textTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var text_color = document.getElementById('text_color').value;
-                    var text_font = document.getElementById('text_font').value;
-                    var text_style = document.getElementById('text_style').value;
-                    var text_type = document.getElementById('text_type').value;
-                    var text_weight = document.getElementById('text_weight').value;
-                    var custom_class = document.getElementById('custom_class').value;
-                    var custom_id = document.getElementById('custom_id').value;
+                    var text_color = document.getElementById( 'text_color' ).value;
+                    var text_font = document.getElementById( 'text_font' ).value;
+                    var text_style = document.getElementById( 'text_style' ).value;
+                    var text_type = document.getElementById( 'text_type' ).value;
+                    var text_weight = document.getElementById( 'text_weight' ).value;
+                    var custom_class = document.getElementById( 'custom_class' ).value;
+                    var custom_id = document.getElementById( 'custom_id' ).value;
 
                     var attr = '';
-                    if(text_color != ''){ attr += ' color="' + text_color + '"'; }
-                    if(text_font != ''){ attr += ' font="' + text_font + '"'; }
-                    if(text_style != ''){ attr += ' style="' + text_style + '"'; }
-                    if(text_type != ''){ attr += ' type="' + text_type + '"'; }
-                    if(text_weight != ''){ attr += ' weight="' + text_weight + '"'; }
-                    if(custom_class != ''){ attr += ' class="' + custom_class + '"'; }
-                    if(custom_id != ''){ attr += ' id="' + custom_id + '"'; }
+                    if(text_color != '' ) { attr += ' color="' + text_color + '"'; }
+                    if(text_font != '' ) { attr += ' font="' + text_font + '"'; }
+                    if(text_style != '' ) { attr += ' style="' + text_style + '"'; }
+                    if(text_type != '' ) { attr += ' type="' + text_type + '"'; }
+                    if(text_weight != '' ) { attr += ' weight="' + text_weight + '"'; }
+                    if(custom_class != '' ) { attr += ' class="' + custom_class + '"'; }
+                    if(custom_id != '' ) { attr += ' id="' + custom_id + '"'; }
 
                     shortcodeRetazec = '[text' + attr + ']'+medziShortcodom+'[/text]';    
                     
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
-                        //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                        tinyMCEPopup.editor.execCommand('mceRepaint');
+                        //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                        tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                        tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                         tinyMCEPopup.close();
                     }
 		
@@ -76,7 +76,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="textTabID" class="current"><span><a href="javascript:mcTabs.displayTab('textTabID','textTab');" onmousedown="return false;">text</a></span></li>            
+                    <li id="textTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'textTabID','textTab' );" onmousedown="return false;">text</a></span></li>            
                 </ul>
             </div>
 

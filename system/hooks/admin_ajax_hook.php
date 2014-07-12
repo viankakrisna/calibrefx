@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -30,21 +30,21 @@
  * @link		http://www.calibrefx.com
  */
 
-add_action('wp_ajax_calibrefx_test_send_mail', 'calibrefx_test_send_mail');
-function calibrefx_test_send_mail(){
+add_action( 'wp_ajax_calibrefx_test_send_mail', 'calibrefx_test_send_mail' );
+function calibrefx_test_send_mail() {
 	global $calibrefx;
-	$calibrefx->load->library('email');
-	$email = sanitize_text_field($_POST['data']	);
+	$calibrefx->load->library( 'email' );
+	$email = sanitize_text_field( $_POST['data']	);
 		
-	$calibrefx->email->set_protocol($calibrefx->theme_settings_m->get('email_protocol'));
-	$calibrefx->email->set_mailtype('html');
-	$calibrefx->email->from(get_bloginfo('admin_email'), 'CalibreFx Test Email');
-	$calibrefx->email->to($email);
-	$calibrefx->email->subject('Test Email');
-	$calibrefx->email->message('Test Body Message');
+	$calibrefx->email->set_protocol( $calibrefx->theme_settings_m->get( 'email_protocol' ) );
+	$calibrefx->email->set_mailtype( 'html' );
+	$calibrefx->email->from(get_bloginfo( 'admin_email' ), 'CalibreFx Test Email' );
+	$calibrefx->email->to( $email);
+	$calibrefx->email->subject( 'Test Email' );
+	$calibrefx->email->message( 'Test Body Message' );
 	$result = $calibrefx->email->send();
 
-	if($result){
+	if( $result) {
 		$return_data = array(
 			"status" => 'success',
 			"message" => 'Result: Email Sent Succesfully.'
@@ -56,19 +56,19 @@ function calibrefx_test_send_mail(){
 		);
 	}
 
-	echo json_encode($return_data);exit;
+	echo json_encode( $return_data);exit;
 }
 
-add_action('wp_ajax_create-legal-page', 'calibrefx_create_legal_page');
-function calibrefx_create_legal_page(){
+add_action( 'wp_ajax_create-legal-page', 'calibrefx_create_legal_page' );
+function calibrefx_create_legal_page() {
 	global $calibrefx;
 	
 	check_ajax_referer( 'cfx_create-legal-page_' . $_POST['param'] );
 
-	if ( ! current_user_can( 'edit_posts' ))
+	if ( ! current_user_can( 'edit_posts' ) )
 		die( __( 'ERROR: You lack permissions to create posts.', 'calibrefx' ) );
 
-	if ( empty( $_POST['action'] ) OR empty( $_POST['param'] ))
+	if ( empty( $_POST['action'] ) OR empty( $_POST['param'] ) )
 		die( __( 'ERROR: No slug was passed to the AJAX callback.', 'calibrefx' ) );
 
 	$name = $_POST['name'];
@@ -91,7 +91,7 @@ function calibrefx_create_legal_page(){
         )
     );
 
-    $json = json_decode($response['body']);
+    $json = json_decode( $response['body']);
 
     $asp = $json->data->asp;
     $cn = $json->data->cn;
@@ -104,13 +104,13 @@ function calibrefx_create_legal_page(){
 
     global $user_ID;
 
-    switch ($_POST['param']) {
+    switch ( $_POST['param']) {
     	case 'asp':
     		$new_post = array(
 				'post_title' => 'Anti-Spam Policy',
 				'post_content' => $asp,
 				'post_status' => 'publish',
-				'post_date' => date('Y-m-d H:i:s'),
+				'post_date' => date( 'Y-m-d H:i:s' ),
 				'post_author' => $user_ID,
 				'post_type' => 'page',
 				'post_category' => array(0)
@@ -121,7 +121,7 @@ function calibrefx_create_legal_page(){
 				'post_title' => 'Copyright Notice',
 				'post_content' => $cn,
 				'post_status' => 'publish',
-				'post_date' => date('Y-m-d H:i:s'),
+				'post_date' => date( 'Y-m-d H:i:s' ),
 				'post_author' => $user_ID,
 				'post_type' => 'page',
 				'post_category' => array(0)
@@ -132,7 +132,7 @@ function calibrefx_create_legal_page(){
 				'post_title' => 'Disclaimer',
 				'post_content' => $disclaimer,
 				'post_status' => 'publish',
-				'post_date' => date('Y-m-d H:i:s'),
+				'post_date' => date( 'Y-m-d H:i:s' ),
 				'post_author' => $user_ID,
 				'post_type' => 'page',
 				'post_category' => array(0)
@@ -143,7 +143,7 @@ function calibrefx_create_legal_page(){
 				'post_title' => 'DMCA Compliance',
 				'post_content' => $dmca,
 				'post_status' => 'publish',
-				'post_date' => date('Y-m-d H:i:s'),
+				'post_date' => date( 'Y-m-d H:i:s' ),
 				'post_author' => $user_ID,
 				'post_type' => 'page',
 				'post_category' => array(0)
@@ -154,7 +154,7 @@ function calibrefx_create_legal_page(){
 				'post_title' => 'Federal Trade Commission Compliance',
 				'post_content' => $federal,
 				'post_status' => 'publish',
-				'post_date' => date('Y-m-d H:i:s'),
+				'post_date' => date( 'Y-m-d H:i:s' ),
 				'post_author' => $user_ID,
 				'post_type' => 'page',
 				'post_category' => array(0)
@@ -165,7 +165,7 @@ function calibrefx_create_legal_page(){
 				'post_title' => 'Privacy Policy',
 				'post_content' => $privacy,
 				'post_status' => 'publish',
-				'post_date' => date('Y-m-d H:i:s'),
+				'post_date' => date( 'Y-m-d H:i:s' ),
 				'post_author' => $user_ID,
 				'post_type' => 'page',
 				'post_category' => array(0)
@@ -176,7 +176,7 @@ function calibrefx_create_legal_page(){
 				'post_title' => 'Social Media Disclosure',
 				'post_content' => $social,
 				'post_status' => 'publish',
-				'post_date' => date('Y-m-d H:i:s'),
+				'post_date' => date( 'Y-m-d H:i:s' ),
 				'post_author' => $user_ID,
 				'post_type' => 'page',
 				'post_category' => array(0)
@@ -186,7 +186,7 @@ function calibrefx_create_legal_page(){
 				'post_title' => 'Terms Of Service & Conditions Of Use',
 				'post_content' => $tos,
 				'post_status' => 'publish',
-				'post_date' => date('Y-m-d H:i:s'),
+				'post_date' => date( 'Y-m-d H:i:s' ),
 				'post_author' => $user_ID,
 				'post_type' => 'page',
 				'post_category' => array(0)
@@ -197,7 +197,7 @@ function calibrefx_create_legal_page(){
     		break;
     }
 	
-	$post_id = wp_insert_post($new_post);
+	$post_id = wp_insert_post( $new_post);
 
 	echo 1;
 	exit;

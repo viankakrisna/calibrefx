@@ -14,7 +14,7 @@
                 var shortcodeRetazec;
         
                 // instancie tabov
-                var textTab_instancia = document.getElementById('textTab'); 
+                var textTab_instancia = document.getElementById( 'textTab' ); 
         
                 // Column ==============================================================
         
@@ -25,9 +25,9 @@
     
                 //vloz shortcode a repaint editor
                 if(window.tinyMCE) {
-                    //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                    tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                    tinyMCEPopup.editor.execCommand('mceRepaint');
+                    //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                    tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                    tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                     tinyMCEPopup.close();
                 }
     

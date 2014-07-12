@@ -41,14 +41,14 @@ class CFX_Notification {
      * @return	void
      */
     public function __construct() {        
-        if( !session_id() ){
+        if( !session_id() ) {
     		session_start();
 		}
 		$this->_message = array();
     }
 
-    public function set_flashmessage($message, $status = 'success'){
-    	if(!empty($_SESSION['flashmsg'])){
+    public function set_flashmessage( $message, $status = 'success' ) {
+    	if(!empty( $_SESSION['flashmsg']) ) {
     		$this->_message = $_SESSION['flashmsg'];
     	}
 
@@ -62,15 +62,15 @@ class CFX_Notification {
 		return $this->_message;
     }
 
-    public function show_flashmessage(){
-    	if(empty($_SESSION['flashmsg'])) return;
+    public function show_flashmessage() {
+    	if(empty( $_SESSION['flashmsg']) ) return;
     		
     	$this->_message = $_SESSION['flashmsg'];
 
-    	foreach ($this->_message as $msg) {
+    	foreach ( $this->_message as $msg) {
     		printf("<p class='notification bg-%s'>%s</p>", $msg['status'], $msg['message']);
     	}
 
-    	unset($_SESSION['flashmsg']);
+    	unset( $_SESSION['flashmsg']);
     }
 }

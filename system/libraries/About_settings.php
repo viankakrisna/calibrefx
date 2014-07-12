@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -38,10 +38,10 @@ class CFX_About_Settings extends CFX_Admin {
     function __construct() {
         global $calibrefx;
         $this->page_id = 'calibrefx-about';
-        $this->settings_field = apply_filters('calibrefx_about_field', 'calibrefx-about');
+        $this->settings_field = apply_filters( 'calibrefx_about_field', 'calibrefx-about' );
         
         //we need to initialize the model
-        $calibrefx->load->model('theme_settings_m');
+        $calibrefx->load->model( 'theme_settings_m' );
         $this->_model = $calibrefx->theme_settings_m;
         
         $this->initialize();
@@ -51,7 +51,7 @@ class CFX_About_Settings extends CFX_Admin {
      *
      * $return void
      */
-    public function security_filters(){
+    public function security_filters() {
         //Nothing to add here
     }
     
@@ -61,23 +61,23 @@ class CFX_About_Settings extends CFX_Admin {
 
         calibrefx_clear_meta_section();
 
-        calibrefx_add_meta_section('system', __('System Information', 'calibrefx'), 'options.php', 1);
-        calibrefx_add_meta_section('team', __('The CalibreFX Team', 'calibrefx'), 'options.php', 2);
-        // calibrefx_add_meta_section('support', __('Support', 'calibrefx'), 'options.php', 3);
-        // calibrefx_add_meta_section('item', __('Recommended Items', 'calibrefx'), 'options.php', 4);
+        calibrefx_add_meta_section( 'system', __( 'System Information', 'calibrefx' ), 'options.php', 1);
+        calibrefx_add_meta_section( 'team', __( 'The CalibreFX Team', 'calibrefx' ), 'options.php', 2);
+        // calibrefx_add_meta_section( 'support', __( 'Support', 'calibrefx' ), 'options.php', 3);
+        // calibrefx_add_meta_section( 'item', __( 'Recommended Items', 'calibrefx' ), 'options.php', 4);
 
         $calibrefx_current_section = 'system';
-        if (!empty($_GET['section'])) {
-            $calibrefx_current_section = sanitize_text_field($_GET['section']);
+        if (!empty( $_GET['section']) ) {
+            $calibrefx_current_section = sanitize_text_field( $_GET['section']);
         }
     }
 
     public function meta_boxes() {
-        calibrefx_add_meta_box('system', 'basic', 'calibrefx-about-version', __('Information', 'calibrefx'), array(&$this,'info_box'), $this->pagehook, 'main', 'high');
-        calibrefx_add_meta_box('system', 'basic', 'calibrefx-latest-news', __('Latest News', 'calibrefx'), array(&$this,'latest_news_box'), $this->pagehook, 'main', 'high');
-        //calibrefx_add_meta_box('system', 'basic', 'calibrefx-latest-tweets', __('<span class="twitter-logo"></span>Latest Tweets', 'calibrefx'), array(&$this,'latest_tweets_box'), $this->pagehook, 'side');
+        calibrefx_add_meta_box( 'system', 'basic', 'calibrefx-about-version', __( 'Information', 'calibrefx' ), array(&$this,'info_box' ), $this->pagehook, 'main', 'high' );
+        calibrefx_add_meta_box( 'system', 'basic', 'calibrefx-latest-news', __( 'Latest News', 'calibrefx' ), array(&$this,'latest_news_box' ), $this->pagehook, 'main', 'high' );
+        //calibrefx_add_meta_box( 'system', 'basic', 'calibrefx-latest-tweets', __( '<span class="twitter-logo"></span>Latest Tweets', 'calibrefx' ), array(&$this,'latest_tweets_box' ), $this->pagehook, 'side' );
 
-        calibrefx_add_meta_box('team', 'basic', 'calibrefx-the-team', __('The CalibreFX Team', 'calibrefx'), array(&$this,'the_team'), $this->pagehook, 'main');
+        calibrefx_add_meta_box( 'team', 'basic', 'calibrefx-the-team', __( 'The CalibreFX Team', 'calibrefx' ), array(&$this,'the_team' ), $this->pagehook, 'main' );
     }
 
     public function the_team() {
@@ -217,9 +217,9 @@ class CFX_About_Settings extends CFX_Admin {
             CalibreFx is released under the GPL v2. For license information please refer to the license.txt in themes folder.
             </span>
         </p>
-        <p><strong><?php _e('Framework Name: ', 'calibrefx'); ?></strong><?php echo FRAMEWORK_NAME; ?> (<?php _e('Codename: ', 'calibrefx'); echo FRAMEWORK_CODENAME; ?>)</p>
-        <p><strong><?php _e('Version:', 'calibrefx'); ?></strong> <?php echo FRAMEWORK_VERSION; ?> <?php echo '&middot;'; ?> <strong><?php _e('Released:', 'calibrefx'); ?></strong> <?php echo FRAMEWORK_RELEASE_DATE; ?></p>
-        <p><strong><?php _e('DB Version: ', 'calibrefx'); ?></strong><?php echo FRAMEWORK_DB_VERSION; ?></p>
+        <p><strong><?php _e( 'Framework Name: ', 'calibrefx' ); ?></strong><?php echo FRAMEWORK_NAME; ?> (<?php _e( 'Codename: ', 'calibrefx' ); echo FRAMEWORK_CODENAME; ?>)</p>
+        <p><strong><?php _e( 'Version:', 'calibrefx' ); ?></strong> <?php echo FRAMEWORK_VERSION; ?> <?php echo '&middot;'; ?> <strong><?php _e( 'Released:', 'calibrefx' ); ?></strong> <?php echo FRAMEWORK_RELEASE_DATE; ?></p>
+        <p><strong><?php _e( 'DB Version: ', 'calibrefx' ); ?></strong><?php echo FRAMEWORK_DB_VERSION; ?></p>
         <?php
     }
 
@@ -232,7 +232,7 @@ class CFX_About_Settings extends CFX_Admin {
             'show_summary' => 1,
             'show_author' => 0,
             'show_date' => 1
-        ));
+        ) );
         echo "</div>";
     }
 
@@ -243,40 +243,40 @@ class CFX_About_Settings extends CFX_Admin {
 
         echo '<ul class="twitter-tweets">' . "\n";
 
-        $tweets = get_transient($twitter_id . '-' . $postnum . '-' . $twitter_duration);
+        $tweets = get_transient( $twitter_id . '-' . $postnum . '-' . $twitter_duration);
 
         if (!$tweets) {
             $count = (int) $postnum;
             $twitter = wp_remote_retrieve_body(
                     wp_remote_request(
-                            sprintf('http://api.twitter.com/1/statuses/user_timeline.json?screen_name=%s&count=%s&trim_user=1', $twitter_id, $count), array('timeout' => 100,)
+                            sprintf( 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=%s&count=%s&trim_user=1', $twitter_id, $count), array( 'timeout' => 100,)
                     )
             );
 
-            $json = json_decode($twitter);
+            $json = json_decode( $twitter);
 
             if (!$twitter) {
-                $tweets[] = '<li>' . __('The Twitter API is taking too long to respond. Please try again later.', 'calibrefx') . '</li>' . "\n";
-            } elseif (is_wp_error($twitter)) {
-                $tweets[] = '<li>' . __('There was an error while attempting to contact the Twitter API. Please try again.', 'calibrefx') . '</li>' . "\n";
-            } elseif (is_object($json) && $json->error) {
-                $tweets[] = '<li>' . __('The Twitter API returned an error while processing your request. Please try again.', 'calibrefx') . '</li>' . "\n";
+                $tweets[] = '<li>' . __( 'The Twitter API is taking too long to respond. Please try again later.', 'calibrefx' ) . '</li>' . "\n";
+            } elseif (is_wp_error( $twitter) ) {
+                $tweets[] = '<li>' . __( 'There was an error while attempting to contact the Twitter API. Please try again.', 'calibrefx' ) . '</li>' . "\n";
+            } elseif (is_object( $json) && $json->error) {
+                $tweets[] = '<li>' . __( 'The Twitter API returned an error while processing your request. Please try again.', 'calibrefx' ) . '</li>' . "\n";
             } else {
                 foreach ((array) $json as $tweet) {
-                    if (!empty($tweets[(int) $postnum - 1]))
+                    if (!empty( $tweets[(int) $postnum - 1]) )
                         break;
 
-                    $timeago = sprintf(__('about %s ago', 'calibrefx'), human_time_diff(strtotime($tweet->created_at)));
-                    $timeago_link = sprintf('<a href="%s" rel="nofollow">%s</a>', esc_url(sprintf('http://twitter.com/%s/status/%s', $twitter_id, $tweet->id_str)), esc_html($timeago));
+                    $timeago = sprintf(__( 'about %s ago', 'calibrefx' ), human_time_diff(strtotime( $tweet->created_at) ));
+                    $timeago_link = sprintf( '<a href="%s" rel="nofollow">%s</a>', esc_url(sprintf( 'http://twitter.com/%s/status/%s', $twitter_id, $tweet->id_str) ), esc_html( $timeago) );
 
-                    $tweets[] = '<li>' . calibrefx_tweet_linkify($tweet->text) . ' <span style="font-size: 85%;">' . $timeago_link . '</span></li>' . "\n";
+                    $tweets[] = '<li>' . calibrefx_tweet_linkify( $tweet->text) . ' <span style="font-size: 85%;">' . $timeago_link . '</span></li>' . "\n";
                 }
 
                 $tweets = array_slice((array) $tweets, 0, (int) $postnum);
 
-                $time = ( absint($twitter_duration) * 60 );
+                $time = ( absint( $twitter_duration) * 60 );
 
-                set_transient($twitter_id . '-' . $postnum . '-' . $twitter_duration, $tweets, $time);
+                set_transient( $twitter_id . '-' . $postnum . '-' . $twitter_duration, $tweets, $time);
             }
         }
 
