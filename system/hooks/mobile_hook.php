@@ -33,7 +33,7 @@
 global $cfxgenerator;
 
 $cfxgenerator->calibrefx_setup = array(
-    array( 'function' => 'calibrefx_detect_mobile_browser','priority' => 15)
+    array( 'function' => 'calibrefx_detect_mobile_browser','priority' => 15 )
 );
 
 /********************
@@ -46,7 +46,7 @@ $cfxgenerator->calibrefx_setup = array(
 function calibrefx_detect_mobile_browser() {
 	global $oBrowser,$calibrefx; 
 
-	if(is_admin() || !$oBrowser->isMobile() ) {
+	if( is_admin() || !$oBrowser->isMobile() ) {
 		return;
 	}
 
@@ -59,19 +59,19 @@ function calibrefx_detect_mobile_browser() {
 	add_action( 'calibrefx_before_wrapper', 'calibrefx_mobile_open_nav' ); 
 	add_action( 'calibrefx_after_wrapper', 'calibrefx_mobile_close_nav' ); 
 
-	if(!get_theme_support( 'mobile-site' ) || !calibrefx_mobile_themes_exist() ) {
+	if( !get_theme_support( 'mobile-site' ) || !calibrefx_mobile_themes_exist() ) {
 		return;
 	}
 
 	add_filter( 'template_include', 'calibrefx_get_mobile_template' );
 
-	if(file_exists(CHILD_MOBILE_URI . '/mobile.php' ) ) {
+	if( file_exists(CHILD_MOBILE_URI . '/mobile.php' ) ) {
 		include_once CHILD_MOBILE_URI . '/mobile.php';
 	}
 }
 
 
-function calibrefx_mobile_body_class( $body_classes) {
+function calibrefx_mobile_body_class( $body_classes ) {
     global $post;
     
     $body_classes[] = 'mobile';
@@ -103,24 +103,21 @@ function calibrefx_mobile_open_nav() {
 
 function calibrefx_mobile_close_nav() {
 	?>
-	
 	</div>
-
 	<?php
 }
 
 function calibrefx_do_mobile_nav() {
     global $calibrefx;
     /** Do nothing if menu not supported */
-    if (!calibrefx_nav_menu_supported( 'primary' ) )
+    if ( !calibrefx_nav_menu_supported( 'primary' ) ) {
         return;
+    }
     
     $calibrefx->load->library( 'walker_nav_menu' );
 
     $nav = '';
     $args = '';
-
- 
         
     $args = array(
         'menu' => 'mobile-menu',
@@ -130,22 +127,16 @@ function calibrefx_do_mobile_nav() {
         'walker' => $calibrefx->walker_nav_menu,
     );
     
-    $nav = wp_nav_menu( $args);
-    
+    $nav = wp_nav_menu( $args );
 
     $nav_class = apply_filters( 'nav_class', calibrefx_row_class() );
 
-    /*$nav_sosmed = '<div class="mobile-social-media">
-        MENU
-    </div>';*/
-
-    
     $nav_output = sprintf( '
         <div id="mobile-nav" class="navbar navbar-default">
              %1$s
         </div>
-        <!-- end #mobile-nav -->', $nav);
+        <!-- end #mobile-nav -->', $nav );
 
-    echo apply_filters( 'calibrefx_do_nav', $nav_output, $nav, $args);
+    echo apply_filters( 'calibrefx_do_nav', $nav_output, $nav, $args );
     
 }

@@ -33,21 +33,21 @@
 global $cfxgenerator;
 
 $cfxgenerator->calibrefx_before_footer = array(
-    array( 'function' => 'calibrefx_do_footer_widgets', 'priority' => 10)
+    array( 'function' => 'calibrefx_do_footer_widgets', 'priority' => 10 )
 );
 
 $cfxgenerator->calibrefx_footer = array(
-    array( 'function' => 'calibrefx_footer_area', 'priority' => 10)
+    array( 'function' => 'calibrefx_footer_area', 'priority' => 10 )
 );
 
 $cfxgenerator->calibrefx_footer_content = array(
-    array( 'function' => 'calibrefx_do_footer', 'priority' => 10)
+    array( 'function' => 'calibrefx_do_footer', 'priority' => 10 )
 );
 
 $cfxgenerator->wp_footer = array(
-    array( 'function' => 'calibrefx_add_socials_script', 'priority' => 10),
-    array( 'function' => 'calibrefx_add_google_analytics', 'priority' => 15),
-    array( 'function' => 'calibrefx_footer_scripts', 'priority' => 20),
+    array( 'function' => 'calibrefx_add_socials_script', 'priority' => 10 ),
+    array( 'function' => 'calibrefx_add_google_analytics', 'priority' => 15 ),
+    array( 'function' => 'calibrefx_footer_scripts', 'priority' => 20 ),
 );
 
 /********************
@@ -60,10 +60,10 @@ $cfxgenerator->wp_footer = array(
 function calibrefx_footer_scripts() {
     $footer_scripts = stripslashes(calibrefx_get_option( 'footer_scripts' ) );
 
-    echo apply_filters( 'calibrefx_footer_scripts', $footer_scripts);
+    echo apply_filters( 'calibrefx_footer_scripts', $footer_scripts );
 
     // If singular, echo scripts from custom field
-    if (is_singular() ) {
+    if ( is_singular() ) {
         calibrefx_custom_field( '_calibrefx_scripts' );
     }
 }
@@ -78,18 +78,21 @@ function calibrefx_do_footer_widgets() {
 
     $all_widgets = wp_get_sidebars_widgets();
 
-    if (!$footer_widgets || !isset( $all_widgets['footer-widget']) )
+    if ( !$footer_widgets || !isset( $all_widgets['footer-widget'] ) ) {
         return;
+    }
 
-    $count_footer_widgets = count( $all_widgets['footer-widget']);
+    $count_footer_widgets = count( $all_widgets['footer-widget'] );
 
-    if ( $count_footer_widgets == 0)
+    if ( $count_footer_widgets == 0 ) {
         return;
+    }
 
-    if( current_theme_supports( 'calibrefx-responsive-style' ) )
+    if( current_theme_supports( 'calibrefx-responsive-style' ) ) {
         $span = "col-lg-" . strval(floor((12 / $count_footer_widgets) )) . " col-md-" . strval(floor((12 / $count_footer_widgets) )) . " col-sm-12 col-xs-12";
-    else
+    } else {
         $span = "col-xs-" . strval(floor((12 / $count_footer_widgets) ));
+    }
 
     $sidebar = $wp_registered_sidebars['footer-widget'];
 
@@ -99,9 +102,9 @@ function calibrefx_do_footer_widgets() {
 	$sidebar['after_widget'] = '</div></div>';
 
     unregister_sidebar( 'footer-widget' );
-    register_sidebar( $sidebar);
+    register_sidebar( $sidebar );
 
-    if (is_active_sidebar( 'footer-widget' ) ) {
+    if ( is_active_sidebar( 'footer-widget' ) ) {
         echo '<div id="footer-widget">';
         calibrefx_put_wrapper( 'footer-widget', 'open' ); 
         $footer_widget_wrapper_class = apply_filters( 'footer_widget_wrapper_class', calibrefx_row_class() );
@@ -135,15 +138,15 @@ add_filter( 'calibrefx_footer_output', 'do_shortcode', 20);
  */
 function calibrefx_do_footer() {
     // Build the filterable text strings. Includes shortcodes.
-    $creds_text = apply_filters( 'calibrefx_footer_credits', sprintf( '[footer_copyright before="%1$s "] [footer_theme_link after=" %2$s "] [footer_calibrefx_link after=" &middot; %3$s "] [footer_wordpress_link]', __( 'Copyright', 'calibrefx' ), __( 'built on', 'calibrefx' ),  __( 'Powered By', 'calibrefx' ) ));
+    $creds_text = apply_filters( 'calibrefx_footer_credits', sprintf( '[footer_copyright before="%1$s "] [footer_theme_link after=" %2$s "] [footer_calibrefx_link after=" &middot; %3$s "] [footer_wordpress_link]', __( 'Copyright', 'calibrefx' ), __( 'built on', 'calibrefx' ),  __( 'Powered By', 'calibrefx' ) ) );
     $backtotop_text = apply_filters( 'calibrefx_footer_scrolltop', '[footer_scrolltop]' );
 
-    $backtotop = $backtotop_text ? sprintf( '<div class="pull-right scrolltop"><p>%s</p></div>', $backtotop_text) : '';
-    $creds = $creds_text ? sprintf( '<div class="credits pull-left"><p>%s</p></div>', $creds_text) : '';
+    $backtotop = $backtotop_text ? sprintf( '<div class="pull-right scrolltop"><p>%s</p></div>', $backtotop_text ) : '';
+    $creds = $creds_text ? sprintf( '<div class="credits pull-left"><p>%s</p></div>', $creds_text ) : '';
 
     $output = $creds . $backtotop;
 
-    echo apply_filters( 'calibrefx_footer_output', $output, $backtotop_text, $creds_text);
+    echo apply_filters( 'calibrefx_footer_output', $output, $backtotop_text, $creds_text );
 }
 
 /**
@@ -182,7 +185,7 @@ function calibrefx_add_google_analytics() {
 
     $analytic_id = calibrefx_get_option( 'analytic_id' );
 
-    if(!empty( $analytic_id) ) {
+    if( !empty( $analytic_id ) ) {
         echo "
 <script type='text/javascript'>
     var _gaq = _gaq || [];

@@ -45,14 +45,14 @@ function calibrefx_search_form() {
     $form = '
         <form method="get" class="searchform" action="' . home_url() . '/" >
             <div class="input-group">
-                <input type="text" value="'. $search_text .'" name="s" class="s form-control"'. $onfocus . $onblur .' />
+                <input type="text" value="' . $search_text . '" name="s" class="s form-control"' . $onfocus . $onblur . ' />
                 <span class="input-group-btn">
-                    <input type="submit" class="searchsubmit btn btn-primary" value="'. $button_text .'" />
+                    <input type="submit" class="searchsubmit btn btn-primary" value="' . $button_text . '" />
                 </span>
             </div>
         </form>
     ';
     
-    return apply_filters( 'calibrefx_search_form', $form, $search_text, $button_text);
+    return apply_filters( 'calibrefx_search_form', $form, $search_text, $button_text );
 }
 add_filter( 'get_search_form', 'calibrefx_search_form' );

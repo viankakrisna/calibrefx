@@ -34,8 +34,8 @@ global $cfxgenerator;
 
 $cfxgenerator->init = array( 'calibrefx_register_scripts' );
 $cfxgenerator->calibrefx_meta = array(
-    array( 'function' => 'calibrefx_load_scripts', 'priority' => 0), 
-    array( 'function' => 'calibrefx_load_styles', 'priority' => 0),
+    array( 'function' => 'calibrefx_load_scripts', 'priority' => 0 ), 
+    array( 'function' => 'calibrefx_load_styles', 'priority' => 0 ),
 );
 
 /********************
@@ -113,8 +113,9 @@ function calibrefx_load_styles() {
     if( $theme->stylesheet != 'calibrefx' ) {
         $calibrefx_template_style = get_theme_support( 'calibrefx-template-styles' );
 
-        if ( $calibrefx_template_style)
+        if ( $calibrefx_template_style ) {
             wp_enqueue_style( 'calibrefx-template-style' );
+        }
     }
 }
 
@@ -132,7 +133,7 @@ function calibrefx_load_admin_scripts() {
         'shortcode_url' => CALIBREFX_SHORTCODE_URL,
         'assets_img_url' => CALIBREFX_IMAGES_URL
     );
-    wp_localize_script( 'calibrefx_admin_js', 'calibrefx_local', $params);
+    wp_localize_script( 'calibrefx_admin_js', 'calibrefx_local', $params );
 }
 add_action( 'admin_init', 'calibrefx_load_admin_scripts' );
 
@@ -140,7 +141,7 @@ add_action( 'admin_init', 'calibrefx_load_admin_scripts' );
 function calibrefx_load_admin_styles() {
     wp_enqueue_style( 'calibrefx-admin-css', CALIBREFX_CSS_URL . '/calibrefx.admin.css', array() );
     wp_enqueue_style( 'admin-bar' );
-    if (current_theme_supports( 'calibrefx-admin-bar' ) ) {
+    if ( current_theme_supports( 'calibrefx-admin-bar' ) ) {
         wp_enqueue_style( 'calibrefx-admin-bar-css', CALIBREFX_CSS_URL . '/calibrefx.admin.bar.css', array() );
     }
     wp_enqueue_style( 'wp-color-picker' );
@@ -149,8 +150,9 @@ add_action( 'admin_init', 'calibrefx_load_admin_styles' );
 
 function calibrefx_remove_script_version( $src ) {
 	$parts = explode( '?', $src );
-    if(strpos( $src, $_SERVER['HTTP_HOST']) !== FALSE)
+    if ( strpos( $src, $_SERVER['HTTP_HOST'] ) !== FALSE ) {
 	   return $parts[0];
+    }
 
     return $src;
 }
@@ -162,6 +164,3 @@ add_filter( 'style_loader_src', 'calibrefx_remove_script_version', 15, 1 );
 /**
  * This function load our style and script files
  */
- 
-
-

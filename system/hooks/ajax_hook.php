@@ -38,7 +38,7 @@ add_action( 'wp_ajax_nopriv_cfx_ajax', 'calibrefx_ajax' );
  */
 function calibrefx_ajax() {
 	check_ajax_referer( 'calibrefx_ajax_nonce', '_ajax_nonce' );
-	header("Content-Type: application/json");
+	header( "Content-Type: application/json" );
     do_action( 'calibrefx_do_ajax' );
     exit;
 }

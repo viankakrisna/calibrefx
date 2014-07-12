@@ -47,15 +47,17 @@ $cfxgenerator->wp_loaded = array(
 function form_submit_handler() {
 	global $calibrefx;
 
-	if ( 'POST' != $_SERVER['REQUEST_METHOD']) return;
+	if ( 'POST' != $_SERVER['REQUEST_METHOD'] ) return;
 
-	if(!isset( $_POST['action']) ) return;
+	if( !isset( $_POST['action'] ) ) return;
 
-	$action = sanitize_text_field( $_POST['action']);
-	if (!$action)
+	$action = sanitize_text_field( $_POST['action'] );
+	
+	if ( !$action ) {
 		return; //no action, do nothing
+	}
 
-	switch ( $action) {
+	switch ( $action ) {
 		case 'contact-form':
 			$name = sanitize_text_field( $_POST['name'] );
 			$email = sanitize_text_field( $_POST['email'] );
@@ -64,18 +66,18 @@ function form_submit_handler() {
 			$target = sanitize_text_field( $_POST['target'] );
 			$redirect = sanitize_text_field( $_POST['redirect'] );
 			$output_message = '';
-			$output_message .= 'Name : '.$name."\n";
-			$output_message .= 'Email : '.$email."\n";
-			$output_message .= 'Subject : '.$subject."\n";
-			$output_message .= 'Message : '.$message."\r\n";
+			$output_message .= 'Name : ' . $name . "\n";
+			$output_message .= 'Email : ' . $email . "\n";
+			$output_message .= 'Subject : ' . $subject . "\n";
+			$output_message .= 'Message : ' . $message . "\r\n";
 
 			if( $target == 'ADMIN_EMAIL' ) $target = get_option( 'admin_email' );
-			if(empty( $redirect) ) $redirect = site_url();
+			if( empty( $redirect ) ) $redirect = site_url();
 
-			$headers = 'From: '.get_option( 'blogname' ).' <'.get_option( 'admin_email' ).'>' . "\r\n";
+			$headers = 'From: ' . get_option( 'blogname' ).' <' . get_option( 'admin_email' ) . '>' . "\r\n";
 
-			@wp_mail( $target , __( 'Contact Us Form Submitted on ','calibrefx' ).get_option( 'blogname' ), $output_message, $headers);
-			$calibrefx->notification->set_flashmessage(apply_filters( 'calibrefx_contact_form_message', __( 'Your message has been sent. Thank you for submitting your message.', 'calibrefx' ) ), 'success' );
+			@wp_mail( $target , __( 'Contact Us Form Submitted on ','calibrefx' ) . get_option( 'blogname' ), $output_message, $headers );
+			$calibrefx->notification->set_flashmessage( apply_filters( 'calibrefx_contact_form_message', __( 'Your message has been sent. Thank you for submitting your message.', 'calibrefx' ) ), 'success' );
 
 			wp_redirect( $redirect ); exit;
 
@@ -83,7 +85,7 @@ function form_submit_handler() {
 		default : break;
 	}
 
-	do_action( 'form_submit_handler', $action);
+	do_action( 'form_submit_handler', $action );
 }
 
 //@todo: need fix here

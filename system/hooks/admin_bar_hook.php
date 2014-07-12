@@ -20,7 +20,7 @@
  * @package CalibreFx
  */
 
-add_action( 'init', 'calibrefx_remove_admin_bar', 5);
+add_action( 'init', 'calibrefx_remove_admin_bar', 5 );
 
 /**
  * This will remove wordpress admin bar in admin area
