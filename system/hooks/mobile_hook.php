@@ -54,10 +54,12 @@ function calibrefx_detect_mobile_browser() {
 
 	remove_action( 'calibrefx_after_header', 'calibrefx_do_nav' );
 
-	add_action( 'calibrefx_before_header', 'calibrefx_do_top_mobile_nav' );	
+    if( get_theme_support( 'mobile-site-menu' ) ) {
+        add_action( 'calibrefx_before_header', 'calibrefx_do_top_mobile_nav' ); 
 
-	add_action( 'calibrefx_before_wrapper', 'calibrefx_mobile_open_nav' ); 
-	add_action( 'calibrefx_after_wrapper', 'calibrefx_mobile_close_nav' ); 
+        add_action( 'calibrefx_before_wrapper', 'calibrefx_mobile_open_nav' ); 
+        add_action( 'calibrefx_after_wrapper', 'calibrefx_mobile_close_nav' ); 
+    }
 
 	if( !get_theme_support( 'mobile-site' ) || !calibrefx_mobile_themes_exist() ) {
 		return;

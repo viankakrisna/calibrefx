@@ -81,6 +81,7 @@ final class Calibrefx {
         add_theme_support( 'calibrefx-open-graph' );
         add_theme_support( 'calibrefx-footer-widgets' );
         add_theme_support( 'calibrefx-header-right-widgets' );
+        add_theme_support( 'mobile-site-menu' );
 
         if ( !current_theme_supports( 'calibrefx-menus' ) ) {
             add_theme_support( 'calibrefx-menus', 
