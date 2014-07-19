@@ -108,11 +108,11 @@ function calibrefx_do_footer_widgets() {
         echo '<div id="footer-widget">';
         calibrefx_put_wrapper( 'footer-widget', 'open' ); 
         $footer_widget_wrapper_class = apply_filters( 'footer_widget_wrapper_class', calibrefx_row_class() );
-        echo '<div class="footer-widget-wrapper"><div class="'.$footer_widget_wrapper_class.'">';
+        echo '<div class="footer-widget-wrapper '.$footer_widget_wrapper_class.'">';
 
         dynamic_sidebar( 'footer-widget' );
 
-        echo '</div></div><!--end .footer-widget-wrapper -->';
+        echo '</div><!--end .footer-widget-wrapper -->';
         calibrefx_put_wrapper( 'footer-widget','close' );
         echo '</div><!--end #footer-widget-->';
     }
