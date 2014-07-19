@@ -42,10 +42,10 @@ class CFX_Shortcode {
 	var $plugins = array();
 	
 	public function calibrefx_shortcode_button_init() {
-		add_filter( 'tiny_mce_version', array(&$this, 'increase_tinymce_version' ) );
-        add_action( 'init', array(&$this, 'add_sc_buttons' ) );
+		// add_filter( 'tiny_mce_version', array(&$this, 'increase_tinymce_version' ) );
+        // add_action( 'init', array(&$this, 'add_sc_buttons' ) );
 		
-		update_option( 'calibrefx_shortcode_options', $this->plugins);
+		// update_option( 'calibrefx_shortcode_options', $this->plugins);
 	}
 
     public function calibrefx_add_shortcode_button( $plugin_name = '', $form_url = '', $width = '320', $height = '460', $title = '', $img_url = '' ) {
