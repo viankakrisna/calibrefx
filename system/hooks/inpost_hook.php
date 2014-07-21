@@ -149,8 +149,7 @@ add_action( 'save_post', 'calibrefx_inpost_save', 1, 2 );
  * saving each key / value pair as a custom field.
  *
  * @access public
- * @author Hilaladdiyar <hilal@calibrefx.com>
- * @return voides
+ * @return null
  */
 function calibrefx_inpost_save( $post_id, $post ) {
     global $calibrefx, $calibrefx_post_meta_options;
