@@ -580,7 +580,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                 array(
                     'option_type' => 'textarea',
                     'option_default' => '',
-                    'option_filter' => 'safe_js',
+                    'option_filter' => 'no_filter',
                     'option_description' => __("You can add your javascript at the head of the page. For example Google analytics code. <br/>Samples: <code>&lt;script type=\"text/javascript\">alert(\"Hello World\");&lt;/script></code>.", 'calibrefx' ),
                 ), // Settings config
                 1 //Priority
@@ -593,7 +593,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                 array(
                     'option_type' => 'textarea',
                     'option_default' => '',
-                    'option_filter' => 'safe_js',
+                    'option_filter' => 'no_filter',
                     'option_description' => __("You can add your javascript at the footer of the page. For example Google analytics code. <br/>Samples: <code>&lt;script type=\"text/javascript\">alert(\"Hello World\");&lt;/script></code>.", 'calibrefx' ),
                 ), // Settings config
                 5 //Priority

@@ -131,6 +131,7 @@ class CFX_Security {
             'safe_js' => array(&$this, 'safe_js' ),
             'safe_text' => array(&$this, 'safe_text' ),
             'safe_url' => array(&$this, 'safe_url' ),
+            'no_filter' => array(&$this, 'no_filter' ),
         );
 
         return apply_filters( 'calibrefx_available_sanitizer_filters', $default_filters);
@@ -237,6 +238,17 @@ class CFX_Security {
     function safe_html( $new_value) {
 
         return wp_kses_post( $new_value);
+    }
+
+    /**
+     * Do no filter
+     *
+     * @param string $new_value String with potentially unsafe HTML in it
+     * @return string String with only safe HTML in it
+     */
+    function no_filter( $new_value) {
+
+        return $new_value;
     }
 
     /**
