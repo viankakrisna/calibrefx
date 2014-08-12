@@ -66,3 +66,16 @@ function body_onload( $script = '' ) {
 
     echo 'onload="' . join( ';', $onload_scripts ) . '"';
 }
+
+function body_attr( $attr = array() ) {    
+
+    $attrs = array();
+    $attrs = array_merge( apply_filters( 'body_attr', $attrs ), $attr );
+
+    $attr_string = '';
+    foreach($attrs as $attr_key => $attr_value){
+        $attr_string .= ' '.$attr_key.'="'. $attr_value .'"';
+    }
+
+    echo $attr_string;
+}
