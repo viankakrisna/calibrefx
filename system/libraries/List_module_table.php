@@ -209,15 +209,6 @@ class CFX_List_Module_Table extends WP_List_Table {
         return $actions;
     }
 
-    function bulk_actions() {
-        global $status;
-
-        if ( in_array( $status, array( 'mustuse', 'dropins' ) ) )
-            return;
-
-        parent::bulk_actions();
-    }
-
     function extra_tablenav( $which ) {
         global $status;
 

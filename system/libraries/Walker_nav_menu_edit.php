@@ -182,6 +182,7 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	            </p>
 	            <?php
 	            /* New fields insertion ends here */
+					do_action('wp_nav_menu_item_custom_fields', $item_id, $item, $depth, $args);
 	            ?>
 	            <div class="menu-item-actions description-wide submitbox">
 	                <?php if( 'custom' != $item->type && $original_title !== false ) : ?>
