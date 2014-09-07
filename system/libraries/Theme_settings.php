@@ -145,7 +145,7 @@ class CFX_Theme_Settings extends CFX_Admin {
         calibrefx_add_meta_box( 'general', 'basic', 'calibrefx-theme-settings-comment', __( 'Post Comment Setting', 'calibrefx' ), array( $this, 'comment_setting' ), $this->pagehook, 'main' );
         calibrefx_add_meta_box( 'general', 'basic', 'calibrefx-theme-settings-tracking', __( 'Website Tracking Setting', 'calibrefx' ), array( $this, 'tracking_setting' ), $this->pagehook, 'main' );
 
-        calibrefx_add_meta_box( 'layout', 'basic', 'calibrefx-theme-settings-layout', __( 'Default Layout Settings', 'calibrefx' ), array( $this, 'layout_box' ), $this->pagehook, 'main', 'high' );
+        calibrefx_add_meta_box( 'layout', 'basic', 'calibrefx-theme-settings-layout', __( 'Website Layout Settings', 'calibrefx' ), array( $this, 'layout_box' ), $this->pagehook, 'main', 'high' );
         calibrefx_add_meta_box( 'layout', 'basic', 'calibrefx-theme-settings-custom-script', __( 'Themes Advanced Customization', 'calibrefx' ), array( $this, 'custom_script_box' ), $this->pagehook, 'main', 'low' );
 
         calibrefx_add_meta_box( 'social', 'basic', 'calibrefx-theme-settings-socials', __( 'Social Integration', 'calibrefx' ), array( $this, 'socials_integrated_box' ), $this->pagehook, 'main' );
@@ -617,6 +617,16 @@ class CFX_Theme_Settings extends CFX_Admin {
                     'option_attr' => array("class" => "calibrefx-layout-selector"),
                 ), // Settings config
                 1 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                'layout-type-settings',  // group id
+                'layout_description', // field id and option name
+                __( 'You can choose your Website layout. You can override per post / page later.','calibrefx' ), // Label
+                array(
+                    'option_type' => 'description',
+                ), // Settings config
+                5 //Priority
             );
         });        
         
