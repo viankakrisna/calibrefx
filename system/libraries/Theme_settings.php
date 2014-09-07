@@ -209,6 +209,7 @@ class CFX_Theme_Settings extends CFX_Admin {
         global $calibrefx;
 
         calibrefx_add_meta_group( 'themetracking-settings', 'google-analytics-settings', __( 'Google Anlytic Settings', 'calibrefx' ) );
+        calibrefx_add_meta_group( 'themetracking-settings', 'facebook-tracking-settings', __( 'Facebook Tracking Settings', 'calibrefx' ) );
 
         add_action( 'themetracking-settings_options', function() {            
             calibrefx_add_meta_option(
@@ -220,6 +221,34 @@ class CFX_Theme_Settings extends CFX_Admin {
                     'option_default' => '',
                     'option_filter' => 'no_html',
                     'option_description' => __("Enter your google analytics ID, example: <strong>UA-xxxxxxxx-x</strong>", 'calibrefx' ),
+                ), // Settings config
+                1 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                'google-analytics-settings',  // group id
+                'google_tagmanager_code', // field id and option name
+                __( 'Paste your Google Tag Manager Script' ), // Label
+                array(
+                    'option_type' => 'textarea',
+                    'option_default' => '',
+                    'option_filter' => 'no_filter',
+                    'option_description' => __("Learn more about Google Tag Manager <a href='http://www.google.com/tagmanager/get-started.html' target='_blank'>here</a>", 'calibrefx' ),
+                ), // Settings config
+                5 //Priority
+            );
+        });
+
+        add_action( 'themetracking-settings_options', function() {            
+            calibrefx_add_meta_option(
+                'facebook-tracking-settings',  // group id
+                'facebook_tracking_code', // field id and option name
+                __( 'Paste your Facebook conversion pixels' ), // Label
+                array(
+                    'option_type' => 'textarea',
+                    'option_default' => '',
+                    'option_filter' => 'no_filter',
+                    'option_description' => __("Learn more about Facebook conversion pixel <a href='https://www.facebook.com/help/435189689870514/' target='_blank'>here</a>", 'calibrefx' ),
                 ), // Settings config
                 1 //Priority
             );
@@ -271,7 +300,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                 'breadcrumb-settings',  // group id
                 'breadcrumb_page', // field id and option name
-                __( 'Show Breadcrumb on Static Page:' ), // Label
+                __( 'Show Breadcrumb on Static Page' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
@@ -285,7 +314,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                 'breadcrumb-settings',  // group id
                 'breadcrumb_archive', // field id and option name
-                __( 'Show Breadcrumb on Archive/Category Page','calibrefx' ), // Label
+                __( 'Show Breadcrumb on Archive / Category Page','calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
@@ -307,7 +336,17 @@ class CFX_Theme_Settings extends CFX_Admin {
                     'option_filter' => 'integer',
                     'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
-                1 //Priority
+                20 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                'breadcrumb-settings',  // group id
+                'breadcrumb_description', // field id and option name
+                __( 'Check it if you want to show breadcrumb in any of thoses pages.','calibrefx' ), // Label
+                array(
+                    'option_type' => 'description',
+                ), // Settings config
+                99 //Priority
             );
         });
     
@@ -335,12 +374,12 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                 'content-archives-settings',  // group id
                 'content_archive_limit', // field id and option name
-                __( 'Limit total characters for your content excerpt (fill with 0 if you want to show full content)' ), // Label
+                __( 'Limit total characters for your content excerpt' ), // Label
                 array(
                     'option_type' => 'textinput',
                     'option_default' => '500',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
+                    'option_description' => __("To show all contents fill with <code>0</code>", 'calibrefx' ),
                     'option_attr' => array("class" => "calibrefx_content_limit_setting"),
                 ), // Settings config
                 5 //Priority
@@ -365,7 +404,7 @@ class CFX_Theme_Settings extends CFX_Admin {
                         ),
                     'option_default' => 'older-newer',
                     'option_filter' => 'safe_text',
-                    'option_description' => __("", 'calibrefx' ),
+                    'option_description' => __("There are 3 types of pagination available. Choose which one is the best for you.", 'calibrefx' ),
                 ), // Settings config
                 1 //Priority
             );
@@ -381,8 +420,8 @@ class CFX_Theme_Settings extends CFX_Admin {
     function comment_setting() {
         global $calibrefx;
 
-        calibrefx_add_meta_group( 'comment-settings', 'comment-display-settings', __( 'Comment', 'calibrefx' ) );
-        calibrefx_add_meta_group( 'comment-settings', 'trackback-display-settings', __( 'Trackback', 'calibrefx' ) );
+        calibrefx_add_meta_group( 'comment-settings', 'comment-display-settings', __( 'Comments', 'calibrefx' ) );
+        calibrefx_add_meta_group( 'comment-settings', 'trackback-display-settings', __( 'Trackbacks', 'calibrefx' ) );
         calibrefx_add_meta_group( 'comment-settings', 'comment-social-settings', __( 'Social Comment Integration', 'calibrefx' ) );
         
         //For Comment Display settings
@@ -413,6 +452,16 @@ class CFX_Theme_Settings extends CFX_Admin {
                 ), // Settings config
                 5 //Priority
             );
+
+            calibrefx_add_meta_option(
+                'comment-display-settings',  // group id
+                'comments_description', // field id and option name
+                __( 'You can generally disabled comment on posts or pages. Uncheck it if you want to disable comment box.','calibrefx' ), // Label
+                array(
+                    'option_type' => 'description',
+                ), // Settings config
+                99 //Priority
+            );
         });
 
         //For Trackback Display settings
@@ -420,7 +469,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                 'trackback-display-settings',  // group id
                 'trackbacks_posts', // field id and option name
-                __( 'Show trackback on post?','calibrefx' ), // Label
+                __( 'Show trackbacks on posts?','calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
@@ -433,7 +482,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                 'trackback-display-settings',  // group id
                 'trackbacks_pages', // field id and option name
-                __( 'Show trackback on page?','calibrefx' ), // Label
+                __( 'Show trackbacks on pages?','calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
@@ -443,6 +492,17 @@ class CFX_Theme_Settings extends CFX_Admin {
                 ), // Settings config
                 5 //Priority
             );
+
+            calibrefx_add_meta_option(
+                'trackback-display-settings',  // group id
+                'trackbacks_description', // field id and option name
+                __( 'You can generally disabled trackback / pingbacks on posts or pages. Uncheck it if you want to disable comment box. <br/>
+                     Learn more about WordPress Trackbacks and Pingbacks <a href="https://make.wordpress.org/support/user-manual/building-your-wordpress-community/trackbacks-and-pingbacks/" target="_blank">here</a>','calibrefx' ), // Label
+                array(
+                    'option_type' => 'description',
+                ), // Settings config
+                99 //Priority
+            );
         });
 
         //For Social Comment Integration
@@ -450,13 +510,13 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                 'comment-social-settings',  // group id
                 'facebook_comments', // field id and option name
-                __( 'Replace WordPress Comment with Facebook Comments?','calibrefx' ), // Label
+                __( 'Use Facebook comment instead of WordPress Default Comment','calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
+                    'option_description' => __("You can override WordPress default comment to use Facebook comment box. Please check it if you would like to activate it.", 'calibrefx' ),
                 ), // Settings config
                 1 //Priority
             );

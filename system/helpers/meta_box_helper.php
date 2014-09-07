@@ -325,7 +325,11 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
                                             echo '<label for="'.$settings_field.'['.$option_name.']">'.$option["option_label"].'</label>';
                                             echo $calibrefx->form->{$option['option_type']}( $settings_field."[".$option_name."]", $option['option_items'],calibrefx_get_option( $option_name ), '', $option['option_attr'] );
                                             break;
-
+                                        case 'description':
+                                            echo '<p class="description">'.
+                                                 $option['option_label'] .
+                                                 '</p>';
+                                            break;
                                         case 'custom':
                                             if ( isset( $option['option_custom'] ) ) {
                                                 echo $option['option_custom'];

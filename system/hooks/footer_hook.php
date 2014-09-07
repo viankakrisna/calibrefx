@@ -46,7 +46,7 @@ $cfxgenerator->calibrefx_footer_content = array(
 
 $cfxgenerator->wp_footer = array(
     array( 'function' => 'calibrefx_add_socials_script', 'priority' => 10 ),
-    array( 'function' => 'calibrefx_add_google_analytics', 'priority' => 15 ),
+    array( 'function' => 'calibrefx_show_tracking_scrips', 'priority' => 15 ),
     array( 'function' => 'calibrefx_footer_scripts', 'priority' => 20 ),
 );
 
@@ -179,11 +179,13 @@ return window.twttr || (t = { _e: [], ready: function(f) { t._e.push(f) } });
 }
 
 /**
- * Add google analytics settings
+ * Show Tracking Scripts
  */
-function calibrefx_add_google_analytics() {
+function calibrefx_show_tracking_scrips() {
 
     $analytic_id = calibrefx_get_option( 'analytic_id' );
+    $google_tagmanager_code = calibrefx_get_option( 'google_tagmanager_code' );
+    $facebook_tracking_code = calibrefx_get_option( 'facebook_tracking_code' );
 
     if( !empty( $analytic_id ) ) {
         echo "
@@ -200,4 +202,14 @@ function calibrefx_add_google_analytics() {
 </script>
         ";
     }
+
+    if( !empty( $google_tagmanager_code ) ) {
+        echo $google_tagmanager_code;
+    }
+
+    if( !empty( $facebook_tracking_code ) ) {
+        echo $facebook_tracking_code;
+    }
+
+
 }
