@@ -380,7 +380,7 @@ function calibrefx_content_span() {
     $site_layout = calibrefx_site_layout();
 
     // don't load sidebar on pages that don't need it
-    if ( current_theme_supports( 'calibrefx-responsive-style' ) ) {
+    if ( calibrefx_is_responsive_enabled() ) {
         
         if ( $site_layout == 'full-width-content' ) {
             return apply_filters( 'calibrefx_content_span', 'col-lg-12 col-md-12 col-sm-12 col-xs-12 first' );
@@ -417,7 +417,7 @@ function calibrefx_sidebar_span() {
         return;
     }
 
-    if ( current_theme_supports( 'calibrefx-responsive-style' ) ) {
+    if ( calibrefx_is_responsive_enabled() ) {
         return apply_filters( 'calibrefx_sidebar_span', 'col-lg-4 col-md-4 col-sm-12 col-xs-12' );
     } else {
         return apply_filters( 'calibrefx_sidebar_span', 'col-xs-4' );
@@ -433,7 +433,7 @@ function calibrefx_sidebar_alt_span() {
         return;
     }
 
-    if ( current_theme_supports( 'calibrefx-responsive-style' ) ) {
+    if ( calibrefx_is_responsive_enabled() ) {
         return apply_filters( 'calibrefx_sidebar_span', 'col-lg-3 col-md-3 col-sm-12 col-xs-12' );
     } else {
         return apply_filters( 'calibrefx_sidebar_span', 'col-xs-3' );
@@ -449,7 +449,7 @@ function calibrefx_content_sidebar_span() {
         return;
     }
 
-    if ( current_theme_supports( 'calibrefx-responsive-style' ) ) {
+    if ( calibrefx_is_responsive_enabled() ) {
         return apply_filters( 'calibrefx_sidebar_span', 'col-lg-9 col-md-9 col-sm-12 col-xs-12' );
     } else {
         return apply_filters( 'calibrefx_sidebar_span', 'col-xs-9' );
@@ -513,7 +513,7 @@ function col_class() {
         }
     }
 
-    if( current_theme_supports( 'calibrefx-responsive-style' ) ) {
+    if( calibrefx_is_responsive_enabled() ) {
         return 'col-xs-' . $opt0 . ' col-sm-' . $opt1 . ' col-md-' . $opt2 . ' col-lg-' . $opt3;
     } else {
         return 'col-xs-'. $opt3;
@@ -579,7 +579,7 @@ function col_offset_class() {
 
     }
 
-    if( current_theme_supports( 'calibrefx-responsive-style' ) ) {
+    if( calibrefx_is_responsive_enabled() ) {
         return 'col-xs-offset-' . $opt0 . ' col-sm-offset-' . $opt1 . ' col-md-offset-' . $opt2 . ' col-lg-offset-' . $opt3;
     } else {
         return 'col-xs-offset-' . $opt3;

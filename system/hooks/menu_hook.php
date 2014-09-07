@@ -79,7 +79,7 @@ function calibrefx_do_nav() {
 
         $nav_class = apply_filters( 'nav_class', calibrefx_row_class() );
 
-        if( current_theme_supports( 'calibrefx-responsive-style' ) ) {
+        if( calibrefx_is_responsive_enabled() ) {
             $nav_output = sprintf( '
                 <div id="nav" class="navbar navbar-default">
                     %2$s

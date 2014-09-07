@@ -75,7 +75,7 @@ function calibrefx_print_doctype() { ?>
 <meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
 <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<?php if ( current_theme_supports( 'calibrefx-responsive-style' ) ) { ?>
+<?php if ( calibrefx_is_responsive_enabled() ) { ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <?php } ?>
 <?php
@@ -266,7 +266,7 @@ function calibrefx_do_title_wrap( $title ) {
  */
 function calibrefx_print_wrap() {
     $wrap = '';
-    if ( current_theme_supports( 'calibrefx-responsive-style' ) && !calibrefx_layout_is_fluid() ) {
+    if ( calibrefx_is_responsive_enabled() AND !calibrefx_layout_is_fluid() ) {
         $wrap = sprintf( '
 .container{
 max-width: %dpx;
@@ -274,14 +274,14 @@ max-width: %dpx;
         
     }
 
-    if ( !current_theme_supports( 'calibrefx-responsive-style' ) ) {
+    if ( !calibrefx_is_responsive_enabled() ) {
         $wrap = sprintf( '
 body{
     min-width: %dpx;
 }
 .container{
     max-width: none;
-    width: %dpx;
+    width: %dpx !important;
 }', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width") );
     }
 

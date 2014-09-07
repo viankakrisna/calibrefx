@@ -57,3 +57,11 @@ function calibrefx_get_mobile_template( $template ) {
 		return $template;	
 	}
 }
+
+/**
+ * Check if responsive features is enabled
+ * @return boolean true if responsive enabled
+ */
+function calibrefx_is_responsive_enabled(){
+	return (get_theme_support( 'calibrefx-responsive-style' ) && !calibrefx_get_option( 'responsive_disabled' ));
+}

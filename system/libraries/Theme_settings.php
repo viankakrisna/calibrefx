@@ -518,10 +518,24 @@ class CFX_Theme_Settings extends CFX_Admin {
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
+                    'option_description' => __("Check this if you want to have wrapper box layout.", 'calibrefx' ),
                     'option_attr' => array("class" => "calibrefx_layout_width"),
                 ), // Settings config
                 6 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                'layout-general-settings',  // group id
+                'responsive_disabled', // field id and option name
+                __( 'Check this to disable responsive' ), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '0',
+                    'option_filter' => 'integer',
+                    'option_description' => __("Check this if you want to disable mobile responsive feature", 'calibrefx' ),
+                ), // Settings config
+                15 //Priority
             );
         });
 

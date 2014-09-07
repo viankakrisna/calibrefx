@@ -88,7 +88,7 @@ function calibrefx_do_footer_widgets() {
         return;
     }
 
-    if( current_theme_supports( 'calibrefx-responsive-style' ) ) {
+    if( calibrefx_is_responsive_enabled() ) {
         $span = "col-lg-" . strval(floor((12 / $count_footer_widgets) )) . " col-md-" . strval(floor((12 / $count_footer_widgets) )) . " col-sm-12 col-xs-12";
     } else {
         $span = "col-xs-" . strval(floor((12 / $count_footer_widgets) ));

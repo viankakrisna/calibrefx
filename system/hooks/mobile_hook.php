@@ -50,6 +50,10 @@ function calibrefx_detect_mobile_browser() {
 		return;
 	}
 
+    if( !get_theme_support( 'mobile-site' ) OR !calibrefx_mobile_themes_exist() OR !calibrefx_is_responsive_enabled() ) {
+        return;
+    }
+
 	add_filter( 'body_class', 'calibrefx_mobile_body_class' );
 
 	remove_action( 'calibrefx_after_header', 'calibrefx_do_nav' );
@@ -60,10 +64,6 @@ function calibrefx_detect_mobile_browser() {
         add_action( 'calibrefx_before_wrapper', 'calibrefx_mobile_open_nav' ); 
         add_action( 'calibrefx_after_wrapper', 'calibrefx_mobile_close_nav' ); 
     }
-
-	if( !get_theme_support( 'mobile-site' ) || !calibrefx_mobile_themes_exist() ) {
-		return;
-	}
 
 	add_filter( 'template_include', 'calibrefx_get_mobile_template' );
 

@@ -347,7 +347,7 @@ function calibrefx_header_body_classes( $classes ) {
         $classes[] = 'header-image';
     }
     
-    if ( current_theme_supports( 'calibrefx-responsive-style' ) ) {
+    if ( calibrefx_is_responsive_enabled() ) {
         $classes[] = 'responsive';
     } else {
         $classes[] = 'non-responsive'; 
