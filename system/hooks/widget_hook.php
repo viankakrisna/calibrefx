@@ -88,25 +88,18 @@ function calibrefx_register_additional_widget() {
     }
 }
 
-//add_filter( 'in_widget_form', 'calibrefx_custom_widget_attributes', 10, 3);
+add_filter( 'in_widget_form', 'calibrefx_custom_widget_attributes', 10, 3);
 function calibrefx_custom_widget_attributes( $widget, $return, $instance ) {
     if( !isset( $instance['custom_widget_class'] ) ) $instance['custom_widget_class'] = '';
     if( !isset( $instance['custom_icon_class'] ) ) $instance['custom_icon_class'] = '';
-    if( !isset( $instance['custom_widget_column_class'] ) ) $instance['custom_widget_column_class'] = '';
     if( !isset( $instance['show_advanced'] ) ) $instance['show_advanced'] = 0;
 ?>
 <p>
     <input type="checkbox" id="<?php echo $widget->get_field_id( 'show_advanced' ); ?>" name="<?php echo $widget->get_field_name( 'show_advanced' ); ?>" value="1" <?php if( $instance['show_advanced']) echo 'checked="checked"'; ?> class="show_advanced" />
-    <label for="<?php echo $widget->get_field_id( 'show_advanced' ); ?>"><strong><?php _e( 'Advanced', 'calibrefx' ); ?></strong></label>
+    <label for="<?php echo $widget->get_field_id( 'show_advanced' ); ?>"><strong><?php _e( 'Calibrefx Advanced Settings', 'calibrefx' ); ?></strong></label>
 </p>
 
 <div class="advanced-widget-options"<?php echo ( $instance['show_advanced'] ? ' style="display:block;"' : '' )?>>
-    <p>
-        <label for="<?php echo $widget->get_field_id( 'custom_widget_column_class' ); ?>"><?php _e( 'Custom Widget Column Classes', 'calibrefx' ); ?>:</label><br />
-        <input type="text" id="<?php echo $widget->get_field_id( 'custom_widget_column_class' ); ?>" name="<?php echo $widget->get_field_name( 'custom_widget_column_class' ); ?>" value="<?php echo esc_attr( $instance['custom_widget_column_class']); ?>" class="widefat" />
-    </p>
-    <p class="description"><?php _e( 'This will be used in footer widget to set column width class. eg: <i>col-md-5</i>', 'calibrefx' ); ?></p>
-
     <p>
         <label for="<?php echo $widget->get_field_id( 'custom_widget_class' ); ?>"><?php _e( 'Custom Widget Classes', 'calibrefx' ); ?>:</label><br />
         <input type="text" id="<?php echo $widget->get_field_id( 'custom_widget_class' ); ?>" name="<?php echo $widget->get_field_name( 'custom_widget_class' ); ?>" value="<?php echo esc_attr( $instance['custom_widget_class']); ?>" class="widefat" />
@@ -117,13 +110,13 @@ function calibrefx_custom_widget_attributes( $widget, $return, $instance ) {
         <label for="<?php echo $widget->get_field_id( 'custom_icon_class' ); ?>"><?php _e( 'Custom Icon Classes', 'calibrefx' ); ?>:</label><br />
         <input type="text" id="<?php echo $widget->get_field_id( 'custom_icon_class' ); ?>" name="<?php echo $widget->get_field_name( 'custom_icon_class' ); ?>" value="<?php echo esc_attr( $instance['custom_icon_class']); ?>" class="widefat" />
     </p>
-    <p class="description"><?php _e( 'This set an icon in widget title using font-awesome. <a href="http://fortawesome.github.io/Font-Awesome/icons/">Learn more about font-awesome.</a>', 'calibrefx' ); ?></p>
+    <p class="description"><?php _e( 'This set an icon in widget title using font-awesome. <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">Learn more about font-awesome.</a>', 'calibrefx' ); ?></p>
 </div>
 <?php
 }
 
-//add_filter( 'widget_update_callback', 'sukm_widget_callback', 20, 2);
-function sukm_widget_callback( $instance, $new_instance ) {
+add_filter( 'widget_update_callback', 'calibrefx_widget_update_callback', 20, 2);
+function calibrefx_widget_update_callback( $instance, $new_instance ) {
     if ( empty( $new_instance['show_advanced'] ) ) {
         $new_instance['show_advanced'] = 0;
     }
@@ -131,8 +124,8 @@ function sukm_widget_callback( $instance, $new_instance ) {
     return $new_instance;
 }
 
-//add_filter( 'widget_display_callback', 'sukm_custom_class_widget', 10, 3);
-function sukm_custom_class_widget( $instance, $widget, $args ) {
+add_filter( 'widget_display_callback', 'calibrefx_custom_class_widget', 10, 3);
+function calibrefx_custom_class_widget( $instance, $widget, $args ) {
     if ( isset( $instance['custom_widget_class'] ) ) {
         $widget_classname = $widget->widget_options['classname'];
         $custom_classname = $instance['custom_widget_class'];
@@ -143,10 +136,9 @@ function sukm_custom_class_widget( $instance, $widget, $args ) {
     if ( isset( $instance['custom_icon_class'] ) ) {
         $custom_icon_class = $instance['custom_icon_class'];
 
-        $args['before_title'] = str_replace( 'widgettitle">', 'widgettitle"><i class="widget-icon '.$custom_icon_class.'"></i> ', $args['before_title'] );
-    } else {
-        $args['before_title'] = str_replace( 'widgettitle">', 'widgettitle"><i class="widget-icon icon-align-justify"></i> ', $args['before_title'] );
-    }   
+        $args['before_title'] = str_replace( 'widgettitle">', 'widgettitle"><i class="fa '.$custom_icon_class.'"></i> ', $args['before_title'] );
+    
+    }
 
     $widget->widget( $args, $instance );
 

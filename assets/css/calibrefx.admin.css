@@ -161,7 +161,7 @@ hr.div {
 }
 
 .the-team h4{
-    font-size: 10px;
+    font-size: 12px !important;
     line-height: 20px;
     margin: 0;
     text-align: center;
@@ -177,10 +177,10 @@ hr.div {
 }
 
 .the-team .frame{  
-    box-shadow:0px 0px 4px #ccc;  
+    box-shadow: none;  
     
-    border: 6px solid #fff;
-    border-radius: 5px;
+    border: none;
+    border-radius: 0px;
 }
 
 .the-team .frame .inset{
