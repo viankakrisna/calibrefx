@@ -116,12 +116,14 @@ function calibrefx_custom_widget_attributes( $widget, $return, $instance ) {
 }
 
 add_filter( 'widget_update_callback', 'calibrefx_widget_update_callback', 20, 2);
-function calibrefx_widget_update_callback( $instance, $new_instance ) {
+function calibrefx_widget_update_callback( $instance, $new_instance ) { 
     if ( empty( $new_instance['show_advanced'] ) ) {
         $new_instance['show_advanced'] = 0;
     }
 
-    return $new_instance;
+    array_merge($instance, $new_instance);
+   
+    return $instance;
 }
 
 add_filter( 'widget_display_callback', 'calibrefx_custom_class_widget', 10, 3);
