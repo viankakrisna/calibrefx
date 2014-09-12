@@ -176,6 +176,16 @@ js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js
 return window.twttr || (t = { _e: [], ready: function(f) { t._e.push(f) } });
 }(document, "script", "twitter-wjs") );
 </script>'."\n";
+
+    //@TODO : add enable google+ in theme setting
+    echo 
+'<script type="text/javascript">
+  (function() {
+    var po = document.createElement(\'script\'); po.type = \'text/javascript\'; po.async = true;
+    po.src = \'https://apis.google.com/js/plusone.js?onload=onLoadCallback\';
+    var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>'."\n";
 }
 
 /**

@@ -1468,8 +1468,6 @@ function calibrefx_gplus( $atts, $content = null) {
 
     $output = '<span class="social-bookmark gplus-button"><span class="g-plusone"'.$attr.'></span></span>';
 
-    wp_enqueue_script( 'calibrefx-gplus-widget', 'https://apis.google.com/js/plusone.js', array(), false, true);
-
     return $output;
 }
 
