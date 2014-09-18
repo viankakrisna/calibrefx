@@ -57,6 +57,13 @@ abstract class CFX_Admin {
      */
     public $_model;
 
+    /**
+     * Remove Post Form
+     *
+     * @var object
+     */
+    public $_form_method = 'post';
+
 
     public $_submit_url = 'options.php';
 
@@ -257,24 +264,28 @@ abstract class CFX_Admin {
         $calibrefx_theme = wp_get_theme();
         ?>
         <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes <?php echo $calibrefx_current_section; ?>">
-            <form method="post" action="<?php echo $this->_submit_url; ?>" enctype="multipart/form-data" id="calibrefx-form">
+            <form method="<?php echo $this->_form_method; ?>" action="<?php echo $this->_submit_url; ?>" enctype="multipart/form-data" id="calibrefx-form">
+                <?php if( $this->_form_method != 'post' ) : ?>
                 <?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false); ?>
                 <?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false); ?>
                 <?php settings_fields( $this->settings_field ); // important! ?>
                 <?php do_action( 'calibrefx_hidden_fields' ); ?>
+                <?php endif; ?>
 
                 <div class="calibrefx-header">
                     <div class="calibrefx-option-logo">
                         <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
                     </div>
+                    <?php if( $this->_form_method != 'post' ) : ?>
                     <div class="calibrefx-submit-button">
                         <div class="clear"></div>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><?php _e( 'Save Settings', 'calibrefx' ) ?></button>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" value="1" onclick="return calibrefx_confirm( '<?php echo esc_js(__( 'Are you sure you want to reset?', 'calibrefx' ) ); ?>' );"><?php _e( 'Reset Settings', 'calibrefx' ); ?></button>
                     </div>
-
-                    
+                    <?php endif; ?>
                 </div>
+
+
                 <div class="calibrefx-content">
                     
                     <div class="metabox-holder">
@@ -314,11 +325,12 @@ abstract class CFX_Admin {
                             <div class="clear"></div>
                         </div>
                     </div>
+                    <?php if( $this->_form_method != 'post' ) : ?>
                     <div class="calibrefx-submit-button calibrefx-bottom">
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="icon-save"></i><?php _e( 'Save Settings', 'calibrefx' ) ?></button>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" onclick="return calibrefx_confirm( '<?php echo esc_js(__( 'Are you sure you want to reset?', 'calibrefx' ) ); ?>' );"><i class="icon-reset"></i><?php _e( 'Reset Settings', 'calibrefx' ); ?></button>
                     </div>
-
+                    <?php endif; ?>
                 </div>
             </form>
         </div>
