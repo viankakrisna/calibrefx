@@ -12,9 +12,9 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('textButton_text').value = medziShortcodom;			
-                    document.getElementById('iconButton_text').value = medziShortcodom;			
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'textButton_text' ).value = medziShortcodom;			
+                    document.getElementById( 'iconButton_text' ).value = medziShortcodom;			
                 }		
             }
 	
@@ -26,38 +26,38 @@
                 // ziskaj text medzi shortcode tagmi
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                 // ziskaj hodnoty z formu
-                var textButton_type = document.getElementById('textButton_type').value;
-                var textButton_size = document.getElementById('textButton_size').value;
-                var textButton_url = document.getElementById('textButton_url').value;
-                var textButton_rel = document.getElementById('textButton_rel').value;
-                var textButton_text = document.getElementById('textButton_text').value;
-                var textButton_active = document.getElementById('textButton_active');
-                var textButton_disabled = document.getElementById('textButton_disabled');
-                var textButton_block = document.getElementById('textButton_block');
-                var custom_class = document.getElementById('custom_class').value;
-                var custom_id = document.getElementById('custom_id').value;
+                var textButton_type = document.getElementById( 'textButton_type' ).value;
+                var textButton_size = document.getElementById( 'textButton_size' ).value;
+                var textButton_url = document.getElementById( 'textButton_url' ).value;
+                var textButton_rel = document.getElementById( 'textButton_rel' ).value;
+                var textButton_text = document.getElementById( 'textButton_text' ).value;
+                var textButton_active = document.getElementById( 'textButton_active' );
+                var textButton_disabled = document.getElementById( 'textButton_disabled' );
+                var textButton_block = document.getElementById( 'textButton_block' );
+                var custom_class = document.getElementById( 'custom_class' ).value;
+                var custom_id = document.getElementById( 'custom_id' ).value;
         
-                if (textButton_text != '' ){
+                if (textButton_text != '' ) {
                     shortcodeRetazec = '[button';
-                    if(textButton_type != '') shortcodeRetazec += ' type="'+textButton_type+'"';
-                    if(textButton_size != '') shortcodeRetazec += ' size="'+textButton_size+'"';
-                    if(textButton_url != '') shortcodeRetazec += ' url="'+textButton_url+'"';
-                    if(textButton_rel != 'nofollow') shortcodeRetazec += ' rel="'+textButton_rel+'"';
+                    if(textButton_type != '' ) shortcodeRetazec += ' type="'+textButton_type+'"';
+                    if(textButton_size != '' ) shortcodeRetazec += ' size="'+textButton_size+'"';
+                    if(textButton_url != '' ) shortcodeRetazec += ' url="'+textButton_url+'"';
+                    if(textButton_rel != 'nofollow' ) shortcodeRetazec += ' rel="'+textButton_rel+'"';
                     if(textButton_active.checked) shortcodeRetazec += ' active="'+textButton_active.value+'"';
                     if(textButton_disabled.checked) shortcodeRetazec += ' disabled="'+textButton_disabled.value+'"';
                     if(textButton_block.checked) shortcodeRetazec += ' block="'+textButton_block.value+'"';
-                    if(custom_class != '') shortcodeRetazec += ' class="'+custom_class+'"';
-                    if(custom_id != '') shortcodeRetazec += ' id="'+custom_id+'"';
+                    if(custom_class != '' ) shortcodeRetazec += ' class="'+custom_class+'"';
+                    if(custom_id != '' ) shortcodeRetazec += ' id="'+custom_id+'"';
                     shortcodeRetazec += ']'+textButton_text+'[/button]';
                 }else{
-                    alert('Opps! You have to insert text of the button.');				
+                    alert( 'Opps! You have to insert text of the button.' );				
                 }
                 
                 //vloz shortcode a repaint editor
                 if(window.tinyMCE) {
-                    //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                    tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                    tinyMCEPopup.editor.execCommand('mceRepaint');
+                    //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                    tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                    tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                     tinyMCEPopup.close();
                 }
 		
@@ -77,7 +77,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="textButtonTabID" class="current"><span><a href="javascript:mcTabs.displayTab('textButtonTabID','textButtonTab');" onmousedown="return false;">Text buttons</a></span></li>
+                    <li id="textButtonTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'textButtonTabID','textButtonTab' );" onmousedown="return false;">Text buttons</a></span></li>
                 </ul>
             </div>
 

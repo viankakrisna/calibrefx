@@ -12,8 +12,8 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('list_text').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'list_text' ).value = medziShortcodom;
                 }		
             }
 	
@@ -23,25 +23,25 @@
                 var shortcodeRetazec;
 		
                 // instancie tabov
-                var listTab_instancia = document.getElementById('listTab');	
+                var listTab_instancia = document.getElementById( 'listTab' );	
 		
                 // Text list ==============================================================
         
                 // je tab aktivny?
-                if (listTab_instancia.className.indexOf('current') != -1) {
+                if (listTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var list_style = document.getElementById('list_style').value;	
+                    var list_style = document.getElementById( 'list_style' ).value;	
 		
                     shortcodeRetazec = '[list style="'+list_style+'"]'+medziShortcodom+'[/list] ';
 		
 		
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
-                        window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                        tinyMCEPopup.editor.execCommand('mceRepaint');
+                        window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                        tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                         tinyMCEPopup.close();
                     }
 		
@@ -61,7 +61,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="listTabID" class="current"><span><a href="javascript:mcTabs.displayTab('listTabID','listTab');" onmousedown="return false;">List</a></span></li>            
+                    <li id="listTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'listTabID','listTab' );" onmousedown="return false;">List</a></span></li>            
                 </ul>
             </div>
 

@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -22,7 +22,7 @@
 
 
 add_action( 'customize_register', 'calibrefx_customize_register' );
-function calibrefx_customize_register($wp_customize){
+function calibrefx_customize_register( $wp_customize) {
 	global $calibrefx;
 	$wp_customize->add_section( 'calibrefx_layout_settings', array(
 		'title'         => __( 'Layout Settings', 'calibrefx' ),
@@ -39,10 +39,10 @@ function calibrefx_customize_register($wp_customize){
 		'label'         => __( 'Default Layout Type', 'calibrefx' ),
 		'section'       => 'calibrefx_layout_settings',
 		'type'    		=> 'radio',
-						'choices' => array(
-							'fluid' => __( 'Fluid Layout', 'calibrefx' ),
-							'static'  => __( 'Static Layout', 'calibrefx' ),
-						),
+							'choices' => array(
+								'fluid'   => __( 'Fluid Layout', 'calibrefx' ),
+								'static'  => __( 'Static Layout', 'calibrefx' ),
+							),
 		'priority'      => 1,
 	) );
 
@@ -80,8 +80,8 @@ function calibrefx_customize_register($wp_customize){
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  *
  */
-function calibrefx_save_back_customize_setting($wp_customize ){
-	$custom_theme_mod = get_theme_mod('calibrefx-settings');
+function calibrefx_save_back_customize_setting( $wp_customize ) {
+	$custom_theme_mod = get_theme_mod( 'calibrefx-settings' );
 	$calibrefx_settings = get_option( 'calibrefx-settings' );
 	$merge_value = wp_parse_args( $custom_theme_mod, $calibrefx_settings );
 	update_option( 'calibrefx-settings', $merge_value );
@@ -91,9 +91,9 @@ add_action( 'customize_save_after', 'calibrefx_save_back_customize_setting' );
 /**
  * Used by hook: 'customize_preview_init'
  * 
- * @see add_action('customize_preview_init',$func)
+ * @see add_action( 'customize_preview_init',$func)
  */
-function calibrefx_customizer_live_preview(){   
+function calibrefx_customizer_live_preview() {   
     wp_enqueue_script( 
           'calibrefx_themecustomizer_js',            //Give the script an ID
           get_template_directory_uri() . '/assets/js/theme-customize.js',//Point to file

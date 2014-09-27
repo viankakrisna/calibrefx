@@ -12,8 +12,8 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('togglebox_text').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'togglebox_text' ).value = medziShortcodom;
                 }		
             }
 	
@@ -23,21 +23,21 @@
                 var shortcodeRetazec;
 		
                 // instancie tabov
-                var toggleboxTab_instancia = document.getElementById('toggleboxTab');	
+                var toggleboxTab_instancia = document.getElementById( 'toggleboxTab' );	
 		
                 // Text togglebox ==============================================================
         
                 // je tab aktivny?
-                if (toggleboxTab_instancia.className.indexOf('current') != -1) {
+                if (toggleboxTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var num_togglebox = document.getElementById('num_togglebox').value;	
+                    var num_togglebox = document.getElementById( 'num_togglebox' ).value;	
 		
                     shortcodeRetazec = '[togglebox]';
 
-                    for(var i = 1; i <= num_togglebox; i++){
+                    for(var i = 1; i <= num_togglebox; i++) {
                         if(i == 1) shortcodeRetazec += '[togglebox_item in="1" title="Collapsible Group Item #'+i+'" id="accordion-'+i+'"]Collapsible Group Item #'+i+' Content[/togglebox_item]';
                         else shortcodeRetazec += '[togglebox_item title="Collapsible Group Item #'+i+'" id="accordion-'+i+'"]Collapsible Group Item #'+i+' Content[/togglebox_item]'; 
                     }
@@ -46,9 +46,9 @@
 		
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
-                        //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                        tinyMCEPopup.editor.execCommand('mceRepaint');
+                        //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                        tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                        tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                         tinyMCEPopup.close();
                     }
 		
@@ -68,7 +68,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="toggleboxTabID" class="current"><span><a href="javascript:mcTabs.displayTab('toggleboxTabID','toggleboxTab');" onmousedown="return false;">Togglebox</a></span></li>            
+                    <li id="toggleboxTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'toggleboxTabID','toggleboxTab' );" onmousedown="return false;">Togglebox</a></span></li>            
                 </ul>
             </div>
 

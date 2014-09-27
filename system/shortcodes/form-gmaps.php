@@ -12,8 +12,8 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('googlemaps_text').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'googlemaps_text' ).value = medziShortcodom;
                 }		
             }
 	
@@ -23,17 +23,17 @@
                 var shortcodeRetazec;
 		
                 // instancie tabov
-                var googlemapsTab_instancia = document.getElementById('googlemapsTab');	
+                var googlemapsTab_instancia = document.getElementById( 'googlemapsTab' );	
 		
                 // Column ==============================================================
         
                 // je tab aktivny?
-                if (googlemapsTab_instancia.className.indexOf('current') != -1) {
+                if (googlemapsTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var googlemapsSrc = document.getElementById('googlemapsSrc').value;
+                    var googlemapsSrc = document.getElementById( 'googlemapsSrc' ).value;
 
                     if ( googlemapsSrc != '' ) {
                         shortcodeRetazec = '[gmap]' + googlemapsSrc + '[/gmap]';		
@@ -47,9 +47,9 @@
 		
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
-                        //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                        tinyMCEPopup.editor.execCommand('mceRepaint');
+                        //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                        tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                        tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                         tinyMCEPopup.close();
                     }
 		
@@ -71,7 +71,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="googlemapsTabID" class="current"><span><a href="javascript:mcTabs.displayTab('googlemapsTabID','googlemapsTab');" onmousedown="return false;">Google map</a></span></li>            
+                    <li id="googlemapsTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'googlemapsTabID','googlemapsTab' );" onmousedown="return false;">Google map</a></span></li>            
                 </ul>
             </div>
 

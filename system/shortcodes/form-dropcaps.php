@@ -12,8 +12,8 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('dropcaps_text').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'dropcaps_text' ).value = medziShortcodom;
                 }		
             }
 	
@@ -23,28 +23,28 @@
                 var shortcodeRetazec;
 		
                 // instancie tabov
-                var dropcapsTab_instancia = document.getElementById('dropcapsTab');	
+                var dropcapsTab_instancia = document.getElementById( 'dropcapsTab' );	
 		
                 // Column ==============================================================
         
                 // je tab aktivny?
-                if (dropcapsTab_instancia.className.indexOf('current') != -1) {
+                if (dropcapsTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var dropcaps_color = document.getElementById('dropcaps_color').value;
-                    var dropcaps_font = document.getElementById('dropcaps_font').value;
-                    var dropcaps_style = document.getElementById('dropcaps_style').value;    
-                    var dropcaps_size = document.getElementById('dropcaps_size').value;           
+                    var dropcaps_color = document.getElementById( 'dropcaps_color' ).value;
+                    var dropcaps_font = document.getElementById( 'dropcaps_font' ).value;
+                    var dropcaps_style = document.getElementById( 'dropcaps_style' ).value;    
+                    var dropcaps_size = document.getElementById( 'dropcaps_size' ).value;           
 	
                     shortcodeRetazec = '[dropcap color="' + dropcaps_color + '" font="' + dropcaps_font + '" style="' + dropcaps_style + '" size="' + dropcaps_size + '"]'+medziShortcodom+'[/dropcap]';
         
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
-                        //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                        tinyMCEPopup.editor.execCommand('mceRepaint');
+                        //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                        tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                        tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                         tinyMCEPopup.close();
                     }
 		
@@ -64,7 +64,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="dropcapsTabID" class="current"><span><a href="javascript:mcTabs.displayTab('dropcapsTabID','dropcapsTab');" onmousedown="return false;">Dropcaps</a></span></li>            
+                    <li id="dropcapsTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'dropcapsTabID','dropcapsTab' );" onmousedown="return false;">Dropcaps</a></span></li>            
                 </ul>
             </div>
 

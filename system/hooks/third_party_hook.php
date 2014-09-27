@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -33,7 +33,7 @@
 global $cfxgenerator;
 
 $cfxgenerator->calibrefx_setup = array(
-	array('function' => 'calibrefx_init_third_party', 'priority' => 0)
+	array( 'function' => 'calibrefx_init_third_party', 'priority' => 0 )
 );
 
 /********************
@@ -43,9 +43,9 @@ $cfxgenerator->calibrefx_setup = array(
 /**
  * After frameworks is initialized we initialize other third party module
  */
-function calibrefx_init_third_party(){
+function calibrefx_init_third_party() {
     global $oBrowser, $calibrefx;
 	    
-    $calibrefx->load->file(CALIBREFX_LIBRARY_URI . '/third-party/mobiledetector/mobiledetector.php');
+    $calibrefx->load->file( CALIBREFX_LIBRARY_URI . '/third-party/mobiledetector/mobiledetector.php' );
     $oBrowser = new mobileDetector();
 }

@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -53,12 +53,12 @@ function calibrefx_post_date_shortcode( $atts ) {
 	
 	$display = '';
 	
-	switch($atts['format']){
+	switch( $atts['format']) {
 		case 'relative' : 
 			$display = calibrefx_human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'calibrefx' );
 			break;
 		case 'time-ago' : 
-			$display = calibrefx_time_ago( get_the_date('Y/m/d') );
+			$display = calibrefx_time_ago( get_the_date( 'Y/m/d' ) );
 			break;
 		default:
 			$display = get_the_time( $atts['format'] );
@@ -129,7 +129,7 @@ function calibrefx_post_author_link_shortcode( $atts ) {
     $author = get_the_author();
     $author_url = get_the_author_meta( 'url' );
 
-    if(!$author){
+    if(!$author) {
         global $post;
         $author_url = get_the_author_meta( 'url', $post->post_author );
     }
@@ -161,13 +161,13 @@ function calibrefx_post_author_posts_link_shortcode( $atts ) {
     $author = get_the_author_meta( 'ID' );
     $author_name = get_the_author();
 
-    if(!$author){
+    if(!$author) {
         global $post;
         $author =  $post->post_author;
         $author_name = get_the_author_meta( 'user_nicename', $post->post_author );
     }
 
-    if(is_custom_post_type($post)) $author = sprintf( '<span class="fn n">%s</span>', $author_name );
+    if(is_custom_post_type( $post) ) $author = sprintf( '<span class="fn n">%s</span>', $author_name );
     else $author = sprintf( '<a href="%s" class="fn n" title="%s" rel="author">%s</a>', get_author_posts_url( $author ), $author_name, $author_name );
 
     $output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $author, $atts['before'], $atts['after'] );
@@ -181,11 +181,11 @@ add_shortcode( 'post_comments', 'calibrefx_post_comments_shortcode' );
  * Supported shortcode attributes are:
  *   after (output after link, default is empty string),
  *   before (output before link, default is empty string),
- *   hide_if_off (hide link if comments are off, default is 'enabled' (true)),
+ *   hide_if_off (hide link if comments are off, default is 'enabled' (true) ),
  *   more (text when there is more than 1 comment, use % character as placeholder
- *     for actual number, default is '% Comments')
- *   one (text when there is exactly one comment, default is '1 Comment'),
- *   zero (text when there are no comments, default is 'Leave a Comment').
+ *     for actual number, default is '% Comments' )
+ *   one (text when there is exactly one comment, default is '1 Comment' ),
+ *   zero (text when there are no comments, default is 'Leave a Comment' ).
  *
  */
 function calibrefx_post_comments_shortcode( $atts ) {
@@ -198,8 +198,8 @@ function calibrefx_post_comments_shortcode( $atts ) {
             'zero'        => __( 'Leave a Comment', 'calibrefx' ),
     );
 
-    $is_facebook_comment_enabled = calibrefx_get_option('facebook_comments');
-    if($is_facebook_comment_enabled) return;
+    $is_facebook_comment_enabled = calibrefx_get_option( 'facebook_comments' );
+    if( $is_facebook_comment_enabled) return;
 
     $atts = shortcode_atts( $defaults, $atts );
     if ( ( ! calibrefx_get_option( 'comments_posts' ) || ! comments_open() ) && 'enabled' === $atts['hide_if_off'] )
@@ -219,8 +219,8 @@ add_shortcode( 'post_tags', 'calibrefx_post_tags_shortcode' );
  *
  * Supported shortcode attributes are:
  *   after (output after link, default is empty string),
- *   before (output before link, default is 'Tagged With: '),
- *   sep (separator string between tags, default is ', ').
+ *   before (output before link, default is 'Tagged With: ' ),
+ *   sep (separator string between tags, default is ', ' ).
  *
  */
 function calibrefx_post_tags_shortcode( $atts ) {
@@ -242,8 +242,8 @@ add_shortcode( 'post_categories', 'calibrefx_post_categories_shortcode' );
  *
  * Supported shortcode attributes are:
  *   after (output after link, default is empty string),
- *   before (output before link, default is 'Tagged With: '),
- *   sep (separator string between tags, default is ', ').
+ *   before (output before link, default is 'Tagged With: ' ),
+ *   sep (separator string between tags, default is ', ' ).
  *
  */
 function calibrefx_post_categories_shortcode( $atts ) {
@@ -264,9 +264,9 @@ add_shortcode( 'post_terms', 'calibrefx_post_terms_shortcode' );
  *
  * Supported shortcode attributes are:
  *   after (output after link, default is empty string),
- *   before (output before link, default is 'Tagged With: '),
- *   sep (separator string between tags, default is ', '),
- *    taxonomy (name of the taxonomy, default is 'category').
+ *   before (output before link, default is 'Tagged With: ' ),
+ *   sep (separator string between tags, default is ', ' ),
+ *    taxonomy (name of the taxonomy, default is 'category' ).
  *
  */
 function calibrefx_post_terms_shortcode( $atts ) {
@@ -291,8 +291,8 @@ add_shortcode( 'post_edit', 'calibrefx_post_edit_shortcode' );
  *
  * Supported shortcode attributes are:
  *   after (output after link, default is empty string),
- *   before (output before link, default is 'Tagged With: '),
- *   link (link text, default is '(Edit)').
+ *   before (output before link, default is 'Tagged With: ' ),
+ *   link (link text, default is '(Edit)' ).
  */
 function calibrefx_post_edit_shortcode( $atts ) {
     if ( ! apply_filters( 'calibrefx_edit_post_link', true ) ) return;

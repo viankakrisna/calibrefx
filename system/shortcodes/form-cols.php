@@ -12,8 +12,8 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('col_text').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'col_text' ).value = medziShortcodom;
                 }		
             }
 	
@@ -23,36 +23,36 @@
                 var shortcodeRetazec;
 		
                 // instancie tabov
-                var colTab_instancia = document.getElementById('colTab');	
+                var colTab_instancia = document.getElementById( 'colTab' );	
 		
                 // Column ==============================================================
         
                 // je tab aktivny?
-                if (colTab_instancia.className.indexOf('current') != -1) {
+                if (colTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var col_width = document.getElementById('col_width').value;	
-                    var is_last = document.getElementById('is_last').value;	
-                    var is_first = document.getElementById('is_first').value; 
-                    var custom_class = document.getElementById('custom_class').value;
-                    var custom_id = document.getElementById('custom_id').value;
+                    var col_width = document.getElementById( 'col_width' ).value;	
+                    var is_last = document.getElementById( 'is_last' ).value;	
+                    var is_first = document.getElementById( 'is_first' ).value; 
+                    var custom_class = document.getElementById( 'custom_class' ).value;
+                    var custom_id = document.getElementById( 'custom_id' ).value;
 
                     var attr = '';
-                    if(is_last != ''){ attr += ' last="' + is_last + '"'; }
-                    if(is_first != ''){ attr += ' first="' + is_first + '"'; }
-                    if(custom_class != ''){ attr += ' class="' + custom_class + '"'; }
-                    if(custom_id != ''){ attr += ' id="' + custom_id + '"'; }
+                    if(is_last != '' ) { attr += ' last="' + is_last + '"'; }
+                    if(is_first != '' ) { attr += ' first="' + is_first + '"'; }
+                    if(custom_class != '' ) { attr += ' class="' + custom_class + '"'; }
+                    if(custom_id != '' ) { attr += ' id="' + custom_id + '"'; }
 		
                     //shortcodeRetazec = '["'+col_width+'" last="'+is_last+'" ]'+medziShortcodom+'[/"'+col_width+'"] ';
                     shortcodeRetazec = '[' + col_width + attr + ']' + medziShortcodom + '[/'+col_width+']';
 		
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
-                        //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                        tinyMCEPopup.editor.execCommand('mceRepaint');
+                        //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                        tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                        tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                         tinyMCEPopup.close();
                     }
 		
@@ -72,7 +72,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="colTabID" class="current"><span><a href="javascript:mcTabs.displayTab('colTabID','colTab');" onmousedown="return false;">Column</a></span></li>            
+                    <li id="colTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'colTabID','colTab' );" onmousedown="return false;">Column</a></span></li>            
                 </ul>
             </div>
 

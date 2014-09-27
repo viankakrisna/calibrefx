@@ -17,22 +17,22 @@
                 // shortcode sam
                 var shortcodeRetazec;
                 // instancie tabov
-                var tooltipTab_instancia = document.getElementById('tooltipTab');	
+                var tooltipTab_instancia = document.getElementById( 'tooltipTab' );	
                 // Text tooltip ==============================================================
         
                 // ziskaj text medzi shortcode tagmi
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
         
                 // ziskaj hodnoty z formu			
-                var tooltip_position = document.getElementById('tooltip_position').value;	            
+                var tooltip_position = document.getElementById( 'tooltip_position' ).value;	            
            
                 shortcodeRetazec = '[tooltip position="'+tooltip_position+'" text="This is tooltip content." url="#"]Tooltip Text[/tooltip]'; 
             
                 //vloz shortcode a repaint editor
                 if(window.tinyMCE) {
-                    //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                    tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                    tinyMCEPopup.editor.execCommand('mceRepaint');
+                    //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                    tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                    tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                     tinyMCEPopup.close();
                 }
                 return;
@@ -47,7 +47,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="tooltipTabID" class="current"><span><a href="javascript:mcTabs.displayTab('tooltipTabID','tooltipTab');" onmousedown="return false;">Tooltips</a></span></li>            
+                    <li id="tooltipTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'tooltipTabID','tooltipTab' );" onmousedown="return false;">Tooltips</a></span></li>            
                 </ul>
             </div>
             <div class="panel_wrapper">

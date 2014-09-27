@@ -20,25 +20,25 @@
  * @package CalibreFx
  */
 
-!defined('CALIBREFX_URI') && define('CALIBREFX_URI', get_template_directory());
-!defined('CALIBREFX_URL') && define('CALIBREFX_URL', get_template_directory_uri());
+!defined( 'CALIBREFX_URI' ) && define( 'CALIBREFX_URI', get_template_directory() );
+!defined( 'CALIBREFX_URL' ) && define( 'CALIBREFX_URL', get_template_directory_uri() );
 
 /** Run the calibrefx_pre Hook */
-do_action('calibrefx_pre');
+do_action( 'calibrefx_pre' );
 
 /** Define Theme Info Constants */
-define('FRAMEWORK_NAME', 'Calibrefx');
-define('FRAMEWORK_CODENAME', 'Red Penguin');
-define('FRAMEWORK_VERSION', '1.1.2');
-define('FRAMEWORK_DB_VERSION', '1000');
-define('FRAMEWORK_URL', 'http://www.calibrefx.com');
-define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1400033811'));
+define( 'FRAMEWORK_NAME', 'Calibrefx' );
+define( 'FRAMEWORK_CODENAME', 'Red Penguin' );
+define( 'FRAMEWORK_VERSION', '1.2.0b' );
+define( 'FRAMEWORK_DB_VERSION', '1000' );
+define( 'FRAMEWORK_URL', 'http://www.calibrefx.com' );
+define( 'FRAMEWORK_RELEASE_DATE', date_i18n( 'F j, Y', '1400033811' ) );
 /*
  * ------------------------------------------------------
  *  Load the global functions
  * ------------------------------------------------------
  */
-require_once( CALIBREFX_URI . '/system/config/constants.php');
+require_once( CALIBREFX_URI . '/system/config/constants.php' );
 require_once( CALIBREFX_URI . '/system/core/Common.php' );
 require_once( CALIBREFX_URI . '/system/core/Model.php' );
 require_once( CALIBREFX_URI . '/system/core/Generator.php' );
@@ -57,14 +57,14 @@ require_once( CALIBREFX_URI . '/system/core/Calibrefx.php' );
 //Initialize calibrefx instance
 $calibrefx = calibrefx_get_instance();
 
-add_action( 'after_setup_theme', function(){
+add_action( 'after_setup_theme', function() {
 	global $calibrefx, $cfxgenerator;
 	$calibrefx->load->do_autoload();
 	$cfxgenerator->run_hook();
 	$calibrefx->run();
-},0);
+},0 );
 
-add_action( 'wp', function(){
+add_action( 'wp', function() {
 	global $calibrefx, $cfxgenerator;
 	wp_cache_set( 'calibrefx', $calibrefx );
 	wp_cache_set( 'cfxgenerator', $cfxgenerator );

@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -39,21 +39,23 @@
  * @param object CFX_Model, default null
  * @return void
  */
-function calibrefx_get_option($key, $model = null) {
-    global $calibrefx;    
-    if(null === $model){
-        if(!isset($calibrefx->theme_settings_m)){
-            $calibrefx->load->model('theme_settings_m');
+function calibrefx_get_option( $key, $model = null ) {
+    global $calibrefx;
+
+    if( null === $model ) {
+        if ( !isset( $calibrefx->theme_settings_m ) ) {
+            $calibrefx->load->model( 'theme_settings_m' );
         }
+
         //we load default model
         $model = $calibrefx->theme_settings_m;  
     }
     
-    return $model->get($key);
+    return $model->get( $key );
 }
 
-function calibrefx_option($key, $model = null) {
-    echo calibrefx_get_option($key, $model);
+function calibrefx_option( $key, $model = null ) {
+    echo calibrefx_get_option( $key, $model );
 }
 
 /**
@@ -62,26 +64,25 @@ function calibrefx_option($key, $model = null) {
  *
  * @param string $field used to indicate the custom field key
  */
-function calibrefx_custom_field($field) {
-    echo calibrefx_get_custom_field($field);
+function calibrefx_custom_field( $field ) {
+    echo calibrefx_get_custom_field( $field );
 }
 
-function calibrefx_get_custom_field($field) {
-
+function calibrefx_get_custom_field( $field ) {
     global $id, $post;
 
-    if (null === $id && null === $post) {
+    if ( null === $id && null === $post ) {
         return false;
     }
 
     $post_id = null === $id ? $post->ID : $id;
 
-    $custom_field = get_post_meta($post_id, $field, true);
+    $custom_field = get_post_meta( $post_id, $field, true);
 
-    if ($custom_field) {
-        if(!is_array($custom_field)){
+    if ( $custom_field ) {
+        if(!is_array( $custom_field ) ) {
             /** sanitize and return the value of the custom field */
-            return stripslashes(wp_kses_decode_entities($custom_field));
+            return stripslashes( wp_kses_decode_entities( $custom_field ) );
         }
         return $custom_field;
     } else {
@@ -90,27 +91,28 @@ function calibrefx_get_custom_field($field) {
     }
 }
 
-function calibrefx_get_usermeta($user_id, $key, $single = true) {
+function calibrefx_get_usermeta( $user_id, $key, $single = true ) {
     //@TODO: user cache mechanism here
 
-    $options = apply_filters('calibrefx_usermeta', get_user_meta($user_id, $key, $single));
+    $options = apply_filters( 'calibrefx_usermeta', get_user_meta( $user_id, $key, $single ) );
 
     return $options;
 }
 
-function calibrefx_usermeta($user_id, $key) {
-    return calibrefx_get_usermeta($user_id, $key);
+function calibrefx_usermeta( $user_id, $key ) {
+    return calibrefx_get_usermeta( $user_id, $key );
 }
 
-function calibrefx_update_option($key, $value, $model = NULL){
+function calibrefx_update_option( $key, $value, $model = NULL ) {
     global $calibrefx;    
-    if(null === $model){
-        if(!isset($calibrefx->theme_settings_m)){
-            $calibrefx->load->model('theme_settings_m');
+    
+    if ( null === $model ) {
+        if ( !isset( $calibrefx->theme_settings_m ) ) {
+            $calibrefx->load->model( 'theme_settings_m' );
         }
         //we load default model
         $model = $calibrefx->theme_settings_m;  
     }
     
-    return $model->get($key);
+    return $model->get( $key );
 }

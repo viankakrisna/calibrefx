@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -35,8 +35,8 @@
  * @return boolean
  * @author Ivan Kristianto
  **/
-function calibrefx_mobile_themes_exist(){
-	return file_exists(CHILD_MOBILE_URI);
+function calibrefx_mobile_themes_exist() {
+	return file_exists( CHILD_MOBILE_URI );
 }
 
 
@@ -48,12 +48,20 @@ function calibrefx_mobile_themes_exist(){
  * @return string
  * @author Hilaladdiyar
  **/
-function calibrefx_get_mobile_template($template){
-	$mobile_template = str_replace(CHILD_URI, CHILD_MOBILE_URI, $template);
+function calibrefx_get_mobile_template( $template ) {
+	$mobile_template = str_replace( CHILD_URI, CHILD_MOBILE_URI, $template );
 
-	if(file_exists($mobile_template)){
+	if ( file_exists( $mobile_template ) ) {
 		return $mobile_template;
-	}else{
+	} else {
 		return $template;	
 	}
+}
+
+/**
+ * Check if responsive features is enabled
+ * @return boolean true if responsive enabled
+ */
+function calibrefx_is_responsive_enabled(){
+	return (get_theme_support( 'calibrefx-responsive-style' ) && !calibrefx_get_option( 'responsive_disabled' ));
 }

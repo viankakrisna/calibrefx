@@ -12,9 +12,9 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('youtubeID').value = medziShortcodom;
-                    document.getElementById('vimeoID').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'youtubeID' ).value = medziShortcodom;
+                    document.getElementById( 'vimeoID' ).value = medziShortcodom;
                 }		
             }
 	
@@ -24,20 +24,20 @@
                 var shortcodeRetazec;
 		
                 // instancie tabov
-                var youtubeTab_instancia = document.getElementById('youtubeTab');
-                var vimeoTab_instancia = document.getElementById('vimeoTab');	
+                var youtubeTab_instancia = document.getElementById( 'youtubeTab' );
+                var vimeoTab_instancia = document.getElementById( 'vimeoTab' );	
 		
                 // Column ==============================================================
         
                 // je tab aktivny?
-                if (youtubeTab_instancia.className.indexOf('current') != -1) {
+                if (youtubeTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var youtubeWidth = document.getElementById('youtubeWidth').value;	
-                    var youtubeHeight = document.getElementById('youtubeHeight').value;
-                    var youtubeID = document.getElementById('youtubeID').value;
+                    var youtubeWidth = document.getElementById( 'youtubeWidth' ).value;	
+                    var youtubeHeight = document.getElementById( 'youtubeHeight' ).value;
+                    var youtubeID = document.getElementById( 'youtubeID' ).value;
 
                     if ( (youtubeWidth != '' ) && (youtubeHeight != '' ) ) {
                         //shortcodeRetazec
@@ -46,20 +46,20 @@
                         shortcodeRetazec = '[youtube width="' + youtubeWidth + '" height="' + youtubeHeight + '"]'+youtubeID+'[/youtube]';
                     } else {
 			
-                        alert('Opps! You have to insert dimension of the video.');
+                        alert( 'Opps! You have to insert dimension of the video.' );
                     } 
 		
                 } 
       
                 // je tab aktivny?
-                if (vimeoTab_instancia.className.indexOf('current') != -1) {
+                if (vimeoTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var vimeoWidth = document.getElementById('vimeoWidth').value;	
-                    var vimeoHeight = document.getElementById('vimeoHeight').value;
-                    var vimeoID = document.getElementById('vimeoID').value;
+                    var vimeoWidth = document.getElementById( 'vimeoWidth' ).value;	
+                    var vimeoHeight = document.getElementById( 'vimeoHeight' ).value;
+                    var vimeoID = document.getElementById( 'vimeoID' ).value;
 
                     if ( (vimeoWidth != '' ) && (vimeoHeight != '' ) ) {
                         //shortcodeRetazec
@@ -69,7 +69,7 @@
             
                     } else {
 			
-                        alert('Opps! You have to insert dimension of the video.');
+                        alert( 'Opps! You have to insert dimension of the video.' );
 			
                     } 
 		
@@ -77,9 +77,9 @@
       
                 //vloz shortcode a repaint editor
                 if(window.tinyMCE) {
-                    //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                    tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                    tinyMCEPopup.editor.execCommand('mceRepaint');
+                    //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                    tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                    tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                     tinyMCEPopup.close();
                 }
 		
@@ -99,8 +99,8 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="youtubeTabID" class="current"><span><a href="javascript:mcTabs.displayTab('youtubeTabID','youtubeTab');" onmousedown="return false;">Youtube</a></span></li> 
-                    <li id="vimeoTabID"><span><a href="javascript:mcTabs.displayTab('vimeoTabID','vimeoTab');" onmousedown="return false;">Vimeo</a></span></li>           
+                    <li id="youtubeTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'youtubeTabID','youtubeTab' );" onmousedown="return false;">Youtube</a></span></li> 
+                    <li id="vimeoTabID"><span><a href="javascript:mcTabs.displayTab( 'vimeoTabID','vimeoTab' );" onmousedown="return false;">Vimeo</a></span></li>           
                 </ul>
             </div>
 

@@ -18,7 +18,7 @@
  * @package CalibreFx
  */
  
-$cfxgenerator->replace('calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_404');
+$cfxgenerator->replace( 'calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_404' );
 
 /**
  * This function outputs a 404 "Not Found" error message

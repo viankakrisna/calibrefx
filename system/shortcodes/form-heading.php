@@ -12,8 +12,8 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('text_text').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'text_text' ).value = medziShortcodom;
                 }		
             }
 	
@@ -24,19 +24,19 @@
                 // ziskaj text medzi shortcode tagmi
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                 // ziskaj hodnoty z formu			
-                var text_color = document.getElementById('text_color').value;
-                var text_font = document.getElementById('text_font').value;
-                var text_style = document.getElementById('text_style').value;
-                var text_type = document.getElementById('text_type').value;
+                var text_color = document.getElementById( 'text_color' ).value;
+                var text_font = document.getElementById( 'text_font' ).value;
+                var text_style = document.getElementById( 'text_style' ).value;
+                var text_type = document.getElementById( 'text_type' ).value;
 
 
                 shortcodeRetazec = '[' + text_type + ' color="' + text_color + '" font="' + text_font + '" font_style="' + text_style + '"]YOUR HEADING TEXT HERE[/' + text_type + ']';
     
                 //vloz shortcode a repaint editor
                 if(window.tinyMCE) {
-                    //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                    tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                    tinyMCEPopup.editor.execCommand('mceRepaint');
+                    //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                    tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                    tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                     tinyMCEPopup.close();
                 }
 	
@@ -56,7 +56,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="textTabID" class="current"><span><a href="javascript:mcTabs.displayTab('textTabID','textTab');" onmousedown="return false;">Headings</a></span></li>            
+                    <li id="textTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'textTabID','textTab' );" onmousedown="return false;">Headings</a></span></li>            
                 </ul>
             </div>
 

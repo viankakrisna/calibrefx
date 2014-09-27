@@ -18,39 +18,39 @@
                 var shortcode_output;
 		
                 // instancie tabov
-                var nivoTab_instancia = document.getElementById('nivoTab');	
+                var nivoTab_instancia = document.getElementById( 'nivoTab' );	
 		
                 // Column ==============================================================
         
                 // je tab aktivny?
-                if (nivoTab_instancia.className.indexOf('current') != -1) {
+                if (nivoTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var slider_interval = document.getElementById('slider_interval').value;	
-                    var slider_speed = document.getElementById('slider_speed').value; 
-                    var slider_item = document.getElementById('slider_item').value;
-                    var slider_effect = document.getElementById('slider_effect').value;
-                    var slider_pager = document.getElementById('slider_pager').value;
-                    var slider_nav = document.getElementById('slider_nav').value;
-                    var slider_width = document.getElementById('slider_width').value;
-                    var slider_height = document.getElementById('slider_height').value;
+                    var slider_interval = document.getElementById( 'slider_interval' ).value;	
+                    var slider_speed = document.getElementById( 'slider_speed' ).value; 
+                    var slider_item = document.getElementById( 'slider_item' ).value;
+                    var slider_effect = document.getElementById( 'slider_effect' ).value;
+                    var slider_pager = document.getElementById( 'slider_pager' ).value;
+                    var slider_nav = document.getElementById( 'slider_nav' ).value;
+                    var slider_width = document.getElementById( 'slider_width' ).value;
+                    var slider_height = document.getElementById( 'slider_height' ).value;
 
                     shortcode_output = '[slider';
 
-                    if(slider_interval != '') shortcode_output += ' interval="'+slider_interval+'"';
-                    if(slider_speed != '') shortcode_output += ' speed="'+slider_speed+'"';
-                    if(slider_effect != '' && slider_effect != 'fade') shortcode_output += ' fx="'+slider_effect+'"';
+                    if(slider_interval != '' ) shortcode_output += ' interval="'+slider_interval+'"';
+                    if(slider_speed != '' ) shortcode_output += ' speed="'+slider_speed+'"';
+                    if(slider_effect != '' && slider_effect != 'fade' ) shortcode_output += ' fx="'+slider_effect+'"';
                     if(slider_pager != '' && slider_pager != 0) shortcode_output += ' pager="'+slider_pager+'"';
                     if(slider_nav != '' && slider_nav != 0) shortcode_output += ' next_prev="'+slider_nav+'"';
-                    if(slider_height != '') shortcode_output += ' height="'+slider_height+'"';
-                    if(slider_width != '') shortcode_output += ' speed="'+slider_width+'"';
+                    if(slider_height != '' ) shortcode_output += ' height="'+slider_height+'"';
+                    if(slider_width != '' ) shortcode_output += ' speed="'+slider_width+'"';
 
                     shortcode_output += "]";
               
 				
-                    for( var i = 0; i < slider_item; i++ ){
+                    for( var i = 0; i < slider_item; i++ ) {
                         shortcode_output += '[slider_item src="ABSOLUTE PATH TO THE IMAGE FILE" url="" title=""][/slider_item]';
                     }
 				
@@ -58,9 +58,9 @@
                    
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
-                        //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcode_output);
-                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcode_output);
-                        tinyMCEPopup.editor.execCommand('mceRepaint');
+                        //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcode_output);
+                        tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcode_output);
+                        tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                         tinyMCEPopup.close();
                     }
 		
@@ -82,7 +82,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="nivoTabID" class="current"><span><a href="javascript:mcTabs.displayTab('nivoTabID','nivoTab');" onmousedown="return false;">Calibrefx Slider</a></span></li>
+                    <li id="nivoTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'nivoTabID','nivoTab' );" onmousedown="return false;">Calibrefx Slider</a></span></li>
                 </ul>
             </div>
 

@@ -12,8 +12,8 @@
 		
                 tinyMCEPopup.resizeToInnerSize();
                 var medziShortcodom = tinyMCE.activeEditor.selection.getContent();		
-                if(medziShortcodom != '') {			
-                    document.getElementById('image_text').value = medziShortcodom;
+                if(medziShortcodom != '' ) {			
+                    document.getElementById( 'image_text' ).value = medziShortcodom;
                 }		
             }
 	
@@ -23,20 +23,20 @@
                 var shortcodeRetazec;
 		
                 // instancie tabov
-                var imageTab_instancia = document.getElementById('imageTab');	
+                var imageTab_instancia = document.getElementById( 'imageTab' );	
 		
                 // Column ==============================================================
         
                 // je tab aktivny?
-                if (imageTab_instancia.className.indexOf('current') != -1) {
+                if (imageTab_instancia.className.indexOf( 'current' ) != -1) {
 		  
                     // ziskaj text medzi shortcode tagmi
                     var medziShortcodom = tinyMCE.activeEditor.selection.getContent();
                     // ziskaj hodnoty z formu			
-                    var imageWidth = document.getElementById('imageWidth').value;	
-                    var imageHeight = document.getElementById('imageHeight').value;
-                    var imageTitle = document.getElementById('imageTitle').value;
-                    var imageSrc = document.getElementById('imageSrc').value;
+                    var imageWidth = document.getElementById( 'imageWidth' ).value;	
+                    var imageHeight = document.getElementById( 'imageHeight' ).value;
+                    var imageTitle = document.getElementById( 'imageTitle' ).value;
+                    var imageSrc = document.getElementById( 'imageSrc' ).value;
 
                     if ( (imageWidth != '' ) && (imageHeight != '' ) ) {
                         //shortcodeRetazec
@@ -44,7 +44,7 @@
 			
                     } else {
 			
-                        alert('Opps! You have to insert dimension of the image.');
+                        alert( 'Opps! You have to insert dimension of the image.' );
 			
                     }
 		
@@ -52,9 +52,9 @@
 		
                     //vloz shortcode a repaint editor
                     if(window.tinyMCE) {
-                        //window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, shortcodeRetazec);
-                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcodeRetazec);
-                        tinyMCEPopup.editor.execCommand('mceRepaint');
+                        //window.tinyMCE.execInstanceCommand( 'content', 'mceInsertContent', false, shortcodeRetazec);
+                        tinyMCE.activeEditor.execCommand( 'mceInsertContent', 0, shortcodeRetazec);
+                        tinyMCEPopup.editor.execCommand( 'mceRepaint' );
                         tinyMCEPopup.close();
                     }
 		
@@ -76,7 +76,7 @@
         <form name="calibrefx_sc_form" action="#">
             <div class="tabs">
                 <ul>
-                    <li id="imageTabID" class="current"><span><a href="javascript:mcTabs.displayTab('imageTabID','imageTab');" onmousedown="return false;">Google map</a></span></li>            
+                    <li id="imageTabID" class="current"><span><a href="javascript:mcTabs.displayTab( 'imageTabID','imageTab' );" onmousedown="return false;">Google map</a></span></li>            
                 </ul>
             </div>
 

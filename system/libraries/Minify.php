@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -29,7 +29,7 @@ class CFX_Minify {
     var $_cfx = null;
 
     function __construct() {
-        set_include_path(CALIBREFX_LIBRARY_URI . '/third-party' . PATH_SEPARATOR . get_include_path());
+        set_include_path(CALIBREFX_LIBRARY_URI . '/third-party' . PATH_SEPARATOR . get_include_path() );
         $this->config = array(
             'enable_cache' => false,
             'cache_path' => CALIBREFX_CACHE_URI,
@@ -44,15 +44,15 @@ class CFX_Minify {
         global $calibrefx;
         $this->_cfx = $calibrefx;
 
-        $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/third-party/minify/Minify/Controller/CalibrefxMin.php');
+        $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/third-party/minify/Minify/Controller/CalibrefxMin.php' );
 
         $this->min_serveController = new Minify_Controller_CalibrefxMin();
     }
 
-    public function minified_css($css_files) {
+    public function minified_css( $css_files) {
         $min_serveOptions = array();
 
-        if (!is_dir(CHILD_CACHE_URI)) {
+        if (!is_dir(CHILD_CACHE_URI) ) {
             $cache_dir = CALIBREFX_CACHE_URI;
             $cache_url = CALIBREFX_CACHE_URL;
         } else {
@@ -61,24 +61,24 @@ class CFX_Minify {
             $cache_url = CHILD_CACHE_URL;
         }
 
-        if (file_exists($cache_dir . '/min.css')) {
+        if (file_exists( $cache_dir . '/min.css' ) ) {
             return $cache_url . '/min.css';
         }
 
-        if ($this->config['enable_cache'] && !empty($this->config['cache_path'])) {
+        if ( $this->config['enable_cache'] && !empty( $this->config['cache_path']) ) {
             Minify::setCache(
                     $this->config['cache_path']
                     , $this->config['cache_locking']
             );
         }
 
-        if ($this->config['debug']) {
-            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/DebugDetector.php');
-            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/Logger.php');
-            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/FirePHP.php');
+        if ( $this->config['debug']) {
+            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/DebugDetector.php' );
+            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/Logger.php' );
+            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/FirePHP.php' );
 
             $min_errorLogger = FirePHP::getInstance(true);
-            Minify_Logger::setLogger($min_errorLogger);
+            Minify_Logger::setLogger( $min_errorLogger);
         }
 
         $min_serveOptions['bubbleCssImports'] = true;
@@ -89,17 +89,17 @@ class CFX_Minify {
         $min_serveOptions['encodeMethod'] = $this->config['encodeMethod'];
         $min_serveOptions['files'] = $css_files;
 
-        $minified_css = Minify::serve($this->min_serveController, $min_serveOptions);
+        $minified_css = Minify::serve( $this->min_serveController, $min_serveOptions);
         $minified_css_data = $minified_css['content'];
-        $this->_cfx->cache->write_cache($cache_dir . '/min.css', $minified_css_data);
+        $this->_cfx->cache->write_cache( $cache_dir . '/min.css', $minified_css_data);
 
         return $cache_url . '/min.css';
     }
 
-    public function minified_js($js_files) {
+    public function minified_js( $js_files) {
         $min_serveOptions = array();
 
-        if (!is_dir(CHILD_CACHE_URI)) {
+        if (!is_dir(CHILD_CACHE_URI) ) {
             $cache_dir = CALIBREFX_CACHE_URI;
             $cache_url = CALIBREFX_CACHE_URL;
         } else {
@@ -108,23 +108,23 @@ class CFX_Minify {
             $cache_url = CHILD_CACHE_URL;
         }
 
-        if (file_exists($cache_dir . '/min.js')) {
+        if (file_exists( $cache_dir . '/min.js' ) ) {
             return $cache_url . '/min.js';
         }
 
-        if ($this->config['enable_cache'] && !empty($this->config['cache_path'])) {
+        if ( $this->config['enable_cache'] && !empty( $this->config['cache_path']) ) {
             Minify::setCache(
                     $this->config['cache_path']
                     , $this->config['cache_locking']
             );
         }
 
-        if ($this->config['debug']) {
-            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/DebugDetector.php');
-            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/Logger.php');
-            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/FirePHP.php');
+        if ( $this->config['debug']) {
+            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/DebugDetector.php' );
+            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/Logger.php' );
+            $this->_cfx->load->file(CALIBREFX_LIBRARY_URI . '/minify/Minify/FirePHP.php' );
             $min_errorLogger = FirePHP::getInstance(true);
-            Minify_Logger::setLogger($min_errorLogger);
+            Minify_Logger::setLogger( $min_errorLogger);
         }
 
         $min_serveOptions['bubbleCssImports'] = true;
@@ -138,35 +138,35 @@ class CFX_Minify {
         require_once CALIBREFX_MODULES_URI . '/minify/Minify/Controller/CalibrefxMin.php';
         $min_serveController = new Minify_Controller_CalibrefxMin();
 
-        $minified_js = Minify::serve($this->min_serveController, $min_serveOptions);
+        $minified_js = Minify::serve( $this->min_serveController, $min_serveOptions);
         $minified_js_data = $minified_js['content'];
-        $this->_cfx->cache->write_cache($cache_dir . '/min.js', $minified_css_data);
+        $this->_cfx->cache->write_cache( $cache_dir . '/min.js', $minified_css_data);
 
         return $cache_url . '/min.js';
     }
 
     public function clear_cache() {
-        if (!is_dir(CHILD_CACHE_URI)) {
+        if (!is_dir(CHILD_CACHE_URI) ) {
             $cache_dir = CALIBREFX_CACHE_URI;
         } else {
             //Cache dir in framework should be exist
             $cache_dir = CHILD_CACHE_URI;
         }
 
-        $cachedir = opendir($cache_dir);
+        $cachedir = opendir( $cache_dir);
 
-        while (false !== ($file = readdir($cachedir))) {
-            if ($file != "." && $file != "..") {
-                if (is_dir($cache_dir . '/' . $file)) {
-                    chdir('.');
-                    destroy($cache_dir . '/' . $file . '/');
-                    @rmdir($cache_dir . '/' . $file);
+        while (false !== ( $file = readdir( $cachedir) )) {
+            if ( $file != "." && $file != "..") {
+                if (is_dir( $cache_dir . '/' . $file) ) {
+                    chdir( '.' );
+                    destroy( $cache_dir . '/' . $file . '/' );
+                    @rmdir( $cache_dir . '/' . $file);
                 }
                 else
-                    @unlink($cache_dir . '/' . $file);
+                    @unlink( $cache_dir . '/' . $file);
             }
         }
-        closedir($cachedir);
+        closedir( $cachedir);
         return true;
     }
 

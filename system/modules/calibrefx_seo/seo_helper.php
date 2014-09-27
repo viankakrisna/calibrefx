@@ -1,4 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
@@ -37,60 +37,60 @@
 function get_replace_title_tags() {
     global $post, $s, $paged, $wp_locale, $wp_query;
 	
-	if(is_404()) return; 
+	if(is_404() ) return; 
 
-    $m = get_query_var('m');
-    $year = get_query_var('year');
-    $monthnum = get_query_var('monthnum');
-    $day = get_query_var('day');
+    $m = get_query_var( 'm' );
+    $year = get_query_var( 'year' );
+    $monthnum = get_query_var( 'monthnum' );
+    $day = get_query_var( 'day' );
 
     $categories = get_the_category();
     $category = '';
     $category_description = '';
-    if (count($categories) > 0) {
+    if (count( $categories) > 0) {
         $category = $categories[0]->cat_name;
         $category_description = $categories[0]->description;
     }
 
-	if(is_author() && !$post){
-		$author = get_user_by('slug', get_query_var('author_name'));
+	if(is_author() && !$post) {
+		$author = get_user_by( 'slug', get_query_var( 'author_name' ) );
 	}else{
-		$author = get_userdata($post->post_author);
+		$author = get_userdata( $post->post_author);
 	}
     
     $taxonomies = get_the_taxonomies();
-    $taxonomy = array_values($taxonomies);
-    $taxonomy = array_shift($taxonomy);
-    $taxonomy = strip_tags($taxonomy, '');
-    if(empty($taxonomy)) $taxonomy = post_type_archive_title('',false);
+    $taxonomy = array_values( $taxonomies);
+    $taxonomy = array_shift( $taxonomy);
+    $taxonomy = strip_tags( $taxonomy, '' );
+    if(empty( $taxonomy) ) $taxonomy = post_type_archive_title( '',false);
     
-    $site_title = calibrefx_capitalize(get_bloginfo('name'));
-    $site_description = get_bloginfo('description');
-    $post_title = calibrefx_capitalize(calibrefx_get_title());
-    $page_title = calibrefx_capitalize(calibrefx_get_title());
+    $site_title = calibrefx_capitalize(get_bloginfo( 'name' ) );
+    $site_description = get_bloginfo( 'description' );
+    $post_title = calibrefx_capitalize(calibrefx_get_title() );
+    $page_title = calibrefx_capitalize(calibrefx_get_title() );
     $post_author_name = $author->display_name;
     $description = calibrefx_truncate_phrase(calibrefx_get_description(), 160);
-    $search = calibrefx_capitalize(esc_html(stripcslashes($s), true));
+    $search = calibrefx_capitalize(esc_html(stripcslashes( $s), true) );
 	
     $keywords = calibrefx_get_keywords();
 
-    if (!empty($m)) {
-        $my_year = substr($m, 0, 4);
-        $my_month = $wp_locale->get_month(substr($m, 4, 2));
-        $date = calibrefx_capitalize($my_year . ' ' . $my_month);
+    if (!empty( $m) ) {
+        $my_year = substr( $m, 0, 4);
+        $my_month = $wp_locale->get_month(substr( $m, 4, 2) );
+        $date = calibrefx_capitalize( $my_year . ' ' . $my_month);
     } else {
-        $date = calibrefx_capitalize($year);
+        $date = calibrefx_capitalize( $year);
     }
 
 
     $page = $paged;
-    $request_word = calibrefx_capitalize(calibrefx_request_as_words($_SERVER['REQUEST_URI']));
+    $request_word = calibrefx_capitalize(calibrefx_request_as_words( $_SERVER['REQUEST_URI']) );
 
-    $term_id = get_query_var('tag_id');
+    $term_id = get_query_var( 'tag_id' );
     $tag = get_tag( $term_id );
     $tag_title = '';
-    if(!is_wp_error( $tag )){
-        $tag_title = ucfirst($tag->name);
+    if(!is_wp_error( $tag ) ) {
+        $tag_title = ucfirst( $tag->name);
     }
 
     $replace_arr = array(
@@ -112,50 +112,50 @@ function get_replace_title_tags() {
         'taxonomy' => $taxonomy,
     );
 
-    return apply_filters('calibrefx_title_tags', $replace_arr);
+    return apply_filters( 'calibrefx_title_tags', $replace_arr);
 }
 
 /**
  * @return User-readable nice words for a given request.
  */
-function calibrefx_request_as_words($request) {
-    $request = htmlspecialchars($request);
-    $request = str_replace('.html', ' ', $request);
-    $request = str_replace('.htm', ' ', $request);
-    $request = str_replace('.', ' ', $request);
-    $request = str_replace('/', ' ', $request);
-    $request_a = explode(' ', $request);
+function calibrefx_request_as_words( $request) {
+    $request = htmlspecialchars( $request);
+    $request = str_replace( '.html', ' ', $request);
+    $request = str_replace( '.htm', ' ', $request);
+    $request = str_replace( '.', ' ', $request);
+    $request = str_replace( '/', ' ', $request);
+    $request_a = explode( ' ', $request);
     $request_new = array();
-    foreach ($request_a as $token) {
-        $request_new[] = ucwords(trim($token));
+    foreach ( $request_a as $token) {
+        $request_new[] = ucwords(trim( $token) );
     }
-    $request = implode(' ', $request_new);
+    $request = implode( ' ', $request_new);
     return $request;
 }
 
-function calibrefx_capitalize($s) {
-    $s = trim($s);
-    $tokens = explode(' ', $s);
-    while (list($key, $val) = each($tokens)) {
-        $tokens[$key] = trim($tokens[$key]);
-        $tokens[$key] = strtoupper(substr($tokens[$key], 0, 1)) . substr($tokens[$key], 1);
+function calibrefx_capitalize( $s) {
+    $s = trim( $s);
+    $tokens = explode( ' ', $s);
+    while (list( $key, $val) = each( $tokens) ) {
+        $tokens[$key] = trim( $tokens[$key]);
+        $tokens[$key] = strtoupper(substr( $tokens[$key], 0, 1) ) . substr( $tokens[$key], 1);
     }
-    $s = implode(' ', $tokens);
+    $s = implode( ' ', $tokens);
     return $s;
 }
 
 function calibrefx_get_title() {
     global $post;
 	if(!$post) return;
-    $custom_title = calibrefx_get_custom_field('_calibrefx_title');
-    return empty($custom_title) ? $post->post_title : $custom_title;
+    $custom_title = calibrefx_get_custom_field( '_calibrefx_title' );
+    return empty( $custom_title) ? $post->post_title : $custom_title;
 }
 
 function calibrefx_get_description() {
     global $post;
 	if(!$post) return;
-    $custom_description = calibrefx_get_custom_field('_calibrefx_description');
-    if(!empty($custom_description)) return $custom_description;
+    $custom_description = calibrefx_get_custom_field( '_calibrefx_description' );
+    if(!empty( $custom_description) ) return $custom_description;
     
     return $post->post_content;
 }
@@ -163,9 +163,9 @@ function calibrefx_get_description() {
 function calibrefx_get_keywords() {
     global $post;
 	if(!$post) return;
-    $custom_keywords = calibrefx_get_custom_field('_calibrefx_keywords');
-    $original_keywords = calibrefx_filter_keywords(wp_get_post_terms($post->ID, 'post_tag', array("fields" => "names")));
-    return empty($custom_keywords) ? $original_keywords : $custom_keywords;
+    $custom_keywords = calibrefx_get_custom_field( '_calibrefx_keywords' );
+    $original_keywords = calibrefx_filter_keywords(wp_get_post_terms( $post->ID, 'post_tag', array("fields" => "names") ));
+    return empty( $custom_keywords) ? $original_keywords : $custom_keywords;
 }
 
 /**
@@ -174,14 +174,14 @@ function calibrefx_get_keywords() {
  * @param type $keywords
  * @return type 
  */
-function calibrefx_filter_keywords($keywords) {
+function calibrefx_filter_keywords( $keywords) {
     $small_keywords = array();
-    foreach ($keywords as $word) {
-        if (function_exists('mb_strtolower'))
-            $small_keywords[] = mb_strtolower($word, get_bloginfo('charset'));
+    foreach ( $keywords as $word) {
+        if (function_exists( 'mb_strtolower' ) )
+            $small_keywords[] = mb_strtolower( $word, get_bloginfo( 'charset' ) );
         else
-            $small_keywords[] = $this->strtolower($word);
+            $small_keywords[] = $this->strtolower( $word);
     }
-    $keywords_ar = array_unique($small_keywords);
-    return implode(',', $keywords_ar);
+    $keywords_ar = array_unique( $small_keywords);
+    return implode( ',', $keywords_ar);
 }
