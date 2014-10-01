@@ -44,13 +44,13 @@ $cfxgenerator->calibrefx_setup = array(
  * If mobile site is enable and there is a mobile template, then display mobile layout on mobile
  */
 function calibrefx_detect_mobile_browser() {
-	global $oBrowser,$calibrefx; 
+	global $calibrefx; 
 
-	if( is_admin() || !$oBrowser->isMobile() ) {
-		return;
-	}
+    if( is_admin() || !wp_is_mobile() ) {
+        return;
+    }
 
-    if( !get_theme_support( 'mobile-site' ) OR !calibrefx_mobile_themes_exist() OR !calibrefx_is_responsive_enabled() ) {
+    if( !get_theme_support( 'mobile-site' ) OR !calibrefx_mobile_themes_exist() ) {
         return;
     }
     
@@ -76,7 +76,7 @@ function calibrefx_detect_mobile_browser() {
 function calibrefx_mobile_body_class( $body_classes ) {
     global $post;
     
-    $body_classes[] = 'mobile';
+    $body_classes[] = 'mobile mobile-site';
 
     return $body_classes;
 }

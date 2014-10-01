@@ -58,7 +58,7 @@ $autoload['models'] = array( 'theme_settings_m', 'other_settings_m' );
  */
 $autoload['hooks'] = array( 'module','header', 'script', 'widget','layout', 'menu', 
                           	'user','post','inpost','comments', 'footer',
-                          	'performance','search','third_party','upgrade', 'ajax', 
+                          	'performance','search','upgrade', 'ajax', 
                           	'admin_ajax', 'mobile', 'form_submit', 'admin', 'customizer' );
 
 /*
