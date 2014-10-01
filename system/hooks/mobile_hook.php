@@ -53,9 +53,9 @@ function calibrefx_detect_mobile_browser() {
     if( !get_theme_support( 'mobile-site' ) OR !calibrefx_mobile_themes_exist() OR !calibrefx_is_responsive_enabled() ) {
         return;
     }
-
+    
 	add_filter( 'body_class', 'calibrefx_mobile_body_class' );
-
+    
 	remove_action( 'calibrefx_after_header', 'calibrefx_do_nav' );
 
     if( get_theme_support( 'mobile-site-menu' ) ) {
