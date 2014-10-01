@@ -38,6 +38,8 @@ class CFX_Social_Widget extends WP_Widget {
            'label_gplus' => '',
            'label_linkedin' => '',
            'label_pinterest' => '',
+           'label_instagram' => '',
+           'label_github' => '',
            'icon_size' => '',
            'icon_style' => '',
         );
@@ -67,8 +69,10 @@ class CFX_Social_Widget extends WP_Widget {
         $tw_url = esc_attr(calibrefx_get_option( 'twitter_profile' ) );
         $youtube_url = esc_attr(calibrefx_get_option( 'youtube_channel' ) );
         $gplus_url = esc_attr(calibrefx_get_option( 'gplus_page' ) );
-        $pinterest_profile = esc_attr(calibrefx_get_option( 'pinterest_profile' ) );
         $linkedin_profile = esc_attr(calibrefx_get_option( 'linkedin_profile' ) );
+        $pinterest_profile = esc_attr(calibrefx_get_option( 'pinterest_profile' ) );
+        $instagram_profile = esc_attr(calibrefx_get_option( 'instagram_profile' ) );
+        $github_profile = esc_attr(calibrefx_get_option( 'github_profile' ) );
 
         if(!empty( $instance['title']) )
             echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
@@ -114,6 +118,15 @@ class CFX_Social_Widget extends WP_Widget {
                 </li>';
         }
 
+        if(!empty( $linkedin_profile) ) {
+            $output .= '<li class="linkedin">
+                    <a href="'.$linkedin_profile.'" title="'.__( 'View us on linkedin', 'calibrefx' ).'" target="_blank">
+                        <i class="social-icon fa fa-linkedin'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+                        '.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_linkedin']) : '' ).'</span>
+                    </a>
+                </li>';
+        }
+
         if(!empty( $pinterest_profile) ) {
             $output .= '<li class="pinterest">
                     <a href="'.$pinterest_profile.'" title="'.__( 'View us on pinterest', 'calibrefx' ).'" target="_blank">
@@ -123,11 +136,20 @@ class CFX_Social_Widget extends WP_Widget {
                 </li>';
         }
 
-        if(!empty( $linkedin_profile) ) {
-            $output .= '<li class="linkedin">
-                    <a href="'.$linkedin_profile.'" title="'.__( 'View us on linkedin', 'calibrefx' ).'" target="_blank">
-                        <i class="social-icon fa fa-linkedin'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
-                        '.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_linkedin']) : '' ).'</span>
+        if(!empty( $instagram_profile) ) {
+            $output .= '<li class="instagram">
+                    <a href="'.$instagram_profile.'" title="'.__( 'View us on instagram', 'calibrefx' ).'" target="_blank">
+                        <i class="social-icon fa fa-instagram'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+                        '.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_instagram']) : '' ).'</span>
+                    </a>
+                </li>';
+        }
+
+        if(!empty( $github_profile) ) {
+            $output .= '<li class="github">
+                    <a href="'.$github_profile.'" title="'.__( 'View us on github', 'calibrefx' ).'" target="_blank">
+                        <i class="social-icon fa fa-github'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+                        '.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_github']) : '' ).'</span>
                     </a>
                 </li>';
         }
@@ -198,33 +220,43 @@ class CFX_Social_Widget extends WP_Widget {
         <p><strong>Icon Label</strong></p>
 
         <p>
-            <label for="<?php echo $this->get_field_id( 'label_facebook' ); ?>"><?php _e( 'Facebook link label', 'calibrefx' ); ?>:</label>
+            <label for="<?php echo $this->get_field_id( 'label_facebook' ); ?>"><?php _e( 'Facebook label', 'calibrefx' ); ?>:</label>
             <input type="text" id="<?php echo $this->get_field_id( 'label_facebook' ); ?>" name="<?php echo $this->get_field_name( 'label_facebook' ); ?>" value="<?php echo esc_attr( $instance['label_facebook'] ); ?>" class="widefat" />
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id( 'label_twitter' ); ?>"><?php _e( 'Twitter link label', 'calibrefx' ); ?>:</label>
+            <label for="<?php echo $this->get_field_id( 'label_twitter' ); ?>"><?php _e( 'Twitter label', 'calibrefx' ); ?>:</label>
             <input type="text" id="<?php echo $this->get_field_id( 'label_twitter' ); ?>" name="<?php echo $this->get_field_name( 'label_twitter' ); ?>" value="<?php echo esc_attr( $instance['label_twitter'] ); ?>" class="widefat" />
         </p>
         
         <p>
-            <label for="<?php echo $this->get_field_id( 'label_gplus' ); ?>"><?php _e( 'Google+ link label', 'calibrefx' ); ?>:</label>
+            <label for="<?php echo $this->get_field_id( 'label_gplus' ); ?>"><?php _e( 'Google+ label', 'calibrefx' ); ?>:</label>
             <input type="text" id="<?php echo $this->get_field_id( 'label_gplus' ); ?>" name="<?php echo $this->get_field_name( 'label_gplus' ); ?>" value="<?php echo esc_attr( $instance['label_gplus'] ); ?>" class="widefat" />
         </p>
         
         <p>
-            <label for="<?php echo $this->get_field_id( 'label_youtube' ); ?>"><?php _e( 'Youtube link label', 'calibrefx' ); ?>:</label>
+            <label for="<?php echo $this->get_field_id( 'label_youtube' ); ?>"><?php _e( 'Youtube label', 'calibrefx' ); ?>:</label>
             <input type="text" id="<?php echo $this->get_field_id( 'label_youtube' ); ?>" name="<?php echo $this->get_field_name( 'label_youtube' ); ?>" value="<?php echo esc_attr( $instance['label_youtube'] ); ?>" class="widefat" />
-        </p>
-
-        <p>
-            <label for="<?php echo $this->get_field_id( 'label_pinterest' ); ?>"><?php _e( 'Pinterest link label', 'calibrefx' ); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id( 'label_pinterest' ); ?>" name="<?php echo $this->get_field_name( 'label_pinterest' ); ?>" value="<?php echo esc_attr( $instance['label_pinterest'] ); ?>" class="widefat" />
         </p>
         
         <p>
             <label for="<?php echo $this->get_field_id( 'label_linkedin' ); ?>"><?php _e( 'LinkedIn link label', 'calibrefx' ); ?>:</label>
             <input type="text" id="<?php echo $this->get_field_id( 'label_linkedin' ); ?>" name="<?php echo $this->get_field_name( 'label_linkedin' ); ?>" value="<?php echo esc_attr( $instance['label_linkedin'] ); ?>" class="widefat" />
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id( 'label_pinterest' ); ?>"><?php _e( 'Pinterest label', 'calibrefx' ); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id( 'label_pinterest' ); ?>" name="<?php echo $this->get_field_name( 'label_pinterest' ); ?>" value="<?php echo esc_attr( $instance['label_pinterest'] ); ?>" class="widefat" />
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id( 'label_instagram' ); ?>"><?php _e( 'Instagram label', 'calibrefx' ); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id( 'label_instagram' ); ?>" name="<?php echo $this->get_field_name( 'label_instagram' ); ?>" value="<?php echo esc_attr( $instance['label_instagram'] ); ?>" class="widefat" />
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id( 'label_github' ); ?>"><?php _e( 'Github label', 'calibrefx' ); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id( 'label_github' ); ?>" name="<?php echo $this->get_field_name( 'label_github' ); ?>" value="<?php echo esc_attr( $instance['label_github'] ); ?>" class="widefat" />
         </p>
         <?php
     }
