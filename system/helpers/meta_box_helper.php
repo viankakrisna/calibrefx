@@ -392,17 +392,6 @@ function calibrefx_add_post_meta_options( $slug, $option_name, $option_label, $o
     }
 
     $options = array_merge( array( 'option_label' => $option_label ), $options );
-    //add sanitize filter
-    /*if(!empty( $options['option_filter']) ) {
-        $calibrefx->security->add_sanitize_filter(
-                    $options['option_filter'], 
-                    'calibrefx-settings', 
-                    $option_name);
-    }*/
-
-    /*if(!empty( $calibrefx_meta_options[$metabox_id][$group_id]) ) {
-        $options = array_merge( $calibrefx_meta_options[$metabox_id][$group_id]['options'], $options);
-    }*/
 
     $calibrefx_post_meta_options[$slug]['options'][$priority][$option_name] = $options;
 }
@@ -444,6 +433,7 @@ function calibrefx_do_post_meta_options( $slug ) {
                             echo $calibrefx->form->hidden( $option_name, calibrefx_get_custom_field( $option_name ), $option['option_attr'] );
                             break;
 
+                        case 'text':
                         case 'textinput':
                         case 'textarea':
                         case 'password':

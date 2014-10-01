@@ -269,9 +269,15 @@ hr.div {
     display: none;
     text-align: center;
 }
+
 .calibrefx-layout-selector input#default-layout {
     display: inline;
 }
+
+.calibrefx-layout-selector label{
+    display: block;
+}
+
 .calibrefx-layout-selector label.box {
     display: block;
     float: left;

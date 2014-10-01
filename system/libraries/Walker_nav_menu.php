@@ -65,12 +65,6 @@ class CFX_Walker_Nav_menu extends Walker_Nav_Menu {
         $attributes .=!empty( $item->xfn) ? ' rel="' . esc_attr( $item->xfn) . '"' : '';
         $attributes .=!empty( $item->url) ? ' href="' . esc_attr( $item->url) . '"' : '';
 
-        /**
-         *  Edited by Hilal
-         *  We turn off the bootstrap functionality for dropdown menu
-         */
-        //if ( $args->has_children) $attributes .= ' data-toggle="dropdown" class="dropdown-toggle" ';
-
         $item_output = $args->before;
         $item_output .= '<a' . $attributes . '>';
         $item_output .= $args->link_before . $icon_html . apply_filters( 'the_title', $item->title, $item->ID) . $args->link_after;

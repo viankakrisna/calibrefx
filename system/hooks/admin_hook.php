@@ -47,7 +47,6 @@ function calibrefx_register_admin_menu() {
 
     do_action( 'calibrefx_add_submenu_page' );
 }
-
 add_action( 'admin_menu', 'calibrefx_register_admin_menu' );
 
 function calibrefx_add_module_settings() {
