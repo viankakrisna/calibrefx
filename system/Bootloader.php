@@ -5,9 +5,8 @@
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     Calibrefx
- * @author      Calibreworks Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2014, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      Calibreworks Team 
+ * @copyright   Copyright (c) 2012-2014, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU/GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
