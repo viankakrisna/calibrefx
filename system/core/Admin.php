@@ -68,6 +68,15 @@ abstract class CFX_Admin {
     public $_submit_url = 'options.php';
 
     /**
+     * Constructor
+     */
+    function __construct() {
+        global $calibrefx;
+        $calibrefx->load->model( 'theme_settings_m' );
+        $this->_model = $calibrefx->theme_settings_m;
+    }
+
+    /**
      * Initialize our admin area
      * 
      */

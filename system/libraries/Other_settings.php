@@ -35,16 +35,13 @@ class CFX_Other_Settings extends CFX_Admin {
      * Constructor - Initializes
      */
     function __construct() {
+        parent::__construct();
+
         $this->page_id = 'calibrefx-other';
         $this->default_settings = apply_filters( 'calibrefx_other_settings_defaults', array(
                 
             )
         );
-
-        //we need to initialize the model
-        global $calibrefx;
-        $calibrefx->load->model( 'other_settings_m' );
-        $this->_model = $calibrefx->other_settings_m;
 
         add_action( 'calibrefx_before_save_core', array( $this,'do_export' ) );
         add_action( 'calibrefx_before_save_core', array( $this,'do_import' ) );

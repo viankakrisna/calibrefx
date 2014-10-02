@@ -51,7 +51,7 @@ $autoload['widgets'] = array( 'Facebook_Comment', 'Facebook_Like', 'Feature_Page
 /*
  *  Auto-load Config files
  */
-$autoload['models'] = array( 'theme_settings_m', 'other_settings_m' );
+$autoload['models'] = array( 'theme_settings_m' );
 
 /*
  *  Auto-load Config files

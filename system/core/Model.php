@@ -50,7 +50,7 @@ class CFX_Model {
      *
      * @return  void
      */
-    public function __construct( $setting_field = '' ) {
+    public function __construct( $setting_field = 'calibrefx-settings' ) {
         $this->_setting_field = $setting_field;
     }
     

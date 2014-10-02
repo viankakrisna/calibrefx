@@ -36,6 +36,8 @@ class CFX_Theme_Settings extends CFX_Admin {
      * Constructor - Initializes
      */
     function __construct() {
+        parent::__construct();
+
         $this->page_id = 'calibrefx';
         $this->default_settings = apply_filters( 'calibrefx_theme_settings_defaults', array(
             'update' => 1,
@@ -67,11 +69,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             'calibrefx_db_version' => FRAMEWORK_DB_VERSION)
         );
 
-        //we need to initialize the model
-        global $calibrefx;
-        $calibrefx->load->model( 'theme_settings_m' );
-        $this->_model = $calibrefx->theme_settings_m;
-
+        //Initializing hooks
         $this->initialize();
     }
 
