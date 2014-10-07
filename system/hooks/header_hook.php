@@ -1,13 +1,7 @@
-<?php defined('CALIBREFX_URL') OR exit();
-
+<?php 
 /**
  * Calibrefx Header Hooks
  *
- * @package		Calibrefx
- * @subpackage  Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
  */
 
 global $cfxgenerator;
