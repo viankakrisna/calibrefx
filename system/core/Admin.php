@@ -1,25 +1,11 @@
-<?php defined('CALIBREFX_URL') OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
+<?php 
 
+/**
+ * Calibrefx Admin Class
+ *
+ * Abstract class to build Admin page
+ * 
+ */
 abstract class CFX_Admin {
 
     /**
@@ -87,15 +73,6 @@ abstract class CFX_Admin {
         add_filter('pre_update_option_' . $this->settings_field, array(&$this, 'save'), 10, 2);
 
         do_action('calibrefx_after_save_core');
-        
-        //Removed by Fadhel
-        //This will allow to cross save calibrefx themes settings
-        /*if($this->settings_field != $calibrefx->theme_settings_m->get_settings_field()){
-            do_action('calibrefx_before_save_core');
-            $this->save_core();
-            do_action('calibrefx_after_save_core');
-            //add_filter('pre_update_option_' . $calibrefx->theme_settings_m->get_settings_field(), array(&$this, 'save_core'), 10, 2);            
-        }*/
     }
 
     /**

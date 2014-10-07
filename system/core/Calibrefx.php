@@ -1,25 +1,8 @@
-<?php defined('CALIBREFX_URL') OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
+<?php 
 
+/**
+ * Calibrefx Class
+ */
 final class Calibrefx {
 
     /**
@@ -104,9 +87,9 @@ final class Calibrefx {
                 $this->load->hook('admin_bar');
             }
         }
-        //@TODO: Will do in better ways for custom post type
-        add_post_type_support('post', array('calibrefx-seo', 'calibrefx-layouts'));
-        add_post_type_support('page', array('calibrefx-seo', 'calibrefx-layouts'));
+
+        add_post_type_support('post', array('calibrefx-layouts'));
+        add_post_type_support('page', array('calibrefx-layouts'));
 
         if ( ! isset( $content_width ) ) 
             $content_width = apply_filters( 'calibrefx_content_width', 550 );

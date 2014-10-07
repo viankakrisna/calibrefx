@@ -1,41 +1,4 @@
-<?php defined('CALIBREFX_URL') OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
-
-/*
- * ------------------------------------------------------
- *  Load the framework constants
- * ------------------------------------------------------
- */
-
-// function to replace wp_die if it doesn't exist
-if (!function_exists('wp_die')) {
-
-    function wp_die($message = 'wp_die') {
-        die($message);
-    }
-
-}
-
-// ------------------------------------------------------------------------
+<?php 
 
 if (!function_exists('get_config')) {
 
@@ -313,6 +276,7 @@ if (!function_exists('calibrefx_get_active_modules')) {
 function calibrefx() {
     get_header();
 
+    do_action( 'calibrefx_inner' ); 
     do_action('calibrefx_before_content_wrapper');
 
     $content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_wrapper_class', '' );
@@ -330,6 +294,7 @@ function calibrefx() {
     </div><!-- end #content-wrapper -->
     <?php
     do_action('calibrefx_after_content_wrapper');
-
+    do_action( 'calibrefx_after_inner' ); 
+    
     get_footer();
 }

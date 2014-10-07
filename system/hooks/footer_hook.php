@@ -45,9 +45,9 @@ $cfxgenerator->calibrefx_footer_content = array(
 );
 
 $cfxgenerator->wp_footer = array(
-    array('function' => 'calibrefx_add_socials_script', 'priority' => 10),
-    array('function' => 'calibrefx_add_google_analytics', 'priority' => 15),
-    array('function' => 'calibrefx_footer_scripts', 'priority' => 20),
+    // array('function' => 'calibrefx_add_socials_script', 'priority' => 10),
+    // array('function' => 'calibrefx_add_google_analytics', 'priority' => 15),
+    // array('function' => 'calibrefx_footer_scripts', 'priority' => 20),
 );
 
 /********************

@@ -1,34 +1,30 @@
-<?php
-/**
- * CalibreFx
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package		CalibreFx
- * @author		CalibreFx Team
- * @authorlink	http://www.calibrefx.com
- * @copyright   Copyright (c) 2012, CalibreWorks. (http://www.calibreworks.com/)
- * @link		http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- * 
- *
- * @package CalibreFx
- */
- 
-do_action('calibrefx_html_header');
+<?php 
+// Calibrefx Header
 ?>
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" <?php language_attributes(); ?>>
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" <?php language_attributes(); ?>>
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html <?php language_attributes(); ?>>
+<!--<![endif]-->
+<head>
+	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<?php
+	do_action('calibrefx_meta');
+	wp_head();
+	?>
 </head>
 <body <?php body_onload(); ?> <?php body_class(); ?>>
-
-<?php 
-do_action( 'calibrefx_before_wrapper' ); 
-do_action( 'calibrefx_wrapper' ); 
-	
-do_action('calibrefx_before_header');
-do_action('calibrefx_header');
-do_action('calibrefx_after_header');
-
-do_action( 'calibrefx_inner' ); 
+	<?php 
+	do_action( 'calibrefx_before_wrapper' ); 
+	do_action( 'calibrefx_wrapper' ); 
+		
+	do_action('calibrefx_before_header');
+	do_action('calibrefx_header');
+	do_action('calibrefx_after_header');

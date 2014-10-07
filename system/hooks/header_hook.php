@@ -1,24 +1,4 @@
 <?php defined('CALIBREFX_URL') OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
 
 /**
  * Calibrefx Header Hooks
@@ -32,11 +12,9 @@
 
 global $cfxgenerator;
 
-$cfxgenerator->calibrefx_doctype = array('calibrefx_print_doctype');
-$cfxgenerator->calibrefx_html_header = array( 'calibrefx_do_html_header' );
 $cfxgenerator->calibrefx_meta = array(
     'calibrefx_do_meta_description', 'calibrefx_do_meta_keywords','calibrefx_do_link_author',
-    'calibrefx_print_favicon', 'calibrefx_print_media_icon','calibrefx_load_stylesheet', 
+    'calibrefx_print_viewport', 'calibrefx_print_favicon', 'calibrefx_load_stylesheet', 
     'calibrefx_do_dublin_core', 'calibrefx_do_fb_og');
 
 $cfxgenerator->calibrefx_header = array( 
@@ -57,41 +35,6 @@ $cfxgenerator->wp_head = array(
  ********************/
 
 /**
- * Adds header structures.
- * 
- * This function handles the doctype. Default HTML5.
- *
- * @package CalibreFx
- */
-function calibrefx_print_doctype() { ?>
-<!doctype html>
-<!--[if lt IE 7 ]><html class="ie ltie9 ie6 no-js" lang="<?php bloginfo('language'); ?>"><![endif]-->
-<!--[if IE 7 ]><html class="ie ltie9 ie7 no-js" lang="<?php bloginfo('language'); ?>"><![endif]-->
-<!--[if IE 8 ]><html class="ie ltie9 ie8 no-js" lang="<?php bloginfo('language'); ?>"><![endif]-->
-<!--[if IE 9 ]><html class="ie ie9 no-js" lang="<?php bloginfo('language'); ?>"><![endif]-->
-<!--[if gt IE 9]><!--><html class="no-js" lang="<?php bloginfo('language'); ?>"><!--<![endif]-->
-<!-- the "no-js" class is for Modernizr. -->
-<head id="<?php echo calibrefx_get_site_url(); ?>" data-template-set="html5-reset">
-<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<?php if ( current_theme_supports('calibrefx-responsive-style') ){ ?>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<?php } ?>
-<?php
-}
-
-/**
- * Display All the header requirements
- */
-function calibrefx_do_html_header(){
-    do_action('calibrefx_doctype');
-    do_action('calibrefx_title');
-    do_action('calibrefx_meta');
-    wp_head();
-}
-
-/**
  * Remove WP Generator Tag from header
  */
 function calibrefx_remove_wp_generator(){
@@ -104,11 +47,7 @@ function calibrefx_remove_wp_generator(){
  */
 function calibrefx_do_meta_description() {
     $description = apply_filters('calibrefx_do_meta_description', get_bloginfo('description'));
-
-    // Add the description, but only if one exists
-    if (!empty($description)) {
-        echo '<meta name="description" content="' . esc_attr($description) . '" />' . "\n";
-    }
+    echo '<meta name="description" content="' . esc_attr($description) . '" />' . "\n";
 }
 
 /**
@@ -144,16 +83,20 @@ function calibrefx_do_link_author() {
 }
 
 /**
+ * Print outs viewport
+ */
+function calibrefx_print_viewport(){
+    if ( current_theme_supports( 'calibrefx-responsive-style' ) ){ ?>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <?php }
+}
+
+/**
  * Print outs favicon
  */
 function calibrefx_print_favicon() {
 
-    //allow overriding
-    $pre = apply_filters('calibrefx_pre_load_favicon', false);
-
-    if ($pre !== false)
-        $favicon = $pre;
-    elseif (file_exists(CALIBREFX_IMAGES_URI . '/ico/favicon.ico'))
+    if (file_exists(CALIBREFX_IMAGES_URI . '/ico/favicon.ico'))
         $favicon = CALIBREFX_IMAGES_URL . '/ico/favicon.ico';
     else
         $favicon = CALIBREFX_IMAGES_URL . '/favicon.ico';
@@ -165,59 +108,10 @@ function calibrefx_print_favicon() {
     if (file_exists(CHILD_IMAGES_URI . '/favicon.ico'))
         $favicon = CHILD_IMAGES_URL . '/favicon.ico';
 
-    $favicon = apply_filters('calibrefx_favicon_url', $favicon);
+    $favicon = apply_filters( 'calibrefx_favicon_url', $favicon );
 
-    if ($favicon)
+    if ( $favicon )
         echo '<link rel="Shortcut Icon" href="' . esc_url($favicon) . '" type="image/x-icon" />' . "\n";
-}
-
-/**
- * Print outs media icon for apple touch
- */
-function calibrefx_print_media_icon() {
-
-    //allow overriding
-    $pre = apply_filters('calibrefx_pre_load_media57_icon', false);
-
-    if ($pre !== false)
-        $media57 = $pre;
-    elseif (file_exists(CALIBREFX_IMAGES_URI . '/media-57x57.png'))
-        $media57 = CALIBREFX_IMAGES_URL . '/media-57x57.png';
-    else
-        $media57 = CALIBREFX_IMAGES_URL . '/media-57x57.png';
-
-    $media57 = apply_filters('calibrefx_media57_url', $media57);
-
-    if ($media57)
-        echo '<link rel="apple-touch-icon" href="' . esc_url($media57) . '"/>' . "\n";
-
-    $pre = apply_filters('calibrefx_pre_load_media72_icon', false);
-
-    if ($pre !== false)
-        $media72 = $pre;
-    elseif (file_exists(CALIBREFX_IMAGES_URI . '/media-72x72.png'))
-        $media72 = CALIBREFX_IMAGES_URL . '/media-72x72.png';
-    else
-        $media72 = CALIBREFX_IMAGES_URL . '/media-72x72.png';
-
-    $media72 = apply_filters('calibrefx_media72_url', $media72);
-
-    if ($media72)
-        echo '<link rel="apple-touch-icon" sizes="72x72" href="' . esc_url($media72) . '"/>' . "\n";
-
-    $pre = apply_filters('calibrefx_pre_load_media114_icon', false);
-
-    if ($pre !== false)
-        $media114 = $pre;
-    elseif (file_exists(CALIBREFX_IMAGES_URI . '/media-114x114.png'))
-        $media114 = CALIBREFX_IMAGES_URL . '/media-114x114.png';
-    else
-        $media114 = CALIBREFX_IMAGES_URL . '/media-114x114.png';
-
-    $media114 = apply_filters('calibrefx_media114_url', $media114);
-
-    if ($media114)
-        echo '<link rel="apple-touch-icon" sizes="114x114" href="' . esc_url($media114) . '"/>' . "\n";
 }
 
 /**
@@ -226,30 +120,37 @@ function calibrefx_print_media_icon() {
  *
  */
 function calibrefx_load_stylesheet() {
-    wp_enqueue_style('calibrefx-child-style', get_bloginfo('stylesheet_url'));
+    wp_enqueue_style('calibrefx-child-style', get_stylesheet_uri());
 }
 
-add_action('calibrefx_title', 'wp_title');
-add_filter('wp_title', 'calibrefx_do_title');
 
 /**
  * Print html title, this will override by seo addon later
  */
-function calibrefx_do_title() {
-    return apply_filters('calibrefx_do_title', get_bloginfo('name'));
-}
+function calibrefx_do_title( $title, $sep ) {
+    global $paged, $page;
 
-add_filter('wp_title', 'calibrefx_do_title_wrap', 20);
+    if ( is_feed() ) {
+        return $title;
+    }
 
-/**
- * Wraps the html doc title in <title></title> tags.
- *
- * @param string $title
- * @return string Plain text or HTML markup
- */
-function calibrefx_do_title_wrap($title) {
-    return is_feed() || is_admin() ? $title : sprintf("<title>%s</title>\n", $title);
+    // Add the site name.
+    $title .= get_bloginfo( 'name', 'display' );
+
+    // Add the site description for the home/front page.
+    $site_description = get_bloginfo( 'description', 'display' );
+    if ( $site_description && ( is_home() || is_front_page() ) ) {
+        $title = "$title $sep $site_description";
+    }
+
+    // Add a page number if necessary.
+    if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
+        $title = "$title $sep " . sprintf( __( 'Page %s', 'calibrefx' ), max( $paged, $page ) );
+    }
+
+    return apply_filters( 'calibrefx_page_title', $title, $sep );
 }
+add_filter( 'wp_title', 'calibrefx_do_title', 10, 2 );
 
 /**
  * Print .wrap style

@@ -44,9 +44,9 @@ $cfxgenerator->calibrefx_setup = array(
  * If mobile site is enable and there is a mobile template, then display mobile layout on mobile
  */
 function calibrefx_detect_mobile_browser(){
-	global $oBrowser,$calibrefx; 
+	global $calibrefx; 
 
-	if(is_admin() || !$oBrowser->isMobile() || !get_theme_support('mobile-site') || !calibrefx_mobile_themes_exist()){
+	if(is_admin() || !wp_is_mobile() || !get_theme_support('mobile-site') || !calibrefx_mobile_themes_exist()){
 		return;
 	}
 
