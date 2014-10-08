@@ -1,21 +1,6 @@
 <?php
-/* Template Name: Blog
- *
- * CalibreFx Framework
- *
- * WordPress Themes by CalibreFx Team
- *
- * @package		CalibreFx
- * @author		CalibreFx Team 
- * @copyright   Copyright (c) 2012, Suntech Inti Perkasa.
- * @license		GNU/GPL v2
- * @link		http://www.calibrefx.com
- * @since		Version 1.0
- * @filesource 
- *
- * CalibreFx Page file
- *
- * @package CalibreFx
+/* 
+ * Template Name: Blog
  */
 
 if( file_exists( CHILD_URI . '/page-blog.php' ) AND ( CHILD_URI != CALIBREFX_URI ) ) {
@@ -23,7 +8,6 @@ if( file_exists( CHILD_URI . '/page-blog.php' ) AND ( CHILD_URI != CALIBREFX_URI
     exit;
 }
 
-$cfxgenerator->replace( 'calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_do_blog_loop' );
 
 /**
  * CalibreFx Loop for blog bage
@@ -33,10 +17,10 @@ $cfxgenerator->replace( 'calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_do_blo
  */
 function calibrefx_do_blog_loop() {
     global $wp_query;
-    $query = new WP_Query( 'category_name=blog&paged=' . get_query_var( 'paged' ) );
+    $query = new WP_Query( 'paged=' . get_query_var( 'paged' ) );
     $wp_query = $query;
     
-	$loop_counter = 1;
+    $loop_counter = 1;
 
     if ( $query->have_posts() ) : 
         while ( $query->have_posts() ) : 
@@ -55,9 +39,7 @@ function calibrefx_do_blog_loop() {
         do_action( 'calibrefx_no_post' );
     endif;/** end loop * */
 }
-
-remove_action( 'calibrefx_post_title', 'calibrefx_do_post_title' );
-add_action( 'calibrefx_post_title', 'calibrefx_do_blog_title' );
+$cfxgenerator->replace( 'calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_do_blog_loop' );
 
 /**
  * calibrefx_post_title callback
@@ -71,13 +53,11 @@ function calibrefx_do_blog_title() {
     if (strlen( $title) == 0)
         return;
 
-    $title = sprintf( '<h1 class="entry-title"><a href="%s" title="%s" rel="bookmark">%s</a></h1>',  get_permalink(), the_title_attribute( 'echo=0' ),			apply_filters( 'calibrefx_post_title_text', $title) );
+    $title = sprintf( '<h1 class="entry-title"><a href="%s" title="%s" rel="bookmark">%s</a></h1>',  get_permalink(), the_title_attribute( 'echo=0' ),          apply_filters( 'calibrefx_post_title_text', $title) );
 
     echo apply_filters( 'calibrefx_post_title_output', $title ) . "\n";
 }
-
-remove_action( 'calibrefx_post_content', 'calibrefx_do_post_content' );
-add_action( 'calibrefx_post_content', 'calibrefx_do_blog_content' );
+$cfxgenerator->replace( 'calibrefx_post_title', 'calibrefx_do_post_title', 'calibrefx_do_blog_title' );
 
 /**
  * calibrefx_post_content callback
@@ -87,15 +67,16 @@ add_action( 'calibrefx_post_content', 'calibrefx_do_blog_content' );
  */
 function calibrefx_do_blog_content() {
 
-	if (calibrefx_get_option( 'content_archive_limit' ) ) {
-		$read_more_text = apply_filters( 'calibrefx_readmore_text', __( '[Read more...]', 'calibrefx' ) );
-		the_content_limit( absint( calibrefx_get_option( 'content_archive_limit' ) ), $read_more_text );
-	} else {
-		the_content();
-	}
+    if (calibrefx_get_option( 'content_archive_limit' ) ) {
+        $read_more_text = apply_filters( 'calibrefx_readmore_text', __( '[Read more...]', 'calibrefx' ) );
+        the_content_limit( absint( calibrefx_get_option( 'content_archive_limit' ) ), $read_more_text );
+    } else {
+        the_content();
+    }
     
 
     wp_link_pages( array( 'before' => '<p class="pages">' . __( 'Pages:', 'calibrefx' ), 'after' => '</p>' ) );
 }
+$cfxgenerator->replace( 'calibrefx_post_content', 'calibrefx_do_post_content', 'calibrefx_do_blog_content' );
 
 calibrefx();

@@ -1,24 +1,7 @@
 <?php
 /**
- * CalibreFx Framework
- *
- * WordPress Themes by CalibreFx Team
- *
- * @package		CalibreFx
- * @author		CalibreFx Team
- * @authorlink	http://www.calibrefx.com
- * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
- * @license		GNU/GPL v2
- * @link		http://www.calibrefx.com
- * @since		Version 1.0
- * @filesource 
- *
- * CalibreFx 404 Page
- *
- * @package CalibreFx
+ * Default template for 404 page
  */
- 
-$cfxgenerator->replace( 'calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_404' );
 
 /**
  * This function outputs a 404 "Not Found" error message
@@ -70,5 +53,6 @@ function calibrefx_404() { ?>
 
 <?php
 }
+$cfxgenerator->replace( 'calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_404' );
 
 calibrefx();

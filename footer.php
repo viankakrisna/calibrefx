@@ -1,4 +1,7 @@
 <?php
+/**
+ * Footer template part
+ */
 
 do_action( 'calibrefx_before_footer' );
 do_action( 'calibrefx_footer' );

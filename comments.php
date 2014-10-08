@@ -1,24 +1,11 @@
 <?php
 /**
- * CalibreFx Framework
- *
- * WordPress Themes by CalibreFx Team
- *
- * @package		CalibreFx
- * @author		CalibreFx Team
- * @authorlink	http://www.calibrefx.com
- * @copyright	Copyright (c) 2012, Suntech Inti Perkasa.
- * @license		GNU/GPL v2
- * @link		http://www.calibrefx.com
- * @since		Version 1.0
- * @filesource 
- *
- * CalibreFx Comment template
- *
+ * Default comment template
  */
 
-if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) && 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) )
+if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) AND 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) ){
 	die ( 'Please do not load this page directly. Thanks!' );
+}
 
 if ( post_password_required() ) {
 	printf( '<p class="alert">%s</p>', __( 'This post is password protected. Enter the password to view comments.', 'calibrefx' ) );

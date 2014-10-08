@@ -1,5 +1,5 @@
 <?php 
-// Calibrefx Header
+// Calibrefx Header template part
 ?>
 <!DOCTYPE html>
 <!--[if IE 7]>

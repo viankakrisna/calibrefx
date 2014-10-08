@@ -1,21 +1,6 @@
 <?php
-/* Template Name: Archive
- *
- * CalibreFx Framework
- *
- * WordPress Themes by CalibreFx Team
- *
- * @package		CalibreFx
- * @author		CalibreFx Team
- * @copyright   Copyright (c) 2012, Suntech Inti Perkasa.
- * @license		GNU/GPL v2
- * @link		http://www.calibrefx.com
- * @since		Version 1.0
- * @filesource 
- *
- * CalibreFx Archive Template file
- *
- * @package CalibreFx
+/* 
+ * Template Name: Archive
  */
 
 if ( file_exists( CHILD_URI . '/page-archive.php' ) AND ( CHILD_URI != CALIBREFX_URI ) ) {

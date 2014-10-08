@@ -1,4 +1,6 @@
 <?php
-// Index File
+/**
+ * Default index file
+ */
 
 calibrefx();
