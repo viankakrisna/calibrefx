@@ -8,4 +8,4 @@ log/*
 logs/*
 debug.txt
 cfx
-
+error.log

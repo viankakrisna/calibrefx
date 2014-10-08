@@ -110,6 +110,8 @@ function calibrefx_load_styles() {
         if ($calibrefx_template_style)
             wp_enqueue_style('calibrefx-template-style');
     }
+
+    wp_enqueue_style( 'calibrefx-child-style', get_stylesheet_uri() );
 }
 
 /**

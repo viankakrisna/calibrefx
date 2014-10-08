@@ -4,58 +4,23 @@
  *
  */
 
-global $cfxgenerator;
-
-$cfxgenerator->calibrefx_meta = array(
-    'calibrefx_do_meta_description', 'calibrefx_do_meta_keywords','calibrefx_do_link_author',
-    'calibrefx_print_viewport', 'calibrefx_print_favicon', 'calibrefx_load_stylesheet', 
-    'calibrefx_do_dublin_core', 'calibrefx_do_fb_og');
-
-$cfxgenerator->calibrefx_header = array( 
-        array('function' => 'calibrefx_header_area', 'priority' => 10)
-    );
-
-$cfxgenerator->get_header = array(
-        array('function' => 'calibrefx_remove_wp_generator', 'priority' => 0)
-    );
-
-$cfxgenerator->wp_head = array(
-    'calibrefx_print_wrap', 'calibrefx_do_meta_pingback', 'calibrefx_header_scripts',
-    'calibrefx_header_custom_styles', 'calirbefx_show_feeds_meta'
-);
-
-/********************
- * FUNCTIONS BELOW  *
- ********************/
-
 /**
- * Remove WP Generator Tag from header
- */
-function calibrefx_remove_wp_generator(){
-    remove_action('wp_head', 'wp_generator');
-}
-
-/**
- * Print meta description, get from blog description
+ * Print meta description and keywords, get from blog description
  * Will be override by seo addon later
+ *
+ * @todo Add compatibility with seo plugin
  */
-function calibrefx_do_meta_description() {
-    $description = apply_filters('calibrefx_do_meta_description', get_bloginfo('description'));
-    echo '<meta name="description" content="' . esc_attr($description) . '" />' . "\n";
-}
+function calibrefx_do_meta() {
+    echo '<meta name="description" content="' . calibrefx_meta_description() . '" />' . "\n";
 
-/**
- * Print meta keywords
- * Will be override by seo addon later
- */
-function calibrefx_do_meta_keywords() {
-    $keywords = apply_filters('calibrefx_do_meta_keywords', ''); 
+    $keywords = apply_filters( 'calibrefx_do_meta_keywords', '' ); 
 
     // Add the description, but only if one exists
-    if (!empty($keywords)) {
-        echo '<meta name="keywords" content="' . esc_attr($keywords) . '" />' . "\n";
+    if ( !empty( $keywords ) ) {
+        echo '<meta name="keywords" content="' . esc_attr( $keywords ) . '" />' . "\n";
     }
 }
+add_action( 'calibrefx_meta', 'calibrefx_do_meta' );
 
 /**
  * Print meta keywords
@@ -75,15 +40,7 @@ function calibrefx_do_link_author() {
         echo '<link rel="publisher" content="' . esc_attr($link_publisher) . '" />' . "\n";
     }
 }
-
-/**
- * Print outs viewport
- */
-function calibrefx_print_viewport(){
-    if ( current_theme_supports( 'calibrefx-responsive-style' ) ){ ?>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <?php }
-}
+add_action( 'calibrefx_meta', 'calibrefx_do_link_author' );
 
 /**
  * Print outs favicon
@@ -107,16 +64,7 @@ function calibrefx_print_favicon() {
     if ( $favicon )
         echo '<link rel="Shortcut Icon" href="' . esc_url($favicon) . '" type="image/x-icon" />' . "\n";
 }
-
-/**
- * This function loads the stylesheet.
- * If a child theme is active, it loads the child theme's stylesheet.
- *
- */
-function calibrefx_load_stylesheet() {
-    wp_enqueue_style('calibrefx-child-style', get_stylesheet_uri());
-}
-
+add_action( 'calibrefx_meta', 'calibrefx_print_favicon' );
 
 /**
  * Print html title, this will override by seo addon later
@@ -147,89 +95,78 @@ function calibrefx_do_title( $title, $sep ) {
 add_filter( 'wp_title', 'calibrefx_do_title', 10, 2 );
 
 /**
- * Print .wrap style
- */
-function calibrefx_print_wrap() {
-    $wrap = '';
-    if ( current_theme_supports('calibrefx-responsive-style') && !calibrefx_layout_is_fluid() ) {   
-
-        $wrap = sprintf('
-.container{
-max-width: %dpx;
-}', calibrefx_get_option("calibrefx_layout_width"));
-        
-    }
-
-    if ( !current_theme_supports('calibrefx-responsive-style') ){
-        $wrap = sprintf('
-body{
-    min-width: %dpx;
-}
-.container{
-    max-width: none;
-    width: %dpx;
-}', calibrefx_get_option("calibrefx_layout_width"), calibrefx_get_option("calibrefx_layout_width"));
-    }
-
-    printf('<style type="text/css">%1$s'."\n".'</style>'."\n", $wrap);
-    // @TODO : style for ie wrapper
-    // @TODO : style for ie wrapper
-}
-
-/**
- * This function adds the pingback meta tag to the <head> so that other
- * sites can know how to send a pingback to our site.
- */
-function calibrefx_do_meta_pingback() {
-    if ('open' == get_option('default_ping_status')) {
-        echo '<link rel="pingback" href="' . get_bloginfo('pingback_url') . '" />' . "\n";
-    }
-}
-
-/**
- * This function adds dublin core meta in header
- */
-function calibrefx_do_dublin_core() {
-    echo '<meta name="DC.title" content="' . apply_filters('calibrefx_do_title', get_bloginfo('name')) . '" />'."\n";
-    echo '<meta name="DC.description" content="' . apply_filters('calibrefx_seo_description', get_bloginfo('description')) . '" />'."\n";
-    echo '<meta name="DC.subject" content="' . apply_filters('calibrefx_do_title', get_bloginfo('name')) . '" />'."\n";
-    echo '<meta name="DC.language" content="' . get_bloginfo('language') . '" />' . "\n";
-}
-
-/**
  * This function adds dublin core meta in header
  */
 function calibrefx_do_fb_og() {
     if(!current_theme_supports( 'calibrefx-open-graph' )) return;
 
-    echo '<meta property="locale" content="' . calibrefx_og_locale() . '" />'."\n";
+    echo '<meta property="locale" content="' . calibrefx_meta_locale() . '" />'."\n";
     echo '<meta property="og:site_name" content="' . get_bloginfo('name') . '" />'."\n";
     if(calibrefx_get_option('facebook_admins')) echo '<meta property="fb:admins" content="' . calibrefx_get_option('facebook_admins') . '" />'."\n";
     if(calibrefx_get_option('facebook_og_type')) echo '<meta property="og:type" content="' . calibrefx_get_option('facebook_og_type') . '" />'."\n";
-    echo '<meta property="og:title" content="' . calibrefx_og_title() . '" />'."\n";
-    echo '<meta property="og:url" content="' . calibrefx_og_url() . '" />'."\n";
-    echo '<meta property="og:description" content="' . calibrefx_og_description() . '" />'."\n";
-    $image = calibrefx_og_image();
+    echo '<meta property="og:title" content="' . calibrefx_meta_title() . '" />'."\n";
+    echo '<meta property="og:url" content="' . calibrefx_meta_url() . '" />'."\n";
+    echo '<meta property="og:description" content="' . calibrefx_meta_description() . '" />'."\n";
+    $image = calibrefx_meta_image();
     if ($image) {
         echo '<meta property="og:image" content="' . $image . '" />'."\n";
     }
-	
-	do_action('calibrefx_do_another_fb_og');
+    
+    do_action('calibrefx_do_another_fb_og');
 }
+add_action( 'calibrefx_meta', 'calibrefx_do_fb_og' );
+
+/**
+ * Print .wrap style
+ */
+function calibrefx_print_wrap() {
+    $wrap = '';
+    $body = '';
+    
+    // if using fluid layout then do nothing
+    if( calibrefx_layout_is_fluid() ){
+        return;
+    }
+
+    if ( !current_theme_supports( 'calibrefx-responsive-style' ) ){
+        $body = sprintf('
+body{
+    min-width: %1dpx;
+}', calibrefx_get_option( "calibrefx_layout_width" ) );
+
+    }
+    
+    if ( current_theme_supports( 'calibrefx-responsive-style' ) ) {   
+        $wrap = sprintf('
+.container{
+max-width: %dpx;
+}', calibrefx_get_option( "calibrefx_layout_width" ) );
+            
+    } else {
+        $wrap = sprintf('
+.container{
+    max-width: none;
+    width: %dpx;
+}', calibrefx_get_option( "calibrefx_layout_width" ) );
+    
+    }
+
+    printf('<style type="text/css">%1$s %2$s'."\n".'</style>'."\n", $body, $wrap);
+}
+add_action( 'wp_head', 'calibrefx_print_wrap' );
 
 /**
  * Echo the header scripts, defined in Theme Settings.
  */
 function calibrefx_header_scripts() {
-
-    echo apply_filters('calibrefx_header_scripts', stripslashes(calibrefx_get_option('header_scripts')));
+    echo apply_filters( 'calibrefx_header_scripts', stripslashes( calibrefx_get_option( 'header_scripts' ) ) );
 }
+add_action( 'wp_head', 'calibrefx_header_scripts', 30 );
 
 /**
  * Echo the header custom styles, defined in Theme Settings.
  */
 function calibrefx_header_custom_styles() {
-
     $custom_css = stripslashes(calibrefx_get_option('custom_css'));
     if (!empty($custom_css))
         printf('<style type="text/css">%1$s</style>', apply_filters('calibrefx_header_custom_styles', $custom_css));
@@ -239,8 +176,7 @@ function calibrefx_header_custom_styles() {
         printf('<style type="text/css">%1$s</style>', calibrefx_custom_field('_calibrefx_custom_styles'));
     }
 }
-
-add_action('calibrefx_site_title', 'calibrefx_do_site_title');
+add_action( 'wp_head', 'calibrefx_header_custom_styles', 30 );
 
 /**
  * Echo the site title into the #header.
@@ -260,8 +196,8 @@ function calibrefx_do_site_title() {
 
     echo apply_filters('calibrefx_seo_title', $title, $inside, $wrap = '');
 }
+add_action( 'calibrefx_site_title', 'calibrefx_do_site_title' );
 
-add_action('calibrefx_site_description', 'calibrefx_do_site_description');
 
 /**
  * Echo the site description into the #header.
@@ -281,6 +217,7 @@ function calibrefx_do_site_description() {
     // Return (filtered)
     echo apply_filters('calibrefx_seo_description', $description, $inside, $wrap);
 }
+add_action( 'calibrefx_site_description', 'calibrefx_do_site_description' );
 
 /**
  * Markup the header area
@@ -292,6 +229,7 @@ function calibrefx_header_area(){
     calibrefx_put_wrapper('header', 'close');
     echo '</div><!--end #header-->';
 }
+add_action( 'calibrefx_header', 'calibrefx_header_area' );
 
 /**
  * Do Header Callback
@@ -341,12 +279,3 @@ function calibrefx_feed_links_filter($output, $feed) {
     return $output;
 }
 add_filter('feed_link', 'calibrefx_feed_links_filter', 10, 2);
-
-/**
- * Show Feed Meta
- */
-function calirbefx_show_feeds_meta() {
-    echo "\n".'<link rel="alternate" type="application/rss+xml" title="' . get_bloginfo('name') . ' ' . __("RSS Feed", 'calibrefx') . '" href="' . get_bloginfo('rss2_url') . '" />'."\n";
-    echo '<link rel="alternate" type="application/atom+xml" title="' . get_bloginfo('name') . ' ' . __("Atom Feed", 'calibrefx') . '" href="' . get_bloginfo('atom_url') . '" />'."\n";
-    echo '<link rel="alternate" type="application/rss+xml" title="' . get_bloginfo('name') . ' ' . __("Comment Feed", 'calibrefx') . '" href="' . get_bloginfo('comments_rss2_url') . '" />'."\n";
-}

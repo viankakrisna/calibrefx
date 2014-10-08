@@ -52,10 +52,24 @@ $calibrefx = calibrefx_get_instance();
 
 add_action( 'after_setup_theme', function(){
 	global $calibrefx, $cfxgenerator;
+	
+	// Add theme support
+	add_theme_support('html5', array( 'comment-list', 'comment-form', 'search-form' ));
+    add_theme_support('menus');
+    add_theme_support('automatic-feed-links');
+    add_theme_support('post-thumbnails');
+    add_theme_support( 'post-formats', array(
+		'aside', 'image', 'video', 'audio', 'quote', 'link', 'gallery',
+	) );
+
+	//remove unneccesary headers 
+	remove_action('wp_head', 'wp_generator');
+
+	// Run the engine 
 	$calibrefx->load->do_autoload();
 	$cfxgenerator->run_hook();
 	$calibrefx->run();
-
+	
 	if( is_child_theme() ) {
 		$calibrefx->load->add_child_path(CHILD_URI . '/app');
 		$calibrefx->load->do_autoload(CHILD_URI . '/app/config/autoload.php');

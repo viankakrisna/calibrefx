@@ -50,11 +50,7 @@ final class Calibrefx {
      * Add our calibrefx theme support
      */
     public function load_theme_support() {
-        add_theme_support('html5', array( 'comment-list', 'comment-form', 'search-form' ));
-        add_theme_support('menus');
-        add_theme_support('automatic-feed-links');
-        add_theme_support('post-thumbnails');
-
+        
         add_theme_support('calibrefx-admin-menu');
         add_theme_support('calibrefx-custom-header');
         add_theme_support('calibrefx-custom-background');

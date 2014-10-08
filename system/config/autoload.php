@@ -13,8 +13,8 @@ $autoload['libraries'] = array('breadcrumb','security','replacer','form',
  */
 
 $autoload['helpers'] = array('debug','format', 'image', 'html', 'url', 'widget', 
-                             'option', 'layout', 'meta_box','nav','post', 
-                             'user','script','admin', 'mobile', 'opengraph');
+                             'option', 'layout', 'meta', 'meta_box','nav','post', 
+                             'user','script','admin', 'mobile');
 
 /*
  *  Auto-load Config files
