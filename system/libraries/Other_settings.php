@@ -78,19 +78,24 @@ class CFX_Other_Settings extends CFX_Admin {
 
         calibrefx_clear_meta_section();
 
+        calibrefx_add_meta_section( 'system', __( 'System Information', 'calibrefx' ), 'options.php', 1);
         calibrefx_add_meta_section( 'tosgen', __( 'TOS Generator', 'calibrefx' ), '' );
         calibrefx_add_meta_section( 'importexport', __( 'Import / Export Settings', 'calibrefx' ), '' );
         //calibrefx_add_meta_section( 'autoresponder', __( 'Autoresponder Settings', 'calibrefx' ) );
 
         do_action( 'calibrefx_other_settings_meta_section' );
 
-        $calibrefx_current_section = 'tosgen';
+        $calibrefx_current_section = 'system';
         if (!empty( $_GET['section']) ) {
             $calibrefx_current_section = sanitize_text_field( $_GET['section']);
         }
     }
 
     public function meta_boxes() {
+        //System Information
+        calibrefx_add_meta_box( 'system', 'basic', 'calibrefx-about-version', __( 'Information', 'calibrefx' ), array(&$this,'info_box' ), $this->pagehook, 'main', 'high' );
+        // calibrefx_add_meta_box( 'system', 'basic', 'calibrefx-latest-news', __( 'Calibreworks Latest Stories', 'calibrefx' ), array(&$this,'latest_news_box' ), $this->pagehook, 'main', 'high' );
+
         // Terms of Services Generator
         calibrefx_add_meta_box( 'tosgen', 'basic', 'calibrefx-other-settings-tosgen', __( 'TOS Generator', 'calibrefx' ), array( $this, 'tos_generator' ), $this->pagehook, 'main', 'high' );
         
@@ -99,6 +104,190 @@ class CFX_Other_Settings extends CFX_Admin {
         calibrefx_add_meta_box( 'importexport', 'basic', 'calibrefx-export-settings', __( 'Export Settings', 'calibrefx' ), array( $this, 'export_settings' ), $this->pagehook, 'side', 'high' );
 
         do_action( 'calibrefx_other_settings_meta_box' );
+    }
+
+    public function the_team() {
+        ?>
+        <div class="the-team-container">
+            <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/c14.14.173.173/s160x160/262956_4317692468156_689102013_n.jpg" alt="ivan kristianto" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Ivan Kristianto</a></h4>
+                </div>
+                <div class="description">
+                    <p><strong>A WordPress Expert</strong>. Actively develop WordPress and Plugins for more than 4 years. Develop Calibrefx as the masterpiece for WordPress Themes Framework</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/c33.34.413.413/s160x160/271130_10150303743249882_7232460_n.jpg" alt="Sunil Tolani" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Sunil Tolani</a></h4>
+                </div>
+                <div class="description">
+                    <p><strong>A Business Guru</strong></p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/c10.10.160.160/227639_10151271752418889_2108418971_a.jpg" alt="Dee Ferdinand" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Dee Ferdinand</a></h4>
+                </div>
+                <div class="description">
+                    <p>A Well known marketer on the net as <strong>"Minisite Guru"</strong>, actively doing internet marketing seminar and expand his creative art skill.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/c33.33.414.414/s160x160/318329_10150288849259837_7462108_n.jpg" alt="Padro Widjaja" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Padro Widjaja</a></h4>
+                </div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c56.56.696.696/s160x160/154351_3834262819533_2120621801_n.jpg" alt="Hilal" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Hilal</a></h4>
+                </div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Fadhel</a></h4>
+                </div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Ihsan</a></h4>
+                </div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Agus</a></h4>
+                </div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+             <div class="the-team">
+                <div class="image">
+                    <div class="frame">
+                        <div class="inset">
+                            <img src="http://1.gravatar.com/avatar/300f565b24f0cf1711fb33fc9b311f9c?s=75" alt="ivan kristianto" />
+                        </div>                    
+                    </div>
+                    <h4><a href="#">Sean</a></h4>
+                </div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+        <style type="text/css">
+            .main-postbox{
+                width: 96%;
+            }
+
+            .side-postbox{
+                display: none;
+            }
+
+            .the-team-container{
+
+            }
+        </style>
+        <?php
+    }
+
+    public function info_box() {
+        ?>
+        <p>
+            <span class="description">
+            Below is the CalibreFx Framework Informations. All the codes and informations is copyrighted by <a href="http://www.calibreworks.com" target="_blank">Calibreworks</a>. 
+            CalibreFx is released under the GPL v2. For license information please refer to the license.txt in themes folder.
+            </span>
+        </p>
+        <p><strong><?php _e( 'Framework Name: ', 'calibrefx' ); ?></strong><?php echo FRAMEWORK_NAME; ?> (<?php _e( 'Codename: ', 'calibrefx' ); echo FRAMEWORK_CODENAME; ?>)</p>
+        <p><strong><?php _e( 'Version:', 'calibrefx' ); ?></strong> <?php echo FRAMEWORK_VERSION; ?> <?php echo '&middot;'; ?> <strong><?php _e( 'Released:', 'calibrefx' ); ?></strong> <?php echo FRAMEWORK_RELEASE_DATE; ?></p>
+        <p><strong><?php _e( 'DB Version: ', 'calibrefx' ); ?></strong><?php echo FRAMEWORK_DB_VERSION; ?></p>
+        <?php
+    }
+
+    public function latest_news_box() {
+        echo '<div>';
+        wp_widget_rss_output(array(
+            'url' => 'http://www.calibreworks.com/feed/',
+            'title' => 'Latest news from Calibreworks Team',
+            'items' => 5,
+            'show_summary' => 1,
+            'show_author' => 0,
+            'show_date' => 1
+        ) );
+        echo "</div>";
     }
 
     public function tos_generator() {

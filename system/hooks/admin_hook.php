@@ -1,23 +1,4 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
+<?php 
 
 // This function adds the top-level menu
 function calibrefx_register_admin_menu() {
@@ -41,7 +22,7 @@ function calibrefx_register_admin_menu() {
 
     $calibrefx->load->library( 'theme_settings' );
     
-    $calibrefx->theme_settings->pagehook = add_menu_page( __( 'Calibre Framework Settings', 'calibrefx' ), $theme_name, 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ), apply_filters( 'admin-menu-icon', $admin_menu_icon ), '58.996' );
+    $calibrefx->theme_settings->pagehook = add_menu_page( __( 'Theme Settings', 'calibrefx' ), "Theme Settings", 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ), apply_filters( 'admin-menu-icon', $admin_menu_icon ), '58.996' );
     add_submenu_page( 'calibrefx', __( 'Settings', 'calibrefx' ), __( 'Settings', 'calibrefx' ), 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ) );
 
     do_action( 'calibrefx_add_submenu_page' );
@@ -61,19 +42,6 @@ function calibrefx_add_module_settings() {
     $calibrefx->load->library( 'list_module_table', array( 'screen' => $calibrefx->module_settings->pagehook) );
 }
 add_action( 'calibrefx_add_submenu_page', 'calibrefx_add_module_settings', 20 );
-
-function calibrefx_add_about_settings() {
-    global $menu, $calibrefx, $calibrefx_user_ability;
-
-    // Disable if programatically disabled
-    if ( !current_theme_supports( 'calibrefx-admin-menu' ) ) {
-        return;
-    }
-
-    $calibrefx->load->library( 'about_settings' );
-    $calibrefx->about_settings->pagehook = add_submenu_page( 'calibrefx', __( 'About', 'calibrefx' ), __( 'About', 'calibrefx' ), 'edit_theme_options', 'calibrefx-about', array( $calibrefx->about_settings, 'dashboard' ) );
-}
-add_action( 'calibrefx_add_submenu_page', 'calibrefx_add_about_settings', 25 );
 
 
 function calibrefx_add_extra_settings() {

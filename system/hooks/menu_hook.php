@@ -1,44 +1,8 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
+<?php 
 /**
- * CalibreFx Framework
+ * Calibrefx Navigation Hooks
  *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
  */
-
-/**
- * Calibrefx menu Hooks
- *
- * @package		Calibrefx
- * @subpackage          Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
- */
-
-
-global $cfxgenerator;
-$cfxgenerator->calibrefx_after_header = array(
-    array( 'function' => 'calibrefx_do_nav', 'priority' => 10 ),
-    array( 'function' => 'calibrefx_do_subnav', 'priority' => 15 )
-);
-
-/********************
- * FUNCTIONS BELOW  *
- ********************/
 
 /**
  * This function is for displaying the "Primary Navigation" bar.
@@ -109,6 +73,7 @@ function calibrefx_do_nav() {
         echo apply_filters( 'calibrefx_do_nav', $nav_output, $nav, $args );
     }
 }
+add_action( 'calibrefx_after_header', 'calibrefx_do_nav', 10 );
 
 /**
  * This function is for displaying the "Secondary Navigation" bar.
@@ -149,6 +114,7 @@ function calibrefx_do_subnav() {
         echo apply_filters( 'calibrefx_do_subnav', $subnav_output, $subnav, $args );
     }
 }
+add_action( 'calibrefx_after_header', 'calibrefx_do_subnav', 15 );
 
 /**
  * Add .active class when the current menu is active, not override the current-page-item

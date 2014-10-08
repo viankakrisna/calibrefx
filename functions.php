@@ -21,7 +21,7 @@
 /** Define Theme Info Constants */
 define('FRAMEWORK_NAME', 'Calibrefx');
 define('FRAMEWORK_CODENAME', 'Red Penguin');
-define('FRAMEWORK_VERSION', '1.1.2');
+define('FRAMEWORK_VERSION', '2.0a');
 define('FRAMEWORK_DB_VERSION', '1000');
 define('FRAMEWORK_URL', 'http://www.calibrefx.com');
 define('FRAMEWORK_RELEASE_DATE', date_i18n('F j, Y', '1400033811'));
