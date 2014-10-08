@@ -4,14 +4,6 @@
  *
  */
 
-global $cfxgenerator;
-
-$cfxgenerator->wp_footer = array(
-    // array('function' => 'calibrefx_add_socials_script', 'priority' => 10),
-    // array('function' => 'calibrefx_add_google_analytics', 'priority' => 15),
-    // array('function' => 'calibrefx_footer_scripts', 'priority' => 20),
-);
-
 /**
  * Display the footer widget if the footer widget are active.
  */
@@ -65,20 +57,6 @@ function calibrefx_do_footer_widgets() {
 add_action( 'calibrefx_before_footer', 'calibrefx_do_footer_widgets' );
 
 /**
- * Display the footer scripts, defined in Theme Settings.
- */
-function calibrefx_footer_scripts() {
-    $footer_scripts = stripslashes(calibrefx_get_option('footer_scripts'));
-
-    echo apply_filters('calibrefx_footer_scripts', $footer_scripts);
-
-    // If singular, echo scripts from custom field
-    if (is_singular()) {
-        calibrefx_custom_field('_calibrefx_scripts');
-    }
-}
-
-/**
  * Display Footer area
  */
 function calibrefx_footer_area() {
@@ -109,6 +87,21 @@ function calibrefx_do_footer() {
 }
 add_action( 'calibrefx_footer_content', 'calibrefx_do_footer' );
 add_filter('calibrefx_footer_output', 'do_shortcode', 20);
+
+/**
+ * Display the footer scripts, defined in Theme Settings.
+ */
+function calibrefx_footer_scripts() {
+    $footer_scripts = stripslashes(calibrefx_get_option('footer_scripts'));
+
+    echo apply_filters('calibrefx_footer_scripts', $footer_scripts);
+
+    // If singular, echo scripts from custom field
+    if (is_singular()) {
+        calibrefx_custom_field('_calibrefx_scripts');
+    }
+}
+add_action( 'wp_footer', 'calibrefx_footer_scripts' );
 
 /**
  * Add Social javascript in footer
@@ -143,7 +136,7 @@ function calibrefx_add_socials_script() {
             </script>'."\n";
     }
     
-    if( has_shortcode('gplus') ){
+    if( has_shortcode( get_the_content( ), 'gplus') ){
         echo 
             '<script type="text/javascript">
               (function() {
@@ -155,6 +148,7 @@ function calibrefx_add_socials_script() {
     }
     
 }
+add_action( 'wp_footer', 'calibrefx_add_socials_script' );
 
 /**
  * Show Tracking Scripts
@@ -188,6 +182,5 @@ function calibrefx_show_tracking_scrips() {
     if( !empty( $facebook_tracking_code ) ) {
         echo $facebook_tracking_code;
     }
-
-
 }
+add_action( 'wp_footer', 'calibrefx_show_tracking_scrips' );
