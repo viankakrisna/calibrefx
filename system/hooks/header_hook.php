@@ -27,17 +27,17 @@ add_action( 'calibrefx_meta', 'calibrefx_do_meta' );
  * Will be override by seo addon later
  */
 function calibrefx_do_link_author() {
-    $link_author = apply_filters('calibrefx_do_link_author', '');
-    $link_publisher = apply_filters('calibrefx_do_link_publisher', '');
+    $link_author = apply_filters( 'calibrefx_do_link_author', '' );
+    $link_publisher = apply_filters( 'calibrefx_do_link_publisher', '' );
 
     // Add the description, but only if one exists
-    if (!empty($link_author)) {
-        echo '<link rel="author" content="' . esc_attr($link_author) . '" />' . "\n";
+    if ( !empty( $link_author ) ) {
+        echo '<link rel="author" content="' . esc_attr( $link_author ) . '" />' . "\n";
     }
 
     // Add the description, but only if one exists
-    if (!empty($link_author)) {
-        echo '<link rel="publisher" content="' . esc_attr($link_publisher) . '" />' . "\n";
+    if ( !empty( $link_author ) ) {
+        echo '<link rel="publisher" content="' . esc_attr( $link_publisher ) . '" />' . "\n";
     }
 }
 add_action( 'calibrefx_meta', 'calibrefx_do_link_author' );
@@ -47,17 +47,20 @@ add_action( 'calibrefx_meta', 'calibrefx_do_link_author' );
  */
 function calibrefx_print_favicon() {
 
-    if (file_exists(CALIBREFX_IMAGES_URI . '/ico/favicon.ico'))
+    if ( file_exists( CALIBREFX_IMAGES_URI . '/ico/favicon.ico' ) ) {
         $favicon = CALIBREFX_IMAGES_URL . '/ico/favicon.ico';
-    else
+    } else {
         $favicon = CALIBREFX_IMAGES_URL . '/favicon.ico';
+    }
 
     //Check if child themes have the favicon.ico
-    if (file_exists(CHILD_URI . '/favicon.ico'))
+    if ( file_exists( CHILD_URI . '/favicon.ico' ) ) {
         $favicon = CHILD_URL . '/favicon.ico';
+    }
 
-    if (file_exists(CHILD_IMAGES_URI . '/favicon.ico'))
+    if ( file_exists( CHILD_IMAGES_URI . '/favicon.ico' ) ) {
         $favicon = CHILD_IMAGES_URL . '/favicon.ico';
+    }
 
     $favicon = apply_filters( 'calibrefx_favicon_url', $favicon );
 
@@ -185,16 +188,16 @@ add_action( 'wp_head', 'calibrefx_header_custom_styles', 30 );
 function calibrefx_do_site_title() {
 
     // Set what goes inside the wrapping tags
-    $inside = sprintf('<a href="%s" title="%s">%s</a>', trailingslashit(home_url()), esc_attr(get_bloginfo('name')), get_bloginfo('name'));
+    $inside = sprintf( '<a href="%s" title="%s">%s</a>', trailingslashit( home_url() ), esc_attr( get_bloginfo( 'name' ) ), get_bloginfo( 'name' ) );
 
     // Build the Title
-    if(is_home() ||is_front_page()){
-        $title = sprintf('<h1 id="title">%s</h1>', $inside);
-    }else{
-        $title = sprintf('<h2 id="title">%s</h2>', $inside);
+    if ( is_home() ||is_front_page() ) {
+        $title = sprintf( '<h1 id="title">%s</h1>', $inside );
+    } else {
+        $title = sprintf( '<h2 id="title">%s</h2>', $inside );
     }
 
-    echo apply_filters('calibrefx_seo_title', $title, $inside, $wrap = '');
+    echo apply_filters( 'calibrefx_seo_title', $title, $inside, $wrap = '' );
 }
 add_action( 'calibrefx_site_title', 'calibrefx_do_site_title' );
 
@@ -204,29 +207,28 @@ add_action( 'calibrefx_site_title', 'calibrefx_do_site_title' );
  *
  */
 function calibrefx_do_site_description() {
-
     // Set what goes inside the wrapping tags
-    $inside = esc_html(get_bloginfo('description'));
+    $inside = esc_html(get_bloginfo( 'description' ) );
 
     // Determine which wrapping tags to use
     $wrap = 'p';
 
     // Build the Description
-    $description = $inside ? sprintf('<%s id="description">%s</%s>', $wrap, $inside, $wrap) : '';
+    $description = $inside ? sprintf( '<%s id="description">%s</%s>', $wrap, $inside, $wrap ) : '';
 
     // Return (filtered)
-    echo apply_filters('calibrefx_seo_description', $description, $inside, $wrap);
+    echo apply_filters( 'calibrefx_seo_description', $description, $inside, $wrap );
 }
 add_action( 'calibrefx_site_description', 'calibrefx_do_site_description' );
 
 /**
  * Markup the header area
  */
-function calibrefx_header_area(){
+function calibrefx_header_area() {
     echo '<div id="header">';
-    calibrefx_put_wrapper('header', 'open');
+    calibrefx_put_wrapper( 'header', 'open' );
     calibrefx_do_header();
-    calibrefx_put_wrapper('header', 'close');
+    calibrefx_put_wrapper( 'header', 'close' );
     echo '</div><!--end #header-->';
 }
 add_action( 'calibrefx_header', 'calibrefx_header_area' );
@@ -235,17 +237,18 @@ add_action( 'calibrefx_header', 'calibrefx_header_area' );
  * Do Header Callback
  */
 function calibrefx_do_header() {
-    $header_title_class = apply_filters('header_title_class', 'pull-left', '');
-    echo '<div id="header-title" class="'.$header_title_class.'">';
-    do_action('calibrefx_site_title');
-    do_action('calibrefx_site_description');
+    $header_title_class = apply_filters( 'header_title_class', 'pull-left', '' );
+    echo '<div id="header-title" class="' . $header_title_class . '">';
+    do_action( 'calibrefx_site_title' );
+    do_action( 'calibrefx_site_description' );
     echo '</div><!-- end #header-title -->';
 
-    $header_right_widget = current_theme_supports('calibrefx-header-right-widgets');
-    $header_right_class = apply_filters('header_right_class', 'pull-right', '');
-    if ($header_right_widget) {
-       echo '<div id="header-right" class="'.$header_right_class.'">';
-       do_action('calibrefx_header_right_widget');
+    $header_right_widget = current_theme_supports( 'calibrefx-header-right-widgets' );
+    $header_right_class = apply_filters( 'header_right_class', 'pull-right', '' );
+    
+    if ( $header_right_widget ) {
+       echo '<div id="header-right" class="' . $header_right_class . '">';
+       do_action( 'calibrefx_header_right_widget' );
        echo '</div><!-- end #header-right -->';
     }
 }
@@ -253,27 +256,27 @@ function calibrefx_do_header() {
 /**
  * Print header right widget
  */
-function calibrefx_do_header_right_widget(){
-    if (is_active_sidebar('header-right')) {
-        dynamic_sidebar('header-right');
+function calibrefx_do_header_right_widget() {
+    if ( is_active_sidebar( 'header-right' ) ) {
+        dynamic_sidebar( 'header-right' );
     }
 }
-add_action('calibrefx_header_right_widget', 'calibrefx_do_header_right_widget');
+add_action( 'calibrefx_header_right_widget', 'calibrefx_do_header_right_widget' );
 
 
 /**
  * Filter the feed URI if the user has input a custom feed URI.
  */
-function calibrefx_feed_links_filter($output, $feed) {
-    $feed_uri = calibrefx_get_option('feed_uri');
-    $comments_feed_uri = calibrefx_get_option('comments_feed_uri');
+function calibrefx_feed_links_filter( $output, $feed ) {
+    $feed_uri = calibrefx_get_option( 'feed_uri' );
+    $comments_feed_uri = calibrefx_get_option( 'comments_feed_uri' );
 
-    if ($feed_uri && !strpos($output, 'comments') && ( '' == $feed || 'rss2' == $feed || 'rss' == $feed || 'rdf' == $feed || 'atom' == $feed )) {
-        $output = esc_url($feed_uri);
+    if ( $feed_uri && !strpos( $output, 'comments' ) && ( '' == $feed || 'rss2' == $feed || 'rss' == $feed || 'rdf' == $feed || 'atom' == $feed ) ) {
+        $output = esc_url( $feed_uri );
     }
 
-    if ($comments_feed_uri && strpos($output, 'comments')) {
-        $output = esc_url($comments_feed_uri);
+    if ( $comments_feed_uri && strpos( $output, 'comments' ) ) {
+        $output = esc_url( $comments_feed_uri );
     }
 
     return $output;

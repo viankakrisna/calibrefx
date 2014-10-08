@@ -1,13 +1,12 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -69,23 +68,23 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 			'orderby' => 'date',
 			'order' => 'DESC',
 			'ignore_sticky_posts' => true
-		));
+		) );
 
 		$no_post_thumbnail = apply_filters( 'no_thumbnail_image_url', CALIBREFX_IMAGES_URL.'/no-image.jpg' );
 
 		echo '<ul class="list-latest-posts">';
 
-		if($query->have_posts()) : 
-			while($query->have_posts()) : $query->the_post();
+		if( $query->have_posts() ) : 
+			while( $query->have_posts() ) : $query->the_post();
 
-				$img = calibrefx_get_image(array('format' => 'html', 'size' => $instance['image_size']));
-				$img = (!empty($img) ? $img : '<img src="'.$no_post_thumbnail.'" />');
+				$img = calibrefx_get_image(array( 'format' => 'html', 'size' => $instance['image_size']) );
+				$img = (!empty( $img) ? $img : '<img src="'.$no_post_thumbnail.'" />' );
 				$date_format = get_option( 'date_format' );
-				$item_class = apply_filters('calibrefx_latest_posts_item_class', calibrefx_row_class());
-				$image_class = apply_filters('calibrefx_latest_posts_image_class', col_class(12,4,4)); 
-				$content_class = apply_filters('calibrefx_latest_posts_content_class', col_class(12,8,8));
+				$item_class = apply_filters( 'calibrefx_latest_posts_item_class', calibrefx_row_class() );
+				$image_class = apply_filters( 'calibrefx_latest_posts_image_class', col_class(12,4,4) ); 
+				$content_class = apply_filters( 'calibrefx_latest_posts_content_class', col_class(12,8,8) );
 
-				if($instance['show_thumbnail']){
+				if( $instance['show_thumbnail']) {
 					echo '
 						<li>
 							<div class="'.$item_class.' latest-post-item">
@@ -94,8 +93,8 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 								</div>
 								<div class="latest-post-detail '. $content_class .'">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
-									<p class="latest-post-info">'.do_shortcode('[post_date]').'</p>
-									'.(($instance['show_detail']) ? get_the_content_limit($instance['detail_length']) : '').'
+									<p class="latest-post-info">'.do_shortcode( '[post_date]' ).'</p>
+									'.(( $instance['show_detail']) ? get_the_content_limit( $instance['detail_length']) : '' ).'
 								</div>
 							</div>
 						</li>
@@ -106,8 +105,8 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 							<div class="'.calibrefx_row_class().' latest-post-item">
 								<div class="latest-post-detail col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
-									<p class="latest-post-date">'.date($date_format, get_the_time('U')).'</p>
-									'.(($instance['show_detail']) ? get_the_content_limit($instance['detail_length']) : '').'
+									<p class="latest-post-date">'.date( $date_format, get_the_time( 'U' ) ).'</p>
+									'.(( $instance['show_detail']) ? get_the_content_limit( $instance['detail_length']) : '' ).'
 								</div>
 							</div>
 						</li>
@@ -117,7 +116,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 
 			endwhile;
 		else : 
-			echo '<li>'.__('There is no post available yet', 'calibrefx').'</li>';
+			echo '<li>'.__( 'There is no post available yet', 'calibrefx' ).'</li>';
 		endif;
 
 		echo '</ul>';
@@ -178,7 +177,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 				<?php
 				$sizes = calibrefx_get_additional_image_sizes();
 				foreach ( (array) $sizes as $name => $size )
-					echo '<option value="' . $name . '" ' . selected( $name, $instance['image_size'], FALSE ) . '>' . $name . ' (' . $size['width'] . 'x' . $size['height'] . ')</option>';
+					echo '<option value="' . $name . '" ' . selected( $name, $instance['image_size'], FALSE ) . '>' . $name . ' ( ' . $size['width'] . 'x' . $size['height'] . ' )</option>';
 				?>
 			</select>
 		</p>

@@ -1,13 +1,12 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -34,33 +33,48 @@
 /**
  * Output special xmlns on html tags
  */
-function html_xmlns($xml = '') {
+function html_xmlns( $xml = '' ) {
     $xmls = array();
-    $xmls = array_map('esc_attr', $xmls);
+    $xmls = array_map( 'esc_attr', $xmls );
 
-    $xmlns = apply_filters('html_xmlns', $xmls, $xml);
+    $xmlns = apply_filters( 'html_xmlns', $xmls, $xml );
 
-    echo join(' ', $xmlns);
+    echo join( ' ', $xmlns );
 }
 
 /**
  * Output if any body onload script defined
  */
-function body_onload($script = '') {
+function body_onload( $script = '' ) {
     $scripts = array();
 
-    if (!empty($script)) {
-        if (!is_array($script))
-            $script = preg_split('#\s+#', $script);
-        $scripts = array_merge($scripts, $script);
+    if ( !empty( $script ) ) {
+        if ( !is_array( $script) ) {
+            $script = preg_split( '#\s+#', $script);
+        }
+
+        $scripts = array_merge( $scripts, $script );
     } else {
         // Ensure that we always coerce class to being an array.
         $script = array();
     }
 
-    $scripts = array_map('esc_attr', $scripts);
+    $scripts = array_map( 'esc_attr', $scripts );
 
-    $onload_scripts = apply_filters('body_onload_script', $scripts, $script);
+    $onload_scripts = apply_filters( 'body_onload_script', $scripts, $script );
 
-    echo 'onload="' . join(';', $onload_scripts) . '"';
+    echo 'onload="' . join( ';', $onload_scripts ) . '"';
+}
+
+function body_attr( $attr = array() ) {    
+
+    $attrs = array();
+    $attrs = array_merge( apply_filters( 'body_attr', $attrs ), $attr );
+
+    $attr_string = '';
+    foreach($attrs as $attr_key => $attr_value){
+        $attr_string .= ' '.$attr_key.'="'. $attr_value .'"';
+    }
+
+    echo $attr_string;
 }

@@ -1,13 +1,12 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -33,27 +32,27 @@
 global $cfxgenerator;
 
 $cfxgenerator->calibrefx_after_post = array(
-    array('function' => 'calibrefx_get_comments_template', 'priority' => 10)
+    array( 'function' => 'calibrefx_get_comments_template', 'priority' => 10)
 );
 
 $cfxgenerator->calibrefx_comments = array(
-    array('function' => 'calibrefx_do_comments', 'priority' => 10)
+    array( 'function' => 'calibrefx_do_comments', 'priority' => 10)
 );
 
 $cfxgenerator->calibrefx_pings = array(
-    array('function' => 'calibrefx_do_pings', 'priority' => 10)
+    array( 'function' => 'calibrefx_do_pings', 'priority' => 10)
 );
 
 $cfxgenerator->calibrefx_list_comments = array(
-    array('function' => 'calibrefx_default_list_comments', 'priority' => 10)
+    array( 'function' => 'calibrefx_default_list_comments', 'priority' => 10)
 );
 
 $cfxgenerator->calibrefx_list_pings = array(
-    array('function' => 'calibrefx_default_list_pings', 'priority' => 10)
+    array( 'function' => 'calibrefx_default_list_pings', 'priority' => 10)
 );
 
 $cfxgenerator->calibrefx_comment_form = array(
-    array('function' => 'calibrefx_do_comment_form', 'priority' => 10)
+    array( 'function' => 'calibrefx_do_comment_form', 'priority' => 10)
 );
 
 
@@ -69,20 +68,20 @@ $cfxgenerator->calibrefx_comment_form = array(
  *
  */
 function calibrefx_get_comments_template() {
-    $is_facebook_comment_enabled = calibrefx_get_option('facebook_comments');
+    $is_facebook_comment_enabled = calibrefx_get_option( 'facebook_comments' );
 
-    $comment_box_title = apply_filters( 'calibrefx_comment_box_title',  __( 'Leave us your thought', 'calibrefx' ));
+    $comment_box_title = apply_filters( 'calibrefx_comment_box_title',  __( 'Leave us your thought', 'calibrefx' ) );
 
-    if(!$is_facebook_comment_enabled){
-        if ( is_single() && ( calibrefx_get_option( 'trackbacks_posts' ) || calibrefx_get_option( 'comments_posts' ) ) )
+    if ( !$is_facebook_comment_enabled ) {
+        if ( is_single() && ( calibrefx_get_option( 'trackbacks_posts' ) || calibrefx_get_option( 'comments_posts' ) ) ) {
             comments_template( '', true );
-        elseif ( is_page() && ( calibrefx_get_option( 'trackbacks_pages' ) || calibrefx_get_option( 'comments_pages' ) ) )
+        } elseif ( is_page() && ( calibrefx_get_option( 'trackbacks_pages' ) || calibrefx_get_option( 'comments_pages' ) ) ) {
             comments_template( '', true );
-    }else{
-
-        if((is_page() && calibrefx_get_option('comments_pages')) || (is_single() && calibrefx_get_option('comments_posts'))){
+        }
+    } else {
+        if ( ( is_page() && calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && calibrefx_get_option( 'comments_posts' ) ) ) {
             echo '<div id="comments">';
-            echo '<h3 id="reply-title">'.$comment_box_title.'</h3>';
+            echo '<h3 id="reply-title">' . $comment_box_title . '</h3>';
 
             echo do_shortcode( '[facebook_comment]' );
 
@@ -101,9 +100,11 @@ function calibrefx_do_comments() {
     global $post, $wp_query;
 
     /** Bail if comments are off for this post type */
-    if ( ( is_page() && ! calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'comments_posts' ) ) )
-            return;
-    if ( have_comments() && ! empty( $wp_query->comments_by_type['comment'] ) ) { ?>
+    if ( ( is_page() && !calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'comments_posts' ) ) ) {
+        return;
+    }
+
+    if ( have_comments() && !empty( $wp_query->comments_by_type['comment'] ) ) { ?>
         <div id="comments">
                 <?php echo apply_filters( 'calibrefx_title_comments', __( '<h3>Comments</h3>', 'calibrefx' ) ); ?>
                 <ol class="comment-list">
@@ -117,19 +118,16 @@ function calibrefx_do_comments() {
                 </div>
         </div><!--end #comments-->
         <?php
-    }
-    /** No comments so far */
-    else {
+    } else {
         echo '<div id="comments" class="no-comments">';
-        /** Comments are open, but there are no comments */
-        if ( 'open' == $post->comment_status )
+        if ( 'open' == $post->comment_status ) {
             echo apply_filters( 'calibrefx_no_comments_text', '' );
-        else /** Comments are closed */
+        } else {
             echo apply_filters( 'calibrefx_comments_closed_text', '' );
+        }
         echo '</div><!--end #comments-->';
     }
 }
-// add_action( 'calibrefx_comments', 'calibrefx_do_comments' );
 
 /**
  * Echo CalibreFx default trackback structure.
@@ -140,27 +138,23 @@ function calibrefx_do_comments() {
 function calibrefx_do_pings() {
     global $post, $wp_query;
 
-    /** Bail if trackbacks are off for this post type */
-    if ( ( is_page() && ! calibrefx_get_option( 'trackbacks_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'trackbacks_posts' ) ) )
+    if ( ( is_page() && ! calibrefx_get_option( 'trackbacks_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'trackbacks_posts' ) ) ) {
         return;
+    }
 
-    /** If have pings */
     if ( have_comments() && !empty( $wp_query->comments_by_type['pings'] ) ) {
     ?>
         <div id="pings">
                 <?php echo apply_filters( 'calibrefx_title_pings', __( '<h3>Trackbacks</h3>', 'calibrefx' ) ); ?>
                 <ol class="ping-list">
-                        <?php do_action( 'calibrefx_list_pings' ); ?>
+                    <?php do_action( 'calibrefx_list_pings' ); ?>
                 </ol>
         </div><!-- end #pings -->
         <?php
-    }
-    /** No pings so far */
-    else {
+    } else {
         echo apply_filters( 'calibrefx_no_pings_text', '' );
     }
 }
-// add_action( 'calibrefx_pings', 'calibrefx_do_pings' );
 
 /**
  * Outputs the comment list to the <code>calibrefx_comment_list()</code> hook.
@@ -199,7 +193,6 @@ function calibrefx_do_comment_form() {
 
 	comment_form();
 }
-// add_action( 'calibrefx_comment_form', 'calibrefx_do_comment_form' );
 
 /**
  * Filters the default comment form arguments, used by <code>comment_form()</code>
@@ -214,20 +207,20 @@ function calibrefx_comment_form_args( $defaults ) {
     $aria_req  = ( $req ? ' aria-required="true"' : '' );
 
     $author = '<div class="form-group comment-form-author">' .
-              '<label for="author" class="comment-form-label">'.__('Your Name (required)','calibrefx').'</label>' .
+              '<label for="author" class="comment-form-label">'.__( 'Your Name (required)','calibrefx' ).'</label>' .
               '<input id="author" name="author" type="text" class="form-control required" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" tabindex="1"' . $aria_req . ' />' .
               '</div><!-- #form-section-author .form-section -->';
 
     $email = '<div class="form-group comment-form-email">' .
-             '<label for="email" class="comment-form-label">'.__('Your Email (required)','calibrefx').'</label>' .
+             '<label for="email" class="comment-form-label">'.__( 'Your Email (required)','calibrefx' ).'</label>' .
              '<input id="email" name="email" type="text" class="form-control required" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' />' .
-             '<span class="help-block">'.__('Your email will be keep safe and won\'t be shared with third party','calibrefx').'</span>'.
+             '<span class="help-block">'.__( 'Your email will be keep safe and won\'t be shared with third party','calibrefx' ).'</span>'.
              '</div><!-- #form-section-email .form-section -->';
 
     $url = '<div class="form-group comment-form-url">' .
-           '<label for="url" class="comment-form-label">'.__('Your Website Url','calibrefx').'</label>' .
+           '<label for="url" class="comment-form-label">'.__( 'Your Website Url','calibrefx' ).'</label>' .
            '<input id="url" name="url" type="text" class="form-control url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" />' .
-           '<span class="help-block">'.__('(start with http://)','calibrefx').'</span>'.
+           '<span class="help-block">'.__( '(start with http://)','calibrefx' ).'</span>'.
            '</div><!-- #form-section-url .form-section -->';
 
     $comment_field = '<div class="form-group comment-form-comment">' .
@@ -246,10 +239,8 @@ function calibrefx_comment_form_args( $defaults ) {
             'comment_notes_after'  => '',
     );
 
-    /** Merge $args with $defaults */
     $args = wp_parse_args( $args, $defaults );
 
-    /** Return filterable array of $args, along with other optional variables */
     return apply_filters( 'calibrefx_comment_form_args', $args, $user_identity, $id, $commenter, $req, $aria_req );
 }
 add_filter( 'comment_form_defaults', 'calibrefx_comment_form_args' );
@@ -277,7 +268,7 @@ function calibrefx_comment_callback( $comment, $args, $depth ) {
     </div><!-- end .comment-meta -->
 
     <div class="comment-content">
-            <?php if ($comment->comment_approved == '0') : ?>
+            <?php if ( $comment->comment_approved == '0' ) : ?>
                     <p class="alert"><?php echo apply_filters( 'calibrefx_comment_awaiting_moderation', __( 'Your comment is awaiting moderation.', 'calibrefx' ) ); ?></p>
             <?php endif; ?>
 
@@ -285,10 +276,8 @@ function calibrefx_comment_callback( $comment, $args, $depth ) {
     </div><!-- end .comment-content -->
 
     <div class="reply">
-            <?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+        <?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
     </div>
 
     <?php do_action( 'calibrefx_after_comment' );
-
-    /** No ending </li> tag because of comment threading */
 }

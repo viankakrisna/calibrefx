@@ -1,13 +1,12 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -37,15 +36,15 @@
  * @return type 
  */
 function calibrefx_layout_is_fluid() {
-    return calibrefx_get_option('layout_type') == 'fluid';
+    return calibrefx_get_option( 'layout_type' ) == 'fluid';
 }
 
 function calibrefx_layout_is_static() {
-    return calibrefx_get_option('layout_type') == 'static';
+    return calibrefx_get_option( 'layout_type' ) == 'static';
 }
 
 function calibrefx_layout_is_fixed_wrapper() {
-    return calibrefx_get_option('calibrefx_layout_wrapper_fixed');
+    return calibrefx_get_option( 'calibrefx_layout_wrapper_fixed' );
 }
 
 /**
@@ -54,50 +53,59 @@ function calibrefx_layout_is_fixed_wrapper() {
  * @access public
  * @return string
  */
-function calibrefx_put_wrapper($context = '', $output = '<div class="container">', $echo = true) {
+function calibrefx_put_wrapper( $context = '', $output = '<div class="container">', $echo = true ) {
 
-    $calibrefx_context_wrappers = get_theme_support('calibrefx-wraps');
-    if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
+    $calibrefx_context_wrappers = get_theme_support( 'calibrefx-wraps' );
+
+    if ( !in_array( $context, (array) $calibrefx_context_wrappers[0] ) ) {
         return '';
+    }
 
-    if (calibrefx_layout_is_fixed_wrapper() && calibrefx_layout_is_static())
+    /*if ( calibrefx_layout_is_fixed_wrapper() && calibrefx_layout_is_static() ) {
         return '';
+    }*/
 
-    switch ($output) {
+    if ( calibrefx_layout_is_fluid() ) {
+        return '';
+    }
+
+    switch ( $output ) {
         case 'open':
-            $output = '<div class="container">';
-            
+            // $output = '<div class="container">';
+            $output = '<div class="' . calibrefx_container_class() . '">';
+
             break;
         case 'close':
             $output = '</div><!-- end .container -->';
-            
             break;
     }
 
-    if ($echo)
+    if ( $echo ) {
         echo $output;
-    else
+    } else {
         return $output;
+    }
 }
 
-function calibrefx_add_wrapper($name){
-    $calibrefx_context_wrappers = get_theme_support('calibrefx-wraps');
+function calibrefx_add_wrapper( $name ) {
+    $calibrefx_context_wrappers = get_theme_support( 'calibrefx-wraps' );
     $calibrefx_context_wrappers = $calibrefx_context_wrappers[0];
 
-    if (!in_array($context, (array) $calibrefx_context_wrappers[0]))
+    if ( !in_array( $context, (array) $calibrefx_context_wrappers[0] ) ) {
         return '';
+    }
     
     $calibrefx_context_wrappers[] = $name;
-    add_theme_support('calibrefx-wraps', $calibrefx_context_wrappers);
+    add_theme_support( 'calibrefx-wraps', $calibrefx_context_wrappers );
 }
 
-function calibrefx_remove_wrapper($name){
-    $calibrefx_context_wrappers = get_theme_support('calibrefx-wraps');
+function calibrefx_remove_wrapper( $name ) {
+    $calibrefx_context_wrappers = get_theme_support( 'calibrefx-wraps' );
     $calibrefx_context_wrappers = $calibrefx_context_wrappers[0];
-    $key = array_search($name, $calibrefx_context_wrappers);
-    unset($calibrefx_context_wrappers[$key]);
+    $key = array_search( $name, $calibrefx_context_wrappers );
+    unset( $calibrefx_context_wrappers[$key] );
 
-    add_theme_support('calibrefx-wraps', $calibrefx_context_wrappers);
+    add_theme_support( 'calibrefx-wraps', $calibrefx_context_wrappers );
 }
 
 /**
@@ -108,23 +116,25 @@ function calibrefx_remove_wrapper($name){
  * @paramg $args, layout configurations such as label, image, and value
  * @return void
  */
-function calibrefx_register_layout($id, $args = array()) {
+function calibrefx_register_layout( $id, $args = array() ) {
     global $_calibrefx_layouts;
 
-    if (!is_array($_calibrefx_layouts))
+    if ( !is_array( $_calibrefx_layouts ) ) {
         $_calibrefx_layouts = array();
+    }
 
     $defaults = array(
-        'label' => __('No Label Selected', 'calibrefx'),
-        'img' => CALIBREFX_IMAGES_URL . '/layouts/none.gif',
+        'label' => __( 'No Label Selected', 'calibrefx' ),
+        'img'   => CALIBREFX_IMAGES_URL . '/layouts/none.gif',
     );
 
     //don't allow duplicate id
-    if (isset($_calibrefx_layouts[$id]))
+    if ( isset( $_calibrefx_layouts[$id] ) ) {
         return;
+    }
 
     //parse the arguments
-    $args = wp_parse_args($args, $defaults);
+    $args = wp_parse_args( $args, $defaults );
 
     $_calibrefx_layouts[$id] = $args;
 }
@@ -136,15 +146,16 @@ function calibrefx_register_layout($id, $args = array()) {
  * @param $id the id of the layout
  * @return bool, true if success
  */
-function calibrefx_unregister_layout($id) {
+function calibrefx_unregister_layout( $id ) {
     global $_calibrefx_layouts;
 
     //check if the id available, if not do nothing
-    if (!isset($_calibrefx_layouts[$id]))
+    if ( !isset( $_calibrefx_layouts[$id] ) ) {
         return;
+    }
 
     //remove from array
-    unset($_calibrefx_layouts[$id]);
+    unset( $_calibrefx_layouts[$id] );
 
     return true;
 }
@@ -162,21 +173,20 @@ function calibrefx_get_default_layout() {
 
     $default = '';
 
-    foreach ((array) $_calibrefx_layouts as $key => $value) {
-        if (isset($value['default']) && $value['default']) {
+    foreach ( (array) $_calibrefx_layouts as $key => $value ) {
+        if ( isset( $value['default'] ) && $value['default'] ) {
             $default = $key;
             break;
         }
     }
 
     // return default layout, if exists
-    if ($default) {
+    if ( $default ) {
         return $default;
     }
 
-
     //if no default layout exist, then return the first key in array
-    return key($_calibrefx_layouts);
+    return key( $_calibrefx_layouts );
 }
 
 /**
@@ -188,8 +198,9 @@ function calibrefx_get_default_layout() {
 function calibrefx_get_layouts() {
     global $_calibrefx_layouts;
 
-    if (!is_array($_calibrefx_layouts))
+    if ( !is_array( $_calibrefx_layouts ) ) {
         $_calibrefx_layouts = array();
+    }
 
     return $_calibrefx_layouts;
 }
@@ -200,11 +211,12 @@ function calibrefx_get_layouts() {
  * @param string layout name
  * @return string
  */
-function calibrefx_get_layout($context) {
+function calibrefx_get_layout( $context ) {
     $layouts = calibrefx_get_layouts();
 
-    if (!isset($layouts[$context]))
+    if ( !isset( $layouts[$context] ) ) {
         return;
+    }
 
     return $layouts[$context];
 }
@@ -219,25 +231,25 @@ function calibrefx_get_layout($context) {
 function calibrefx_site_layout() {
     global $post;
 
-    $site_layout = calibrefx_get_option('site_layout'); 
+    $site_layout = calibrefx_get_option( 'site_layout' ); 
 
     // Use default layout as a fallback, if necessary
-    if (!calibrefx_get_layout($site_layout)) {
+    if ( !calibrefx_get_layout( $site_layout ) ) {
         $site_layout = calibrefx_get_default_layout();
     } 
 
-    $front_content = get_option('show_on_front');
+    $front_content = get_option( 'show_on_front' );
 
     $custom_layout = false;
 
-    if(is_single() OR is_page()){
-        $custom_layout = get_post_meta($post->ID, 'site_layout', true);
+    if( is_single() OR is_page() ) {
+        $custom_layout = get_post_meta( $post->ID, '_calibrefx_layout', true );
     }
 
-    if ($custom_layout) {
-        return esc_attr(apply_filters('calibrefx_site_layout', $custom_layout));
+    if ( $custom_layout ) {
+        return esc_attr(apply_filters( 'calibrefx_site_layout', $custom_layout ) );
     }
-    return esc_attr(apply_filters('calibrefx_site_layout', $site_layout));
+    return esc_attr( apply_filters( 'calibrefx_site_layout', $site_layout ) );
 }
 
 /**
@@ -246,30 +258,37 @@ function calibrefx_site_layout() {
  * @param array args
  * @return string
  */
-function calibrefx_layout_selector($args = array()) {
+function calibrefx_layout_selector( $args = array() ) {
 
     /** Merge defaults with user args */
-    $args = wp_parse_args($args, array(
-        'name' => '',
-        'selected' => '',
-        'echo' => true
-            ));
+    $args = wp_parse_args( $args, array(
+            'name'     => '',
+            'selected' => '',
+            'echo'     => true
+            ) );
 
     $output = '';
 
-    foreach (calibrefx_get_layouts() as $id => $data) {
-
+    foreach ( calibrefx_get_layouts() as $id => $data) {
         $class = $id == $args['selected'] ? 'selected' : '';
-
-        $output .= sprintf('<label title="%1$s" class="box %2$s"><img src="%3$s" alt="%1$s" /><br /> <input type="radio" name="%4$s" id="%5$s" value="%5$s" %6$s /></label>', esc_attr($data['label']), esc_attr($class), esc_url($data['img']), esc_attr($args['name']), esc_attr($id), checked($id, $args['selected'], false)
-        );
+        $output .= sprintf( 
+            '<label title="%1$s" class="box %2$s"><img src="%3$s" alt="%1$s" /><br /> <input type="radio" name="%4$s" id="%5$s" value="%5$s" %6$s /></label>', 
+            esc_attr( $data['label'] ), 
+            esc_attr( $class ), 
+            esc_url( $data['img'] ), 
+            esc_attr( $args['name'] ), 
+            esc_attr( $id), 
+            checked( $id, $args['selected'], false ) );
     }
 
+    $output .= "<div style='clear:both;'></div>";
+
     /** Echo or Return output */
-    if ($args['echo'])
+    if ( $args['echo'] ) {
         echo $output;
-    else
+    } else {
         return $output;
+    }
 }
 
 /**
@@ -280,6 +299,10 @@ function calibrefx_layout_selector($args = array()) {
 function calibrefx_row_class() {
     $rowClass = 'row';
     
+    if ( calibrefx_layout_is_fluid() ) {
+        return '';
+    }
+
     return apply_filters( 'calibrefx_row_class', $rowClass );
 }
 
@@ -300,21 +323,15 @@ function row_class() {
 function calibrefx_container_class() {
     $containerClass = '';
 
-    if(calibrefx_layout_is_fluid()){
-        $containerClass = '';
-    }elseif(calibrefx_layout_is_static()){
-        if(calibrefx_layout_is_fixed_wrapper()){
-            $containerClass = 'container';
-        }else{
-            $containerClass = '';
-        }
+    if( calibrefx_layout_is_static() && ! calibrefx_layout_is_fixed_wrapper() ){
+        $containerClass = 'container';
     }
     
     return apply_filters( 'calibrefx_container_class', $containerClass );
 }
 
-function calibrefx_set_layout($layout){
-    add_filter('calibrefx_site_layout', 'calibrefx_layout_'.$layout);
+function calibrefx_set_layout( $layout ) {
+    add_filter( 'calibrefx_site_layout', 'calibrefx_layout_' . $layout );
 }
 
 
@@ -323,7 +340,7 @@ function calibrefx_set_layout($layout){
  *
  * @return string
  */
-function calibrefx_layout_full_width(){
+function calibrefx_layout_full_width() {
     return 'full-width-content';
 }
 
@@ -332,7 +349,7 @@ function calibrefx_layout_full_width(){
  *
  * @return string
  */
-function calibrefx_layout_content_sidebar(){
+function calibrefx_layout_content_sidebar() {
     return 'content-sidebar';
 }
 
@@ -341,7 +358,7 @@ function calibrefx_layout_content_sidebar(){
  *
  * @return string
  */
-function calibrefx_layout_sidebar_content(){
+function calibrefx_layout_sidebar_content() {
     return 'sidebar-content';
 }
 
@@ -350,7 +367,7 @@ function calibrefx_layout_sidebar_content(){
  *
  * @return string
  */
-function calibrefx_layout_sidebar_content_sidebar(){
+function calibrefx_layout_sidebar_content_sidebar() {
     return 'sidebar-content-sidebar';
 }
 
@@ -362,22 +379,28 @@ function calibrefx_content_span() {
     $site_layout = calibrefx_site_layout();
 
     // don't load sidebar on pages that don't need it
-    if( current_theme_supports('calibrefx-responsive-style') ){
-        if ($site_layout == 'full-width-content')
-            return apply_filters('calibrefx_content_span', 'col-lg-12 col-md-12 col-sm-12 col-xs-12 first');
+    if ( calibrefx_is_responsive_enabled() ) {
+        
+        if ( $site_layout == 'full-width-content' ) {
+            return apply_filters( 'calibrefx_content_span', 'col-lg-12 col-md-12 col-sm-12 col-xs-12 first' );
+        }
 
-        if ($site_layout == 'sidebar-content-sidebar')
-            return apply_filters('calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12');
+        if ( $site_layout == 'sidebar-content-sidebar' ) {
+            return apply_filters( 'calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12' );
+        }
 
-        return apply_filters('calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12');
-    }else{
-         if ($site_layout == 'full-width-content')
-            return apply_filters('calibrefx_content_span', 'col-xs-12 first');
+        return apply_filters( 'calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12' );
+    } else {
 
-        if ($site_layout == 'sidebar-content-sidebar')
-            return apply_filters('calibrefx_content_span', 'col-xs-8');
+        if ( $site_layout == 'full-width-content' ) {
+            return apply_filters( 'calibrefx_content_span', 'col-xs-12 first' );
+        }
 
-        return apply_filters('calibrefx_content_span', 'col-xs-8');
+        if ( $site_layout == 'sidebar-content-sidebar' ) {
+            return apply_filters( 'calibrefx_content_span', 'col-xs-8' );
+        }
+
+        return apply_filters( 'calibrefx_content_span', 'col-xs-8' );
     }
 }
 
@@ -389,13 +412,14 @@ function calibrefx_sidebar_span() {
     $site_layout = calibrefx_site_layout();
 
     // don't load sidebar on pages that don't need it
-    if ($site_layout == 'full-width-content')
+    if ( $site_layout == 'full-width-content' ) {
         return;
+    }
 
-    if( current_theme_supports('calibrefx-responsive-style') ){
-        return apply_filters('calibrefx_sidebar_span', 'col-lg-4 col-md-4 col-sm-12 col-xs-12');
-    }else{
-        return apply_filters('calibrefx_sidebar_span', 'col-xs-4');
+    if ( calibrefx_is_responsive_enabled() ) {
+        return apply_filters( 'calibrefx_sidebar_span', 'col-lg-4 col-md-4 col-sm-12 col-xs-12' );
+    } else {
+        return apply_filters( 'calibrefx_sidebar_span', 'col-xs-4' );
     }
 }
 
@@ -404,177 +428,160 @@ function calibrefx_sidebar_alt_span() {
     $site_layout = calibrefx_site_layout();
 
     // don't load sidebar on pages that don't need it
-    if ($site_layout == 'full-width-content')
+    if ( $site_layout == 'full-width-content' ) {
         return;
+    }
 
-    if( current_theme_supports('calibrefx-responsive-style') ){
-        return apply_filters('calibrefx_sidebar_span', 'col-lg-3 col-md-3 col-sm-12 col-xs-12');
-    }else{
-        return apply_filters('calibrefx_sidebar_span', 'col-xs-3');
+    if ( calibrefx_is_responsive_enabled() ) {
+        return apply_filters( 'calibrefx_sidebar_span', 'col-lg-3 col-md-3 col-sm-12 col-xs-12' );
+    } else {
+        return apply_filters( 'calibrefx_sidebar_span', 'col-xs-3' );
     }
 }
 
-function calibrefx_content_sidebar_span(){
+function calibrefx_content_sidebar_span() {
      // get the layout
     $site_layout = calibrefx_site_layout();
 
     // don't load sidebar on pages that don't need it
-    if ($site_layout == 'full-width-content')
+    if ( $site_layout == 'full-width-content' ) {
         return;
+    }
 
-    if( current_theme_supports('calibrefx-responsive-style') ){
-        return apply_filters('calibrefx_sidebar_span', 'col-lg-9 col-md-9 col-sm-12 col-xs-12');
-    }else{
-        return apply_filters('calibrefx_sidebar_span', 'col-xs-9');
+    if ( calibrefx_is_responsive_enabled() ) {
+        return apply_filters( 'calibrefx_sidebar_span', 'col-lg-9 col-md-9 col-sm-12 col-xs-12' );
+    } else {
+        return apply_filters( 'calibrefx_sidebar_span', 'col-xs-9' );
     }
 }
 
-function col_class(){
+function col_class() {
 
     $numargs = func_num_args();
 
-    if($numargs == 1 && is_array(func_get_arg(0)) ){
+    if( $numargs == 1 && is_array( func_get_arg( 0 ) ) ) {
 
-        $opts = func_get_arg(0);
-        $numopt = count(func_get_arg(0));
+        $opts = func_get_arg( 0 );
+        $numopt = count( func_get_arg( 0 ) );
 
-        if($numopt == 4){
+        if( $numopt == 4 ) {
             $opt0 = $opts[0];
             $opt1 = $opts[1];
             $opt2 = $opts[2];
             $opt3 = $opts[3];
-        }
-        elseif($numopt == 3){
+        } elseif ( $numopt == 3 ) {
             $opt0 = $opts[0];
             $opt1 = $opts[1];
             $opt2 = $opts[2];
             $opt3 = $opts[2];
-        }
-        elseif($numopt == 2){
+        } elseif ( $numopt == 2 ) {
             $opt0 = $opts[0];
             $opt1 = $opts[0];
             $opt2 = $opts[1];
             $opt3 = $opts[1];
-        }
-        elseif($numopt == 1){
+        } elseif ( $numopt == 1 ) {
             $opt0 = $opts[0];
             $opt1 = $opts[0];
             $opt2 = $opts[0];
             $opt3 = $opts[0];
         }
-        
-    }
-    else{
+    } else {
 
         $numopt = $numargs;
 
-        if($numopt == 4){
-            $opt0 = func_get_arg(0);
-            $opt1 = func_get_arg(1);
-            $opt2 = func_get_arg(2);
-            $opt3 = func_get_arg(3);
+        if ( $numopt == 4 ) {
+            $opt0 = func_get_arg( 0 );
+            $opt1 = func_get_arg( 1 );
+            $opt2 = func_get_arg( 2 );
+            $opt3 = func_get_arg( 3 );
+        } elseif ( $numopt == 3 ) {
+            $opt0 = func_get_arg( 0 );
+            $opt1 = func_get_arg( 1 );
+            $opt2 = func_get_arg( 2 );
+            $opt3 = func_get_arg( 2 );
+        } elseif ( $numopt == 2 ) {
+            $opt0 = func_get_arg( 0 );
+            $opt1 = func_get_arg( 0 );
+            $opt2 = func_get_arg( 1 );
+            $opt3 = func_get_arg( 1 );
+        } elseif ( $numopt == 1 ) {
+            $opt0 = func_get_arg( 0 );
+            $opt1 = func_get_arg( 0 );
+            $opt2 = func_get_arg( 0 );
+            $opt3 = func_get_arg( 0 );
         }
-        elseif($numopt == 3){
-            $opt0 = func_get_arg(0);
-            $opt1 = func_get_arg(1);
-            $opt2 = func_get_arg(2);
-            $opt3 = func_get_arg(2);
-        }
-        elseif($numopt == 2){
-            $opt0 = func_get_arg(0);
-            $opt1 = func_get_arg(0);
-            $opt2 = func_get_arg(1);
-            $opt3 = func_get_arg(1);
-        }
-        elseif($numopt == 1){
-            $opt0 = func_get_arg(0);
-            $opt1 = func_get_arg(0);
-            $opt2 = func_get_arg(0);
-            $opt3 = func_get_arg(0);
-        }
-
     }
 
-    if( current_theme_supports('calibrefx-responsive-style') ){
-        return 'col-xs-'. $opt0 .' col-sm-'. $opt1 .' col-md-'. $opt2 .' col-lg-'. $opt3;
-    }
-    else{
+    if( calibrefx_is_responsive_enabled() ) {
+        return 'col-xs-' . $opt0 . ' col-sm-' . $opt1 . ' col-md-' . $opt2 . ' col-lg-' . $opt3;
+    } else {
         return 'col-xs-'. $opt3;
     }
 
     return FALSE;
 }
 
-function col_offset_class(){
+function col_offset_class() {
     $numargs = func_num_args();
 
-    if($numargs == 1 && is_array(func_get_arg(0)) ){
+    if( $numargs == 1 && is_array( func_get_arg( 0 ) ) ) {
 
-        $opts = func_get_arg(0);
-        $numopt = count(func_get_arg(0));
+        $opts = func_get_arg( 0 );
+        $numopt = count( func_get_arg( 0 ) );
 
-        if($numopt == 4){
+        if ( $numopt == 4 ) {
             $opt0 = $opts[0];
             $opt1 = $opts[1];
             $opt2 = $opts[2];
             $opt3 = $opts[3];
-        }
-        elseif($numopt == 3){
+        } elseif ( $numopt == 3 ) {
             $opt0 = $opts[0];
             $opt1 = $opts[1];
             $opt2 = $opts[2];
             $opt3 = $opts[2];
-        }
-        elseif($numopt == 2){
+        } elseif( $numopt == 2 ) {
             $opt0 = $opts[0];
             $opt1 = $opts[0];
             $opt2 = $opts[1];
             $opt3 = $opts[1];
-        }
-        elseif($numopt == 1){
+        } elseif( $numopt == 1 ) {
             $opt0 = $opts[0];
             $opt1 = $opts[0];
             $opt2 = $opts[0];
             $opt3 = $opts[0];
         }
-        
-    }
-    else{
+    } else {
 
         $numopt = $numargs;
 
-        if($numopt == 4){
-            $opt0 = func_get_arg(0);
-            $opt1 = func_get_arg(1);
-            $opt2 = func_get_arg(2);
-            $opt3 = func_get_arg(3);
-        }
-        elseif($numopt == 3){
-            $opt0 = func_get_arg(0);
-            $opt1 = func_get_arg(1);
-            $opt2 = func_get_arg(2);
-            $opt3 = func_get_arg(2);
-        }
-        elseif($numopt == 2){
-            $opt0 = func_get_arg(0);
-            $opt1 = func_get_arg(0);
-            $opt2 = func_get_arg(1);
-            $opt3 = func_get_arg(1);
-        }
-        elseif($numopt == 1){
-            $opt0 = func_get_arg(0);
-            $opt1 = func_get_arg(0);
-            $opt2 = func_get_arg(0);
-            $opt3 = func_get_arg(0);
+        if ( $numopt == 4 ) {
+            $opt0 = func_get_arg( 0 );
+            $opt1 = func_get_arg( 1 );
+            $opt2 = func_get_arg( 2 );
+            $opt3 = func_get_arg( 3 );
+        } elseif( $numopt == 3 ) {
+            $opt0 = func_get_arg( 0 );
+            $opt1 = func_get_arg( 1 );
+            $opt2 = func_get_arg( 2 );
+            $opt3 = func_get_arg( 2 );
+        } elseif( $numopt == 2 ) {
+            $opt0 = func_get_arg( 0 );
+            $opt1 = func_get_arg( 0 );
+            $opt2 = func_get_arg( 1 );
+            $opt3 = func_get_arg( 1 );
+        } elseif( $numopt == 1 ) {
+            $opt0 = func_get_arg( 0 );
+            $opt1 = func_get_arg( 0 );
+            $opt2 = func_get_arg( 0 );
+            $opt3 = func_get_arg( 0 );
         }
 
     }
 
-    if( current_theme_supports('calibrefx-responsive-style') ){
-        return 'col-xs-offset-'. $opt0 .' col-sm-offset-'. $opt1 .' col-md-offset-'. $opt2 .' col-lg-offset-'. $opt3;        
-    }
-    else{
-        return 'col-xs-offset-'. $opt3;
+    if( calibrefx_is_responsive_enabled() ) {
+        return 'col-xs-offset-' . $opt0 . ' col-sm-offset-' . $opt1 . ' col-md-offset-' . $opt2 . ' col-lg-offset-' . $opt3;
+    } else {
+        return 'col-xs-offset-' . $opt3;
     }
 
     return FALSE;

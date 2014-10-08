@@ -1,13 +1,12 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -33,26 +32,25 @@
 /**
  * Initialize a module and include it in the process
  */
-function calibrefx_initialize_module(){
-	foreach (calibrefx_get_active_modules() as $module) {
+function calibrefx_initialize_module() {
+	foreach ( calibrefx_get_active_modules() as $module ) {
 		$module = file_exists( CALIBREFX_MODULE_URI . '/' . $module )? CALIBREFX_MODULE_URI . '/' . $module : CHILD_MODULE_URI . '/' . $module;
 		include_once( $module );
 	}
 }
 add_action( 'calibrefx_init', 'calibrefx_initialize_module', 20 );
 
-
 /**
  * Activate a module
  */
-function calibrefx_activate_module($module){
+function calibrefx_activate_module( $module ) {
 	$active_modules = calibrefx_get_active_modules();
 
 	//windows compatibility
-	$module = str_replace("\\", "/", $module);
-	$module = str_replace("//", "/", $module);
+	$module = str_replace("\\", "/", $module );
+	$module = str_replace("//", "/", $module );
 	
-	if(!in_array($module, $active_modules)){
+	if(!in_array( $module, $active_modules ) ) {
 		$active_modules[] = $module;
 		
 		update_option( 'calibrefx_active_modules', $active_modules );
@@ -61,31 +59,31 @@ function calibrefx_activate_module($module){
 	return false;
 }
 
-function calibrefx_is_module_active($module){
+function calibrefx_is_module_active( $module ) {
 	$active_modules = calibrefx_get_active_modules();
 	
 	//windows compatibility
-	$module = str_replace("\\", "/", $module);
-	$CALIBREFX_MODULE_URI = str_replace("\\", "/", CALIBREFX_MODULE_URI);
-	$CHILD_MODULE_URI = str_replace("\\", "/", CHILD_MODULE_URI);
-	$module = str_replace($CALIBREFX_MODULE_URI . '/', '', $module);
-	$module = str_replace($CHILD_MODULE_URI . '/', '', $module);
-	return in_array($module, $active_modules);
+	$module = str_replace("\\", "/", $module );
+	$CALIBREFX_MODULE_URI = str_replace("\\", "/", CALIBREFX_MODULE_URI );
+	$CHILD_MODULE_URI = str_replace("\\", "/", CHILD_MODULE_URI );
+	$module = str_replace( $CALIBREFX_MODULE_URI . '/', '', $module );
+	$module = str_replace( $CHILD_MODULE_URI . '/', '', $module );
+	return in_array( $module, $active_modules );
 }
 
 /**
  * Deactivate a module
  */
-function calibrefx_deactivate_module($module){
+function calibrefx_deactivate_module( $module ) {
 	$active_modules = calibrefx_get_active_modules();
 	//windows compatibility
-	$module = str_replace("\\", "/", $module);
-	$module = str_replace("//", "/", $module);
+	$module = str_replace("\\", "/", $module );
+	$module = str_replace("//", "/", $module );
 
-	if(in_array($module, $active_modules)){
-		$key = array_search($module, $active_modules);
+	if ( in_array( $module, $active_modules) ) {
+		$key = array_search( $module, $active_modules );
 
-		unset($active_modules[$key]);
+		unset( $active_modules[$key] );
 		update_option( 'calibrefx_active_modules', $active_modules );
 	}	
 }
@@ -102,56 +100,64 @@ function calibrefx_deactivate_module($module){
  *
  * @return array Key is the module file path and the value is an array of the module data.
  */
-function get_modules(){
+function get_modules() {
 	global $calibrefx;
 
 	$cfx_modules = array();
 	$module_files = array();
-	foreach ($calibrefx->load->_module_paths as $modules_path) {
-		$modules_dir = @ opendir( $modules_path);
-		if($modules_dir){
-			while (($file = readdir( $modules_dir ) ) !== false ) {
-				if ( substr($file, 0, 1) == '.' )
+	foreach ( $calibrefx->load->_module_paths as $modules_path ) {
+		$modules_dir = @opendir( $modules_path );
+		if( $modules_dir ) {
+			while ( ( $file = readdir( $modules_dir ) ) !== false ) {
+				if ( substr( $file, 0, 1 ) == '.' ) {
 					continue;
+				}
 
 				if ( is_dir( $modules_path.'/'.$file ) ) {
-					$modules_subdir = @ opendir( $modules_path.'/'.$file );
+					$modules_subdir = @opendir( $modules_path . '/' . $file );
 					if ( $modules_subdir ) {
-						while (($subfile = readdir( $modules_subdir ) ) !== false ) {
-							if ( substr($subfile, 0, 1) == '.' )
+						while ( ( $subfile = readdir( $modules_subdir ) ) !== false ) {
+							if ( substr( $subfile, 0, 1) == '.' ) {
 								continue;
-							if ( substr($subfile, -4) == '.php' )
+							}
+
+							if ( substr( $subfile, -4 ) == '.php' ) {
 								$module_files[] = "$modules_path/$file/$subfile";
+							}
 						}
 						closedir( $modules_subdir );
 					}
-				}else {
-					if ( substr($file, -4) == '.php' )
+				} else {
+					if ( substr( $file, -4) == '.php' ) {
 						$module_files[] = $file;
+					}
 				}
 			}
 			closedir( $modules_dir );
 		}
-		
 	}
 
-	if ( empty($module_files) )
+	if ( empty( $module_files ) ) {
 		return $cfx_modules;
+	}
 
 	foreach ( $module_files as $module_file ) {
-		if ( !is_readable( "$module_file" ) )
+		if ( !is_readable( "$module_file" ) ) {
 			continue;
+		}
 
-		$module_data = get_module_data( "$module_file", false, false ); //Do not apply markup/translate as it'll be cached.
+		$module_data = get_module_data( "$module_file", false, false );
 		
-		if ( empty ( $module_data['Name'] ) )
+		if ( empty ( $module_data['Name'] ) ) {
 			continue;
+		}
 
-		$module_file = str_replace(CALIBREFX_MODULE_URI . '/', '', $module_file);
-		$module_file = str_replace(CHILD_MODULE_URI . '/', '', $module_file);
+		$module_file = str_replace( CALIBREFX_MODULE_URI . '/', '', $module_file );
+		$module_file = str_replace( CHILD_MODULE_URI . '/', '', $module_file );
 
 		$cfx_modules[$module_file] = $module_data;
 	}
+	
 	return $cfx_modules;
 }
 
@@ -283,7 +289,7 @@ function _get_module_data_markup_translate( $module_file, $module_data, $markup 
 		$module_data['Description'] = wptexturize( $module_data['Description'] );
 
 		if ( $module_data['Author'] )
-			$module_data['Description'] .= ' <cite>' . sprintf( __('By %s.'), $module_data['Author'] ) . '</cite>';
+			$module_data['Description'] .= ' <cite>' . sprintf( __( 'By %s.' ), $module_data['Author'] ) . '</cite>';
 	}
 
 	return $module_data;
@@ -297,21 +303,21 @@ function _get_module_data_markup_translate( $module_file, $module_data, $markup 
  * @param string $module Module ID
  * @return array List of files relative to the module root.
  */
-function get_module_files($module) {
+function get_module_files( $module) {
 	$module_file = WP_PLUGIN_DIR . '/' . $module;
-	$dir = dirname($module_file);
-	$module_files = array($module);
-	if ( is_dir($dir) && $dir != WP_PLUGIN_DIR ) {
+	$dir = dirname( $module_file);
+	$module_files = array( $module);
+	if ( is_dir( $dir) && $dir != WP_PLUGIN_DIR ) {
 		$modules_dir = @ opendir( $dir );
 		if ( $modules_dir ) {
-			while (($file = readdir( $modules_dir ) ) !== false ) {
-				if ( substr($file, 0, 1) == '.' )
+			while (( $file = readdir( $modules_dir ) ) !== false ) {
+				if ( substr( $file, 0, 1) == '.' )
 					continue;
 				if ( is_dir( $dir . '/' . $file ) ) {
 					$modules_subdir = @ opendir( $dir . '/' . $file );
 					if ( $modules_subdir ) {
-						while (($subfile = readdir( $modules_subdir ) ) !== false ) {
-							if ( substr($subfile, 0, 1) == '.' )
+						while (( $subfile = readdir( $modules_subdir ) ) !== false ) {
+							if ( substr( $subfile, 0, 1) == '.' )
 								continue;
 							$module_files[] = module_basename("$dir/$file/$subfile");
 						}

@@ -1,13 +1,12 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -70,7 +69,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		);
 		$featured_posts = new WP_Query( $query_args );
 
-		remove_filter('post_class', 'calibrefx_post_class');
+		remove_filter( 'post_class', 'calibrefx_post_class' );
 		
 		echo $before_widget . '<div class="feature-post">';
 
@@ -101,7 +100,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 				}
 
 				if ( $instance['show_date'] ) {
-					echo do_shortcode('[post_date format="relative"]');
+					echo do_shortcode( '[post_date format="relative"]' );
 				}
 
 				echo '</div><!--end post_class()-->' . "\n\n";
@@ -168,7 +167,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 				<?php
 				$sizes = calibrefx_get_additional_image_sizes();
 				foreach ( (array) $sizes as $name => $size )
-					echo '<option value="' . $name . '" ' . selected( $name, $instance['image_size'], FALSE ) . '>' . $name . ' (' . $size['width'] . 'x' . $size['height'] . ')</option>';
+					echo '<option value="' . $name . '" ' . selected( $name, $instance['image_size'], FALSE ) . '>' . $name . ' ( ' . $size['width'] . 'x' . $size['height'] . ' )</option>';
 				?>
 			</select>
 		</p>

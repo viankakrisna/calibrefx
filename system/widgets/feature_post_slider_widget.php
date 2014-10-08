@@ -1,13 +1,12 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -44,11 +43,11 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
 
         $widget_ops = array(
             'classname' => 'post-slider-widget',
-            'description' => __('Display image slider from post based on post category', 'calibrefx'),
+            'description' => __( 'Display image slider from post based on post category', 'calibrefx' ),
         );
 
  
-        $this->WP_Widget('post-slider', __('Featured Post with Slider (CalibreFx)', 'calibrefx'), $widget_ops);
+        $this->WP_Widget( 'post-slider', __( 'Featured Post with Slider (CalibreFx)', 'calibrefx' ), $widget_ops);
     }
 
     /**
@@ -57,25 +56,25 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
      * @param array $args Display arguments including before_title, after_title, before_widget, and after_widget.
      * @param array $instance The settings for the particular instance of the widget
      */
-    function widget($args, $instance) {
-        extract($args);
+    function widget( $args, $instance) {
+        extract( $args);
         $instance = wp_parse_args((array) $instance, $this->defaults);
 
-        $q = new WP_Query(array('cat' => $instance['category_id'], 'posts_per_page' => $instance['numberPost']));
+        $q = new WP_Query(array( 'cat' => $instance['category_id'], 'posts_per_page' => $instance['numberPost']) );
     
         $pager_class = '';
-        if($instance['nav']){
+        if( $instance['nav']) {
             // Create custom ID for pager
             $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            $size = strlen($chars);
-            for ($i = 0; $i < 8; $i++) {
+            $size = strlen( $chars);
+            for ( $i = 0; $i < 8; $i++) {
                 $pager_class .= $chars[rand(0, $size - 1)];
             }
         }
 
         echo $before_widget;
 
-        if(!empty($instance['title']))
+        if(!empty( $instance['title']) )
             echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
         
         $attr = '';
@@ -83,12 +82,12 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
         $attr .= ' data-cycle-speed="'.$instance['speed'].'"';
         $attr .= ' data-cycle-fx="'.$instance['fx'].'"';
         $attr .= ' data-cycle-slides="> div.post-slider-item"';
-        if($instance['nav']) $attr .= ' data-cycle-prev="#slider-prev-'.$pager_class.'" data-cycle-next="#slider-next-'.$pager_class.'"';
+        if( $instance['nav']) $attr .= ' data-cycle-prev="#slider-prev-'.$pager_class.'" data-cycle-next="#slider-next-'.$pager_class.'"';
 
         echo '<div class="post-slider-wrapper">';
         echo '<div class="post-slider cycle-slideshow"'.$attr.'>';
 
-        if($instance['caption']){
+        if( $instance['caption']) {
             echo '<div class="cycle-overlay"></div>';
 
             $attr .= ' data-cycle-caption-plugin=caption2';
@@ -99,16 +98,16 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
 			
             $display_link = $instance['display_link'];
 
-            if($display_link)
+            if( $display_link)
 			     echo '<div class="post-slider-item" data-cycle-title=\'<a href="'.get_permalink().'">'.get_the_title().'</a>\' data-cycle-desc="">';
 			else
                 echo '<div class="post-slider-item" data-cycle-title="'.get_the_title().'" data-cycle-desc="">';
 
-            $img = calibrefx_get_image(array( 'format' => 'html', 'size' => $instance['image_size']));
+            $img = calibrefx_get_image(array( 'format' => 'html', 'size' => $instance['image_size']) );
 
-            if($display_link) echo '<a href="'.get_permalink().'">';
+            if( $display_link) echo '<a href="'.get_permalink().'">';
             echo $img;
-            if($display_link) echo '</a>';
+            if( $display_link) echo '</a>';
 			
 			
 			echo '</div>';
@@ -122,7 +121,7 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
 		
         echo '</div><!-- end .post-slider -->';
 
-        if($instance['nav']) echo '<a href="#" class="slider-nav slider-prev" id="slider-prev-'.$pager_class.'">&laquo; prev</a><a href="#" class="slider-nav slider-next" id="slider-next-'.$pager_class.'">next &raquo;</a>';
+        if( $instance['nav']) echo '<a href="#" class="slider-nav slider-prev" id="slider-prev-'.$pager_class.'">&laquo; prev</a><a href="#" class="slider-nav slider-next" id="slider-next-'.$pager_class.'">next &raquo;</a>';
 
         echo '</div><!-- end .post-slider-wrapper -->';
         
@@ -132,90 +131,90 @@ class CFX_Feature_Post_Slider_Widget extends WP_Widget {
     /**
      * Update a particular instance.
      */
-    function update($new_instance, $old_instance) {
+    function update( $new_instance, $old_instance) {
 
-        $new_instance['title'] = strip_tags($new_instance['title']);
+        $new_instance['title'] = strip_tags( $new_instance['title']);
         return $new_instance;
     }
 
     /**
      * Display the settings update form.
      */
-    function form($instance) {
+    function form( $instance) {
         $instance = wp_parse_args((array) $instance, $this->defaults);
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr($instance['title']); ?>" class="widefat" />
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'calibrefx' ); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $instance['title']); ?>" class="widefat" />
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('category_id'); ?>"><?php _e('Category', 'calibrefx'); ?>:</label>
+            <label for="<?php echo $this->get_field_id( 'category_id' ); ?>"><?php _e( 'Category', 'calibrefx' ); ?>:</label>
             <?php wp_dropdown_categories( array( 'name' => $this->get_field_name( 'category_id' ), 'selected' => $instance['category_id'] ) ); ?>
         </p>
         
         <p>
-            <label for="<?php echo $this->get_field_id('numberPost'); ?>"><?php _e('Number of Slider Items', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('numberPost'); ?>" name="<?php echo $this->get_field_name('numberPost'); ?>" value="<?php echo esc_attr($instance['numberPost']); ?>" class="widefat" />
+            <label for="<?php echo $this->get_field_id( 'numberPost' ); ?>"><?php _e( 'Number of Slider Items', 'calibrefx' ); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id( 'numberPost' ); ?>" name="<?php echo $this->get_field_name( 'numberPost' ); ?>" value="<?php echo esc_attr( $instance['numberPost']); ?>" class="widefat" />
         </p>
 
 		<p>
-            <label for="<?php echo $this->get_field_id('interval'); ?>"><?php _e('Interval', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('interval'); ?>" name="<?php echo $this->get_field_name('interval'); ?>" value="<?php echo esc_attr($instance['interval']); ?>" class="widefat" />
+            <label for="<?php echo $this->get_field_id( 'interval' ); ?>"><?php _e( 'Interval', 'calibrefx' ); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id( 'interval' ); ?>" name="<?php echo $this->get_field_name( 'interval' ); ?>" value="<?php echo esc_attr( $instance['interval']); ?>" class="widefat" />
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('speed'); ?>"><?php _e('Slider Speed', 'calibrefx'); ?>:</label>
-            <input type="text" id="<?php echo $this->get_field_id('speed'); ?>" name="<?php echo $this->get_field_name('speed'); ?>" value="<?php echo esc_attr($instance['speed']); ?>" class="widefat" />
+            <label for="<?php echo $this->get_field_id( 'speed' ); ?>"><?php _e( 'Slider Speed', 'calibrefx' ); ?>:</label>
+            <input type="text" id="<?php echo $this->get_field_id( 'speed' ); ?>" name="<?php echo $this->get_field_name( 'speed' ); ?>" value="<?php echo esc_attr( $instance['speed']); ?>" class="widefat" />
         </p>
 		
         <p>
-            <label for="<?php echo $this->get_field_id('fx'); ?>"><?php _e('Slider Effect', 'calibrefx'); ?>:</label>
-            <select id="<?php echo $this->get_field_id('fx'); ?>" name="<?php echo $this->get_field_name('fx'); ?>">
-                <option style="padding-right:10px;" value="fade"<?php if($instance['fx'] == 'fade') echo ' selected="selected"'; ?>><?php _e('Fade', 'calibrefx'); ?></option>
-                <option style="padding-right:10px;" value="fadeOut"<?php if($instance['fx'] == 'fadeOut') echo ' selected="selected"'; ?>><?php _e('Fade Out', 'calibrefx'); ?></option>
-                <option style="padding-right:10px;" value="scrollHorz"<?php if($instance['fx'] == 'scrollHorz') echo ' selected="selected"'; ?>><?php _e('Scroll Horizontal', 'calibrefx'); ?></option>
-                <option style="padding-right:10px;" value="none"<?php if($instance['fx'] == 'none') echo ' selected="selected"'; ?>><?php _e('None', 'calibrefx'); ?></option>
+            <label for="<?php echo $this->get_field_id( 'fx' ); ?>"><?php _e( 'Slider Effect', 'calibrefx' ); ?>:</label>
+            <select id="<?php echo $this->get_field_id( 'fx' ); ?>" name="<?php echo $this->get_field_name( 'fx' ); ?>">
+                <option style="padding-right:10px;" value="fade"<?php if( $instance['fx'] == 'fade' ) echo ' selected="selected"'; ?>><?php _e( 'Fade', 'calibrefx' ); ?></option>
+                <option style="padding-right:10px;" value="fadeOut"<?php if( $instance['fx'] == 'fadeOut' ) echo ' selected="selected"'; ?>><?php _e( 'Fade Out', 'calibrefx' ); ?></option>
+                <option style="padding-right:10px;" value="scrollHorz"<?php if( $instance['fx'] == 'scrollHorz' ) echo ' selected="selected"'; ?>><?php _e( 'Scroll Horizontal', 'calibrefx' ); ?></option>
+                <option style="padding-right:10px;" value="none"<?php if( $instance['fx'] == 'none' ) echo ' selected="selected"'; ?>><?php _e( 'None', 'calibrefx' ); ?></option>
             </select>
         </p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('image_size'); ?>"><?php _e('Image Size', 'calibrefx'); ?>:</label>
-			<select id="<?php echo $this->get_field_id('image_size'); ?>" name="<?php echo $this->get_field_name('image_size'); ?>">
-				<option style="padding-right:10px;" value="thumbnail"<?php if($instance['image_size'] == 'thumbnail') echo ' selected="selected"'; ?>><?php _e('thumbnail', 'calibrefx'); ?> (<?php echo get_option('thumbnail_size_w'); ?>x<?php echo get_option('thumbnail_size_h'); ?>)</option>
-                <option style="padding-right:10px;" value="medium"<?php if($instance['image_size'] == 'medium') echo ' selected="selected"'; ?>><?php _e('medium', 'calibrefx'); ?> (<?php echo get_option('medium_size_w'); ?>x<?php echo get_option('medium_size_h'); ?>)</option>
-                <option style="padding-right:10px;" value="large"<?php if($instance['image_size'] == 'large') echo ' selected="selected"'; ?>><?php _e('large', 'calibrefx'); ?> (<?php echo get_option('large_size_w'); ?>x<?php echo get_option('large_size_h'); ?>)</option>
-                <option style="padding-right:10px;" value="full"<?php if($instance['image_size'] == 'full') echo ' selected="selected"'; ?>><?php _e('full size', 'calibrefx'); ?></option>
+			<label for="<?php echo $this->get_field_id( 'image_size' ); ?>"><?php _e( 'Image Size', 'calibrefx' ); ?>:</label>
+			<select id="<?php echo $this->get_field_id( 'image_size' ); ?>" name="<?php echo $this->get_field_name( 'image_size' ); ?>">
+				<option style="padding-right:10px;" value="thumbnail"<?php if( $instance['image_size'] == 'thumbnail' ) echo ' selected="selected"'; ?>><?php _e( 'thumbnail', 'calibrefx' ); ?> (<?php echo get_option( 'thumbnail_size_w' ); ?>x<?php echo get_option( 'thumbnail_size_h' ); ?>)</option>
+                <option style="padding-right:10px;" value="medium"<?php if( $instance['image_size'] == 'medium' ) echo ' selected="selected"'; ?>><?php _e( 'medium', 'calibrefx' ); ?> (<?php echo get_option( 'medium_size_w' ); ?>x<?php echo get_option( 'medium_size_h' ); ?>)</option>
+                <option style="padding-right:10px;" value="large"<?php if( $instance['image_size'] == 'large' ) echo ' selected="selected"'; ?>><?php _e( 'large', 'calibrefx' ); ?> (<?php echo get_option( 'large_size_w' ); ?>x<?php echo get_option( 'large_size_h' ); ?>)</option>
+                <option style="padding-right:10px;" value="full"<?php if( $instance['image_size'] == 'full' ) echo ' selected="selected"'; ?>><?php _e( 'full size', 'calibrefx' ); ?></option>
 				<?php
                     $sizes = calibrefx_get_additional_image_sizes();
     				foreach((array)$sizes as $name => $size) :
-    				    echo '<option style="padding-right: 10px;" value="'.esc_attr($name).'" '.selected($name, $instance['image_size'], FALSE).'>'.esc_html($name).' ('.$size['width'].'x'.$size['height'].')</option>';
+    				    echo '<option style="padding-right: 10px;" value="'.esc_attr( $name).'" '.selected( $name, $instance['image_size'], FALSE).'>'.esc_html( $name).' ( '.$size['width'].'x'.$size['height'].' )</option>';
     				endforeach;
 				?>
 			</select>
 		</p>	
 
         <p>
-            <label for="<?php echo $this->get_field_id('nav'); ?>"><?php _e('Show Navigation', 'calibrefx'); ?>:</label>
-            <select id="<?php echo $this->get_field_id('nav'); ?>" name="<?php echo $this->get_field_name('nav'); ?>">
-                <option value="1"<?php if($instance['nav'] == '1') echo ' selected="selected"'?>>Yes</option>
-                <option value="0"<?php if($instance['nav'] == '0') echo ' selected="selected"'?>>No</option>
+            <label for="<?php echo $this->get_field_id( 'nav' ); ?>"><?php _e( 'Show Navigation', 'calibrefx' ); ?>:</label>
+            <select id="<?php echo $this->get_field_id( 'nav' ); ?>" name="<?php echo $this->get_field_name( 'nav' ); ?>">
+                <option value="1"<?php if( $instance['nav'] == '1' ) echo ' selected="selected"'?>>Yes</option>
+                <option value="0"<?php if( $instance['nav'] == '0' ) echo ' selected="selected"'?>>No</option>
             </select>
         </p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('caption'); ?>"><?php _e('Show Caption', 'calibrefx'); ?>:</label>
-			<select id="<?php echo $this->get_field_id('caption'); ?>" name="<?php echo $this->get_field_name('caption'); ?>">
-				<option value="1"<?php if($instance['caption'] == '1') echo ' selected="selected"'?>>Show</option>
-				<option value="0"<?php if($instance['caption'] == '0') echo ' selected="selected"'?>>Hide</option>
+			<label for="<?php echo $this->get_field_id( 'caption' ); ?>"><?php _e( 'Show Caption', 'calibrefx' ); ?>:</label>
+			<select id="<?php echo $this->get_field_id( 'caption' ); ?>" name="<?php echo $this->get_field_name( 'caption' ); ?>">
+				<option value="1"<?php if( $instance['caption'] == '1' ) echo ' selected="selected"'?>>Show</option>
+				<option value="0"<?php if( $instance['caption'] == '0' ) echo ' selected="selected"'?>>Hide</option>
 			</select>
 		</p>	
 		
         <p>
-            <label for="<?php echo $this->get_field_id('display_link'); ?>"><?php _e('Show Post Link', 'calibrefx'); ?>:</label>
-            <select id="<?php echo $this->get_field_id('display_link'); ?>" name="<?php echo $this->get_field_name('display_link'); ?>">
-                <option value="1"<?php if($instance['display_link'] == '1') echo ' selected="selected"'?>>Show</option>
-                <option value="0"<?php if($instance['display_link'] == '0') echo ' selected="selected"'?>>Hide</option>
+            <label for="<?php echo $this->get_field_id( 'display_link' ); ?>"><?php _e( 'Show Post Link', 'calibrefx' ); ?>:</label>
+            <select id="<?php echo $this->get_field_id( 'display_link' ); ?>" name="<?php echo $this->get_field_name( 'display_link' ); ?>">
+                <option value="1"<?php if( $instance['display_link'] == '1' ) echo ' selected="selected"'?>>Show</option>
+                <option value="0"<?php if( $instance['display_link'] == '0' ) echo ' selected="selected"'?>>Hide</option>
             </select>
         </p>    
 		

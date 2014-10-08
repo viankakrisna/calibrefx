@@ -1,13 +1,12 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -30,7 +29,7 @@
  * @uses        WP_Cache
  */
 
-if(!class_exists('CFX_Cache')){
+if(!class_exists( 'CFX_Cache' ) ) {
     class CFX_Cache {
 
         /**
@@ -49,8 +48,8 @@ if(!class_exists('CFX_Cache')){
          * @param 	string group name
          * @return	void
          */
-        public function cache_set($key, $data, $group, $expire = 0) {
-            return wp_cache_set($key, $data, $group, $expire);
+        public function cache_set( $key, $data, $group, $expire = 0) {
+            return wp_cache_set( $key, $data, $group, $expire);
         }
 
         /**
@@ -61,8 +60,8 @@ if(!class_exists('CFX_Cache')){
          * @param 	string group name
          * @return	mixed data from the cache
          */
-        public function cache_get($key, $group) {
-            return wp_cache_get($key, $group);
+        public function cache_get( $key, $group) {
+            return wp_cache_get( $key, $group);
         }
 
         /**
@@ -73,8 +72,8 @@ if(!class_exists('CFX_Cache')){
          * @param 	string group name
          * @return	bool
          */
-        public function cache_delete($key) {
-            return wp_cache_delete($key, $group);
+        public function cache_delete( $key) {
+            return wp_cache_delete( $key, $group);
         }
 
         /**
@@ -93,10 +92,10 @@ if(!class_exists('CFX_Cache')){
          * @param string $file Filename
          * @param string $data Data to write
          */
-        public function write_cache($file, $data) {
-            $fh = fopen($file, 'w');
-            fwrite($fh, $data);
-            fclose($fh);
+        public function write_cache( $file, $data) {
+            $fh = fopen( $file, 'w' );
+            fwrite( $fh, $data);
+            fclose( $fh);
             return $file;
         }
 

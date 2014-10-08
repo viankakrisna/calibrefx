@@ -1,13 +1,12 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -33,6 +32,6 @@
 class Seo_settings_m extends CFX_Model{
     
     public function __construct() {
-        parent::__construct(apply_filters('calibrefx_seo_settings_field', 'calibrefx-seo-settings'));
+        parent::__construct(apply_filters( 'calibrefx_seo_settings_field', 'calibrefx-seo-settings' ) );
     }
 }

@@ -18,7 +18,7 @@ $cfxgenerator->wp_footer = array(
 function calibrefx_do_footer_widgets() {
     global $wp_registered_sidebars;
 
-    $footer_widgets = get_theme_support('calibrefx-footer-widgets');
+    $footer_widgets = get_theme_support( 'calibrefx-footer-widgets' );
 
     $all_widgets = wp_get_sidebars_widgets();
 
@@ -46,8 +46,8 @@ function calibrefx_do_footer_widgets() {
     $sidebar['before_widget'] = '<div id="%1$s" class="widget ' . $span . ' %2$s"><div class="widget-wrap">';
     $sidebar['after_widget'] = '</div></div>';
 
-    unregister_sidebar('footer-widget');
-    register_sidebar($sidebar);
+    unregister_sidebar( 'footer-widget' );
+    register_sidebar( $sidebar );
 
     if ( is_active_sidebar( 'footer-widget' ) ) {
         echo '<div id="footer-widget">';
@@ -55,7 +55,7 @@ function calibrefx_do_footer_widgets() {
         $footer_widget_wrapper_class = apply_filters( 'footer_widget_wrapper_class', calibrefx_row_class() );
         echo '<div class="footer-widget-wrapper"><div class="' . $footer_widget_wrapper_class . '">';
 
-        dynamic_sidebar('footer-widget');
+        dynamic_sidebar( 'footer-widget' );
 
         echo '</div></div><!--end .footer-widget-wrapper -->';
         calibrefx_put_wrapper( 'footer-widget','close' );
@@ -81,13 +81,13 @@ function calibrefx_footer_scripts() {
 /**
  * Display Footer area
  */
-function calibrefx_footer_area(){
+function calibrefx_footer_area() {
     echo '<div id="footer">';
-    calibrefx_put_wrapper('footer', 'open');
+    calibrefx_put_wrapper( 'footer', 'open' );
     echo '<div id="footer-wrapper" class="clearfix">';
     do_action( 'calibrefx_footer_content' );
     echo '</div><!-- end #footer-wrapper -->';
-    calibrefx_put_wrapper('footer', 'close');
+    calibrefx_put_wrapper( 'footer', 'close' );
     echo '</div><!-- end #footer -->' . "\n";
 }
 add_action( 'calibrefx_footer', 'calibrefx_footer_area' );
@@ -97,15 +97,15 @@ add_action( 'calibrefx_footer', 'calibrefx_footer_area' );
  */
 function calibrefx_do_footer() {
     // Build the filterable text strings. Includes shortcodes.
-    $creds_text = apply_filters('calibrefx_footer_credits', sprintf('[footer_copyright before="%1$s "] [footer_theme_link after=" %2$s "] [footer_calibrefx_link after=" &middot; %3$s "] [footer_wordpress_link]', __('Copyright', 'calibrefx'), __('built on', 'calibrefx'),  __('Powered By', 'calibrefx')));
-    $backtotop_text = apply_filters('calibrefx_footer_scrolltop', '[footer_scrolltop]');
+    $creds_text = apply_filters( 'calibrefx_footer_credits', sprintf( '[footer_copyright before="%1$s "] [footer_theme_link after=" %2$s "] [footer_calibrefx_link after=" &middot; %3$s "] [footer_wordpress_link]', __( 'Copyright', 'calibrefx' ), __( 'built on', 'calibrefx' ),  __( 'Powered By', 'calibrefx' ) ) );
+    $backtotop_text = apply_filters( 'calibrefx_footer_scrolltop', '[footer_scrolltop]' );
 
-    $backtotop = $backtotop_text ? sprintf('<div class="pull-right scrolltop"><p>%s</p></div>', $backtotop_text) : '';
-    $creds = $creds_text ? sprintf('<div class="credits pull-left"><p>%s</p></div>', $creds_text) : '';
+    $backtotop = $backtotop_text ? sprintf( '<div class="pull-right scrolltop"><p>%s</p></div>', $backtotop_text ) : '';
+    $creds = $creds_text ? sprintf( '<div class="credits pull-left"><p>%s</p></div>', $creds_text ) : '';
 
     $output = $creds . $backtotop;
 
-    echo apply_filters('calibrefx_footer_output', $output, $backtotop_text, $creds_text);
+    echo apply_filters( 'calibrefx_footer_output', $output, $backtotop_text, $creds_text );
 }
 add_action( 'calibrefx_footer_content', 'calibrefx_do_footer' );
 add_filter('calibrefx_footer_output', 'do_shortcode', 20);
@@ -114,39 +114,58 @@ add_filter('calibrefx_footer_output', 'do_shortcode', 20);
  * Add Social javascript in footer
  */
 function calibrefx_add_socials_script() {
-    //@TODO: add enable facebook in theme setting
-    echo 
-'<div id="fb-root"></div>
-<script>
-(function(d, s, id) {
-var js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id)) return;
-js = d.createElement(s); js.id = id;
-js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184690738325056";
-fjs.parentNode.insertBefore(js, fjs);
-}(document, \'script\', \'facebook-jssdk\'));
-</script>'."\n";
 
-    //@TODO : add enable twitter in theme setting
-    echo 
-'<script>
-window.twttr = (function (d,s,id) {
-var t, js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
-js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
-return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
-}(document, "script", "twitter-wjs"));
-</script>'."\n";
+    if( is_active_widget( false, false, 'facebook-comment' ) OR 
+        is_active_widget( false, false, 'facebook-like' ) ) {
+
+        echo 
+            '<div id="fb-root"></div>
+            <script>
+            (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id) ) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184690738325056";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, \'script\', \'facebook-jssdk\' ) );
+            </script>'."\n";
+    }
+
+    if( is_active_widget( false, false, 'twitter-timeline-widget' ) ) {
+        echo 
+            '<script>
+            window.twttr = (function (d,s,id) {
+            var t, js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id) ) return; js=d.createElement(s); js.id=id;
+            js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+            return window.twttr || (t = { _e: [], ready: function(f) { t._e.push(f) } });
+            }(document, "script", "twitter-wjs") );
+            </script>'."\n";
+    }
+    
+    if( has_shortcode('gplus') ){
+        echo 
+            '<script type="text/javascript">
+              (function() {
+                var po = document.createElement(\'script\'); po.type = \'text/javascript\'; po.async = true;
+                po.src = \'https://apis.google.com/js/plusone.js?onload=onLoadCallback\';
+                var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(po, s);
+              })();
+            </script>'."\n";
+    }
+    
 }
 
 /**
- * Add google analytics settings
+ * Show Tracking Scripts
  */
-function calibrefx_add_google_analytics() {
+function calibrefx_show_tracking_scrips() {
 
-    $analytic_id = calibrefx_get_option('analytic_id');
+    $analytic_id = calibrefx_get_option( 'analytic_id' );
+    $google_tagmanager_code = calibrefx_get_option( 'google_tagmanager_code' );
+    $facebook_tracking_code = calibrefx_get_option( 'facebook_tracking_code' );
 
-    if(!empty($analytic_id)){
+    if( !empty( $analytic_id ) ) {
         echo "
 <script type='text/javascript'>
     var _gaq = _gaq || [];
@@ -154,11 +173,21 @@ function calibrefx_add_google_analytics() {
      _gaq.push(['_trackPageview']);
 
     (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        var ga = document.createElement( 'script' ); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ( 'https:' == document.location.protocol ? 'https://ssl' : 'http://www' ) + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName( 'script' )[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>
         ";
     }
+
+    if( !empty( $google_tagmanager_code ) ) {
+        echo $google_tagmanager_code;
+    }
+
+    if( !empty( $facebook_tracking_code ) ) {
+        echo $facebook_tracking_code;
+    }
+
+
 }

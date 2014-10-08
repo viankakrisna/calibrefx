@@ -1,13 +1,12 @@
-<?php defined('CALIBREFX_URL') OR exit();
+<?php defined( 'CALIBREFX_URL' ) OR exit();
 /**
  * CalibreFx Framework
  *
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -78,7 +77,7 @@ class CFX_Logger {
      *
      * @var array
      */
-    protected $_levels = array('ERROR' => 1, 'DEBUG' => 2, 'INFO' => 3, 'ALL' => 4);
+    protected $_levels = array( 'ERROR' => 1, 'DEBUG' => 2, 'INFO' => 3, 'ALL' => 4);
 
     /**
      * Initialize Logging class
@@ -86,18 +85,18 @@ class CFX_Logger {
      * @return	void
      */
     public function __construct() {        
-        if(!is_child_theme()){
+        if(!is_child_theme() ) {
             $this->_log_path = CALIBREFX_LOG_URI . '/';
         }else{
             $this->_log_path = CHILD_URI . '/logs/';
         }
         
-        if (!is_dir($this->_log_path) OR !$this->is_really_writable($this->_log_path)) {
+        if (!is_dir( $this->_log_path) OR !$this->is_really_writable( $this->_log_path) ) {
             $this->_enabled = FALSE;
         }
         
-        $this->_date_fmt = config_item('log_date_format');
-        $this->_threshold = (int) config_item('log_threshold');
+        $this->_date_fmt = config_item( 'log_date_format' );
+        $this->_threshold = (int) config_item( 'log_threshold' );
     }
 
     // --------------------------------------------------------------------
@@ -112,39 +111,39 @@ class CFX_Logger {
      * @param	bool	whether the error is a native PHP error
      * @return	bool
      */
-    public function write_log($level = 'error', $msg, $php_error = FALSE) {
+    public function write_log( $level = 'error', $msg, $php_error = FALSE) {
         
-        if ($this->_enabled === FALSE) {
+        if ( $this->_enabled === FALSE) {
             return FALSE;
         }
 
-        $level = strtoupper($level);
+        $level = strtoupper( $level);
         
-        if ((!isset($this->_levels[$level]) OR ($this->_levels[$level] > $this->_threshold))) {
+        if ((!isset( $this->_levels[$level]) OR ( $this->_levels[$level] > $this->_threshold) )) {
             return FALSE;
         }
 
-        $filepath = $this->_log_path . 'log-' . date('Y-m-d') . '.php';
+        $filepath = $this->_log_path . 'log-' . date( 'Y-m-d' ) . '.php';
         $message = '';
         
-        if (!file_exists($filepath)) {
+        if (!file_exists( $filepath) ) {
             $newfile = TRUE;
-            $message .= '<' . "?php if ( ! defined('CALIBREFX_URI')) exit('No direct script access allowed'); ?" . ">\n\n";
+            $message .= '<' . "?php if ( ! defined( 'CALIBREFX_URI' ) ) exit( 'No direct script access allowed' ); ?" . ">\n\n";
         }
 
-        if (!$fp = @fopen($filepath, FOPEN_WRITE_CREATE)) {
+        if (!$fp = @fopen( $filepath, FOPEN_WRITE_CREATE) ) {
             return FALSE;
         }
 
-        $message .= $level . ' ' . ($level === 'INFO' ? ' -' : '-') . ' ' . date($this->_date_fmt) . ' --> ' . $msg . "\n";
+        $message .= $level . ' ' . ( $level === 'INFO' ? ' -' : '-' ) . ' ' . date( $this->_date_fmt) . ' --> ' . $msg . "\n";
         
-        flock($fp, LOCK_EX);
-        fwrite($fp, $message);
-        flock($fp, LOCK_UN);
-        fclose($fp);
+        flock( $fp, LOCK_EX);
+        fwrite( $fp, $message);
+        flock( $fp, LOCK_UN);
+        fclose( $fp);
 
-        if (isset($newfile) && $newfile === TRUE) {
-            @chmod($filepath, FILE_WRITE_MODE);
+        if (isset( $newfile) && $newfile === TRUE) {
+            @chmod( $filepath, FILE_WRITE_MODE);
         }
         /*global $wp_filesystem;
         $wp_filesystem->put_contents(
@@ -156,30 +155,30 @@ class CFX_Logger {
         return TRUE;
     }
 
-    function is_really_writable($file) {
+    function is_really_writable( $file) {
         // If we're on a Unix server with safe_mode off we call is_writable
         if (DIRECTORY_SEPARATOR == '/' AND @ini_get("safe_mode") == FALSE) {
-            return is_writable($file);
+            return is_writable( $file);
         }
 
         // For windows servers and safe_mode "on" installations we'll actually
         // write a file then read it.  Bah...
-        if (is_dir($file)) {
-            $file = rtrim($file, '/') . '/' . md5(mt_rand(1, 100) . mt_rand(1, 100));
+        if (is_dir( $file) ) {
+            $file = rtrim( $file, '/' ) . '/' . md5(mt_rand(1, 100) . mt_rand(1, 100) );
 
-            if (($fp = @fopen($file, FOPEN_WRITE_CREATE)) === FALSE) {
+            if (( $fp = @fopen( $file, FOPEN_WRITE_CREATE) ) === FALSE) {
                 return FALSE;
             }
 
-            fclose($fp);
-            @chmod($file, DIR_WRITE_MODE);
-            @unlink($file);
+            fclose( $fp);
+            @chmod( $file, DIR_WRITE_MODE);
+            @unlink( $file);
             return TRUE;
-        } elseif (!is_file($file) OR ($fp = @fopen($file, FOPEN_WRITE_CREATE)) === FALSE) {
+        } elseif (!is_file( $file) OR ( $fp = @fopen( $file, FOPEN_WRITE_CREATE) ) === FALSE) {
             return FALSE;
         }
 
-        fclose($fp);
+        fclose( $fp);
         return TRUE;
     }
 

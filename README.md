@@ -1,7 +1,7 @@
 # Calibrefx Open Source WordPress Themes Framework
 
 WordPress Themes by CalibreFx Team  
-Copyright (c) 2012 - 2014, CalibreWorks. (http://www.calibreworks.com/)  
+Copyright (c) 2012 - 2014, Calibreworks. (http://www.calibreworks.com/)  
 License Under GNU/GPL v2  
 Official Website http://www.calibrefx.com  
 

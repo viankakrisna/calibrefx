@@ -1,6 +1,6 @@
 var calibrefx_toggles = {
     "content_archive":["#calibrefx-settings\\[content_archive\\]",".calibrefx_content_limit_setting","full"],
-    "layout_type":["#calibrefx-settings\\[layout_type\\]","#calibrefx_layout_width","static"],
+    "layout_type":["#calibrefx-settings\\[layout_type\\]",".calibrefx_layout_width","static"],
     "email_protocol":["#calibrefx-settings\\[email_protocol\\]","#email_setting_box_content","smtp"]
 };
 window['calibrefx'] = {
@@ -8,7 +8,7 @@ window['calibrefx'] = {
     update_character_count: function (event) {
         'use strict';
         //
-        jQuery('#' + event.target.id + '_chars').html(jQuery(event.target).val().length.toString());
+        jQuery( '#' + event.target.id + '_chars' ).html(jQuery(event.target).val().length.toString() );
     },
     
     
@@ -21,13 +21,13 @@ window['calibrefx'] = {
         check_value = event.data.check_value;
         
         if (
-            (jQuery.isArray(check_value) && jQuery.inArray($selector.val(), check_value) > -1) ||
-            (check_value === null && $selector.is(':checked')) ||
+            (jQuery.isArray(check_value) && jQuery.inArray( $selector.val(), check_value) > -1) ||
+            (check_value === null && $selector.is( ':checked' ) ) ||
             (check_value !== null && $selector.val() === check_value)
             ) {
-            jQuery($show_selector).slideDown('fast');
+            jQuery( $show_selector).slideDown( 'fast' );
         } else {
-            jQuery($show_selector).slideUp('fast');
+            jQuery( $show_selector).slideUp( 'fast' );
         }
     },
     
@@ -43,9 +43,9 @@ window['calibrefx'] = {
                 };
             
             // Setup toggle binding
-            jQuery('div.calibrefx-metaboxes').on('change.calibrefx.calibrefx_toggle', v[0], data, calibrefx.toggle_settings);
+            jQuery( 'div.calibrefx-metaboxes' ).on( 'change.calibrefx.calibrefx_toggle', v[0], data, calibrefx.toggle_settings);
 
-            jQuery(v[0]).trigger('change.calibrefx_toggle', data);
+            jQuery(v[0]).trigger( 'change.calibrefx_toggle', data);
         });
     },
     
@@ -56,10 +56,10 @@ window['calibrefx'] = {
         var selected_class = 'selected';
 
         // Remove class from all labels
-        jQuery('input[name="' + jQuery(event.target).attr('name') + '"]').parent('label').removeClass(selected_class);
+        jQuery( 'input[name="' + jQuery(event.target).attr( 'name' ) + '"]' ).parent( 'label' ).removeClass(selected_class);
 
         // Add class to selected layout
-        jQuery(event.target).parent('label').addClass(selected_class);
+        jQuery(event.target).parent( 'label' ).addClass(selected_class);
 
     },
     
@@ -69,12 +69,12 @@ window['calibrefx'] = {
         // Initialise settings that can toggle the display of other settings
         calibrefx.toggle_settings_init();
 
-        jQuery('#calibrefx_title, #calibrefx_description').on('keyup.calibrefx.calibrefx_character_count', calibrefx.update_character_count);
+        jQuery( '#calibrefx_title, #calibrefx_description' ).on( 'keyup.calibrefx.calibrefx_character_count', calibrefx.update_character_count);
         
         // Bind layout highlighter behaviour
-        jQuery('.calibrefx-layout-selector').on('change.calibrefx.calibrefx_layout_selector', 'input[type="radio"]', calibrefx.layout_highlighter);
+        jQuery( '.calibrefx-layout-selector' ).on( 'change.calibrefx.calibrefx_layout_selector', 'input[type="radio"]', calibrefx.layout_highlighter);
                 
-        jQuery('#calibrefx-admin-bar').sticky({
+        jQuery( '#calibrefx-admin-bar' ).sticky({
             topSpacing: 0,
            
             className: 'sticky'
@@ -84,19 +84,19 @@ window['calibrefx'] = {
 
 jQuery(calibrefx.ready);
 
-jQuery(document).ready(function($){
-	$('input.calibrefx-settings-checkbox').click(function(){
-		var id = $(this).attr('target');
+jQuery(document).ready(function( $) {
+	$( 'input.calibrefx-settings-checkbox' ).click(function() {
+		var id = $(this).attr( 'target' );
 		
-		if($(this).is(':checked')){
-			$('#' + id).val('1');
+		if( $(this).is( ':checked' ) ) {
+			$( '#' + id).val( '1' );
 		}else{
-			$('#' + id).val('0');
+			$( '#' + id).val( '0' );
 		}
 	});
 
-    $('#test-send-mail').click(function(){
-        var email = $('#email-test').val();
+    $( '#test-send-mail' ).click(function() {
+        var email = $( '#email-test' ).val();
         var caller = $this;
         
         var data = {
@@ -105,19 +105,19 @@ jQuery(document).ready(function($){
         };
         
         $.post(ajaxurl, data, function(response) {
-            $('#send-mail-res').html(response.message);
+            $( '#send-mail-res' ).html(response.message);
         }, "json");
 
         return false;
     });
 
-    $('.show_advanced').live('click', function(){
-        var parent = $(this).parents('.widget');
+    $( '.show_advanced' ).live( 'click', function() {
+        var parent = $(this).parents( '.widget' );
 
-        if($(this).is(':checked')){
-            parent.find('.advanced-widget-options').slideDown();
+        if( $(this).is( ':checked' ) ) {
+            parent.find( '.advanced-widget-options' ).slideDown();
         }else{
-            parent.find('.advanced-widget-options').slideUp();
+            parent.find( '.advanced-widget-options' ).slideUp();
         }
     });
 });
@@ -134,16 +134,16 @@ function calibrefx_confirm( text ) {
 }
 
 function tos_bind_events() {
-    (function($){
-        $('.button-ajax').click( function() {
+    (function( $) {
+        $( '.button-ajax' ).click( function() {
             var button = this;
             $.post( ajaxurl, {
-                'action': $(button).attr('data-action'),
-                '_ajax_nonce': $(button).attr('data-nonce'),
-                'param': $(button).attr('data-param'),
-                'name': $('#name').val,
-                'url': $('#url').val,
-                'info': $('#info').val,
+                'action': $(button).attr( 'data-action' ),
+                '_ajax_nonce': $(button).attr( 'data-nonce' ),
+                'param': $(button).attr( 'data-param' ),
+                'name': $( '#name' ).val,
+                'url': $( '#url' ).val,
+                'info': $( '#info' ).val,
             })
             .success( function( result ) {
                 if ( '1' === result ) {
@@ -152,7 +152,7 @@ function tos_bind_events() {
                     //     .nextAll( '.a8c-developer-action-result' )
                     //     .remove();
 
-                    $(button).unbind('click').prop('disabled', true);
+                    $(button).unbind( 'click' ).prop( 'disabled', true);
                 } else {
                     alert( result );
 
@@ -178,7 +178,7 @@ function tos_bind_events() {
     })(jQuery);
 }
 
-jQuery(document).ready(function($){
+jQuery(document).ready(function( $) {
     theTeamResize();
 
     $(window).resize(theTeamResize);
@@ -187,19 +187,19 @@ jQuery(document).ready(function($){
 
 
 
-function theTeamResize(){
+function theTeamResize() {
 
     
-    jQuery('.the-team').css('height', 'auto');
+    jQuery( '.the-team' ).css( 'height', 'auto' );
 
     var height = 0;
-    jQuery('.the-team').each(function(){
+    jQuery( '.the-team' ).each(function() {
         $this = jQuery(this);
 
-        if(height < $this.height()){
+        if(height < $this.height() ) {
             height = $this.height();
         }
 
     })
-    jQuery('.the-team').height(height);
+    jQuery( '.the-team' ).height(height);
 }
