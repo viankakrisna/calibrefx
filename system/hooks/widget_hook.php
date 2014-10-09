@@ -1,47 +1,8 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
-
+<?php 
 /**
  * Calibrefx Widget Hooks
  *
- * @package		Calibrefx
- * @subpackage  Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
  */
-
-global $cfxgenerator;
-
-$cfxgenerator->calibrefx_setup = array(
-    array( 'function' => 'calibrefx_register_default_widget', 'priority' => 10 )
-);
-
-$cfxgenerator->init = array(
-    array( 'function' => 'calibrefx_register_additional_widget', 'priority' => 10 )
-);
-
-/********************
- * FUNCTIONS BELOW  *
- ********************/
 
 /**
  * This function registers all the default CalibreFx widget.
@@ -60,6 +21,7 @@ function calibrefx_register_default_widget() {
         'id' => 'sidebar-alt'
     ) );
 }
+add_action( 'init', 'calibrefx_register_default_widget' );
 
 
 /**
@@ -86,8 +48,8 @@ function calibrefx_register_additional_widget() {
         ) );
     }
 }
+add_action( 'init', 'calibrefx_register_additional_widget' );
 
-add_filter( 'in_widget_form', 'calibrefx_custom_widget_attributes', 10, 3);
 function calibrefx_custom_widget_attributes( $widget, $return, $instance ) {
     if( !isset( $instance['custom_widget_class'] ) ) $instance['custom_widget_class'] = '';
     if( !isset( $instance['custom_icon_class'] ) ) $instance['custom_icon_class'] = '';
@@ -113,8 +75,8 @@ function calibrefx_custom_widget_attributes( $widget, $return, $instance ) {
 </div>
 <?php
 }
+add_filter( 'in_widget_form', 'calibrefx_custom_widget_attributes', 10, 3);
 
-add_filter( 'widget_update_callback', 'calibrefx_widget_update_callback', 20, 2);
 function calibrefx_widget_update_callback( $instance, $new_instance ) { 
     if ( empty( $new_instance['show_advanced'] ) ) {
         $new_instance['show_advanced'] = 0;
@@ -124,8 +86,8 @@ function calibrefx_widget_update_callback( $instance, $new_instance ) {
    
     return $instance;
 }
+add_filter( 'widget_update_callback', 'calibrefx_widget_update_callback', 20, 2);
 
-add_filter( 'widget_display_callback', 'calibrefx_custom_class_widget', 10, 3);
 function calibrefx_custom_class_widget( $instance, $widget, $args ) {
     if ( isset( $instance['custom_widget_class'] ) ) {
         $widget_classname = $widget->widget_options['classname'];
@@ -145,3 +107,4 @@ function calibrefx_custom_class_widget( $instance, $widget, $args ) {
 
     return false;
 }
+add_filter( 'widget_display_callback', 'calibrefx_custom_class_widget', 10, 3);

@@ -118,7 +118,7 @@ class CFX_Theme_Settings extends CFX_Admin {
     }
 
     public function meta_sections() {
-        global $calibrefx_current_section, $calibrefx_target_form, $calibrefx_user_ability;
+        global $calibrefx_current_section, $calibrefx_target_form;
 
         $calibrefx_target_form = apply_filters( 'calibrefx_target_form', 'options.php' );
 

@@ -1,16 +1,9 @@
 <?php 
-
 /**
  * Calibrefx Admin Ajax Hooks
  *
- * @package		Calibrefx
- * @subpackage  Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
  */
 
-add_action('wp_ajax_create-legal-page', 'calibrefx_create_legal_page');
 function calibrefx_create_legal_page(){
 	global $calibrefx;
 	
@@ -156,3 +149,4 @@ function calibrefx_create_legal_page(){
 	echo 1;
 	exit;
 }
+add_action('wp_ajax_create-legal-page', 'calibrefx_create_legal_page');

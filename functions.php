@@ -80,6 +80,29 @@ add_action( 'after_setup_theme', function(){
 	}
 }, 0 );
 
+/**
+ * Enable GZip Compression
+ */
+function calibrefx_gzip_compression() {
+     if (!current_theme_supports( 'calibrefx-preformance' ) )
+         return false;
+     
+    // don't use on TinyMCE
+    if (stripos( $_SERVER['REQUEST_URI'], 'wp-includes/js/tinymce' ) !== false) {
+        return false;
+    }
+    // can't use zlib.output_compression and ob_gzhandler at the same time
+    if (( ini_get( 'zlib.output_compression' ) == 'On' || ini_get( 'zlib.output_compression_level' ) > 0 ) || ini_get( 'output_handler' ) == 'ob_gzhandler' ) {
+        return false;
+    }
+
+    if (extension_loaded( 'zlib' ) ) {
+        ob_end_clean();
+        ob_start( 'ob_gzhandler' );
+    }
+}
+add_action( 'init', 'calibrefx_gzip_compression' );
+
 /*add_action( 'wp', function(){
 	global $calibrefx, $cfxgenerator;
 	wp_cache_set( 'calibrefx', $calibrefx );

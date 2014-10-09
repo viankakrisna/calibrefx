@@ -1,33 +1,7 @@
 <?php
 /**
- * CalibreFx
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package		CalibreFx
- * @author		CalibreFx Team
- * @copyright           Copyright (c) 2012, Suntech Inti Perkasa.
- * @license		GNU/GPL v2
- * @link		http://www.calibrefx.com
- * @since		Version 1.0
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This File will handle theme-settings and provide default settings
- *
- * @package CalibreFx
- */
-
-/**
  * Calibrefx Other Settings Class
  *
- * @package		Calibrefx
- * @subpackage          Library
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
  */
 class CFX_Other_Settings extends CFX_Admin {
 
@@ -38,10 +12,7 @@ class CFX_Other_Settings extends CFX_Admin {
         parent::__construct();
 
         $this->page_id = 'calibrefx-other';
-        $this->default_settings = apply_filters( 'calibrefx_other_settings_defaults', array(
-                
-            )
-        );
+        $this->default_settings = apply_filters( 'calibrefx_other_settings_defaults', array() );
 
         add_action( 'calibrefx_before_save_core', array( $this,'do_export' ) );
         add_action( 'calibrefx_before_save_core', array( $this,'do_import' ) );
@@ -53,26 +24,13 @@ class CFX_Other_Settings extends CFX_Admin {
      *
      * $return void
      */
-    public function security_filters() {
-        global $calibrefx;
+    public function security_filters() { }
 
-        $calibrefx->security->add_sanitize_filter(
-                'one_zero', $this->settings_field, array(
-            
-            )
-        );
-
-        $calibrefx->security->add_sanitize_filter(
-                'safe_text', $this->settings_field, array(
-           )
-        );
-
-        $calibrefx->security->add_sanitize_filter(
-                'integer', $this->settings_field, array(
-            )
-        );
-    }
-
+    /**
+     * Register our meta sections
+     *
+     * $return null
+     */
     public function meta_sections() {
         global $calibrefx_current_section;
 
@@ -81,7 +39,6 @@ class CFX_Other_Settings extends CFX_Admin {
         calibrefx_add_meta_section( 'system', __( 'System Information', 'calibrefx' ), 'options.php', 1);
         calibrefx_add_meta_section( 'tosgen', __( 'TOS Generator', 'calibrefx' ), '' );
         calibrefx_add_meta_section( 'importexport', __( 'Import / Export Settings', 'calibrefx' ), '' );
-        //calibrefx_add_meta_section( 'autoresponder', __( 'Autoresponder Settings', 'calibrefx' ) );
 
         do_action( 'calibrefx_other_settings_meta_section' );
 
@@ -94,7 +51,6 @@ class CFX_Other_Settings extends CFX_Admin {
     public function meta_boxes() {
         //System Information
         calibrefx_add_meta_box( 'system', 'basic', 'calibrefx-about-version', __( 'Information', 'calibrefx' ), array(&$this,'info_box' ), $this->pagehook, 'main', 'high' );
-        // calibrefx_add_meta_box( 'system', 'basic', 'calibrefx-latest-news', __( 'Calibreworks Latest Stories', 'calibrefx' ), array(&$this,'latest_news_box' ), $this->pagehook, 'main', 'high' );
 
         // Terms of Services Generator
         calibrefx_add_meta_box( 'tosgen', 'basic', 'calibrefx-other-settings-tosgen', __( 'TOS Generator', 'calibrefx' ), array( $this, 'tos_generator' ), $this->pagehook, 'main', 'high' );

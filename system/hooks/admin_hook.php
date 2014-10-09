@@ -1,4 +1,7 @@
 <?php 
+/**
+ * This admin hook only run in admin area
+ */
 
 // This function adds the top-level menu
 function calibrefx_register_admin_menu() {

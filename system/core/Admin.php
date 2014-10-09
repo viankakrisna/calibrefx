@@ -250,12 +250,10 @@ abstract class CFX_Admin {
 
     public function dashboard() {
         global $calibrefx_sections, 
-               $calibrefx_current_section, 
-               $calibrefx_user_ability;
+               $calibrefx_current_section;
 
         $this->_submit_url = apply_filters( 'calibrefx_'.$calibrefx_current_section.'_form_url', 'options.php' );
 
-        $calibrefx_theme = wp_get_theme();
         ?>
         <div id="<?php echo $this->settings_field;?>-page" class="wrap calibrefx-metaboxes <?php echo $calibrefx_current_section; ?>">
             <form method="<?php echo $this->_form_method; ?>" action="<?php echo $this->_submit_url; ?>" enctype="multipart/form-data" id="calibrefx-form">
@@ -268,7 +266,7 @@ abstract class CFX_Admin {
 
                 <div class="calibrefx-header">
                     <div class="calibrefx-option-logo">
-                        <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx v<?php echo FRAMEWORK_VERSION; ?>">&nbsp;</a>
+                        <a target="_blank" href="http://www.calibrefx.com" title="CalibreFx">&nbsp;</a>
                     </div>
                     <?php if( $this->_form_method == 'post' ) : ?>
                     <div class="calibrefx-submit-button">

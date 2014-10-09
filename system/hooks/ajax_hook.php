@@ -1,12 +1,8 @@
 <?php 
-
 /**
  * Calibrefx Ajax Handler
  *
  */
-
-add_action( 'wp_ajax_cfx_ajax', 'calibrefx_ajax' );
-add_action( 'wp_ajax_nopriv_cfx_ajax', 'calibrefx_ajax' );
 
 /**
  * Run any action to do ajax
@@ -17,6 +13,8 @@ function calibrefx_ajax() {
     do_action( 'calibrefx_do_ajax' );
     exit;
 }
+add_action( 'wp_ajax_cfx_ajax', 'calibrefx_ajax' );
+add_action( 'wp_ajax_nopriv_cfx_ajax', 'calibrefx_ajax' );
 
 /*
 SAMPLE SCRIPT FOR AJAX CALL

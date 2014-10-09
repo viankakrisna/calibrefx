@@ -1,64 +1,9 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
-
+<?php 
 /**
  * Calibrefx Comments Hooks
  *
- * @package		Calibrefx
- * @subpackage  Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
  */
 
-global $cfxgenerator;
-
-$cfxgenerator->calibrefx_after_post = array(
-    array( 'function' => 'calibrefx_get_comments_template', 'priority' => 10)
-);
-
-$cfxgenerator->calibrefx_comments = array(
-    array( 'function' => 'calibrefx_do_comments', 'priority' => 10)
-);
-
-$cfxgenerator->calibrefx_pings = array(
-    array( 'function' => 'calibrefx_do_pings', 'priority' => 10)
-);
-
-$cfxgenerator->calibrefx_list_comments = array(
-    array( 'function' => 'calibrefx_default_list_comments', 'priority' => 10)
-);
-
-$cfxgenerator->calibrefx_list_pings = array(
-    array( 'function' => 'calibrefx_default_list_pings', 'priority' => 10)
-);
-
-$cfxgenerator->calibrefx_comment_form = array(
-    array( 'function' => 'calibrefx_do_comment_form', 'priority' => 10)
-);
-
-
-/********************
- * FUNCTIONS BELOW  *
- ********************/
 
 /**
  * Output the comments at the end of posts / pages.
@@ -89,6 +34,7 @@ function calibrefx_get_comments_template() {
         }
     }
 }
+add_action( 'calibrefx_after_post', 'calibrefx_get_comments_template', 10 );
 
 /**
  * Echo CalibreFx default comment structure.
@@ -128,6 +74,7 @@ function calibrefx_do_comments() {
         echo '</div><!--end #comments-->';
     }
 }
+add_action( 'calibrefx_comments', 'calibrefx_do_comments' );
 
 /**
  * Echo CalibreFx default trackback structure.
@@ -155,20 +102,21 @@ function calibrefx_do_pings() {
         echo apply_filters( 'calibrefx_no_pings_text', '' );
     }
 }
+add_action( 'calibrefx_pings', 'calibrefx_do_pings' );
 
 /**
  * Outputs the comment list to the <code>calibrefx_comment_list()</code> hook.
  */
 function calibrefx_default_list_comments() {
     $args = array(
-            'type'			=> 'comment',
-            'avatar_size'	=> 48,
-            'callback'		=> 'calibrefx_comment_callback',
+            'type'          => 'comment',
+            'avatar_size'   => 48,
+            'callback'      => 'calibrefx_comment_callback',
     );
     $args = apply_filters( 'calibrefx_comment_list_args', $args );
     wp_list_comments( $args );
 }
-// add_action( 'calibrefx_list_comments', 'calibrefx_default_list_comments' );
+add_action( 'calibrefx_list_comments', 'calibrefx_default_list_comments' );
 
 /**
  * Outputs the ping list to the <code>calibrefx_ping_list()</code> hook.
@@ -179,7 +127,7 @@ function calibrefx_default_list_pings() {
     $args = apply_filters( 'calibrefx_ping_list_args', $args );
     wp_list_comments( $args );
 }
-// add_action( 'calibrefx_list_pings', 'calibrefx_default_list_pings' );
+add_action( 'calibrefx_list_pings', 'calibrefx_default_list_pings' );
 
 /**
  * Defines the comment form, hooked to <code>calibrefx_comment_form()</code>
@@ -187,12 +135,13 @@ function calibrefx_default_list_pings() {
  */
 function calibrefx_do_comment_form() {
 
-	/** Bail if comments are closed for this post type */
-	if ( ( is_page() && ! calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'comments_posts' ) ) )
-		return;
+    /** Bail if comments are closed for this post type */
+    if ( ( is_page() && ! calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'comments_posts' ) ) )
+        return;
 
-	comment_form();
+    comment_form();
 }
+add_action( 'calibrefx_comment_form', 'calibrefx_do_comment_form' );
 
 /**
  * Filters the default comment form arguments, used by <code>comment_form()</code>

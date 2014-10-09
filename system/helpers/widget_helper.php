@@ -1,42 +1,12 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
-
+<?php 
 /**
  * Calibrefx Widget Helper
- *
- * @package         CalibreFx
- * @subpackage      Helpers
- * @category        Helpers
- * @author          CalibreFx Team
- * @link            http://www.calibrefx.com
  * 
  */
 
 /**
  * This function expedites the widget area registration process by taking
  * common things, before/after_widget, before/after_title, and doing them automatically.
- *
- * @uses wp_parse_args, register_sidebar
- * @since 1.0.1
- * @author Charles Clarkson
  */
 function calibrefx_register_sidebar( $args ) {
     $defaults = (array) apply_filters( 'calibrefx_register_sidebar_defaults', array(

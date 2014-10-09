@@ -1,52 +1,8 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
-
+<?php 
 /**
  * Calibrefx User Hooks
  *
- * @package		Calibrefx
- * @subpackage          Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
  */
-
-global $cfxgenerator;
-
-$cfxgenerator->init = array(
-    array( 'function' => 'calibrefx_set_user_ability', 'priority' => 0 )
-);
-
-function calibrefx_set_user_ability() {
-    global $calibrefx_user_ability, 
-           $current_user;
-
-    //Set general as default
-    $calibrefx_user_ability = 'general';
-    if ( !empty( $_GET['ability'] ) ) {
-        update_user_meta( $current_user->ID, 'ability', $_GET['ability'] );
-    }
-
-    $calibrefx_user_ability = get_user_meta( $current_user->ID, 'ability', true );
-}
 
 function calibrefx_user_another_social_fields( $methods ) {
     $methods['youtube_channel'] = __( 'Youtube Channel', 'calibrefx' );
@@ -137,17 +93,3 @@ function calibrefx_user_meta_save( $user_id ) {
 }
 add_action( 'personal_options_update', 'calibrefx_user_meta_save' );
 add_action( 'edit_user_profile_update', 'calibrefx_user_meta_save' );
-
-/**
- * This is a special filter function to be used to conditionally force
- * a default 1 value for each users' author box setting.
- */
-function calibrefx_author_box_single_default_on( $value, $user_id ) {
-
-    if (calibrefx_get_option( 'author_box_single' ) ) {
-        return calibrefx_user_meta_default_on( $value, $user_id );
-    } else {
-        return $value;
-    }
-}
-add_filter( 'get_the_author_calibrefx_author_box_single', 'calibrefx_author_box_single_default_on', 10, 2 );
