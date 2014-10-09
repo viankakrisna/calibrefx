@@ -29,7 +29,7 @@ class CFX_Config {
      *
      * @var array
      */
-    public $_config_paths = array(CALIBREFX_CONFIG_URI);
+    public $_config_paths = array( CALIBREFX_CONFIG_URI );
 
     /**
      * Constructor
@@ -52,7 +52,7 @@ class CFX_Config {
      * @return	bool	if the file was loaded correctly
      */
     public function load( $file = '' ) {
-        $file = ( $file === '' ) ? 'config' : str_replace( '.php', '', $file);
+        $file = ( $file === '' ) ? 'config' : str_replace( '.php', '', $file );
         $found = $loaded = FALSE;
 
         $check_locations = array( $file );

@@ -275,6 +275,15 @@ class CFX_Other_Settings extends CFX_Admin {
         <p><strong><?php _e( 'Version:', 'calibrefx' ); ?></strong> <?php echo FRAMEWORK_VERSION; ?> <?php echo '&middot;'; ?> <strong><?php _e( 'Released:', 'calibrefx' ); ?></strong> <?php echo FRAMEWORK_RELEASE_DATE; ?></p>
         <p><strong><?php _e( 'DB Version: ', 'calibrefx' ); ?></strong><?php echo FRAMEWORK_DB_VERSION; ?></p>
         <?php
+
+        if( is_child_theme() ) { ?>
+            <hr class="div" />
+            <h4>Themes Information</h4>
+            <p><strong><?php _e( 'Themes Name: ', 'calibrefx' ); ?></strong><?php echo CHILD_THEME_NAME; ?> </p>
+            <p><strong><?php _e( 'Version:', 'calibrefx' ); ?></strong> <?php echo CHILD_THEME_VERSION; ?> </p>
+            <p><strong><?php _e( 'Themes Author URL:', 'calibrefx' ); ?></strong> <?php echo CHILD_THEME_URL; ?> </p>
+        <?php
+        }
     }
 
     public function latest_news_box() {

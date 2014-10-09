@@ -1,5 +1,4 @@
 <?php 
-
 /**
  * Calibrefx Admin Class
  *

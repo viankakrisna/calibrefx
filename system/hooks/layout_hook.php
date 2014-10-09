@@ -448,7 +448,7 @@ function calibrefx_custom_header_style() {
     $text = '';
 
     /** If no options set, don't waste the output. Do nothing. */
-    if( ( HEADER_IMAGE == '' && get_header_image() == '' ) || ( HEADER_TEXTCOLOR != 'blank' && get_header_textcolor() != 'blank' ) || ( HEADER_TEXT && display_header_text() ) ) {
+    if( ( HEADER_IMAGE == '' AND get_header_image() == '' ) OR ( HEADER_TEXTCOLOR != 'blank' && get_header_textcolor() != 'blank' ) || ( HEADER_TEXT && display_header_text() ) ) {
        $text = sprintf( '
 #title, #title a{ 
     color: %s

@@ -1,6 +1,4 @@
 <?php
-defined( 'CALIBREFX_URL' ) OR exit();
-
 /** Define CALIBREFX Root Directory Constant */
 !defined( 'CALIBREFX_CACHE_URI' ) && define( 'CALIBREFX_CACHE_URI', CALIBREFX_URI . '/cache' );
 !defined( 'CALIBREFX_LOG_URI' ) && define( 'CALIBREFX_LOG_URI', CALIBREFX_URI . '/log' );

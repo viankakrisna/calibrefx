@@ -1,34 +1,12 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
-
+<?php
 /**
  * Calibrefx Inpost Hooks
  *
- * @package		Calibrefx
- * @subpackage          Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
  */
 
+/**
+ * Show layout choice per page or per post
+ */
 function calibrefx_add_inpost_layout_box() {
     if ( !current_theme_supports( 'calibrefx-inpost-layouts' ) ) {
         return;

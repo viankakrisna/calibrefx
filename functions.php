@@ -49,6 +49,10 @@ $cfxgenerator = CFX_Generator::get_instance();
 //Initialize calibrefx instance
 $calibrefx = calibrefx_get_instance();
 
+if ( ! isset( $content_width ) ) {
+    $content_width = apply_filters( 'calibrefx_content_width', 550 );
+}
+
 
 add_action( 'after_setup_theme', function(){
 	global $calibrefx, $cfxgenerator;
@@ -74,7 +78,7 @@ add_action( 'after_setup_theme', function(){
 		$calibrefx->load->add_child_path(CHILD_URI . '/app');
 		$calibrefx->load->do_autoload(CHILD_URI . '/app/config/autoload.php');
 	}
-},0);
+}, 0 );
 
 /*add_action( 'wp', function(){
 	global $calibrefx, $cfxgenerator;

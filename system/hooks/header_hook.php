@@ -101,7 +101,43 @@ add_filter( 'wp_title', 'calibrefx_do_title', 10, 2 );
  * This function adds dublin core meta in header
  */
 function calibrefx_do_fb_og() {
-    if(!current_theme_supports( 'calibrefx-open-graph' )) return;
+
+    // Add compatibilty with other plugins
+    $conflicting_plugins = array(
+        'facebook/facebook.php',                                                        // Official Facebook plugin
+        'wordpress-seo/wp-seo.php',                                                     // WordPress SEO by Yoast
+        'add-link-to-facebook/add-link-to-facebook.php',                                // Add Link to Facebook
+        'facebook-awd/AWD_facebook.php',                                                // Facebook AWD All in one
+        'header-footer/plugin.php',                                                     // Header and Footer
+        'nextgen-facebook/nextgen-facebook.php',                                        // NextGEN Facebook OG
+        'seo-facebook-comments/seofacebook.php',                                        // SEO Facebook Comments
+        'seo-ultimate/seo-ultimate.php',                                                // SEO Ultimate
+        'sexybookmarks/sexy-bookmarks.php',                                             // Shareaholic
+        'shareaholic/sexy-bookmarks.php',                                               // Shareaholic
+        'social-discussions/social-discussions.php',                                    // Social Discussions
+        'social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php',          // NextScripts SNAP
+        'wordbooker/wordbooker.php',                                                    // Wordbooker
+        'socialize/socialize.php',                                                      // Socialize
+        'simple-facebook-connect/sfc.php',                                              // Simple Facebook Connect
+        'social-sharing-toolkit/social_sharing_toolkit.php',                            // Social Sharing Toolkit
+        'wp-facebook-open-graph-protocol/wp-facebook-ogp.php',                          // WP Facebook Open Graph protocol
+        'opengraph/opengraph.php',                                                      // Open Graph
+        'sharepress/sharepress.php',                                                    // SharePress
+        'wp-facebook-like-send-open-graph-meta/wp-facebook-like-send-open-graph-meta.php',  // WP Facebook Like Send & Open Graph Meta
+        'network-publisher/networkpub.php',                         // Network Publisher
+        'wp-ogp/wp-ogp.php',                                    // WP-OGP
+        'open-graph-protocol-framework/open-graph-protocol-framework.php',          // Open Graph Protocol Framework
+        'all-in-one-seo-pack/all_in_one_seo_pack.php',                      // All in One SEO Pack
+        'facebook-featured-image-and-open-graph-meta-tags/fb-featured-image.php',       // Facebook Featured Image & OG Meta Tags
+    );
+    
+    $active_plugins = get_option( 'active_plugins', array() );
+
+    foreach ( $conflicting_plugins as $plugin ) {
+        if ( in_array( $plugin, $active_plugins ) ) {
+            return;
+        }
+    }
 
     echo '<meta property="locale" content="' . calibrefx_meta_locale() . '" />'."\n";
     echo '<meta property="og:site_name" content="' . get_bloginfo('name') . '" />'."\n";

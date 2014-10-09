@@ -2,12 +2,6 @@
 
 /**
  * Calibrefx Format Helper
- *
- * @package         CalibreFx
- * @subpackage      Helpers
- * @category        Helpers
- * @author          CalibreFx Team
- * @link            http://www.calibrefx.com
  * 
  */
 

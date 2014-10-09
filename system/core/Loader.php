@@ -152,7 +152,7 @@ class CFX_Loader {
      */
     public function do_autoload( $autoload_file = '' ) {
         if ( file_exists( CALIBREFX_CONFIG_URI . '/autoload.php' ) ) {
-            include(CALIBREFX_CONFIG_URI . '/autoload.php' );
+            include( CALIBREFX_CONFIG_URI . '/autoload.php' );
         }
 
         if ( !empty( $autoload_file ) && file_exists( $autoload_file ) ) {
