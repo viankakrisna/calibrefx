@@ -1,24 +1,4 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
-
+<?php 
 /* Site URL */
 function calibrefx_site_url( $atts, $content = null ) {
     extract( shortcode_atts( array(
@@ -39,7 +19,7 @@ function calibrefx_home_url( $atts, $content = null ) {
 
     return home_url( $path, $scheme );
 }
-add_shortcode( 'home_url', 'calibrefx_site_url' );
+add_shortcode( 'home_url', 'calibrefx_home_url' );
 
 /**
  * ==============================================================

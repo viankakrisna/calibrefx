@@ -101,9 +101,3 @@ function calibrefx_gzip_compression() {
     }
 }
 add_action( 'init', 'calibrefx_gzip_compression' );
-
-/*add_action( 'wp', function(){
-	global $calibrefx, $cfxgenerator;
-	wp_cache_set( 'calibrefx', $calibrefx );
-	wp_cache_set( 'cfxgenerator', $cfxgenerator );
-} );*/

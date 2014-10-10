@@ -37,13 +37,6 @@ class CFX_Loader {
     public $_shortcode_paths = array();
 
     /**
-     * List of paths to load widget from
-     *
-     * @var array
-     */
-    public $_widget_paths = array();
-
-    /**
      * List of paths to load helpers from
      *
      * @var array
@@ -86,13 +79,6 @@ class CFX_Loader {
     protected $_loaded_models = array();
 
     /**
-     * List of loaded widgets
-     *
-     * @var array
-     */
-    protected $_loaded_widgets = array();
-
-    /**
      * List of loaded helpers
      *
      * @var array
@@ -112,7 +98,6 @@ class CFX_Loader {
         $this->_helper_paths = array( CALIBREFX_HELPER_URI );
         $this->_model_paths = array( CALIBREFX_MODEL_URI );
         $this->_shortcode_paths = array( CALIBREFX_SHORTCODE_URI );
-        $this->_widget_paths = array( CALIBREFX_WIDGET_URI );
         $this->_hook_paths = array( CALIBREFX_HOOK_URI );
         $this->_module_paths = array( CALIBREFX_MODULE_URI );
 
@@ -354,39 +339,6 @@ class CFX_Loader {
         }
     }
 
-    // --------------------------------------------------------------------
-
-    /**
-     * Load Widget
-     *
-     * This function loads the specified widget file.
-     *
-     * @param	mixed
-     * @return	void
-     */
-    /*public function widget( $widgets = array() ) { 
-        foreach ( $widgets as $widget ) {
-            $widget_name = 'CFX_' . $widget . '_Widget';
-            
-            if ( isset( $this->_loaded_widgets[$widget_name] ) ) {
-                calibrefx_log_message( 'debug', 'Widget has been loaded from the cache: ' . $widget_name );
-                continue;
-            }
-
-            foreach ( $this->_widget_paths as $path ) {
-                $filepath = $path . '/' . strtolower( $widget ). '_widget' . '.php'; 
-                if ( file_exists( $filepath ) ) {
-                 
-                    include_once( $filepath );
-
-                    $this->_loaded_widgets[] = $widget_name;
-                    register_widget( $widget_name );
-                    calibrefx_log_message( 'debug', 'Widget loaded: ' . $widget_name );
-                    break;
-                }
-            }
-        }
-    }*/
 
     // --------------------------------------------------------------------
 

@@ -41,6 +41,9 @@ final class Calibrefx {
         load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
 
         calibrefx_log_message( 'debug', 'Calibrefx Class Initialized' );
+
+        add_action( 'calibrefx_init', array( $this, 'load_shortcodes' ) );
+        add_action( 'calibrefx_init', array( $this, 'load_modules' ) );
     }
 
     /**
@@ -79,6 +82,34 @@ final class Calibrefx {
         add_post_type_support( 'page', array( 'calibrefx-layouts' ) );
     }
 
+    /**
+     * Load all modules and shortcodes
+     */
+    public function load_shortcodes(){
+        $shortcodes_include = array();
+
+        foreach ( Calibrefx::glob_php( CALIBREFX_SHORTCODE_URI ) as $file ) {
+            $shortcodes_include[] = $file;
+        }
+
+        $shortcodes_include = apply_filters( 'calibrefx_shortcodes_to_include', $shortcodes_include );
+
+        foreach( $shortcodes_include as $include ) {
+            include $include;
+        }
+        do_action( 'calibrefx_shortcodes_loaded' );
+    }
+
+    /**
+     * Load all modules and shortcodes
+     */
+    public function load_modules(){
+
+    }
+
+    /**
+     * This function will run everything
+     */
     public function run() {
         
         /** Run the calibrefx_pre_init hook */
