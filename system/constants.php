@@ -5,11 +5,9 @@
 !defined( 'CALIBREFX_SYS_URI' ) && define( 'CALIBREFX_SYS_URI', CALIBREFX_URI . '/system' );
 !defined( 'CALIBREFX_LANG_URI' ) && define( 'CALIBREFX_LANG_URI', CALIBREFX_URI . '/system/languages' );
 
-!defined( 'CALIBREFX_CONFIG_URI' ) && define( 'CALIBREFX_CONFIG_URI', CALIBREFX_SYS_URI . '/config' );
 !defined( 'CALIBREFX_LIBRARY_URI' ) && define( 'CALIBREFX_LIBRARY_URI', CALIBREFX_SYS_URI . '/libraries' );
 !defined( 'CALIBREFX_HELPER_URI' ) && define( 'CALIBREFX_HELPER_URI', CALIBREFX_SYS_URI . '/helpers' );
 !defined( 'CALIBREFX_SHORTCODE_URI' ) && define( 'CALIBREFX_SHORTCODE_URI', CALIBREFX_SYS_URI . '/shortcodes' );
-!defined( 'CALIBREFX_MODEL_URI' ) && define( 'CALIBREFX_MODEL_URI', CALIBREFX_SYS_URI . '/models' );
 !defined( 'CALIBREFX_WIDGET_URI' ) && define( 'CALIBREFX_WIDGET_URI', CALIBREFX_SYS_URI . '/widgets' );
 !defined( 'CALIBREFX_HOOK_URI' ) && define( 'CALIBREFX_HOOK_URI', CALIBREFX_SYS_URI . '/hooks' );
 !defined( 'CALIBREFX_MODULE_URI' ) && define( 'CALIBREFX_MODULE_URI', CALIBREFX_SYS_URI . '/modules' );

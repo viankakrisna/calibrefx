@@ -33,7 +33,7 @@ do_action('calibrefx_pre');
  *  Load the global functions
  * ------------------------------------------------------
  */
-require_once( CALIBREFX_URI . '/system/config/constants.php');
+require_once( CALIBREFX_URI . '/system/constants.php');
 require_once( CALIBREFX_URI . '/system/common.php' );
 
 require_once( CALIBREFX_URI . '/system/class.calibrefx.php' );
@@ -69,10 +69,10 @@ function calibrefx_initializing(){
     // Run the engine 
     $calibrefx->run();
     
-    if( is_child_theme() ) {
+    /*if( is_child_theme() ) {
         $calibrefx->load->add_child_path( CHILD_URI . '/app' );
         $calibrefx->load->do_autoload( CHILD_URI . '/app/config/autoload.php' );
-    }
+    }*/
 }
 add_action( 'after_setup_theme', 'calibrefx_initializing', 0 );
 

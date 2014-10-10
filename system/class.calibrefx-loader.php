@@ -1,8 +1,6 @@
 <?php 
 /**
- * Loader Class
- *
- * Load Libraries and Helpers
+ * Calibrefx Loader Class
  *
  */
 
@@ -64,12 +62,6 @@ class Calibrefx_Loader {
      */
     protected $_loaded_files = array();
 
-    /**
-     * List of loaded models
-     *
-     * @var array
-     */
-    protected $_loaded_models = array();
 
     /**
      * Constructor
@@ -86,7 +78,6 @@ class Calibrefx_Loader {
 
         $this->_classes = array();
         $this->_loaded_files = array();
-        $this->_loaded_models = array();
     }
 
     /**
@@ -100,40 +91,6 @@ class Calibrefx_Loader {
         }
         
         return self::$instance;
-    }
-    
-
-    /**
-     * Do Autoload Files
-     *
-     * A utility function to load all autoload files and libraries
-     *
-     * @return 	void
-     */
-    public function do_autoload( $autoload_file = '' ) {
-        if ( file_exists( CALIBREFX_CONFIG_URI . '/autoload.php' ) ) {
-            include( CALIBREFX_CONFIG_URI . '/autoload.php' );
-        }
-
-        if ( !empty( $autoload_file ) && file_exists( $autoload_file ) ) {
-            include( $autoload_file );
-        }
-
-        if ( !isset( $autoload ) ) {
-            return FALSE;
-        }
-        
-        // Load libraries
-        if ( isset( $autoload['libraries'] ) && count( $autoload['libraries'] ) > 0 ) {
-            foreach ( $autoload['libraries'] as $item ) {
-                $this->library( $item );
-            }
-        }
-        
-        // Load Hooks
-        if ( isset( $autoload['hooks'] ) && count( $autoload['hooks'] ) > 0 ) {
-            $this->hook( $autoload['hooks'] );
-        }
     }
 
     /**
@@ -151,7 +108,7 @@ class Calibrefx_Loader {
     }
 
     /**
-     * Load all modules and shortcodes
+     * Load all helpers
      */
     public function load_helpers(){
         $helpers_include = array();
@@ -169,7 +126,7 @@ class Calibrefx_Loader {
     }
 
     /**
-     * Load all modules and shortcodes
+     * Load all shortcodes
      */
     public function load_shortcodes(){
         $shortcodes_include = array();
@@ -184,6 +141,24 @@ class Calibrefx_Loader {
             include_once $include;
         }
         do_action( 'calibrefx_shortcodes_loaded' );
+    }
+
+    /**
+     * Load all hooks
+     */
+    public function load_hooks(){
+        $hooks_include = array();
+
+        foreach ( Calibrefx::glob_php( CALIBREFX_HOOK_URI ) as $file ) {
+            $hooks_include[] = $file;
+        }
+
+        $hooks_include = apply_filters( 'calibrefx_hooks_to_include', $hooks_include );
+
+        foreach( $hooks_include as $include ) {
+            include_once $include;
+        }
+        do_action( 'calibrefx_hooks_loaded' );
     }
 
     /**
@@ -354,7 +329,7 @@ class Calibrefx_Loader {
     protected function _init_class( $class, $prefix = '', $config = FALSE ) {
         global $calibrefx;
         $name = $prefix . $class;
-
+        
         $classvar = strtolower( $class );
 
         // Save the class name and object name

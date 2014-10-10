@@ -38,6 +38,7 @@ class Calibrefx {
         add_action( 'calibrefx_pre_init', array( $this, 'theme_support' ) );
         add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_helpers' ) );
         add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_shortcodes' ) );
+        add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_hooks' ) );
         add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_modules' ) );
         
         add_action( 'calibrefx_init', array( $this, 'run_autoload' ) );
@@ -81,7 +82,15 @@ class Calibrefx {
     }
 
     public function run_autoload(){
-        $this->load->do_autoload();
+        // Load required library
+        $this->load->library( 'breadcrumb' );
+        $this->load->library( 'security' );
+        $this->load->library( 'replacer' );
+        $this->load->library( 'form' );
+        $this->load->library( 'notification' );
+        
+        $this->load->library( 'walker_nav_menu_edit' );
+        
         $this->hooks->run_hook();
     }
 
