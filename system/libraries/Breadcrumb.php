@@ -1,12 +1,6 @@
 <?php 
 /**
  * Calibrefx Breadcrumb Class
- *
- * @package		Calibrefx
- * @subpackage          Library
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
  */
 
 class CFX_Breadcrumb {

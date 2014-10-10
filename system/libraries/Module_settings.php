@@ -1,5 +1,4 @@
 <?php 
-
 /**
  * Calibrefx Module Setting Class
  *

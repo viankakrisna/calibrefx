@@ -1,33 +1,12 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
+<?php 
 /**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team
- 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
-
-/**
- * Calibrefx Header Shortcode
- *
- * @package		Calibrefx
- * @subpackage          Hook
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
+ * This file defines return functions to be used as shortcodes
+ * in the site header.
+ * 
+ * @package Calibrefx
+ * 
+ * @example <code>[footer_something]</code>
+ * @example <code>[footer_something before="<em>" after="</em>" foo="bar"]</code>
  */
 
 function calibrefx_h1( $atts, $content = '' ) {

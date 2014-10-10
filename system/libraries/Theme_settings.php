@@ -1,13 +1,7 @@
 <?php 
-
 /**
  * Calibrefx Theme Setting Class
  *
- * @package		Calibrefx
- * @subpackage          Library
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
  */
 class CFX_Theme_Settings extends Calibrefx_Admin {
 
