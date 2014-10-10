@@ -44,6 +44,9 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             'header_scripts' => '',
             'footer_scripts' => '',
             'enable_mobile' => 0,
+            'log_threshold' => 4,
+            'log_date_format' => 'Y-m-d H:i:s',
+            'log_path' => '',
             'calibrefx_version' => FRAMEWORK_VERSION,
             'calibrefx_db_version' => FRAMEWORK_DB_VERSION)
         );

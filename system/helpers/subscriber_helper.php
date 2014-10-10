@@ -72,9 +72,6 @@ function calibrefx_submit_getresponse( $form, $name, $email, $args = array() ) {
 	
 	$url = str_replace( '\"', '', $url );
 	
-	calibrefx_log_message( 'debug', $url );
-	calibrefx_log_message( 'debug', $post_data );
-
 	$curl_handle = curl_init();
 	curl_setopt( $curl_handle, CURLOPT_URL, $url );
 	curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 5 );
@@ -84,8 +81,6 @@ function calibrefx_submit_getresponse( $form, $name, $email, $args = array() ) {
 	curl_setopt( $curl_handle, CURLOPT_POSTFIELDS, $post_data );
 	$buffer = curl_exec( $curl_handle );
 
-	calibrefx_log_message( 'debug', 'Return from getresponse: '.$buffer );
-	
 	curl_close( $curl_handle );
 
 	// check for success or failure
@@ -116,8 +111,6 @@ function calibrefx_submit_getresponse_api( $name, $email, $api_key, $list_name, 
 	$ping = $api->ping();
 	
 	if( $ping ) {
-		calibrefx_log_message( 'debug', 'Get Response Ping: '.$ping );
-		
 		$campaigns 	 = (array)$api->getCampaigns( 'CONTAINS', $list_name );
 		
 		if ( count( $campaigns ) == 1) {
@@ -126,13 +119,8 @@ function calibrefx_submit_getresponse_api( $name, $email, $api_key, $list_name, 
 			
 			$return = $api->addContact( $campaign_id, $name, $email, 'standard', 0, $customs );
 			
-			calibrefx_log_message( 'debug', 'GetResponse Add Contact Success: '.debug_var( $return, true ) );
 			return $return;
-		} else {
-			calibrefx_log_message( 'debug', 'Campaign Name is not found: '.$list_name);
-		}
-	} else {
-		calibrefx_log_message( 'debug', 'Get Response Ping Failed: '.$ping );
+		} 
 	}
 	return FALSE;
 }

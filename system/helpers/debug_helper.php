@@ -45,8 +45,6 @@ if ( !function_exists( 'debug_var_log' ) ) {
         var_dump( $var ); //print the result
         $output = ob_get_contents(); //get the result from buffer
         ob_end_clean(); //close buffer
-
-        calibrefx_log_message( 'debug', 'Debug Var: '. $output );
     }
 
 }

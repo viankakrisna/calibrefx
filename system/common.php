@@ -1,70 +1,7 @@
 <?php 
-
-if (!function_exists( 'get_config' ) ) {
-
-    /**
-     * Loads the main config.php file
-     *
-     * This function lets us grab the config file even if the Config class
-     * hasn't been instantiated yet
-     *
-     * @param	array
-     * @return	array
-     */
-    function get_config( $replace = array() ) {
-        static $_config;
-
-        if ( isset( $_config ) ) {
-            return $_config[0];
-        }
-
-        $file_path = CALIBREFX_CONFIG_URI . '/config.php';
-        $found = FALSE;
-        if ( file_exists( $file_path ) ) {
-            $found = TRUE;
-            require( $file_path );
-        }
-
-        // Are any values being dynamically replaced?
-        if ( count( $replace ) > 0) {
-            foreach ( $replace as $key => $val) {
-                if ( isset( $config[$key] ) ) {
-                    $config[$key] = $val;
-                }
-            }
-        }
-
-        return $_config[0] = & $config;
-    }
-
-}
-
-// ------------------------------------------------------------------------
-
-if (!function_exists( 'config_item' ) ) {
-
-    /**
-     * Returns the specified config item
-     *
-     * @param	string
-     * @return	mixed
-     */
-    function config_item( $item ) {
-        static $_config_item = array();
-
-        if ( !isset( $_config_item[$item] ) ) {
-            $config = get_config();
-
-            if ( !isset( $config[$item] ) ) {
-                return FALSE;
-            }
-            $_config_item[$item] = $config[$item];
-        }
-
-        return $_config_item[$item];
-    }
-
-}
+/**
+ * These Common functions needed before the Calibrefx loaded
+ */
 
 if ( !function_exists( 'calibrefx_load_class' ) ) {
 
@@ -111,7 +48,6 @@ if ( !function_exists( 'calibrefx_load_class' ) ) {
         }
 
         $_cfx_classes[$class] = new $name();
-        calibrefx_log_message( 'debug', $name . ' Class Loaded' );
         return $_cfx_classes[$class];
     }
 
@@ -158,17 +94,6 @@ if ( !function_exists( 'calibrefx_get_instance' ) ) {
         return Calibrefx::get_instance();
     }
 
-}
-
-// ------------------------------------------------------------------------
-
-if ( !function_exists( 'calibrefx_log_message' ) ) {
-
-    function calibrefx_log_message( $level = 'error', $message = '', $php_error = FALSE ) {
-        global $_log;
-        $_log = calibrefx_load_class( 'Logger' );
-        $_log->write_log( $level, $message, $php_error );
-    }
 }
 
 // ------------------------------------------------------------------------

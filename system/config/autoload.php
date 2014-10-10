@@ -17,11 +17,6 @@ $autoload['helpers'] = array('debug','format', 'image', 'html', 'url', 'widget',
 /*
  *  Auto-load Config files
  */
-$autoload['configs'] = array();
-
-/*
- *  Auto-load Config files
- */
 $autoload['models'] = array( 'theme_settings_m' );
 
 /*

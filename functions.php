@@ -37,7 +37,6 @@ require_once( CALIBREFX_URI . '/system/config/constants.php');
 require_once( CALIBREFX_URI . '/system/common.php' );
 
 require_once( CALIBREFX_URI . '/system/class.calibrefx.php' );
-require_once( CALIBREFX_URI . '/system/class.calibrefx-config.php' );
 require_once( CALIBREFX_URI . '/system/class.calibrefx-loader.php' );
 require_once( CALIBREFX_URI . '/system/class.calibrefx-admin.php' );
 require_once( CALIBREFX_URI . '/system/class.calibrefx-model.php' );
@@ -50,8 +49,7 @@ if ( ! isset( $content_width ) ) {
 
 add_action( 'after_setup_theme', function(){
     global $calibrefx;
-    $calibrefx = Calibrefx::init();
-    $calibrefx->config = new Calibrefx_Config;
+    $calibrefx = Calibrefx::get_instance();
     $calibrefx->load = new Calibrefx_Loader;
 
     global $cfxgenerator;

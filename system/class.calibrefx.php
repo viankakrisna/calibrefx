@@ -12,29 +12,14 @@ class Calibrefx {
     protected static $instance;
 
     /**
-     * Singleton
-     * @static
-     */
-    public static function init() {
-        if ( ! self::$instance ) {
-            self::$instance = new Calibrefx;
-        }
-
-        return self::$instance;
-    }
-
-    /**
      * Return the Calibrefx object
      *
      * @return	object
      */
 
     public static function get_instance() {
-        $instance = wp_cache_get( 'calibrefx' );
-
-        if( null === self::$instance ){
-            self::$instance = new Calibrefx();
-            wp_cache_set( 'calibrefx', self::$instance );
+        if( ! self::$instance ){
+            self::$instance = new Calibrefx;
         }
         
         return self::$instance;
@@ -47,8 +32,6 @@ class Calibrefx {
      
         $this->load_theme_support();
         load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
-
-        calibrefx_log_message( 'debug', 'Calibrefx Class Initialized' );
 
         add_action( 'calibrefx_init', array( $this, 'load_shortcodes' ) );
         add_action( 'calibrefx_init', array( $this, 'load_modules' ) );

@@ -14,12 +14,6 @@ class CFX_Curl {
     public $info;      // Returned after request (elapsed time, etc)
 
     function __construct( $url = '' ) {
-        calibrefx_log_message( 'debug', 'cURL Class Initialized' );
-
-        if (!$this->is_enabled() ) {
-            calibrefx_log_message( 'error', 'cURL Class - PHP was not built with cURL enabled. Rebuild PHP with --with-curl to use cURL.' );
-        }
-
         $url AND $this->create( $url);
     }
 

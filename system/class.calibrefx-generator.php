@@ -39,10 +39,7 @@ class Calibrefx_Generator{
      * @return  object
      */
     public static function get_instance() {
-        $instance = wp_cache_get( 'cfxgenerator' );
-        if ( $instance === TRUE ) {
-            self::$instance = $instance;
-        } elseif ( self::$instance === null ) {
+        if( ! self::$instance ){
             self::$instance = new Calibrefx_Generator();
         }
         

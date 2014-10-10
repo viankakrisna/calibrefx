@@ -102,8 +102,6 @@ class Calibrefx_Loader {
         $this->_module_paths = array( CALIBREFX_MODULE_URI );
 
         $this->initialize();
-
-        calibrefx_log_message( 'debug', 'Loader Class Initialized' );
     }
 
     // --------------------------------------------------------------------
@@ -220,7 +218,6 @@ class Calibrefx_Loader {
 
                 if ( isset( $this->_loaded_files[$filepath] ) ) {
                     //File loaded
-                    calibrefx_log_message( 'debug', 'Config has been loaded from the cache: ' . $config );
                     return;
                 }
 
@@ -228,7 +225,6 @@ class Calibrefx_Loader {
                     include_once( $filepath );
 
                     $this->_loaded_files[] = $filepath;
-                    calibrefx_log_message( 'debug', 'Config loaded: ' . $config );
                     break;
                 }
             }
@@ -276,13 +272,10 @@ class Calibrefx_Loader {
         }
 
         if ( in_array( $name, $this->_loaded_models, TRUE ) ) {
-            calibrefx_log_message( 'debug', 'Model has been loaded from the cache: ' . $name );
             return;
         }
 
         if ( isset( $calibrefx->$name ) ) {
-            calibrefx_log_message( 'error', 'The model name you are loading is the name of a resource that is already being used: ' . $name );
-            //show_error( 'The model name you are loading is the name of a resource that is already being used: ' . $name);
             return;
         }
 
@@ -296,12 +289,8 @@ class Calibrefx_Loader {
             require_once( $mod_path . '/' . $path . $model . '.php' );
             $calibrefx->$name = new $model();
             $this->_loaded_models[] = $name;
-            calibrefx_log_message( 'debug', 'Model loaded: ' . $name );
             return;
         }
-
-        // couldn't find the model
-        calibrefx_log_message( 'error', 'Unable to locate the model you have specified: ' . $model );
     }
 
     // --------------------------------------------------------------------
@@ -317,7 +306,6 @@ class Calibrefx_Loader {
     public function helper( $helpers = array() ) {
         foreach ( $this->_prep_filename( $helpers, '_helper' ) as $helper ) {
             if ( isset( $this->_helpers[$helper] ) ) {
-                calibrefx_log_message( 'debug', 'Helper has been loaded from the cache: ' . $helper );
                 continue;
             }
 
@@ -327,14 +315,8 @@ class Calibrefx_Loader {
                     include_once( $path . '/' . $helper . '.php' );
 
                     $this->_helpers[$helper] = TRUE;
-                    calibrefx_log_message( 'debug', 'Helper loaded: ' . $helper );
                     break;
                 }
-            }
-
-            // unable to load the helper
-            if ( !isset( $this->_helpers[$helper] ) ) {
-                calibrefx_log_message( 'error', 'Cannot load helper: ' . $helper );
             }
         }
     }
@@ -358,7 +340,6 @@ class Calibrefx_Loader {
 
                 if ( isset( $this->_loaded_files[$filepath] ) ) {
                     //File loaded
-                    calibrefx_log_message( 'debug', 'Hook has been loaded from the cache: ' . $hook );
                     return;
                 }
 
@@ -366,7 +347,6 @@ class Calibrefx_Loader {
                     include_once( $filepath );
 
                     $this->_loaded_files[] = $filepath;
-                    calibrefx_log_message( 'debug', 'Hook loaded: ' . $hook );
                     break;
                 }
             }
@@ -413,7 +393,6 @@ class Calibrefx_Loader {
 
             if ( isset( $this->_loaded_files[$filepath] ) ) {
                 //File loaded
-                calibrefx_log_message( 'debug', 'Shortcode has been loaded from the cache: ' . $shortcode );
                 return;
             }
 
@@ -421,7 +400,6 @@ class Calibrefx_Loader {
                 include_once( $filepath );
 
                 $this->_loaded_files[] = $filepath;
-                calibrefx_log_message( 'debug', 'Shortcode loaded: ' . $shortcode );
                 break;
             }
         }
@@ -458,7 +436,6 @@ class Calibrefx_Loader {
             return;
 
         if ( isset( $this->_loaded_files[$file] ) ) {
-            calibrefx_log_message( 'debug', 'File has been loaded from the cache: ' . $file );
             //File loaded
             return;
         }
@@ -467,7 +444,6 @@ class Calibrefx_Loader {
             include_once( $file );
 
             $this->_loaded_files[] = $file;
-            calibrefx_log_message( 'debug', 'File loaded: ' . $file );
         }
     }
 
@@ -546,8 +522,6 @@ class Calibrefx_Loader {
                 }
 
                 if ( isset( $this->_loaded_files[$filepath] ) ) {
-                    calibrefx_log_message( 'debug', 'Library has been loaded from the cache: ' . $file );
-                    //File loaded
                     return;
                 }
 
@@ -556,12 +530,6 @@ class Calibrefx_Loader {
                 return $this->_init_class( $class, 'CFX_', $params );
             }
         } // END FOREACH
-
-        // If we got this far we were unable to find the requested class.
-        // We do not issue errors if the load call failed due to a duplicate request
-        if ( $is_duplicate === FALSE ) {
-            calibrefx_log_message( 'error', 'Unable to load the requested class: ' . $class );
-        }
     }
 
     // --------------------------------------------------------------------
@@ -579,12 +547,6 @@ class Calibrefx_Loader {
         global $calibrefx;
         $name = $prefix . $class;
 
-        // Is the class name valid?
-        if ( !class_exists( $name ) ) {
-            calibrefx_log_message( 'error', 'Non-existent class: ' . $name );
-            //show_error( 'Non-existent class: '.$class);
-        }
-
         $classvar = strtolower( $class );
 
         // Save the class name and object name
@@ -595,8 +557,6 @@ class Calibrefx_Loader {
         } else {
             $calibrefx->$classvar = new $name();
         }
-
-        calibrefx_log_message( 'debug', 'Class loaded: ' . $name );
     }
 
     // --------------------------------------------------------------------
