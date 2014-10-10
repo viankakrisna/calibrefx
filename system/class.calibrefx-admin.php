@@ -137,6 +137,9 @@ abstract class Calibrefx_Admin {
             $_newvalue = $calibrefx->security->sanitize_input( $this->settings_field, $_newvalue );
         }
         
+        //flush wp_cache
+        wp_cache_flush();
+
         return $_newvalue;
     }
 
