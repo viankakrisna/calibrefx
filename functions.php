@@ -9,7 +9,6 @@
  * @copyright   Copyright (c) 2012-2014, Calibreworks. (http://www.calibreworks.com/)
  * @license		GNU/GPL v2
  * @link		http://www.calibrefx.com
- * @filesource 
  *
  * The WordPress functions.php file. initialize CalibreFx framework and themes.
  *

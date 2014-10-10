@@ -22,13 +22,6 @@ $autoload['configs'] = array();
 /*
  *  Auto-load Config files
  */
-/*$autoload['widgets'] = array( 'Facebook_Comment', 'Facebook_Like', 'Feature_Page_Slider', 
-                              'Feature_Page', 'Feature_Post_Slider', 'Feature_Post',
-                              'Subscriber', 'Twitter_Timeline', 'Latest_Post', 'Popular_Post', 'Social' );*/
-
-/*
- *  Auto-load Config files
- */
 $autoload['models'] = array( 'theme_settings_m' );
 
 /*
@@ -38,8 +31,3 @@ $autoload['hooks'] = array( 'module','header', 'script', 'widget','layout', 'men
                           	'user','post','inpost','comments', 'footer',
                           	'upgrade', 'ajax', 
                           	'admin_ajax', 'mobile', 'form_submit', 'admin', 'customizer' );
-
-/*
- *  Auto-load Shortcode files
- */
-$autoload['shortcodes'] = array( 'calibrefx', 'header', 'post', 'footer' );

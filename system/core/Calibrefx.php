@@ -89,9 +89,6 @@ final class Calibrefx {
 
         /** Run the calibrefx_post_init hook */
         do_action( 'calibrefx_post_init' );
-
-        /** Run the calibrefx_setup hook */
-        do_action( 'calibrefx_setup' );
     }
 
     /**

@@ -30,16 +30,6 @@
  * @link		http://www.calibrefx.com
  */
 
-global $cfxgenerator;
-
-$cfxgenerator->calibrefx_setup = array(
-    array( 'function' => 'calibrefx_detect_mobile_browser','priority' => 15 )
-);
-
-/********************
- * FUNCTIONS BELOW  *
- ********************/
-
 /**
  * If mobile site is enable and there is a mobile template, then display mobile layout on mobile
  */
@@ -71,7 +61,7 @@ function calibrefx_detect_mobile_browser() {
 		include_once CHILD_MOBILE_URI . '/mobile.php';
 	}
 }
-
+add_action( 'calibrefx_post_init', 'calibrefx_detect_mobile_browser', 15 );
 
 function calibrefx_mobile_body_class( $body_classes ) {
     global $post;
