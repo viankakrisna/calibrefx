@@ -120,11 +120,6 @@ class Calibrefx_Loader {
             return FALSE;
         }
         
-        // Autoload models
-        if ( isset( $autoload['models'] ) ) {
-            $this->model( $autoload['models'] );
-        }
-
         // Load libraries
         if ( isset( $autoload['libraries'] ) && count( $autoload['libraries'] ) > 0 ) {
             foreach ( $autoload['libraries'] as $item ) {
@@ -152,68 +147,6 @@ class Calibrefx_Loader {
      */
     public function is_loaded( $class ) {
         return isset( $this->_classes[$class] ) ? $this->_classes[$class] : FALSE;
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Model Loader
-     *
-     * This function lets users load and instantiate models.
-     *
-     * @param	string	the name of the class
-     * @param	string	name for the model
-     * @return	void
-     */
-    public function model( $model, $name = '' ) {
-        global $calibrefx;
-        
-        if ( is_array( $model ) ) {
-            foreach ( $model as $class ) {
-                $this->model( $class );
-            }
-            return;
-        }
-
-        if ( $model === '' ) {
-            return;
-        }
-
-        $path = '';
-
-        // Is the model in a sub-folder? If so, parse out the filename and path.
-        if ( ( $last_slash = strrpos( $model, '/' ) ) !== FALSE ) {
-            // The path is in front of the last slash
-            $path = substr( $model, 0, ++$last_slash );
-
-            // And the model name behind it
-            $model = substr( $model, $last_slash );
-        }
-
-        if ( empty( $name ) ) {
-            $name = $model;
-        }
-
-        if ( in_array( $name, $this->_loaded_models, TRUE ) ) {
-            return;
-        }
-
-        if ( isset( $calibrefx->$name ) ) {
-            return;
-        }
-
-        $model = strtolower( $model );
-        $model = ucfirst( $model );
-        foreach ( $this->_model_paths as $mod_path ) {
-            if ( !file_exists( $mod_path . '/' . $path . $model . '.php' ) ) {
-                continue;
-            }
-
-            require_once( $mod_path . '/' . $path . $model . '.php' );
-            $calibrefx->$name = new $model();
-            $this->_loaded_models[] = $name;
-            return;
-        }
     }
 
     // --------------------------------------------------------------------

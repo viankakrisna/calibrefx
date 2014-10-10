@@ -15,7 +15,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
      * Constructor - Initializes
      */
     function __construct() {
-        parent::__construct();
+        parent::__construct( 'calibrefx-settings' );
 
         $this->page_id = 'calibrefx';
         $this->default_settings = apply_filters( 'calibrefx_theme_settings_defaults', array(

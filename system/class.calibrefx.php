@@ -31,6 +31,7 @@ class Calibrefx {
     function __construct() {
         $this->load = new Calibrefx_Loader;
         $this->hooks = Calibrefx_Generator::get_instance();
+        $this->model = new Calibrefx_Model;
 
         $this->load_theme_support();
         load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
@@ -120,6 +121,7 @@ class Calibrefx {
      */
     public function load_modules(){
 
+        do_action( 'calibrefx_modules_loaded' );
     }
 
     public function run_autoload(){

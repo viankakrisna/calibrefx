@@ -34,14 +34,7 @@ abstract class Calibrefx_Admin {
      * @var string
      */
     public $default_settings;
-    
-    /**
-     * Hold model object
-     *
-     * @var object
-     */
-    public $_model;
-
+   
     /**
      * Remove Post Form
      *
@@ -55,10 +48,8 @@ abstract class Calibrefx_Admin {
     /**
      * Constructor
      */
-    function __construct() {
-        global $calibrefx;
-        $calibrefx->load->model( 'theme_settings_m' );
-        $this->_model = $calibrefx->theme_settings_m;
+    function __construct( $settings_field = 'calibrefx-settings' ) {
+        $this->settings_field = $settings_field;
     }
 
     /**
@@ -68,9 +59,6 @@ abstract class Calibrefx_Admin {
     public function initialize() {
         global $calibrefx;
 
-        $this->settings_field = $this->_model->get_settings_field();
-        
-        
         add_action( 'calibrefx_hidden_fields', array( $this,'hidden_fields' ) );
         add_action( 'admin_init', array( $this, 'register_settings' ), 5 );
         add_action( 'admin_init', array( $this, 'settings_init' ), 20 );
@@ -157,7 +145,7 @@ abstract class Calibrefx_Admin {
      *
      * $return array
      */
-    public function save_core() {
+    /*public function save_core() {
         global $calibrefx;
 
         $calibrefx_settings_field = $calibrefx->theme_settings_m->get_settings_field(); 
@@ -179,7 +167,7 @@ abstract class Calibrefx_Admin {
 
         //@TODO: Need to sanitize before save
         return $calibrefx->theme_settings_m->save( $_newvalue );
-    }
+    }*/
 
     /**
      * Register the settings option in wp_options.
@@ -200,7 +188,7 @@ abstract class Calibrefx_Admin {
             return;
         }
 
-        if ( calibrefx_get_option( 'reset', $this->_model ) ) {
+        if ( calibrefx_get_option( 'reset', $this->settings_field ) ) {
             if ( update_option( $this->settings_field, $this->default_settings ) ){
                 calibrefx_admin_redirect( $this->page_id, array( 'reset' => 'true' ) );
             } else {

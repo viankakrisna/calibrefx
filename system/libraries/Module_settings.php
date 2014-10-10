@@ -3,11 +3,6 @@
 /**
  * Calibrefx Module Setting Class
  *
- * @package		Calibrefx
- * @subpackage          Library
- * @author		CalibreFx Team
- * @since		Version 1.0
- * @link		http://www.calibrefx.com
  */
 
 class CFX_Module_Settings extends Calibrefx_Admin {
@@ -15,16 +10,12 @@ class CFX_Module_Settings extends Calibrefx_Admin {
      * Constructor - Initializes
      */
     function __construct() {
-        parent::__construct();
+        parent::__construct('calibrefx-modules');
 
         global $calibrefx;
 
         $this->page_id = 'calibrefx-module';
         $this->settings_field = apply_filters( 'calibrefx_module_field', 'calibrefx-module' );
-        
-        //we need to initialize the model
-        $calibrefx->load->model( 'module_settings_m' );
-        $this->_model = $calibrefx->module_settings_m;
         
         $this->initialize();
     }

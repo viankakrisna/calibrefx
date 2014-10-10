@@ -9,25 +9,24 @@
  * @access public
  * @param string option key
  * @param object CFX_Model, default null
- * @return void
+ * @return mix
  */
-function calibrefx_get_option( $key, $model = null ) {
+function calibrefx_get_option( $key, $group = 'calibrefx-settings' ) {
     global $calibrefx;
 
-    if( null === $model ) {
-        if ( !isset( $calibrefx->theme_settings_m ) ) {
-            $calibrefx->load->model( 'theme_settings_m' );
-        }
-
-        //we load default model
-        $model = $calibrefx->theme_settings_m;  
-    }
-    
-    return $model->get( $key );
+    return $calibrefx->model->get( $key, $group );
 }
 
-function calibrefx_option( $key, $model = null ) {
-    echo calibrefx_get_option( $key, $model );
+/**
+ * Echo option if exist
+ * @access public
+ * @uses calibrefx_get_option
+ * @param string option key
+ * @param object CFX_Model, default null
+ * @return void
+ */
+function calibrefx_option( $key, $group = null ) {
+    echo calibrefx_get_option( $key, $group );
 }
 
 /**
