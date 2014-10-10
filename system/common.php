@@ -88,14 +88,6 @@ if ( !function_exists( 'calibrefx_is_loaded' ) ) {
 
 }
 
-if ( !function_exists( 'calibrefx_get_instance' ) ) {
-
-    function calibrefx_get_instance() {
-        return Calibrefx::get_instance();
-    }
-
-}
-
 // ------------------------------------------------------------------------
 
 if ( !function_exists( 'calibrefx_is_really_writable' ) ) {

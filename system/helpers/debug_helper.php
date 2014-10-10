@@ -2,12 +2,6 @@
 /**
  * debug_var function
  * Dump a variable with human readable format
- *
- * @package         CalibreFx
- * @subpackage      Helpers
- * @category        Helpers
- * @author          CalibreFx Team
- * @link            http://www.calibrefx.com
  * 
  */
 if (!function_exists( 'debug_var' ) ) {
