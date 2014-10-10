@@ -2,7 +2,7 @@
 /**
  * CalibreFx Framework
  *
- * WordPress Themes by CalibreFx Team
+ * WordPress Themes Framework by CalibreFx Team
  *
  * @package		CalibreFx
  * @author		CalibreFx Team
@@ -47,36 +47,34 @@ if ( ! isset( $content_width ) ) {
     $content_width = apply_filters( 'calibrefx_content_width', 550 );
 }
 
-add_action( 'after_setup_theme', function(){
+/**
+ * Run the Engine
+ */
+function calibrefx_initializing(){
     global $calibrefx;
     $calibrefx = Calibrefx::get_instance();
-    $calibrefx->load = new Calibrefx_Loader;
 
-    global $cfxgenerator;
-    $cfxgenerator = Calibrefx_Generator::get_instance();
-
-	// Add theme support
-	add_theme_support('html5', array( 'comment-list', 'comment-form', 'search-form' ));
+    // Add theme support
+    add_theme_support('html5', array( 'comment-list', 'comment-form', 'search-form' ));
     add_theme_support('menus');
     add_theme_support('automatic-feed-links');
     add_theme_support('post-thumbnails');
     add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'audio', 'quote', 'link', 'gallery',
-	) );
+        'aside', 'image', 'video', 'audio', 'quote', 'link', 'gallery',
+    ) );
 
-	//remove unneccesary headers 
-	remove_action('wp_head', 'wp_generator');
+    //remove unneccesary headers 
+    remove_action('wp_head', 'wp_generator');
 
-	// Run the engine 
-	$calibrefx->load->do_autoload();
-	$cfxgenerator->run_hook();
-	$calibrefx->run();
-	
-	if( is_child_theme() ) {
-		$calibrefx->load->add_child_path( CHILD_URI . '/app' );
-		$calibrefx->load->do_autoload( CHILD_URI . '/app/config/autoload.php' );
-	}
-}, 0 );
+    // Run the engine 
+    $calibrefx->run();
+    
+    if( is_child_theme() ) {
+        $calibrefx->load->add_child_path( CHILD_URI . '/app' );
+        $calibrefx->load->do_autoload( CHILD_URI . '/app/config/autoload.php' );
+    }
+}
+add_action( 'after_setup_theme', 'calibrefx_initializing', 0 );
 
 /**
  * Enable GZip Compression

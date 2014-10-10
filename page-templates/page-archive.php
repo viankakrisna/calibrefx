@@ -8,7 +8,7 @@ if ( file_exists( CHILD_URI . '/page-archive.php' ) AND ( CHILD_URI != CALIBREFX
     exit;
 }
 
-$cfxgenerator->replace( 'calibrefx_post_content', 'calibrefx_do_post_content', 'calibrefx_do_archive_content' );
+$calibrefx->hooks->replace( 'calibrefx_post_content', 'calibrefx_do_post_content', 'calibrefx_do_archive_content' );
 
 /**
  * CalibreFx Loop for archive bage

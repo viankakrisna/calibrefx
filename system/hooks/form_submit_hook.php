@@ -9,7 +9,7 @@
 function form_submit_handler() {
 	global $calibrefx;
 
-	if( !$_POST && !isset( $_POST['action'] ) ) return;
+	if( !$_POST OR !isset( $_POST['action'] ) ) return;
 
 	$action = sanitize_text_field( $_POST['action'] );
 	

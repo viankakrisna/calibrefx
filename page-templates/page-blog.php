@@ -39,7 +39,7 @@ function calibrefx_do_blog_loop() {
         do_action( 'calibrefx_no_post' );
     endif;/** end loop * */
 }
-$cfxgenerator->replace( 'calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_do_blog_loop' );
+$calibrefx->hooks->replace( 'calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_do_blog_loop' );
 
 /**
  * calibrefx_post_title callback
@@ -57,7 +57,7 @@ function calibrefx_do_blog_title() {
 
     echo apply_filters( 'calibrefx_post_title_output', $title ) . "\n";
 }
-$cfxgenerator->replace( 'calibrefx_post_title', 'calibrefx_do_post_title', 'calibrefx_do_blog_title' );
+$calibrefx->hooks->replace( 'calibrefx_post_title', 'calibrefx_do_post_title', 'calibrefx_do_blog_title' );
 
 /**
  * calibrefx_post_content callback
@@ -77,6 +77,6 @@ function calibrefx_do_blog_content() {
 
     wp_link_pages( array( 'before' => '<p class="pages">' . __( 'Pages:', 'calibrefx' ), 'after' => '</p>' ) );
 }
-$cfxgenerator->replace( 'calibrefx_post_content', 'calibrefx_do_post_content', 'calibrefx_do_blog_content' );
+$calibrefx->hooks->replace( 'calibrefx_post_content', 'calibrefx_do_post_content', 'calibrefx_do_blog_content' );
 
 calibrefx();

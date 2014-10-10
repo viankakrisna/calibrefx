@@ -53,6 +53,6 @@ function calibrefx_404() { ?>
 
 <?php
 }
-$cfxgenerator->replace( 'calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_404' );
+$calibrefx->hooks->replace( 'calibrefx_loop', 'calibrefx_do_loop', 'calibrefx_404' );
 
 calibrefx();

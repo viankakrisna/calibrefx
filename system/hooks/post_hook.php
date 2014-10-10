@@ -4,60 +4,58 @@
  *
  */
 
-global $cfxgenerator;
-
-$cfxgenerator->calibrefx_before_content_wrapper = array(
+$calibrefx->hooks->calibrefx_before_content_wrapper = array(
     array( 'function' => 'calibrefx_do_inner_wrap_open','priority' => 5 )
 );
 
-$cfxgenerator->calibrefx_before_content = array();
-$cfxgenerator->calibrefx_before_loop = array(
+$calibrefx->hooks->calibrefx_before_content = array();
+$calibrefx->hooks->calibrefx_before_loop = array(
     array( 'function' => 'calibrefx_do_breadcrumbs', 'priority' => 10 ),
     array( 'function' => 'calibrefx_do_notification', 'priority' => 20 ),
 );
-$cfxgenerator->calibrefx_loop = array(
+$calibrefx->hooks->calibrefx_loop = array(
         array( 'function' => 'calibrefx_do_loop', 'priority' => 10 )
     );
 
     //This is inside the loop: calibrefx_do_loop
-    $cfxgenerator->calibrefx_before_post = array();
+    $calibrefx->hooks->calibrefx_before_post = array();
 
     //This is inside content.php
-    $cfxgenerator->calibrefx_before_post_title = array();
-    $cfxgenerator->calibrefx_post_title = array(
+    $calibrefx->hooks->calibrefx_before_post_title = array();
+    $calibrefx->hooks->calibrefx_post_title = array(
             array( 'function' => 'calibrefx_do_post_title', 'priority' => 10)
         );
-    $cfxgenerator->calibrefx_after_post_title = array();
+    $calibrefx->hooks->calibrefx_after_post_title = array();
 
-    $cfxgenerator->calibrefx_before_post_content = array(
+    $calibrefx->hooks->calibrefx_before_post_content = array(
             array( 'function' => 'calibrefx_post_info','priority' => 10)
         );
 
-    $cfxgenerator->calibrefx_post_content = array(
+    $calibrefx->hooks->calibrefx_post_content = array(
         array( 'function' => 'calibrefx_do_post_image','priority' => 10), 
         array( 'function' => 'calibrefx_do_post_content','priority' => 15)
     );
 
-    $cfxgenerator->calibrefx_after_post_content = array(
+    $calibrefx->hooks->calibrefx_after_post_content = array(
         array( 'function' => 'calibrefx_post_meta','priority' => 10)
     );
     
-    $cfxgenerator->calibrefx_no_post = array(
+    $calibrefx->hooks->calibrefx_no_post = array(
         array( 'function' => 'calibrefx_do_no_post','priority' => 10)
     );
     //End of content.php
     
-    $cfxgenerator->calibrefx_after_post = array(
+    $calibrefx->hooks->calibrefx_after_post = array(
         array( 'function' => 'calibrefx_do_author_box_single','priority' => 10)
     );
     //Loop End here
 
-$cfxgenerator->calibrefx_after_loop = array(
+$calibrefx->hooks->calibrefx_after_loop = array(
     array( 'function' => 'calibrefx_posts_nav','priority' => 20)
 );
-$cfxgenerator->calibrefx_after_content = array();
+$calibrefx->hooks->calibrefx_after_content = array();
 
-$cfxgenerator->calibrefx_after_content_wrapper = array(
+$calibrefx->hooks->calibrefx_after_content_wrapper = array(
     array( 'function' => 'calibrefx_do_inner_wrap_close','priority' => 15)
 );
 

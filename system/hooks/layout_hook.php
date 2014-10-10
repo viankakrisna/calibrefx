@@ -3,51 +3,50 @@
  * Calibrefx Layout Hooks
  *
  */
+global $calibrefx;
 
-global $cfxgenerator;
-
-$cfxgenerator->init = array(
+$calibrefx->hooks->init = array(
     array( 'function' => 'calibrefx_custom_background', 'priority' => 0 ), 
     array( 'function' => 'calibrefx_custom_header', 'priority' => 5 )
 );
 
-$cfxgenerator->calibrefx_init = array(
+$calibrefx->hooks->calibrefx_init = array(
     array( 'function' => 'calibrefx_setup_layout', 'priority' => 0 )
 );
 
-$cfxgenerator->calibrefx_wrapper = array(
+$calibrefx->hooks->calibrefx_wrapper = array(
     array( 'function' => 'calibrefx_do_open_wrapper', 'priority' => 0 )
 );
 
-$cfxgenerator->calibrefx_after_wrapper = array(
+$calibrefx->hooks->calibrefx_after_wrapper = array(
     array( 'function' => 'calibrefx_do_close_wrapper','priority'  => 99 )
 );
 
-$cfxgenerator->calibrefx_inner = array(
+$calibrefx->hooks->calibrefx_inner = array(
     array( 'function' => 'calibrefx_do_open_inner', 'priority' => 0 )
 );
 
-$cfxgenerator->calibrefx_after_inner = array(
+$calibrefx->hooks->calibrefx_after_inner = array(
     array( 'function' => 'calibrefx_do_close_inner','priority'  => 99 )
 );
 
-$cfxgenerator->calibrefx_after_content = array(
+$calibrefx->hooks->calibrefx_after_content = array(
     array( 'function' => 'calibrefx_get_sidebar', 'priority' => 10 )
 );
 
-$cfxgenerator->calibrefx_before_content = array(
+$calibrefx->hooks->calibrefx_before_content = array(
     array( 'function' => 'calibrefx_get_sidebar_alt', 'priority' => 10 )
 );
 
-$cfxgenerator->calibrefx_sidebar = array(
+$calibrefx->hooks->calibrefx_sidebar = array(
     array( 'function' => 'calibrefx_do_sidebar', 'priority' => 10 )
 );
 
-$cfxgenerator->calibrefx_sidebar_alt = array(
+$calibrefx->hooks->calibrefx_sidebar_alt = array(
     array( 'function' => 'calibrefx_do_sidebar_alt', 'priority' => 10 )
 );
 
-$cfxgenerator->get_header = array(
+$calibrefx->hooks->get_header = array(
     array( 'function' => 'calibrefx_setup_custom_layout','priority' => 0 ),
     array( 'function' => 'calibrefx_header_body_classes_filter','priority' => 0 )
 );
@@ -57,12 +56,12 @@ $cfxgenerator->get_header = array(
  ********************/
 
 function calibrefx_setup_custom_layout() {
-    global $cfxgenerator;
+    global $calibrefx;
 
     $site_layout = calibrefx_site_layout();
 
     if( $site_layout == 'sidebar-content-sidebar' ) {
-        $cfxgenerator->move( 'calibrefx_before_content', 'calibrefx_after_content', 'calibrefx_get_sidebar_alt', 15);
+        $calibrefx->hooks->move( 'calibrefx_before_content', 'calibrefx_after_content', 'calibrefx_get_sidebar_alt', 15);
         
         add_action( 'calibrefx_before_content','calibrefx_sidebar_content_sidebar_wrapper_open' );
         add_action( 'calibrefx_after_content','calibrefx_sidebar_content_sidebar_wrapper_close' );

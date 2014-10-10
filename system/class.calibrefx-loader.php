@@ -79,13 +79,6 @@ class Calibrefx_Loader {
     protected $_loaded_models = array();
 
     /**
-     * List of loaded helpers
-     *
-     * @var array
-     */
-    protected $_helpers = array();
-
-    /**
      * Constructor
      *
      * Sets the path to the helper and library files
@@ -95,33 +88,14 @@ class Calibrefx_Loader {
     public function __construct() {
         $this->_config_paths = array( CALIBREFX_CONFIG_URI );
         $this->_library_paths = array( CALIBREFX_LIBRARY_URI );
-        $this->_helper_paths = array( CALIBREFX_HELPER_URI );
         $this->_model_paths = array( CALIBREFX_MODEL_URI );
         $this->_shortcode_paths = array( CALIBREFX_SHORTCODE_URI );
         $this->_hook_paths = array( CALIBREFX_HOOK_URI );
         $this->_module_paths = array( CALIBREFX_MODULE_URI );
 
-        $this->initialize();
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Initialize the Loader
-     *
-     * This method is called once.
-     *
-     * @return 	object
-     */
-    public function initialize() {
         $this->_classes = array();
         $this->_loaded_files = array();
-        $this->_helpers = array();
         $this->_loaded_models = array();
-
-        // $this->do_autoload();
-
-        return $this;
     }
 
     // --------------------------------------------------------------------
@@ -145,20 +119,10 @@ class Calibrefx_Loader {
         if ( !isset( $autoload ) ) {
             return FALSE;
         }
-
-        // Load Configs
-        if ( isset( $autoload['configs'] ) && count( $autoload['configs'] ) > 0 ) {
-            $this->config( $autoload['configs'] );
-        }
         
         // Autoload models
         if ( isset( $autoload['models'] ) ) {
             $this->model( $autoload['models'] );
-        }
-
-        // Load Helpers
-        if ( isset( $autoload['helpers'] ) && count( $autoload['helpers'] ) > 0 ) {
-            $this->helper( $autoload['helpers'] );
         }
 
         // Load libraries
@@ -171,16 +135,6 @@ class Calibrefx_Loader {
         // Load Hooks
         if ( isset( $autoload['hooks'] ) && count( $autoload['hooks'] ) > 0 ) {
             $this->hook( $autoload['hooks'] );
-        }
-
-        // Load Widgets
-        if ( isset( $autoload['widgets'] ) && count( $autoload['widgets'] ) > 0 ) {
-            $this->widget( $autoload['widgets'] );
-        }
-
-        // Load Hooks
-        if ( isset( $autoload['shortcodes'] ) && count( $autoload['shortcodes'] ) > 0 ) {
-            $this->shortcodes( $autoload['shortcodes'] );
         }
     }
 
@@ -198,37 +152,6 @@ class Calibrefx_Loader {
      */
     public function is_loaded( $class ) {
         return isset( $this->_classes[$class] ) ? $this->_classes[$class] : FALSE;
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Load Hook
-     *
-     * This function loads the specified hook file.
-     *
-     * @param	mixed
-     * @return	void
-     */
-    public function config( $configs = array() ) {
-        foreach ( $configs as $config ) {
-            // Try to load the helper
-            foreach ( $this->_config_paths as $path ) {
-                $filepath = $path . '/' . $config . '.php';
-
-                if ( isset( $this->_loaded_files[$filepath] ) ) {
-                    //File loaded
-                    return;
-                }
-
-                if ( file_exists( $filepath ) ) {
-                    include_once( $filepath );
-
-                    $this->_loaded_files[] = $filepath;
-                    break;
-                }
-            }
-        }
     }
 
     // --------------------------------------------------------------------
@@ -296,35 +219,6 @@ class Calibrefx_Loader {
     // --------------------------------------------------------------------
 
     /**
-     * Load Helper
-     *
-     * This function loads the specified helper file.
-     *
-     * @param	mixed
-     * @return	void
-     */
-    public function helper( $helpers = array() ) {
-        foreach ( $this->_prep_filename( $helpers, '_helper' ) as $helper ) {
-            if ( isset( $this->_helpers[$helper] ) ) {
-                continue;
-            }
-
-            // Try to load the helper
-            foreach ( $this->_helper_paths as $path ) {
-                if ( file_exists( $path . '/' . $helper . '.php' ) ) {
-                    include_once( $path . '/' . $helper . '.php' );
-
-                    $this->_helpers[$helper] = TRUE;
-                    break;
-                }
-            }
-        }
-    }
-
-
-    // --------------------------------------------------------------------
-
-    /**
      * Load Hook
      *
      * This function loads the specified hook file.
@@ -349,58 +243,6 @@ class Calibrefx_Loader {
                     $this->_loaded_files[] = $filepath;
                     break;
                 }
-            }
-        }
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Load Shortcodes
-     *
-     * This function loads the specified array of shortcode files.
-     *
-     * @param	mixed
-     * @return	void
-     */
-    public function shortcodes( $shortcodes = array() ) {
-        foreach ( $this->_prep_filename( $shortcodes, '_shortcode' ) as $shortcode ) {
-            $this->shortcode( $shortcode );
-        }
-    }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Load Shortcode
-     *
-     * This function loads the specified shortcode file.
-     *
-     * @param	mixed
-     * @return	void
-     */
-    public function shortcode( $shortcode ) {
-        if (!isset( $shortcode ) ){
-            return;
-        }
-
-        if ( strpos( $shortcode, '_shortcode' ) === FALSE ) {
-            $shortcode = $this->_prep_filename( $shortcode, '_shortcode' );
-        }
-
-        foreach ( $this->_shortcode_paths as $path ) {
-            $filepath = $path . '/' . $shortcode . '.php';
-
-            if ( isset( $this->_loaded_files[$filepath] ) ) {
-                //File loaded
-                return;
-            }
-
-            if ( file_exists( $filepath ) ) {
-                include_once( $filepath );
-
-                $this->_loaded_files[] = $filepath;
-                break;
             }
         }
     }

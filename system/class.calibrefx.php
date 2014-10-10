@@ -29,12 +29,18 @@ class Calibrefx {
      * Constructor
      */
     function __construct() {
-     
+        $this->load = new Calibrefx_Loader;
+        $this->hooks = Calibrefx_Generator::get_instance();
+
         $this->load_theme_support();
         load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
 
-        add_action( 'calibrefx_init', array( $this, 'load_shortcodes' ) );
-        add_action( 'calibrefx_init', array( $this, 'load_modules' ) );
+        add_action( 'calibrefx_pre_init', array( $this, 'load_helpers' ) );
+        add_action( 'calibrefx_pre_init', array( $this, 'load_shortcodes' ) );
+        add_action( 'calibrefx_pre_init', array( $this, 'load_modules' ) );
+        
+        add_action( 'calibrefx_init', array( $this, 'run_autoload' ) );
+
     }
 
     /**
@@ -42,19 +48,19 @@ class Calibrefx {
      */
     public function load_theme_support() {
         
-        add_theme_support('calibrefx-admin-menu');
-        add_theme_support('calibrefx-custom-header');
-        add_theme_support('calibrefx-custom-background');
-        add_theme_support('calibrefx-default-styles');
-        add_theme_support('calibrefx-inpost-layouts');
-        add_theme_support('calibrefx-responsive-style');
-        add_theme_support('calibrefx-footer-widgets');
-        add_theme_support('calibrefx-header-right-widgets');
+        add_theme_support( 'calibrefx-admin-menu' );
+        add_theme_support( 'calibrefx-custom-header' );
+        add_theme_support( 'calibrefx-custom-background' );
+        add_theme_support( 'calibrefx-default-styles' );
+        add_theme_support( 'calibrefx-inpost-layouts' );
+        add_theme_support( 'calibrefx-responsive-style' );
+        add_theme_support( 'calibrefx-footer-widgets' );
+        add_theme_support( 'calibrefx-header-right-widgets' );
 
-        if (!current_theme_supports('calibrefx-menus')) {
-            add_theme_support('calibrefx-menus', array(
-                'primary' => __('Primary Navigation Menu', 'calibrefx'),
-                'secondary' => __('Secondary Navigation Menu', 'calibrefx')
+        if ( !current_theme_supports( 'calibrefx-menus' ) ) {
+            add_theme_support( 'calibrefx-menus', array(
+                'primary' => __( 'Primary Navigation Menu', 'calibrefx' ),
+                'secondary' => __( 'Secondary Navigation Menu', 'calibrefx' )
                 )
             );
         }
@@ -76,6 +82,24 @@ class Calibrefx {
     /**
      * Load all modules and shortcodes
      */
+    public function load_helpers(){
+        $helpers_include = array();
+
+        foreach ( Calibrefx::glob_php( CALIBREFX_HELPER_URI ) as $file ) {
+            $helpers_include[] = $file;
+        }
+
+        $helpers_include = apply_filters( 'calibrefx_helpers_to_include', $helpers_include );
+
+        foreach( $helpers_include as $include ) {
+            include_once $include;
+        }
+        do_action( 'calibrefx_helpers_loaded' );
+    }
+
+    /**
+     * Load all modules and shortcodes
+     */
     public function load_shortcodes(){
         $shortcodes_include = array();
 
@@ -86,7 +110,7 @@ class Calibrefx {
         $shortcodes_include = apply_filters( 'calibrefx_shortcodes_to_include', $shortcodes_include );
 
         foreach( $shortcodes_include as $include ) {
-            include $include;
+            include_once $include;
         }
         do_action( 'calibrefx_shortcodes_loaded' );
     }
@@ -96,6 +120,11 @@ class Calibrefx {
      */
     public function load_modules(){
 
+    }
+
+    public function run_autoload(){
+        $this->load->do_autoload();
+        $this->hooks->run_hook();
     }
 
     /**

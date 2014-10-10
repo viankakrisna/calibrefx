@@ -1,33 +1,6 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
-
-
+<?php 
 /**
  * Calibrefx Option Helper
- *
- * @package         CalibreFx
- * @subpackage      Helpers
- * @category        Helpers
- * @author          CalibreFx Team
- * @link            http://www.calibrefx.com
  */
 
 /**
@@ -91,10 +64,7 @@ function calibrefx_get_custom_field( $field ) {
 }
 
 function calibrefx_get_usermeta( $user_id, $key, $single = true ) {
-    //@TODO: user cache mechanism here
-
     $options = apply_filters( 'calibrefx_usermeta', get_user_meta( $user_id, $key, $single ) );
-
     return $options;
 }
 
