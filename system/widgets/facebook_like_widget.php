@@ -1,23 +1,12 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
+<?php 
+
 /**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
+ * Register the widget for use in Appearance -> Widgets
  */
+function calibrefx_facebook_likebox_init() {
+    register_widget( 'CFX_Facebook_Like_Widget' );
+}
+add_action( 'widgets_init', 'calibrefx_facebook_likebox_init' );
 
 class CFX_Facebook_Like_Widget extends WP_Widget {
 
@@ -27,6 +16,15 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
      * Constructor
      */
     function __construct() {
+        parent::__construct(
+            'facebook-likebox-widget',
+            apply_filters( 'calibrefx_widget_name', __( 'Facebook Likebox', 'calibrefx' ) ),
+            array(
+                'classname' => 'widget_facebook_likebox',
+                'description' => __( 'Display a Facebook Likebox to allow your visitor like your Facebook Page', 'calibrefx' )
+            )
+        );
+
 
         $this->defaults = array(
             'title' => '',
@@ -40,19 +38,6 @@ class CFX_Facebook_Like_Widget extends WP_Widget {
             'facebook_show_header' => 1,
             'facebook_background_color' => ''
         );
-
-        $widget_ops = array(
-            'classname' => 'facebook-like-widget',
-            'description' => __( 'Display facebook like box', 'calibrefx' ),
-        );
-
-        $control_ops = array(
-            'id_base' => 'facebook-like',
-            'width' => 200,
-            'height' => 250,
-        );
-
-        $this->WP_Widget( 'facebook-like', __( 'Facebook Like Box (CalibreFx)', 'calibrefx' ), $widget_ops, $control_ops);
     }
 
     /**

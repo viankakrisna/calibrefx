@@ -93,4 +93,37 @@ final class Calibrefx {
         /** Run the calibrefx_setup hook */
         do_action( 'calibrefx_setup' );
     }
+
+    /**
+     * Returns an array of all PHP files in the specified absolute path.
+     * Equivalent to glob( "$absolute_path/*.php" ).
+     *
+     * @param string $absolute_path The absolute path of the directory to search.
+     * @return array Array of absolute paths to the PHP files.
+     */
+    public static function glob_php( $absolute_path ) {
+        $absolute_path = untrailingslashit( $absolute_path );
+        $files = array();
+        if ( ! $dir = @opendir( $absolute_path ) ) {
+            return $files;
+        }
+
+        while ( false !== $file = readdir( $dir ) ) {
+            if ( '.' == substr( $file, 0, 1 ) || '.php' != substr( $file, -4 ) ) {
+                continue;
+            }
+
+            $file = "$absolute_path/$file";
+
+            if ( ! is_file( $file ) ) {
+                continue;
+            }
+
+            $files[] = $file;
+        }
+
+        closedir( $dir );
+
+        return $files;
+    }
 }

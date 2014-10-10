@@ -1,23 +1,11 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
+<?php 
 /**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
+ * Register the widget for use in Appearance -> Widgets
  */
+function calibrefx_social_icon_init() {
+    register_widget( 'CFX_Social_Widget' );
+}
+add_action( 'widgets_init', 'calibrefx_social_icon_init' );
 
 class CFX_Social_Widget extends WP_Widget {
 
@@ -27,6 +15,14 @@ class CFX_Social_Widget extends WP_Widget {
      * Constructor
      */
     function __construct() {
+        parent::__construct(
+            'social-icon-widget',
+            apply_filters( 'calibrefx_widget_name', __( 'Social Media', 'calibrefx' ) ),
+            array(
+                'classname' => 'widget_social_icon',
+                'description' => __( 'Display social media link', 'calibrefx' )
+            )
+        );
 
         $this->defaults = array(
            'title' => '',
@@ -42,14 +38,6 @@ class CFX_Social_Widget extends WP_Widget {
            'icon_size' => '',
            'icon_style' => '',
         );
-
-        $widget_ops = array(
-            'classname' => 'social-widget',
-            'description' => __( 'Display social media link', 'calibrefx' ),
-        );
-
- 
-        $this->WP_Widget( 'social-widget', __( 'Social Widget (Calibrefx)', 'calibrefx' ), $widget_ops);
     }
 
     /**

@@ -9,3 +9,4 @@ logs/*
 debug.txt
 cfx
 error.log
+unused/

@@ -5,6 +5,32 @@
  */
 
 /**
+ * Load all widgets inside the widgets folder
+ */
+function calibrefx_load_widgets() {
+    $widgets_include = array();
+
+    foreach ( Calibrefx::glob_php( CALIBREFX_WIDGET_URI ) as $file ) {
+        $widgets_include[] = $file;
+    }
+
+    $widgets_include = apply_filters( 'calibrefx_widgets_to_include', $widgets_include );
+
+    foreach( $widgets_include as $include ) {
+        include $include;
+    }
+}
+add_action( 'calibrefx_init', 'calibrefx_load_widgets', 20 );
+
+/**
+ * Add the "(Calibrefx)" suffix to the widget names
+ */
+function calibrefx_widgets_add_suffix( $widget_name ) {
+    return sprintf( __( '%s (Calibrefx)', 'calibrefx' ), $widget_name );
+}
+add_filter( 'calibrefx_widget_name', 'calibrefx_widgets_add_suffix' );
+
+/**
  * This function registers all the default CalibreFx widget.
  */
 function calibrefx_register_default_widget() {

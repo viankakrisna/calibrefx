@@ -364,7 +364,7 @@ class CFX_Loader {
      * @param	mixed
      * @return	void
      */
-    public function widget( $widgets = array() ) { 
+    /*public function widget( $widgets = array() ) { 
         foreach ( $widgets as $widget ) {
             $widget_name = 'CFX_' . $widget . '_Widget';
             
@@ -386,7 +386,7 @@ class CFX_Loader {
                 }
             }
         }
-    }
+    }*/
 
     // --------------------------------------------------------------------
 

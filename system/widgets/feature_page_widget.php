@@ -1,23 +1,12 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
+<?php 
+
 /**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
+ * Register the widget for use in Appearance -> Widgets
  */
+function calibrefx_feature_page_init() {
+    register_widget( 'CFX_Feature_Page_Widget' );
+}
+add_action( 'widgets_init', 'calibrefx_feature_page_init' );
  
 class CFX_Feature_Page_Widget extends WP_Widget {
 	
@@ -27,6 +16,14 @@ class CFX_Feature_Page_Widget extends WP_Widget {
 	 * Constructor
 	 */
 	function __construct() {
+		parent::__construct(
+            'feature-page-widget',
+            apply_filters( 'calibrefx_widget_name', __( 'Feature Page', 'calibrefx' ) ),
+            array(
+                'classname' => 'widget_feature_page',
+                'description' => __( 'Display feature page with thumbnail on your sidebar', 'calibrefx' )
+            )
+        );
 
 		$this->defaults = array(
 			'title'       	  => '',
@@ -37,15 +34,8 @@ class CFX_Feature_Page_Widget extends WP_Widget {
 			'show_title'      => 0,
 			'show_content'    => 0,
 			'content_limit'   => '',
-			'more_text'   	  => '[More...]',
+			'more_text'   	  => 'Read more',
 		);
-
-		$widget_ops = array(
-			'classname'   => 'feature-page-widget',
-			'description' => __( 'Display feature page with thumbnail', 'calibrefx' ),
-		);
-
-		$this->WP_Widget( 'feature-page', __( 'Feature Page (CalibreFx)', 'calibrefx' ), $widget_ops );
 
 	}
 	

@@ -1,23 +1,11 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
+<?php 
 /**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
+ * Register the widget for use in Appearance -> Widgets
  */
+function calibrefx_facebook_comment_init() {
+    register_widget( 'CFX_Facebook_Comment_Widget' );
+}
+add_action( 'widgets_init', 'calibrefx_facebook_comment_init' );
 
 class CFX_Facebook_Comment_Widget extends WP_Widget {
 
@@ -27,6 +15,14 @@ class CFX_Facebook_Comment_Widget extends WP_Widget {
      * Constructor
      */
     function __construct() {
+        parent::__construct(
+            'facebook-comment-widget',
+            apply_filters( 'calibrefx_widget_name', __( 'Facebook Comment', 'calibrefx' ) ),
+            array(
+                'classname' => 'widget_facebook_comment',
+                'description' => __( 'Display a Facebook Comment', 'calibrefx' )
+            )
+        );
 
         $this->defaults = array(
             'title' => '',
@@ -34,19 +30,6 @@ class CFX_Facebook_Comment_Widget extends WP_Widget {
             'facebook_width' => 470,
             'facebook_number_posts' => 2,
         );
-
-        $widget_ops = array(
-            'classname' => 'facebook-comment-widget',
-            'description' => __( 'Display facebook comment box', 'calibrefx' ),
-        );
-
-        $control_ops = array(
-            'id_base' => 'facebook-comment',
-            'width' => 200,
-            'height' => 250,
-        );
-
-        $this->WP_Widget( 'facebook-comment', __( 'Facebook Comment Box (CalibreFx)', 'calibrefx' ), $widget_ops, $control_ops);
     }
 
     /**

@@ -1,25 +1,13 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
+<?php 
 /**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
+ * Register the widget for use in Appearance -> Widgets
  */
- 
-class CFX_Subscriber_Widget extends WP_Widget {
+function calibrefx_feedburner_init() {
+    register_widget( 'CFX_Feedburner_Widget' );
+}
+add_action( 'widgets_init', 'calibrefx_feedburner_init' );
+
+class CFX_Feedburner_Widget extends WP_Widget {
 	
 	protected $defaults;
 	
@@ -27,6 +15,14 @@ class CFX_Subscriber_Widget extends WP_Widget {
 	 * Constructor
 	 */
 	function __construct() {
+		parent::__construct(
+            'feedburner-widget',
+            apply_filters( 'calibrefx_widget_name', __( 'Feedburner Subscribe', 'calibrefx' ) ),
+            array(
+                'classname' => 'widget_feedburner',
+                'description' => __( 'Display email subscriber form for Feedburner', 'calibrefx' )
+            )
+        );
 
 		$this->defaults = array(
 			'title'       => '',
@@ -35,14 +31,6 @@ class CFX_Subscriber_Widget extends WP_Widget {
 			'input_text'  => '',
 			'button_text' => '',
 		);
-
-		$widget_ops = array(
-			'classname'   => 'subscriber-widget',
-			'description' => __( 'Display email subscriber form for Feedburner', 'calibrefx' ),
-		);
-
-		$this->WP_Widget( 'subscriber', __( 'Email Updates (CalibreFx)', 'calibrefx' ), $widget_ops );
-
 	}
 	
 	/**

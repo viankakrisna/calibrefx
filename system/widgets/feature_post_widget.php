@@ -1,24 +1,13 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
+<?php 
  
+/**
+ * Register the widget for use in Appearance -> Widgets
+ */
+function calibrefx_feature_post_init() {
+    register_widget( 'CFX_Feature_Post_Widget' );
+}
+add_action( 'widgets_init', 'calibrefx_feature_post_init' );
+
 class CFX_Feature_Post_Widget extends WP_Widget {
 	
 	protected $defaults;
@@ -27,6 +16,14 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 	 * Constructor
 	 */
 	function __construct() {
+		parent::__construct(
+            'feature-post-widget',
+            apply_filters( 'calibrefx_widget_name', __( 'Feature Post', 'calibrefx' ) ),
+            array(
+                'classname' => 'widget_feature_post',
+                'description' => __( 'Display feature post with thumbnail on your sidebar', 'calibrefx' )
+            )
+        );
 
 		$this->defaults = array(
 			'title'       	  => '',
@@ -39,16 +36,8 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 			'show_content'    => 0,
 			'show_date'       => 0,
 			'content_limit'   => '',
-			'more_text'   	  => '[More...]',
+			'more_text'   	  => 'Read more',
 		);
-
-		$widget_ops = array(
-			'classname'   => 'feature-post-widget',
-			'description' => __( 'Display feature post with thumbnail', 'calibrefx' ),
-		);
-
-		$this->WP_Widget( 'feature-post', __( 'Feature Post (CalibreFx)', 'calibrefx' ), $widget_ops );
-
 	}
 	
 	/**

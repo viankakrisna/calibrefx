@@ -1,23 +1,11 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
+<?php 
 /**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
+ * Register the widget for use in Appearance -> Widgets
  */
+function calibrefx_twitter_timeline_init() {
+    register_widget( 'CFX_Twitter_Timeline_Widget' );
+}
+add_action( 'widgets_init', 'calibrefx_twitter_timeline_init' );
 
 class CFX_Twitter_Timeline_Widget extends WP_Widget {
 
@@ -27,6 +15,14 @@ class CFX_Twitter_Timeline_Widget extends WP_Widget {
      * Constructor
      */
     function __construct() {
+        parent::__construct(
+            'twitter-timeline-widget',
+            apply_filters( 'calibrefx_widget_name', __( 'Twitter Widget', 'calibrefx' ) ),
+            array(
+                'classname' => 'widget_twitter-timeline',
+                'description' => __( 'Display Twitter Timeline Widget', 'calibrefx' )
+            )
+        );
 
         $this->defaults = array(
             'title' => '',
@@ -38,17 +34,6 @@ class CFX_Twitter_Timeline_Widget extends WP_Widget {
             'widget_id' => '',
             'border_color' => ''
         );
-
-        $widget_ops = array(
-            'classname' => 'twitter-timeline-widget',
-            'description' => __( 'Display Twitter Timeline Widget', 'calibrefx' ),
-        );
-
-        $control_ops = array(
-            'id_base' => 'twitter-timeline-widget'
-        );
-
-        $this->WP_Widget( 'twitter-timeline-widget', __( 'Twitter Timeline (CalibreFx)', 'calibrefx' ), $widget_ops, $control_ops);
     }
 
     /**

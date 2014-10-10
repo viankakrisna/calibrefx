@@ -1,6 +1,4 @@
 <?php
-defined('CALIBREFX_URL') OR exit();
-
 /*
  * Auto-load Libraries
  */
@@ -24,9 +22,9 @@ $autoload['configs'] = array();
 /*
  *  Auto-load Config files
  */
-$autoload['widgets'] = array( 'Facebook_Comment', 'Facebook_Like', 'Feature_Page_Slider', 
+/*$autoload['widgets'] = array( 'Facebook_Comment', 'Facebook_Like', 'Feature_Page_Slider', 
                               'Feature_Page', 'Feature_Post_Slider', 'Feature_Post',
-                              'Subscriber', 'Twitter_Timeline', 'Latest_Post', 'Popular_Post', 'Social' );
+                              'Subscriber', 'Twitter_Timeline', 'Latest_Post', 'Popular_Post', 'Social' );*/
 
 /*
  *  Auto-load Config files

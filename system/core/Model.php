@@ -26,6 +26,7 @@ class CFX_Model {
      */
     public function __construct( $setting_field = 'calibrefx-settings' ) {
         $this->_setting_field = $setting_field;
+        $this->_cfx = calibrefx_get_instance();
     }
     
     public function get_settings_field() {
@@ -33,31 +34,23 @@ class CFX_Model {
     }
 
     public function get( $key ) {
-        $this->_cfx = calibrefx_get_instance();
+       
+        $options = wp_cache_get( $this->_setting_field, $this->_setting_field );
 
-        if ( !isset( $this->_cfx->cache ) ) {
-            $this->_cfx->cache = calibrefx_load_class( 'cache', 'libraries' );
+        if( !$options OR !is_array( $options ) ){
+            $options = apply_filters( 'calibrefx_options', get_option( $this->_setting_field ), $this->_setting_field );
+            wp_cache_set( $this->_setting_field, $options, $this->_setting_field );
         }
 
-        $options = $this->_cfx->cache->cache_get( $this->_setting_field, $this->_setting_field );
-
         if ( $options AND isset( $options[$key] ) ) {
-			if( is_array( $options[$key] ) ) {
+            if( is_array( $options[$key] ) ) {
                 return $options[$key];
             } else {
                 return stripslashes( $options[$key] );
             }
         }
 
-        $options = apply_filters( 'calibrefx_options', get_option( $this->_setting_field ), $this->_setting_field );
-
-        $this->_cfx->cache->cache_set( $this->_setting_field, $options, $this->_setting_field );
-
-        if( !isset( $options[$key] ) ) {
-            return false;
-        }
-        
-        return stripslashes( $options[$key] );
+        return FALSE;
     }
 
     public function get_all() {

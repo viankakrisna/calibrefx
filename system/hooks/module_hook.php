@@ -38,7 +38,8 @@ function calibrefx_initialize_module() {
 		include_once( $module );
 	}
 }
-add_action( 'calibrefx_init', 'calibrefx_initialize_module', 20 );
+//@todo: will change this for performance and better efficiency, learn from Jetpack
+// add_action( 'calibrefx_init', 'calibrefx_initialize_module', 20 );
 
 /**
  * Activate a module

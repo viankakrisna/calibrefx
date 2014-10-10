@@ -1,24 +1,13 @@
-<?php defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
+<?php 
  
+/**
+ * Register the widget for use in Appearance -> Widgets
+ */
+function calibrefx_latest_post_init() {
+    register_widget( 'CFX_Latest_Post_Widget' );
+}
+add_action( 'widgets_init', 'calibrefx_latest_post_init' );
+
 class CFX_Latest_Post_Widget extends WP_Widget {
 	
 	protected $defaults;
@@ -27,6 +16,14 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 	 * Constructor
 	 */
 	function __construct() {
+		parent::__construct(
+            'recent-posts-widget',
+            apply_filters( 'calibrefx_widget_name', __( 'Recent Posts', 'calibrefx' ) ),
+            array(
+                'classname' => 'widget_recent_posts',
+                'description' => __( 'Display recent posts with thumbnail on your sidebar', 'calibrefx' )
+            )
+        );
 
 		$this->defaults = array(
 			'title'       	=> '',
@@ -36,13 +33,6 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 			'show_detail' => 0,
 			'detail_length' => 100
 		);
-
-		$widget_ops = array(
-			'classname'   => 'latest-posts-widget',
-			'description' => __( 'Display The Latest Posts', 'calibrefx' ),
-		);
-
-		$this->WP_Widget( 'latest-posts', __( 'Recent Posts (CalibreFx)', 'calibrefx' ), $widget_ops );
 
 	}
 	
