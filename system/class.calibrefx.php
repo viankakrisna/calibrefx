@@ -35,10 +35,12 @@ class Calibrefx {
 
         load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
 
+        // Do some initialization
         add_action( 'calibrefx_pre_init', array( $this, 'theme_support' ) );
         add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_helpers' ) );
         add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_shortcodes' ) );
         add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_hooks' ) );
+        add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_widgets' ) );
         add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_modules' ) );
         
         add_action( 'calibrefx_init', array( $this, 'run_autoload' ) );

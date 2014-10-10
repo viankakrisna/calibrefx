@@ -21,27 +21,6 @@ class Calibrefx_Loader {
     public $_library_paths = array();
 
     /**
-     * List of paths to load shortcode from
-     *
-     * @var array
-     */
-    public $_shortcode_paths = array();
-
-    /**
-     * List of paths to load helpers from
-     *
-     * @var array
-     */
-    public $_helper_paths = array();
-
-    /**
-     * List of paths to load hook from
-     *
-     * @var array
-     */
-    public $_hook_paths = array();
-
-    /**
      * List of paths to load modules from
      *
      * @var array
@@ -72,8 +51,6 @@ class Calibrefx_Loader {
      */
     public function __construct() {
         $this->_library_paths = array( CALIBREFX_LIBRARY_URI );
-        $this->_shortcode_paths = array( CALIBREFX_SHORTCODE_URI );
-        $this->_hook_paths = array( CALIBREFX_HOOK_URI );
         $this->_module_paths = array( CALIBREFX_MODULE_URI );
 
         $this->_classes = array();
@@ -161,6 +138,20 @@ class Calibrefx_Loader {
         do_action( 'calibrefx_hooks_loaded' );
     }
 
+    function load_widgets() {
+        $widgets_include = array();
+
+        foreach ( Calibrefx::glob_php( CALIBREFX_WIDGET_URI ) as $file ) {
+            $widgets_include[] = $file;
+        }
+
+        $widgets_include = apply_filters( 'calibrefx_widgets_to_include', $widgets_include );
+
+        foreach( $widgets_include as $include ) {
+            include $include;
+        }
+    }
+
     /**
      * Load all modules and shortcodes
      */
@@ -168,74 +159,7 @@ class Calibrefx_Loader {
 
         do_action( 'calibrefx_modules_loaded' );
     }
-
-    /**
-     * Load Hook
-     *
-     * This function loads the specified hook file.
-     *
-     * @param	mixed
-     * @return	void
-     */
-    public function hook( $hooks = array() ) {
-        foreach ( $this->_prep_filename( $hooks, '_hook' ) as $hook ) {
-            // Try to load the helper
-            foreach ( $this->_hook_paths as $path ) {
-                $filepath = $path . '/' . $hook . '.php';
-
-                if ( isset( $this->_loaded_files[$filepath] ) ) {
-                    //File loaded
-                    return;
-                }
-
-                if ( file_exists( $filepath ) ) {
-                    include_once( $filepath );
-
-                    $this->_loaded_files[] = $filepath;
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
-     * Load Files
-     *
-     * This function loads the specified array of files.
-     *
-     * @param	mixed
-     * @return	void
-     */
-    public function files( $files = array() ) {
-        foreach ( $files as $file ) {
-            $this->file( $file );
-        }
-    }
-
-    /**
-     * Load Files
-     *
-     * This function loads the specified array of files.
-     *
-     * @param	mixed
-     * @return	void
-     */
-    public function file( $file ) {
-        if ( !isset( $file ) )
-            return;
-
-        if ( isset( $this->_loaded_files[$file] ) ) {
-            //File loaded
-            return;
-        }
-
-        if ( file_exists( $file ) ) {
-            include_once( $file );
-
-            $this->_loaded_files[] = $file;
-        }
-    }
-
+    
     /**
      * Class Loader
      *
@@ -340,24 +264,6 @@ class Calibrefx_Loader {
         } else {
             $calibrefx->$classvar = new $name();
         }
-    }
-
-    /**
-     * Child Package Path
-     *
-     * Add child package path
-     *
-     * @return	void
-     */
-    public function add_child_path( $path ) {
-        global $calibrefx;
-
-        $this->_library_paths[]   = $path . '/libraries';
-        $this->_helper_paths[]    = $path . '/helpers';
-        $this->_shortcode_paths[] = $path . '/shortcodes';
-        $this->_widget_paths[]    = $path . '/widgets';
-        $this->_hook_paths[]      = $path . '/hooks';
-        $this->_module_paths[]    = $path . '/modules';
     }
 
     /**

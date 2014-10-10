@@ -66,15 +66,78 @@ function calibrefx_initializing(){
     //remove unneccesary headers 
     remove_action('wp_head', 'wp_generator');
 
+    if( is_child_theme() ) {
+        add_filter( 'calibrefx_helpers_to_include', 'childfx_load_helpers' );
+        add_filter( 'calibrefx_shortcodes_to_include', 'childfx_load_shortcodes' );
+        add_filter( 'calibrefx_hooks_to_include', 'childfx_load_hooks' );
+        add_filter( 'calibrefx_widgets_to_include', 'childfx_load_widgets' );
+    }
     // Run the engine 
     $calibrefx->run();
     
-    /*if( is_child_theme() ) {
-        $calibrefx->load->add_child_path( CHILD_URI . '/app' );
-        $calibrefx->load->do_autoload( CHILD_URI . '/app/config/autoload.php' );
-    }*/
 }
 add_action( 'after_setup_theme', 'calibrefx_initializing', 0 );
+
+/**
+ * Load helpers from child themes
+ * @param  array $helpers_include 
+ * @return array
+ */
+function childfx_load_helpers( $helpers_include ){
+    $childfx_helpers = array();
+
+    foreach ( Calibrefx::glob_php( CHILD_URI . '/' . CHILD_APP_DIR . '/' . 'helpers' ) as $file ) {
+        $childfx_helpers[] = $file;
+    }
+
+    return array_merge($helpers_include, $childfx_helpers);
+}
+
+/**
+ * Load shortcodes from child themes
+ * @param  array $shortcodes_include 
+ * @return array
+ */
+function childfx_load_shortcodes( $shortcodes_include ){
+    $childfx_shortcodes = array();
+
+    foreach ( Calibrefx::glob_php( CHILD_URI . '/' . CHILD_APP_DIR . '/' . 'shortcodes' ) as $file ) {
+        $childfx_shortcodes[] = $file;
+    }
+
+    return array_merge($shortcodes_include, $childfx_shortcodes);
+}
+
+/**
+ * Load hooks from child themes
+ * @param  array $hooks_include 
+ * @return array
+ */
+function childfx_load_hooks( $hooks_include ){
+    $childfx_hooks = array();
+
+    foreach ( Calibrefx::glob_php( CHILD_URI . '/' . CHILD_APP_DIR . '/' . 'hooks' ) as $file ) {
+        $childfx_hooks[] = $file;
+    }
+    
+    return array_merge($hooks_include, $childfx_hooks);
+}
+
+/**
+ * Load widgets from child themes
+ * @param  array $hooks_include 
+ * @return array
+ */
+function childfx_load_widgets( $widgets_include ){
+    $childfx_widgets = array();
+
+    foreach ( Calibrefx::glob_php( CHILD_URI . '/' . CHILD_APP_DIR . '/' . 'widgets' ) as $file ) {
+        $childfx_widgets[] = $file;
+    }
+    
+    return array_merge($widgets_include, $childfx_widgets);
+}
+
 
 /**
  * Enable GZip Compression
