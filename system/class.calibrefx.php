@@ -29,16 +29,16 @@ class Calibrefx {
      * Constructor
      */
     function __construct() {
-        $this->load = new Calibrefx_Loader;
+        $this->load = Calibrefx_Loader::get_instance();
         $this->hooks = Calibrefx_Generator::get_instance();
         $this->model = new Calibrefx_Model;
 
-        $this->load_theme_support();
         load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
 
-        add_action( 'calibrefx_pre_init', array( $this, 'load_helpers' ) );
-        add_action( 'calibrefx_pre_init', array( $this, 'load_shortcodes' ) );
-        add_action( 'calibrefx_pre_init', array( $this, 'load_modules' ) );
+        add_action( 'calibrefx_pre_init', array( $this, 'theme_support' ) );
+        add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_helpers' ) );
+        add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_shortcodes' ) );
+        add_action( 'calibrefx_pre_init', array( Calibrefx_Loader::get_instance(), 'load_modules' ) );
         
         add_action( 'calibrefx_init', array( $this, 'run_autoload' ) );
 
@@ -47,7 +47,7 @@ class Calibrefx {
     /**
      * Add our calibrefx theme support
      */
-    public function load_theme_support() {
+    public function theme_support() {
         
         add_theme_support( 'calibrefx-admin-menu' );
         add_theme_support( 'calibrefx-custom-header' );
@@ -78,50 +78,6 @@ class Calibrefx {
 
         add_post_type_support( 'post', array( 'calibrefx-layouts' ) );
         add_post_type_support( 'page', array( 'calibrefx-layouts' ) );
-    }
-
-    /**
-     * Load all modules and shortcodes
-     */
-    public function load_helpers(){
-        $helpers_include = array();
-
-        foreach ( Calibrefx::glob_php( CALIBREFX_HELPER_URI ) as $file ) {
-            $helpers_include[] = $file;
-        }
-
-        $helpers_include = apply_filters( 'calibrefx_helpers_to_include', $helpers_include );
-
-        foreach( $helpers_include as $include ) {
-            include_once $include;
-        }
-        do_action( 'calibrefx_helpers_loaded' );
-    }
-
-    /**
-     * Load all modules and shortcodes
-     */
-    public function load_shortcodes(){
-        $shortcodes_include = array();
-
-        foreach ( Calibrefx::glob_php( CALIBREFX_SHORTCODE_URI ) as $file ) {
-            $shortcodes_include[] = $file;
-        }
-
-        $shortcodes_include = apply_filters( 'calibrefx_shortcodes_to_include', $shortcodes_include );
-
-        foreach( $shortcodes_include as $include ) {
-            include_once $include;
-        }
-        do_action( 'calibrefx_shortcodes_loaded' );
-    }
-
-    /**
-     * Load all modules and shortcodes
-     */
-    public function load_modules(){
-
-        do_action( 'calibrefx_modules_loaded' );
     }
 
     public function run_autoload(){

@@ -9,11 +9,11 @@
 class Calibrefx_Loader {
 
     /**
-     * List of paths to load libraries from
+     * Reference to the global Plugin instance
      *
-     * @var array
+     * @var object
      */
-    public $_config_paths = array();
+    protected static $instance;
 
     /**
      * List of paths to load libraries from
@@ -21,13 +21,6 @@ class Calibrefx_Loader {
      * @var array
      */
     public $_library_paths = array();
-
-    /**
-     * List of paths to load models from
-     *
-     * @var array
-     */
-    public $_model_paths = array();
 
     /**
      * List of paths to load shortcode from
@@ -86,9 +79,7 @@ class Calibrefx_Loader {
      * @return	void
      */
     public function __construct() {
-        $this->_config_paths = array( CALIBREFX_CONFIG_URI );
         $this->_library_paths = array( CALIBREFX_LIBRARY_URI );
-        $this->_model_paths = array( CALIBREFX_MODEL_URI );
         $this->_shortcode_paths = array( CALIBREFX_SHORTCODE_URI );
         $this->_hook_paths = array( CALIBREFX_HOOK_URI );
         $this->_module_paths = array( CALIBREFX_MODULE_URI );
@@ -98,7 +89,19 @@ class Calibrefx_Loader {
         $this->_loaded_models = array();
     }
 
-    // --------------------------------------------------------------------
+    /**
+     * Singleton
+     *
+     * @return  object
+     */
+    public static function get_instance() {
+        if( ! self::$instance ){
+            self::$instance = new Calibrefx_Loader();
+        }
+        
+        return self::$instance;
+    }
+    
 
     /**
      * Do Autoload Files
@@ -133,8 +136,6 @@ class Calibrefx_Loader {
         }
     }
 
-    // --------------------------------------------------------------------
-
     /**
      * Is Loaded
      *
@@ -149,7 +150,49 @@ class Calibrefx_Loader {
         return isset( $this->_classes[$class] ) ? $this->_classes[$class] : FALSE;
     }
 
-    // --------------------------------------------------------------------
+    /**
+     * Load all modules and shortcodes
+     */
+    public function load_helpers(){
+        $helpers_include = array();
+
+        foreach ( Calibrefx::glob_php( CALIBREFX_HELPER_URI ) as $file ) {
+            $helpers_include[] = $file;
+        }
+
+        $helpers_include = apply_filters( 'calibrefx_helpers_to_include', $helpers_include );
+
+        foreach( $helpers_include as $include ) {
+            include_once $include;
+        }
+        do_action( 'calibrefx_helpers_loaded' );
+    }
+
+    /**
+     * Load all modules and shortcodes
+     */
+    public function load_shortcodes(){
+        $shortcodes_include = array();
+
+        foreach ( Calibrefx::glob_php( CALIBREFX_SHORTCODE_URI ) as $file ) {
+            $shortcodes_include[] = $file;
+        }
+
+        $shortcodes_include = apply_filters( 'calibrefx_shortcodes_to_include', $shortcodes_include );
+
+        foreach( $shortcodes_include as $include ) {
+            include_once $include;
+        }
+        do_action( 'calibrefx_shortcodes_loaded' );
+    }
+
+    /**
+     * Load all modules and shortcodes
+     */
+    public function load_modules(){
+
+        do_action( 'calibrefx_modules_loaded' );
+    }
 
     /**
      * Load Hook
@@ -180,8 +223,6 @@ class Calibrefx_Loader {
         }
     }
 
-    // --------------------------------------------------------------------
-
     /**
      * Load Files
      *
@@ -195,8 +236,6 @@ class Calibrefx_Loader {
             $this->file( $file );
         }
     }
-
-    // --------------------------------------------------------------------
 
     /**
      * Load Files
@@ -221,8 +260,6 @@ class Calibrefx_Loader {
             $this->_loaded_files[] = $file;
         }
     }
-
-    // --------------------------------------------------------------------
 
     /**
      * Class Loader
@@ -254,8 +291,6 @@ class Calibrefx_Loader {
 
         $this->_load_class( $library, $params );
     }
-
-    // --------------------------------------------------------------------
 
     /**
      * Load class
@@ -307,8 +342,6 @@ class Calibrefx_Loader {
         } // END FOREACH
     }
 
-    // --------------------------------------------------------------------
-
     /**
      * Instantiates a class
      *
@@ -334,8 +367,6 @@ class Calibrefx_Loader {
         }
     }
 
-    // --------------------------------------------------------------------
-
     /**
      * Child Package Path
      *
@@ -346,18 +377,13 @@ class Calibrefx_Loader {
     public function add_child_path( $path ) {
         global $calibrefx;
 
-        $calibrefx->config->_config_paths[] = $path . '/config';
-        $this->_config_paths[]    = $path . '/config';
         $this->_library_paths[]   = $path . '/libraries';
         $this->_helper_paths[]    = $path . '/helpers';
-        $this->_model_paths[]     = $path . '/models';
         $this->_shortcode_paths[] = $path . '/shortcodes';
         $this->_widget_paths[]    = $path . '/widgets';
         $this->_hook_paths[]      = $path . '/hooks';
         $this->_module_paths[]    = $path . '/modules';
     }
-
-    // --------------------------------------------------------------------
 
     /**
      * Prep filename
