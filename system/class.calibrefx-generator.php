@@ -6,7 +6,7 @@
  * 
  */
 
-class CFX_Generator{
+class Calibrefx_Generator{
 
     /**
      * Reference to the global Plugin instance
@@ -43,7 +43,7 @@ class CFX_Generator{
         if ( $instance === TRUE ) {
             self::$instance = $instance;
         } elseif ( self::$instance === null ) {
-            self::$instance = new CFX_Generator();
+            self::$instance = new Calibrefx_Generator();
         }
         
         return self::$instance;

@@ -34,28 +34,29 @@ do_action('calibrefx_pre');
  * ------------------------------------------------------
  */
 require_once( CALIBREFX_URI . '/system/config/constants.php');
-require_once( CALIBREFX_URI . '/system/core/Common.php' );
-require_once( CALIBREFX_URI . '/system/core/Model.php' );
-require_once( CALIBREFX_URI . '/system/core/Generator.php' );
-require_once( CALIBREFX_URI . '/system/core/Calibrefx.php' );
+require_once( CALIBREFX_URI . '/system/common.php' );
 
-// Our global variables
-global $calibrefx, $cfxgenerator;
+require_once( CALIBREFX_URI . '/system/class.calibrefx.php' );
+require_once( CALIBREFX_URI . '/system/class.calibrefx-config.php' );
+require_once( CALIBREFX_URI . '/system/class.calibrefx-loader.php' );
+require_once( CALIBREFX_URI . '/system/class.calibrefx-admin.php' );
+require_once( CALIBREFX_URI . '/system/class.calibrefx-model.php' );
+require_once( CALIBREFX_URI . '/system/class.calibrefx-generator.php' );
 
-//Initialize cfxgenerator instance
-$cfxgenerator = CFX_Generator::get_instance();
-
-//Initialize calibrefx instance
-$calibrefx = calibrefx_get_instance();
 
 if ( ! isset( $content_width ) ) {
     $content_width = apply_filters( 'calibrefx_content_width', 550 );
 }
 
-
 add_action( 'after_setup_theme', function(){
-	global $calibrefx, $cfxgenerator;
-	
+    global $calibrefx;
+    $calibrefx = Calibrefx::init();
+    $calibrefx->config = new Calibrefx_Config;
+    $calibrefx->load = new Calibrefx_Loader;
+
+    global $cfxgenerator;
+    $cfxgenerator = Calibrefx_Generator::get_instance();
+
 	// Add theme support
 	add_theme_support('html5', array( 'comment-list', 'comment-form', 'search-form' ));
     add_theme_support('menus');
@@ -74,8 +75,8 @@ add_action( 'after_setup_theme', function(){
 	$calibrefx->run();
 	
 	if( is_child_theme() ) {
-		$calibrefx->load->add_child_path(CHILD_URI . '/app');
-		$calibrefx->load->do_autoload(CHILD_URI . '/app/config/autoload.php');
+		$calibrefx->load->add_child_path( CHILD_URI . '/app' );
+		$calibrefx->load->do_autoload( CHILD_URI . '/app/config/autoload.php' );
 	}
 }, 0 );
 

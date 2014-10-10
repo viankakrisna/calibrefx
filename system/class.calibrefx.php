@@ -2,7 +2,7 @@
 /**
  * Calibrefx Core Class
  */
-final class Calibrefx {
+class Calibrefx {
 
     /**
      * Reference to the global Plugin instance
@@ -10,6 +10,18 @@ final class Calibrefx {
      * @var	object
      */
     protected static $instance;
+
+    /**
+     * Singleton
+     * @static
+     */
+    public static function init() {
+        if ( ! self::$instance ) {
+            self::$instance = new Calibrefx;
+        }
+
+        return self::$instance;
+    }
 
     /**
      * Return the Calibrefx object
@@ -32,11 +44,7 @@ final class Calibrefx {
      * Constructor
      */
     function __construct() {
-        $this->config = calibrefx_load_class( 'Config', 'core' );
-        $this->load = calibrefx_load_class( 'Loader', 'core' );
-        //Since admin is abstract we don't instantiate
-        calibrefx_load_class( 'Admin', 'core' );
-        
+     
         $this->load_theme_support();
         load_theme_textdomain( 'calibrefx', CALIBREFX_LANG_URI );
 

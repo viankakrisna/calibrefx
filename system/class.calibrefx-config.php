@@ -7,7 +7,7 @@
  */
 
 // ------------------------------------------------------------------------
-class CFX_Config {
+class Calibrefx_Config {
 
     /**
      * List of all loaded config values

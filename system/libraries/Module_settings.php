@@ -1,24 +1,4 @@
 <?php 
-defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
 
 /**
  * Calibrefx Module Setting Class
@@ -30,7 +10,7 @@ defined( 'CALIBREFX_URL' ) OR exit();
  * @link		http://www.calibrefx.com
  */
 
-class CFX_Module_Settings extends CFX_Admin {
+class CFX_Module_Settings extends Calibrefx_Admin {
 	/**
      * Constructor - Initializes
      */

@@ -3,7 +3,7 @@
  * Calibrefx Other Settings Class
  *
  */
-class CFX_Other_Settings extends CFX_Admin {
+class CFX_Other_Settings extends Calibrefx_Admin {
 
     /**
      * Constructor - Initializes

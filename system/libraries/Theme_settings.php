@@ -1,24 +1,4 @@
 <?php 
-defined( 'CALIBREFX_URL' ) OR exit();
-/**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
- */
 
 /**
  * Calibrefx Theme Setting Class
@@ -29,7 +9,7 @@ defined( 'CALIBREFX_URL' ) OR exit();
  * @since		Version 1.0
  * @link		http://www.calibrefx.com
  */
-class CFX_Theme_Settings extends CFX_Admin {
+class CFX_Theme_Settings extends Calibrefx_Admin {
 
     /**
      * Constructor - Initializes
@@ -43,7 +23,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             'blog_title' => 'text',
             'header_right' => 0,
             'layout_type' => 'static',
-            'calibrefx_layout_width' => 960,
+            'calibrefx_layout_width' => 1160,
             'calibrefx_layout_wrapper_fixed' => 0,
             'site_layout' => calibrefx_get_default_layout(),
             'nav' => 1,

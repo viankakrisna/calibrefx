@@ -6,7 +6,7 @@
  *
  */
 
-class CFX_Loader {
+class Calibrefx_Loader {
 
     /**
      * List of paths to load libraries from

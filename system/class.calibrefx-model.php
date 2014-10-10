@@ -3,7 +3,7 @@
  * Calibrefx Model Class
  *
  */
-class CFX_Model {
+class Calibrefx_Model {
 
     /**
      * Settings field key to save data in wp-options

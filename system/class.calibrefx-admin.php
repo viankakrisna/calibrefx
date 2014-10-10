@@ -5,7 +5,7 @@
  * Abstract class to build Admin page
  * 
  */
-abstract class CFX_Admin {
+abstract class Calibrefx_Admin {
 
     /**
      * Hold pagehook value when menu is registered
