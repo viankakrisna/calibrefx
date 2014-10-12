@@ -1,10 +1,3 @@
-/*------------------------------------------------------------------
-Project : calibrefx
-Project
-Version : 0.0.1
-Author : calibrefx team
-URL :
---------------------------------------------------------------------
 
 /*------------------------------------------------------------------
 [. Global Styles]
@@ -38,7 +31,7 @@ hr.div {
 .calibrefx-header{
     background: #f0f0f0;
     width: auto;
-    height: 85px;
+    height: 65px;
     margin: 30px 0 0 0px;
     position: relative;
 }
@@ -46,12 +39,13 @@ hr.div {
 .calibrefx-option-logo{
     float: left;
     background: url(../img/calibrefx-logo.png) no-repeat;
+    background-size: 210px;
 }
 
 .calibrefx-option-logo a {
     display: block;
-    height: 66px;
-    width: 298px;
+    height: 65px;
+    width: 210px;
     text-decoration: none;
 }
 
@@ -322,17 +316,6 @@ ul.twitter-tweets li span a{
 /*-----------------------------------------------------------------
  re-style 
 ------------------------------------------------------------------*/
-/* body[class*="calibrefx"] #wpbody{
-    margin: 0px;
-}
-
-body[class*="calibrefx"] #wpfooter{
-    display: none;
-}
-
-body[class*="calibrefx"] #wpbody-content{
-    padding-bottom: 0px;
-} */
 
 .calibrefx-admin-page #wpcontent, .calibrefx-admin-page #wpfooter{
     /*margin-left: 160px;*/
@@ -723,6 +706,55 @@ span.calibrefx-info{
     margin-top: 0px !important;
     padding: 0px;
     margin-bottom: 10px;
+}
+
+/** Module Styles **/
+.table-bordered.calibrefx-modules {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.table-bordered.calibrefx-modules .info{
+    color: #0f92e5;
+}
+
+.table-bordered.calibrefx-modules .description{
+    font-size: 12px;
+}
+
+.table-bordered.calibrefx-modules tr.calibrefx-module td .row-actions {
+    float: right;
+    padding: 0 0 1px;
+    visibility: visible;
+}
+
+.table-bordered.calibrefx-modules tr.calibrefx-module th, 
+.table-bordered.calibrefx-modules tr.calibrefx-module td {
+    background: #fff;
+    margin: 0;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
+}
+
+.table-bordered.calibrefx-modules tr.calibrefx-module td {
+    padding: 10px 10px 8px 14px;
+    line-height: 25px;
+}
+
+.table-bordered.calibrefx-modules tr.calibrefx-module th, 
+.table-bordered.calibrefx-modules tr.calibrefx-module td {
+    background: #fff;
+    margin: 0;
+    border: none;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
+}
+
+.table-bordered.calibrefx-modules tr.calibrefx-module.active th, 
+.table-bordered.calibrefx-modules tr.calibrefx-module.active td {
+    background: #f7fcfe;
+}
+
+.table-bordered.calibrefx-modules tr.calibrefx-module th input[type=checkbox]{
+    margin-top: 3px;
 }
 
 /*------------------------------------------------------------------

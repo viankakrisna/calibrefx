@@ -42,6 +42,9 @@ require_once( CALIBREFX_URI . '/system/class.calibrefx-admin.php' );
 require_once( CALIBREFX_URI . '/system/class.calibrefx-model.php' );
 require_once( CALIBREFX_URI . '/system/class.calibrefx-generator.php' );
 
+if( is_admin() ){
+    require_once( CALIBREFX_URI . '/system/class.calibrefx-modules-list-table.php' );
+}
 
 if ( ! isset( $content_width ) ) {
     $content_width = apply_filters( 'calibrefx_content_width', 550 );
@@ -72,11 +75,13 @@ function calibrefx_initializing(){
         add_filter( 'calibrefx_hooks_to_include', 'childfx_load_hooks' );
         add_filter( 'calibrefx_widgets_to_include', 'childfx_load_widgets' );
     }
+
     // Run the engine 
     $calibrefx->run();
     
 }
 add_action( 'after_setup_theme', 'calibrefx_initializing', 0 );
+add_action( 'after_setup_theme', array( 'Calibrefx', 'load_modules' ), 100 );
 
 /**
  * Load helpers from child themes
@@ -90,7 +95,7 @@ function childfx_load_helpers( $helpers_include ){
         $childfx_helpers[] = $file;
     }
 
-    return array_merge($helpers_include, $childfx_helpers);
+    return array_merge( $helpers_include, $childfx_helpers );
 }
 
 /**
@@ -105,7 +110,7 @@ function childfx_load_shortcodes( $shortcodes_include ){
         $childfx_shortcodes[] = $file;
     }
 
-    return array_merge($shortcodes_include, $childfx_shortcodes);
+    return array_merge( $shortcodes_include, $childfx_shortcodes );
 }
 
 /**
@@ -120,7 +125,7 @@ function childfx_load_hooks( $hooks_include ){
         $childfx_hooks[] = $file;
     }
     
-    return array_merge($hooks_include, $childfx_hooks);
+    return array_merge( $hooks_include, $childfx_hooks );
 }
 
 /**
@@ -135,7 +140,7 @@ function childfx_load_widgets( $widgets_include ){
         $childfx_widgets[] = $file;
     }
     
-    return array_merge($widgets_include, $childfx_widgets);
+    return array_merge( $widgets_include, $childfx_widgets );
 }
 
 

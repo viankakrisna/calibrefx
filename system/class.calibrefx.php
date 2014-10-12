@@ -5,7 +5,7 @@
 class Calibrefx {
 
     /**
-     * Reference to the global Plugin instance
+     * Singleton
      *
      * @var	object
      */
@@ -116,6 +116,12 @@ class Calibrefx {
         do_action( 'calibrefx_post_init' );
     }
 
+    public static function admin_url( $args = null ) {
+        $args = wp_parse_args( $args, array( 'page' => 'jetpack' ) );
+        $url = add_query_arg( $args, admin_url( 'admin.php' ) );
+        return $url;
+    }
+
     /**
      * Returns an array of all PHP files in the specified absolute path.
      * Equivalent to glob( "$absolute_path/*.php" ).
@@ -184,5 +190,216 @@ class Calibrefx {
 
         fclose( $fp );
         return TRUE;
+    }
+
+    /**
+     * List available Calibrefx modules. Simply lists .php files in /modules/.
+     * Make sure to tuck away module "library" files in a sub-directory.
+     */
+    public static function get_available_modules( ) {
+        static $modules = null;
+
+        if ( ! isset( $modules ) ) {
+            $available_modules_option = get_option( 'calibrefx_available_modules', array() );
+            // Use the cache if we're on the front-end and it's available...
+            if ( ! is_admin() && ! empty( $available_modules_option ) ) {
+                $modules = $available_modules_option;
+            } else {
+                $files = self::glob_php( CALIBREFX_MODULE_URI );
+
+                $modules = array();
+
+                foreach ( $files as $file ) {
+                    if ( ! $headers = self::get_module( $file ) ) {
+                        continue;
+                    }
+
+                    $modules[ self::get_module_slug( $file ) ] = $headers['introduced'];
+                }
+
+                update_option( 'calibrefx_available_modules', $modules );
+            }
+        }
+
+        $modules = apply_filters( 'calibrefx_get_available_modules', $modules );
+
+        $r = array();
+        foreach ( $modules as $slug => $introduced ) {
+            $r[] = $slug;
+        }
+
+        return $r;
+    }
+
+    /**
+     * Extract a module's slug from its full path.
+     */
+    public static function get_module_slug( $file ) {
+        return str_replace( '.php', '', basename( $file ) );
+    }
+
+    /**
+     * Generate a module's path from its slug.
+     */
+    public static function get_module_path( $slug ) {
+        return CALIBREFX_MODULE_URI . "/$slug.php";
+    }
+
+    /**
+     * Load module data from module file. Headers differ from WordPress
+     * plugin headers to avoid them being identified as standalone
+     * plugins on the WordPress plugins page.
+     */
+    public static function get_module( $module ) {
+        $headers = array(
+            'name'                => 'Module Name',
+            'description'         => 'Module Description',
+            'sort'                => 'Sort Order',
+            'introduced'          => 'First Introduced',
+            'changed'             => 'Major Changes In',
+            'deactivate'          => 'Deactivate',
+            'free'                => 'Free',
+            'requires_connection' => 'Requires Connection',
+            'auto_activate'       => 'Auto Activate',
+            'module_tags'         => 'Module Tags',
+        );
+
+        $file = self::get_module_path( self::get_module_slug( $module ) );
+
+        //Use Core's get_file_data
+        $mod = get_file_data( $file, $headers );
+
+        if ( empty( $mod['name'] ) ) {
+            return false;
+        }
+
+        $mod['name']                = translate( $mod['name'], 'calibrefx' );
+        $mod['description']         = translate( $mod['description'], 'calibrefx' );
+        $mod['sort']                = empty( $mod['sort'] ) ? 10 : (int) $mod['sort'];
+        $mod['deactivate']          = empty( $mod['deactivate'] );
+        $mod['free']                = empty( $mod['free'] );
+        $mod['requires_connection'] = ( ! empty( $mod['requires_connection'] ) && 'No' == $mod['requires_connection'] ) ? false : true;
+
+        if ( empty( $mod['auto_activate'] ) || ! in_array( strtolower( $mod['auto_activate'] ), array( 'yes', 'no', 'public' ) ) ) {
+            $mod['auto_activate'] = 'No';
+        } else {
+            $mod['auto_activate'] = (string) $mod['auto_activate'];
+        }
+
+        if ( $mod['module_tags'] ) {
+            $mod['module_tags'] = explode( ',', $mod['module_tags'] );
+            $mod['module_tags'] = array_map( 'trim', $mod['module_tags'] );
+            $mod['module_tags'] = array_map( array( __CLASS__, 'translate_module_tag' ), $mod['module_tags'] );
+        } else {
+            $mod['module_tags'] = array( self::translate_module_tag( 'Other' ) );
+        }
+
+        return $mod;
+    }
+
+    public static function translate_module_tag( $untranslated_tag ) {
+        return _x( $untranslated_tag, 'Module Tag', 'calibrefx' );
+
+        // Calls here are to populate translation files.
+        _x( 'Photos and Videos',   'Module Tag', 'calibrefx' );
+        _x( 'Social',              'Module Tag', 'calibrefx' );
+        _x( 'WordPress.com Stats', 'Module Tag', 'calibrefx' );
+        _x( 'Writing',             'Module Tag', 'calibrefx' );
+        _x( 'Appearance',          'Module Tag', 'calibrefx' );
+        _x( 'Developers',          'Module Tag', 'calibrefx' );
+        _x( 'Mobile',              'Module Tag', 'calibrefx' );
+        _x( 'Other',               'Module Tag', 'calibrefx' );
+    }
+
+    /**
+     * Get a list of activated modules as an array of module slugs.
+     */
+    public static function get_active_modules() {
+        $active = get_option( 'calibrefx_active_modules' );
+        if ( ! is_array( $active ) )
+            $active = array();
+
+        return array_unique( $active );
+    }
+
+    /**
+     * Check whether or not a Calibrefx module is active.
+     *
+     * @param string $module The slug of a Calibrefx module.
+     * @return bool
+     *
+     * @static
+     */
+    public static function is_module_active( $module ) {
+        return in_array( $module, self::get_active_modules() );
+    }
+
+    public static function is_module( $module ) {
+        return ! empty( $module ) && ! validate_file( $module, Calibrefx::get_available_modules() );
+    }
+
+    /**
+     * Loads the currently active modules.
+     */
+    public static function load_modules() {
+
+        $modules = array_filter( self::get_active_modules(), array( 'Calibrefx', 'is_module' ) );
+
+        $modules_data = array();
+
+        foreach ( $modules as $module ) {
+            if ( empty( $modules_data[ $module ] ) ) {
+                $modules_data[ $module ] = Calibrefx::get_module( $module );
+            }
+
+            require Calibrefx::get_module_path( $module );
+            do_action( 'calibrefx_module_loaded_' . $module );
+        }
+
+        do_action( 'calibrefx_modules_loaded' );
+    }
+
+    public static function activate_module( $module, $exit = true, $redirect = true ) {
+        do_action( 'calibrefx_pre_activate_module', $module, $exit );
+
+        if ( ! strlen( $module ) )
+            return false;
+
+        if ( ! Calibrefx::is_module( $module ) )
+            return false;
+
+        // If it's already active, then don't do it again
+        $active = self::get_active_modules();
+        foreach ( $active as $act ) {
+            if ( $act == $module )
+                return true;
+        }
+
+        $module_data = self::get_module( $module );
+
+        require Calibrefx::get_module_path( $module );
+        do_action( 'calibrefx_activate_module', $module );
+        $active[] = $module;
+        update_option( 'calibrefx_active_modules', array_unique( $active ) );
+        // Calibrefx::state( 'error', false ); // the override
+        // Calibrefx::state( 'message', 'module_activated' );
+        // Calibrefx::state( 'module', $module );
+
+        if ( $redirect ) {
+            wp_safe_redirect( Calibrefx::admin_url( 'page=calibrefx-modules' ) );
+        }
+        if ( $exit ) {
+            exit;
+        }
+    }
+
+    public static function deactivate_module( $module ) {
+        do_action( 'calibrefx_pre_deactivate_module', $module );
+
+        $active = Calibrefx::get_active_modules();
+        $new    = array_filter( array_diff( $active, (array) $module ) );
+
+        do_action( "calibrefx_deactivate_module_$module", $module );
+        return update_option( 'calibrefx_active_modules', array_unique( $new ) );
     }
 }

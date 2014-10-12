@@ -41,8 +41,8 @@ function calibrefx_add_module_settings() {
     }
 
     $calibrefx->load->library( 'module_settings' );
-    $calibrefx->module_settings->pagehook = add_submenu_page( 'calibrefx', __( 'Modules', 'calibrefx' ), __( 'Modules', 'calibrefx' ), 'edit_theme_options', 'calibrefx-module', array( $calibrefx->module_settings, 'dashboard' ) );
-    $calibrefx->load->library( 'list_module_table', array( 'screen' => $calibrefx->module_settings->pagehook) );
+    $calibrefx->module_settings->pagehook = add_submenu_page( 'calibrefx', __( 'Modules', 'calibrefx' ), __( 'Modules', 'calibrefx' ), 'edit_theme_options', 'calibrefx-modules', array( $calibrefx->module_settings, 'dashboard' ) );
+    // $calibrefx->load->library( 'list_module_table', array( 'screen' => $calibrefx->module_settings->pagehook) );
 }
 add_action( 'calibrefx_add_submenu_page', 'calibrefx_add_module_settings', 20 );
 

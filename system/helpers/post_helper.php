@@ -78,14 +78,9 @@ function calibrefx_breadcrumb( $args = array() ) {
  *
  */
 function calibrefx_default_loop() {
-    $loop_counter = 0;
-    
     if ( have_posts() ) : 
         while ( have_posts() ) : the_post(); // the loop
-            do_action( 'calibrefx_before_post' );
             get_template_part( 'content', get_post_format() );
-            do_action( 'calibrefx_after_post' );
-            $loop_counter++;
         endwhile;
     else : 
         /** if no posts exist * */

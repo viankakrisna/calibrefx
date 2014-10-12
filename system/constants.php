@@ -4,13 +4,13 @@
 !defined( 'CALIBREFX_LOG_URI' ) && define( 'CALIBREFX_LOG_URI', CALIBREFX_URI . '/log' );
 !defined( 'CALIBREFX_SYS_URI' ) && define( 'CALIBREFX_SYS_URI', CALIBREFX_URI . '/system' );
 !defined( 'CALIBREFX_LANG_URI' ) && define( 'CALIBREFX_LANG_URI', CALIBREFX_URI . '/system/languages' );
+!defined( 'CALIBREFX_MODULE_URI' ) && define( 'CALIBREFX_MODULE_URI', CALIBREFX_URI . '/modules' );
 
 !defined( 'CALIBREFX_LIBRARY_URI' ) && define( 'CALIBREFX_LIBRARY_URI', CALIBREFX_SYS_URI . '/libraries' );
 !defined( 'CALIBREFX_HELPER_URI' ) && define( 'CALIBREFX_HELPER_URI', CALIBREFX_SYS_URI . '/helpers' );
 !defined( 'CALIBREFX_SHORTCODE_URI' ) && define( 'CALIBREFX_SHORTCODE_URI', CALIBREFX_SYS_URI . '/shortcodes' );
 !defined( 'CALIBREFX_WIDGET_URI' ) && define( 'CALIBREFX_WIDGET_URI', CALIBREFX_SYS_URI . '/widgets' );
 !defined( 'CALIBREFX_HOOK_URI' ) && define( 'CALIBREFX_HOOK_URI', CALIBREFX_SYS_URI . '/hooks' );
-!defined( 'CALIBREFX_MODULE_URI' ) && define( 'CALIBREFX_MODULE_URI', CALIBREFX_SYS_URI . '/modules' );
 
 /** Define Assets Directory Constants */
 !defined( 'CALIBREFX_IMAGES_URI' ) && define( 'CALIBREFX_IMAGES_URI', CALIBREFX_URI . '/assets/img' );
@@ -22,7 +22,6 @@
 !defined( 'CALIBREFX_JS_URL' ) && define( 'CALIBREFX_JS_URL', CALIBREFX_URL . '/assets/js' );
 !defined( 'CALIBREFX_CSS_URL' ) && define( 'CALIBREFX_CSS_URL', CALIBREFX_URL . '/assets/css' );
 !defined( 'CALIBREFX_SHORTCODE_URL' ) && define( 'CALIBREFX_SHORTCODE_URL', CALIBREFX_URL . '/system/shortcodes' );
-
 
 /** Define CALIBREFX Child Directory Constant */
 define( 'CHILD_URI', get_stylesheet_directory() );

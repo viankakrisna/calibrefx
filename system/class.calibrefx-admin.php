@@ -84,7 +84,7 @@ abstract class Calibrefx_Admin {
      *
      * $return void
      */
-    abstract public function security_filters();
+    protected function security_filters() {}
     
     /**
      * Register our meta boxes

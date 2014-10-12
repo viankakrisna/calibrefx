@@ -21,38 +21,6 @@ if ( !function_exists( 'is_php' ) ) {
 
 // ------------------------------------------------------------------------
 /**
- * Get all active calibrefx modules
- * 
- * @return bool
- */
-if ( !function_exists( 'calibrefx_get_active_modules' ) ) {
-
-    function calibrefx_get_active_modules() {
-        global $active_modules;
-        $modules = array();
-        $active_modules = (array) get_option( 'calibrefx_active_modules', array() );
-
-        if ( empty( $active_modules ) ) {
-            return $modules;
-        }
-
-        foreach ( $active_modules as $module ) {
-            if ( '.php' == substr( $module, -4 ) // $module must end with '.php'
-                && (
-                    file_exists( CALIBREFX_MODULE_URI . '/' . $module ) OR
-                    file_exists( CHILD_MODULE_URI . '/' . $module )
-                ) // $module must exist
-                )
-            $modules[] = $module;
-        }
-
-        return $modules;
-    }
-
-}
-
-// ------------------------------------------------------------------------
-/**
  * Fire everything and display it.
  */
 function calibrefx() {

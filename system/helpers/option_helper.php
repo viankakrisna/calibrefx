@@ -70,17 +70,3 @@ function calibrefx_get_usermeta( $user_id, $key, $single = true ) {
 function calibrefx_usermeta( $user_id, $key ) {
     return calibrefx_get_usermeta( $user_id, $key );
 }
-
-function calibrefx_update_option( $key, $value, $model = NULL ) {
-    global $calibrefx;    
-    
-    if ( null === $model ) {
-        if ( !isset( $calibrefx->theme_settings_m ) ) {
-            $calibrefx->load->model( 'theme_settings_m' );
-        }
-        //we load default model
-        $model = $calibrefx->theme_settings_m;  
-    }
-    
-    return $model->get( $key );
-}
