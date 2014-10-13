@@ -21,7 +21,7 @@ function calibrefx_do_footer_widgets() {
 
     $count_footer_widgets = count( $all_widgets['footer-widget'] );
 
-    if ( $count_footer_widgets == 0 ){
+    if ( 0 == $count_footer_widgets ){
         return;
     }
 

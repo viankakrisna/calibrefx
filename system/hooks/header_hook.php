@@ -12,7 +12,7 @@
  */
 function calibrefx_do_meta() {
     echo '<meta name="description" content="' . calibrefx_meta_description() . '" />' . "\n";
-
+    
     $keywords = apply_filters( 'calibrefx_do_meta_keywords', '' ); 
 
     // Add the description, but only if one exists

@@ -37,7 +37,7 @@ function calibrefx_get_comments_template() {
 add_action( 'calibrefx_after_post', 'calibrefx_get_comments_template', 10 );
 
 /**
- * Echo CalibreFx default comment structure.
+ * Output comment structure.
  *
  * @uses calibrefx_get_option()
  *
@@ -77,7 +77,7 @@ function calibrefx_do_comments() {
 add_action( 'calibrefx_comments', 'calibrefx_do_comments' );
 
 /**
- * Echo CalibreFx default trackback structure.
+ * Output trackback structure.
  *
  * @uses calibrefx_get_option()
  *

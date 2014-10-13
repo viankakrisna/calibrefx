@@ -15,7 +15,7 @@ add_filter( 'calibrefx_widget_name', 'calibrefx_widgets_add_suffix' );
 /**
  * This function registers all the default CalibreFx widget.
  */
-function calibrefx_register_default_widget() {
+function calibrefx_register_widget() {
 
     calibrefx_register_sidebar(array(
         'name' => __( 'Primary Sidebar', 'calibrefx' ),
@@ -28,8 +28,10 @@ function calibrefx_register_default_widget() {
         'description' => __( 'This is the secondary sidebar if you are using a 3 column site layout option', 'calibrefx' ),
         'id' => 'sidebar-alt'
     ) );
+
+    do_action( 'calibrefx_sidebar_registered' );
 }
-add_action( 'init', 'calibrefx_register_default_widget' );
+add_action( 'init', 'calibrefx_register_widget' );
 
 
 /**
@@ -56,7 +58,7 @@ function calibrefx_register_additional_widget() {
         ) );
     }
 }
-add_action( 'init', 'calibrefx_register_additional_widget' );
+add_action( 'calibrefx_sidebar_registered', 'calibrefx_register_additional_widget' );
 
 function calibrefx_custom_widget_attributes( $widget, $return, $instance ) {
     if( !isset( $instance['custom_widget_class'] ) ) $instance['custom_widget_class'] = '';
