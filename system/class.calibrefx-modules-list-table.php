@@ -163,6 +163,7 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
         		$modules[ $module ] = $module_array;
         	}
         }
+        uasort( $modules, array( $this, 'sort_modules' ) );
 
         return $modules;
     }
@@ -173,4 +174,11 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 
 		return ! ( $module['requires_connection'] );
 	}
+
+	public function sort_modules( $a, $b ) {
+        if ( $a['sort'] == $b['sort'] )
+            return 0;
+
+        return ( $a['sort'] < $b['sort'] ) ? -1 : 1;
+    }
 }

@@ -19,7 +19,7 @@ class CFX_Module_Settings extends Calibrefx_Admin {
         
         $this->initialize();
 
-        add_action( 'admin_head', array( $this, 'module_activation' ) );
+        add_action( 'load_'.$this->pagehook, array( $this, 'module_activation' ) );
     }
 
     public function meta_sections() {

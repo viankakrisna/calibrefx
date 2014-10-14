@@ -402,4 +402,11 @@ class Calibrefx {
         do_action( "calibrefx_deactivate_module_$module", $module );
         return update_option( 'calibrefx_active_modules', array_unique( $new ) );
     }
+
+    public static function sort_modules( $a, $b ) {
+        if ( $a['sort'] == $b['sort'] )
+            return 0;
+
+        return ( $a['sort'] < $b['sort'] ) ? -1 : 1;
+    }
 }
