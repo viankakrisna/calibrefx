@@ -144,35 +144,6 @@ abstract class Calibrefx_Admin {
     }
 
     /**
-     * Save our settings option
-     *
-     * $return array
-     */
-    /*public function save_core() {
-        global $calibrefx;
-
-        $calibrefx_settings_field = $calibrefx->theme_settings_m->get_settings_field(); 
-        
-        if( !isset( $_POST[$calibrefx_settings_field]) ) return;
-
-        //Get the value from post settings
-        $_newvalue = $_POST[$calibrefx_settings_field];
-        
-        if( empty( $_newvalue) ) return;
-
-        $_oldvalue = $calibrefx->theme_settings_m->get_all();
-        
-        //merge value from old settings
-        $_newvalue = array_merge( $_oldvalue, $_newvalue );
-        
-        //We merge with default value too
-        $_newvalue = array_merge( (array)$calibrefx->theme_settings->default_settings, $_newvalue );
-
-        //@TODO: Need to sanitize before save
-        return $calibrefx->theme_settings_m->save( $_newvalue );
-    }*/
-
-    /**
      * Register the settings option in wp_options.
      *
      * @return null Returns early if not on the correct admin page.
@@ -299,7 +270,6 @@ abstract class Calibrefx_Admin {
                                 <div class="postbox-container main-postbox">
                                     <?php
                                     calibrefx_do_meta_sections( $calibrefx_current_section, $this->pagehook, 'main', null );
-                                    calibrefx_do_meta_sections( $calibrefx_current_section, $this->pagehook, 'side', null );
                                     ?>
                                 </div>
 

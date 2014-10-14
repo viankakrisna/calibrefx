@@ -39,7 +39,6 @@ function calibrefx_add_module_settings() {
 
     $calibrefx->load->library( 'module_settings' );
     $calibrefx->module_settings->pagehook = add_submenu_page( 'calibrefx', __( 'Modules', 'calibrefx' ), __( 'Modules', 'calibrefx' ), 'edit_theme_options', 'calibrefx-modules', array( $calibrefx->module_settings, 'dashboard' ) );
-    // $calibrefx->load->library( 'list_module_table', array( 'screen' => $calibrefx->module_settings->pagehook) );
 }
 add_action( 'calibrefx_add_submenu_page', 'calibrefx_add_module_settings', 20 );
 
@@ -70,8 +69,8 @@ function calibrefx_login_logo() {
             html, body { border: 0 !important; background: none !important; }
             body, .login { background: #F5F5F5 !important; }
 
-            div#login { width: 440px !important; }
-            div#login h1 a { width:298px !important; background-size: 298px 66px; padding-bottom: 0; height: 90px !important; background-image: url( '.$background_image.' ) !important; background-repeat:no-repeat; }
+            div#login { width: 400px !important; }
+            div#login h1 a { width:298px !important; background-size: 298px 66px; padding-bottom: 0; height: 70px !important; background-image: url( '.$background_image.' ) !important; background-repeat:no-repeat; }
             div#login form { -moz-box-shadow: 1px 1px 5px #EEEEEE, -1px -1px 5px #EEEEEE !important; -webkit-box-shadow: 1px 1px 5px #EEEEEE, -1px -1px 5px #EEEEEE !important; box-shadow: 1px 1px 5px #EEEEEE, -1px -1px 5px #EEEEEE !important; }
             div#login form label { cursor:pointer; }
             div#login form p.submit { margin-bottom: 0 !important; }

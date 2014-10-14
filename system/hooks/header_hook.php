@@ -140,18 +140,18 @@ function calibrefx_do_fb_og() {
     }
 
     echo '<meta property="locale" content="' . calibrefx_meta_locale() . '" />'."\n";
-    echo '<meta property="og:site_name" content="' . get_bloginfo('name') . '" />'."\n";
-    if(calibrefx_get_option('facebook_admins')) echo '<meta property="fb:admins" content="' . calibrefx_get_option('facebook_admins') . '" />'."\n";
-    if(calibrefx_get_option('facebook_og_type')) echo '<meta property="og:type" content="' . calibrefx_get_option('facebook_og_type') . '" />'."\n";
+    echo '<meta property="og:site_name" content="' . get_bloginfo( 'name' ) . '" />'."\n";
+    if( calibrefx_get_option( 'facebook_admins' ) ) echo '<meta property="fb:admins" content="' . calibrefx_get_option( 'facebook_admins' ) . '" />'."\n";
+    if( calibrefx_get_option( 'facebook_og_type' ) ) echo '<meta property="og:type" content="' . calibrefx_get_option( 'facebook_og_type' ) . '" />'."\n";
     echo '<meta property="og:title" content="' . calibrefx_meta_title() . '" />'."\n";
     echo '<meta property="og:url" content="' . calibrefx_meta_url() . '" />'."\n";
     echo '<meta property="og:description" content="' . calibrefx_meta_description() . '" />'."\n";
     $image = calibrefx_meta_image();
-    if ($image) {
+    if ( $image ) {
         echo '<meta property="og:image" content="' . $image . '" />'."\n";
     }
     
-    do_action('calibrefx_do_another_fb_og');
+    do_action( 'calibrefx_do_another_fb_og' );
 }
 add_action( 'calibrefx_meta', 'calibrefx_do_fb_og' );
 
