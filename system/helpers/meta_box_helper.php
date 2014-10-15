@@ -6,7 +6,7 @@ function calibrefx_clear_meta_section() {
     global $calibrefx_sections;
     unset( $calibrefx_sections);
 
-    if (!isset( $calibrefx_sections ) ) {
+    if ( !isset( $calibrefx_sections ) ) {
         $calibrefx_sections = array();
     }
 }
@@ -43,7 +43,7 @@ function calibrefx_is_meta_section_exist( $slug ) {
 function calibrefx_add_meta_section( $slug, $title, $target='options.php', $priority = 10, $icon = '', $active_icon = '' ) {
     global $calibrefx_sections;
 
-    if (!isset( $calibrefx_sections ) )
+    if ( !isset( $calibrefx_sections ) )
         $calibrefx_sections = array();
 
     if ( !isset( $calibrefx_sections[$slug] ) ) {
@@ -67,8 +67,8 @@ function calibrefx_add_meta_section( $slug, $title, $target='options.php', $prio
 
     uasort( $calibrefx_sections, 'calibrefx_compare_meta_section_priority' );
 
-    $func = create_function( '', 'return "'.$target.'";' );
-    add_filter( 'calibrefx_'.$slug.'_form_url', $func );
+    $func = create_function( '', 'return "' . $target . '";' );
+    add_filter( 'calibrefx_' . $slug . '_form_url', $func );
 }
 
 function calibrefx_compare_meta_section_priority( $x, $y ) {
@@ -76,8 +76,7 @@ function calibrefx_compare_meta_section_priority( $x, $y ) {
 }
 
 function calibrefx_do_meta_sections( $section, $screen, $context, $object ) {
-    global $calibrefx_sections, $calibrefx_user_ability;
-    global $wp_meta_boxes;
+    global $calibrefx_sections, $calibrefx_user_ability, $wp_meta_boxes;
 
     if ( !isset( $calibrefx_sections ) ) {
         return;
@@ -140,7 +139,7 @@ function calibrefx_add_meta_box( $section, $ability, $id, $title, $callback, $sc
     }
     
     $calibrefx_sections[$section][$ability][] = array(
-        "id"           => $id,
+        "id"            => $id,
         "title"         => $title,
         "callback"      => $callback,
         "screen"        => $screen,
@@ -165,7 +164,8 @@ function calibrefx_add_meta_group( $metabox_id, $group_id, $group_title ) {
 
     $calibrefx_meta_options[$group_id] = array(
         'title'   => $group_title,
-        'metabox' => $metabox_id);
+        'metabox' => $metabox_id
+    );
 }
 
 /**
@@ -190,7 +190,7 @@ function calibrefx_add_meta_option( $group_id, $option_name, $option_label, $opt
         $calibrefx->security->add_sanitize_filter(
                     $options['option_filter'], 
                     'calibrefx-settings', 
-                    $option_name);
+                    $option_name );
     }
 
     $calibrefx_meta_options[$group_id]['options'][$priority][$option_name] = $options;
@@ -211,11 +211,12 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
     $calibrefx->load->library( 'form' );
     
     $settings_field = $settings_obj->settings_field;
+
     foreach ( $calibrefx_meta_options as $option_group_id => $option_group ) {
 
         if ( !isset( $option_group['metabox'] ) OR $option_group['metabox'] != $metabox_id ) continue;
         
-        if ( empty( $option_group['options']) ) continue;
+        if ( empty( $option_group['options'] ) ) continue;
 
         $options = $option_group['options'];
 

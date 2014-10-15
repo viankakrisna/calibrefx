@@ -429,6 +429,24 @@ function calibrefx_content_sidebar_span() {
     }
 }
 
+/**
+ * Check if the nav menu is supported by the child themes
+ */
+function calibrefx_nav_menu_supported( $menu ) {
+
+    if ( !current_theme_supports( 'calibrefx-menus' ) ) {
+        return false;
+    }
+
+    $menus = get_theme_support( 'calibrefx-menus' );
+
+    if ( array_key_exists( $menu, (array) $menus[0]) ) {
+        return true;
+    }
+
+    return false;
+}
+
 function col_class() {
 
     $numargs = func_num_args();

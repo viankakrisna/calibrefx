@@ -22,7 +22,7 @@ function body_onload( $script = '' ) {
     $scripts = array();
 
     if ( !empty( $script ) ) {
-        if ( !is_array( $script) ) {
+        if ( !is_array( $script ) ) {
             $script = preg_split( '#\s+#', $script);
         }
 
@@ -45,7 +45,7 @@ function body_attr( $attr = array() ) {
     $attrs = array_merge( apply_filters( 'body_attr', $attrs ), $attr );
 
     $attr_string = '';
-    foreach($attrs as $attr_key => $attr_value){
+    foreach( $attrs as $attr_key => $attr_value ){
         $attr_string .= ' '.$attr_key.'="'. $attr_value .'"';
     }
 
@@ -76,7 +76,8 @@ function calibrefx_author_box( $context = '' ) {
  */
 function calibrefx_admin_body_class( $classes ) {
   $screen = get_current_screen();
-  if (strpos( $screen->id,'calibrefx' ) !== false ) {
+  
+  if ( strpos( $screen->id, 'calibrefx' ) !== false ) {
     $classes .= ' calibrefx-admin-page';
   }
 
