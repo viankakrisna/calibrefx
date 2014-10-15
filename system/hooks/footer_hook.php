@@ -181,7 +181,7 @@ function calibrefx_add_socials_script() {
             </script>'."\n";
     }
     
-    if( has_shortcode('gplus') ){
+    if( has_shortcode(get_the_content( ), 'gplus') ){
         echo 
             '<script type="text/javascript">
               (function() {
