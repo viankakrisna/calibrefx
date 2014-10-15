@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/calibreworks/calibrefx.png?label=ready&title=Ready)](https://waffle.io/calibreworks/calibrefx)
 # Calibrefx Open Source WordPress Themes Framework
 
 WordPress Themes by CalibreFx Team  
