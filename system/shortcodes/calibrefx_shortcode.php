@@ -1592,6 +1592,7 @@ add_shortcode( 'post', 'calibrefx_post_item' );
  * ==============================================================
  */
 
+//@TODO: Form submit handler for this is removed, need to work on something
 function calibrefx_contact_form( $atts, $content = null ) {
     global $calibrefx, $post;
     extract( shortcode_atts( array(

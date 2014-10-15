@@ -37,7 +37,7 @@ function calibrefx_user_archive_fields( $user ) {
             <tr>
                 <th scope="row" valign="top"><label for="headline"><?php _e( 'Custom Archive Headline', 'calibrefx' ); ?></label></th>
                 <td>
-                    <input name="meta[headline]" id="headline" type="text" value="<?php echo esc_attr(get_the_author_meta( 'headline', $user->ID) ); ?>" class="regular-text" /><br />
+                    <input name="meta[headline]" id="headline" type="text" value="<?php echo esc_attr( get_the_author_meta( 'headline', $user->ID) ); ?>" class="regular-text" /><br />
                     <span class="description"><?php printf( __( 'Will display in the %s tag at the top of the first page', 'calibrefx' ), '<code>&lt;h1&gt;&lt;/h1&gt;</code>' ); ?></span>
                 </td>
             </tr>
@@ -45,7 +45,7 @@ function calibrefx_user_archive_fields( $user ) {
             <tr>
                 <th scope="row" valign="top"><label for="intro_text"><?php _e( 'Custom Description Text', 'calibrefx' ); ?></label></th>
                 <td>
-                    <textarea name="meta[intro_text]" id="intro_text" rows="5" cols="30"><?php echo esc_textarea(get_the_author_meta( 'intro_text', $user->ID) ); ?></textarea><br />
+                    <textarea name="meta[intro_text]" id="intro_text" rows="5" cols="30"><?php echo esc_textarea(get_the_author_meta( 'intro_text', $user->ID ) ); ?></textarea><br />
                     <span class="description"><?php _e( 'This text will be the first paragraph, and display on the first page', 'calibrefx' ); ?></span>
                 </td>
             </tr>
@@ -53,9 +53,9 @@ function calibrefx_user_archive_fields( $user ) {
             <tr>
                 <th scope="row" valign="top"><?php _e( 'Author Box', 'calibrefx' ); ?></th>
                 <td>
-                    <input id="meta[calibrefx_author_box_single]" name="meta[calibrefx_author_box_single]" type="checkbox" value="1" <?php checked(get_the_author_meta( 'calibrefx_author_box_single', $user->ID) ); ?> />
+                    <input id="meta[calibrefx_author_box_single]" name="meta[calibrefx_author_box_single]" type="checkbox" value="1" <?php checked(get_the_author_meta( 'calibrefx_author_box_single', $user->ID ) ); ?> />
                     <label for="meta[calibrefx_author_box_single]"><?php _e( 'Enable Author Box on this User\'s Posts?', 'calibrefx' ); ?></label><br />
-                    <input id="meta[calibrefx_author_box_archive]" name="meta[calibrefx_author_box_archive]" type="checkbox" value="1" <?php checked(get_the_author_meta( 'calibrefx_author_box_archive', $user->ID) ); ?> />
+                    <input id="meta[calibrefx_author_box_archive]" name="meta[calibrefx_author_box_archive]" type="checkbox" value="1" <?php checked(get_the_author_meta( 'calibrefx_author_box_archive', $user->ID ) ); ?> />
                     <label for="meta[calibrefx_author_box_archive]"><?php _e( 'Enable Author Box on this User\'s Archives?', 'calibrefx' ); ?></label>
                 </td>
             </tr>

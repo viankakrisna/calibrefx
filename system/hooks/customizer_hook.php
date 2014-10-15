@@ -1,7 +1,7 @@
 <?php 
 
 add_action( 'customize_register', 'calibrefx_customize_register' );
-function calibrefx_customize_register( $wp_customize) {
+function calibrefx_customize_register( $wp_customize ) {
 	global $calibrefx;
 	$wp_customize->add_section( 'calibrefx_layout_settings', array(
 		'title'         => __( 'Layout Settings', 'calibrefx' ),

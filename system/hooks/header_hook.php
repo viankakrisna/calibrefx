@@ -5,6 +5,21 @@
  */
 
 /**
+ * Handle form submit from contact form
+ */
+function calibrefx_submit_handler() {
+    global $calibrefx;
+
+    if( !$_POST OR !isset( $_POST['action'] ) ) return;
+
+    $action = sanitize_text_field( $_POST['action'] );
+
+    do_action( "calibrefx_submit_{$action}_handler" );
+    do_action( "calibrefx_submit_handler" );
+}
+add_action( 'template_redirect', 'calibrefx_submit_handler', 99 );
+
+/**
  * Print meta description and keywords, get from blog description
  * Will be override by seo addon later
  *

@@ -97,7 +97,7 @@ function calibrefx_footer_scripts() {
     echo apply_filters('calibrefx_footer_scripts', $footer_scripts);
 
     // If singular, echo scripts from custom field
-    if (is_singular()) {
+    if ( is_singular() ) {
         calibrefx_custom_field('_calibrefx_scripts');
     }
 }
@@ -176,11 +176,11 @@ function calibrefx_show_tracking_scrips() {
     }
 
     if( !empty( $google_tagmanager_code ) ) {
-        echo $google_tagmanager_code;
+        echo stripslashes($google_tagmanager_code);
     }
 
     if( !empty( $facebook_tracking_code ) ) {
-        echo $facebook_tracking_code;
+        echo stripslashes($facebook_tracking_code);
     }
 }
 add_action( 'wp_footer', 'calibrefx_show_tracking_scrips' );

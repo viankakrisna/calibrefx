@@ -5,15 +5,6 @@
  */
 global $calibrefx;
 
-$calibrefx->hooks->init = array(
-    array( 'function' => 'calibrefx_custom_background', 'priority' => 0 ), 
-    array( 'function' => 'calibrefx_custom_header', 'priority' => 5 )
-);
-
-$calibrefx->hooks->calibrefx_init = array(
-    array( 'function' => 'calibrefx_setup_layout', 'priority' => 0 )
-);
-
 $calibrefx->hooks->calibrefx_wrapper = array(
     array( 'function' => 'calibrefx_do_open_wrapper', 'priority' => 0 )
 );
@@ -51,9 +42,134 @@ $calibrefx->hooks->get_header = array(
     array( 'function' => 'calibrefx_header_body_classes_filter','priority' => 0 )
 );
 
-/********************
- * FUNCTIONS BELOW  *
- ********************/
+/**
+ * This function will activate the custom background from WordPress
+ *
+ * It gets arguments passed through add_theme_support(), defines the constants,
+ * and calls calibrefx_custom_background().
+ *
+ * @return void
+ */
+function calibrefx_custom_background() {
+
+    $custom_background = get_theme_support( 'calibrefx-custom-background' );
+
+    /** If not active, do nothing */
+    if ( !$custom_background ) {
+        return;
+    }
+
+    $args = apply_filters( 'calibrefx_custom_background_args', array( 'default-color' => 'EDEDEB' ) );
+    
+    add_theme_support( 'custom-background', $args );
+}
+add_action( 'init', 'calibrefx_custom_background' );
+
+/**
+ * This function will activate the custom header image from WordPress
+ *
+ * It gets arguments passed through add_theme_support(), defines the constants,
+ * and calls add_custom_image_header().
+ *
+ * @return void
+ */
+function calibrefx_custom_header() {
+
+    $custom_header = get_theme_support( 'calibrefx-custom-header' );
+    /** If not active, do nothing */
+    if ( !$custom_header ) {
+        return;
+    }
+
+    /** Blog title option is obsolete when custom header is active */
+    add_filter( 'calibrefx_pre_get_option_blog_title', '__return_empty_array' );
+
+    /** Cast, if necessary */
+    $custom_header = isset( $custom_header[0] ) && is_array( $custom_header[0] ) ? $custom_header[0] : array();
+
+    /** Merge defaults with passed arguments */
+    $args = wp_parse_args( $custom_header, array(
+        'width' => 260,
+        'height' => 100,
+        'default-text-color' => '333333',
+        'default-image' => CALIBREFX_IMAGES_URL . '/header.png',
+        'header-text' => true,
+        'wp-head-callback' => 'calibrefx_custom_header_style',
+        'admin-head-callback' => 'calibrefx_custom_header_admin_style'
+            ) );
+
+    /** Define all the constants */
+    //@TODO: Image and Width should not be dynamic
+    if ( !defined( 'HEADER_IMAGE_WIDTH' ) && is_numeric( $args['width']) ) {
+        define( 'HEADER_IMAGE_WIDTH', apply_filters( 'calibrefx_header_logo_width', $args['width'] ) );
+    }
+
+    if ( !defined( 'HEADER_IMAGE_HEIGHT' ) && is_numeric( $args['height']) ) {
+        define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'calibrefx_header_logo_height', $args['height'] ) );
+    }
+
+    if ( !defined( 'HEADER_TEXTCOLOR' ) && $args['default-text-color'] ) {
+        define( 'HEADER_TEXTCOLOR', apply_filters( 'calibrefx_header_text_color', $args['default-text-color']) );
+    }
+
+    if ( !defined( 'HEADER_TEXT' ) && $args['header-text'] ) {
+        define( 'HEADER_TEXT', apply_filters( 'calibrefx_header_text', $args['header-text'] ) );
+    }
+
+    if ( !defined( 'HEADER_IMAGE' ) && $args['default-image'] ) {
+        define( 'HEADER_IMAGE', apply_filters( 'calibrefx_header_logo_url', $args['default-image'] ) );
+    }
+        
+    $custom_header_args = array(
+        'width' => HEADER_IMAGE_WIDTH,
+        'height' => HEADER_IMAGE_HEIGHT,
+        'default-text-color' => HEADER_TEXTCOLOR,
+        'default-image' => HEADER_IMAGE,
+        'header-text' => HEADER_TEXT,
+        'wp-head-callback' => 'calibrefx_custom_header_style',
+        'admin-head-callback' => 'calibrefx_custom_header_admin_style'
+    );
+
+    /** Activate Custom Header */
+    add_theme_support( 'custom-header', $custom_header_args );
+}
+add_action( 'init', 'calibrefx_custom_header' );
+
+/**
+ * Register all the available layout
+ *
+ * @access public
+ * @return void
+ */
+function calibrefx_setup_layout() {
+
+    calibrefx_register_layout(
+            'content-sidebar', array(
+                'label' => __( 'Content Sidebar (default blog)', 'calibrefx' ),
+                'img' => CALIBREFX_IMAGES_URL . '/layouts/cs.gif',
+                'default' => true
+            )
+    );
+    calibrefx_register_layout(
+            'full-width-content', array(
+                'label' => __( 'Full Width Content (minisite)', 'calibrefx' ),
+                'img' => CALIBREFX_IMAGES_URL . '/layouts/c.gif' 
+            )
+    );
+    calibrefx_register_layout(
+            'sidebar-content', array(
+                'label' => __( 'Sidebar Content', 'calibrefx' ),
+                'img' => CALIBREFX_IMAGES_URL . '/layouts/sc.gif' 
+            )
+    );
+    calibrefx_register_layout(
+            'sidebar-content-sidebar', array(
+                'label' => __( 'Sidebar Content Sidebar', 'calibrefx' ),
+                'img' => CALIBREFX_IMAGES_URL . '/layouts/scs.gif' 
+            )
+    );
+}
+add_action( 'calibrefx_init', 'calibrefx_setup_layout', 0 );
 
 function calibrefx_setup_custom_layout() {
     global $calibrefx;
@@ -135,41 +251,6 @@ function calibrefx_sidebar_content_sidebar_wrapper_close() {
 
 
 /**
- * Register all the available layout
- *
- * @access public
- * @return void
- */
-function calibrefx_setup_layout() {
-
-    calibrefx_register_layout(
-            'content-sidebar', array(
-                'label' => __( 'Content Sidebar (default blog)', 'calibrefx' ),
-                'img' => CALIBREFX_IMAGES_URL . '/layouts/cs.gif',
-                'default' => true
-            )
-    );
-    calibrefx_register_layout(
-            'full-width-content', array(
-                'label' => __( 'Full Width Content (minisite)', 'calibrefx' ),
-                'img' => CALIBREFX_IMAGES_URL . '/layouts/c.gif' 
-            )
-    );
-    calibrefx_register_layout(
-            'sidebar-content', array(
-                'label' => __( 'Sidebar Content', 'calibrefx' ),
-                'img' => CALIBREFX_IMAGES_URL . '/layouts/sc.gif' 
-            )
-    );
-    calibrefx_register_layout(
-            'sidebar-content-sidebar', array(
-                'label' => __( 'Sidebar Content Sidebar', 'calibrefx' ),
-                'img' => CALIBREFX_IMAGES_URL . '/layouts/scs.gif' 
-            )
-    );
-}
-
-/**
  * This function will show sidebar after the content
  */
 function calibrefx_get_sidebar() {
@@ -241,28 +322,6 @@ function calibrefx_do_sidebar_alt() {
         
         echo apply_filters( 'calibrefx_sidebar_alt_default', $output );
     }
-}
-
-/**
- * This function will activate the custom background from WordPress
- *
- * It gets arguments passed through add_theme_support(), defines the constants,
- * and calls calibrefx_custom_background().
- *
- * @return void
- */
-function calibrefx_custom_background() {
-
-    $custom_background = get_theme_support( 'calibrefx-custom-background' );
-
-    /** If not active, do nothing */
-    if ( !$custom_background ) {
-        return;
-    }
-
-    $args = apply_filters( 'calibrefx_custom_background_args', array( 'default-color' => 'EDEDEB' ) );
-    
-    add_theme_support( 'custom-background', $args );
 }
 
 /**
@@ -342,74 +401,6 @@ function calibrefx_header_body_classes( $classes ) {
 
 function calibrefx_header_body_classes_filter() {
     add_filter( 'body_class', 'calibrefx_header_body_classes' );  
-}
-
-/**
- * This function will activate the custom header image from WordPress
- *
- * It gets arguments passed through add_theme_support(), defines the constants,
- * and calls add_custom_image_header().
- *
- * @return void
- */
-function calibrefx_custom_header() {
-
-    $custom_header = get_theme_support( 'calibrefx-custom-header' );
-    /** If not active, do nothing */
-    if ( !$custom_header ) {
-        return;
-    }
-
-    /** Blog title option is obsolete when custom header is active */
-    add_filter( 'calibrefx_pre_get_option_blog_title', '__return_empty_array' );
-
-    /** Cast, if necessary */
-    $custom_header = isset( $custom_header[0] ) && is_array( $custom_header[0] ) ? $custom_header[0] : array();
-
-    /** Merge defaults with passed arguments */
-    $args = wp_parse_args( $custom_header, array(
-        'width' => 260,
-        'height' => 100,
-        'default-text-color' => '333333',
-        'default-image' => CALIBREFX_IMAGES_URL . '/header.png',
-        'header-text' => true,
-        'wp-head-callback' => 'calibrefx_custom_header_style',
-        'admin-head-callback' => 'calibrefx_custom_header_admin_style'
-            ) );
-
-    /** Define all the constants */
-    if ( !defined( 'HEADER_IMAGE_WIDTH' ) && is_numeric( $args['width']) ) {
-        define( 'HEADER_IMAGE_WIDTH', apply_filters( 'calibrefx_header_logo_width', $args['width'] ) );
-    }
-
-    if ( !defined( 'HEADER_IMAGE_HEIGHT' ) && is_numeric( $args['height']) ) {
-        define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'calibrefx_header_logo_height', $args['height'] ) );
-    }
-
-    if ( !defined( 'HEADER_TEXTCOLOR' ) && $args['default-text-color'] ) {
-        define( 'HEADER_TEXTCOLOR', apply_filters( 'calibrefx_header_text_color', $args['default-text-color']) );
-    }
-
-    if ( !defined( 'HEADER_TEXT' ) && $args['header-text'] ) {
-        define( 'HEADER_TEXT', apply_filters( 'calibrefx_header_text', $args['header-text'] ) );
-    }
-
-    if ( !defined( 'HEADER_IMAGE' ) && $args['default-image'] ) {
-        define( 'HEADER_IMAGE', apply_filters( 'calibrefx_header_logo_url', $args['default-image'] ) );
-    }
-        
-    $custom_header_args = array(
-        'width' => HEADER_IMAGE_WIDTH,
-        'height' => HEADER_IMAGE_HEIGHT,
-        'default-text-color' => HEADER_TEXTCOLOR,
-        'default-image' => HEADER_IMAGE,
-        'header-text' => HEADER_TEXT,
-        'wp-head-callback' => 'calibrefx_custom_header_style',
-        'admin-head-callback' => 'calibrefx_custom_header_admin_style'
-    );
-
-    /** Activate Custom Header */
-    add_theme_support( 'custom-header', $custom_header_args );
 }
 
 /**
