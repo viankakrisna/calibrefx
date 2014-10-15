@@ -361,7 +361,7 @@ class Calibrefx {
 
     public static function activate_module( $module, $exit = true, $redirect = true ) {
         do_action( 'calibrefx_pre_activate_module', $module, $exit );
-
+        
         if ( ! strlen( $module ) )
             return false;
 

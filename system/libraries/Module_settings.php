@@ -19,7 +19,16 @@ class CFX_Module_Settings extends Calibrefx_Admin {
         
         $this->initialize();
 
-        add_action( 'load_'.$this->pagehook, array( $this, 'module_activation' ) );
+        add_action( 'admin_init', array( $this, 'init' ) );
+    }
+
+    /**
+     * Initialize and add requirements
+     * @return void
+     */
+    public function init(){
+        add_action( 'load-' . $this->pagehook, array( $this, 'module_activation' ) );
+        
     }
 
     public function meta_sections() {
@@ -36,6 +45,7 @@ class CFX_Module_Settings extends Calibrefx_Admin {
 
     public function render_page() {
         $list_table = Calibrefx_Modules_List_Table::get_instance(); 
+
 
         ?>
         <div class="page-content configure">
@@ -90,7 +100,6 @@ class CFX_Module_Settings extends Calibrefx_Admin {
         $list_table = Calibrefx_Modules_List_Table::get_instance(); 
 
         $action = $list_table->current_action();
-        
         if ( $action ) {
             switch ( $action ) {
                 case 'activate':  
