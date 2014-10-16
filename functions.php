@@ -42,6 +42,9 @@ require_once( CALIBREFX_URI . '/system/class.calibrefx-admin.php' );
 require_once( CALIBREFX_URI . '/system/class.calibrefx-model.php' );
 require_once( CALIBREFX_URI . '/system/class.calibrefx-generator.php' );
 
+//Load deprecated functions
+require_once( CALIBREFX_URI . '/system/deprecated.php' );
+
 if( is_admin() ){
     require_once( CALIBREFX_URI . '/system/class.calibrefx-modules-list-table.php' );
 }
