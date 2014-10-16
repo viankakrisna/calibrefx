@@ -116,6 +116,11 @@ function calibrefx_meta_description(){
 	return apply_filters( 'calibrefx_meta_description', $desc );
 }
 
+/**
+ * Get feature image to show on meta tag
+ * 
+ * @return string image url
+ */
 function calibrefx_meta_image(){
 	$image = calibrefx_get_image( array( 'format' => 'url' ) );
     

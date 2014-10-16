@@ -40,18 +40,16 @@ function calibrefx_custom_field( $field ) {
 }
 
 function calibrefx_get_custom_field( $field ) {
-    global $id, $post;
+    global $post;
 
-    if ( null === $id && null === $post ) {
+    if ( null === $post ) {
         return false;
     }
 
-    $post_id = null === $id ? $post->ID : $id;
-
-    $custom_field = get_post_meta( $post_id, $field, true);
+    $custom_field = get_post_meta( $post->ID, $field, true);
 
     if ( $custom_field ) {
-        if(!is_array( $custom_field ) ) {
+        if( !is_array( $custom_field ) ) {
             /** sanitize and return the value of the custom field */
             return stripslashes( wp_kses_decode_entities( $custom_field ) );
         }

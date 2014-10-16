@@ -5,15 +5,6 @@
  */
 
 /**
- * Helper function to get the url and transform it to www-sitename-com.
- *
- */
-function calibrefx_get_site_url() {
-    $url = str_replace( '.', '-', str_replace( 'http://', '', home_url() ) );
-    return $url;
-}
-
-/**
  * This function redirects the user to an admin page, and adds query args
  * to the URL string for alerts, etc.
  */

@@ -67,3 +67,12 @@ function get_footer_widget_classes( $class = '' ) {
 
     return apply_filters( 'footer_widget_class', $classes, $class );
 }
+
+/**
+ * Helper function to get the url and transform it to www-sitename-com.
+ * @deprecated 2.0
+ */
+function calibrefx_get_site_url() {
+    $url = str_replace( '.', '-', str_replace( 'http://', '', home_url() ) );
+    return $url;
+}
