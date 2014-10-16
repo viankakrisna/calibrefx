@@ -26,7 +26,7 @@
 	wp_head();
 	?>
 </head>
-<body <?php body_onload(); ?> <?php body_class(); ?>>
+<body <?php body_onload(); ?> <?php body_class(); ?> <?php body_attr(); ?>>
 	<?php 
 	do_action( 'calibrefx_before_wrapper' ); 
 	do_action( 'calibrefx_wrapper' ); 

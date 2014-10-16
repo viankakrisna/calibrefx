@@ -128,11 +128,11 @@ function calibrefx_filter_attachment_image_attributes( $attr, $attachment ) {
 function calibrefx_get_additional_image_sizes() {
     global $_wp_additional_image_sizes;
 
-    if ( $_wp_additional_image_sizes ) {
-        return $_wp_additional_image_sizes;
+    if ( !$_wp_additional_image_sizes ) {
+        return array();
     }
 
-    return array();
+    return $_wp_additional_image_sizes;
 }
 
 /**

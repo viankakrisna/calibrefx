@@ -35,10 +35,6 @@ function calibrefx_put_wrapper( $context = '', $output = '<div class="container"
         return '';
     }
 
-    /*if ( calibrefx_layout_is_fixed_wrapper() && calibrefx_layout_is_static() ) {
-        return '';
-    }*/
-
     if ( calibrefx_layout_is_fluid() ) {
         return '';
     }
@@ -141,22 +137,14 @@ function calibrefx_unregister_layout( $id ) {
  * @return string
  */
 function calibrefx_get_default_layout() {
-    //For now just return content-sidebar as default
-    //@TODO: make the option from the theme settings
     global $_calibrefx_layouts;
 
     $default = '';
 
     foreach ( (array) $_calibrefx_layouts as $key => $value ) {
         if ( isset( $value['default'] ) && $value['default'] ) {
-            $default = $key;
-            break;
+            return $key;
         }
-    }
-
-    // return default layout, if exists
-    if ( $default ) {
-        return $default;
     }
 
     //if no default layout exist, then return the first key in array
@@ -169,7 +157,7 @@ function calibrefx_get_default_layout() {
  * @access public
  * @return array
  */
-function calibrefx_get_layouts() {
+function calibrefx_get_all_layouts() {
     global $_calibrefx_layouts;
 
     if ( !is_array( $_calibrefx_layouts ) ) {
@@ -186,7 +174,7 @@ function calibrefx_get_layouts() {
  * @return string
  */
 function calibrefx_get_layout( $context ) {
-    $layouts = calibrefx_get_layouts();
+    $layouts = calibrefx_get_all_layouts();
 
     if ( !isset( $layouts[$context] ) ) {
         return;
@@ -243,7 +231,7 @@ function calibrefx_layout_selector( $args = array() ) {
 
     $output = '';
 
-    foreach ( calibrefx_get_layouts() as $id => $data) {
+    foreach ( calibrefx_get_all_layouts() as $id => $data) {
         $class = $id == $args['selected'] ? 'selected' : '';
         $output .= sprintf( 
             '<label title="%1$s" class="box %2$s"><img src="%3$s" alt="%1$s" /><br /> <input type="radio" name="%4$s" id="%5$s" value="%5$s" %6$s /></label>', 
@@ -427,6 +415,23 @@ function calibrefx_content_sidebar_span() {
     } else {
         return apply_filters( 'calibrefx_sidebar_span', 'col-xs-9' );
     }
+}
+
+/**
+ * This function expedites the widget area registration process by taking
+ * common things, before/after_widget, before/after_title, and doing them automatically.
+ */
+function calibrefx_register_sidebar( $args ) {
+    $defaults = (array) apply_filters( 'calibrefx_register_sidebar_defaults', array(
+                'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-wrap">',
+                'after_widget'  => "</div></div>\n",
+                'before_title'  => '<h4 class="widgettitle">',
+                'after_title'   => "</h4>\n"
+            ) );
+
+    $args = wp_parse_args( $args, $defaults );
+
+    return register_sidebar( $args );
 }
 
 /**
