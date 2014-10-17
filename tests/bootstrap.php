@@ -23,11 +23,6 @@ require $test_root . '/includes/functions.php';
 function _manually_load_themes() {
 	require dirname( __FILE__ ) . '/../functions.php';
 }
-tests_add_filter( 'after_setup_theme', '_manually_load_plugin' );
+tests_add_filter( 'after_setup_theme', '_manually_load_themes' );
 
 require $test_root . '/includes/bootstrap.php';
-
-// Load the shortcodes module to test properly.
-if ( ! function_exists( 'shortcode_new_to_old_params' ) ) {
-	require dirname( __FILE__ ) . '/../modules/shortcodes.php';
-}
