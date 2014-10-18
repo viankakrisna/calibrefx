@@ -6,9 +6,8 @@ defined( 'CALIBREFX_URL' ) OR exit();
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -36,6 +35,8 @@ class CFX_Theme_Settings extends CFX_Admin {
      * Constructor - Initializes
      */
     function __construct() {
+        parent::__construct();
+
         $this->page_id = 'calibrefx';
         $this->default_settings = apply_filters( 'calibrefx_theme_settings_defaults', array(
             'update' => 1,
@@ -67,11 +68,7 @@ class CFX_Theme_Settings extends CFX_Admin {
             'calibrefx_db_version' => FRAMEWORK_DB_VERSION)
         );
 
-        //we need to initialize the model
-        global $calibrefx;
-        $calibrefx->load->model( 'theme_settings_m' );
-        $this->_model = $calibrefx->theme_settings_m;
-
+        //Initializing hooks
         $this->initialize();
     }
 
@@ -694,7 +691,7 @@ class CFX_Theme_Settings extends CFX_Admin {
         global $calibrefx;
 
         calibrefx_add_meta_group( 'themesocial-settings', 'facebook-settings', __( 'Facebook Settings', 'calibrefx' ) );
-        calibrefx_add_meta_group( 'themesocial-settings', 'social-settings', __( 'Social Link Settings', 'calibrefx' ) );
+        calibrefx_add_meta_group( 'themesocial-settings', 'social-settings', __( 'Social URL Settings', 'calibrefx' ) );
         calibrefx_add_meta_group( 'themesocial-settings', 'feed-settings', __( 'RSS Feed Settings', 'calibrefx' ) );
 
         add_action( 'themesocial-settings_options', function() {
@@ -744,12 +741,12 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'gplus_profile', // field id and option name
-                    __( 'Google+ Profile Link' ), // Label
+                    __( 'Google+ Profile URL' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
-                        'option_filter' => 'safe_text',
-                        'option_description' => __("This will output <code>&lt;link rel=\"author\" href=\"YOUR GOOGLE+ LINK HERE\"/></code> in html head.", 'calibrefx' ),
+                        'option_filter' => 'safe_url',
+                        'option_description' => __("This will output <code>&lt;link rel=\"author\" href=\"YOUR GOOGLE+ URL HERE\"/></code> in html head.", 'calibrefx' ),
                         'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     1 //Priority
@@ -758,12 +755,12 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'gplus_page', // field id and option name
-                    __( 'Google+ Page Link' ), // Label
+                    __( 'Google+ Page URL' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
-                        'option_filter' => 'safe_text',
-                        'option_description' => __("This will use for Google Page For Business link, and it will show if using the Social Widget", 'calibrefx' ),
+                        'option_filter' => 'safe_url',
+                        'option_description' => __("This will use for Google Page For Business url, and it will show if using the Social Widget", 'calibrefx' ),
                         'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     5 //Priority
@@ -772,12 +769,12 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'facebook_fanpage', // field id and option name
-                    __( 'Facebook Page Link' ), // Label
+                    __( 'Facebook Page URL' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
-                        'option_filter' => 'safe_text',
-                        'option_description' => __("This will use for Facebook Page link, and it will show if using the Social Widget", 'calibrefx' ),
+                        'option_filter' => 'safe_url',
+                        'option_description' => __("This will use for Facebook Page url, and it will show if using the Social Widget", 'calibrefx' ),
                         'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     10 //Priority
@@ -786,12 +783,12 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'twitter_profile', // field id and option name
-                    __( 'Twitter Profile Link' ), // Label
+                    __( 'Twitter Profile URL' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
-                        'option_filter' => 'safe_text',
-                        'option_description' => __("This will use for Twitter link, and it will show if using the Social Widget", 'calibrefx' ),
+                        'option_filter' => 'safe_url',
+                        'option_description' => __("This will use for Twitter url, and it will show if using the Social Widget", 'calibrefx' ),
                         'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     15 //Priority
@@ -800,12 +797,12 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'youtube_channel', // field id and option name
-                    __( 'Youtube Channel Link' ), // Label
+                    __( 'Youtube Channel URL' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
-                        'option_filter' => 'safe_text',
-                        'option_description' => __("This will use for Youtube Channel link, and it will show if using the Social Widget", 'calibrefx' ),
+                        'option_filter' => 'safe_url',
+                        'option_description' => __("This will use for Youtube Channel url, and it will show if using the Social Widget", 'calibrefx' ),
                         'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     20 //Priority
@@ -814,12 +811,12 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'linkedin_profile', // field id and option name
-                    __( 'Linkedin Profile Link' ), // Label
+                    __( 'Linkedin Profile URL' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
-                        'option_filter' => 'safe_text',
-                        'option_description' => __("This will use for Linkedin link, and it will show if using the Social Widget", 'calibrefx' ),
+                        'option_filter' => 'safe_url',
+                        'option_description' => __("This will use for Linkedin url, and it will show if using the Social Widget", 'calibrefx' ),
                         'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     25 //Priority
@@ -828,15 +825,43 @@ class CFX_Theme_Settings extends CFX_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'pinterest_profile', // field id and option name
-                    __( 'Pinterest Profile Link' ), // Label
+                    __( 'Pinterest Profile URL' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
-                        'option_filter' => 'safe_text',
-                        'option_description' => __("This will use for Pinterest link, and it will show if using the Social Widget", 'calibrefx' ),
+                        'option_filter' => 'safe_url',
+                        'option_description' => __("This will use for Pinterest url, and it will show if using the Social Widget", 'calibrefx' ),
                         'option_attr' => array("class" => "fullwidth"),
                     ), // Settings config
                     30 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                    'social-settings',  // group id
+                    'instagram_profile', // field id and option name
+                    __( 'Instagram Profile URL' ), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_url',
+                        'option_description' => __("This will use for Instagram url, and it will show if using the Social Widget", 'calibrefx' ),
+                        'option_attr' => array("class" => "fullwidth"),
+                    ), // Settings config
+                    35 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                    'social-settings',  // group id
+                    'github_profile', // field id and option name
+                    __( 'Github Profile URL' ), // Label
+                    array(
+                        'option_type' => 'textinput',
+                        'option_default' => '',
+                        'option_filter' => 'safe_url',
+                        'option_description' => __("This will use for Github url, and it will show if using the Social Widget", 'calibrefx' ),
+                        'option_attr' => array("class" => "fullwidth"),
+                    ), // Settings config
+                    40 //Priority
             );
         } );
 

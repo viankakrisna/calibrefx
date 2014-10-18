@@ -5,9 +5,8 @@
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -153,39 +152,46 @@ function calibrefx_do_footer() {
  * Add Social javascript in footer
  */
 function calibrefx_add_socials_script() {
-    //@TODO: add enable facebook in theme setting
-    echo 
-'<div id="fb-root"></div>
-<script>
-(function(d, s, id) {
-var js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id) ) return;
-js = d.createElement(s); js.id = id;
-js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184690738325056";
-fjs.parentNode.insertBefore(js, fjs);
-}(document, \'script\', \'facebook-jssdk\' ) );
-</script>'."\n";
 
-    //@TODO : add enable twitter in theme setting
-    echo 
-'<script>
-window.twttr = (function (d,s,id) {
-var t, js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id) ) return; js=d.createElement(s); js.id=id;
-js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
-return window.twttr || (t = { _e: [], ready: function(f) { t._e.push(f) } });
-}(document, "script", "twitter-wjs") );
-</script>'."\n";
+    if( is_active_widget( false, false, 'facebook-comment' ) OR 
+        is_active_widget( false, false, 'facebook-like' ) ) {
 
-    //@TODO : add enable google+ in theme setting
-    echo 
-'<script type="text/javascript">
-  (function() {
-    var po = document.createElement(\'script\'); po.type = \'text/javascript\'; po.async = true;
-    po.src = \'https://apis.google.com/js/plusone.js?onload=onLoadCallback\';
-    var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>'."\n";
+        echo 
+            '<div id="fb-root"></div>
+            <script>
+            (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id) ) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184690738325056";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, \'script\', \'facebook-jssdk\' ) );
+            </script>'."\n";
+    }
+
+    if( is_active_widget( false, false, 'twitter-timeline-widget' ) ) {
+        echo 
+            '<script>
+            window.twttr = (function (d,s,id) {
+            var t, js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id) ) return; js=d.createElement(s); js.id=id;
+            js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+            return window.twttr || (t = { _e: [], ready: function(f) { t._e.push(f) } });
+            }(document, "script", "twitter-wjs") );
+            </script>'."\n";
+    }
+    
+    if( has_shortcode(get_the_content( ), 'gplus') ){
+        echo 
+            '<script type="text/javascript">
+              (function() {
+                var po = document.createElement(\'script\'); po.type = \'text/javascript\'; po.async = true;
+                po.src = \'https://apis.google.com/js/plusone.js?onload=onLoadCallback\';
+                var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(po, s);
+              })();
+            </script>'."\n";
+    }
+    
 }
 
 /**

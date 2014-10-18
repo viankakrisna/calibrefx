@@ -5,9 +5,8 @@
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -36,14 +35,11 @@ class CFX_About_Settings extends CFX_Admin {
      * Constructor - Initializes
      */
     function __construct() {
-        global $calibrefx;
+        parent::__construct();
+
         $this->page_id = 'calibrefx-about';
         $this->settings_field = apply_filters( 'calibrefx_about_field', 'calibrefx-about' );
-        
-        //we need to initialize the model
-        $calibrefx->load->model( 'theme_settings_m' );
-        $this->_model = $calibrefx->theme_settings_m;
-        
+            
         $this->initialize();
     }
     /**
@@ -62,9 +58,6 @@ class CFX_About_Settings extends CFX_Admin {
         calibrefx_clear_meta_section();
 
         calibrefx_add_meta_section( 'system', __( 'System Information', 'calibrefx' ), 'options.php', 1);
-        calibrefx_add_meta_section( 'team', __( 'The CalibreFX Team', 'calibrefx' ), 'options.php', 2);
-        // calibrefx_add_meta_section( 'support', __( 'Support', 'calibrefx' ), 'options.php', 3);
-        // calibrefx_add_meta_section( 'item', __( 'Recommended Items', 'calibrefx' ), 'options.php', 4);
 
         $calibrefx_current_section = 'system';
         if (!empty( $_GET['section']) ) {
@@ -75,9 +68,6 @@ class CFX_About_Settings extends CFX_Admin {
     public function meta_boxes() {
         calibrefx_add_meta_box( 'system', 'basic', 'calibrefx-about-version', __( 'Information', 'calibrefx' ), array(&$this,'info_box' ), $this->pagehook, 'main', 'high' );
         calibrefx_add_meta_box( 'system', 'basic', 'calibrefx-latest-news', __( 'Calibreworks Latest Stories', 'calibrefx' ), array(&$this,'latest_news_box' ), $this->pagehook, 'main', 'high' );
-        //calibrefx_add_meta_box( 'system', 'basic', 'calibrefx-latest-tweets', __( '<span class="twitter-logo"></span>Latest Tweets', 'calibrefx' ), array(&$this,'latest_tweets_box' ), $this->pagehook, 'side' );
-
-        calibrefx_add_meta_box( 'team', 'basic', 'calibrefx-the-team', __( 'The CalibreFX Team', 'calibrefx' ), array(&$this,'the_team' ), $this->pagehook, 'main' );
     }
 
     public function the_team() {

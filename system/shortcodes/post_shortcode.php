@@ -6,8 +6,8 @@
  *
  * @package     CalibreFx
  * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -31,7 +31,6 @@
  */
 
  
-add_shortcode( 'post_date', 'calibrefx_post_date_shortcode' );
 /**
  * Produces the date of post publication.
  *
@@ -50,26 +49,26 @@ function calibrefx_post_date_shortcode( $atts ) {
             'label'  => '',
     );
     $atts = shortcode_atts( $defaults, $atts );
-	
-	$display = '';
-	
-	switch( $atts['format']) {
-		case 'relative' : 
-			$display = calibrefx_human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'calibrefx' );
-			break;
-		case 'time-ago' : 
-			$display = calibrefx_time_ago( get_the_date( 'Y/m/d' ) );
-			break;
-		default:
-			$display = get_the_time( $atts['format'] );
-			break;
-	}
-	
+    
+    $display = '';
+    
+    switch( $atts['format']) {
+        case 'relative' : 
+            $display = calibrefx_human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'calibrefx' );
+            break;
+        case 'time-ago' : 
+            $display = calibrefx_time_ago( get_the_date( 'Y/m/d' ) );
+            break;
+        default:
+            $display = get_the_time( $atts['format'] );
+            break;
+    }
+    
     $output = sprintf( '<span class="date published time" title="%5$s">%1$s%3$s%4$s%2$s</span> ', $atts['before'], $atts['after'], $atts['label'], $display, get_the_time( 'c' ) );
     return apply_filters( 'calibrefx_post_date_shortcode', $output, $atts );
 }
+add_shortcode( 'post_date', 'calibrefx_post_date_shortcode' );
 
-add_shortcode( 'post_time', 'calibrefx_post_time_shortcode' );
 /**
  * Produces the time of post publication.
  *
@@ -91,8 +90,8 @@ function calibrefx_post_time_shortcode( $atts ) {
     $output = sprintf( '<span class="published time" title="%5$s">%1$s%3$s%4$s%2$s</span> ', $atts['before'], $atts['after'], $atts['label'], get_the_time( $atts['format'] ), get_the_time( 'Y-m-d\TH:i:sO' ) );
     return apply_filters( 'calibrefx_post_time_shortcode', $output, $atts );
 }
+add_shortcode( 'post_time', 'calibrefx_post_time_shortcode' );
 
-add_shortcode( 'post_author', 'calibrefx_post_author_shortcode' );
 /**
  * Produces the author of the post (unlinked display name).
  *
@@ -110,8 +109,8 @@ function calibrefx_post_author_shortcode( $atts ) {
     $output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', esc_html( get_the_author() ), $atts['before'], $atts['after'] );
     return apply_filters( 'calibrefx_post_author_shortcode', $output, $atts );
 }
+add_shortcode( 'post_author', 'calibrefx_post_author_shortcode' );
 
-add_shortcode( 'post_author_link', 'calibrefx_post_author_link_shortcode' );
 /**
  * Produces the author of the post (link to author URL).
  *
@@ -139,8 +138,8 @@ function calibrefx_post_author_link_shortcode( $atts ) {
     $output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $author, $atts['before'], $atts['after'] );
     return apply_filters( 'calibrefx_post_author_link_shortcode', $output, $atts );
 }
+add_shortcode( 'post_author_link', 'calibrefx_post_author_link_shortcode' );
 
-add_shortcode( 'post_author_posts_link', 'calibrefx_post_author_posts_link_shortcode' );
 /**
  * Produces the author of the post (link to author archive).
  *
@@ -151,8 +150,8 @@ add_shortcode( 'post_author_posts_link', 'calibrefx_post_author_posts_link_short
  */
 function calibrefx_post_author_posts_link_shortcode( $atts ) {
     global $post;
-	
-	$defaults = array(
+    
+    $defaults = array(
             'after'  => '',
             'before' => '',
     );
@@ -173,8 +172,8 @@ function calibrefx_post_author_posts_link_shortcode( $atts ) {
     $output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $author, $atts['before'], $atts['after'] );
     return apply_filters( 'calibrefx_post_author_posts_link_shortcode', $output, $atts );
 }
+add_shortcode( 'post_author_posts_link', 'calibrefx_post_author_posts_link_shortcode' );
 
-add_shortcode( 'post_comments', 'calibrefx_post_comments_shortcode' );
 /**
  * Produces the link to the current post comments.
  *
@@ -212,8 +211,8 @@ function calibrefx_post_comments_shortcode( $atts ) {
     $output = sprintf( '<span class="post-comments">%2$s%1$s%3$s</span>', $comments, $atts['before'], $atts['after'] );
     return apply_filters( 'calibrefx_post_comments_shortcode', $output, $atts );
 }
+add_shortcode( 'post_comments', 'calibrefx_post_comments_shortcode' );
 
-add_shortcode( 'post_tags', 'calibrefx_post_tags_shortcode' );
 /**
  * Produces the tag links list.
  *
@@ -235,8 +234,8 @@ function calibrefx_post_tags_shortcode( $atts ) {
     $output = sprintf( '<span class="tags">%s</span> ', $tags );
     return apply_filters( 'calibrefx_post_tags_shortcode', $output, $atts );
 }
+add_shortcode( 'post_tags', 'calibrefx_post_tags_shortcode' );
 
-add_shortcode( 'post_categories', 'calibrefx_post_categories_shortcode' );
 /**
  * Produces the category links list.
  *
@@ -257,8 +256,8 @@ function calibrefx_post_categories_shortcode( $atts ) {
     $output = sprintf( '<span class="categories">%2$s%1$s%3$s</span> ', $cats, $atts['before'], $atts['after'] );
     return apply_filters( 'calibrefx_post_categories_shortcode', $output, $atts );
 }
+add_shortcode( 'post_categories', 'calibrefx_post_categories_shortcode' );
 
-add_shortcode( 'post_terms', 'calibrefx_post_terms_shortcode' );
 /**
  * Produces the linked post taxonomy terms list.
  *
@@ -284,8 +283,8 @@ function calibrefx_post_terms_shortcode( $atts ) {
     $output = '<span class="terms">' . $terms . '</span>';
     return apply_filters( 'calibrefx_post_terms_shortcode', $output, $terms, $atts );
 }
+add_shortcode( 'post_terms', 'calibrefx_post_terms_shortcode' );
 
-add_shortcode( 'post_edit', 'calibrefx_post_edit_shortcode' );
 /**
  * Produces the edit post link for logged in users.
  *
@@ -308,3 +307,4 @@ function calibrefx_post_edit_shortcode( $atts ) {
     $output = $edit;
     return apply_filters( 'calibrefx_post_edit_shortcode', $output, $atts );
 }
+add_shortcode( 'post_edit', 'calibrefx_post_edit_shortcode' );

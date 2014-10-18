@@ -5,9 +5,8 @@
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -35,8 +34,8 @@ global $cfxgenerator;
 $cfxgenerator->calibrefx_doctype = array( 'calibrefx_print_doctype' );
 $cfxgenerator->calibrefx_html_header = array( 'calibrefx_do_html_header' );
 $cfxgenerator->calibrefx_meta = array(
-    'calibrefx_do_meta_description', 'calibrefx_do_meta_keywords','calibrefx_do_link_author',
-    'calibrefx_print_favicon', 'calibrefx_print_media_icon','calibrefx_load_stylesheet', 
+    'calibrefx_do_meta_description', 'calibrefx_do_meta_keywords', 'calibrefx_do_link_author',
+    'calibrefx_print_favicon', 'calibrefx_print_media_icon', 'calibrefx_load_stylesheet', 
     'calibrefx_do_dublin_core', 'calibrefx_do_fb_og' );
 
 $cfxgenerator->calibrefx_header = array( 

@@ -5,9 +5,8 @@
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -50,7 +49,7 @@ class CFX_Model {
      *
      * @return  void
      */
-    public function __construct( $setting_field = '' ) {
+    public function __construct( $setting_field = 'calibrefx-settings' ) {
         $this->_setting_field = $setting_field;
     }
     

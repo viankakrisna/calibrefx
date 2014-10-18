@@ -240,6 +240,10 @@ img.wp-smiley,
     top: -4px;
 }
 
+.navbar-brand{
+    height: 20px;
+}
+
 /* Secondary Navigation
 ------------------------------------------------------------ */
 #subnav {
@@ -1205,16 +1209,16 @@ input[type="submit"].searchsubmit{
 
 /*mobile menu*/
 
-#super-wrapper{
+.mobile #super-wrapper{
     position: relative;
 }
 
-.mobile-sidebar{
+.mobile .mobile-sidebar{
     position: absolute;
     height: 100%;
 }
 
-#mobile-nav{
+.mobile #mobile-nav{
     background: #A8A8A8;
     position: absolute;
     left: 0px;
@@ -1226,7 +1230,7 @@ input[type="submit"].searchsubmit{
     margin: 0;
 }
 
-#wrapper{
+.mobile #wrapper{
     webkit-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715); 
     -moz-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715); 
     -ms-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715);
@@ -1241,13 +1245,13 @@ input[type="submit"].searchsubmit{
     left: 0px; 
 }
 
-#wrapper{
+.mobile #wrapper{
     background: #ffffff;
     z-index: 10000;
      /*display: none; */
 }
 
-#wrapper.m{
+.mobile #wrapper.m{
     -webkit-transform: perspective(0) translate(250px, 0);
     -moz-transform: translate(250px, 0);
     -ms-transform: translate(250px, 0);
@@ -1255,20 +1259,20 @@ input[type="submit"].searchsubmit{
     transform: translate(250px, 0);
 }
 
-#mobile-nav .navbar-nav{
+.mobile #mobile-nav .navbar-nav{
     margin: 0;
     float: none;
 }
 
-#mobile-nav .navbar-nav > li.menu-donasi{
+.mobile #mobile-nav .navbar-nav > li.menu-donasi{
     display: none;
 }
 
-#mobile-nav .navbar-nav > li {
+.mobile #mobile-nav .navbar-nav > li {
     float:none;
 }
 
-#mobile-nav .navbar-nav > li > a {
+.mobile #mobile-nav .navbar-nav > li > a {
     color: #333333;
     background: #E7E7E7;
     padding: 20px 15px 20px 20px;
@@ -1277,7 +1281,7 @@ input[type="submit"].searchsubmit{
     position: relative;
 }
 
-#mobile-nav .navbar-nav > li span.mobile-arrow{
+.mobile #mobile-nav .navbar-nav > li span.mobile-arrow{
     position: absolute;
     top: 0px;
     right: 0px;
@@ -1287,14 +1291,14 @@ input[type="submit"].searchsubmit{
     border-left: 1px solid #CACACA;
 }
 
-#mobile-nav .navbar-nav > li span.mobile-arrow i.icon-mobile-arrow {    
+.mobile #mobile-nav .navbar-nav > li span.mobile-arrow i.icon-mobile-arrow {    
     background: url(../img/ig-menu-arrow.png) center center no-repeat;    
     width: 55px;
     height: 55px;
     display: block;
 }
 
-#mobile-nav .navbar-nav > li.mobile-open span.mobile-arrow i.icon-mobile-arrow {
+.mobile #mobile-nav .navbar-nav > li.mobile-open span.mobile-arrow i.icon-mobile-arrow {
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     transform: rotate(90deg);
@@ -1302,7 +1306,7 @@ input[type="submit"].searchsubmit{
 
 
 /*mobile nav*/
-#mobile-nav .navbar-nav > li > a i {
+.mobile #mobile-nav .navbar-nav > li > a i {
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -1312,11 +1316,11 @@ input[type="submit"].searchsubmit{
     left: 15px;
 }
 
-#mobile-nav .navbar-nav > li > a span {
+.mobile #mobile-nav .navbar-nav > li > a span {
     display: none;
 }
 
-#mobile-nav .dropdown-menu {
+.mobile #mobile-nav .dropdown-menu {
     position: relative;
     width: 100%;
     box-shadow: none;
@@ -1326,7 +1330,7 @@ input[type="submit"].searchsubmit{
     float: none;
 }
 
-#mobile-nav .dropdown-menu > li > a {
+.mobile #mobile-nav .dropdown-menu > li > a {
     padding: 16px 20px 17px 20px;
     background: #818181;
     color: #fff;
@@ -1336,19 +1340,19 @@ input[type="submit"].searchsubmit{
 }
 
 
-.mobile-header-top{
+.mobile .mobile-header-top{
     height: 55px;
 }
 
-.mobile-header-top a{
+.mobile .mobile-header-top a{
     padding: 10px;
     display: inline-block;
     color: #ffffff;
 }
-.mobile-header-top a:hover{
+.mobile .mobile-header-top a:hover{
     color: #eeeeee;
 }
-.mobile-header-top a i{
+.mobile .mobile-header-top a i{
     background: url(../img/icon-menu-mobile.png) center center no-repeat;
     height: 35px;
     width: 35px;

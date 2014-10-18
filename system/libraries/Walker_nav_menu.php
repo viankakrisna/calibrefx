@@ -6,8 +6,8 @@
  *
  * @package     CalibreFx
  * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -64,12 +64,6 @@ class CFX_Walker_Nav_menu extends Walker_Nav_Menu {
         $attributes .=!empty( $item->target) ? ' target="' . esc_attr( $item->target) . '"' : '';
         $attributes .=!empty( $item->xfn) ? ' rel="' . esc_attr( $item->xfn) . '"' : '';
         $attributes .=!empty( $item->url) ? ' href="' . esc_attr( $item->url) . '"' : '';
-
-        /**
-         *  Edited by Hilal
-         *  We turn off the bootstrap functionality for dropdown menu
-         */
-        //if ( $args->has_children) $attributes .= ' data-toggle="dropdown" class="dropdown-toggle" ';
 
         $item_output = $args->before;
         $item_output .= '<a' . $attributes . '>';

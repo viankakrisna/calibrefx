@@ -7,8 +7,7 @@ defined( 'CALIBREFX_URL' ) OR exit();
  *
  * @package		CalibreFx
  * @author		CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license		GNU GPL v2
  * @link		http://www.calibrefx.com
  * @filesource 
@@ -26,7 +25,7 @@ defined( 'CALIBREFX_URL' ) OR exit();
  */
 
 $autoload['libraries'] = array( 'breadcrumb','security','replacer','form', 
-							    'shortcode', 'walker_nav_menu_edit', 'notification' );
+							    'walker_nav_menu_edit', 'notification' );
 
 /*
  * Auto-load Helper File
@@ -51,14 +50,14 @@ $autoload['widgets'] = array( 'Facebook_Comment', 'Facebook_Like', 'Feature_Page
 /*
  *  Auto-load Config files
  */
-$autoload['models'] = array( 'theme_settings_m', 'other_settings_m' );
+$autoload['models'] = array( 'theme_settings_m' );
 
 /*
  *  Auto-load Config files
  */
 $autoload['hooks'] = array( 'module','header', 'script', 'widget','layout', 'menu', 
                           	'user','post','inpost','comments', 'footer',
-                          	'performance','search','third_party','upgrade', 'ajax', 
+                          	'performance', 'upgrade', 'ajax', 
                           	'admin_ajax', 'mobile', 'form_submit', 'admin', 'customizer' );
 
 /*

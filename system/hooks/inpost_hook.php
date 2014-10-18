@@ -5,9 +5,8 @@
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -62,6 +61,20 @@ function calibrefx_add_inpost_layout_box() {
             'option_attr' => array( "class" => "calibrefx-layout-selector"),
         ), // Settings config
         1 //Priority
+    );
+
+    calibrefx_add_post_meta_options(
+        'calibrefx_inpost_layout_box', //slug
+        '_calibrefx_advance_label', //option name
+        __( '', 'calibrefx' ), //option label
+        array(
+            'option_type' => 'custom',
+            'option_custom' => '<h4>Advance Settings</h4>',
+            'option_default' => '',
+            'option_filter' => '',
+            'option_description' => __( "", 'calibrefx' ),
+        ), // Settings config
+        20 //Priority
     );    
 
     calibrefx_add_post_meta_options(
@@ -71,10 +84,10 @@ function calibrefx_add_inpost_layout_box() {
         array(
             'option_type' => 'textinput',
             'option_default' => '',
-            'option_filter' => 'no_html',
+            'option_filter' => 'safe_text',
             'option_description' => __( "", 'calibrefx' ),
         ), // Settings config
-        5 //Priority
+        20 //Priority
     );    
 
     calibrefx_add_post_meta_options(
@@ -84,10 +97,10 @@ function calibrefx_add_inpost_layout_box() {
         array(
             'option_type' => 'textinput',
             'option_default' => '',
-            'option_filter' => 'no_html',
+            'option_filter' => 'safe_text',
             'option_description' => __( "", 'calibrefx' ),
         ), // Settings config
-        10 //Priority
+        25 //Priority
     );    
 
 
@@ -170,16 +183,6 @@ function calibrefx_inpost_save( $post_id, $post ) {
         return;
     }
     
-    /*if(!$calibrefx->security->verify_nonce( 'calibrefx_inpost_layout_action','calibrefx_inpost_layout_nonce' ) ) {    
-        return $post_id;
-    }*/
-    
-    // calibrefx_log_message( 'debug', 'POST LAYOUT:'.$_POST['_calibrefx_layout']);
-    
-
-    /*if (( 'page' == $_POST['post_type'] && !current_user_can( 'edit_page', $post_id) ) || !current_user_can( 'edit_post', $post_id) )
-        return $post_id;*/
-
     foreach ( $calibrefx_post_meta_options as $sections ) {
         foreach ( $sections as $options ) {
             foreach ( $options as $option_priority ) {

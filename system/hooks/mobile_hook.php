@@ -5,9 +5,8 @@
  * WordPress Themes Framework by CalibreFx Team
  *
  * @package     CalibreFx
- * @author      CalibreFx Team
- * @authorlink  http://www.calibrefx.com
- * @copyright   Copyright (c) 2012-2013, CalibreWorks. (http://www.calibreworks.com/)
+ * @author      CalibreFx Team 
+ * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
  * @license     GNU GPL v2
  * @link        http://www.calibrefx.com
  * @filesource 
@@ -44,18 +43,18 @@ $cfxgenerator->calibrefx_setup = array(
  * If mobile site is enable and there is a mobile template, then display mobile layout on mobile
  */
 function calibrefx_detect_mobile_browser() {
-	global $oBrowser,$calibrefx; 
+	global $calibrefx; 
 
-	if( is_admin() || !$oBrowser->isMobile() ) {
-		return;
-	}
-
-    if( !get_theme_support( 'mobile-site' ) OR !calibrefx_mobile_themes_exist() OR !calibrefx_is_responsive_enabled() ) {
+    if( is_admin() || !wp_is_mobile() ) {
         return;
     }
 
+    if( !get_theme_support( 'mobile-site' ) OR !calibrefx_mobile_themes_exist() ) {
+        return;
+    }
+    
 	add_filter( 'body_class', 'calibrefx_mobile_body_class' );
-
+    
 	remove_action( 'calibrefx_after_header', 'calibrefx_do_nav' );
 
     if( get_theme_support( 'mobile-site-menu' ) ) {
@@ -76,7 +75,7 @@ function calibrefx_detect_mobile_browser() {
 function calibrefx_mobile_body_class( $body_classes ) {
     global $post;
     
-    $body_classes[] = 'mobile';
+    $body_classes[] = 'mobile mobile-site';
 
     return $body_classes;
 }
