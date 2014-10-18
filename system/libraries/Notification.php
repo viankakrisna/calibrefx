@@ -14,13 +14,14 @@ class CFX_Notification {
      * @return	void
      */
     public function __construct() {        
-        if( !session_id() ) {
-    		session_start();
-		}
 		$this->_message = array();
     }
 
     public function set_flashmessage( $message, $status = 'success' ) {
+        if( !session_id() ) {
+            session_start();
+        }
+
     	if(!empty( $_SESSION['flashmsg']) ) {
     		$this->_message = $_SESSION['flashmsg'];
     	}
