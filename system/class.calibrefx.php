@@ -117,7 +117,7 @@ class Calibrefx {
     }
 
     public static function admin_url( $args = null ) {
-        $args = wp_parse_args( $args, array( 'page' => 'jetpack' ) );
+        $args = wp_parse_args( $args, array( 'page' => 'calibrefx' ) );
         $url = add_query_arg( $args, admin_url( 'admin.php' ) );
         return $url;
     }

@@ -21,7 +21,7 @@ require $test_root . '/includes/functions.php';
 
 // Activates this plugin in WordPress so it can be tested.
 function _manually_load_themes() {
-	require dirname( __FILE__ ) . '/../functions.php';
+	switch_theme( 'calibrefx' );
 }
 tests_add_filter( 'after_setup_theme', '_manually_load_themes' );
 
