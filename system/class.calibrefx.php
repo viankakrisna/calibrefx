@@ -111,9 +111,6 @@ class Calibrefx {
 
         /** Run the calibrefx_init hook */
         do_action( 'calibrefx_init' );
-
-        /** Run the calibrefx_post_init hook */
-        do_action( 'calibrefx_post_init' );
     }
 
     public static function admin_url( $args = null ) {

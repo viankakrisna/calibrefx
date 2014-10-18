@@ -1,28 +1,27 @@
 /* Table of Contents
-
-* General
-* Images
-* Header
-* Primary / Secondary Navigation
-* Content
-* Sidebar
-* Sidebar Alt
-* Widgets
-* Post
-* Post Info
-* Post Meta
-* Post Meta
-* Author Box
-* Sticky Posts
-* Archive Page
-* Comments
-* Pagination
-* Search Form
-* Footer Widgets
-* Footer
-* Form Style
-* Breadcrumb
-* Shortcode Style
+ * General
+ * Images
+ * Header
+ * Primary / Secondary Navigation
+ * Content
+ * Sidebar
+ * Sidebar Alt
+ * Widgets
+ * Post
+ * Post Info
+ * Post Meta
+ * Post Meta
+ * Author Box
+ * Sticky Posts
+ * Archive Page
+ * Comments
+ * Pagination
+ * Search Form
+ * Footer Widgets
+ * Footer
+ * Form Style
+ * Breadcrumb
+ * Shortcode Style
 */
 
 /* General
@@ -548,6 +547,12 @@ blockquote{
 blockquote cite{
 	display: inline-block;
 	padding-top: 10px;
+}
+
+.blank .hentry{
+    margin: 0;
+    padding: 0;
+    background: none;
 }
 
 /* Post Info

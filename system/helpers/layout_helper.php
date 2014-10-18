@@ -583,3 +583,12 @@ function col_offset_class() {
 
     return FALSE;
 }
+
+/**
+ * Check if responsive features is enabled
+ * @return boolean true if responsive enabled
+ */
+function calibrefx_is_responsive_enabled(){
+    return ( get_theme_support( 'calibrefx-responsive-style' ) AND 
+             !calibrefx_get_option( 'responsive_disabled' ) );
+}

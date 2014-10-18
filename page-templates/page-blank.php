@@ -3,6 +3,11 @@
  * Template Name: Blank Page
  */
 
+add_filter( 'body_class', 'blank_page_body_class' );
+function blank_page_body_class( $classes ){
+	$classes[] = 'blank';
+	return $classes;
+}
 ?>
 <!DOCTYPE html>
 <!--[if IE 7]>

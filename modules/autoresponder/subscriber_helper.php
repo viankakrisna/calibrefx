@@ -1,28 +1,6 @@
 <?php
 /**
- * CalibreFx Lib
- *
- * CalibreFx Plugin Libraries
- *
- * @package		calibrefxlib
- * @author		CalibreFx Dev Team
- * @copyright	Copyright (c) 2012, Calibreworks. (http://www.calibreworks.com/)
- * @license		http://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- * @link		http://www.CalibreFx.com
- * @since		Version 1.0
- * @filesource
- */
- 
-/**
  * Subscriber Helper
- *
- * CalibreFx Subscriber Helper Function
- *
- * @package		calibrefxlib
- * @subpackage	Helper
- * @category	subscriber helper
- * @author		CalibreFx Dev Team
- * @link		http://www.CalibreFx.com
  */
 // ------------------------------------------------------------------------
 

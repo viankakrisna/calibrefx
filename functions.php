@@ -66,8 +66,7 @@ function calibrefx_initializing(){
     add_theme_support('automatic-feed-links');
     add_theme_support('post-thumbnails');
     add_theme_support( 'post-formats', array(
-        'aside', 'image', 'video', 'audio', 'quote', 'link', 'gallery',
-    ) );
+        'aside', 'image', 'video', 'audio', 'quote', 'link', 'gallery') );
 
     //remove unneccesary headers 
     remove_action('wp_head', 'wp_generator');
@@ -81,10 +80,15 @@ function calibrefx_initializing(){
 
     // Run the engine 
     $calibrefx->run();
+
+    //Load every active module
+    Calibrefx::load_modules();
+
+    /** Run the calibrefx_post_init hook */
+    do_action( 'calibrefx_post_init' );
     
 }
 add_action( 'after_setup_theme', 'calibrefx_initializing', 0 );
-add_action( 'after_setup_theme', array( 'Calibrefx', 'load_modules' ), 100 );
 
 /**
  * Load helpers from child themes

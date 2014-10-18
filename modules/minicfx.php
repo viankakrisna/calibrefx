@@ -9,3 +9,5 @@
  * Sort Order: 5
  * Module Tags: Appearance
  */
+
+require_once dirname( __FILE__ ) . "/minicfx/minicfx.php";

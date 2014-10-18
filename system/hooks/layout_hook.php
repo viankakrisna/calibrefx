@@ -328,7 +328,7 @@ function calibrefx_do_sidebar_alt() {
  * This function/filter adds custom body class(es) to the
  * body class array. 
  */
-function calibrefx_layout_body_class( $classes) {
+function calibrefx_layout_body_class( $classes ) {
 
     $site_layout = calibrefx_site_layout();
 
