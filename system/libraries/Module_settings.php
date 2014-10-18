@@ -46,7 +46,6 @@ class CFX_Module_Settings extends Calibrefx_Admin {
     public function render_page() {
         $list_table = Calibrefx_Modules_List_Table::get_instance(); 
 
-
         ?>
         <div class="page-content configure">
             <div class="frame top hide-if-no-js">

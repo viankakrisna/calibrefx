@@ -381,10 +381,7 @@ class Calibrefx {
         do_action( 'calibrefx_activate_module', $module );
         $active[] = $module;
         update_option( 'calibrefx_active_modules', array_unique( $active ) );
-        // Calibrefx::state( 'error', false ); // the override
-        // Calibrefx::state( 'message', 'module_activated' );
-        // Calibrefx::state( 'module', $module );
-
+        
         if ( $redirect ) {
             wp_safe_redirect( Calibrefx::admin_url( 'page=calibrefx-modules' ) );
         }
