@@ -38,6 +38,6 @@ class WP_Test_Calibrefx extends WP_UnitTestCase {
 	public function test_admin_url() {
 		
 		$test_admin_url = Calibrefx::admin_url( );
-		$this->assetEqual( admin_url( 'admin.php?page=calibrefx' ), $test_admin_url );
+		$this->assertEquals( admin_url( 'admin.php?page=calibrefx' ), $test_admin_url );
 	}
 }
