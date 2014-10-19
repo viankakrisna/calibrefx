@@ -10,4 +10,8 @@
  * Module Tags: Appearance
  */
 
+/** Mobile Template Constants */
+define( 'CHILD_MOBILE_URI', CHILD_URI . '/mobile' );
+define( 'CHILD_MOBILE_URL', CHILD_URL . '/mobile' );
+
 require_once dirname( __FILE__ ) . "/minicfx/minicfx.php";

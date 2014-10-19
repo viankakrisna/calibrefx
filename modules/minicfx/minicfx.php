@@ -35,16 +35,19 @@ function calibrefx_init_mobile_site() {
 
 	add_filter( 'body_class', 'calibrefx_mobile_body_class' );
     
-	remove_action( 'calibrefx_after_header', 'calibrefx_do_nav' );
+    remove_action( 'calibrefx_after_header', 'calibrefx_do_nav' );
+    remove_action( 'calibrefx_after_header', 'calibrefx_do_subnav', 15 );
+    
     add_action( 'calibrefx_before_header', 'calibrefx_do_top_mobile_nav' ); 
     add_action( 'calibrefx_before_wrapper', 'calibrefx_mobile_open_nav' ); 
     add_action( 'calibrefx_after_wrapper', 'calibrefx_mobile_close_nav' ); 
 
-	add_filter( 'template_include', 'calibrefx_get_mobile_template' );
+    add_filter( 'template_include', 'calibrefx_get_mobile_template' );
 
-	if( file_exists( CHILD_MOBILE_URI . '/mobile.php' ) ) {
+    //TODO: Change the concept of mobile site themes
+	/*if( file_exists( CHILD_MOBILE_URI . '/mobile.php' ) ) {
 		include_once CHILD_MOBILE_URI . '/mobile.php';
-	}
+	}*/
 }
 add_action( 'calibrefx_post_init', 'calibrefx_init_mobile_site', 15 );
 

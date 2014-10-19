@@ -51,7 +51,7 @@ class CFX_Module_Settings extends Calibrefx_Admin {
             <div class="frame top hide-if-no-js">
                 <div class="wrap">
                     <div class="manage-left">
-                        <form class="jetpack-modules-list-table-form" onsubmit="return false;">
+                        <form class="calibrefx-modules-list-table-form" onsubmit="return false;">
                         <table class="<?php echo implode( ' ', $list_table->get_table_classes() ); ?>">
                             <tbody id="the-list">
                                 <?php $list_table->display_rows_or_placeholder(); ?>
