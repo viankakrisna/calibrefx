@@ -88,13 +88,8 @@ class Calibrefx_Loader {
      * Load all helpers
      */
     public function load_helpers(){
-        $helpers_include = array();
 
-        foreach ( Calibrefx::glob_php( CALIBREFX_HELPER_URI ) as $file ) {
-            $helpers_include[] = $file;
-        }
-
-        $helpers_include = apply_filters( 'calibrefx_helpers_to_include', $helpers_include );
+        $helpers_include = apply_filters( 'calibrefx_helpers_to_include', Calibrefx::glob_php( CALIBREFX_HELPER_URI ) );
 
         foreach( $helpers_include as $include ) {
             include_once $include;
@@ -106,13 +101,8 @@ class Calibrefx_Loader {
      * Load all shortcodes
      */
     public function load_shortcodes(){
-        $shortcodes_include = array();
 
-        foreach ( Calibrefx::glob_php( CALIBREFX_SHORTCODE_URI ) as $file ) {
-            $shortcodes_include[] = $file;
-        }
-
-        $shortcodes_include = apply_filters( 'calibrefx_shortcodes_to_include', $shortcodes_include );
+        $shortcodes_include = apply_filters( 'calibrefx_shortcodes_to_include', Calibrefx::glob_php( CALIBREFX_SHORTCODE_URI ) );
 
         foreach( $shortcodes_include as $include ) {
             include_once $include;
@@ -124,13 +114,8 @@ class Calibrefx_Loader {
      * Load all hooks
      */
     public function load_hooks(){
-        $hooks_include = array();
 
-        foreach ( Calibrefx::glob_php( CALIBREFX_HOOK_URI ) as $file ) {
-            $hooks_include[] = $file;
-        }
-
-        $hooks_include = apply_filters( 'calibrefx_hooks_to_include', $hooks_include );
+        $hooks_include = apply_filters( 'calibrefx_hooks_to_include', Calibrefx::glob_php( CALIBREFX_HOOK_URI ) );
 
         foreach( $hooks_include as $include ) {
             include_once $include;
@@ -139,13 +124,8 @@ class Calibrefx_Loader {
     }
 
     function load_widgets() {
-        $widgets_include = array();
 
-        foreach ( Calibrefx::glob_php( CALIBREFX_WIDGET_URI ) as $file ) {
-            $widgets_include[] = $file;
-        }
-
-        $widgets_include = apply_filters( 'calibrefx_widgets_to_include', $widgets_include );
+        $widgets_include = apply_filters( 'calibrefx_widgets_to_include', Calibrefx::glob_php( CALIBREFX_WIDGET_URI ) );
 
         foreach( $widgets_include as $include ) {
             include $include;
@@ -172,6 +152,7 @@ class Calibrefx_Loader {
      * @return	void
      */
     public function library( $library = '', $params = NULL ) {
+
         if ( is_array( $library ) ) {
             foreach ( $library as $class ) {
                 $this->library( $class, $params );
@@ -202,6 +183,7 @@ class Calibrefx_Loader {
      * @return	void
      */
     protected function _load_class( $class, $params = NULL ) {
+
         // We clean the $class to get the filename
         $class = str_replace( '.php', '', trim( $class, '/' ) );
 
@@ -276,7 +258,8 @@ class Calibrefx_Loader {
      * @return	array
      */
     protected function _prep_filename( $filename, $extension ) {
-        if ( !is_array( $filename ) ) {
+
+        if ( ! is_array( $filename ) ) {
             return array( strtolower( str_replace( array( $extension, '.php' ), '', $filename ) . $extension ) );
         } else {
             foreach ( $filename as $key => $val) {

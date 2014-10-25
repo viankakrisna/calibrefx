@@ -133,8 +133,7 @@ class Calibrefx {
 			return $files;
 		}
 
-		$file = readdir( $dir );
-		while ( false !== $file ) {
+		while ( false !== $file = readdir( $dir ) ) {
 			if ( '.' == substr( $file, 0, 1 ) || '.php' != substr( $file, -4 ) ) {
 				continue;
 			}
