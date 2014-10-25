@@ -5,6 +5,8 @@
  */
 
 function calibrefx_user_another_social_fields( $methods ) {
+    $methods['facebook_url'] = __( 'Facebook Profile', 'calibrefx' );
+    $methods['twitter_url'] = __( 'Twitter Account', 'calibrefx' );
     $methods['youtube_channel'] = __( 'Youtube Channel', 'calibrefx' );
     $methods['linkedin_profile'] = __( 'Linkedin Profile', 'calibrefx' );
 
@@ -37,7 +39,7 @@ function calibrefx_user_archive_fields( $user ) {
             <tr>
                 <th scope="row" valign="top"><label for="headline"><?php _e( 'Custom Archive Headline', 'calibrefx' ); ?></label></th>
                 <td>
-                    <input name="meta[headline]" id="headline" type="text" value="<?php echo esc_attr( get_the_author_meta( 'headline', $user->ID) ); ?>" class="regular-text" /><br />
+                    <input name="meta[author_headline]" id="headline" type="text" value="<?php echo esc_attr( get_the_author_meta( 'author_headline', $user->ID) ); ?>" class="regular-text" /><br />
                     <span class="description"><?php printf( __( 'Will display in the %s tag at the top of the first page', 'calibrefx' ), '<code>&lt;h1&gt;&lt;/h1&gt;</code>' ); ?></span>
                 </td>
             </tr>
@@ -45,7 +47,7 @@ function calibrefx_user_archive_fields( $user ) {
             <tr>
                 <th scope="row" valign="top"><label for="intro_text"><?php _e( 'Custom Description Text', 'calibrefx' ); ?></label></th>
                 <td>
-                    <textarea name="meta[intro_text]" id="intro_text" rows="5" cols="30"><?php echo esc_textarea(get_the_author_meta( 'intro_text', $user->ID ) ); ?></textarea><br />
+                    <textarea name="meta[author_intro_text]" id="intro_text" rows="5" cols="30"><?php echo esc_textarea(get_the_author_meta( 'author_intro_text', $user->ID ) ); ?></textarea><br />
                     <span class="description"><?php _e( 'This text will be the first paragraph, and display on the first page', 'calibrefx' ); ?></span>
                 </td>
             </tr>

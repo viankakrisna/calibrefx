@@ -1,6 +1,3 @@
-<?php 
-// Calibrefx Header template part
-?>
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes(); ?>>
@@ -27,7 +24,7 @@
 	?>
 </head>
 <body <?php body_onload(); ?> <?php body_class(); ?> <?php body_attr(); ?>>
-	<?php 
+<?php 
 	do_action( 'calibrefx_before_wrapper' ); 
 	do_action( 'calibrefx_wrapper' ); 
 		

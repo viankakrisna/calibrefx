@@ -34,7 +34,7 @@ function calibrefx_get_comments_template() {
         }
     }
 }
-add_action( 'calibrefx_after_post', 'calibrefx_get_comments_template', 10 );
+add_action( 'calibrefx_after_post_content', 'calibrefx_get_comments_template', 30 );
 
 /**
  * Output comment structure.
