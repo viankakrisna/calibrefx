@@ -1,12 +1,10 @@
 [![Stories in Ready](https://badge.waffle.io/calibreworks/calibrefx.png?label=ready&title=Ready)](https://waffle.io/calibreworks/calibrefx)
 [![Build Status](https://travis-ci.org/calibreworks/calibrefx.svg?branch=master)](https://
 travis-ci.org/calibreworks/calibrefx)
-# Calibrefx Open Source WordPress Themes Framework
 
-WordPress Themes by CalibreFx Team  
-Copyright (c) 2012 - 2014, Calibreworks. (http://www.calibreworks.com/)  
-License Under GNU/GPL v2  
-Official Website http://www.calibrefx.com  
+## Calibrefx: WordPress Themes Framework
+
+[Calibrefx](http://www.calibrefx.com/) is a WordPress themes framework that help themes developer to build easy to use, extendable and reusable WordPress themes.
 
 ## Installation Instructions
 
@@ -21,6 +19,13 @@ Official Website http://www.calibrefx.com
 * Secondary Sidebar - This is the secondary sidebar if you are using the Content/Sidebar/Sidebar, Sidebar/Sidebar/Content or Sidebar/Content/Sidebar Site Layout option.
 * Header Right - This is the widgeted area that appears at the top right of the header. If it is active then CalibreFx style will follow the Partial Header style otherwise it will follow the Full Image Header Style, if image header is selected. 
 
-
 ## Documentation
 Please visit Our [Documentation](http://docs.calibrefx.com).
+
+## Contributors
+
+Pull requests are always welcome!
+
+## License
+
+[GPLv2+](http://www.gnu.org/licenses/gpl-2.0.html)
