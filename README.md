@@ -1,5 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/calibreworks/calibrefx.png?label=ready&title=Ready)](https://waffle.io/calibreworks/calibrefx)
-[![Build Status](https://travis-ci.org/calibreworks/calibrefx.svg?branch=v2.0a)](https://
+[![Build Status](https://travis-ci.org/calibreworks/calibrefx.svg?branch=master)](https://
 travis-ci.org/calibreworks/calibrefx)
 # Calibrefx Open Source WordPress Themes Framework
 
