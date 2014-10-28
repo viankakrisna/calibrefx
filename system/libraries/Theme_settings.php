@@ -147,7 +147,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'navigation-settings',  // group id
                 'nav', // field id and option name
-                __( 'Primary Navigation' ), // Label
+                __( 'Primary Navigation', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
@@ -161,7 +161,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'navigation-settings',  // group id
                 'subnav', // field id and option name
-                __( 'Secondary Navigation' ), // Label
+                __( 'Secondary Navigation', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
@@ -189,7 +189,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'google-analytics-settings',  // group id
                 'analytic_id', // field id and option name
-                __( 'Google Analytics ID' ), // Label
+                __( 'Google Analytics ID', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'textinput',
                     'option_default' => '',
@@ -202,7 +202,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'google-analytics-settings',  // group id
                 'google_tagmanager_code', // field id and option name
-                __( 'Paste your Google Tag Manager Script' ), // Label
+                __( 'Paste your Google Tag Manager Script', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'textarea',
                     'option_default' => '',
@@ -217,7 +217,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'facebook-tracking-settings',  // group id
                 'facebook_tracking_code', // field id and option name
-                __( 'Paste your Facebook conversion pixels' ), // Label
+                __( 'Paste your Facebook conversion pixels', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'textarea',
                     'option_default' => '',
@@ -246,13 +246,12 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'breadcrumb-settings',  // group id
                 'breadcrumb_home', // field id and option name
-                __( 'Show Breadcrumb on Homepage','calibrefx' ), // Label
+                __( 'Show Breadcrumb on Homepage', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 1 //Priority
             );
@@ -266,7 +265,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 5 //Priority
             );
@@ -274,13 +272,12 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'breadcrumb-settings',  // group id
                 'breadcrumb_page', // field id and option name
-                __( 'Show Breadcrumb on Static Page' ), // Label
+                __( 'Show Breadcrumb on Static Page', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 10 //Priority
             );
@@ -294,7 +291,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 15 //Priority
             );
@@ -308,7 +304,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 20 //Priority
             );
@@ -316,7 +311,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'breadcrumb-settings',  // group id
                 'breadcrumb_description', // field id and option name
-                __( 'Check it if you want to show breadcrumb in any of thoses pages.','calibrefx' ), // Label
+                __( 'Check it if you want to show breadcrumb in any of thoses pages.', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'description',
                 ), // Settings config
@@ -329,7 +324,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'content-archives-settings',  // group id
                 'content_archive', // field id and option name
-                __( 'How do you want to show the excerpt of the content on blog post list?','calibrefx' ), // Label
+                __( 'How do you want to show the excerpt of the content on blog post list?', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'select',
                     'option_items' => apply_filters(
@@ -340,7 +335,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
                             ),
                     'option_default' => 'full',
                     'option_filter' => 'safe_text',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 1 //Priority
             );
@@ -348,7 +342,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'content-archives-settings',  // group id
                 'content_archive_limit', // field id and option name
-                __( 'Limit total characters for your content excerpt' ), // Label
+                __( 'Limit total characters for your content excerpt', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'textinput',
                     'option_default' => '500',
@@ -365,7 +359,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'post-navigation-settings',  // group id
                 'posts_nav', // field id and option name
-                __( 'How do you want to show the post navigation?','calibrefx' ), // Label
+                __( 'How do you want to show the post navigation?', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'select',
                     'option_items' => apply_filters(
@@ -385,7 +379,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
         });
 
         calibrefx_do_meta_options( $calibrefx->theme_settings, 'content-settings' );
-        //do_action( 'calibrefx_content_settings_meta_box' );
     }
 
     /**
@@ -403,26 +396,24 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'comment-display-settings',  // group id
                 'comments_posts', // field id and option name
-                __( 'Show comment on post?','calibrefx' ), // Label
+                __( 'Show comment on post?', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 1 //Priority
             );
             calibrefx_add_meta_option(
                 'comment-display-settings',  // group id
                 'comments_pages', // field id and option name
-                __( 'Show comment on page?','calibrefx' ), // Label
+                __( 'Show comment on page?', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 5 //Priority
             );
@@ -430,7 +421,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'comment-display-settings',  // group id
                 'comments_description', // field id and option name
-                __( 'You can generally disabled comment on posts or pages. Uncheck it if you want to disable comment box.','calibrefx' ), // Label
+                __( 'You can generally disabled comment on posts or pages. Uncheck it if you want to disable comment box.', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'description',
                 ), // Settings config
@@ -443,26 +434,24 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'trackback-display-settings',  // group id
                 'trackbacks_posts', // field id and option name
-                __( 'Show trackbacks on posts?','calibrefx' ), // Label
+                __( 'Show trackbacks on posts?', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 1 //Priority
             );
             calibrefx_add_meta_option(
                 'trackback-display-settings',  // group id
                 'trackbacks_pages', // field id and option name
-                __( 'Show trackbacks on pages?','calibrefx' ), // Label
+                __( 'Show trackbacks on pages?', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
                     'option_default' => '',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 5 //Priority
             );
@@ -471,7 +460,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
                 'trackback-display-settings',  // group id
                 'trackbacks_description', // field id and option name
                 __( 'You can generally disabled trackback / pingbacks on posts or pages. Uncheck it if you want to disable comment box. <br/>
-                     Learn more about WordPress Trackbacks and Pingbacks <a href="https://make.wordpress.org/support/user-manual/building-your-wordpress-community/trackbacks-and-pingbacks/" target="_blank">here</a>','calibrefx' ), // Label
+                     Learn more about WordPress Trackbacks and Pingbacks <a href="https://make.wordpress.org/support/user-manual/building-your-wordpress-community/trackbacks-and-pingbacks/" target="_blank">here</a>', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'description',
                 ), // Settings config
@@ -484,7 +473,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'comment-social-settings',  // group id
                 'facebook_comments', // field id and option name
-                __( 'Use Facebook comment instead of WordPress Default Comment','calibrefx' ), // Label
+                __( 'Use Facebook comment instead of WordPress Default Comment', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
@@ -513,7 +502,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'layout-general-settings',  // group id
                 'layout_type', // field id and option name
-                __( 'How would you like the main layout of the website?','calibrefx' ), // Label
+                __( 'How would you like the main layout of the website?', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'select',
                     'option_items' => apply_filters(
@@ -524,7 +513,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
                         ),
                     'option_default' => 'older-newer',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                 ), // Settings config
                 1 //Priority
             );
@@ -537,7 +525,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
                     'option_type' => 'textinput',
                     'option_default' => '940',
                     'option_filter' => 'integer',
-                    'option_description' => __("", 'calibrefx' ),
                     'option_attr' => array("class" => "calibrefx_layout_width"),
                 ), // Settings config
                 5 //Priority
@@ -546,7 +533,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'layout-general-settings',  // group id
                 'calibrefx_layout_wrapper_fixed', // field id and option name
-                __( 'Use Wrapper Border Box','calibrefx' ), // Label
+                __( 'Use Wrapper Border Box', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
@@ -561,7 +548,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'layout-general-settings',  // group id
                 'responsive_disabled', // field id and option name
-                __( 'Check this to disable responsive' ), // Label
+                __( 'Check this to disable responsive', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'checkbox',
                     'option_items' => '1',
@@ -587,7 +574,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
                             'echo' => false) ),
                     'option_default' => '',
                     'option_filter' => '',
-                    'option_description' => __("", 'calibrefx' ),
                     'option_attr' => array("class" => "calibrefx-layout-selector"),
                 ), // Settings config
                 1 //Priority
@@ -596,7 +582,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'layout-type-settings',  // group id
                 'layout_description', // field id and option name
-                __( 'You can choose your Website layout. You can override per post / page later.','calibrefx' ), // Label
+                __( 'You can choose your Website layout. You can override per post / page later.', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'description',
                 ), // Settings config
@@ -621,7 +607,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'custom-css-settings',  // group id
                 'custom_css', // field id and option name
-                __( 'Custom CSS code will be output at <code>wp_head()</code>' ), // Label
+                __( 'Custom CSS code will be output at <code>wp_head()</code>', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'textarea',
                     'option_default' => '',
@@ -634,7 +620,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'custom-script-settings',  // group id
                 'header_scripts', // field id and option name
-                __( 'Header script will be output at <code>wp_head()</code>' ), // Label
+                __( 'Header script will be output at <code>wp_head()</code>', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'textarea',
                     'option_default' => '',
@@ -647,7 +633,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'custom-script-settings',  // group id
                 'footer_scripts', // field id and option name
-                __( 'Footer scripts will be output at <code>wp_footer()</code>' ), // Label
+                __( 'Footer scripts will be output at <code>wp_footer()</code>', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'textarea',
                     'option_default' => '',
@@ -675,7 +661,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                 'facebook-settings',  // group id
                 'facebook_admins', // field id and option name
-                __( 'Facebook Admin ID' ), // Label
+                __( 'Facebook Admin ID', 'calibrefx' ), // Label
                 array(
                     'option_type' => 'textinput',
                     'option_default' => 'anyvalue',
@@ -688,7 +674,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'facebook-settings',  // group id
                     'facebook_og_type', // field id and option name
-                    __( 'Facebook Page Type' ), // Label
+                    __( 'Facebook Page Type', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'select',
                         'option_items' => apply_filters(
@@ -718,7 +704,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'gplus_profile', // field id and option name
-                    __( 'Google+ Profile URL' ), // Label
+                    __( 'Google+ Profile URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
@@ -732,7 +718,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'gplus_page', // field id and option name
-                    __( 'Google+ Page URL' ), // Label
+                    __( 'Google+ Page URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
@@ -746,7 +732,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'facebook_fanpage', // field id and option name
-                    __( 'Facebook Page URL' ), // Label
+                    __( 'Facebook Page URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
@@ -760,7 +746,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'twitter_profile', // field id and option name
-                    __( 'Twitter Profile URL' ), // Label
+                    __( 'Twitter Profile URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
@@ -774,7 +760,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'youtube_channel', // field id and option name
-                    __( 'Youtube Channel URL' ), // Label
+                    __( 'Youtube Channel URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
@@ -788,7 +774,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'linkedin_profile', // field id and option name
-                    __( 'Linkedin Profile URL' ), // Label
+                    __( 'Linkedin Profile URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
@@ -802,7 +788,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'pinterest_profile', // field id and option name
-                    __( 'Pinterest Profile URL' ), // Label
+                    __( 'Pinterest Profile URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
@@ -816,7 +802,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'instagram_profile', // field id and option name
-                    __( 'Instagram Profile URL' ), // Label
+                    __( 'Instagram Profile URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
@@ -830,7 +816,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'social-settings',  // group id
                     'github_profile', // field id and option name
-                    __( 'Github Profile URL' ), // Label
+                    __( 'Github Profile URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
@@ -846,7 +832,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'feed-settings',  // group id
                     'feed_uri', // field id and option name
-                    __( 'Main Feed URL' ), // Label
+                    __( 'Main Feed URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
@@ -860,7 +846,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
             calibrefx_add_meta_option(
                     'feed-settings',  // group id
                     'comments_feed_uri', // field id and option name
-                    __( 'Comment Feed URL' ), // Label
+                    __( 'Comment Feed URL', 'calibrefx' ), // Label
                     array(
                         'option_type' => 'textinput',
                         'option_default' => '',
