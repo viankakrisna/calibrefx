@@ -237,9 +237,78 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
     function content_setting() {
         global $calibrefx;
 
+        calibrefx_add_meta_group( 'content-settings', 'postinfo-settings', __( 'Post Info Settings', 'calibrefx' ) );
         calibrefx_add_meta_group( 'content-settings', 'breadcrumb-settings', __( 'Breadcrumb Settings', 'calibrefx' ) );
         calibrefx_add_meta_group( 'content-settings', 'content-archives-settings', __( 'Category Page Settings', 'calibrefx' ) );
         calibrefx_add_meta_group( 'content-settings', 'post-navigation-settings', __( 'Post Navigation Settings', 'calibrefx' ) );
+        
+        //For postinfo settings        
+        add_action( 'content-settings_options', function() {
+            calibrefx_add_meta_option(
+                'postinfo-settings',  // group id
+                'post_date', // field id and option name
+                __( 'Show Post Published Date', 'calibrefx' ), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '1',
+                    'option_filter' => 'integer',
+                ), // Settings config
+                1 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                'postinfo-settings',  // group id
+                'post_author', // field id and option name
+                __( 'Show Post Author', 'calibrefx' ), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '1',
+                    'option_filter' => 'integer',
+                ), // Settings config
+                5 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                'postinfo-settings',  // group id
+                'post_comment', // field id and option name
+                __( 'Show Post Comment Count', 'calibrefx' ), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '1',
+                    'option_filter' => 'integer',
+                ), // Settings config
+                5 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                'postinfo-settings',  // group id
+                'post_category', // field id and option name
+                __( 'Show Post Category', 'calibrefx' ), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '1',
+                    'option_filter' => 'integer',
+                ), // Settings config
+                10 //Priority
+            );
+
+            calibrefx_add_meta_option(
+                'postinfo-settings',  // group id
+                'post_tags', // field id and option name
+                __( 'Show Post Tags', 'calibrefx' ), // Label
+                array(
+                    'option_type' => 'checkbox',
+                    'option_items' => '1',
+                    'option_default' => '1',
+                    'option_filter' => 'integer',
+                ), // Settings config
+                15 //Priority
+            );
+        });
         
         //For breadcrumb settings        
         add_action( 'content-settings_options', function() {            

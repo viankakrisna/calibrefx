@@ -140,11 +140,22 @@ function calibrefx_do_post_title() {
 function calibrefx_post_info() {
 	global $post;
 
-	if ( is_page( $post->ID ) ) {
-		return;
+	$post_date = '';
+	if( calibrefx_get_option( 'post_date' ) ){
+		$post_date = '[post_date]';
 	}
 
-	$post_info = '[post_date] ' . __( 'By', 'calibrefx' ) . ' [post_author_posts_link] [post_comments] [post_edit]';
+	$post_author = '';
+	if( calibrefx_get_option( 'post_author' ) ){
+		$post_author = __( 'By', 'calibrefx' ) . ' [post_author_posts_link]';
+	}
+
+	$post_comment = '';
+	if( calibrefx_get_option( 'post_comment' ) ){
+		$post_comment = ' [post_comments]';
+	}
+
+	$post_info = "$post_date $post_author $post_comment [post_edit]";
 	printf( '<div class="post-info">%s</div>', apply_filters( 'calibrefx_post_info', $post_info ) );
 }
 add_filter( 'calibrefx_post_info', 'do_shortcode', 20 );
@@ -161,7 +172,17 @@ function calibrefx_post_meta() {
 		return;
 	}
 
-	$post_meta = '[post_categories] [post_tags]';
+	$post_category = '';
+	if( calibrefx_get_option( 'post_category' ) ){
+		$post_category = '[post_categories]';
+	}
+
+	$post_tags = '';
+	if( calibrefx_get_option( 'post_tags' ) ){
+		$post_tags = '[post_tags]';
+	}	
+
+	$post_meta = "$post_category $post_tags";
 	printf( '<div class="post-meta">%s</div>', apply_filters( 'calibrefx_post_meta', $post_meta ) );
 }
 add_filter( 'calibrefx_post_meta', 'do_shortcode', 20 );
