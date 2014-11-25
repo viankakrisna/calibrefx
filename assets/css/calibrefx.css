@@ -2,6 +2,7 @@
  * General
  * Images
  * Header
+ * Header Right Widget
  * Primary / Secondary Navigation
  * Content
  * Sidebar
@@ -186,6 +187,15 @@ img.wp-smiley,
 #title a{
 	text-decoration: none;
 }
+
+/* Header Right Widget
+------------------------------------------------------------ */
+#header-right ul.menu > li{
+	float: left;
+	border: none;
+	padding: 10px 10px;
+}
+
 
 /* Primary Navigation 
 ------------------------------------------------------------ */
@@ -1087,9 +1097,6 @@ input[type="submit"].searchsubmit{
 
 @media (min-width: 992px) {
 
-    #header-right .widget{
-        max-width: 300px;
-    }
 
     #content-sidebar{
         float: right;
