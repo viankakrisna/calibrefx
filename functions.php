@@ -79,11 +79,11 @@ function calibrefx_initializing(){
         add_filter( 'calibrefx_widgets_to_include', 'childfx_load_widgets' );
     }
 
-    // Run the engine 
-    $calibrefx->run();
-
     //Load every active module
     Calibrefx::load_modules();
+
+    // Run the engine 
+    $calibrefx->run();
 
     /** Run the calibrefx_post_init hook */
     do_action( 'calibrefx_post_init' );
