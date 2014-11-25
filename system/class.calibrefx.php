@@ -165,11 +165,15 @@ class Calibrefx {
 			if ( ! is_admin() && ! empty( $available_modules_option ) ) {
 				$modules = $available_modules_option;
 			} else {
-				$files = self::glob_php( CALIBREFX_MODULE_URI );
+				$calibrefx_module_files = self::glob_php( CALIBREFX_MODULE_URI );
+
+				$child_module_files = self::glob_php( CHILD_MODULE_URI );
+
+				$files = array_merge( $calibrefx_module_files, $child_module_files );
 
 				$modules = array();
 
-				foreach ( $files as $file ) {
+				foreach ( $files as $file ) { 
 					if ( ! $headers = self::get_module( $file ) ) {
 						continue;
 					}
@@ -202,6 +206,12 @@ class Calibrefx {
 	 * Generate a module's path from its slug.
 	 */
 	public static function get_module_path( $slug ) {
+		$child_module_files = self::glob_php( CHILD_MODULE_URI );
+
+		if( in_array( CHILD_MODULE_URI . "/$slug.php", $child_module_files ) ){
+			return CHILD_MODULE_URI . "/$slug.php";
+		}
+
 		return CALIBREFX_MODULE_URI . "/$slug.php";
 	}
 

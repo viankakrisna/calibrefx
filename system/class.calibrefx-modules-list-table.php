@@ -149,7 +149,7 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 		$active_modules    = Calibrefx::get_active_modules();
 
         $modules           = array();
-        foreach ( $available_modules as $module ) {
+        foreach ( $available_modules as $module ) { 
         	if ( $module_array = Calibrefx::get_module( $module ) ) {
         		
         		$module_array['module']            = $module;
