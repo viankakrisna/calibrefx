@@ -176,10 +176,6 @@ img.wp-smiley,
     text-indent: -9999px;
 }
 
-#header-right{
-    margin-top: 10px;
-}
-
 #title{
 	margin: 22px 0px 5px;
 }
@@ -190,12 +186,25 @@ img.wp-smiley,
 
 /* Header Right Widget
 ------------------------------------------------------------ */
+#header-right{
+    margin-top: 10px;
+    padding-top: 20px;
+}
+
 #header-right ul.menu > li{
 	float: left;
 	border: none;
 	padding: 10px 10px;
 }
 
+#header-right .widget_search{
+	max-width: 300px;
+	width:100%;
+}
+
+#header-right .widget_social_icon LI{
+	border: none;
+}
 
 /* Primary Navigation 
 ------------------------------------------------------------ */
