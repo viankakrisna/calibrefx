@@ -266,6 +266,10 @@ label{
     color: #6b6b6b; 
 }
 
+.calibrefx-metaboxes input.form-control{
+    width: 100%;
+}
+
 .calibrefx-metaboxes textarea{
     width: 100%;
     min-height: 150px;
@@ -488,6 +492,7 @@ span.calibrefx-info{
 }
 .calibrefx-option label{
     display: block;
+    font-weight: 600;
 }
 
 .calibrefx-option .postbox{

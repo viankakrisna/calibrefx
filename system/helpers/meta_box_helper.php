@@ -281,8 +281,8 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
                                             echo $calibrefx->form->textinput( $settings_field."[".$option_name."]", calibrefx_get_option( $option_name ), $classes, $option['option_attr'] );
                                             echo $calibrefx->form->hidden( $settings_field."[".$option_name_id."]", calibrefx_get_option( $option_name_id ), array("id" => $option_name_id, "class" => "image_id" ) );
                                             echo '<div class="upload_button_div">
-                                                    <span class="button upload_image_button" id="upload_custom_logo">Upload Image</span>
-                                                    <span class="button image_reset_button hide image_reset" id="reset_custom_logo">Remove</span>
+                                                    <span class="button upload_image_button" id="upload_' . $option_name . '">Upload Image</span>
+                                                    <span class="button image_reset_button hide image_reset" id="reset_' . $option_name . '">Remove</span>
                                                     <div class="clear"></div>
                                                 </div>';
 
