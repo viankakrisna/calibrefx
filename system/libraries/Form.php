@@ -139,6 +139,18 @@ class CFX_Form {
 
         return '<textarea id="' . $id . '" name="' . $id . '" class="form-control ' . ( $class ? ' ' . $class : '' ) . '"' . $attr . '>' . stripslashes( $value ) . '</textarea>';
     }
+
+    /**
+     * Create a Color picker field
+     */
+    function colorpicker( $id = "", $value = "", $class = "", $atts = array() ) {
+        $attr = '';
+        foreach( $atts as $key => $val) {
+            $attr .= ' ' . $key . '="' . $val .'"';
+        }
+
+        return '<input type="text" id="' . $id . '" name="' . $id . '" class="form-control wp-color-picker-field ' . ( $class ? ' ' . $class : '' ) . '"' . $attr . ' value="' . stripslashes( $value ) . '" />';
+    }
     
     function texteditor( $id = "", $content = "") {
         ob_start(); //Start buffering

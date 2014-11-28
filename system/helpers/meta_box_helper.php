@@ -252,6 +252,7 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
                                         case 'textinput':
                                         case 'textarea':
                                         case 'password':
+                                        case 'colorpicker':
                                             //we need to extract the class from the array
                                             $classes = "";
                                             if( isset( $option['option_attr']['class']) ) {
