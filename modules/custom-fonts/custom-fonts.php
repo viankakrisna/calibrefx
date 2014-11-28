@@ -278,115 +278,144 @@ function webfont_meta_boxes(){
 }
 
 function webfont_typography(){
-    global $fonts;
+    global $calibrefx;
+
     $font_color = esc_attr(calibrefx_get_option('custom_font_color'));
     $permalink_color = esc_attr(calibrefx_get_option('custom_permalink_color'));
     $permalink_hover_color = esc_attr(calibrefx_get_option('custom_permalink_hover_color'));
-?>
-    <div class="section-row">
-        <div class="section-col">
-            
-            <div class="section-line">
-                <p><strong>Header Text Typography</strong></p>
-                <div class="custom-font-style-wrapper">
-                    <?php  $header_font_family = esc_attr(calibrefx_get_option('custom_header_font_family')); ?>
-                    <select name="calibrefx-settings[custom_header_font_family]" id="calibrefx-settings[custom_header_font_family]">
-                        <?php 
-                            foreach ($fonts as $font => $value) {
-                                $selected = ($header_font_family == $font)? ' selected="selected"' : '';
-                                echo '<option value="' . $font . '"'.$selected.'>'.$font.'</option>';
-                            }
-                        ?>
-                    </select>
-                </div>
-            </div>
-           
-        </div>
-        <div class="section-col last">
-            <div class="section-desc">
-                <p class="description">This setting is for all the header (h1, h2, etc.) text. Sizes will vary according to the css file</p>
-            </div>
-        </div>   
-    </div>
 
-    <div class="section-row">
-        <div class="section-col">
-            
-            <div class="section-line">
-                <p><strong>Body Text Typography</strong></p>
-                <div class="custom-font-style-wrapper">
-                    <select name="calibrefx-settings[custom_font_size]; ?>" id="calibrefx-settings[custom_font_size]; ?>">
-                    <?php
-                        $font_size = esc_attr(calibrefx_get_option('custom_font_size'));
+    calibrefx_add_meta_group( 'typography-header-text-settings', 'typography-header-text-settings', __( 'Header Text Typography', 'calibrefx' ) );
 
-                        for($i =9;$i<=24;$i++){
-                            if($font_size == $i){
-                                echo '<option value="'.$i.'" selected="selected">'.$i.'px</option>';
-                            }else{
-                                echo '<option value="'.$i.'">'.$i.'px</option>';
-                            }
-                        }
-                    ?>
-                    </select>
-                    <?php  $font_family = calibrefx_get_option('custom_font_family'); ?>
-                    <select name="calibrefx-settings[custom_font_family]; ?>" id="calibrefx-settings[custom_font_family]; ?>">
-                        <?php 
-                            foreach ($fonts as $font => $value) {
-                                $selected = ($font_family == $font)? ' selected="selected"' : '';
-                                echo '<option value="' . $font . '"'.$selected.'>'.$font.'</option>';
-                            }
+    add_action( 'typography-header-text-settings_options', function() {  
+        global $fonts;
 
-                        ?>
-                    </select>
-                    <input type="text" name="calibrefx-settings[custom_font_color]" id="custom_font_color" data-default-color="#0000ff" class="wp-color-picker-field" value="<?php echo $font_color; ?>" />
-                </div>
-            </div>
-           
-        </div>
-        <div class="section-col last">
-            <div class="section-desc">
-                <p class="description">Please set this option if you want to use your custom styling for body text paragraph</p>
-            </div>
-        </div>   
-    </div>
+        $font_values = array();
+        foreach ( $fonts as $font => $value ) {
+            $font_values[$font] = $font;
+        }
 
-    <div class="section-row">
-        <div class="section-col">
-            
-            <div class="section-line">
-                <p><strong>Permalinks Color</strong></p>
-                <div class="custom-font-style-wrapper">
-                    <input type="text" name="calibrefx-settings[custom_permalink_color]" id="custom_permalink_color" data-default-color="#0000ff" class="wp-color-picker-field" value="<?php echo $permalink_color; ?>"/>
-                </div>
-            </div>
-           
-        </div>
-        <div class="section-col last">
-            <div class="section-desc">
-                <p class="description">define your permalinks color here, please leave it blank by removing the color code, if you want to use pre-defined color.</p>
-            </div>
-        </div>   
-    </div>
+        calibrefx_add_meta_option(
+            'typography-header-text-settings',  // group id
+            'custom_header_font_family', // field id and option name
+            __( '', 'calibrefx' ), // Label
+            array(
+                'option_type' => 'select',
+                'option_items' => $font_values,
+                'option_default' => '',
+                'option_filter' => 'safe_text',
+                'option_description' => __( 'This setting is for all the header (h1, h2, etc.) text. Sizes will vary according to the css file', 'calibrefx' ),
+            ), // Settings config
+            1 //Priority
+        );
 
-     <div class="section-row">
-        <div class="section-col">
-            
-            <div class="section-line last">
-                <p><strong>Permalinks Hover Color</strong></p>
-                <div class="custom-font-style-wrapper">
-                    <input type="text" name="calibrefx-settings[custom_permalink_hover_color]" id="custom_permalink_hover_color" data-default-color="#0000ff" class="wp-color-picker-field" value="<?php echo $permalink_hover_color; ?>" />
-                    
-                </div>
-            </div>
-           
-        </div>
-        <div class="section-col last">
-            <div class="section-desc">
-                <p class="description">define your permalinks hover color here, please leave it blank by removing thecolor code, if you want to use pre-defined color.</p>
-            </div>
-        </div>   
-    </div>
-<?php 
+    } );
+
+    calibrefx_do_meta_options( $calibrefx->theme_settings, 'typography-header-text-settings' );
+
+    calibrefx_add_meta_group( 'typography-body-text-settings', 'typography-body-text-settings', __( 'Body Text Typography', 'calibrefx' ) );
+
+    add_action( 'typography-body-text-settings_options', function() {  
+        calibrefx_add_meta_option(
+            'typography-body-text-settings',  // group id
+            'custom_font_size', // field id and option name
+            __( 'Font Size', 'calibrefx' ), // Label
+            array(
+                'option_type' => 'select',
+                'option_items' => array(
+                    '9' => '9px',
+                    '10' => '10px',
+                    '11' => '11px',
+                    '12' => '12px',
+                    '13' => '13px',
+                    '14' => '14px',
+                    '15' => '15px',
+                    '16' => '16px',
+                    '17' => '17px',
+                    '18' => '18px',
+                    '19' => '19px',
+                    '20' => '20px',
+                    '21' => '21px',
+                    '22' => '22px',
+                    '23' => '23px',
+                    '24' => '24px'
+                ),
+                'option_default' => '',
+                'option_filter' => 'safe_text',
+                'option_description' => '',
+            ), // Settings config
+            1 //Priority
+        );
+
+        global $fonts;
+
+        $font_values = array();
+        foreach ( $fonts as $font => $value ) {
+            $font_values[$font] = $font;
+        }
+
+        calibrefx_add_meta_option(
+            'typography-body-text-settings',  // group id
+            'custom_font_family', // field id and option name
+            __( 'Font Family', 'calibrefx' ), // Label
+            array(
+                'option_type' => 'select',
+                'option_items' => $font_values,
+                'option_default' => '',
+                'option_filter' => 'safe_text',
+                'option_description' => '',
+            ), // Settings config
+            1 //Priority
+        );
+
+        calibrefx_add_meta_option(
+            'typography-body-text-settings',  // group id
+            'custom_font_color', // field id and option name
+            __( 'Font Color', 'calibrefx' ), // Label
+            array(
+                'option_type' => 'colorpicker',
+                'option_default' => '',
+                'option_filter' => 'no_html',
+                'option_description' => __( 'Please set this option if you want to use your custom styling for body text paragraph', 'calibrefx' ),
+            ), // Settings config
+            1 //Priority
+        );
+
+    } );
+
+    calibrefx_do_meta_options( $calibrefx->theme_settings, 'typography-body-text-settings' );
+
+    calibrefx_add_meta_group( 'typography-permalinks-settings', 'typography-permalinks-settings', __( 'Permalinks Setting', 'calibrefx' ) );
+
+    add_action( 'typography-permalinks-settings_options', function() {  
+        calibrefx_add_meta_option(
+            'typography-permalinks-settings',  // group id
+            'custom_permalink_color', // field id and option name
+            __( 'Permalinks Color', 'calibrefx' ), // Label
+            array(
+                'option_type' => 'colorpicker',
+                'option_default' => '',
+                'option_filter' => 'no_html',
+                'option_description' => __( 'define your permalinks color here, please leave it blank by removing the color code, if you want to use pre-defined color.', 'calibrefx' ),
+            ), // Settings config
+            1 //Priority
+        );
+
+        calibrefx_add_meta_option(
+            'typography-permalinks-settings',  // group id
+            'custom_permalink_hover_color', // field id and option name
+            __( 'Permalinks Hover Color', 'calibrefx' ), // Label
+            array(
+                'option_type' => 'colorpicker',
+                'option_default' => '',
+                'option_filter' => 'no_html',
+                'option_description' => __( 'define your permalinks hover color here, please leave it blank by removing thecolor code, if you want to use pre-defined color.', 'calibrefx' ),
+            ), // Settings config
+            1 //Priority
+        );
+
+    } );
+
+    calibrefx_do_meta_options( $calibrefx->theme_settings, 'typography-permalinks-settings' );
 }
 
 function webfont_theme_settings_default($default_arr = array()){

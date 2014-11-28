@@ -556,6 +556,10 @@ span.calibrefx-info{
     margin-right: 8px!important;
 }
 
+.option-item{
+    margin-bottom: 10px;
+}
+
 .calibrefx-option .postbox h1,
 .calibrefx-option .postbox h2,
 .calibrefx-option .postbox h3,
