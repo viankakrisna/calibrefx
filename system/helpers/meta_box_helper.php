@@ -271,8 +271,11 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
                                             }
 
                                             $option_name_id = $option_name . '_id';
+                                            $image = calibrefx_get_option( $option_name );
 
-                                            echo '<div class="preview_image image_preview" id="preview_'.$option_name.'"><img src="'.calibrefx_get_option( $option_name ).'" /></div>';
+                                            if( $image ) echo '<div class="preview_image image_preview" id="preview_'.$option_name.'"><img src="'.calibrefx_get_option( $option_name ).'" /></div>';
+                                            else echo '<div class="preview_image image_preview" id="preview_'.$option_name.'"></div>';
+
                                             echo '<label for="'.$settings_field.'['.$option_name.']">'.$option["option_label"].'</label>';
                                             echo $calibrefx->form->textinput( $settings_field."[".$option_name."]", calibrefx_get_option( $option_name ), $classes, $option['option_attr'] );
                                             echo $calibrefx->form->hidden( $settings_field."[".$option_name_id."]", calibrefx_get_option( $option_name_id ), array("id" => $option_name_id, "class" => "image_id" ) );
@@ -281,6 +284,7 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
                                                     <span class="button image_reset_button hide image_reset" id="reset_custom_logo">Remove</span>
                                                     <div class="clear"></div>
                                                 </div>';
+
                                             break;
 
                                         case 'checkbox':
