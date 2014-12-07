@@ -239,13 +239,13 @@ add_action( 'wp_head', 'calibrefx_header_custom_styles', 30 );
 function calibrefx_do_site_title() {
 
     // Set what goes inside the wrapping tags
-    $inside = sprintf( '<a href="%s" title="%s">%s</a>', trailingslashit( home_url() ), esc_attr( get_bloginfo( 'name' ) ), get_bloginfo( 'name' ) );
+    $inside = sprintf( '<a href="%s" title="%s" class="site-title">%s</a>', trailingslashit( home_url() ), esc_attr( get_bloginfo( 'name' ) ), get_bloginfo( 'name' ) );
 
     // Build the Title
     if ( is_home() ||is_front_page() ) {
-        $title = sprintf( '<h1 id="title">%s</h1>', $inside );
+        $title = sprintf( '<h1 id="title" class="site-title">%s</h1>', $inside );
     } else {
-        $title = sprintf( '<h2 id="title">%s</h2>', $inside );
+        $title = sprintf( '<h2 id="title" class="site-title">%s</h2>', $inside );
     }
 
     echo apply_filters( 'calibrefx_seo_title', $title, $inside, $wrap = '' );
@@ -265,7 +265,7 @@ function calibrefx_do_site_description() {
     $wrap = 'p';
 
     // Build the Description
-    $description = $inside ? sprintf( '<%s id="description">%s</%s>', $wrap, $inside, $wrap ) : '';
+    $description = $inside ? sprintf( '<%s id="description" class="site-description">>%s</%s>', $wrap, $inside, $wrap ) : '';
 
     // Return (filtered)
     echo apply_filters( 'calibrefx_seo_description', $description, $inside, $wrap );

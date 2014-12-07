@@ -65,7 +65,6 @@ function calibrefx_load_styles() {
         return;
 
     wp_enqueue_style( 'calibrefx-bootstrap' );
-    wp_enqueue_style( 'calibrefx-style' );
     wp_enqueue_style( 'font-awesome' );
     wp_enqueue_style( 'jquery-superfish' );
     wp_enqueue_style( 'nProgress' );
@@ -73,6 +72,7 @@ function calibrefx_load_styles() {
     /** Check for the active theme */
 
     if( is_child_theme() AND get_theme_support( 'calibrefx-template-styles' ) ){
+        wp_enqueue_style( 'calibrefx-style' );
         wp_enqueue_style( 'calibrefx-template-style' );
     }
 
