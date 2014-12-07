@@ -245,4 +245,4 @@ function calibrefx_create_legal_page(){
     echo 1;
     exit;
 }
-add_action('wp_ajax_create-legal-page', 'calibrefx_create_legal_page');
+add_action( 'wp_ajax_create-legal-page', 'calibrefx_create_legal_page' );

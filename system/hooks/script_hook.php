@@ -94,10 +94,14 @@ function calibrefx_load_admin_scripts() {
         'assets_img_url' => CALIBREFX_IMAGES_URL
     );
     wp_localize_script( 'calibrefx_admin_js', 'calibrefx_local', $params );
+    wp_enqueue_media();
 }
 add_action( 'admin_init', 'calibrefx_load_admin_scripts' );
 
-
+/**
+ * This function loads the admin CSS files
+ *
+ */
 function calibrefx_load_admin_styles() {
     wp_enqueue_style( 'calibrefx-admin-css', CALIBREFX_CSS_URL . '/calibrefx.admin.css', array() );
     wp_enqueue_style( 'admin-bar' );

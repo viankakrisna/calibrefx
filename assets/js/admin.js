@@ -3,14 +3,13 @@ var calibrefx_toggles = {
     "layout_type":["#calibrefx-settings\\[layout_type\\]",".calibrefx_layout_width","static"],
     "email_protocol":["#calibrefx-settings\\[email_protocol\\]","#email_setting_box_content","smtp"]
 };
-window['calibrefx'] = {
 
+window['calibrefx'] = {
     update_character_count: function (event) {
         'use strict';
         //
         jQuery( '#' + event.target.id + '_chars' ).html(jQuery(event.target).val().length.toString() );
     },
-    
     
     toggle_settings: function (event) {
         'use strict';
@@ -120,6 +119,71 @@ jQuery(document).ready(function( $) {
             parent.find( '.advanced-widget-options' ).slideUp();
         }
     });
+
+    theTeamResize();
+
+    $( window ).resize( theTeamResize );
+
+    var imageFrame;
+    $( '.upload_image_button' ).click( function( event ) {
+        event.preventDefault();
+        
+        var options, attachment;
+        
+        $self = $( event.target );
+        $div = $self.parents( 'div.option-item' );
+        
+        // if the frame already exists, open it
+        if ( imageFrame ) {
+            imageFrame.open();
+            return;
+        }
+        
+        // set our settings
+        imageFrame = wp.media({
+            title: 'Choose Image',
+            multiple: false,
+            library: {
+                type: 'image'
+            },
+            button: {
+                text: 'Use This Image'
+            }
+        });
+        
+        // set up our select handler
+        imageFrame.on( 'select', function() {
+            selection = imageFrame.state().get( 'selection' );
+            
+            if ( ! selection )
+            return;
+            
+            var i = 0;
+            // loop through the selected files
+            selection.each( function( attachment ) {
+                var src = attachment.attributes.sizes.full.url;
+                var id = attachment.id;
+                
+                var img = $( '<img>' );
+                img.attr( 'src', src );
+
+                $div.find( '.preview_image' ).html( img );
+                $div.find( '.image_id' ).val( id );
+                $div.find( '.form-control' ).val( src ); i++;
+            } );
+        });
+        
+        // open the frame
+        imageFrame.open();
+    });
+
+    $( '.image_reset_button' ).click( function(){
+        $div = $( this ).parents( 'div.option-item' );
+
+        $div.find( '.preview_image' ).html( '' );
+        $div.find( '.image_id' ).val( '' );
+        $div.find( '.form-control' ).val( '' );
+    } );
 });
 
 function calibrefx_confirm( text ) {
@@ -127,8 +191,7 @@ function calibrefx_confirm( text ) {
 
     if( answer ) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -178,18 +241,7 @@ function tos_bind_events() {
     })(jQuery);
 }
 
-jQuery(document).ready(function( $) {
-    theTeamResize();
-
-    $(window).resize(theTeamResize);
-});
-
-
-
-
-function theTeamResize() {
-
-    
+function theTeamResize() {    
     jQuery( '.the-team' ).css( 'height', 'auto' );
 
     var height = 0;
@@ -200,6 +252,7 @@ function theTeamResize() {
             height = $this.height();
         }
 
-    })
+    });
+
     jQuery( '.the-team' ).height(height);
 }

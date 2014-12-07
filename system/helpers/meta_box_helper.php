@@ -225,7 +225,7 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
         ksort( $options);
     ?>
         
-        <h3 class="section-title"><?php echo $option_group['title']; ?></h3>
+        <?php if( !empty( $option_group['title'] ) ){ ?><h3 class="section-title"><?php echo $option_group['title']; ?></h3><?php } ?>
         <div id="<?php echo $option_group_id; ?>">
             <?php
                 foreach ( $options as $option_priority ) {
@@ -252,6 +252,7 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
                                         case 'textinput':
                                         case 'textarea':
                                         case 'password':
+                                        case 'colorpicker':
                                             //we need to extract the class from the array
                                             $classes = "";
                                             if( isset( $option['option_attr']['class']) ) {
@@ -271,16 +272,20 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
                                             }
 
                                             $option_name_id = $option_name . '_id';
+                                            $image = calibrefx_get_option( $option_name );
 
-                                            echo '<div class="preview_image image_preview" id="preview_'.$option_name.'"><img src="'.calibrefx_get_option( $option_name ).'" /></div>';
+                                            if( $image ) echo '<div class="preview_image image_preview" id="preview_'.$option_name.'"><img src="'.calibrefx_get_option( $option_name ).'" /></div>';
+                                            else echo '<div class="preview_image image_preview" id="preview_'.$option_name.'"></div>';
+
                                             echo '<label for="'.$settings_field.'['.$option_name.']">'.$option["option_label"].'</label>';
                                             echo $calibrefx->form->textinput( $settings_field."[".$option_name."]", calibrefx_get_option( $option_name ), $classes, $option['option_attr'] );
                                             echo $calibrefx->form->hidden( $settings_field."[".$option_name_id."]", calibrefx_get_option( $option_name_id ), array("id" => $option_name_id, "class" => "image_id" ) );
                                             echo '<div class="upload_button_div">
-                                                    <span class="button upload_image_button" id="upload_custom_logo">Upload Image</span>
-                                                    <span class="button image_reset_button hide image_reset" id="reset_custom_logo">Remove</span>
+                                                    <span class="button upload_image_button" id="upload_' . $option_name . '">Upload Image</span>
+                                                    <span class="button image_reset_button hide image_reset" id="reset_' . $option_name . '">Remove</span>
                                                     <div class="clear"></div>
                                                 </div>';
+
                                             break;
 
                                         case 'checkbox':
