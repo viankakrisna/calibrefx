@@ -225,7 +225,7 @@ function calibrefx_do_post_content() {
 			echo '-->' . "\n";
 		}
 
-		if ( is_page() ) {
+		if ( is_page() AND apply_filters( 'calibrefx_edit_post_link', true )) {
 			edit_post_link(__( '(Edit)', 'calibrefx' ), '', '' );
 		}
 	} elseif ( 'excerpts' == calibrefx_get_option( 'content_archive' ) ) {
