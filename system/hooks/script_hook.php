@@ -94,7 +94,6 @@ function calibrefx_load_admin_scripts() {
         'assets_img_url' => CALIBREFX_IMAGES_URL
     );
     wp_localize_script( 'calibrefx_admin_js', 'calibrefx_local', $params );
-    wp_enqueue_media();
 }
 add_action( 'admin_init', 'calibrefx_load_admin_scripts' );
 
