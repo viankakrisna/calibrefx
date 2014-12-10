@@ -4,6 +4,20 @@
  *
  */
 
+global $calibrefx;
+
+$calibrefx->hooks->calibrefx_before_footer = array(
+    array( 'function' => 'calibrefx_do_footer_widgets', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_footer = array(
+    array( 'function' => 'calibrefx_footer_area', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_footer_content = array(
+    array( 'function' => 'calibrefx_do_footer', 'priority' => 10 )
+);
+
 /**
  * Display the footer widget if the footer widget are active.
  */
@@ -54,7 +68,6 @@ function calibrefx_do_footer_widgets() {
         echo '</div><!--end #footer-widget-->';
     }
 }
-add_action( 'calibrefx_before_footer', 'calibrefx_do_footer_widgets' );
 
 /**
  * Display Footer area
@@ -68,7 +81,6 @@ function calibrefx_footer_area() {
     calibrefx_put_wrapper( 'footer', 'close' );
     echo '</div><!-- end #footer -->' . "\n";
 }
-add_action( 'calibrefx_footer', 'calibrefx_footer_area' );
 
 /**
  * Do Header Callback
@@ -85,7 +97,6 @@ function calibrefx_do_footer() {
 
     echo apply_filters( 'calibrefx_footer_output', $output, $backtotop_text, $creds_text );
 }
-add_action( 'calibrefx_footer_content', 'calibrefx_do_footer' );
 add_filter('calibrefx_footer_output', 'do_shortcode', 20);
 
 /**
