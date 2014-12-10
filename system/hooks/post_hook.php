@@ -262,7 +262,6 @@ function calibrefx_do_author_box_single() {
 function calibrefx_do_no_post() {
 	printf( '<p>%s</p>', apply_filters( 'calibrefx_noposts_text', __( 'Sorry, no posts matched your criteria.', 'calibrefx' ) ));
 }
-add_action( 'calibrefx_no_post', 'calibrefx_do_no_post' );
 
 /**
  * Display Post Navigation

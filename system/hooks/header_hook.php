@@ -1,8 +1,33 @@
-<?php 
+<?php
 /**
  * Calibrefx Header Hooks
  *
  */
+
+global $calibrefx;
+
+$calibrefx->hooks->calibrefx_meta = array(
+    array( 'function' => 'calibrefx_do_meta', 'priority' => 10 ),
+    array( 'function' => 'calibrefx_do_link_author', 'priority' => 10 ),
+    array( 'function' => 'calibrefx_print_favicon', 'priority' => 10 ),
+    array( 'function' => 'calibrefx_do_fb_og', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_site_title = array(
+    array( 'function' => 'calibrefx_do_site_title', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_site_description = array(
+    array( 'function' => 'calibrefx_do_site_description', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_header = array(
+    array( 'function' => 'calibrefx_header_area', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_header_right_widget = array(
+    array( 'function' => 'calibrefx_do_header_right_widget', 'priority' => 10 )
+);
 
 /**
  * Handle form submit from contact form
@@ -35,7 +60,6 @@ function calibrefx_do_meta() {
         echo '<meta name="keywords" content="' . esc_attr( $keywords ) . '" />' . "\n";
     }
 }
-add_action( 'calibrefx_meta', 'calibrefx_do_meta' );
 
 /**
  * Print meta keywords
@@ -55,7 +79,6 @@ function calibrefx_do_link_author() {
         echo '<link rel="publisher" content="' . esc_attr( $link_publisher ) . '" />' . "\n";
     }
 }
-add_action( 'calibrefx_meta', 'calibrefx_do_link_author' );
 
 /**
  * Print outs favicon
@@ -82,7 +105,6 @@ function calibrefx_print_favicon() {
     if ( $favicon )
         echo '<link rel="Shortcut Icon" href="' . esc_url($favicon) . '" type="image/x-icon" />' . "\n";
 }
-add_action( 'calibrefx_meta', 'calibrefx_print_favicon' );
 
 /**
  * Print html title, this will override by seo addon later
@@ -168,7 +190,6 @@ function calibrefx_do_fb_og() {
     
     do_action( 'calibrefx_do_another_fb_og' );
 }
-add_action( 'calibrefx_meta', 'calibrefx_do_fb_og' );
 
 /**
  * Print .wrap style
@@ -250,7 +271,6 @@ function calibrefx_do_site_title() {
 
     echo apply_filters( 'calibrefx_seo_title', $title, $inside, $wrap = '' );
 }
-add_action( 'calibrefx_site_title', 'calibrefx_do_site_title' );
 
 
 /**
@@ -270,7 +290,6 @@ function calibrefx_do_site_description() {
     // Return (filtered)
     echo apply_filters( 'calibrefx_seo_description', $description, $inside, $wrap );
 }
-add_action( 'calibrefx_site_description', 'calibrefx_do_site_description' );
 
 /**
  * Markup the header area
@@ -283,7 +302,6 @@ function calibrefx_header_area() {
     calibrefx_put_wrapper( 'header', 'close' );
     echo '</div><!--end #header-->';
 }
-add_action( 'calibrefx_header', 'calibrefx_header_area' );
 
 /**
  * Do Header Callback
@@ -313,7 +331,6 @@ function calibrefx_do_header_right_widget() {
         dynamic_sidebar( 'header-right' );
     }
 }
-add_action( 'calibrefx_header_right_widget', 'calibrefx_do_header_right_widget' );
 
 
 /**
@@ -333,4 +350,4 @@ function calibrefx_feed_links_filter( $output, $feed ) {
 
     return $output;
 }
-add_filter('feed_link', 'calibrefx_feed_links_filter', 10, 2);
+add_filter( 'feed_link', 'calibrefx_feed_links_filter', 10, 2 );
