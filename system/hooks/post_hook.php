@@ -15,43 +15,47 @@ $calibrefx->hooks->calibrefx_before_loop = array(
 
 $calibrefx->hooks->calibrefx_loop = array(
 		array( 'function' => 'calibrefx_do_loop', 'priority' => 10 )
-	);
+);
 
 	//This is inside the loop: calibrefx_do_loop
 
 	//This is inside content.php
 	$calibrefx->hooks->calibrefx_before_post_title = array();
 	$calibrefx->hooks->calibrefx_post_title = array(
-			array( 'function' => 'calibrefx_do_post_title', 'priority' => 10)
-		);
+			array( 'function' => 'calibrefx_do_post_title', 'priority' => 10 )
+	);
 	$calibrefx->hooks->calibrefx_after_post_title = array();
 
 	$calibrefx->hooks->calibrefx_before_post_content = array(
-			array( 'function' => 'calibrefx_post_info', 'priority' => 10)
-		);
+			array( 'function' => 'calibrefx_post_info', 'priority' => 10 )
+	);
 
 	$calibrefx->hooks->calibrefx_post_content = array(
-		array( 'function' => 'calibrefx_do_post_image', 'priority' => 10), 
-		array( 'function' => 'calibrefx_do_post_content', 'priority' => 15)
+		array( 'function' => 'calibrefx_do_post_image', 'priority' => 10 ), 
+		array( 'function' => 'calibrefx_do_post_content', 'priority' => 15 )
 	);
 
 	$calibrefx->hooks->calibrefx_after_post_content = array(
-		array( 'function' => 'calibrefx_post_meta', 'priority' => 10)
+		array( 'function' => 'calibrefx_post_meta', 'priority' => 10 )
 	);
 	
 	//End of content.php
 	
 	$calibrefx->hooks->calibrefx_after_post_content = array(
-		array( 'function' => 'calibrefx_do_author_box_single', 'priority' => 20)
+		array( 'function' => 'calibrefx_do_author_box_single', 'priority' => 20 )
+	);
+
+	$calibrefx->hooks->calibrefx_no_post = array(
+		array( 'function' => 'calibrefx_do_no_post', 'priority' => 10 )
 	);
 	//Loop End here
 
 $calibrefx->hooks->calibrefx_after_loop = array(
-	array( 'function' => 'calibrefx_posts_nav','priority' => 20)
+	array( 'function' => 'calibrefx_posts_nav', 'priority' => 20 )
 );
 
 $calibrefx->hooks->calibrefx_after_content_wrapper = array(
-	array( 'function' => 'calibrefx_do_inner_wrap_close','priority' => 15)
+	array( 'function' => 'calibrefx_do_inner_wrap_close', 'priority' => 15 )
 );
 
 /********************
