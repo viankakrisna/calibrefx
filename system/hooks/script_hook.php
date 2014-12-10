@@ -3,6 +3,12 @@
  * Calibrefx Script Hooks
  */
 
+global $calibrefx;
+
+$calibrefx->hooks->calibrefx_meta = array(
+    array( 'function' => 'calibrefx_load_scripts', 'priority' => 5 ),
+    array( 'function' => 'calibrefx_load_styles', 'priority' => 5 ),
+);
 
 /**
  * This function register our style and script files
@@ -48,7 +54,6 @@ function calibrefx_load_scripts() {
     
     wp_localize_script( 'calibrefx-script', 'cfx_ajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ), 'ajax_action' => 'cfx_ajax', '_ajax_nonce' => wp_create_nonce( 'calibrefx_ajax_nonce' ) ));
 }
-add_action( 'calibrefx_meta', 'calibrefx_load_scripts', 5 );
 
 /**
  * Load default calibrefx styles
@@ -78,7 +83,6 @@ function calibrefx_load_styles() {
 
     wp_enqueue_style( 'calibrefx-child-style', get_stylesheet_uri() );
 }
-add_action( 'calibrefx_meta', 'calibrefx_load_styles', 5 );
 
 /**
  * This function loads the admin JS files
