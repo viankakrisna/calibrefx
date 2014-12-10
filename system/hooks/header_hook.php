@@ -265,7 +265,7 @@ function calibrefx_do_site_description() {
     $wrap = 'p';
 
     // Build the Description
-    $description = $inside ? sprintf( '<%s id="description" class="site-description">>%s</%s>', $wrap, $inside, $wrap ) : '';
+    $description = $inside ? sprintf( '<%s id="description" class="site-description">%s</%s>', $wrap, $inside, $wrap ) : '';
 
     // Return (filtered)
     echo apply_filters( 'calibrefx_seo_description', $description, $inside, $wrap );

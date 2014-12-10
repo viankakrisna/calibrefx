@@ -71,6 +71,11 @@ function calibrefx_load_styles() {
     
     /** Check for the active theme */
 
+    if( !is_child_theme() ){
+        wp_enqueue_style( 'calibrefx-style' );
+        wp_enqueue_style( 'calibrefx-template-style' );
+    }
+
     if( is_child_theme() AND get_theme_support( 'calibrefx-template-styles' ) ){
         wp_enqueue_style( 'calibrefx-style' );
         wp_enqueue_style( 'calibrefx-template-style' );
