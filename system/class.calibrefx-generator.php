@@ -135,6 +135,12 @@ class Calibrefx_Generator{
 
     	if( $keysearch == -1 ) return false;
     	unset( $this->_hooks[$tag][$keysearch] );
+
+        //For late call, then we need to change the action
+        if( has_action( $tag, $function) ) {
+            remove_action( $tag, $function );
+        }
+
     	return true;
     }
 
@@ -157,6 +163,7 @@ class Calibrefx_Generator{
     	unset( $this->_hooks[$old_tag][$keysearch] );
     	$this->add( $new_tag, $func_array['function'], $func_array['priority'], $func_array['args'] );
     	
+        //For late call, then we need to change the action
         if( has_action( $old_tag, $function) ) {
             remove_action( $old_tag, $function );
             add_action( $new_tag, $function, $priority );
