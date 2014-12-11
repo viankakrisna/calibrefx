@@ -58,6 +58,10 @@ $calibrefx->hooks->calibrefx_after_content_wrapper = array(
 	array( 'function' => 'calibrefx_do_inner_wrap_close', 'priority' => 15 )
 );
 
+$calibrefx->hooks->pre_ping = array(
+	array( 'function' => 'calibrefx_no_self_ping', 'priority' => 10 )
+);
+
 /********************
  * FUNCTIONS BELOW  *
  ********************/
@@ -305,7 +309,6 @@ function calibrefx_no_self_ping ( $links ) {
 		endif;
 	endforeach;
 }
-add_action( 'pre_ping', 'calibrefx_no_self_ping' );
 
 function add_featured_image_to_feed( $content ) {
 	global $post;

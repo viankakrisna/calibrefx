@@ -6,6 +6,16 @@
 
 global $calibrefx;
 
+$calibrefx->hooks->template_redirect = array(
+    array( 'function' => 'calibrefx_submit_handler', 'priority' => 99 )
+);
+
+$calibrefx->hooks->wp_head = array(
+    array( 'function' => 'calibrefx_print_wrap', 'priority' => 10 ),
+    array( 'function' => 'calibrefx_header_scripts', 'priority' => 30 ),
+    array( 'function' => 'calibrefx_header_custom_styles', 'priority' => 30 )
+);
+
 $calibrefx->hooks->calibrefx_meta = array(
     array( 'function' => 'calibrefx_do_meta', 'priority' => 10 ),
     array( 'function' => 'calibrefx_do_link_author', 'priority' => 10 ),
@@ -42,7 +52,6 @@ function calibrefx_submit_handler() {
     do_action( "calibrefx_submit_{$action}_handler" );
     do_action( "calibrefx_submit_handler" );
 }
-add_action( 'template_redirect', 'calibrefx_submit_handler', 99 );
 
 /**
  * Print meta description and keywords, get from blog description
@@ -228,7 +237,6 @@ max-width: %dpx;
 
     printf('<style type="text/css">%1$s %2$s'."\n".'</style>'."\n", $body, $wrap);
 }
-add_action( 'wp_head', 'calibrefx_print_wrap' );
 
 /**
  * Echo the header scripts, defined in Theme Settings.
@@ -236,7 +244,6 @@ add_action( 'wp_head', 'calibrefx_print_wrap' );
 function calibrefx_header_scripts() {
     echo apply_filters( 'calibrefx_header_scripts', stripslashes( calibrefx_get_option( 'header_scripts' ) ) );
 }
-add_action( 'wp_head', 'calibrefx_header_scripts', 30 );
 
 /**
  * Echo the header custom styles, defined in Theme Settings.
@@ -251,7 +258,6 @@ function calibrefx_header_custom_styles() {
         printf('<style type="text/css">%1$s</style>', calibrefx_custom_field('_calibrefx_custom_styles'));
     }
 }
-add_action( 'wp_head', 'calibrefx_header_custom_styles', 30 );
 
 /**
  * Echo the site title into the #header.
