@@ -300,14 +300,14 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
                                                 unset( $option['option_attr']['class'] );
                                             }
 
-                                            $attr = array_merge( array( "target" => $settings_field."-".$option_name, "class" => $classes ), $option['option_attr'] );
+                                            $attr = array_merge( array( "target" => $settings_field . "-" . $option_name, "class" => $classes ), $option['option_attr'] );
                                             
-                                            echo $calibrefx->form->{$option['option_type']}( $settings_field."-checkbox-".$option_name, $option['option_items'],
+                                            echo $calibrefx->form->{ $option['option_type'] }( $settings_field . "-checkbox-" . $option_name, $option['option_items'],
                                                 calibrefx_get_option( $option_name ), $option['option_label'], false, 
                                                 $attr);
 
-                                            echo $calibrefx->form->hidden( $settings_field."[".$option_name."]", calibrefx_get_option( $option_name ), 
-                                               array("id" => $settings_field."-".$option_name ) );
+                                            echo $calibrefx->form->hidden( $settings_field . "[" . $option_name . "]", calibrefx_get_option( $option_name ), 
+                                               array( "id" => $settings_field . "-" . $option_name ) );
                                             break;
 
                                         case 'radio':
