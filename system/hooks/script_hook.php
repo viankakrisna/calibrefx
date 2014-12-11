@@ -90,6 +90,12 @@ add_action( 'calibrefx_meta', 'calibrefx_load_styles', 5 );
  *
  */
 function calibrefx_load_admin_scripts() {
+    global $pagenow;
+
+    // Include media upload script in calibrefx settings page to make upload field in meta options working
+    if( $pagenow == 'admin.php' && ( isset( $_GET['page'] ) && $_GET['page'] == 'calibrefx' ) && !did_action( 'wp_enqueue_media' ) )
+        wp_enqueue_media();
+
     add_thickbox();
     wp_enqueue_script( 'theme-preview' );
     wp_enqueue_script( 'calibrefx_admin_js', CALIBREFX_JS_URL . '/admin.js', array( 'jquery', 'jquery-sticky', 'wp-color-picker' ), '' );
