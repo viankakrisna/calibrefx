@@ -131,8 +131,6 @@ function calibrefx_inpost_layout_box() {
     <?php
 }
 
-add_action( 'save_post', 'calibrefx_inpost_save', 1, 2 );
-
 /**
  * Saves the layout options when we save a post / page.
  *
@@ -176,3 +174,4 @@ function calibrefx_inpost_save( $post_id, $post ) {
         }
     }
 }
+add_action( 'save_post', 'calibrefx_inpost_save', 1, 2 );

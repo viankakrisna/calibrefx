@@ -33,7 +33,6 @@ function calibrefx_register_widget() {
 }
 add_action( 'init', 'calibrefx_register_widget' );
 
-
 /**
  * This function registers additional CalibreFx widget.
  */
@@ -109,7 +108,7 @@ function calibrefx_custom_class_widget( $instance, $widget, $args ) {
     if ( isset( $instance['custom_icon_class'] ) ) {
         $custom_icon_class = $instance['custom_icon_class'];
 
-        $args['before_title'] = str_replace( 'widgettitle">', 'widgettitle"><i class="fa '.$custom_icon_class.'"></i> ', $args['before_title'] );
+        $args['before_title'] = str_replace( 'widgettitle">', 'widgettitle"><i class="fa ' . $custom_icon_class . '"></i> ', $args['before_title'] );
     
     }
 

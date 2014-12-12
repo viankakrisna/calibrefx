@@ -4,6 +4,31 @@
  *
  */
 
+global $calibrefx;
+
+$calibrefx->hooks->calibrefx_after_post_content = array(
+    array( 'function' => 'calibrefx_get_comments_template', 'priority' => 30 )
+);
+
+$calibrefx->hooks->calibrefx_comments = array(
+    array( 'function' => 'calibrefx_do_comments', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_pings = array(
+    array( 'function' => 'calibrefx_do_pings', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_list_comments = array(
+    array( 'function' => 'calibrefx_default_list_comments', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_list_pings = array(
+    array( 'function' => 'calibrefx_default_list_pings', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_comment_form = array(
+    array( 'function' => 'calibrefx_do_comment_form', 'priority' => 10 )
+);
 
 /**
  * Output the comments at the end of posts / pages.
@@ -34,7 +59,6 @@ function calibrefx_get_comments_template() {
         }
     }
 }
-add_action( 'calibrefx_after_post_content', 'calibrefx_get_comments_template', 30 );
 
 /**
  * Output comment structure.
@@ -74,7 +98,6 @@ function calibrefx_do_comments() {
         echo '</div><!--end #comments-->';
     }
 }
-add_action( 'calibrefx_comments', 'calibrefx_do_comments' );
 
 /**
  * Output trackback structure.
@@ -102,7 +125,6 @@ function calibrefx_do_pings() {
         echo apply_filters( 'calibrefx_no_pings_text', '' );
     }
 }
-add_action( 'calibrefx_pings', 'calibrefx_do_pings' );
 
 /**
  * Outputs the comment list to the <code>calibrefx_comment_list()</code> hook.
@@ -116,7 +138,6 @@ function calibrefx_default_list_comments() {
     $args = apply_filters( 'calibrefx_comment_list_args', $args );
     wp_list_comments( $args );
 }
-add_action( 'calibrefx_list_comments', 'calibrefx_default_list_comments' );
 
 /**
  * Outputs the ping list to the <code>calibrefx_ping_list()</code> hook.
@@ -127,7 +148,6 @@ function calibrefx_default_list_pings() {
     $args = apply_filters( 'calibrefx_ping_list_args', $args );
     wp_list_comments( $args );
 }
-add_action( 'calibrefx_list_pings', 'calibrefx_default_list_pings' );
 
 /**
  * Defines the comment form, hooked to <code>calibrefx_comment_form()</code>
@@ -141,7 +161,6 @@ function calibrefx_do_comment_form() {
 
     comment_form();
 }
-add_action( 'calibrefx_comment_form', 'calibrefx_do_comment_form' );
 
 /**
  * Filters the default comment form arguments, used by <code>comment_form()</code>

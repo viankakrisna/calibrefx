@@ -4,6 +4,26 @@
  *
  */
 
+global $calibrefx;
+
+$calibrefx->hooks->calibrefx_before_footer = array(
+    array( 'function' => 'calibrefx_do_footer_widgets', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_footer = array(
+    array( 'function' => 'calibrefx_footer_area', 'priority' => 10 )
+);
+
+$calibrefx->hooks->calibrefx_footer_content = array(
+    array( 'function' => 'calibrefx_do_footer', 'priority' => 10 )
+);
+
+$calibrefx->hooks->wp_footer = array(
+    array( 'function' => 'calibrefx_footer_scripts', 'priority' => 10 ),
+    array( 'function' => 'calibrefx_add_socials_script', 'priority' => 10 ),
+    array( 'function' => 'calibrefx_show_tracking_scrips', 'priority' => 10 )
+);
+
 /**
  * Display the footer widget if the footer widget are active.
  */
@@ -54,7 +74,6 @@ function calibrefx_do_footer_widgets() {
         echo '</div><!--end #footer-widget-->';
     }
 }
-add_action( 'calibrefx_before_footer', 'calibrefx_do_footer_widgets' );
 
 /**
  * Display Footer area
@@ -68,7 +87,6 @@ function calibrefx_footer_area() {
     calibrefx_put_wrapper( 'footer', 'close' );
     echo '</div><!-- end #footer -->' . "\n";
 }
-add_action( 'calibrefx_footer', 'calibrefx_footer_area' );
 
 /**
  * Do Header Callback
@@ -85,7 +103,6 @@ function calibrefx_do_footer() {
 
     echo apply_filters( 'calibrefx_footer_output', $output, $backtotop_text, $creds_text );
 }
-add_action( 'calibrefx_footer_content', 'calibrefx_do_footer' );
 add_filter('calibrefx_footer_output', 'do_shortcode', 20);
 
 /**
@@ -101,7 +118,6 @@ function calibrefx_footer_scripts() {
         calibrefx_custom_field('_calibrefx_scripts');
     }
 }
-add_action( 'wp_footer', 'calibrefx_footer_scripts' );
 
 /**
  * Add Social javascript in footer
@@ -148,7 +164,6 @@ function calibrefx_add_socials_script() {
     }
     
 }
-add_action( 'wp_footer', 'calibrefx_add_socials_script' );
 
 /**
  * Show Tracking Scripts
@@ -183,4 +198,3 @@ function calibrefx_show_tracking_scrips() {
         echo stripslashes($facebook_tracking_code);
     }
 }
-add_action( 'wp_footer', 'calibrefx_show_tracking_scrips' );

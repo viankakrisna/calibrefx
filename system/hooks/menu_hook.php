@@ -4,6 +4,13 @@
  *
  */
 
+global $calibrefx;
+
+$calibrefx->hooks->calibrefx_after_header = array(
+    array( 'function' => 'calibrefx_do_nav', 'priority' => 10 ),
+    array( 'function' => 'calibrefx_do_subnav', 'priority' => 15 )
+);
+
 /**
  * This function is for displaying the "Primary Navigation" bar.
  */
@@ -73,7 +80,6 @@ function calibrefx_do_nav() {
         echo apply_filters( 'calibrefx_do_nav', $nav_output, $nav, $args );
     }
 }
-add_action( 'calibrefx_after_header', 'calibrefx_do_nav', 10 );
 
 /**
  * This function is for displaying the "Secondary Navigation" bar.
@@ -114,7 +120,6 @@ function calibrefx_do_subnav() {
         echo apply_filters( 'calibrefx_do_subnav', $subnav_output, $subnav, $args );
     }
 }
-add_action( 'calibrefx_after_header', 'calibrefx_do_subnav', 15 );
 
 /**
  * Add .active class when the current menu is active, not override the current-page-item
