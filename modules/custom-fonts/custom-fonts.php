@@ -379,7 +379,6 @@ function webfont_typography(){
             ), // Settings config
             1 //Priority
         );
-
     } );
 
     calibrefx_do_meta_options( $calibrefx->theme_settings, 'typography-body-text-settings' );
