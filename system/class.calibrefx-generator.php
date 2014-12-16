@@ -117,6 +117,13 @@ class Calibrefx_Generator{
     		'priority'	=> $priority,
     		'args'		=> $args
     	);
+
+        //For late call, then we need to add the action
+        if( !has_action( $tag, $function) ) {
+            add( $tag, $function, $priority );
+        }
+
+        return true;
     }
 
     /**
