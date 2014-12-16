@@ -91,7 +91,7 @@ function calibrefx_widget_update_callback( $instance, $new_instance ) {
         $new_instance['show_advanced'] = 0;
     }
 
-    array_merge($instance, $new_instance);
+    $instance = array_merge( $instance, $new_instance );
    
     return $instance;
 }
