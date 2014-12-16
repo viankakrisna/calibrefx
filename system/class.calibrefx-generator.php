@@ -120,7 +120,7 @@ class Calibrefx_Generator{
 
         //For late call, then we need to add the action
         if( !has_action( $tag, $function) ) {
-            add( $tag, $function, $priority );
+            add_action( $tag, $function, $priority );
         }
 
         return true;
