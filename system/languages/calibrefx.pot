@@ -1,5 +1,5 @@
-# The CalibreFx v1.0 Translation Master File
-# Copyright © 2012 CalibreWorks
+# The CalibreFx v2.0 Translation Master File
+# Copyright © 2015 CalibreWorks
 # This file is distributed under the same license as the CalibreFx package.
 msgid ""
 msgstr ""
