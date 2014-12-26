@@ -35,7 +35,7 @@ function calibrefx_add_inpost_layout_box() {
                     'echo' => false) ),
             'option_default' => '',
             'option_filter' => '',
-            'option_description' => __( "", 'calibrefx' ),
+            'option_description' => '',
             'option_attr' => array( "class" => "calibrefx-layout-selector"),
         ), // Settings config
         1 //Priority
@@ -44,13 +44,13 @@ function calibrefx_add_inpost_layout_box() {
     calibrefx_add_post_meta_options(
         'calibrefx_inpost_layout_box', //slug
         '_calibrefx_advance_label', //option name
-        __( '', 'calibrefx' ), //option label
+        '', //option label
         array(
             'option_type' => 'custom',
             'option_custom' => '<h4>Advance Settings</h4>',
             'option_default' => '',
             'option_filter' => '',
-            'option_description' => __( "", 'calibrefx' ),
+            'option_description' => '',
         ), // Settings config
         20 //Priority
     );    
@@ -63,7 +63,7 @@ function calibrefx_add_inpost_layout_box() {
             'option_type' => 'textinput',
             'option_default' => '',
             'option_filter' => 'safe_text',
-            'option_description' => __( "", 'calibrefx' ),
+            'option_description' => '',
         ), // Settings config
         20 //Priority
     );    
@@ -76,7 +76,7 @@ function calibrefx_add_inpost_layout_box() {
             'option_type' => 'textinput',
             'option_default' => '',
             'option_filter' => 'safe_text',
-            'option_description' => __( "", 'calibrefx' ),
+            'option_description' => '',
         ), // Settings config
         25 //Priority
     );    
