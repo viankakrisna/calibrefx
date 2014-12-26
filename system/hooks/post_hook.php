@@ -4,6 +4,8 @@
  *
  */
 
+global $calibrefx;
+
 $calibrefx->hooks->calibrefx_before_content_wrapper = array(
 	array( 'function' => 'calibrefx_do_inner_wrap_open', 'priority' => 5 )
 );
