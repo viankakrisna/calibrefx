@@ -117,18 +117,25 @@ class Calibrefx_Generator{
     		'priority'	=> $priority,
     		'args'		=> $args
     	);
+
+        //For late call, then we need to add the action
+        if( !has_action( $tag, $function) ) {
+            add_action( $tag, $function, $priority );
+        }
+
+        return true;
     }
 
     /**
      * Remove a function from a hook
      */
-    public function remove( $tag, $function ) {
+    public function remove( $tag, $function, $priority = 10 ) {
     	if( !isset( $this->_hooks[$tag] ) ) return;
     	
     	$keysearch = -1;
     	foreach ( $this->$tag as $key => $haystack ) {
     		if( $haystack['function'] == $function ) {
-    			$keysearch=$key;
+    			$keysearch = $key;
     			break;
     		}
     	}
@@ -138,7 +145,7 @@ class Calibrefx_Generator{
 
         //For late call, then we need to change the action
         if( has_action( $tag, $function) ) {
-            remove_action( $tag, $function );
+            remove_action( $tag, $function, $priority );
         }
 
     	return true;
@@ -147,7 +154,7 @@ class Calibrefx_Generator{
     /**
      * Move a function to another hook
      */
-    public function move( $old_tag, $new_tag, $function, $priority = 10 ) {
+    public function move( $old_tag, $new_tag, $function, $old_priority = 10, $new_priority = 10 ) {
     	if( !isset( $this->_hooks[$old_tag] ) ) return;
     	
     	$keysearch = -1;
@@ -165,8 +172,8 @@ class Calibrefx_Generator{
     	
         //For late call, then we need to change the action
         if( has_action( $old_tag, $function) ) {
-            remove_action( $old_tag, $function );
-            add_action( $new_tag, $function, $priority );
+            remove_action( $old_tag, $function, $old_priority );
+            add_action( $new_tag, $function, $new_priority );
         }
         
     	return true;
@@ -175,7 +182,7 @@ class Calibrefx_Generator{
     /**
      * Remove a function from a hook
      */
-    public function replace( $tag, $function_old, $function_new ) {
+    public function replace( $tag, $function_old, $function_new, $old_priority = 10, $new_priority = 10 ) {
         if( !isset( $this->_hooks[$tag]) ) return;
         
         $keysearch = -1;
@@ -191,8 +198,8 @@ class Calibrefx_Generator{
         
         //For late call, then we need to change the action
         if( has_action( $tag, $function_old ) ) {
-            remove_action( $tag, $function_old );
-            add_action( $tag, $function_new );
+            remove_action( $tag, $function_old, $old_priority );
+            add_action( $tag, $function_new, $new_priority );
         }
         
         return true;
