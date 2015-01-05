@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CalibreFx\n"
 "POT-Creation-Date: 2014-12-26 15:36+0700\n"
-"PO-Revision-Date: 2014-12-26 16:15+0700\n"
+"PO-Revision-Date: 2014-12-27 20:37+0700\n"
 "Last-Translator: Hilaladdiyar Muhammad Nur <hilaladdiyar@gmail.com>\n"
 "Language-Team: Calibreworks.com <info@calibreworks.com>\n"
 "MIME-Version: 1.0\n"
@@ -1115,108 +1115,109 @@ msgstr ""
 
 #: ../libraries/Walker_nav_menu_edit.php:179
 msgid "Custom Icon (label <code>i</code> class)"
-msgstr ""
+msgstr "Icon "
 
 #: ../libraries/Walker_nav_menu_edit.php:190
 #, php-format
 msgid "Original: %s"
-msgstr ""
+msgstr "Original: %s"
 
 #: ../libraries/Walker_nav_menu_edit.php:203
 msgid "Remove"
-msgstr ""
+msgstr "Hapus"
 
 #: ../libraries/Walker_nav_menu_edit.php:204
 msgid "Cancel"
-msgstr ""
+msgstr "Batalkan"
 
 #: ../shortcodes/calibrefx_shortcode.php:72
 msgid "Not a valid Youtube video ID. The video cannot be shown . "
-msgstr ""
+msgstr "Bukan ID video youtube yang valid. Video tidak bisa ditampilkan."
 
 #: ../shortcodes/calibrefx_shortcode.php:92
 msgid ""
 "The youtube video is currently not available. The video cannot be shown . "
 msgstr ""
+"Video youtube ini sedang tidak bisa diakses. Video tidak bisa ditampilkan."
 
 #: ../shortcodes/calibrefx_shortcode.php:1612
 msgid "Fill with your name"
-msgstr ""
+msgstr "Isikan dengan nama anda"
 
 #: ../shortcodes/calibrefx_shortcode.php:1613
 msgid "Your name"
-msgstr ""
+msgstr "Nama Anda"
 
 #: ../shortcodes/calibrefx_shortcode.php:1619
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: ../shortcodes/calibrefx_shortcode.php:1620
 msgid "Fill with your email"
-msgstr ""
+msgstr "Isikan dengan email anda"
 
 #: ../shortcodes/calibrefx_shortcode.php:1621
 msgid "Your email"
-msgstr ""
+msgstr "Email Anda"
 
 #: ../shortcodes/calibrefx_shortcode.php:1627
 msgid "Subject"
-msgstr ""
+msgstr "Judul"
 
 #: ../shortcodes/calibrefx_shortcode.php:1628
 #: ../shortcodes/calibrefx_shortcode.php:1629
 msgid "Your subject"
-msgstr ""
+msgstr "Judul Pesan Anda"
 
 #: ../shortcodes/calibrefx_shortcode.php:1635
 msgid "Message"
-msgstr ""
+msgstr "Pesan"
 
 #: ../shortcodes/calibrefx_shortcode.php:1636
 #: ../shortcodes/calibrefx_shortcode.php:1637
 msgid "Your message"
-msgstr ""
+msgstr "Pesan Anda"
 
 #: ../shortcodes/footer_shortcode.php:21
 msgid "Return To Top"
-msgstr ""
+msgstr "Kembali ke Atas"
 
 #: ../shortcodes/post_shortcode.php:26
 msgid "ago"
-msgstr ""
+msgstr "sebelumnya"
 
 #: ../shortcodes/post_shortcode.php:105
 #, php-format
 msgid "Visit %s&#8217;s website"
-msgstr ""
+msgstr "Kunjungi halaman website %s"
 
 #: ../shortcodes/post_shortcode.php:164
 msgid "% Comments"
-msgstr ""
+msgstr "% Komentar"
 
 #: ../shortcodes/post_shortcode.php:165
 msgid "1 Comment"
-msgstr ""
+msgstr "1 Komentar"
 
 #: ../shortcodes/post_shortcode.php:166
 msgid "Leave a Comment"
-msgstr ""
+msgstr "Tinggalkan Komentar"
 
 #: ../shortcodes/post_shortcode.php:197
 msgid "Tagged With: "
-msgstr ""
+msgstr "Dilabeli Dengan:"
 
 #: ../shortcodes/post_shortcode.php:220 ../shortcodes/post_shortcode.php:244
 msgid "Filed Under: "
-msgstr ""
+msgstr "Ditulis Pada:"
 
 #: ../widgets/facebook_comment_widget.php:20
 msgid "Facebook Comment"
-msgstr ""
+msgstr "Komentar Facebook"
 
 #: ../widgets/facebook_comment_widget.php:23
 msgid "Display a Facebook Comment"
-msgstr ""
+msgstr "Menampilkan Komentar Facebook"
 
 #: ../widgets/facebook_comment_widget.php:79
 #: ../widgets/facebook_like_widget.php:111
@@ -1227,388 +1228,393 @@ msgstr ""
 #: ../widgets/subscriber_widget.php:92
 #: ../widgets/twitter_timeline_widget.php:86
 msgid "Title"
-msgstr ""
+msgstr "Judul"
 
 #: ../widgets/facebook_comment_widget.php:84
 #: ../widgets/facebook_like_widget.php:116
 msgid "Facebook Url"
-msgstr ""
+msgstr "URL Facebook"
 
 #: ../widgets/facebook_comment_widget.php:91
 #: ../widgets/facebook_like_widget.php:123
 msgid "Width"
-msgstr ""
+msgstr "Lebar"
 
 #: ../widgets/facebook_comment_widget.php:96
 msgid "Number Of Posts"
-msgstr ""
+msgstr "Jumlah Tulisan"
 
 #: ../widgets/facebook_like_widget.php:21
 msgid "Facebook Likebox"
-msgstr ""
+msgstr "Facebook Likebox"
 
 #: ../widgets/facebook_like_widget.php:24
 msgid ""
 "Display a Facebook Likebox to allow your visitor like your Facebook Page"
 msgstr ""
+"Menampilkan Likebox Facebook untuk membolehkan pengunjung anda menyukai "
+"Halaman Facebook Anda"
 
 #: ../widgets/facebook_like_widget.php:128
 msgid "Height"
-msgstr ""
+msgstr "Tinggi"
 
 #: ../widgets/facebook_like_widget.php:135
 msgid "Color Scheme"
-msgstr ""
+msgstr "Skema Warna"
 
 #: ../widgets/facebook_like_widget.php:137
 msgid "Light"
-msgstr ""
+msgstr "Terang"
 
 #: ../widgets/facebook_like_widget.php:138
 #: ../widgets/twitter_timeline_widget.php:107
 msgid "Dark"
-msgstr ""
+msgstr "Gelap"
 
 #: ../widgets/facebook_like_widget.php:143
 msgid "Background Color"
-msgstr ""
+msgstr "Warna Latar Belakang"
 
 #: ../widgets/facebook_like_widget.php:149
 msgid "Show Border"
-msgstr ""
+msgstr "Tampilkan Garis"
 
 #: ../widgets/facebook_like_widget.php:150
 msgid "Show Faces"
-msgstr ""
+msgstr "Tampilkan Foto"
 
 #: ../widgets/facebook_like_widget.php:151
 msgid "Show Stream"
-msgstr ""
+msgstr "Tampilkan Aliran Status"
 
 #: ../widgets/facebook_like_widget.php:152
 msgid "Show Header"
-msgstr ""
+msgstr "Tampilkan Header"
 
 #: ../widgets/feature_page_widget.php:21
 msgid "Feature Page"
-msgstr ""
+msgstr "Halaman Pilihan"
 
 #: ../widgets/feature_page_widget.php:24
 msgid "Display feature page with thumbnail on your sidebar"
-msgstr ""
+msgstr "Menampilkan halaman pilihan dengan gambar di bilah sisi"
 
 #: ../widgets/feature_page_widget.php:115
 msgid "Page"
-msgstr ""
+msgstr "Halaman"
 
 #: ../widgets/feature_page_widget.php:123
 #: ../widgets/feature_post_widget.php:149
 msgid "Show Featured Image"
-msgstr ""
+msgstr "Tampilkan Gambar Pilihan"
 
 #: ../widgets/feature_page_widget.php:127
 #: ../widgets/feature_post_widget.php:153
 #: ../widgets/latest_post_widget.php:164
 #: ../widgets/popular_post_widget.php:161
 msgid "Image Size"
-msgstr ""
+msgstr "Ukuran Gambar"
 
 #: ../widgets/feature_page_widget.php:139
 #: ../widgets/feature_post_widget.php:165
 msgid "Image Alignment"
-msgstr ""
+msgstr "Penjajaran Gambar"
 
 #: ../widgets/feature_page_widget.php:141
 #: ../widgets/feature_post_widget.php:167
 msgid "None"
-msgstr ""
+msgstr "Tidak Ada"
 
 #: ../widgets/feature_page_widget.php:142
 #: ../widgets/feature_post_widget.php:168
 msgid "Left"
-msgstr ""
+msgstr "Kiri"
 
 #: ../widgets/feature_page_widget.php:143
 #: ../widgets/feature_post_widget.php:169
 msgid "Right"
-msgstr ""
+msgstr "Kanan"
 
 #: ../widgets/feature_page_widget.php:151
 #: ../widgets/feature_post_widget.php:177
 msgid "Show Page Title"
-msgstr ""
+msgstr "Tampilkan Judul Halaman"
 
 #: ../widgets/feature_page_widget.php:156
 #: ../widgets/feature_post_widget.php:182
 msgid "Show Page Content"
-msgstr ""
+msgstr "Tampilkan Konten Halaman"
 
 #: ../widgets/feature_page_widget.php:160
 #: ../widgets/feature_post_widget.php:191
 msgid "Content Character Limit"
-msgstr ""
+msgstr "Batasan Jumlah Karakter Konten"
 
 #: ../widgets/feature_page_widget.php:165
 #: ../widgets/feature_post_widget.php:196
 msgid "More Text"
-msgstr ""
+msgstr "Teks Selengkapnya"
 
 #: ../widgets/feature_post_widget.php:21
 msgid "Feature Post"
-msgstr ""
+msgstr "Tulisan Pilihan"
 
 #: ../widgets/feature_post_widget.php:24
 msgid "Display feature post with thumbnail on your sidebar"
-msgstr ""
+msgstr "Menampilkan tulisan pilihan dengan gambar di bilah sisi"
 
 #: ../widgets/feature_post_widget.php:127
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: ../widgets/feature_post_widget.php:134
 msgid "All Categories"
-msgstr ""
+msgstr "Semua Kategori"
 
 #: ../widgets/feature_post_widget.php:141
 msgid "Number of Posts to Show"
-msgstr ""
+msgstr "Jumlah Tulisan yang Ditampilkan"
 
 #: ../widgets/feature_post_widget.php:187
 msgid "Show Date Content"
-msgstr ""
+msgstr "Tampilkan Tanggal Konten"
 
 #: ../widgets/latest_post_widget.php:21
 msgid "Recent Posts"
-msgstr ""
+msgstr "Tulisan Terkini"
 
 #: ../widgets/latest_post_widget.php:24
 msgid "Display recent posts with thumbnail on your sidebar"
-msgstr ""
+msgstr "Menampilkan tulisan terkini dengan gambar di bilah sisi"
 
 #: ../widgets/latest_post_widget.php:109
 #: ../widgets/popular_post_widget.php:106
 msgid "There is no post available yet"
-msgstr ""
+msgstr "Belum ada tulisan yang ditambahkan"
 
 #: ../widgets/latest_post_widget.php:142
 #: ../widgets/popular_post_widget.php:139
 msgid "Number of posts to show"
-msgstr ""
+msgstr "Jumlah tulisan yang akan ditampilkan"
 
 #: ../widgets/latest_post_widget.php:148
 #: ../widgets/popular_post_widget.php:145
 msgid "Show Content"
-msgstr ""
+msgstr "Tampilkan Konten"
 
 #: ../widgets/latest_post_widget.php:152
 #: ../widgets/popular_post_widget.php:149
 msgid "Content Length"
-msgstr ""
+msgstr "Jumlah Karakter Konten"
 
 #: ../widgets/latest_post_widget.php:160
 #: ../widgets/popular_post_widget.php:157
 msgid "Show Thumbnail"
-msgstr ""
+msgstr "Tampilkan Gambar"
 
 #: ../widgets/popular_post_widget.php:21
 msgid "Popular Posts"
-msgstr ""
+msgstr "Tulisan Populer"
 
 #: ../widgets/popular_post_widget.php:24
 msgid "Display popular posts with thumbnail on your sidebar"
-msgstr ""
+msgstr "Menampilkan tulisan populer dengan gambar di bilah sisi"
 
 #: ../widgets/social_widget.php:20
 msgid "Social Media"
-msgstr ""
+msgstr "Media Sosial"
 
 #: ../widgets/social_widget.php:23
 msgid "Display social media link"
-msgstr ""
+msgstr "Tampilkan link media sosial"
 
 #: ../widgets/social_widget.php:74
 msgid "View us on facebook"
-msgstr ""
+msgstr "Lihat kami di facebook"
 
 #: ../widgets/social_widget.php:83
 msgid "View us on twitter"
-msgstr ""
+msgstr "Lihat kami di twitter"
 
 #: ../widgets/social_widget.php:92
 msgid "View us on google+"
-msgstr ""
+msgstr "Lihat kami di google+"
 
 #: ../widgets/social_widget.php:101
 msgid "View our youtube channel"
-msgstr ""
+msgstr "Lihat saluran youtube kami"
 
 #: ../widgets/social_widget.php:110
 msgid "View us on linkedin"
-msgstr ""
+msgstr "Lihat kami di linkedin"
 
 #: ../widgets/social_widget.php:119
 msgid "View us on pinterest"
-msgstr ""
+msgstr "Lihat kami di pinterest"
 
 #: ../widgets/social_widget.php:128
 msgid "View us on instagram"
-msgstr ""
+msgstr "Lihat kami di instagram"
 
 #: ../widgets/social_widget.php:137
 msgid "View us on github"
-msgstr ""
+msgstr "Lihat kami di github"
 
 #: ../widgets/social_widget.php:178
 msgid "Layout Type"
-msgstr ""
+msgstr "Tipe Layout"
 
 #: ../widgets/social_widget.php:180
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 #: ../widgets/social_widget.php:181
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikal"
 
 #: ../widgets/social_widget.php:186
 msgid "Icon Size"
-msgstr ""
+msgstr "Ukuran Ikon"
 
 #: ../widgets/social_widget.php:188 ../widgets/social_widget.php:200
 #: ../widgets/twitter_timeline_widget.php:106
 msgid "Default"
-msgstr ""
+msgstr "Standar"
 
 #: ../widgets/social_widget.php:189
 msgid "Large"
-msgstr ""
+msgstr "Besar"
 
 #: ../widgets/social_widget.php:190
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 #: ../widgets/social_widget.php:191
 msgid "3x"
-msgstr ""
+msgstr "3x"
 
 #: ../widgets/social_widget.php:192
 msgid "4x"
-msgstr ""
+msgstr "4x"
 
 #: ../widgets/social_widget.php:193
 msgid "5x"
-msgstr ""
+msgstr "5x"
 
 #: ../widgets/social_widget.php:198
 msgid "Icon Style"
-msgstr ""
+msgstr "Style Ikon"
 
 #: ../widgets/social_widget.php:201
 msgid "Boxed"
-msgstr ""
+msgstr "Tambahkan Boks"
 
 #: ../widgets/social_widget.php:210
 msgid "Facebook label"
-msgstr ""
+msgstr "Label Facebook"
 
 #: ../widgets/social_widget.php:215
 msgid "Twitter label"
-msgstr ""
+msgstr "Label Twitter"
 
 #: ../widgets/social_widget.php:220
 msgid "Google+ label"
-msgstr ""
+msgstr "Label Google+"
 
 #: ../widgets/social_widget.php:225
 msgid "Youtube label"
-msgstr ""
+msgstr "Label Youtube"
 
 #: ../widgets/social_widget.php:230
 msgid "LinkedIn link label"
-msgstr ""
+msgstr "Label LinkedIn"
 
 #: ../widgets/social_widget.php:235
 msgid "Pinterest label"
-msgstr ""
+msgstr "Label Pinterest"
 
 #: ../widgets/social_widget.php:240
 msgid "Instagram label"
-msgstr ""
+msgstr "Label Instagram"
 
 #: ../widgets/social_widget.php:245
 msgid "Github label"
-msgstr ""
+msgstr "Label Github"
 
 #: ../widgets/subscriber_widget.php:20
 msgid "Feedburner Subscribe"
-msgstr ""
+msgstr "Berlangganan Feedburner"
 
 #: ../widgets/subscriber_widget.php:23
 msgid "Display email subscriber form for Feedburner"
-msgstr ""
+msgstr "Menampilkan form berlangganan email dari Feedburner"
 
 #: ../widgets/subscriber_widget.php:97
 msgid "Text To Show"
-msgstr ""
+msgstr "Teks yang Akan Ditampilkan"
 
 #: ../widgets/subscriber_widget.php:102
 msgid "Google/Feedburner ID"
-msgstr ""
+msgstr "ID Google/Feedburner"
 
 #: ../widgets/subscriber_widget.php:107
 msgid "Enter your email address..."
-msgstr ""
+msgstr "Masukkan alamat email anda..."
 
 #: ../widgets/subscriber_widget.php:108
 msgid "Input Text"
-msgstr ""
+msgstr "Teks Pesan"
 
 #: ../widgets/subscriber_widget.php:113
 msgid "Go"
-msgstr ""
+msgstr "Jalankan"
 
 #: ../widgets/subscriber_widget.php:114
 msgid "Button Text"
-msgstr ""
+msgstr "Teks Tombol"
 
 #: ../widgets/twitter_timeline_widget.php:20
 msgid "Twitter Widget"
-msgstr ""
+msgstr "Widget Twitter"
 
 #: ../widgets/twitter_timeline_widget.php:23
 msgid "Display Twitter Timeline Widget"
-msgstr ""
+msgstr "Menampilkan Widget Timeline Twitter"
 
 #: ../widgets/twitter_timeline_widget.php:91
 msgid "Twitter Username"
-msgstr ""
+msgstr "Username Twitter"
 
 #: ../widgets/twitter_timeline_widget.php:96
 msgid "Widget ID"
-msgstr ""
+msgstr "ID Widget"
 
 #: ../widgets/twitter_timeline_widget.php:98
 msgid ""
 "You can get the widget ID from <a href=\"https://twitter.com/settings/widgets"
 "\" target=\"_blank\">widgets section of your twitter settings page</a>"
 msgstr ""
+"Anda dapat mendapatkan ID widget dari <a href=\"https://twitter.com/settings/"
+"widgets\" target=\"_blank\">bagian widget di halaman konfigurasi twitter "
+"anda</a>"
 
 #: ../widgets/twitter_timeline_widget.php:104
 msgid "Widget Theme"
-msgstr ""
+msgstr "Tema Widget"
 
 #: ../widgets/twitter_timeline_widget.php:112
 msgid "Widget Width"
-msgstr ""
+msgstr "Lebar Widget"
 
 #: ../widgets/twitter_timeline_widget.php:117
 msgid "Widget Height"
-msgstr ""
+msgstr "Tinggi Widget"
 
 #: ../widgets/twitter_timeline_widget.php:122
 msgid "Link Color"
-msgstr ""
+msgstr "Warna Link"
 
 #: ../widgets/twitter_timeline_widget.php:127
 msgid "Border Color"
-msgstr ""
+msgstr "Warna Garis"
