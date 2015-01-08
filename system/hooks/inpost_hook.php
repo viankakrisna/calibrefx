@@ -142,6 +142,9 @@ function calibrefx_inpost_layout_box() {
  */
 function calibrefx_inpost_save( $post_id, $post ) {
     global $calibrefx, $calibrefx_post_meta_options;
+
+    //Only run in admin site
+    if( !is_admin() ) return;
     
     if( !in_array( $post->post_type, get_post_types( array( 'public' => true ) ) ) ) {
         return $post->ID;
