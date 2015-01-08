@@ -123,15 +123,15 @@ abstract class Calibrefx_Admin {
         $_newvalue = $_POST[$this->settings_field]; 
         
         //merge value from old settings
-        if( !is_array( $_oldvalue) ) $_oldvalue = array();
-        if( !is_array( $_newvalue) ) $_newvalue = array();
+        if( !is_array( $_oldvalue ) ) $_oldvalue = array();
+        if( !is_array( $_newvalue ) ) $_newvalue = array();
         
-        $_newvalue = array_merge( $_oldvalue, $_newvalue);
+        $_newvalue = array_merge( $_oldvalue, $_newvalue );
         
         //We merge with default value too
-        $_newvalue = array_merge( (array)$this->default_settings, $_newvalue );
+        $_newvalue = array_merge( (array) $this->default_settings, $_newvalue );
 
-        if(!empty( $_newvalue) ) {
+        if(!empty( $_newvalue ) ) {
             //We sanitizing
             global $calibrefx;
             $_newvalue = $calibrefx->security->sanitize_input( $this->settings_field, $_newvalue );
