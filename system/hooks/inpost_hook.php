@@ -158,6 +158,8 @@ function calibrefx_inpost_save( $post_id, $post ) {
     if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
         return;
     }
+
+    if( !is_array( $calibrefx_post_meta_options ) ) return;
     
     foreach ( $calibrefx_post_meta_options as $sections ) {
         foreach ( $sections as $options ) {
