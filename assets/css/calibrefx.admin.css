@@ -951,6 +951,399 @@ table.th {
   background-color: #f5f5f5;
 }
 
+/*-----------------------------------------------------------------
+ Post Editor
+------------------------------------------------------------------*/
+
+#button-dialog #insert {
+    display: block;
+    float: right;
+    line-height: 24px;
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+
+.icon-option.icon, 
+.icon-option.steadysets, 
+.icon-option.linecons {
+    height: auto;
+    width: 100%;
+    text-align: left;
+}
+
+[class^="icon-"],[class*=" icon-"] {
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -o-border-radius: 0px;
+    color: #333!important;
+}
+
+select[name="icon-set-select"] {
+    clear: both;
+    display: block;
+    margin-bottom: 22px;
+}
+
+.column-wrap .clear {
+    border: none!important;
+    margin-top: 14px!important;
+    margin-bottom: 0px!important;
+}
+
+.column-wrap {
+    border-bottom: 1px solid #E5E5E5;
+    margin-bottom: 25px;
+}
+
+.half_width {
+    width: 30%; 
+    float: left;
+}
+
+.clear.no-line {
+    border: none!important;
+    margin: 0!important;
+}
+
+.half_width .clear {
+    margin-top: 73px!important;
+}
+
+.second_half_width .label, 
+.half_width .label  {
+    margin-bottom: 5px!important;
+    width: 100%!important;
+}
+
+.second_half_width {
+    width: 70%; 
+    display: inline-block;
+}
+
+.shortcode-dynamic-item .redux-opts-screenshot {
+    display: none;
+    max-width: 300px;
+}
+
+.shortcode-dynamic-item {
+    margin-top: 35px;
+}
+
+.shortcode-dynamic-item div.label {
+    clear: left;
+}
+
+.redux-opts-upload-remove {
+    margin-left: 10px;
+}
+
+.clients > div:last-child {
+    padding-bottom: 0px;
+    border-bottom: 0px; 
+}
+
+.clients .shortcode-dynamic-item {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.clients label.inline {
+    display: inline;
+    margin-right: 3px;
+    min-width: 0px!important;
+}
+
+input[type=radio] {
+    margin-right: 18px;
+}
+
+.clients .shortcode-dynamic-item .clear {
+    border: none;   
+}
+
+.icon-option i {
+    background-color: #f3f3f3;
+    border: 1px solid #f0f0f0;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    height: 33px;
+    line-height: 33px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    text-align: center;
+    vertical-align: center;
+    width: 33px;
+}
+
+.icon-option i:hover {
+     transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
+    -o-box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 200;
+}
+
+.icon-option i.selected {
+    background-color: #fff;
+    border: 1px solid #fff!important;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
+    -o-box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
+}
+
+.shortcode-content .remove-list-item {
+   margin-left: 5px;
+   float: right;
+   position: relative;
+   bottom: -45px;
+}
+
+.shortcode-content .add-list-item {
+   float: right;
+   bottom: -45px;
+   position: relative;
+}
+
+.shortcode-dynamic-item input[type=text], .shortcode-dynamic-item textarea {
+    margin-bottom: 3px;
+}
+
+#calibrefx-sc-generator input[type="text"], textarea, select, #insert-shortcode{ 
+    padding: 4px; 
+    font-family: Arial, Helvetica, sans-serif;
+    color: #555;
+}
+
+#calibrefx-sc-generator input[type="text"], textarea {
+    width:100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+}
+
+#calibrefx-sc-generator div.label {
+    display: inline-block;
+    width: 30%;
+    float: left;
+}
+
+#calibrefx-sc-generator div.content {
+    display: inline-block;
+    width: 65%;
+}
+
+#calibrefx-sc-generator div.clear {
+    margin: 19px 0px;
+    border-bottom: 1px solid #e5e5e5;
+    clear: both;
+}
+
+div.clear.no-border {
+    margin: 0px!important;
+    border: none!important;
+}
+
+.shortcode-options {
+    display: none;
+}
+
+.shortcode-options label {
+    display: inline;
+    margin-right: 3px;
+    min-width: 0px!important;
+}
+
+div[data-type="radios"] label, div[data-type="direct_to_editor"] label {
+    display: inline;
+}
+
+div[data-type="radios"] .content, div[data-type="checkbox"] .content {
+    margin: 7px 0px;
+}
+
+.description{margin-top:-.5em; }
+.description{ margin: 3px 0 0 0; color: #666; font-style: italic; }
+
+
+div.hr {
+    width: 100%;
+    margin: 20px 0px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+.btn {
+    cursor: pointer;
+    background-color: #0074A2;
+    padding: 8px 14px 8px !important;
+    color: #fff!important;
+    font-size: 11px;
+    line-height: normal;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: 0.1s linear all;
+    -moz-transition: 0.1s linear all;
+    -ms-transition: 0.1s linear all;
+    -o-transition: 0.1s linear all;
+    transition: 0.1s linear all;
+    margin-top:10px;
+    margin-right:5px;
+    text-decoration: none;
+}
+
+.btn.blue {
+    background-color: #0074A2;
+}
+
+.btn:hover {
+    color: #fff;
+    background-position: 0 -15px;
+    background-color: #372f3e;
+    text-decoration: none;
+}
+
+.tall {
+    height: 70px;   
+}
+
+#shortcode-generator option[disabled=disabled] {
+    background: #333;
+    font-weight: bold;
+    color: #FFF;
+    margin-top: 10px;
+}
+
+#shortcode-generator .shortcode-dynamic-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#shortcode-generator .shortcode-dynamic-items > div:last-child {
+    margin-bottom: 0px;
+}
+
+#shortcode-generator .shortcode-dynamic-item-text {
+    height: 125px;
+    margin-top: 4px;
+}
+#shortcode-generator .shortcode-content {
+    padding: 15px 15px;
+}
+
+/* Shortcode Code Storage */
+.shortcode_storage {
+    display:none;
+}
+
+label#option-label {
+    display: block;
+    font-weight: bold;  
+}
+
+#shortcode-content textarea#shortcode_content {
+    height: 180px;
+    font-size: 12px;
+    line-height: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-transition: 0.2s linear all;
+    -moz-transition: 0.2s linear all;
+    -ms-transition: 0.2s linear all;
+    -o-transition: 0.2s linear all;
+    transition: 0.2s linear all;
+}
+
+.shortcode-content input[type="text"], .shortcode-content textarea {
+    -webkit-transition: 0.2s linear all;
+    -moz-transition: 0.2s linear all;
+    -ms-transition: 0.2s linear all;
+    -o-transition: 0.2s linear all;
+    transition: 0.2s linear all;
+}
+
+#shortcode-content textarea#shortcode_content:focus, .shortcode-content input[type="text"]:focus, .shortcode-content textarea:focus {
+    border-color: #999999!important;
+}
+
+#shortcode-content {
+    display: none;
+}
+
+.mfp-close-btn-in .mfp-close {
+    color: #fff!important;
+    right: 5px;
+    top: 10px!important;
+    opacity: 1!important;
+}
+
+#calibrefx-sc-generator {
+    width: 720px;
+    position: relative;
+    margin: 55px auto 20px auto;
+    padding: 20px;
+    min-height: 600px;
+    height: auto;
+    background-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    -o-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+}
+
+#calibrefx-sc-header {
+    padding: 20px;
+    text-shadow: none!important;
+    margin: -20px -20px 30px -20px;
+    background-color: #222222;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+select[multiple="multiple"] {
+    height: 93px !important;
+}
+
+.calibrefx-shortcode-generator img {
+    margin-left: -7px;
+    margin-right: -2px;
+    margin-top: -2px;
+}
+
+.composer-switch {
+    height: 22px!Important;
+}
+
+.button.calibrefx-shortcode-generator, .ui-buttonset .ui-state-active {
+    background-color: #1990DC !important;
+    background-image: none!important;
+    padding-left: 10px!important;
+    background-repeat: repeat-x;
+    border-color: #085eb8!important;
+    color: #FFFFFF !important;
+    box-shadow: 0 1px 0 rgba(120, 200, 230, 0.5) inset, 0 1px 0 rgba(0, 0, 0, 0.15);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)!important;
+}
+
+.ui-button {
+    background-image: none!important;
+    background: none repeat scroll 0 0 #F7F7F7!important;
+    border-color: #CCCCCC;
+    box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 0 rgba(0, 0, 0, 0.08);
+    color: #555555;
+    vertical-align: top;
+}
+
+
+
 
 /*------------------------------------------------------------------
 [. MEDIA QUERY RESPONSIVE]

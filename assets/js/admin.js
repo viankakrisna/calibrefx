@@ -94,22 +94,6 @@ jQuery(document).ready(function( $) {
 		}
 	});
 
-    $( '#test-send-mail' ).click(function() {
-        var email = $( '#email-test' ).val();
-        var caller = $this;
-        
-        var data = {
-            action: 'calibrefx_test_send_mail',
-            data: email,
-        };
-        
-        $.post(ajaxurl, data, function(response) {
-            $( '#send-mail-res' ).html(response.message);
-        }, "json");
-
-        return false;
-    });
-
     $( '.show_advanced' ).live( 'click', function() {
         var parent = $(this).parents( '.widget' );
 
@@ -119,10 +103,6 @@ jQuery(document).ready(function( $) {
             parent.find( '.advanced-widget-options' ).slideUp();
         }
     });
-
-    theTeamResize();
-
-    $( window ).resize( theTeamResize );
 
     var imageFrame;
     $( '.upload_image_button' ).click( function( event ) {
@@ -184,6 +164,18 @@ jQuery(document).ready(function( $) {
         $div.find( '.image_id' ).val( '' );
         $div.find( '.form-control' ).val( '' );
     } );
+
+    $('body').on('click','.calibrefx-sc-generator',function(){
+        //Fire magnific popup
+        $.magnificPopup.open({
+                mainClass: 'mfp-zoom-in',
+                items: {
+                    src: '#calibrefx-sc-generator'
+                },
+                type: 'inline',
+                removalDelay: 500
+        }, 0);
+    }); 
 });
 
 function calibrefx_confirm( text ) {
@@ -239,20 +231,4 @@ function tos_bind_events() {
             return false;
         }); 
     })(jQuery);
-}
-
-function theTeamResize() {    
-    jQuery( '.the-team' ).css( 'height', 'auto' );
-
-    var height = 0;
-    jQuery( '.the-team' ).each(function() {
-        $this = jQuery(this);
-
-        if(height < $this.height() ) {
-            height = $this.height();
-        }
-
-    });
-
-    jQuery( '.the-team' ).height(height);
 }

@@ -108,6 +108,8 @@ function calibrefx_load_admin_scripts() {
         'assets_img_url' => CALIBREFX_IMAGES_URL
     );
     wp_localize_script( 'calibrefx_admin_js', 'calibrefx_local', $params );
+    
+    wp_enqueue_script( 'magnific', CALIBREFX_JS_URL . '/magnific-popup.js', 'jquery', false, TRUE );
 }
 add_action( 'admin_init', 'calibrefx_load_admin_scripts' );
 
@@ -116,12 +118,13 @@ add_action( 'admin_init', 'calibrefx_load_admin_scripts' );
  *
  */
 function calibrefx_load_admin_styles() {
-    wp_enqueue_style( 'calibrefx-admin-css', CALIBREFX_CSS_URL . '/calibrefx.admin.css', array() );
     wp_enqueue_style( 'admin-bar' );
+    wp_enqueue_style( 'wp-color-picker' );
+    wp_enqueue_style( 'magnific', CALIBREFX_CSS_URL . '/magnific-popup.css' ); 
+    wp_enqueue_style( 'calibrefx-admin-css', CALIBREFX_CSS_URL . '/calibrefx.admin.css', array() );
     if ( current_theme_supports( 'calibrefx-admin-bar' ) ) {
         wp_enqueue_style( 'calibrefx-admin-bar-css', CALIBREFX_CSS_URL . '/calibrefx.admin.bar.css', array() );
     }
-    wp_enqueue_style( 'wp-color-picker' );
 }
 add_action( 'admin_init', 'calibrefx_load_admin_styles' );
 
