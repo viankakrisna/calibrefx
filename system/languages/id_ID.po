@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CalibreFx\n"
 "POT-Creation-Date: 2014-12-26 15:36+0700\n"
-"PO-Revision-Date: 2014-12-27 20:37+0700\n"
+"PO-Revision-Date: 2015-01-09 17:56+0700\n"
 "Last-Translator: Hilaladdiyar Muhammad Nur <hilaladdiyar@gmail.com>\n"
 "Language-Team: Calibreworks.com <info@calibreworks.com>\n"
 "MIME-Version: 1.0\n"
@@ -833,76 +833,83 @@ msgstr ""
 
 #: ../libraries/Theme_settings.php:545
 msgid "Use Facebook comment instead of WordPress Default Comment"
-msgstr ""
+msgstr "Gunakan komentar Facebook disamping Komentar Standar Wordpress"
 
 #: ../libraries/Theme_settings.php:551
 msgid ""
 "You can override WordPress default comment to use Facebook comment box. "
 "Please check it if you would like to activate it."
 msgstr ""
+"Anda dapat mengganti komentar standar Wordpress dengan kotak komentar "
+"Facebook. Cek pilihan ini jika anda mau mengaktifkannya."
 
 #: ../libraries/Theme_settings.php:567
 msgid "General Layout Settings"
-msgstr ""
+msgstr "Konfigurasi Layout Secara Umum"
 
 #: ../libraries/Theme_settings.php:574
 msgid "How would you like the main layout of the website?"
-msgstr ""
+msgstr "Bagaimana anda menginginkan layout utama dari website?"
 
 #: ../libraries/Theme_settings.php:579
 msgid "Fix Width Layout"
-msgstr ""
+msgstr "Layout Lebar Tetap"
 
 #: ../libraries/Theme_settings.php:592
 msgid "Layout Width (pixels)"
-msgstr ""
+msgstr "Lebar Layout (pixel)"
 
 #: ../libraries/Theme_settings.php:605
 msgid "Use Wrapper Border Box"
-msgstr ""
+msgstr "Menggunakan Kotak Bergaris Terbungkus"
 
 #: ../libraries/Theme_settings.php:611
 msgid "Check this if you want to have wrapper box layout."
-msgstr ""
+msgstr "Cek pilihan ini jika anda mau mengaplikasikan layout kotak terbungkus."
 
 #: ../libraries/Theme_settings.php:620
 msgid "Check this to disable responsive"
-msgstr ""
+msgstr "Cek pilihan ini untuk menonaktifkan responsif"
 
 #: ../libraries/Theme_settings.php:626
 msgid "Check this if you want to disable mobile responsive feature"
 msgstr ""
+"Cek pilihan ini jika anda mau menonaktifkan fitur <i>mobile responsive</i>"
 
 #: ../libraries/Theme_settings.php:637
 msgid "Pick your general layout column"
-msgstr ""
+msgstr "Pilih layout kolom yang umum"
 
 #: ../libraries/Theme_settings.php:654
 msgid ""
 "You can choose your Website layout. You can override per post / page later."
 msgstr ""
+"Anda dapat memilih layout Website anda. Anda juga dapat mengubahnya per "
+"tulisan / halaman nanti."
 
 #: ../libraries/Theme_settings.php:672
 msgid "Style Customization"
-msgstr ""
+msgstr "Kustomisasi Style"
 
 #: ../libraries/Theme_settings.php:673
 msgid "Javascript Customization"
-msgstr ""
+msgstr "Kustomisasi Javascript"
 
 #: ../libraries/Theme_settings.php:679
 msgid "Custom CSS code will be output at <code>wp_head()</code>"
-msgstr ""
+msgstr "Kode Kustom CSS akan ditampilkan di <code>wp_head()</code>"
 
 #: ../libraries/Theme_settings.php:684
 msgid ""
 "You can add your custom css codes here. Example: <code>a.hover {color:"
 "#ffffff}</code>."
 msgstr ""
+"Anda dapat menambahkan kode kustom anda di sini. Contoh: <code>a.hover "
+"{color:#ffffff}</code>."
 
 #: ../libraries/Theme_settings.php:692
 msgid "Header script will be output at <code>wp_head()</code>"
-msgstr ""
+msgstr "Kode Header akan ditampilkan di <code>wp_head()</code>"
 
 #: ../libraries/Theme_settings.php:697
 msgid ""
@@ -910,10 +917,13 @@ msgid ""
 "analytics code. <br/>Samples: <code>&lt;script type=\"text/javascript"
 "\">alert(\"Hello World\");&lt;/script></code>."
 msgstr ""
+"Anda dapat menambahkan kode javascript anda di bagian kepala dari halaman. "
+"Sebagai contoh kode Google Analytics. <br/>Contoh: <code>&lt;script type="
+"\"text/javascript\">alert(\"Halo Dunia\");&lt;/script></code>."
 
 #: ../libraries/Theme_settings.php:705
 msgid "Footer scripts will be output at <code>wp_footer()</code>"
-msgstr ""
+msgstr "Kode Footer yang akan ditampilkan di <code>wp_footer()</code>"
 
 #: ../libraries/Theme_settings.php:710
 msgid ""
@@ -921,22 +931,25 @@ msgid ""
 "analytics code. <br/>Samples: <code>&lt;script type=\"text/javascript"
 "\">alert(\"Hello World\");&lt;/script></code>."
 msgstr ""
+"Anda dapat menambahkan kode javascript di bagian footer dari halaman. "
+"Sebagai contoh kode Google Analytics. <br/>Contoh: <code>&lt;script type="
+"\"text/javascript\">alert(\"Halo Dunia\");&lt;/script></code>."
 
 #: ../libraries/Theme_settings.php:725
 msgid "Facebook Settings"
-msgstr ""
+msgstr "Konfigurasi Facebook"
 
 #: ../libraries/Theme_settings.php:726
 msgid "Social URL Settings"
-msgstr ""
+msgstr "Konfigurasi URL Sosial"
 
 #: ../libraries/Theme_settings.php:727
 msgid "RSS Feed Settings"
-msgstr ""
+msgstr "Konfigurasi Umpan RSS"
 
 #: ../libraries/Theme_settings.php:733
 msgid "Facebook Admin ID"
-msgstr ""
+msgstr "ID Admin Facebook"
 
 #: ../libraries/Theme_settings.php:738
 msgid ""
@@ -945,105 +958,130 @@ msgid ""
 "about this <a href='https://developers.facebook.com/docs/insights/' "
 "target='_blank'>here</a>."
 msgstr ""
+"Ini akan digunakan untuk Pengetahuan Facebook (Facebook Insight). <br/>Ini "
+"akan menampilkan: <code>&lt;meta property=\"fb:admins\" content=\"ID ADMIN "
+"ANDA\"/></code> Pelajari lebih lanjut mengenai ini di <a href='https://"
+"developers.facebook.com/docs/insights/' target='_blank'>sini</a>."
 
 #: ../libraries/Theme_settings.php:746
 msgid "Facebook Page Type"
-msgstr ""
+msgstr "Tipe Halaman Facebook"
 
 #: ../libraries/Theme_settings.php:766
 msgid ""
 "This is open graph protocol that helo to identify your content. <br/>This "
 "will output: <code>&lt;meta property=\"og:type\" content=\"TYPE\"/></code>"
 msgstr ""
+"Ini adalah protokol Open Graph yang digunakan untuk mengidentifikasikan "
+"konten anda. <br/>Ini akan menampilkan: <code>&lt;meta property=\"og:type\" "
+"content=\"TIPE\"/></code>"
 
 #: ../libraries/Theme_settings.php:776
 msgid "Google+ Profile URL"
-msgstr ""
+msgstr "URL Profil Google+"
 
 #: ../libraries/Theme_settings.php:781
 msgid ""
 "This will output <code>&lt;link rel=\"author\" href=\"YOUR GOOGLE+ URL HERE"
 "\"/></code> in html head."
 msgstr ""
+"Ini akan menampilkan <code>&lt;link rel=\"author\" href=\"URL GOOGLE+ ANDA\"/"
+"></code> di tag <head>."
 
 #: ../libraries/Theme_settings.php:790
 msgid "Google+ Page URL"
-msgstr ""
+msgstr "URL Halaman Google+"
 
 #: ../libraries/Theme_settings.php:795
 msgid ""
 "This will use for Google Page For Business url, and it will show if using "
 "the Social Widget"
 msgstr ""
+"Ini akan digunakan untuk menampilkan url Halaman Google untuk Bisnis, dan "
+"akan ditampilkan menggunakan Widget Social"
 
 #: ../libraries/Theme_settings.php:804
 msgid "Facebook Page URL"
-msgstr ""
+msgstr "URL Halaman Facebook"
 
 #: ../libraries/Theme_settings.php:809
 msgid ""
 "This will use for Facebook Page url, and it will show if using the Social "
 "Widget"
 msgstr ""
+"Ini akan digunakan untuk menampilkan url Halaman Facebook, dan akan "
+"ditampilkan menggunakan Widget Social"
 
 #: ../libraries/Theme_settings.php:818
 msgid "Twitter Profile URL"
-msgstr ""
+msgstr "URL Profil Twitter"
 
 #: ../libraries/Theme_settings.php:823
 msgid ""
 "This will use for Twitter url, and it will show if using the Social Widget"
 msgstr ""
+"Ini akan digunakan untuk menampilkan url Twitter, dan akan ditampilkan "
+"menggunakan Widget Social"
 
 #: ../libraries/Theme_settings.php:832
 msgid "Youtube Channel URL"
-msgstr ""
+msgstr "URL Saluran Youtube"
 
 #: ../libraries/Theme_settings.php:837
 msgid ""
 "This will use for Youtube Channel url, and it will show if using the Social "
 "Widget"
 msgstr ""
+"Ini akan digunakan untuk menampilkan url saluran Youtube, dan akan "
+"ditampilkan menggunakan Widget Social"
 
 #: ../libraries/Theme_settings.php:846
 msgid "Linkedin Profile URL"
-msgstr ""
+msgstr "URL Profil Linkedin"
 
 #: ../libraries/Theme_settings.php:851
 msgid ""
 "This will use for Linkedin url, and it will show if using the Social Widget"
 msgstr ""
+"Ini akan digunakan untuk menampilkan url Linkedin, dan akan ditampilkan "
+"menggunakan Widget Social"
 
 #: ../libraries/Theme_settings.php:860
 msgid "Pinterest Profile URL"
-msgstr ""
+msgstr "URL Profil Pinterest"
 
 #: ../libraries/Theme_settings.php:865
 msgid ""
 "This will use for Pinterest url, and it will show if using the Social Widget"
 msgstr ""
+"Ini akan digunakan untuk menampilkan url Pinterest, dan akan ditampilkan "
+"menggunakan Widget Social"
 
 #: ../libraries/Theme_settings.php:874
 msgid "Instagram Profile URL"
-msgstr ""
+msgstr "URL Profil Instagram"
 
 #: ../libraries/Theme_settings.php:879
 msgid ""
 "This will use for Instagram url, and it will show if using the Social Widget"
 msgstr ""
+"Ini akan digunakan untuk menampilkan url Instagram, dan akan ditampilkan "
+"menggunakan Widget Social"
 
 #: ../libraries/Theme_settings.php:888
 msgid "Github Profile URL"
-msgstr ""
+msgstr "URL Profil Github"
 
 #: ../libraries/Theme_settings.php:893
 msgid ""
 "This will use for Github url, and it will show if using the Social Widget"
 msgstr ""
+"Ini akan digunakan untuk menampilkan url Github, dan akan ditampilkan "
+"menggunakan Widget Social"
 
 #: ../libraries/Theme_settings.php:904
 msgid "Main Feed URL"
-msgstr ""
+msgstr "URL Umpan Utama"
 
 #: ../libraries/Theme_settings.php:909
 msgid ""
@@ -1051,10 +1089,13 @@ msgid ""
 "you want to use feedburner instead. <br/>Sample: <code>http://feeds2."
 "feedburner.com/calibrefx.</code>"
 msgstr ""
+"Anda dapat mengubah URL Umpan yang ada di Wordpress dengan opsi ini. Sebagai "
+"contoh jika kamu mau menggunakan feedburner. <br/>Contoh: <code>http://"
+"feeds2.feedburner.com/calibrefx.</code>"
 
 #: ../libraries/Theme_settings.php:918
 msgid "Comment Feed URL"
-msgstr ""
+msgstr "URL Umpan Komentar"
 
 #: ../libraries/Theme_settings.php:923
 msgid ""
@@ -1062,56 +1103,60 @@ msgid ""
 "you want to use feedburner instead. <br/>Sample: <code>http://feeds2."
 "feedburner.com/calibrefxcomment.</code>"
 msgstr ""
+"Anda dapat mengubah URL Umpan yang ada di Wordpress dengan opsi ini. Sebagai "
+"contoh jika kamu mau menggunakan feedburner. <br/>Contoh: <code>http://"
+"feeds2.feedburner.com/calibrefxcomment.</code>"
 
 #. translators: %s: title of menu item which is invalid
 #: ../libraries/Walker_nav_menu_edit.php:78
 #, php-format
 msgid "%s (Invalid)"
-msgstr ""
+msgstr "%s (Tidak Valid)"
 
 #. translators: %s: title of menu item in draft status
 #: ../libraries/Walker_nav_menu_edit.php:82
 #, php-format
 msgid "%s (Pending)"
-msgstr ""
+msgstr "%s (Ditangguhkan)"
 
 #: ../libraries/Walker_nav_menu_edit.php:123
 msgid "Edit Menu Item"
-msgstr ""
+msgstr "Edit Item Menu"
 
 #: ../libraries/Walker_nav_menu_edit.php:132
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../libraries/Walker_nav_menu_edit.php:139
 msgid "Navigation Label"
-msgstr ""
+msgstr "Label Navigasi"
 
 #: ../libraries/Walker_nav_menu_edit.php:145
 msgid "Title Attribute"
-msgstr ""
+msgstr "Atribut Judul"
 
 #: ../libraries/Walker_nav_menu_edit.php:152
 msgid "Open link in a new window/tab"
-msgstr ""
+msgstr "Buka link di window/tab baru"
 
 #: ../libraries/Walker_nav_menu_edit.php:157
 msgid "CSS Classes (optional)"
-msgstr ""
+msgstr "Class CSS (opsional)"
 
 #: ../libraries/Walker_nav_menu_edit.php:163
 msgid "Link Relationship (XFN)"
-msgstr ""
+msgstr "Hubungan Link (XFN)"
 
 #: ../libraries/Walker_nav_menu_edit.php:169
 msgid "Description"
-msgstr ""
+msgstr "Deskripsi"
 
 #: ../libraries/Walker_nav_menu_edit.php:171
 msgid ""
 "The description will be displayed in the menu if the current theme supports "
 "it."
 msgstr ""
+"Deskripsi akan ditampilkan di menu jika tema yang sekarang mendukungnya"
 
 #: ../libraries/Walker_nav_menu_edit.php:179
 msgid "Custom Icon (label <code>i</code> class)"
