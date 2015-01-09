@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CalibreFx\n"
 "POT-Creation-Date: 2014-12-26 15:36+0700\n"
-"PO-Revision-Date: 2015-01-09 17:56+0700\n"
+"PO-Revision-Date: 2015-01-09 22:37+0700\n"
 "Last-Translator: Hilaladdiyar Muhammad Nur <hilaladdiyar@gmail.com>\n"
 "Language-Team: Calibreworks.com <info@calibreworks.com>\n"
 "MIME-Version: 1.0\n"
@@ -241,19 +241,19 @@ msgstr "Halaman %s"
 
 #: ../hooks/inpost_hook.php:18
 msgid "Calibrefx Custom Layout"
-msgstr ""
+msgstr "Layout Kustom Calibrefx"
 
 #: ../hooks/inpost_hook.php:29
 msgid "Pick your custom layout column"
-msgstr ""
+msgstr "Pilih kolom layout kustom anda"
 
 #: ../hooks/inpost_hook.php:61
 msgid "Custom Body CSS Class"
-msgstr ""
+msgstr "Kelas CSS Kustom untuk Body"
 
 #: ../hooks/inpost_hook.php:74
 msgid "Custom Post CSS Class"
-msgstr ""
+msgstr "Kelas CSS Kustom untuk Tulisan"
 
 #: ../hooks/inpost_hook.php:121
 #, php-format
@@ -262,11 +262,11 @@ msgstr "Layout Standar yang diatur di <a href=\"%s\">Konfigurasi Tema</a>"
 
 #: ../hooks/inpost_hook.php:128
 msgid "Custom Body Class"
-msgstr ""
+msgstr "Kelas CSS Kustom untuk Body"
 
 #: ../hooks/inpost_hook.php:129
 msgid "Custom Post Class"
-msgstr ""
+msgstr "Kelas CSS Kustom untuk Tulisan"
 
 #: ../hooks/layout_hook.php:148
 msgid "Content Sidebar (default blog)"
@@ -368,88 +368,93 @@ msgstr "Konfigurasi ini berlaku pada halaman arsip penulis ini."
 
 #: ../hooks/user_hook.php:40
 msgid "Custom Archive Headline"
-msgstr ""
+msgstr "Headline Kustom Halaman Arsip"
 
 #: ../hooks/user_hook.php:43
 #, php-format
 msgid "Will display in the %s tag at the top of the first page"
-msgstr ""
+msgstr "Akan ditampilkan di tag %s di bagian atas halaman pertama "
 
 #: ../hooks/user_hook.php:48
 msgid "Custom Description Text"
-msgstr ""
+msgstr "Teks Deskripsi Kustom"
 
 #: ../hooks/user_hook.php:51
 msgid "This text will be the first paragraph, and display on the first page"
 msgstr ""
+"Teks ini akan menjadi paragraf pertama, dan ditampilkan di halaman pertama"
 
 #: ../hooks/user_hook.php:56
 msgid "Author Box"
-msgstr ""
+msgstr "Kotak Penulis"
 
 #: ../hooks/user_hook.php:59
 msgid "Enable Author Box on this User's Posts?"
-msgstr ""
+msgstr "Aktifkan Kotak Penulis di Tulisan Pengguna ini?"
 
 #: ../hooks/user_hook.php:61
 msgid "Enable Author Box on this User's Archives?"
-msgstr ""
+msgstr "Aktifkan Kotak Penulis di Arsip Pengguna ini?"
 
 #: ../hooks/widget_hook.php:11
 #, php-format
 msgid "%s (Calibrefx)"
-msgstr ""
+msgstr "%s (Calibrefx)"
 
 #: ../hooks/widget_hook.php:21
 msgid "Primary Sidebar"
-msgstr ""
+msgstr "Bilah Sisi Utama"
 
 #: ../hooks/widget_hook.php:22
 msgid ""
 "This is the primary sidebar if you are using a 2 or 3 column site layout "
 "option"
 msgstr ""
+"Ini adalah bilah sisi utama jika anda menggunakan pilihan layout 2 atau 3 "
+"kolom"
 
 #: ../hooks/widget_hook.php:27
 msgid "Secondary Sidebar"
-msgstr ""
+msgstr "Bilah Sisi Sekunder"
 
 #: ../hooks/widget_hook.php:28
 msgid ""
 "This is the secondary sidebar if you are using a 3 column site layout option"
 msgstr ""
+"Ini adalah bilah sisi sekunder jika anda menggunakan pilihan layout 2 atau 3 "
+"kolom"
 
 #: ../hooks/widget_hook.php:44
 msgid "Header Right"
-msgstr ""
+msgstr "Header Sebelah Kanan"
 
 #: ../hooks/widget_hook.php:45
 msgid "This is the right side of the header"
-msgstr ""
+msgstr "Ini adalah sisi kanan dari header"
 
 #: ../hooks/widget_hook.php:54
 msgid "Footer Widget"
-msgstr ""
+msgstr "Widget Footer"
 
 #: ../hooks/widget_hook.php:55
 msgid "This is the footer widget"
-msgstr ""
+msgstr "Ini adalah widget di footer"
 
 #: ../hooks/widget_hook.php:69
 msgid "Calibrefx Advanced Settings"
-msgstr ""
+msgstr "Konfigurasi Lebih Lanjut dari Calibrefx"
 
 #: ../hooks/widget_hook.php:74
 msgid "Custom Widget Classes"
-msgstr ""
+msgstr "Kelas Widget Kustom"
 
 #: ../hooks/widget_hook.php:77
 msgid "This will set a custom classes for your widget"
-msgstr ""
+msgstr "Ini akan mengatur class kustom widget anda"
 
 #: ../hooks/widget_hook.php:80
 msgid "Custom Icon Classes"
-msgstr ""
+msgstr "Kelas Ikon Kustom"
 
 #: ../hooks/widget_hook.php:83
 msgid ""
@@ -457,370 +462,388 @@ msgid ""
 "fortawesome.github.io/Font-Awesome/icons/\" target=\"_blank\">Learn more "
 "about font-awesome.</a>"
 msgstr ""
+"Ini akan mengatur ikon di judul widget menggunakan font-awesome. <a href="
+"\"http://fortawesome.github.io/Font-Awesome/icons/\" target=\"_blank"
+"\">Pelajari lebih lanjut mengenai font-awesome.</a>"
 
 #: ../libraries/Breadcrumb.php:32
 msgid "Home"
-msgstr ""
+msgstr "Beranda"
 
 #: ../libraries/Breadcrumb.php:43
 msgid "You are here: "
-msgstr ""
+msgstr "Anda di sini:"
 
 #: ../libraries/Breadcrumb.php:44 ../libraries/Breadcrumb.php:45
 #: ../libraries/Breadcrumb.php:46 ../libraries/Breadcrumb.php:47
 #: ../libraries/Breadcrumb.php:49 ../libraries/Breadcrumb.php:50
 msgid "Archives for "
-msgstr ""
+msgstr "Arsip untuk"
 
 #: ../libraries/Breadcrumb.php:48
 msgid "Search for "
-msgstr ""
+msgstr "Pencarian untuk"
 
 #: ../libraries/Breadcrumb.php:51
 msgid "Not found: "
-msgstr ""
+msgstr "Tidak ditemukan:"
 
 #: ../libraries/Breadcrumb.php:89 ../libraries/Breadcrumb.php:170
 #: ../libraries/Breadcrumb.php:248
 #, php-format
 msgid "View %s"
-msgstr ""
+msgstr "Lihat %s"
 
 #: ../libraries/Breadcrumb.php:213 ../libraries/Breadcrumb.php:218
 #, php-format
 msgid "View archives for %s"
-msgstr ""
+msgstr "Lihat arsip untuk %s"
 
 #: ../libraries/Breadcrumb.php:221
 #, php-format
 msgid "View archives for %s %s"
-msgstr ""
+msgstr "Lihat arsip untuk %s %s"
 
 #: ../libraries/Breadcrumb.php:264
 #, php-format
 msgid "View all posts in %s"
-msgstr ""
+msgstr "Lihat semua tulisan di %s"
 
 #: ../libraries/Breadcrumb.php:282
 #, php-format
 msgid "View all %s"
-msgstr ""
+msgstr "Lihat semua %s"
 
 #: ../libraries/Breadcrumb.php:337
 #, php-format
 msgid "View all items in %s"
-msgstr ""
+msgstr "Lihat semua item di %s"
 
 #: ../libraries/Module_settings.php:37
 msgid "Available Modules"
-msgstr ""
+msgstr "Modul yang Tersedia"
 
 #: ../libraries/Module_settings.php:43
 msgid "Modules Available"
-msgstr ""
+msgstr "Modul Tersedia"
 
 #: ../libraries/Other_settings.php:39
 msgid "System Information"
-msgstr ""
+msgstr "Informasi Sistem"
 
 #: ../libraries/Other_settings.php:40 ../libraries/Other_settings.php:56
 msgid "TOS Generator"
-msgstr ""
+msgstr "Pembuat Syarat & Ketentuan"
 
 #: ../libraries/Other_settings.php:41
 msgid "Import / Export Settings"
-msgstr ""
+msgstr "Impor / Ekspor Konfigurasi"
 
 #: ../libraries/Other_settings.php:53
 msgid "Information"
-msgstr ""
+msgstr "Informasi"
 
 #: ../libraries/Other_settings.php:59 ../libraries/Other_settings.php:263
 msgid "Import Settings"
-msgstr ""
+msgstr "Impor Konfigurasi"
 
 #: ../libraries/Other_settings.php:60 ../libraries/Other_settings.php:273
 msgid "Export Settings"
-msgstr ""
+msgstr "Ekspor Konfigurasi"
 
 #: ../libraries/Other_settings.php:73
 msgid "Framework Name: "
-msgstr ""
+msgstr "Nama Framework:"
 
 #: ../libraries/Other_settings.php:73
 msgid "Codename: "
-msgstr ""
+msgstr "Nama Kode:"
 
 #: ../libraries/Other_settings.php:74 ../libraries/Other_settings.php:82
 msgid "Version:"
-msgstr ""
+msgstr "Versi:"
 
 #: ../libraries/Other_settings.php:74
 msgid "Released:"
-msgstr ""
+msgstr "Diterbitkan:"
 
 #: ../libraries/Other_settings.php:75
 msgid "DB Version: "
-msgstr ""
+msgstr "Versi Basis Data:"
 
 #: ../libraries/Other_settings.php:81
 msgid "Themes Name: "
-msgstr ""
+msgstr "Nama Tema:"
 
 #: ../libraries/Other_settings.php:83
 msgid "Themes Author URL:"
-msgstr ""
+msgstr "URL Pembuat Tema:"
 
 #: ../libraries/Other_settings.php:255
 msgid ""
 "Upload the data file (<code>.json</code>) from your computer and we'll "
 "import your settings."
 msgstr ""
+"Kirim file data (<code>.json</code>) dari komputer anda dan kami akan "
+"mengimpor konfigurasi anda."
 
 #: ../libraries/Other_settings.php:256
 msgid "Choose the file from your computer and click \"Upload file and Import\""
-msgstr ""
+msgstr "Pilih file dari komputer anda dan klik \"Kirim File dan Impor\""
 
 #: ../libraries/Other_settings.php:259
 #, php-format
 msgid "Upload File: (Maximum Size: %s)"
-msgstr ""
+msgstr "Kirim File: (Ukuran Maksimum: %s)"
 
 #: ../libraries/Other_settings.php:270
 msgid "Press the download button below to export all the settings to file"
 msgstr ""
+"Tekan tombol unduh di bawah ini untuk mengekspor semua konfigurasi ke file"
 
 #: ../libraries/Theme_settings.php:104
 msgid "General Settings"
-msgstr ""
+msgstr "Konfigurasi Umum"
 
 #: ../libraries/Theme_settings.php:106
 msgid "Social Settings"
-msgstr ""
+msgstr "Konfigurasi Sosial"
 
 #: ../libraries/Theme_settings.php:117
 msgid "Content Setting"
-msgstr ""
+msgstr "Konfigurasi Konten"
 
 #: ../libraries/Theme_settings.php:118
 msgid "Navigation Settings"
-msgstr ""
+msgstr "Konfigurasi Navigasi"
 
 #: ../libraries/Theme_settings.php:119
 msgid "Post Comment Setting"
-msgstr ""
+msgstr "Konfigurasi Komentar Tulisan"
 
 #: ../libraries/Theme_settings.php:120
 msgid "Website Tracking Setting"
-msgstr ""
+msgstr "Konfigurasi Pelacakan Website"
 
 #: ../libraries/Theme_settings.php:122
 msgid "Website Layout Settings"
-msgstr ""
+msgstr "Konfigurasi Layout Website"
 
 #: ../libraries/Theme_settings.php:123
 msgid "Themes Advanced Customization"
-msgstr ""
+msgstr "Kustomisasi Tema Lebih Lanjut"
 
 #: ../libraries/Theme_settings.php:125
 msgid "Social Integration"
-msgstr ""
+msgstr "Integrasi Sosial"
 
 #: ../libraries/Theme_settings.php:144
 msgid "Menu Settings"
-msgstr ""
+msgstr "Konfigurasi Menu"
 
 #: ../libraries/Theme_settings.php:150
 msgid "Primary Navigation"
-msgstr ""
+msgstr "Navigasi Utama"
 
 #: ../libraries/Theme_settings.php:156
 msgid "You can assign primary menu from the Apperances > Menu"
-msgstr ""
+msgstr "Anda dapat menetapkan menu utama dari Tampilan > Menu"
 
 #: ../libraries/Theme_settings.php:164
 msgid "Secondary Navigation"
-msgstr ""
+msgstr "Navigasi Sekunder"
 
 #: ../libraries/Theme_settings.php:170
 msgid "You can assign secondary menu from the Apperances > Menu"
-msgstr ""
+msgstr "Anda dapat menetapkan menu sekunder dari Tampilan > Menu"
 
 #: ../libraries/Theme_settings.php:185
 msgid "Google Anlytic Settings"
-msgstr ""
+msgstr "Konfigurasi Google Analytic"
 
 #: ../libraries/Theme_settings.php:186
 msgid "Facebook Tracking Settings"
-msgstr ""
+msgstr "Konfigurasi Pelacakan Facebook"
 
 #: ../libraries/Theme_settings.php:192
 msgid "Google Analytics ID"
-msgstr ""
+msgstr "ID Google Analytic"
 
 #: ../libraries/Theme_settings.php:197
 msgid "Enter your google analytics ID, example: <strong>UA-xxxxxxxx-x</strong>"
 msgstr ""
+"Masukkan ID google analytic anda, contoh: <strong>UA-xxxxxxxx-x</strong> "
 
 #: ../libraries/Theme_settings.php:205
 msgid "Paste your Google Tag Manager Script"
-msgstr ""
+msgstr "Tempelkan Kode Manajer Tag Google Anda"
 
 #: ../libraries/Theme_settings.php:210
 msgid ""
 "Learn more about Google Tag Manager <a href='http://www.google.com/"
 "tagmanager/get-started.html' target='_blank'>here</a>"
 msgstr ""
+"Pelajari lebih lanjut mengenai Manajer Tag Google di <a href='http://www."
+"google.com/tagmanager/get-started.html' target='_blank'>sini</a>"
 
 #: ../libraries/Theme_settings.php:220
 msgid "Paste your Facebook conversion pixels"
-msgstr ""
+msgstr "Tempelkan konversi pixel Facebook anda"
 
 #: ../libraries/Theme_settings.php:225
 msgid ""
 "Learn more about Facebook conversion pixel <a href='https://www.facebook.com/"
 "help/435189689870514/' target='_blank'>here</a>"
 msgstr ""
+"Pelajari lebih lanjut tentang konversi pixel Facebook di <a href='https://"
+"www.facebook.com/help/435189689870514/' target='_blank'>sini</a>"
 
 #: ../libraries/Theme_settings.php:240
 msgid "Post Info Settings"
-msgstr ""
+msgstr "Konfigurasi Informasi Tulisan"
 
 #: ../libraries/Theme_settings.php:241
 msgid "Breadcrumb Settings"
-msgstr ""
+msgstr "Konfigurasi Breadcrumb"
 
 #: ../libraries/Theme_settings.php:242
 msgid "Category Page Settings"
-msgstr ""
+msgstr "Konfigurasi Halaman Kategori"
 
 #: ../libraries/Theme_settings.php:243
 msgid "Post Navigation Settings"
-msgstr ""
+msgstr "Konfigurasi Navigasi Tulisan"
 
 #: ../libraries/Theme_settings.php:250
 msgid "Show Post Published Date"
-msgstr ""
+msgstr "Tampilkan Tanggal Diterbitkannya Tulisan"
 
 #: ../libraries/Theme_settings.php:263
 msgid "Show Post Author"
-msgstr ""
+msgstr "Tampilakan Penulis Tulisan"
 
 #: ../libraries/Theme_settings.php:276
 msgid "Show Post Comment Count"
-msgstr ""
+msgstr "Tampilkan Jumlah Komentar Tulisan"
 
 #: ../libraries/Theme_settings.php:289
 msgid "Show Post Category"
-msgstr ""
+msgstr "Tampilkan Category Tulisan"
 
 #: ../libraries/Theme_settings.php:302
 msgid "Show Post Tags"
-msgstr ""
+msgstr "Tampilkan Tag Tulisan"
 
 #: ../libraries/Theme_settings.php:318
 msgid "Show Breadcrumb on Homepage"
-msgstr ""
+msgstr "Tampilkan Breadcrumb di Halaman Beranda"
 
 #: ../libraries/Theme_settings.php:331
 msgid "Show Breadcrumb on Blog Post"
-msgstr ""
+msgstr "Tampilkan Breadcrumb di Tulisan Blog"
 
 #: ../libraries/Theme_settings.php:344
 msgid "Show Breadcrumb on Static Page"
-msgstr ""
+msgstr "Tampilkan Breadcrumb di Halaman Statis"
 
 #: ../libraries/Theme_settings.php:357
 msgid "Show Breadcrumb on Archive / Category Page"
-msgstr ""
+msgstr "Tampilkan Breadcrumb di Halaman Arsip / Kategori"
 
 #: ../libraries/Theme_settings.php:370
 msgid "Show Breadcrumb on 404 Page"
-msgstr ""
+msgstr "Tampilakan Breadcrumb di halaman 404"
 
 #: ../libraries/Theme_settings.php:383
 msgid "Check it if you want to show breadcrumb in any of thoses pages."
 msgstr ""
+"Cek pilihan tersebut apabila anda ingin menampilkan breadcrumb di halaman-"
+"halaman tersebut"
 
 #: ../libraries/Theme_settings.php:396
 msgid "How do you want to show the excerpt of the content on blog post list?"
 msgstr ""
+"Bagaimana anda ingin menampilkan kutipan dari konten di list tulisan blog?"
 
 #: ../libraries/Theme_settings.php:401
 msgid "Display post content"
-msgstr ""
+msgstr "Tampilkan Konten Tulisan"
 
 #: ../libraries/Theme_settings.php:402
 msgid "Display post excerpts"
-msgstr ""
+msgstr "Tampilkan Tulisan Kutipan"
 
 #: ../libraries/Theme_settings.php:414
 msgid "Limit total characters for your content excerpt"
-msgstr ""
+msgstr "Batasi total karakter dari kutipan konten"
 
 #: ../libraries/Theme_settings.php:419
 msgid "To show all contents fill with <code>0</code>"
-msgstr ""
+msgstr "Untuk menampilkan semua konten isikan dengan <code>0</code>"
 
 #: ../libraries/Theme_settings.php:431
 msgid "How do you want to show the post navigation?"
-msgstr ""
+msgstr "Bagaimana anda ingin menampilkan navigasi tulisan?"
 
 #: ../libraries/Theme_settings.php:436
 msgid "Older/Newer"
-msgstr ""
+msgstr "Lebih Lama/Lebih Baru"
 
 #: ../libraries/Theme_settings.php:437
 msgid "Previous/Next"
-msgstr ""
+msgstr "Sebelumnya/Selanjutnya"
 
 #: ../libraries/Theme_settings.php:438
 msgid "Numeric"
-msgstr ""
+msgstr "Numerik"
 
 #: ../libraries/Theme_settings.php:439
 msgid "Don't show navigation"
-msgstr ""
+msgstr "Jangan tampilkan navigasi"
 
 #: ../libraries/Theme_settings.php:444
 msgid ""
 "There are 3 types of pagination available. Choose which one is the best for "
 "you."
 msgstr ""
+"Anda 3 tipe pemberian nomor halaman yang tersedia. Pilih yang paling cocok "
+"menurut anda."
 
 #: ../libraries/Theme_settings.php:459
 msgid "Comments"
-msgstr ""
+msgstr "Komentar"
 
 #: ../libraries/Theme_settings.php:460
 msgid "Trackbacks"
-msgstr ""
+msgstr "Lacak Balik"
 
 #: ../libraries/Theme_settings.php:461
 msgid "Social Comment Integration"
-msgstr ""
+msgstr "Integrasi Komentar Menggunakan Media Sosial"
 
 #: ../libraries/Theme_settings.php:468
 msgid "Show comment on post?"
-msgstr ""
+msgstr "Tampilkan komentar pada tulisan?"
 
 #: ../libraries/Theme_settings.php:480
 msgid "Show comment on page?"
-msgstr ""
+msgstr "Tampilkan komentar di halaman?"
 
 #: ../libraries/Theme_settings.php:493
 msgid ""
 "You can generally disabled comment on posts or pages. Uncheck it if you want "
 "to disable comment box."
 msgstr ""
+"Anda dapat secara umum menonaktifkan komentar pada tulisan atau halaman. "
+"Hapus centang apabila anda ingin menonaktifkan kotak komentar."
 
 #: ../libraries/Theme_settings.php:506
 msgid "Show trackbacks on posts?"
-msgstr ""
+msgstr "Tampilkan lacak balik pada tulisan?"
 
 #: ../libraries/Theme_settings.php:518
 msgid "Show trackbacks on pages?"
-msgstr ""
+msgstr "Tampilkan lacak balik pada halaman?"
 
 #: ../libraries/Theme_settings.php:531
 msgid ""
@@ -830,6 +853,12 @@ msgid ""
 "href=\"https://make.wordpress.org/support/user-manual/building-your-"
 "wordpress-community/trackbacks-and-pingbacks/\" target=\"_blank\">here</a>"
 msgstr ""
+"Anda dapat secara umum menonaktifkan lacak balik / ping balik pada tulisan "
+"atau halaman. Hapus centang apabila anda ingin menonaktifkan kotak komentar."
+"<br />\n"
+"Pelajari lebih lanjut tentang Lacak Balik dan Ping Balik Wordpress di <a "
+"href=\"https://make.wordpress.org/support/user-manual/building-your-"
+"wordpress-community/trackbacks-and-pingbacks/\" target=\"_blank\">sini</a>"
 
 #: ../libraries/Theme_settings.php:545
 msgid "Use Facebook comment instead of WordPress Default Comment"
