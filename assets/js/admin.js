@@ -232,3 +232,28 @@ function tos_bind_events() {
         }); 
     })(jQuery);
 }
+
+// Shortcodes
+jQuery(document).ready(function($){
+    
+    $("select#calibrefx-shortcodes").chosen({
+        width: "100%",
+        disable_search_threshold: 30
+    });
+
+    $('#calibrefx-shortcodes').change(function(){
+        $('.shortcode-options').hide();
+        $('#options-'+$(this).val()).show();
+
+        var dataType = $('#options-'+$(this).val()).attr('data-type');
+        
+        if( dataType == 'checkbox' || dataType == 'simple' ){
+            $('#shortcode-content').show().find('textarea').val('');
+        }
+        
+        else {
+            $('#shortcode-content textarea').val('').parent().parent().hide();
+        }
+
+    });
+});
