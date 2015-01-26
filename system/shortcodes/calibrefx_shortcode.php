@@ -24,6 +24,163 @@ add_shortcode( 'home_url', 'calibrefx_home_url' );
 
 /**
  * ==============================================================
+ * Text Heading
+ * ==============================================================
+ */
+
+function calibrefx_h1( $atts, $content = '' ) {
+    extract( shortcode_atts( array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'style' => '',
+                'color' => '',
+                'font' => '',
+                'font_style' => ''
+    ), $atts ) );
+
+    $classes = 'heading';
+    if ( !empty( $class ) )
+        $classes .= ' ' . $class;
+    if ( !empty( $color ) )
+        $classes .= ' ' . $color;
+    if ( !empty( $font ) )
+        $classes .= ' font-' . $font;
+    if ( !empty( $font_style ) )
+        $classes .= ' font-' . $font_style;
+
+    return $before . "<h1 class='$classes' style='$style'>" . do_shortcode( $content ) . "</h1>" . $after;
+}
+add_shortcode( 'h1', 'calibrefx_h1' );
+
+function calibrefx_h2( $atts, $content = '' ) {
+    extract( shortcode_atts( array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'style' => '',
+                'color' => '',
+                'font' => '',
+                'font_style' => ''
+    ), $atts ) );
+
+    $classes = 'heading';
+    if ( !empty( $class ) )
+        $classes .= ' ' . $class;
+    if ( !empty( $color ) )
+        $classes .= ' ' . $color;
+    if ( !empty( $font ) )
+        $classes .= ' font-' . $font;
+    if ( !empty( $font_style ) )
+        $classes .= ' font-' . $font_style;
+
+    return $before . "<h2 class='$classes' style='$style'>" . do_shortcode( $content ) . "</h2>" . $after;
+}
+add_shortcode( 'h2', 'calibrefx_h2' );
+
+
+function calibrefx_h3( $atts, $content = '' ) {
+    extract( shortcode_atts( array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'style' => '',
+                'color' => '',
+                'font' => '',
+                'font_style' => ''
+    ), $atts ) );
+
+    $classes = 'heading';
+    if ( !empty( $class ) )
+        $classes .= ' ' . $class;
+    if ( !empty( $color ) )
+        $classes .= ' ' . $color;
+    if ( !empty( $font ) )
+        $classes .= ' font-' . $font;
+    if ( !empty( $font_style ) )
+        $classes .= ' font-' . $font_style;
+
+    return $before . "<h3 class='$classes' style='$style'>" . do_shortcode( $content ) . "</h3>" . $after;
+}
+add_shortcode( 'h3', 'calibrefx_h3' );
+
+function calibrefx_h4( $atts, $content = '' ) {
+    extract( shortcode_atts( array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'style' => '',
+                'color' => '',
+                'font' => '',
+                'font_style' => ''
+    ), $atts ) );
+
+    $classes = 'heading';
+    if ( !empty( $class ) )
+        $classes .= ' ' . $class;
+    if ( !empty( $color ) )
+        $classes .= ' ' . $color;
+    if ( !empty( $font ) )
+        $classes .= ' font-' . $font;
+    if ( !empty( $font_style ) )
+        $classes .= ' font-' . $font_style;
+
+    return $before . "<h4 class='$classes' style='$style'>" . do_shortcode( $content ) . "</h4>" . $after;
+}
+add_shortcode( 'h4', 'calibrefx_h4' );
+
+function calibrefx_h5( $atts, $content = '' ) {
+    extract( shortcode_atts( array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'style' => '',
+                'color' => '',
+                'font' => '',
+                'font_style' => ''
+    ), $atts ) );
+
+    $classes = 'heading';
+    if ( !empty( $class ) )
+        $classes .= ' ' . $class;
+    if ( !empty( $color ) )
+        $classes .= ' ' . $color;
+    if ( !empty( $font ) )
+        $classes .= ' font-' . $font;
+    if ( !empty( $font_style ) )
+        $classes .= ' font-' . $font_style;
+
+    return $before . "<h5 class='$classes' style='$style'>" . do_shortcode( $content ) . "</h5>" . $after;
+}
+add_shortcode( 'h5', 'calibrefx_h5' );
+
+function calibrefx_h6( $atts, $content = '' ) {
+    extract( shortcode_atts( array(
+                'before' => '',
+                'after' => '',
+                'class' => '',
+                'style' => '',
+                'color' => '',
+                'font' => '',
+                'font_style' => ''
+    ), $atts ) );
+
+    $classes = 'heading';
+    if ( !empty( $class ) )
+        $classes .= ' ' . $class;
+    if ( !empty( $color ) )
+        $classes .= ' ' . $color;
+    if ( !empty( $font ) )
+        $classes .= ' font-' . $font;
+    if ( !empty( $font_style ) )
+        $classes .= ' font-' . $font_style;
+
+    return $before . "<h6 class='$classes' style='$style'>" . do_shortcode( $content ) . "</h6>" . $after;
+}
+add_shortcode( 'h6', 'calibrefx_h6' );
+
+/**
+ * ==============================================================
  * Video Section
  * ==============================================================
  */
@@ -1588,6 +1745,284 @@ function calibrefx_post_item( $atts, $content = null ) {
 add_shortcode( 'post', 'calibrefx_post_item' );
 
 /**
+ * Produces the date of post publication.
+ *
+ * Supported shortcode attributes are:
+ *   after (output after link, default is empty string),
+ *   before (output before link, default is empty string),
+ *   format (date format, default is value in date_format option field),
+ *   label (text following 'before' output, but before date).
+ *
+ */
+function calibrefx_post_date_shortcode( $atts ) {
+    $defaults = array(
+            'after'  => '',
+            'before' => '',
+            'format' => get_option( 'date_format' ),
+            'label'  => '',
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+    
+    $display = '';
+    
+    switch( $atts['format']) {
+        case 'relative' : 
+            $display = calibrefx_human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'calibrefx' );
+            break;
+        case 'time-ago' : 
+            $display = calibrefx_time_ago( get_the_date( 'Y/m/d' ) );
+            break;
+        default:
+            $display = get_the_time( $atts['format'] );
+            break;
+    }
+    
+    $output = sprintf( '<span class="date published time" title="%5$s">%1$s%3$s%4$s%2$s</span> ', $atts['before'], $atts['after'], $atts['label'], $display, get_the_time( 'c' ) );
+    return apply_filters( 'calibrefx_post_date_shortcode', $output, $atts );
+}
+add_shortcode( 'post_date', 'calibrefx_post_date_shortcode' );
+
+/**
+ * Produces the time of post publication.
+ *
+ * Supported shortcode attributes are:
+ *   after (output after link, default is empty string),
+ *   before (output before link, default is empty string),
+ *   format (date format, default is value in date_format option field),
+ *   label (text following 'before' output, but before date).
+ *
+ */
+function calibrefx_post_time_shortcode( $atts ) {
+    $defaults = array(
+            'after'  => '',
+            'before' => '',
+            'format' => get_option( 'time_format' ),
+            'label'  => '',
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+    $output = sprintf( '<span class="published time" title="%5$s">%1$s%3$s%4$s%2$s</span> ', $atts['before'], $atts['after'], $atts['label'], get_the_time( $atts['format'] ), get_the_time( 'Y-m-d\TH:i:sO' ) );
+    return apply_filters( 'calibrefx_post_time_shortcode', $output, $atts );
+}
+add_shortcode( 'post_time', 'calibrefx_post_time_shortcode' );
+
+/**
+ * Produces the author of the post (unlinked display name).
+ *
+ * Supported shortcode attributes are:
+ *   after (output after link, default is empty string),
+ *   before (output before link, default is empty string).
+ *
+ */
+function calibrefx_post_author_shortcode( $atts ) {
+    $defaults = array(
+            'after'  => '',
+            'before' => '',
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+    $output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', esc_html( get_the_author() ), $atts['before'], $atts['after'] );
+    return apply_filters( 'calibrefx_post_author_shortcode', $output, $atts );
+}
+add_shortcode( 'post_author', 'calibrefx_post_author_shortcode' );
+
+/**
+ * Produces the author of the post (link to author URL).
+ *
+ * Supported shortcode attributes are:
+ *   after (output after link, default is empty string),
+ *   before (output before link, default is empty string).
+ *
+ */
+function calibrefx_post_author_link_shortcode( $atts ) {
+    $defaults = array(
+            'after'    => '',
+            'before'   => '',
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+    $author = get_the_author();
+    $author_url = get_the_author_meta( 'url' );
+
+    if(!$author) {
+        global $post;
+        $author_url = get_the_author_meta( 'url', $post->post_author );
+    }
+    if ( $author_url )
+            $author = '<a href="' . $author_url . '" title="' . esc_attr( sprintf( __( 'Visit %s&#8217;s website', 'calibrefx' ), $author ) ) . '" rel="author external">' . $author . '</a>';
+    
+    $output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $author, $atts['before'], $atts['after'] );
+    return apply_filters( 'calibrefx_post_author_link_shortcode', $output, $atts );
+}
+add_shortcode( 'post_author_link', 'calibrefx_post_author_link_shortcode' );
+
+/**
+ * Produces the author of the post (link to author archive).
+ *
+ * Supported shortcode attributes are:
+ *   after (output after link, default is empty string),
+ *   before (output before link, default is empty string).
+ *
+ */
+function calibrefx_post_author_posts_link_shortcode( $atts ) {
+    global $post;
+    
+    $defaults = array(
+            'after'  => '',
+            'before' => '',
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+
+    $author = get_the_author_meta( 'ID' );
+    $author_name = get_the_author();
+
+    if(!$author) {
+        global $post;
+        $author =  $post->post_author;
+        $author_name = get_the_author_meta( 'user_nicename', $post->post_author );
+    }
+
+    if(is_custom_post_type( $post) ) $author = sprintf( '<span class="fn n">%s</span>', $author_name );
+    else $author = sprintf( '<a href="%s" class="fn n" title="%s" rel="author">%s</a>', get_author_posts_url( $author ), $author_name, $author_name );
+
+    $output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $author, $atts['before'], $atts['after'] );
+    return apply_filters( 'calibrefx_post_author_posts_link_shortcode', $output, $atts );
+}
+add_shortcode( 'post_author_posts_link', 'calibrefx_post_author_posts_link_shortcode' );
+
+/**
+ * Produces the link to the current post comments.
+ *
+ * Supported shortcode attributes are:
+ *   after (output after link, default is empty string),
+ *   before (output before link, default is empty string),
+ *   hide_if_off (hide link if comments are off, default is 'enabled' (true) ),
+ *   more (text when there is more than 1 comment, use % character as placeholder
+ *     for actual number, default is '% Comments' )
+ *   one (text when there is exactly one comment, default is '1 Comment' ),
+ *   zero (text when there are no comments, default is 'Leave a Comment' ).
+ *
+ */
+function calibrefx_post_comments_shortcode( $atts ) {
+    $defaults = array(
+            'after'       => '',
+            'before'      => ' &#8226; ',
+            'hide_if_off' => 'enabled',
+            'more'        => __( '% Comments', 'calibrefx' ),
+            'one'         => __( '1 Comment', 'calibrefx' ),
+            'zero'        => __( 'Leave a Comment', 'calibrefx' ),
+    );
+
+    $is_facebook_comment_enabled = calibrefx_get_option( 'facebook_comments' );
+    if( $is_facebook_comment_enabled) return;
+
+    $atts = shortcode_atts( $defaults, $atts );
+    if ( ( ! calibrefx_get_option( 'comments_posts' ) || ! comments_open() ) && 'enabled' === $atts['hide_if_off'] )
+            return;
+
+    ob_start();
+    comments_number( $atts['zero'], $atts['one'], $atts['more'] );
+    $comments = ob_get_clean();
+    $comments = sprintf( '<a href="%s">%s</a>', get_comments_link(), $comments );
+    $output = sprintf( '<span class="post-comments">%2$s%1$s%3$s</span>', $comments, $atts['before'], $atts['after'] );
+    return apply_filters( 'calibrefx_post_comments_shortcode', $output, $atts );
+}
+add_shortcode( 'post_comments', 'calibrefx_post_comments_shortcode' );
+
+/**
+ * Produces the tag links list.
+ *
+ * Supported shortcode attributes are:
+ *   after (output after link, default is empty string),
+ *   before (output before link, default is 'Tagged With: ' ),
+ *   sep (separator string between tags, default is ', ' ).
+ *
+ */
+function calibrefx_post_tags_shortcode( $atts ) {
+    $defaults = array(
+            'after'  => '',
+            'before' => __( 'Tagged With: ', 'calibrefx' ),
+            'sep'    => ', ',
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+    $tags = get_the_tag_list( $atts['before'], trim( $atts['sep'] ) . ' ', $atts['after'] );
+    if ( ! $tags ) return;
+    $output = sprintf( '<span class="tags">%s</span> ', $tags );
+    return apply_filters( 'calibrefx_post_tags_shortcode', $output, $atts );
+}
+add_shortcode( 'post_tags', 'calibrefx_post_tags_shortcode' );
+
+/**
+ * Produces the category links list.
+ *
+ * Supported shortcode attributes are:
+ *   after (output after link, default is empty string),
+ *   before (output before link, default is 'Tagged With: ' ),
+ *   sep (separator string between tags, default is ', ' ).
+ *
+ */
+function calibrefx_post_categories_shortcode( $atts ) {
+    $defaults = array(
+            'sep'    => ', ',
+            'before' => __( 'Filed Under: ', 'calibrefx' ),
+            'after'  => '',
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+    $cats = get_the_category_list( trim( $atts['sep'] ) . ' ' );
+    $output = sprintf( '<span class="categories">%2$s%1$s%3$s</span> ', $cats, $atts['before'], $atts['after'] );
+    return apply_filters( 'calibrefx_post_categories_shortcode', $output, $atts );
+}
+add_shortcode( 'post_categories', 'calibrefx_post_categories_shortcode' );
+
+/**
+ * Produces the linked post taxonomy terms list.
+ *
+ * Supported shortcode attributes are:
+ *   after (output after link, default is empty string),
+ *   before (output before link, default is 'Tagged With: ' ),
+ *   sep (separator string between tags, default is ', ' ),
+ *    taxonomy (name of the taxonomy, default is 'category' ).
+ *
+ */
+function calibrefx_post_terms_shortcode( $atts ) {
+    global $post;
+    $defaults = array(
+        'after'    => '',
+        'before'   => __( 'Filed Under: ', 'calibrefx' ),
+        'sep'      => ', ',
+        'taxonomy' => 'category',
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+    $terms = get_the_term_list( $post->ID, $atts['taxonomy'], $atts['before'], trim( $atts['sep'] ) . ' ', $atts['after'] );
+    if ( is_wp_error( $terms ) ) return false;
+    if ( empty( $terms ) )  return false;
+    $output = '<span class="terms">' . $terms . '</span>';
+    return apply_filters( 'calibrefx_post_terms_shortcode', $output, $terms, $atts );
+}
+add_shortcode( 'post_terms', 'calibrefx_post_terms_shortcode' );
+
+/**
+ * Produces the edit post link for logged in users.
+ *
+ * Supported shortcode attributes are:
+ *   after (output after link, default is empty string),
+ *   before (output before link, default is 'Tagged With: ' ),
+ *   link (link text, default is '(Edit)' ).
+ */
+function calibrefx_post_edit_shortcode( $atts ) {
+    if ( ! apply_filters( 'calibrefx_edit_post_link', true ) ) return;
+    $defaults = array(
+        'after'  => '',
+        'before' => '',
+        'link'   => __( '(Edit)', 'calibrefx' ),
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+    ob_start();
+    edit_post_link( $atts['link'], $atts['before'], $atts['after'] );
+    $edit = ob_get_clean();
+    $output = $edit;
+    return apply_filters( 'calibrefx_post_edit_shortcode', $output, $atts );
+}
+add_shortcode( 'post_edit', 'calibrefx_post_edit_shortcode' );
+
+/**
  * ==============================================================
  * Contact Form
  * ==============================================================
@@ -1675,38 +2110,146 @@ function calibrefx_contact_form( $atts, $content = null ) {
 }
 add_shortcode( 'contactform', 'calibrefx_contact_form' );
 
+
 /**
- * remove unnecessary paragraf tag
- *  
- * @access public
- * @author Hilaladdiyar Muhammad Nur
- *
+ * ==============================================================
+ * Footer Area
+ * ==============================================================
  */
-function advance_shortcode_unautop( $content ) {
-    $content = trim( do_shortcode( shortcode_unautop( $content ) ) );
 
-    /* Remove '' from the start of the string. */
-    if ( substr( $content, 0, 4 ) == '' )
-        $content = substr( $content, 4 );
+/**
+ * This function produces the "Return to Top" link
+ * 
+ * @param array $atts Shortcode attributes
+ * @return string 
+ */
+function calibrefx_footer_scrolltop_shortcode( $atts ) {
 
-    /* Remove '' from the end of the string. */
-    if ( substr( $content, -3, 3 ) == '' )
-        $content = substr( $content, 0, -3 );
+    $defaults = array(
+        'text' => __( 'Return To Top', 'calibrefx' ),
+        'href' => '#wrapper',
+        'nofollow' => true,
+        'before' => '',
+        'after' => ''
+    );
+    $atts = shortcode_atts( $defaults, $atts );
 
-    //debug_var( $content );
-    $content = preg_replace( '#^<\/p>|^<br \/>|^<br>|<p>$#', '', $content );
+    $nofollow = $atts['nofollow'] ? 'rel="nofollow"' : '';
 
-    $content = str_replace( array( '<p></p>', '<p>  </p>', '<p> </p>' ), '', $content );
-    $content = str_replace( array( '<br/>', '<br>', '<br />' ), '', $content );
-    //debug_var( $content );
-    return $content;
+    $output = sprintf( '%s<a href="%s" %s><i class="fa fa-chevron-circle-up"></i> %s</a>%s', $atts['before'], esc_url( $atts['href']), $nofollow, $atts['text'], $atts['after']);
+
+    return apply_filters( 'calibrefx_footer_scrolltop_shortcode', $output, $atts );
 }
+add_shortcode( 'footer_scrolltop', 'calibrefx_footer_scrolltop_shortcode' );
+
 
 /**
- * make text widget to be able to run shortcode
- *  
- * @access public
- * @author Hilaladdiyar Muhammad Nur
+ * Show Footer Copyright Text
  *
+ * @param array $atts Shortcode attributes
+ * @return string
  */
-add_filter( 'widget_text', 'do_shortcode' );
+function calibrefx_footer_copyright_shortcode( $atts ) {
+    $defaults = array(
+        'copyright' => '&copy;',
+        'first' => '',
+        'before' => '',
+        'after' => ''
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+
+    $output = $atts['before'] . $atts['copyright'];
+    if ( '' != $atts['first'] && date( 'Y' ) != $atts['first'])
+        $output .= $atts['first'] . g_ent( '&ndash;' );
+    $output .= ' ' . date( 'Y' ) . $atts['after'];
+
+    return apply_filters( 'calibrefx_footer_copyright_shortcode', $output, $atts );
+}
+add_shortcode( 'footer_copyright', 'calibrefx_footer_copyright_shortcode' );
+
+
+/**
+ * Show Footer Theme Name and Link
+ *
+ * @param array $atts Shortcode attributes
+ * @return string
+ */
+function calibrefx_footer_theme_link_shortcode( $atts ) {
+
+    $defaults = array(
+        'before' => '&middot; ',
+        'after' => ''
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+
+    if (!is_child_theme() || !defined( 'CHILD_THEME_NAME' ) || !defined( 'CHILD_THEME_URL' ) )
+        return;
+
+    $output = sprintf( '%s<a href="%s" title="%s">%s</a>%s', $atts['before'], esc_url(CHILD_THEME_URL), esc_attr(CHILD_THEME_NAME), esc_html(CHILD_THEME_NAME), $atts['after']);
+
+    return apply_filters( 'calibrefx_footer_theme_link_shortcode', $output, $atts );
+}
+add_shortcode( 'footer_theme_link', 'calibrefx_footer_theme_link_shortcode' );
+
+
+/**
+ * Show Footer CalibreFx Links
+ *
+ * @param array $atts Shortcode attributes
+ * @return string
+ */
+function calibrefx_footer_calibrefx_link_shortcode( $atts ) {
+
+    $defaults = array(
+        'before' => '',
+        'after' => ' &middot;'
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+
+    $output = sprintf( '%s<a href="%s" title="%s">%s</a>%s', $atts['before'], esc_url(FRAMEWORK_URL), esc_attr(FRAMEWORK_NAME), esc_html(FRAMEWORK_NAME), $atts['after']);
+
+    return apply_filters( 'calibrefx_footer_calibrefx_link_shortcode', $output, $atts );
+}
+add_shortcode( 'footer_calibrefx_link', 'calibrefx_footer_calibrefx_link_shortcode' );
+
+
+/**
+ * Show Footer WordPress links
+ *
+ * @param array $atts Shortcode attributes
+ * @return string
+ */
+function calibrefx_footer_wordpress_link_shortcode( $atts ) {
+
+    $defaults = array(
+        'before' => '',
+        'after' => ' &middot;'
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+
+    $output = sprintf( '%s<a href="%s" title="%s">%s</a>%s', $atts['before'], esc_url( 'http://wordpress.org/' ), esc_attr( 'WordPress' ), esc_html( 'WordPress' ), $atts['after']);
+
+    return apply_filters( 'calibrefx_footer_wordpress_link_shortcode', $output, $atts );
+}
+add_shortcode( 'footer_wordpress_link', 'calibrefx_footer_wordpress_link_shortcode' );
+
+
+/**
+ * Show Footer Home Name and Link
+ *
+ * @param array $atts Shortcode attributes
+ * @return string
+ */
+function calibrefx_footer_home_link_shortcode( $atts ) {
+
+    $defaults = array(
+        'before' => '&middot; ',
+        'after' => ''
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+
+    $output = sprintf( '%s<a href="%s" title="%s">%s</a>%s', $atts['before'], esc_url(home_url() ), esc_attr(get_bloginfo() ), esc_html(get_bloginfo() ), $atts['after']);
+
+    return apply_filters( 'calibrefx_footer_home_link_shortcode', $output, $atts );
+}
+add_shortcode( 'footer_home_link', 'calibrefx_footer_home_link_shortcode' );

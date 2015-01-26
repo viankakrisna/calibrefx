@@ -322,3 +322,39 @@ function add_featured_image_to_feed( $content ) {
 }
 add_filter( 'the_excerpt_rss', 'add_featured_image_to_feed', 1000, 1 );
 add_filter( 'the_content_feed', 'add_featured_image_to_feed', 1000, 1 );
+
+/**
+ * Remove unnecessary paragraph tag
+ *  
+ * @access public
+ * @author Hilaladdiyar Muhammad Nur
+ *
+ */
+function advance_shortcode_unautop( $content ) {
+    $content = trim( do_shortcode( shortcode_unautop( $content ) ) );
+
+    /* Remove '' from the start of the string. */
+    if ( substr( $content, 0, 4 ) == '' )
+        $content = substr( $content, 4 );
+
+    /* Remove '' from the end of the string. */
+    if ( substr( $content, -3, 3 ) == '' )
+        $content = substr( $content, 0, -3 );
+
+    //debug_var( $content );
+    $content = preg_replace( '#^<\/p>|^<br \/>|^<br>|<p>$#', '', $content );
+
+    $content = str_replace( array( '<p></p>', '<p>  </p>', '<p> </p>' ), '', $content );
+    $content = str_replace( array( '<br/>', '<br>', '<br />' ), '', $content );
+    //debug_var( $content );
+    return $content;
+}
+
+/**
+ * make text widget to be able to run shortcode
+ *  
+ * @access public
+ * @author Hilaladdiyar Muhammad Nur
+ *
+ */
+add_filter( 'widget_text', 'do_shortcode' );
