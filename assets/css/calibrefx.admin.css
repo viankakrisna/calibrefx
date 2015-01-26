@@ -69,6 +69,9 @@ label{
     float: none !important;
 }
 
+[class^="icon-"], [class*=" icon-"] {
+    margin-right: 5px;
+}
 
 
 
@@ -1290,7 +1293,7 @@ label#option-label {
     position: relative;
     margin: 55px auto 20px auto;
     padding: 20px;
-    min-height: 600px;
+    min-height: 400px;
     height: auto;
     background-color: #ffffff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);

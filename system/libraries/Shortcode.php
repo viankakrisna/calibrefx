@@ -15,7 +15,7 @@ class CFX_Shortcode {
     }
 
     public static function shortcode_button(){
-    	echo "<a data-effect='mfp-zoom-in' class='button calibrefx-sc-generator' href='#calibrefx-sc-generator'><span class='dashicons dashicons-editor-expand'></span>Calibrefx Shortcodes</a>";
+    	echo "<a data-effect='mfp-zoom-in' class='button calibrefx-sc-generator' href='#calibrefx-sc-generator'><span class='icon-calibrefx'></span>Shortcodes</a>";
     }
 
     public static function content_display(){
