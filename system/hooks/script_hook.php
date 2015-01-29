@@ -14,22 +14,28 @@ $calibrefx->hooks->calibrefx_meta = array(
  * This function register our style and script files
  */
 function calibrefx_register_scripts() {   
-    wp_register_style( 'calibrefx-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css' );
-    wp_register_style( 'calibrefx-bootstrap-theme', CALIBREFX_CSS_URL . '/bootstrap-theme.min.css' );
-    wp_register_style( 'calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css' );
     wp_register_style( 'font-awesome', CALIBREFX_CSS_URL . '/font-awesome.min.css' );
     wp_register_style( 'jquery-superfish', CALIBREFX_CSS_URL . '/superfish.css' );
     wp_register_style( 'nProgress', CALIBREFX_CSS_URL . '/nprogress.css' );
+    
+    wp_register_style( 'calibrefx-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css' );
+    wp_register_style( 'calibrefx-bootstrap-theme', CALIBREFX_CSS_URL . '/bootstrap-theme.min.css' );
+    wp_register_style( 'calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css' );
     wp_register_style( 'calibrefx-template-style', CALIBREFX_URL . '/style.css' );
+    wp_register_style( 'calibrefx-shortcodes', CALIBREFX_CSS_URL . '/shortcodes.css' );
     wp_register_style( 'calibrefx-icons', CALIBREFX_CSS_URL . '/cfxicons.css' );
     
-    wp_register_script( 'calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', array( 'jquery' ) );
     wp_register_script( 'modernizr', CALIBREFX_JS_URL . '/modernizr.min.js', false);
     wp_register_script( 'jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', array( 'jquery' ) );
     wp_register_script( 'jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array( 'jquery' ) );
     wp_register_script( 'jquery.cycle2', CALIBREFX_JS_URL . '/jquery.cycle2.js', array( 'jquery' ) );
     wp_register_script( 'jquery.cycle2.optional', CALIBREFX_JS_URL . '/jquery.cycle2.optional.js', array( 'jquery' ) );
-    wp_register_script( 'nProgress',CALIBREFX_JS_URL . '/nprogress.js', array( 'jquery' ) );
+    wp_register_script( 'nProgress', CALIBREFX_JS_URL . '/nprogress.js', 'jquery', '', TRUE);
+    wp_register_script( 'jquery-appear', CALIBREFX_JS_URL . '/jquery.appear.js', 'jquery', '', TRUE);
+    wp_register_script( 'jquery-easing', CALIBREFX_JS_URL . '/jquery.easing.js', 'jquery', '', TRUE);
+    
+    wp_register_script( 'calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', array( 'jquery' ) );
+    wp_register_script( 'calibrefx-shortcodes', CALIBREFX_JS_URL . '/shortcodes.js', array( 'jquery' ), '', TRUE );
     wp_register_script( 'calibrefx-script', CALIBREFX_JS_URL . '/calibrefx.js', array( 'jquery', 'jquery-validate' ) );
 
 }
@@ -41,12 +47,16 @@ add_action( 'init', 'calibrefx_register_scripts' );
  * since @1.0
  */
 function calibrefx_load_scripts() {
+    wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'jquery.cycle2' );
     wp_enqueue_script( 'jquery.cycle2.optional' );
     wp_enqueue_script( 'modernizr' );
     wp_enqueue_script( 'nProgress' );
-    wp_enqueue_script( 'calibrefx-script' );
     wp_enqueue_script( 'calibrefx-bootstrap' );
+    wp_enqueue_script( 'calibrefx-script' );
+    wp_enqueue_script( 'calibrefx-shortcodes' );
+    wp_enqueue_script( 'jquery-appear' );
+    wp_enqueue_script( 'jquery-easing' );
     
     if (is_singular() && get_option( 'thread_comments' ) && comments_open() ) {
         wp_enqueue_script( 'comment-reply' );
@@ -64,16 +74,18 @@ function calibrefx_load_scripts() {
 function calibrefx_load_styles() {
     global $wp_styles;
 
-    $calibrefx_default_style = get_theme_support( 'calibrefx-default-styles' );
-
-    /** If not active, do nothing */
-    if (!$calibrefx_default_style)
-        return;
-
-    wp_enqueue_style( 'calibrefx-bootstrap' );
     wp_enqueue_style( 'font-awesome' );
     wp_enqueue_style( 'jquery-superfish' );
     wp_enqueue_style( 'nProgress' );
+    wp_enqueue_style( 'calibrefx-shortcodes' );
+    
+    $calibrefx_default_style = get_theme_support( 'calibrefx-default-styles' );
+
+    /** If not active, do nothing */
+    if ( !$calibrefx_default_style )
+        return;
+
+    wp_enqueue_style( 'calibrefx-bootstrap' );
     
     /** Check for the active theme */
 
@@ -124,6 +136,7 @@ function calibrefx_load_admin_styles() {
     wp_enqueue_style( 'wp-color-picker' );
     wp_enqueue_style( 'magnific', CALIBREFX_CSS_URL . '/magnific-popup.css' ); 
     wp_enqueue_style( 'calibrefx-admin-css', CALIBREFX_CSS_URL . '/calibrefx.admin.css', array() );
+    wp_enqueue_style( 'font-awesome' );
     wp_enqueue_style( 'calibrefx-icons' );
     wp_enqueue_style('chosen-css', CALIBREFX_CSS_URL . '/chosen.css');
 
