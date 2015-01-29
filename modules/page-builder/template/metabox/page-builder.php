@@ -16,11 +16,6 @@ return array(
 			'title'     => __('Section', 'vp_textdomain'),
 			'fields'    => array(
 				array(
-					'type' => 'toggle',
-					'name' => 'container',
-					'label' => __('Container', 'vp_textdomain')
-				),
-				array(
 					'type' => 'textbox',
 					'name' => 'section_class',
 					'label' => __('Section Class', 'vp_textdomain')
