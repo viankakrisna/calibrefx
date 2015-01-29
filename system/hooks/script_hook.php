@@ -26,13 +26,14 @@ function calibrefx_register_scripts() {
     wp_register_style( 'calibrefx-icons', CALIBREFX_CSS_URL . '/cfxicons.css' );
     
     wp_register_script( 'modernizr', CALIBREFX_JS_URL . '/modernizr.min.js', false);
+    wp_register_script( 'nProgress', CALIBREFX_JS_URL . '/nprogress.js', 'jquery', '', TRUE);
     wp_register_script( 'jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', array( 'jquery' ) );
     wp_register_script( 'jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array( 'jquery' ) );
     wp_register_script( 'jquery.cycle2', CALIBREFX_JS_URL . '/jquery.cycle2.js', array( 'jquery' ) );
     wp_register_script( 'jquery.cycle2.optional', CALIBREFX_JS_URL . '/jquery.cycle2.optional.js', array( 'jquery' ) );
-    wp_register_script( 'nProgress', CALIBREFX_JS_URL . '/nprogress.js', 'jquery', '', TRUE);
     wp_register_script( 'jquery-appear', CALIBREFX_JS_URL . '/jquery.appear.js', 'jquery', '', TRUE);
     wp_register_script( 'jquery-easing', CALIBREFX_JS_URL . '/jquery.easing.js', 'jquery', '', TRUE);
+    wp_register_script( 'jquery-transition', CALIBREFX_JS_URL . '/jquery.transit.min.js', 'jquery', '', TRUE);
     
     wp_register_script( 'calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', array( 'jquery' ) );
     wp_register_script( 'calibrefx-shortcodes', CALIBREFX_JS_URL . '/shortcodes.js', array( 'jquery' ), '', TRUE );
@@ -57,6 +58,7 @@ function calibrefx_load_scripts() {
     wp_enqueue_script( 'calibrefx-shortcodes' );
     wp_enqueue_script( 'jquery-appear' );
     wp_enqueue_script( 'jquery-easing' );
+    wp_enqueue_script( 'jquery-transition' );
     
     if (is_singular() && get_option( 'thread_comments' ) && comments_open() ) {
         wp_enqueue_script( 'comment-reply' );
@@ -75,6 +77,7 @@ function calibrefx_load_styles() {
     global $wp_styles;
 
     wp_enqueue_style( 'font-awesome' );
+    wp_enqueue_style( 'calibrefx-icons' );
     wp_enqueue_style( 'jquery-superfish' );
     wp_enqueue_style( 'nProgress' );
     wp_enqueue_style( 'calibrefx-shortcodes' );

@@ -242,20 +242,12 @@ jQuery(document).ready(function($){
         disable_search_threshold: 30
     });
 
+    $('input.popup-colorpicker-bg').wpColorPicker();
+    $('input.popup-colorpicker-text').wpColorPicker();
+
     $('#add-shortcode').click(function(){
         //column animation check (don't add the attrs when unnecessary)
         var name = $('#calibrefx-shortcodes').val();
-        if(name == 'one_half' || name == 'one_third' || name == 'two_thirds' || name == 'one_fourth' || name == 'three_fourths' || name == 'one_sixth' || name == 'five_sixths' || name == 'one_whole') {
-            if( $('#options-'+name+' select').val() == 'None') {
-                $('#options-'+name+' select').addClass('skip-processing');
-                $('#options-'+name+' input[data-attrname="delay"]').addClass('skip-processing');
-                
-            } else {
-                $('#options-'+name+' select').removeClass('skip-processing');
-                $('#options-'+name+' input[data-attrname="delay"]').removeClass('skip-processing');
-            }
-        }
-        
         var dataType = $('#options-'+name).attr('data-type');
         
         update_shortcode();
@@ -288,6 +280,22 @@ jQuery(document).ready(function($){
         }
 
     });
+
+    //icon selection
+    $('.icon-option i').click(function(){
+        $('.icon-option i').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+    //icon set selection
+    $('select[name="icon-set-select"]').change(function(){
+        var $selected_set = $(this).val();
+        $('.icon-option').hide();
+        $('.icon-option').next('.clear').hide();
+        $('.icon-option.'+$selected_set).stop(true,true).fadeIn();
+        $('.icon-option.'+$selected_set).next('.clear').show();
+    });
+    $('select[name="icon-set-select"]').trigger('change');
 
     function update_shortcode(ending){
         
@@ -361,7 +369,14 @@ jQuery(document).ready(function($){
         });
         
         //take care of icon attrs
-        if(name == 'icon' && $('.icon-option i.selected').length > 0 ) code += ' image="'+ $('.icon-option i.selected').attr('class').split(' ')[0] +'"'; 
+        if(name == 'icon' && $('.icon-option i.selected').length > 0 ) {
+            var icon_class = $('.icon-option i.selected').attr('class').split(' ');
+            var the_class = icon_class[0];
+            if(icon_class.length > 1){
+                the_class = icon_class[icon_class.length - 2];
+            }
+            code += ' image="'+ the_class +'"'; 
+        }
         
         code += ']';
 

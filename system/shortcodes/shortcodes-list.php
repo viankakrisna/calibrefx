@@ -631,16 +631,7 @@ $cfx_shortcodes['icon'] = array(
 				'fa-youtube-play' => 'fa fa-youtube-play',
 			)
 		),
-		'glyphicons' => array(
-			'type'=>'icons', 
-			'title'=>'Glyphicons', 
-			'values'=> array(
-				'fa-yen' => 'fa fa-yen',
-				'fa-youtube' => 'fa fa-youtube',
-				'fa-youtube-play' => 'fa fa-youtube-play',
-			)
-		),
-		'calibrfxicons' => array(
+		'calibrefx-icons' => array(
 			'type'=>'icons', 
 			'title'=>'Calibrefx Icons', 
 			'values'=> array(

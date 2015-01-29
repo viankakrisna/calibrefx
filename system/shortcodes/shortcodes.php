@@ -254,3 +254,44 @@ function cfx_divider( $atts, $content = null ) {
     return $divider;
 }
 add_shortcode( 'divider', 'cfx_divider' );
+
+//icon
+function cfx_icon( $atts, $content = null ) {
+    extract(
+        shortcode_atts(
+            array(
+                "size" => 'large', 
+                'background_color' => '', 
+                'text_color' => '', 
+                'image' => 'icon-circle'
+            ), $atts)); 
+    
+    $style = null;
+    
+    if( !empty( $background_color ) && $size != 'large-alt' ) {
+        $style .= 'background-color: ' . $background_color . '; ';
+    }
+    else if( $size == 'large-alt' ) {
+        $style .= 'border: 2px solid ' . $background_color . ';';
+    }
+    
+    if( !empty( $text_color ) ) {
+        $style .= 'color: ' . $text_color . '; ';
+    }
+    
+    if( $size == 'large' ) {
+        $size_class = 'fa fa-3x';
+    }
+    else if( $size == 'regular' ) {
+        $size_class = 'fa fa-2x';
+    }  
+    else if( $size == 'tiny' ) {
+        $size_class = 'fa';
+    }
+    else {
+        $size_class = 'fa fa-2x'; 
+    }
+    
+    return '<i class="' . $size_class . ' ' . $image . '" style="' . $style . '"></i>';
+}
+add_shortcode( 'icon', 'cfx_icon' );
