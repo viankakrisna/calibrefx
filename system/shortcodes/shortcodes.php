@@ -9,7 +9,7 @@ function calibrefx_one_half( $atts, $content = '' ) {
             'centered_text' => 'false', 
             'animation' 	=> '', 
             'delay' 		=> '0'
-                ), $atts ) );
+        ), $atts ) );
 
     $column_classes = '';
     $attr = '';
@@ -195,14 +195,12 @@ function cfx_image_with_animation($atts, $content = null) {
     extract(
         shortcode_atts(
             array(
-                "animation" => 'Fade In', 
-                "delay" => '0', 
-                "image_url" => '', 
+                'animation' => 'Fade In', 
+                'delay' => '0', 
+                'image_url' => '', 
                 'alt' => '', 
-                'img_link_target' => 
-                '_self', 
-                'img_link' => '', 
-                'img_link_large' => ''
+                'lightbox' => 'false', 
+                
             ), $atts ) );
     
     $parsed_animation = str_replace( " ", "-", $animation );
@@ -212,22 +210,12 @@ function cfx_image_with_animation($atts, $content = null) {
         $image_src = wp_get_attachment_image_src( $image_url, 'full' );
         $image_url = $image_src[0];
     }
-    
-    if( !empty( $img_link ) OR !empty( $img_link_large ) ){
-        
-        if( !empty( $img_link ) AND empty( $img_link_large ) ) {
-            
-            return '<a href="' . $img_link . '" target="' . $img_link_target . '"><img class="img-with-animation" data-delay="' . $delay . '" data-animation="' . strtolower( $parsed_animation ) . '" src="' . $image_url . '" alt="' . $alt_tag . '" /></a>';
-            
-        } elseif( !empty( $img_link_large ) ) {
-            
-            return '<a href="' . $image_url . '" class="pp"><img class="img-with-animation" data-delay="' . $delay . '" data-animation="' . strtolower( $parsed_animation ).'" src="' . $image_url . '" alt="' . $alt_tag . '" /></a>';
-        }
-        
-    } else {
-        return '<img class="img-with-animation" data-delay="' . $delay . '" data-animation="' . strtolower( $parsed_animation ) . '" src="'.$image_url.'" alt="' . $alt_tag . '" />';
+
+    if( $lightbox ){
+        return '<a href="' . $image_url . '" data-lightbox="lightbox"><img class="img-with-animation" data-delay="' . $delay . '" data-animation="' . strtolower( $parsed_animation ).'" src="' . $image_url . '" alt="' . $alt_tag . '" /></a>';
     }
-   
+
+    return '<img class="img-with-animation" data-delay="' . $delay . '" data-animation="' . strtolower( $parsed_animation ) . '" src="'.$image_url.'" alt="' . $alt_tag . '" />';
 }
 add_shortcode('image_with_animation', 'cfx_image_with_animation');
 
@@ -236,8 +224,8 @@ function cfx_divider( $atts, $content = null ) {
     extract( 
         shortcode_atts(
             array(
-                "custom_height" => '', 
-                "line_type" => 'No Line'
+                'custom_height' => '', 
+                'line_type' => 'No Line',
             ), $atts));
     
     if( $line_type == 'Small Thick Line' || $line_type == 'Small Line' ){
@@ -264,11 +252,11 @@ function cfx_icon( $atts, $content = null ) {
                 'background_color' => '', 
                 'text_color' => '', 
                 'image' => 'icon-circle'
-            ), $atts)); 
+            ), $atts ) ); 
     
     $style = null;
     
-    if( !empty( $background_color ) && $size != 'large-alt' ) {
+    if( !empty( $background_color ) AND $size != 'large-alt' ) {
         $style .= 'background-color: ' . $background_color . '; ';
     }
     else if( $size == 'large-alt' ) {
@@ -295,3 +283,50 @@ function cfx_icon( $atts, $content = null ) {
     return '<i class="' . $size_class . ' ' . $image . '" style="' . $style . '"></i>';
 }
 add_shortcode( 'icon', 'cfx_icon' );
+
+function cfx_google_map( $atts ) {
+   extract( 
+        shortcode_atts( 
+            array(
+                'latitude' => '',
+                'longitude' => '',
+                'zoom' => '16',
+                'height' => '320',
+                'title' => '',
+                'address' => '',
+                'image_url' => '',
+            ), $atts ) );
+   $output = '';
+
+   if( $latitude AND $longitude ){
+      $map_canvas_id = 'map_canvas_' . sanitize_title( $latitude ) . '_' . sanitize_title( $longitude );
+      $output .= '<div id="' . $map_canvas_id . '" style="width: 100%; height: ' . $height . 'px;"></div>'."\n\r";
+      $output .= '<script type="text/javascript">' . "\n\r";
+      $output .= '(function($){'."\n\r";
+      $output .= '$( document ).ready(function() {' . "\n\r";
+
+      $output .= 'var map_lat = ' . $latitude . ';' . "\n\r";
+      $output .= 'var map_long = ' . $longitude . ';' . "\n\r";
+      $output .= 'var map_style = [{"featureType": "all","stylers": [{"saturation": -100},{"gamma": 0.5}]}];' . "\n\r";
+      $output .= 'var map_zoom = ' . $zoom . ';' . "\n\r";
+
+      $output .= '$("#' . $map_canvas_id . '").googleMap({' . "\n\r";
+      $output .= 'coords: [map_lat, map_long],' . "\n\r";
+      $output .= 'styles: map_style,' . "\n\r";
+      $output .= 'zoom: map_zoom' . "\n\r";
+      $output .= '});' . "\n\r";
+
+      $output .= '$("#' . $map_canvas_id . '").addMarker({' . "\n\r";
+      $output .= 'coords: [map_lat, map_long],' . "\n\r";
+      $output .= 'icon: "' . $image_url . '",' . "\n\r";
+      $output .= 'title: "' . addslashes( $title ) . '",' . "\n\r";
+      $output .= 'text: "' . addslashes( $address ) . '"' . "\n\r";
+      $output .= '});' . "\n\r";
+
+      $output .= '});' . "\n\r";
+      $output .= '})(jQuery);' . "\n\r";
+      $output .= '</script>' . "\n\r";
+   }
+   return $output;
+}
+add_shortcode( 'google_map', 'cfx_google_map' );

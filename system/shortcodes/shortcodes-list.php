@@ -8,7 +8,7 @@ global $cfx_shortcodes;
 
 $cfx_shortcodes['header_6'] = array( 
 	'type' => 'heading', 
-	'title' => __('Element', 'calibrefx' )
+	'title' => __( 'Element', 'calibrefx' )
 );
 
 //Image with Animation
@@ -19,7 +19,7 @@ $cfx_shortcodes['image_with_animation'] = array(
 		'image' => array( 'type' =>'custom', 'title'  => __( 'Image', 'calibrefx' ) ),
 		'animation'=>array(
 			'type'=>'select', 
-			'title'  => __('Image Animation', 'calibrefx'),
+			'title'  => __( 'Image Animation', 'calibrefx'),
 			'values' => array(
 			     "fade-in" => "Fade In",
 		  		 "fade-in-from-left" => "Fade In From Left",
@@ -29,58 +29,59 @@ $cfx_shortcodes['image_with_animation'] = array(
 			)
 		),
 		'delay'=>array(
-			'type'=>'text', 
-			'title'=>__('Delay', 'calibrefx'),
-			'desc' => __('Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'calibrefx'),
+			'type' => 'text', 
+			'title'=> __( 'Delay', 'calibrefx' ),
+			'desc' => __( 'Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'calibrefx' ),
 		),
+		'lightbox'=>array( 'type'=>'checkbox', 'title'=>__( 'Enable Lightbox', 'calibrefx' ) ),
 	)
 );
 
 //Divider
 $cfx_shortcodes['divider'] = array( 
-	'type'=>'regular', 
-	'title'=>__('Divider', 'calibrefx' ), 
-	'attr'=>array( 
-		'line_type'=>array(
-			'type'=>'select', 
-			'title'  => __('Display Line', 'calibrefx'),
+	'type'  => 'regular', 
+	'title' => __( 'Divider', 'calibrefx' ), 
+	'attr'  => array( 
+		'line_type' => array(
+			'type' => 'select', 
+			'title' => __( 'Display Line', 'calibrefx' ),
 			'values' => array(
 			     "no-line" => "No Line",
 		  		 "full-width" => "Full Width Line",
 		  		 "small" => "Small Line"
 			)
 		),
-		'custom_height'=>array(
-			'type'=>'text', 
-			'desc' => 'If you would like to control the specifc number of pixels your divider is, enter it here. <b>Don\'t enter "px", just the numnber e.g. "30".</b>', 
-			'title'=>__('Custom Dividing Height', 'calibrefx')
+		'custom_height' => array(
+			'type'  => 'text', 
+			'desc'  => 'If you would like to control the specifc number of pixels your divider is, enter it here. <b>Don\'t enter "px", just the numnber e.g. "30".</b>', 
+			'title' => __( 'Custom Dividing Height', 'calibrefx' )
 		)
 	)
 );
 
 //Icon
 $cfx_shortcodes['icon'] = array( 
-	'type'=>'regular', 
-	'title'=>__('Icon', 'calibrefx'), 
-	'attr'=>array(
-		'size'=>array(
-			'type'=>'radio', 
-			'title'=>__('Icon Style', 'calibrefx'), 
-			'desc' => __('Tiny is recommended to be used inline with regular text. <br/> Small is recommended to be used inline right before heading text. <br> Regular can be used in a variety of places. <br> Large and Alternative are recommended to be used at the top of columns.', 'calibrefx'),
-			'opt'=>array(
-				'tiny'=>'Tiny',
-				'small'=>'Small',
-				'regular'=>'Regular',
-				'large'=>'Large',
-				'large-alt'=>'Alternative'
+	'type'  => 'regular', 
+	'title' => __( 'Icon', 'calibrefx' ), 
+	'attr'  => array(
+		'size' => array(
+			'type'  => 'radio', 
+			'title' => __( 'Icon Style', 'calibrefx' ), 
+			'desc'  => __( 'Tiny is recommended to be used inline with regular text. <br/> Small is recommended to be used inline right before heading text. <br> Regular can be used in a variety of places. <br> Large and Alternative are recommended to be used at the top of columns.', 'calibrefx' ),
+			'opt' => array(
+				'tiny' => 'Tiny',
+				'small' => 'Small',
+				'regular' => 'Regular',
+				'large' => 'Large',
+				'large-alt' => 'Alternative'
 			)
 		),
-		'color' =>array('type'=>'custom', 'title'  => __('Background Color', 'calibrefx')),
-		'text_color'=>array('type'=>'custom', 'title'  => __('Text Color', 'calibrefx')),
+		'color' => array( 'type' => 'custom', 'title'  => __( 'Background Color', 'calibrefx' ) ),
+		'text_color' => array( 'type'=>'custom', 'title'  => __( 'Text Color', 'calibrefx' ) ),
 		'icons' => array(
-			'type'=>'icons', 
-			'title'=>'Icon', 
-			'values'=> array(
+			'type' => 'icons', 
+			'title' => 'Icon', 
+			'values' => array(
 		      	'fa-adjust' => 'fa fa-adjust',
 				'fa-adn' => 'fa fa-adn',
 				'fa-align-center' => 'fa fa-align-center',
@@ -632,8 +633,8 @@ $cfx_shortcodes['icon'] = array(
 			)
 		),
 		'calibrefx-icons' => array(
-			'type'=>'icons', 
-			'title'=>'Calibrefx Icons', 
+			'type' => 'icons', 
+			'title' => 'Calibrefx Icons', 
 			'values'=> array(
 				'icon-calibrefx' => 'icon-calibrefx',
 				'icon-home' => 'icon-home',
@@ -671,6 +672,43 @@ $cfx_shortcodes['icon'] = array(
 			)
 		),
 	) 
+);
+
+//Google Map
+$cfx_shortcodes['google_map'] = array( 
+	'type'  => 'regular', 
+	'title' => __( 'Google Map', 'calibrefx' ), 
+	'attr'  => array( 
+		'image' => array( 'type' =>'custom', 'title'  => __( 'Icon Marker', 'calibrefx' ) ),
+		'latitude' => array(
+			'type'  => 'text', 
+			'desc'  => 'Latitude of your coordinate. Only number e.g. <b>"-6.286902".</b>', 
+			'title' => __( 'Latitude', 'calibrefx' )
+		),
+		'longitude' => array(
+			'type'  => 'text', 
+			'desc'  => 'Longitude of your coordinate. Only number e.g. <b>"-6.286902".</b>', 
+			'title' => __( 'Longitude', 'calibrefx' )
+		),
+		'zoom' => array(
+			'type'  => 'text', 
+			'desc'  => 'Map zoom. Only number 1 - 16', 
+			'title' => __( 'Zoom', 'calibrefx' )
+		),
+		'height' => array(
+			'type'  => 'text', 
+			'desc'  => 'If you would like to control the specifc height of your map in pixels, enter it here. <b>Don\'t enter "px", just the numnber e.g. "320".</b>. Default "320"', 
+			'title' => __( 'Zoom', 'calibrefx' )
+		),
+		'title' => array(
+			'type'  => 'text', 
+			'title' => __( 'Title', 'calibrefx' )
+		),
+		'address' => array(
+			'type'  => 'textarea', 
+			'title' => __( 'Address Line', 'calibrefx' )
+		),
+	)
 );
 
 

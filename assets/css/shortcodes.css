@@ -56,3 +56,25 @@ img.img-with-animation[data-animation="fade-in-from-left"], img.img-with-animati
 	margin: 25px auto 25px auto;
 	width: 20%;
 }
+
+/* Google Map
+------------------------------------------------------------ */
+.infowindow{
+    max-width: 300px;
+    margin: 0 0 40px -40px ;
+}
+
+.infowindow_inner{
+    border-left: 8px solid #b44925;
+    background-color: rgba(126, 63, 42, 0.9);
+    padding: 10px 10px;
+    min-height: 100px;
+}
+.infowindow_inner .map_label_heading{
+    color: #ffffff;
+    font-size: 16px;
+}
+.infowindow_inner .map_label_address{
+    color: #fff;
+    font-size: 14px;
+}

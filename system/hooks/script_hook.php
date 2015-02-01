@@ -16,6 +16,7 @@ $calibrefx->hooks->calibrefx_meta = array(
 function calibrefx_register_scripts() {   
     wp_register_style( 'font-awesome', CALIBREFX_CSS_URL . '/font-awesome.min.css' );
     wp_register_style( 'jquery-superfish', CALIBREFX_CSS_URL . '/superfish.css' );
+    wp_register_style( 'jquery-lightbox', CALIBREFX_CSS_URL . '/lightbox.css' );
     wp_register_style( 'nProgress', CALIBREFX_CSS_URL . '/nprogress.css' );
     
     wp_register_style( 'calibrefx-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css' );
@@ -34,6 +35,9 @@ function calibrefx_register_scripts() {
     wp_register_script( 'jquery-appear', CALIBREFX_JS_URL . '/jquery.appear.js', 'jquery', '', TRUE);
     wp_register_script( 'jquery-easing', CALIBREFX_JS_URL . '/jquery.easing.js', 'jquery', '', TRUE);
     wp_register_script( 'jquery-transition', CALIBREFX_JS_URL . '/jquery.transit.min.js', 'jquery', '', TRUE);
+    wp_register_script( 'jquery-lightbox', CALIBREFX_JS_URL . '/lightbox.min.js', 'jquery', '', TRUE);
+    wp_register_script( 'infobox', CALIBREFX_JS_URL . '/infobox.js', 'jquery', '', TRUE);
+    wp_register_script( 'jquery-googlemap', CALIBREFX_JS_URL . '/jquery.googlemap.js', 'jquery', '', TRUE);
     
     wp_register_script( 'calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', array( 'jquery' ) );
     wp_register_script( 'calibrefx-shortcodes', CALIBREFX_JS_URL . '/shortcodes.js', array( 'jquery' ), '', TRUE );
@@ -59,8 +63,12 @@ function calibrefx_load_scripts() {
     wp_enqueue_script( 'jquery-appear' );
     wp_enqueue_script( 'jquery-easing' );
     wp_enqueue_script( 'jquery-transition' );
+    wp_enqueue_script( 'jquery-lightbox' );
+    wp_enqueue_script( 'googlemap', 'http://maps.google.com/maps/api/js?sensor=false&ver=4.1');
+    wp_enqueue_script( 'infobox');
+    wp_enqueue_script( 'jquery-googlemap' );
     
-    if (is_singular() && get_option( 'thread_comments' ) && comments_open() ) {
+    if ( is_singular() AND get_option( 'thread_comments' ) AND comments_open() ) {
         wp_enqueue_script( 'comment-reply' );
     }
     wp_enqueue_script( 'superfish', CALIBREFX_JS_URL . '/superfish.js', array( 'jquery' ), '', true);
@@ -79,6 +87,7 @@ function calibrefx_load_styles() {
     wp_enqueue_style( 'font-awesome' );
     wp_enqueue_style( 'calibrefx-icons' );
     wp_enqueue_style( 'jquery-superfish' );
+    wp_enqueue_style( 'jquery-lightbox' );
     wp_enqueue_style( 'nProgress' );
     wp_enqueue_style( 'calibrefx-shortcodes' );
     
