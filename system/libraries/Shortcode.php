@@ -61,7 +61,7 @@ class CFX_Shortcode {
 		</div>
 	
 		<code class="shortcode_storage"><span id="shortcode-storage-o" style=""></span><span id="shortcode-storage-d"></span><span id="shortcode-storage-c" style=""></span></code>
-		<a class="btn" id="add-shortcode"><?php echo __( 'Add Shortcode', 'calibrefx' ); ?></a>
+		<a class="button" id="add-shortcode"><i class="fa fa-angle-double-right"></i> <?php echo __( 'Add Shortcode', 'calibrefx' ); ?></a>
 		</div></div></div>
 	<?php
     }

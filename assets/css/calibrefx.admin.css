@@ -1137,6 +1137,8 @@ input[type=radio] {
     display: inline-block;
     width: 30%;
     float: left;
+    margin-top: 5px;
+    font-size: 16px;
 }
 
 #calibrefx-sc-generator div.content {
