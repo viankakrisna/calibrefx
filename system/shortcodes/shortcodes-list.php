@@ -636,6 +636,7 @@ $cfx_shortcodes['icon'] = array(
 			'type' => 'icons', 
 			'title' => 'Calibrefx Icons', 
 			'values'=> array(
+				'icon-calibreworks' => 'icon-calibreworks',
 				'icon-calibrefx' => 'icon-calibrefx',
 				'icon-home' => 'icon-home',
 				'icon-image' => 'icon-image',
