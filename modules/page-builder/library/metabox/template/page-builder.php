@@ -16,15 +16,40 @@ return array(
 			'title'     => __('Section', 'vp_textdomain'),
 			'fields'    => array(
 				array(
+                    'type' => 'toggle',
+                    'name' => 'section_container',
+                    'label' => __('Container', 'vp_textdomain')
+                ),
+				array(
 					'type' => 'textbox',
 					'name' => 'section_class',
-					'label' => __('Section Class', 'vp_textdomain')
+					'label' => __('Custom CSS Class', 'vp_textdomain')
 				),
 				array(
 					'type' => 'textbox',
 					'name' => 'section_style',
-					'label' => __('Section Style', 'vp_textdomain')
+					'label' => __('Custom CSS Style', 'vp_textdomain')
 				),
+				array(
+                    'type' => 'color',
+                    'name' => 'section_bg_color',
+                    'label' => __('Background Color', 'vp_textdomain'),
+                    'format' => 'rgba',
+                ),
+				array(
+                    'type' => 'upload',
+                    'name' => 'section_bg_image',
+                    'label' => __('Background Image', 'vp_textdomain')
+                ),
+				array(
+                    'type' => 'toggle',
+                    'name' => 'section_bg_parallax',
+                    'label' => __('Background Parallax', 'vp_textdomain'),
+                    'dependency' => array(
+		                'field' => 'section_bg_image',
+		                'function' => 'vp_dep_boolean',
+		            )
+                ),
 				array(
 					'type'      => 'group',
 					'repeating' => true,
@@ -65,8 +90,8 @@ return array(
                         ),
                         array(
 							'type' => 'select',
-							'name' => 'section_type',
-							'label' => __('Section Type', 'vp_textdomain'),
+							'name' => 'content_type',
+							'label' => __('Content Type', 'vp_textdomain'),
 							'items' => array(
 								array(
 									'value' => 'breadcrumb',
@@ -77,20 +102,20 @@ return array(
 									'label' => __('Carousel', 'vp_textdomain'),
 								),
 								array(
-									'value' => 'downloads',
-									'label' => __('Download Items', 'vp_textdomain'),
-								),
-								array(
 									'value' => 'heading',
 									'label' => __('Heading', 'vp_textdomain'),
 								),
 								array(
-									'value' => 'editor',
+									'value' => 'html_editor',
 									'label' => __('HTML Editor', 'vp_textdomain'),
 								),
 								array(
 									'value' => 'raw_html',
 									'label' => __('Raw HTML', 'vp_textdomain'),
+								),
+								array(
+									'value' => 'slider',
+									'label' => __('Slider', 'vp_textdomain'),
 								)
 							),
 						),
@@ -100,78 +125,18 @@ return array(
 				            'label' => __('Breadcrumb Image', 'jg_textdomain'),
 				            'validation' => 'required',
 				            'dependency' => array(
-				                'field' => 'section_type',
-				                'function' => 'dep_section_is_breadcrumb',
+				                'field' => 'content_type',
+				                'function' => 'vp_dep_is_breadcrumb',
 				            )
 				        ),
-						array(
-				            'type' => 'select',
-				            'name' => 'slider_id',
-				            'label' => __('Slider', 'jg_textdomain'),
-				            'validation' => 'required',
-				            'dependency' => array(
-				                'field' => 'section_type',
-				                'function' => 'dep_section_is_slider',
-				            ),
-				            'items' => array(
-					            'data' => array(
-					                array(
-					                    'source' => 'function',
-					                    'value' => 'get_revolution_sliders'
-					                )
-					            )
-					        )
-				        ),
 				        array(
-							'type'      => 'group',
-							'repeating' => true,
-							'name'      => 'raw_html_column',
-							'title'     => __('Column', 'vp_textdomain'),
+							'type'      => 'textarea',
+							'name'      => 'raw_html',
+							'title'     => __('Raw HTML Code', 'vp_textdomain'),
 				            'dependency' => array(
-				                'field' => 'section_type',
-				                'function' => 'dep_section_is_raw_html',
-				            ),
-							'fields'    => array(
-		                        array(
-		                            'type' => 'slider',
-		                            'name' => 'grid',
-		                            'label' => __('Grid', 'vp_textdomain'),
-		                            'min' => 1,
-		                            'max' => 12,
-		                            'default' => 12
-		                        ),
-		                        array(
-		                            'type' => 'slider',
-		                            'name' => 'offset',
-		                            'label' => __('Grid Offset', 'vp_textdomain'),
-		                            'min' => 0,
-		                            'max' => 11,
-		                            'default' => 0
-		                        ),
-		                        array(
-		                            'type' => 'slider',
-		                            'name' => 'pull',
-		                            'label' => __('Grid Pull Left', 'vp_textdomain'),
-		                            'min' => 0,
-		                            'max' => 11,
-		                            'default' => 0
-		                        ),
-		                        array(
-		                            'type' => 'slider',
-		                            'name' => 'push',
-		                            'label' => __('Grid Push Right', 'vp_textdomain'),
-		                            'min' => 0,
-		                            'max' => 11,
-		                            'default' => 0
-		                        ),
-		                        array(
-									'type' => 'textarea',
-									'name' => 'raw_html',
-									'label' => __('Raw HTML Code', 'vp_textdomain'),
-									'height' => '400',
-									'validation' => 'required'
-								)
-							),
+				                'field' => 'content_type',
+				                'function' => 'vp_dep_is_raw_html',
+				            )
 						),
 						array(
 							'type'      => 'group',
@@ -179,8 +144,8 @@ return array(
 							'name'      => 'carousel',
 							'title'     => __('Carousel', 'vp_textdomain'),
 				            'dependency' => array(
-				                'field' => 'section_type',
-				                'function' => 'dep_section_is_carousel',
+				                'field' => 'content_type',
+				                'function' => 'vp_dep_is_carousel',
 				            ),
 							'fields'    => array(
 		                        array(
@@ -197,10 +162,28 @@ return array(
 							'label' => __('Heading Text', 'vp_textdomain'),
 							'validation' > 'required',
 				            'dependency' => array(
-				                'field' => 'section_type',
-				                'function' => 'dep_section_is_heading',
+				                'field' => 'content_type',
+				                'function' => 'vp_dep_is_heading',
 				            )
-						)
+						),
+						array(
+				            'type' => 'select',
+				            'name' => 'slider_id',
+				            'label' => __('Slider', 'jg_textdomain'),
+				            'validation' => 'required',
+				            'dependency' => array(
+				                'field' => 'content_type',
+				                'function' => 'vp_dep_is_slider',
+				            ),
+				            'items' => array(
+					            'data' => array(
+					                array(
+					                    'source' => 'function',
+					                    'value' => 'get_revolution_sliders'
+					                )
+					            )
+					        )
+				        )
 					)
 				)
 			)
