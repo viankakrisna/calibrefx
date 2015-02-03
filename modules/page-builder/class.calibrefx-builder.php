@@ -111,14 +111,28 @@ class Calibrefx_Builder{
                     $class .= 'parallax-bg';
                 }
 
-                $section_output = "<div class=\"section $class\" style=\"$style\">";
+                $section_output = "<div id=\"section-$section_key\" class=\"section $class\" style=\"$style\">";
                 if( $section['section_container'] ){
                     $section_output .= '<div class="container">';
                 }
 
 	    		if( $section['column'] ){
-	    			foreach( $section['column'] as $column_key => $column ){
-	    				$return = apply_filters( 
+	    			$section_output .= "<div class=\"row\">";
+                    foreach( $section['column'] as $column_key => $column ){
+                        $column_class = array('col-md-'.$column['grid']);
+                        if($column['offset']){
+                            $column_class[] = 'col-md-offset-'.$column['offset'];
+                        }
+                        if($column['pull']){
+                            $column_class[] = 'col-md-pull-'.$column['pull'];
+                        }
+                        if($column['push']){
+                            $column_class[] = 'col-md-push-'.$column['push'];
+                        }
+
+                        $column_output = '<div class="'.implode(" ", $column_class).'">';
+
+                        $return = apply_filters( 
                                     'section_content_type_' . $column['content_type'], 
                                     $section, 
                                     $section_key, 
@@ -126,9 +140,15 @@ class Calibrefx_Builder{
                                     $column_key );
 
 	    				if( !is_array( $return ) ){
-	    					$section_output .= $return;
+	    					$column_output .= $return;
 	    				}
-	    			}
+
+                        $column_output .= '</div>';
+
+                        $section_output .= $column_output;
+
+                    }
+                    $section_output .= "</div>";
 	    		}
 
                 if( $section['section_container'] ){
