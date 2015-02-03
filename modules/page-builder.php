@@ -10,4 +10,8 @@
  * Module Tags: Content, Layout
  */
 
-include dirname( __FILE__ ) . "/page-builder/page-builder.php";
+//Load requirements
+require_once dirname( __FILE__ ) . "/page-builder/vendor/vafpress/bootstrap.php";
+
+//Load bootloader
+require_once dirname( __FILE__ ) . "/page-builder/class.calibrefx-builder.php";

@@ -20,6 +20,8 @@
  * Author Box
  * Sticky Posts
  * Archive Page
+ * Blank Page
+ * Builder Page
  * Comments
  * Pagination
  * Search Form
@@ -623,6 +625,22 @@ blockquote cite{
     padding: 20px 0;
     width: 45%;
 }
+
+/* Blank Page
+------------------------------------------------------------ */
+.blank #inner {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Builder Page
+------------------------------------------------------------ */
+.builder #inner {
+    padding: 0;
+    margin: 0;
+}
+
 
 /* Comments
 ------------------------------------------------------------ */

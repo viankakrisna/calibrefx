@@ -95,6 +95,10 @@ add_action( 'admin_menu', 'calibrefx_add_inpost_layout_box' );
  *
  */
 function calibrefx_add_inpost_box() {
+    if ( !current_theme_supports( 'calibrefx-inpost-layouts' ) ) {
+        return;
+    }
+    
     global $calibrefx_post_sections;
     do_action( "calibrefx_post_meta_options" );
     
@@ -141,6 +145,10 @@ function calibrefx_inpost_layout_box() {
  * @return null
  */
 function calibrefx_inpost_save( $post_id, $post ) {
+    if ( !current_theme_supports( 'calibrefx-inpost-layouts' ) ) {
+        return;
+    }
+    
     global $calibrefx, $calibrefx_post_meta_options;
 
     //Only run in admin site

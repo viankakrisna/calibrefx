@@ -2,49 +2,49 @@
 
 return array(
 	'id'          => 'page_builder',
-	'types'       => array('page','post'),
-	'title'       => __('Page Builder', 'vp_textdomain'),
+	'types'       => array('page'),
+	'title'       => __('Page Builder', 'calibrefx'),
 	'priority'    => 'high',
 	'hide_editor' => TRUE,
-	'mode' => WPALCHEMY_MODE_EXTRACT,
+	'mode' 		  => WPALCHEMY_MODE_EXTRACT,
 	'template'    => array(
 		array(
 			'type'      => 'group',
 			'repeating' => true,
-			'sortable' => true,
+			'sortable'  => true,
 			'name'      => 'section',
-			'title'     => __('Section', 'vp_textdomain'),
+			'title'     => __('Section', 'calibrefx'),
 			'fields'    => array(
 				array(
                     'type' => 'toggle',
                     'name' => 'section_container',
-                    'label' => __('Container', 'vp_textdomain')
+                    'label' => __('Container', 'calibrefx')
                 ),
 				array(
 					'type' => 'textbox',
 					'name' => 'section_class',
-					'label' => __('Custom CSS Class', 'vp_textdomain')
+					'label' => __('Custom CSS Class', 'calibrefx')
 				),
 				array(
 					'type' => 'textbox',
 					'name' => 'section_style',
-					'label' => __('Custom CSS Style', 'vp_textdomain')
+					'label' => __('Custom CSS Style', 'calibrefx')
 				),
 				array(
                     'type' => 'color',
                     'name' => 'section_bg_color',
-                    'label' => __('Background Color', 'vp_textdomain'),
+                    'label' => __('Background Color', 'calibrefx'),
                     'format' => 'rgba',
                 ),
 				array(
                     'type' => 'upload',
                     'name' => 'section_bg_image',
-                    'label' => __('Background Image', 'vp_textdomain')
+                    'label' => __('Background Image', 'calibrefx')
                 ),
 				array(
                     'type' => 'toggle',
                     'name' => 'section_bg_parallax',
-                    'label' => __('Background Parallax', 'vp_textdomain'),
+                    'label' => __('Background Parallax', 'calibrefx'),
                     'dependency' => array(
 		                'field' => 'section_bg_image',
 		                'function' => 'vp_dep_boolean',
@@ -55,12 +55,12 @@ return array(
 					'repeating' => true,
 					'sortable' => true,
 					'name'      => 'column',
-					'title'     => __('Column', 'vp_textdomain'),
+					'title'     => __('Column', 'calibrefx'),
 					'fields'    => array(
                         array(
                             'type' => 'slider',
                             'name' => 'grid',
-                            'label' => __('Grid', 'vp_textdomain'),
+                            'label' => __('Grid', 'calibrefx'),
                             'min' => 1,
                             'max' => 12,
                             'default' => 12
@@ -68,7 +68,7 @@ return array(
                         array(
                             'type' => 'slider',
                             'name' => 'offset',
-                            'label' => __('Grid Offset', 'vp_textdomain'),
+                            'label' => __('Grid Offset', 'calibrefx'),
                             'min' => 0,
                             'max' => 11,
                             'default' => 0
@@ -76,7 +76,7 @@ return array(
                         array(
                             'type' => 'slider',
                             'name' => 'pull',
-                            'label' => __('Grid Pull Left', 'vp_textdomain'),
+                            'label' => __('Grid Pull Left', 'calibrefx'),
                             'min' => 0,
                             'max' => 11,
                             'default' => 0
@@ -84,7 +84,7 @@ return array(
                         array(
                             'type' => 'slider',
                             'name' => 'push',
-                            'label' => __('Grid Push Right', 'vp_textdomain'),
+                            'label' => __('Grid Push Right', 'calibrefx'),
                             'min' => 0,
                             'max' => 11,
                             'default' => 0
