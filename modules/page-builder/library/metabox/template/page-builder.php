@@ -53,6 +53,7 @@ return array(
 				array(
 					'type'      => 'group',
 					'repeating' => true,
+					'sortable' => true,
 					'name'      => 'column',
 					'title'     => __('Column', 'vp_textdomain'),
 					'fields'    => array(
@@ -89,101 +90,13 @@ return array(
                             'default' => 0
                         ),
                         array(
-							'type' => 'select',
-							'name' => 'content_type',
-							'label' => __('Content Type', 'vp_textdomain'),
-							'items' => array(
-								array(
-									'value' => 'breadcrumb',
-									'label' => __('Breadcrumb', 'vp_textdomain'),
-								),
-								array(
-									'value' => 'carousel',
-									'label' => __('Carousel', 'vp_textdomain'),
-								),
-								array(
-									'value' => 'heading',
-									'label' => __('Heading', 'vp_textdomain'),
-								),
-								array(
-									'value' => 'html_editor',
-									'label' => __('HTML Editor', 'vp_textdomain'),
-								),
-								array(
-									'value' => 'raw_html',
-									'label' => __('Raw HTML', 'vp_textdomain'),
-								),
-								array(
-									'value' => 'slider',
-									'label' => __('Slider', 'vp_textdomain'),
-								)
-							),
-						),
-						array(
-				            'type' => 'upload',
-				            'name' => 'breadcrumb_image',
-				            'label' => __('Breadcrumb Image', 'jg_textdomain'),
-				            'validation' => 'required',
-				            'dependency' => array(
-				                'field' => 'content_type',
-				                'function' => 'vp_dep_is_breadcrumb',
-				            )
-				        ),
-				        array(
-							'type'      => 'textarea',
-							'name'      => 'raw_html',
-							'title'     => __('Raw HTML Code', 'vp_textdomain'),
-				            'dependency' => array(
-				                'field' => 'content_type',
-				                'function' => 'vp_dep_is_raw_html',
-				            )
-						),
-						array(
 							'type'      => 'group',
 							'repeating' => true,
-							'name'      => 'carousel',
-							'title'     => __('Carousel', 'vp_textdomain'),
-				            'dependency' => array(
-				                'field' => 'content_type',
-				                'function' => 'vp_dep_is_carousel',
-				            ),
-							'fields'    => array(
-		                        array(
-		                            'type' => 'upload',
-		                            'name' => 'image',
-		                            'validation' => 'required',
-		                            'label' => __('Image', 'vp_textdomain')
-		                        )
-							),
-						),
-						array(
-							'type' => 'textbox',
-							'name' => 'heading_text',
-							'label' => __('Heading Text', 'vp_textdomain'),
-							'validation' > 'required',
-				            'dependency' => array(
-				                'field' => 'content_type',
-				                'function' => 'vp_dep_is_heading',
-				            )
-						),
-						array(
-				            'type' => 'select',
-				            'name' => 'slider_id',
-				            'label' => __('Slider', 'jg_textdomain'),
-				            'validation' => 'required',
-				            'dependency' => array(
-				                'field' => 'content_type',
-				                'function' => 'vp_dep_is_slider',
-				            ),
-				            'items' => array(
-					            'data' => array(
-					                array(
-					                    'source' => 'function',
-					                    'value' => 'get_revolution_sliders'
-					                )
-					            )
-					        )
-				        )
+							'sortable' => true,
+							'name'      => 'content',
+							'title'     => __('Content', 'vp_textdomain'),
+							'fields'    => vp_get_content_type_fields()
+						)
 					)
 				)
 			)
