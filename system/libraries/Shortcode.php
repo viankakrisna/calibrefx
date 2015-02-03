@@ -326,6 +326,18 @@ class CFX_Shortcode {
 				}	
 				
 			}
+
+			elseif( $name == 'shadow_color' ){
+			
+				if(get_bloginfo('version') >= '3.5') {
+				   $option_element .= '
+				   <div class="label"><label><strong>Shadow Color: </strong></label></div>
+				   <div class="content"><input type="text" value="" class="popup-colorpicker-shadow" style="width: 70px;" data-default-text-color=""/></div>';
+				} else {
+				   $option_element .='You\'re using an outdated version of WordPress. Please update to use this feature.';
+				}	
+				
+			}
 		
 			elseif( $type == 'checkbox' ){
 				$option_element .= '<div class="label"><label for="' . $name . '"><strong>' . $attr_option['title'] . ': </strong></label></div>    <div class="content"> <input type="checkbox" class="' . $name . '" id="' . $name . '" />' . $desc . '</div> ';

@@ -78,3 +78,21 @@ img.img-with-animation[data-animation="fade-in-from-left"], img.img-with-animati
     color: #fff;
     font-size: 14px;
 }
+
+/* Button
+------------------------------------------------------------ */
+.btn-shadow{
+    background: #1e73be  ;
+    box-shadow: 0 3px 0px #0f5089  ;
+}
+.btn-shadow:focus,
+.btn-shadow:active{
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-transform: translate3d(0, 3px, 0);
+    -moz-transform: translate3d(0, 3px, 0);
+    -ms-transform: translate3d(0, 3px, 0);
+    -o-transform: translate3d(0, 3px, 0);
+    transform: translate3d(0, 3px, 0);
+    background: #1e73be  ;
+}

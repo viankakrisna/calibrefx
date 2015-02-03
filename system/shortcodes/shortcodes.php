@@ -330,3 +330,40 @@ function cfx_google_map( $atts ) {
    return $output;
 }
 add_shortcode( 'google_map', 'cfx_google_map' );
+
+//button
+function cfx_button( $atts, $content = null ) {  
+    extract( 
+        shortcode_atts(
+            array(
+                'id' => 'btn-'.rand(1, 600),
+                'text' => 'Submit', 
+                'url' => '#',
+                'target' => '_self',
+                'text_color' => '',
+                'background_color' => '',
+                'shadow_color' => '',
+                'class' => '',
+            ), $atts));
+
+    $outer_style = "<style type=\"text/css\">
+        #".$id.":focus,
+        #".$id.":active{
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            -webkit-transform: translate3d(0, 3px, 0);
+            -moz-transform: translate3d(0, 3px, 0);
+            -ms-transform: translate3d(0, 3px, 0);
+            -o-transform: translate3d(0, 3px, 0);
+            transform: translate3d(0, 3px, 0);
+            background-color: $background_color !important ;
+        }
+    </style>";
+
+    $style = "color: $text_color; background-color: $background_color; box-shadow: 0 3px 0px $shadow_color;";
+
+    $output = '<a id="' . $id . '" href="' . $url . '" class="btn btn-shadow ' . $class . '" style=" ' . $style . '" target="' . $target . '">' . $text . '</a>';
+    
+    return $outer_style . $output;
+}
+add_shortcode( 'button', 'cfx_button' );

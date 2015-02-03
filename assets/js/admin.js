@@ -244,6 +244,7 @@ jQuery(document).ready(function($){
 
     $('input.popup-colorpicker-bg').wpColorPicker();
     $('input.popup-colorpicker-text').wpColorPicker();
+    $('input.popup-colorpicker-shadow').wpColorPicker();
 
     $('#add-shortcode').click(function(){
         //column animation check (don't add the attrs when unnecessary)
@@ -366,6 +367,11 @@ jQuery(document).ready(function($){
         //color loop for extra attrs
         $('#options-'+name+' input.popup-colorpicker-text').each(function(){
              code += ' text_color="'+ $(this).val()+'"'; 
+        });
+
+        //color loop for extra attrs
+        $('#options-'+name+' input.popup-colorpicker-shadow').each(function(){
+             code += ' shadow_color="'+ $(this).val()+'"'; 
         });
         
         //take care of icon attrs
