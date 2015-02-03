@@ -3,6 +3,7 @@
 return array(
 	'id'          => 'page_builder',
 	'types'       => array('page'),
+	'include_template' => array_keys(Calibrefx_Builder::template_pages()),
 	'title'       => __('Page Builder', 'calibrefx'),
 	'priority'    => 'high',
 	'hide_editor' => TRUE,

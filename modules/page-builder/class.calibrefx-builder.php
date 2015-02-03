@@ -50,7 +50,11 @@ class Calibrefx_Builder{
         add_action( 'init', array( $this, 'remove_elements' ), 99 );
 		
 		// Add your templates to this array
-		$this->templates = apply_filters( 'page_builder_templates', array( 'template-page-builder.php' => 'Page Builder' ) );
+		$this->templates = self::template_pages();
+	}
+	
+	public static function template_pages(){
+	    return apply_filters( 'vp_get_builder_template_pages', array( 'template-page-builder.php' => 'Page Builder' ) );
 	}
 	
 	/**
@@ -178,7 +182,7 @@ class Calibrefx_Builder{
         } 
 		
 		if( file_exists( get_stylesheet_directory() . DIRECTORY_SEPARATOR . 'page-builder' . DIRECTORY_SEPARATOR . get_post_meta( $post->ID, '_wp_page_template', true ) ) ){
-			$file = $file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'page-builder' . DIRECTORY_SEPARATOR . get_post_meta( $post->ID, '_wp_page_template', true );
+			$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'page-builder' . DIRECTORY_SEPARATOR . get_post_meta( $post->ID, '_wp_page_template', true );
 		}else{
 			$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'page-template' . DIRECTORY_SEPARATOR . get_post_meta( $post->ID, '_wp_page_template', true );
 		}
