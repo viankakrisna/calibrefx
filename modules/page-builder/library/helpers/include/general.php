@@ -13,10 +13,6 @@ function vp_get_revolution_sliders() {
     return $result;
 }
 
-function vp_get_builder_template_pages(){
-    return apply_filters( 'vp_get_builder_template_pages', array( 'template-page-builder.php' => 'Page Builder' ) );
-}
-
 function vp_get_content_type_list(){
     $result = array();
     $result[] = array(
