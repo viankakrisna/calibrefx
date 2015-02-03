@@ -48,6 +48,8 @@ class CFX_Page_Builder{
 		);
 		
 		add_filter( 'the_content', array( $this, 'build_the_content') );
+
+        add_action( 'init', array( $this, 'remove_elements'), 99 );
 		
 		// Add your templates to this array
 		$this->templates = apply_filters( 'page_builder_templates', array('template-page-builder.php' => 'Page Builder'));
@@ -139,6 +141,10 @@ class CFX_Page_Builder{
 
             return $template;
 
+    }
+
+    public function remove_elements(){
+        remove_theme_support( 'calibrefx-inpost-layouts' );
     }
 
 	public function excludes($items = array()) {
