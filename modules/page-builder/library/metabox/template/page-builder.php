@@ -2,49 +2,49 @@
 
 return array(
 	'id'          => 'page_builder',
-	'types'       => array('page','post'),
-	'title'       => __('Page Builder', 'vp_textdomain'),
+	'types'       => array('page'),
+	'title'       => __('Page Builder', 'calibrefx'),
 	'priority'    => 'high',
 	'hide_editor' => TRUE,
-	'mode' => WPALCHEMY_MODE_EXTRACT,
+	'mode' 		  => WPALCHEMY_MODE_EXTRACT,
 	'template'    => array(
 		array(
 			'type'      => 'group',
 			'repeating' => true,
-			'sortable' => true,
+			'sortable'  => true,
 			'name'      => 'section',
-			'title'     => __('Section', 'vp_textdomain'),
+			'title'     => __('Section', 'calibrefx'),
 			'fields'    => array(
 				array(
                     'type' => 'toggle',
                     'name' => 'section_container',
-                    'label' => __('Container', 'vp_textdomain')
+                    'label' => __('Container', 'calibrefx')
                 ),
 				array(
 					'type' => 'textbox',
 					'name' => 'section_class',
-					'label' => __('Custom CSS Class', 'vp_textdomain')
+					'label' => __('Custom CSS Class', 'calibrefx')
 				),
 				array(
 					'type' => 'textbox',
 					'name' => 'section_style',
-					'label' => __('Custom CSS Style', 'vp_textdomain')
+					'label' => __('Custom CSS Style', 'calibrefx')
 				),
 				array(
                     'type' => 'color',
                     'name' => 'section_bg_color',
-                    'label' => __('Background Color', 'vp_textdomain'),
+                    'label' => __('Background Color', 'calibrefx'),
                     'format' => 'rgba',
                 ),
 				array(
                     'type' => 'upload',
                     'name' => 'section_bg_image',
-                    'label' => __('Background Image', 'vp_textdomain')
+                    'label' => __('Background Image', 'calibrefx')
                 ),
 				array(
                     'type' => 'toggle',
                     'name' => 'section_bg_parallax',
-                    'label' => __('Background Parallax', 'vp_textdomain'),
+                    'label' => __('Background Parallax', 'calibrefx'),
                     'dependency' => array(
 		                'field' => 'section_bg_image',
 		                'function' => 'vp_dep_boolean',
@@ -54,12 +54,12 @@ return array(
 					'type'      => 'group',
 					'repeating' => true,
 					'name'      => 'column',
-					'title'     => __('Column', 'vp_textdomain'),
+					'title'     => __('Column', 'calibrefx'),
 					'fields'    => array(
                         array(
                             'type' => 'slider',
                             'name' => 'grid',
-                            'label' => __('Grid', 'vp_textdomain'),
+                            'label' => __('Grid', 'calibrefx'),
                             'min' => 1,
                             'max' => 12,
                             'default' => 12
@@ -67,7 +67,7 @@ return array(
                         array(
                             'type' => 'slider',
                             'name' => 'offset',
-                            'label' => __('Grid Offset', 'vp_textdomain'),
+                            'label' => __('Grid Offset', 'calibrefx'),
                             'min' => 0,
                             'max' => 11,
                             'default' => 0
@@ -75,7 +75,7 @@ return array(
                         array(
                             'type' => 'slider',
                             'name' => 'pull',
-                            'label' => __('Grid Pull Left', 'vp_textdomain'),
+                            'label' => __('Grid Pull Left', 'calibrefx'),
                             'min' => 0,
                             'max' => 11,
                             'default' => 0
@@ -83,7 +83,7 @@ return array(
                         array(
                             'type' => 'slider',
                             'name' => 'push',
-                            'label' => __('Grid Push Right', 'vp_textdomain'),
+                            'label' => __('Grid Push Right', 'calibrefx'),
                             'min' => 0,
                             'max' => 11,
                             'default' => 0
@@ -91,31 +91,31 @@ return array(
                         array(
 							'type' => 'select',
 							'name' => 'content_type',
-							'label' => __('Content Type', 'vp_textdomain'),
+							'label' => __('Element', 'calibrefx'),
 							'items' => array(
 								array(
 									'value' => 'breadcrumb',
-									'label' => __('Breadcrumb', 'vp_textdomain'),
+									'label' => __('Breadcrumb', 'calibrefx'),
 								),
 								array(
 									'value' => 'carousel',
-									'label' => __('Carousel', 'vp_textdomain'),
+									'label' => __('Carousel', 'calibrefx'),
 								),
 								array(
 									'value' => 'heading',
-									'label' => __('Heading', 'vp_textdomain'),
+									'label' => __('Heading', 'calibrefx'),
 								),
 								array(
 									'value' => 'html_editor',
-									'label' => __('HTML Editor', 'vp_textdomain'),
+									'label' => __('HTML Editor', 'calibrefx'),
 								),
 								array(
 									'value' => 'raw_html',
-									'label' => __('Raw HTML', 'vp_textdomain'),
+									'label' => __('Raw HTML', 'calibrefx'),
 								),
 								array(
 									'value' => 'slider',
-									'label' => __('Slider', 'vp_textdomain'),
+									'label' => __('Slider', 'calibrefx'),
 								)
 							),
 						),
@@ -132,7 +132,7 @@ return array(
 				        array(
 							'type'      => 'textarea',
 							'name'      => 'raw_html',
-							'title'     => __('Raw HTML Code', 'vp_textdomain'),
+							'title'     => __('Raw HTML Code', 'calibrefx'),
 				            'dependency' => array(
 				                'field' => 'content_type',
 				                'function' => 'vp_dep_is_raw_html',
@@ -142,7 +142,7 @@ return array(
 							'type'      => 'group',
 							'repeating' => true,
 							'name'      => 'carousel',
-							'title'     => __('Carousel', 'vp_textdomain'),
+							'title'     => __('Carousel', 'calibrefx'),
 				            'dependency' => array(
 				                'field' => 'content_type',
 				                'function' => 'vp_dep_is_carousel',
@@ -152,14 +152,24 @@ return array(
 		                            'type' => 'upload',
 		                            'name' => 'image',
 		                            'validation' => 'required',
-		                            'label' => __('Image', 'vp_textdomain')
+		                            'label' => __('Image', 'calibrefx')
 		                        )
 							),
 						),
 						array(
 							'type' => 'textbox',
 							'name' => 'heading_text',
-							'label' => __('Heading Text', 'vp_textdomain'),
+							'label' => __('Heading Text', 'calibrefx'),
+							'validation' > 'required',
+				            'dependency' => array(
+				                'field' => 'content_type',
+				                'function' => 'vp_dep_is_heading',
+				            )
+						),
+						array(
+							'type' => 'textbox',
+							'name' => 'sub_heading_text',
+							'label' => __('Sub Heading Text', 'calibrefx'),
 							'validation' > 'required',
 				            'dependency' => array(
 				                'field' => 'content_type',
