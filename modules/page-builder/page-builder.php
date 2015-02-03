@@ -97,6 +97,7 @@ class CFX_Page_Builder{
     	
     	// TODO: Need to find out the best way to build the view
     	$sections = get_post_meta(get_the_ID(), 'section', true);
+        
     	if($sections){
 	    	foreach($sections as $section_key => $section){
 	    		if($section['column']){
@@ -113,7 +114,8 @@ class CFX_Page_Builder{
     	// add back filter for later use
     	add_filter('the_content', array($this, 'build_the_content'));
     	
-    	return $content.$output;
+        // return $content.$output;
+    	return $output;
     }
 
     /**
