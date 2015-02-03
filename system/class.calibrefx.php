@@ -92,6 +92,7 @@ class Calibrefx {
 			$this->load->library( 'replacer' );
 			$this->load->library( 'security' );
 			$this->load->library( 'walker_nav_menu_edit' );
+			$this->load->library( 'shortcode' );
 		} else{
 			//Only load this on frontend
 			$this->load->library( 'breadcrumb' );

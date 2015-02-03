@@ -94,22 +94,6 @@ jQuery(document).ready(function( $) {
 		}
 	});
 
-    $( '#test-send-mail' ).click(function() {
-        var email = $( '#email-test' ).val();
-        var caller = $this;
-        
-        var data = {
-            action: 'calibrefx_test_send_mail',
-            data: email,
-        };
-        
-        $.post(ajaxurl, data, function(response) {
-            $( '#send-mail-res' ).html(response.message);
-        }, "json");
-
-        return false;
-    });
-
     $( '.show_advanced' ).live( 'click', function() {
         var parent = $(this).parents( '.widget' );
 
@@ -119,10 +103,6 @@ jQuery(document).ready(function( $) {
             parent.find( '.advanced-widget-options' ).slideUp();
         }
     });
-
-    theTeamResize();
-
-    $( window ).resize( theTeamResize );
 
     var imageFrame;
     $( '.upload_image_button' ).click( function( event ) {
@@ -153,12 +133,11 @@ jQuery(document).ready(function( $) {
         
         // set up our select handler
         imageFrame.on( 'select', function() {
+            var i = 0;
             selection = imageFrame.state().get( 'selection' );
             
-            if ( ! selection )
-            return;
+            if ( ! selection ) return;
             
-            var i = 0;
             // loop through the selected files
             selection.each( function( attachment ) {
                 var src = attachment.attributes.sizes.full.url;
@@ -184,6 +163,18 @@ jQuery(document).ready(function( $) {
         $div.find( '.image_id' ).val( '' );
         $div.find( '.form-control' ).val( '' );
     } );
+
+    $('body').on('click','.calibrefx-sc-generator',function(){
+        //Fire magnific popup
+        $.magnificPopup.open({
+                mainClass: 'mfp-zoom-in',
+                items: {
+                    src: '#calibrefx-sc-generator'
+                },
+                type: 'inline',
+                removalDelay: 500
+        }, 0);
+    }); 
 });
 
 function calibrefx_confirm( text ) {
@@ -241,18 +232,241 @@ function tos_bind_events() {
     })(jQuery);
 }
 
-function theTeamResize() {    
-    jQuery( '.the-team' ).css( 'height', 'auto' );
+// Shortcodes
+jQuery(document).ready(function($){
+    
+    initUpload();
 
-    var height = 0;
-    jQuery( '.the-team' ).each(function() {
-        $this = jQuery(this);
+    $("select#calibrefx-shortcodes").chosen({
+        width: "100%",
+        disable_search_threshold: 30
+    });
 
-        if(height < $this.height() ) {
-            height = $this.height();
+    $('input.popup-colorpicker-bg').wpColorPicker();
+    $('input.popup-colorpicker-text').wpColorPicker();
+    $('input.popup-colorpicker-shadow').wpColorPicker();
+
+    $('#add-shortcode').click(function(){
+        //column animation check (don't add the attrs when unnecessary)
+        var name = $('#calibrefx-shortcodes').val();
+        var dataType = $('#options-'+name).attr('data-type');
+        
+        update_shortcode();
+            
+        var $shortcodeData = $('#shortcode-storage-o').text() + $('#shortcode-storage-d').text() + $('#shortcode-storage-c').text() ;
+            
+        window.wp.media.editor.insert( $('#shortcode-storage-o').text() + $('#shortcode-storage-d').text() + $('#shortcode-storage-c').text() );
+        $.magnificPopup.close();
+            
+        //wipe out storage 
+        $('#shortcode-storage-o, #shortcode-storage-d, #shortcode-storage-c').text('');
+            
+        resetFileds();
+            
+        return false;
+    });
+
+    $('#calibrefx-shortcodes').change(function(){
+        $('.shortcode-options').hide();
+        $('#options-'+$(this).val()).show();
+
+        var dataType = $('#options-'+$(this).val()).attr('data-type');
+        
+        if( dataType == 'checkbox' || dataType == 'simple' ){
+            $('#shortcode-content').show().find('textarea').val('');
+        }
+        
+        else {
+            $('#shortcode-content textarea').val('').parent().parent().hide();
         }
 
     });
 
-    jQuery( '.the-team' ).height(height);
-}
+    //icon selection
+    $('.icon-option i').click(function(){
+        $('.icon-option i').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+    //icon set selection
+    $('select[name="icon-set-select"]').change(function(){
+        var $selected_set = $(this).val();
+        $('.icon-option').hide();
+        $('.icon-option').next('.clear').hide();
+        $('.icon-option.'+$selected_set).stop(true,true).fadeIn();
+        $('.icon-option.'+$selected_set).next('.clear').show();
+    });
+    $('select[name="icon-set-select"]').trigger('change');
+
+    function update_shortcode(ending){
+        
+        var name = $('#calibrefx-shortcodes').val();
+        var dataType = $('#options-'+name).attr('data-type');
+        var extra_attrs = '', extra_attrs2 = '', extra_attrs3 = '', extra_attrs3b = '', extra_attrs4 = '';
+        
+        ending = ending || '';
+        
+        //take care of the dynamic events easier
+        // dynamic_items();
+        
+        //last check
+        var code = '['+name;
+        if( $('#options-'+name).attr('data-type')=='checkbox' ){
+            if($('#options-'+name+' input.last').attr('checked') == 'checked') ending = '_last';
+        }
+        code += ending;
+         
+        //checkbox loop for extra attrs
+        $('#options-'+name+' input[type=checkbox]').each(function(){
+             if($(this).attr('checked') == 'checked' && $(this).attr('class') != 'last') extra_attrs += ' ' + $(this).attr('class')+'="true"';  
+        });
+        
+        code += extra_attrs;
+        
+        //textarea loop for extra attrs
+        $('#options-'+name+' textarea:not("#shortcode_content")').each(function(){
+             extra_attrs2 += ' ' + $(this).attr('data-attrname')+'="'+ $(this).val() +'"';  
+        });
+        
+        if(dataType != 'dynamic') code += extra_attrs2;
+        
+        //select loop for extra attrs
+        $('#options-'+name+' select:not(".dynamic-select, [multiple=multiple], .skip-processing")').each(function(){
+             extra_attrs3 += ' ' + $(this).attr('id')+'="' + $(this).attr('value') + '"';   
+        });
+        
+        code += extra_attrs3;
+        
+        //multiselect loop for extra attrs
+        $('#options-'+name+' select[multiple=multiple]').each(function(){
+             var $categories = ($(this).val() != null && $(this).val().length > 0) ? $(this).val() : 'all';
+             extra_attrs3b += ' ' + $(this).attr('id')+'="' + $categories + '"';    
+        });
+        
+        code += extra_attrs3b;
+        
+        //image upload loop for extra attrs
+        $('#options-'+name+' [data-name=image-upload] img.redux-opts-screenshot').each(function(){
+             extra_attrs4 += ' ' + $(this).attr('id')+'="' + $(this).attr('src') + '"'; 
+        });
+        
+        code += extra_attrs4;
+        
+        //input loop for extra attrs
+        $('#options-'+name+' input.attr:not(".skip-processing")').each(function(){
+            if( $(this).attr('type') == 'text' ){ code += ' '+ $(this).attr('data-attrname')+'="'+ $(this).val()+'"'; }
+            else { if($(this).attr('checked') == 'checked') code += ' '+ $(this).attr('data-attrname')+'="'+ $(this).val()+'"'; }
+        });
+        
+        
+        //color loop for extra attrs
+        $('#options-'+name+' input.popup-colorpicker-bg').each(function(){
+             code += ' background_color="'+ $(this).val()+'"'; 
+        });
+        
+        //color loop for extra attrs
+        $('#options-'+name+' input.popup-colorpicker-text').each(function(){
+             code += ' text_color="'+ $(this).val()+'"'; 
+        });
+
+        //color loop for extra attrs
+        $('#options-'+name+' input.popup-colorpicker-shadow').each(function(){
+             code += ' shadow_color="'+ $(this).val()+'"'; 
+        });
+        
+        //take care of icon attrs
+        if(name == 'icon' && $('.icon-option i.selected').length > 0 ) {
+            var icon_class = $('.icon-option i.selected').attr('class').split(' ');
+            var the_class = icon_class[0];
+            if(icon_class.length > 1){
+                the_class = icon_class[icon_class.length - 2];
+            }
+            code += ' image="'+ the_class +'"'; 
+        }
+        
+        code += ']';
+
+        $('#shortcode-storage-o').html(code);
+        if( dataType!= 'dynamic') $('#shortcode-storage-d').text($('#shortcode-content textarea').val());
+        if( dataType != 'regular' && dataType != 'radios') $('#shortcode-storage-c').html(' [/'+name+ending+']');
+        
+    }
+
+    function initUpload(){
+        console.log("redux-opts-upload");
+        jQuery(".redux-opts-upload").on('click',function( event ) {
+            
+            var activeFileUploadContext = jQuery(this).parent();
+            var relid = jQuery(this).attr('rel-id');
+
+            event.preventDefault();
+
+            // if its not null, its broking custom_file_frame's onselect "activeFileUploadContext"
+            custom_file_frame = null;
+
+            // Create the media frame.
+            custom_file_frame = wp.media.frames.customHeader = wp.media({
+                // Set the title of the modal.
+                title: jQuery(this).data("choose"),
+
+                // Tell the modal to show only images. Ignore if want ALL
+                library: {
+                    type: 'image'
+                },
+                // Customize the submit button.
+                button: {
+                    // Set the text of the button.
+                    text: jQuery(this).data("update")
+                }
+            });
+
+            custom_file_frame.on( "select", function() {
+                // Grab the selected attachment.
+                var attachment = custom_file_frame.state().get("selection").first();
+
+                // Update value of the targetfield input with the attachment url.
+                jQuery('.redux-opts-screenshot',activeFileUploadContext).attr('src', attachment.attributes.url);
+                jQuery('#' + relid ).val(attachment.attributes.url).trigger('change');
+
+                jQuery('.redux-opts-upload',activeFileUploadContext).hide();
+                jQuery('.redux-opts-screenshot',activeFileUploadContext).show();
+                jQuery('.redux-opts-upload-remove',activeFileUploadContext).show();
+            });
+
+            custom_file_frame.open();
+        });
+
+        jQuery(".redux-opts-upload-remove").on('click', function( event ) {
+            var activeFileUploadContext = jQuery(this).parent();
+            var relid = jQuery(this).attr('rel-id');
+
+            event.preventDefault();
+
+            jQuery('#' + relid).val('');
+            jQuery(this).prev().fadeIn('slow');
+            jQuery('.redux-opts-screenshot',activeFileUploadContext).fadeOut('slow');
+            jQuery(this).fadeOut('slow');
+        });
+    }
+
+    function resetFileds(){
+        //reset data
+        $('#calibrefx-sc-generator').find('input:text, input:password, input:file, textarea').val('');
+        $('#calibrefx-sc-generator').find('select:not(#calibrefx-shortcodes) option:first-child').attr("selected", "selected");
+        $('#calibrefx-sc-generator').find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+        $('#calibrefx-sc-generator').find('.shortcode-options').each(function(){
+            $(this).find('.shortcode-dynamic-item').addClass('marked-for-removal');
+            $(this).find('.shortcode-dynamic-item:first').removeClass('marked-for-removal');
+            $(this).find('.shortcode-dynamic-item.marked-for-removal').remove();
+        });
+        $('#calibrefx-sc-generator').find('.redux-opts-screenshot').attr('src','');
+        $('#calibrefx-sc-generator').find('.redux-opts-upload-remove').hide();
+        $('#calibrefx-sc-generator').find('.redux-opts-upload').show();
+        $('#calibrefx-sc-generator').find('.wp-color-result').attr('style','');
+        
+        //starting category population
+        $('.starting_category').hide();
+        $('.starting_category').next('.clear').hide();
+    }
+
+});

@@ -1,0 +1,165 @@
+@font-face {
+	font-family: 'cfxicons';
+	src:url('../fonts/cfxicons.eot?6lzngw');
+	src:url('../fonts/cfxicons.eot?#iefix6lzngw') format('embedded-opentype'),
+		url('../fonts/cfxicons.woff?6lzngw') format('woff'),
+		url('../fonts/cfxicons.ttf?6lzngw') format('truetype'),
+		url('../fonts/cfxicons.svg?6lzngw#cfxicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'cfxicons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-calibreworks:before {
+	content: "\e600";
+}
+
+.icon-calibrefx:before {
+	content: "\cf";
+}
+
+.icon-home:before {
+	content: "\e900";
+}
+
+.icon-image:before {
+	content: "\e90d";
+}
+
+.icon-camera:before {
+	content: "\e90f";
+}
+
+.icon-play:before {
+	content: "\e912";
+}
+
+.icon-enlarge:before {
+	content: "\e989";
+}
+
+.icon-shrink:before {
+	content: "\e98a";
+}
+
+.icon-lock:before {
+	content: "\e98f";
+}
+
+.icon-unlocked:before {
+	content: "\e990";
+}
+
+.icon-bookmark:before {
+	content: "\e9d2";
+}
+
+.icon-bookmarks:before {
+	content: "\e9d3";
+}
+
+.icon-star-empty:before {
+	content: "\e9d7";
+}
+
+.icon-star-full:before {
+	content: "\e9d9";
+}
+
+.icon-heart:before {
+	content: "\e9da";
+}
+
+.icon-heart-broken:before {
+	content: "\e9db";
+}
+
+.icon-cross:before {
+	content: "\ea0f";
+}
+
+.icon-checkmark:before {
+	content: "\ea10";
+}
+
+.icon-facebook2:before {
+	content: "\ea8d";
+}
+
+.icon-twitter2:before {
+	content: "\ea92";
+}
+
+.icon-feed3:before {
+	content: "\ea95";
+}
+
+.icon-youtube:before {
+	content: "\ea97";
+}
+
+.icon-youtube3:before {
+	content: "\ea99";
+}
+
+.icon-vimeo2:before {
+	content: "\ea9d";
+}
+
+.icon-flickr3:before {
+	content: "\eaa2";
+}
+
+.icon-picassa2:before {
+	content: "\eaa5";
+}
+
+.icon-dropbox:before {
+	content: "\eaaf";
+}
+
+.icon-github:before {
+	content: "\eab1";
+}
+
+.icon-github4:before {
+	content: "\eab4";
+}
+
+.icon-wordpress2:before {
+	content: "\eab7";
+}
+
+.icon-tumblr2:before {
+	content: "\eabc";
+}
+
+.icon-android:before {
+	content: "\eac1";
+}
+
+.icon-linkedin:before {
+	content: "\eac8";
+}
+
+.icon-pinterest2:before {
+	content: "\ead1";
+}
+
+.icon-paypal2:before {
+	content: "\ead7";
+}
+
