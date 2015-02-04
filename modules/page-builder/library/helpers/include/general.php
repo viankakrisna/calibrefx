@@ -17,31 +17,31 @@ function vp_get_content_type_list(){
     $result = array();
     $result[] = array(
 		'value' => 'breadcrumb',
-		'label' => __('Breadcrumb', 'vp_textdomain')
+		'label' => __( 'Breadcrumb', 'calibrefx' )
 	);
     $result[] = array(
 		'value' => 'carousel',
-		'label' => __('Carousel', 'vp_textdomain')
+		'label' => __( 'Carousel', 'calibrefx' )
 	);
     $result[] = array(
 		'value' => 'heading',
-		'label' => __('Heading', 'vp_textdomain')
+		'label' => __( 'Heading', 'calibrefx' )
 	);
     $result[] = array(
 		'value' => 'html_editor',
-		'label' => __('HTML Editor', 'vp_textdomain')
+		'label' => __( 'HTML Editor', 'calibrefx' )
 	);
     $result[] = array(
 		'value' => 'raw_html',
-		'label' => __('Raw HTML', 'vp_textdomain')
+		'label' => __( 'Raw HTML', 'calibrefx' )
 	);
-	if(class_exists('RevSlider')){
+	if( class_exists( 'RevSlider' ) ){
         $result[] = array(
     		'value' => 'slider_revolution',
-    		'label' => __('Slider Revolution', 'vp_textdomain')
+    		'label' => __( 'Slider Revolution', 'calibrefx' )
     	);
 	}
-    return apply_filters('vp_get_content_type_list', $result);
+    return apply_filters( 'vp_get_content_type_list', $result);
 }
 
 function vp_get_content_type_fields(){
@@ -49,7 +49,7 @@ function vp_get_content_type_fields(){
     $result[] = array(
 		'type' => 'select',
 		'name' => 'content_type',
-		'label' => __('Content Type', 'vp_textdomain'),
+		'label' => __( 'Content Type', 'calibrefx'),
 		'items' => array(
 			'data' => array(
 				array(
@@ -59,33 +59,33 @@ function vp_get_content_type_fields(){
 			)
 		)
 	);
-    foreach(vp_get_content_type_list() as $content_type){
-        $content_type_function = 'vp_content_type_field_'.$content_type['value'];
-        if(function_exists($content_type_function)){
-            $result[] = call_user_func($content_type_function);
+    foreach( vp_get_content_type_list() as $content_type ){
+        $content_type_function = 'vp_content_type_field_' . $content_type['value'];
+        if( function_exists( $content_type_function ) ){
+            $result[] = call_user_func( $content_type_function );
         }
     }
-    return apply_filters('vp_get_content_type_fields', $result);
+    return apply_filters( 'vp_get_content_type_fields', $result );
 }
 
 function vp_content_type_field_breadcrumb(){
-    return apply_filters('vp_content_type_field_breadcrumb', array(
+    return apply_filters( 'vp_content_type_field_breadcrumb', array(
         'type' => 'upload',
         'name' => 'breadcrumb',
-        'label' => __('Breadcrumb Image', 'vp_textdomain'),
+        'label' => __( 'Breadcrumb Image', 'calibrefx'),
         'validation' => 'required',
         'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_is_breadcrumb',
         )
-    ));
+    ) );
 }
 
 function vp_content_type_field_raw_html(){
-    return apply_filters('vp_content_type_field_raw_html', array(
+    return apply_filters( 'vp_content_type_field_raw_html', array(
 			'type'      => 'textarea',
 			'name'      => 'raw_html',
-			'label'     => __('Raw HTML Code', 'vp_textdomain'),
+			'label'     => __( 'Raw HTML Code', 'calibrefx'),
             'dependency' => array(
                 'field' => 'content_type',
                 'function' => 'vp_dep_is_raw_html',
@@ -95,10 +95,10 @@ function vp_content_type_field_raw_html(){
 }
 
 function vp_content_type_field_html_editor(){
-    return apply_filters('vp_content_type_field_html_editor', array(
+    return apply_filters( 'vp_content_type_field_html_editor', array(
 			'type'      => 'wpeditor',
 			'name'      => 'html_editor',
-			'label'     => __('HTML Editor', 'vp_textdomain'),
+			'label'     => __( 'HTML Editor', 'calibrefx'),
             'dependency' => array(
                 'field' => 'content_type',
                 'function' => 'vp_dep_is_html_editor',
@@ -108,12 +108,12 @@ function vp_content_type_field_html_editor(){
 }
 
 function vp_content_type_field_carousel(){
-    return apply_filters('vp_content_type_field_carousel', array(
+    return apply_filters( 'vp_content_type_field_carousel', array(
 			'type'      => 'group',
 			'repeating' => true,
 			'sortable' => true,
 			'name'      => 'carousel',
-			'title'     => __('Carousel', 'vp_textdomain'),
+			'title'     => __( 'Carousel', 'calibrefx'),
             'dependency' => array(
                 'field' => 'content_type',
                 'function' => 'vp_dep_is_carousel',
@@ -123,7 +123,7 @@ function vp_content_type_field_carousel(){
                     'type' => 'upload',
                     'name' => 'image',
                     'validation' => 'required',
-                    'label' => __('Image', 'vp_textdomain')
+                    'label' => __( 'Image', 'calibrefx')
                 )
 			),
 		)
@@ -131,10 +131,10 @@ function vp_content_type_field_carousel(){
 }
 
 function vp_content_type_field_heading(){
-    return apply_filters('vp_content_type_field_heading', array(
+    return apply_filters( 'vp_content_type_field_heading', array(
 			'type' => 'textbox',
 			'name' => 'heading',
-			'label' => __('Heading Text', 'vp_textdomain'),
+			'label' => __( 'Heading Text', 'calibrefx'),
 			'validation' > 'required',
             'dependency' => array(
                 'field' => 'content_type',
@@ -145,10 +145,10 @@ function vp_content_type_field_heading(){
 }
 
 function vp_content_type_field_slider_revolution(){
-    return apply_filters('vp_content_type_field_slider_revolution', array(
+    return apply_filters( 'vp_content_type_field_slider_revolution', array(
             'type' => 'select',
             'name' => 'slider_revolution',
-            'label' => __('Slider Revolution', 'jg_textdomain'),
+            'label' => __( 'Slider Revolution', 'jg_textdomain'),
             'validation' => 'required',
             'dependency' => array(
                 'field' => 'content_type',
