@@ -92,6 +92,11 @@ class Calibrefx_Builder{
     public function build_the_content( $content ){
     	global $post;
     	$output = '';
+
+        $include_templates = SELF::template_pages();
+        $current_template = basename( get_page_template() );
+        
+        if( !in_array( $current_template, $include_templates ) ) return $content;
     	
     	// Remove filter to avoid infinite looping
     	remove_filter( 'the_content', array( $this, 'build_the_content' ) );
@@ -136,16 +141,20 @@ class Calibrefx_Builder{
 
                         $column_output = '<div class="'.implode(" ", $column_class).'">';
 
-                        $return = apply_filters( 
-                                    'section_content_type_' . $column['content_type'], 
-                                    $section, 
-                                    $section_key, 
-                                    $column, 
-                                    $column_key );
+                        if($column['content']){
+                            foreach ($column['content'] as $element_key => $element) {
+                                 $return = apply_filters( 
+                                            'section_content_type_' . $element['content_type'], 
+                                            $column, 
+                                            $column_key, 
+                                            $element, 
+                                            $element_key );
 
-	    				if( !is_array( $return ) ){
-	    					$column_output .= $return;
-	    				}
+                                if( is_string( $return ) ){
+                                    $column_output .= $return;
+                                }       
+                            }
+                        }
 
                         $column_output .= '</div>';
 
