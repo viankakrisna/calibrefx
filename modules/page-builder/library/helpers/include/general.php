@@ -1,4 +1,17 @@
 <?php
+function vp_get_formidable_forms() {
+    $result = array();
+    if( !class_exists( 'FrmForm' ) ){
+        return $result;
+    }
+    $where = apply_filters('frm_forms_dropdown', " (status is NULL OR status = '' OR status = 'published') AND default_template=0", '');
+	$frm_form = new FrmForm();
+	$forms = $frm_form->getAll($where, ' ORDER BY name');
+	foreach($forms as $form){
+		$result[] = array('value' => $form->id, 'label' => $form->name);
+	}
+    return $result;
+}
 
 function vp_get_revolution_sliders() {    
     $result = array();
@@ -19,20 +32,6 @@ function vp_get_autoresponder_providers(){
     $result[] = array( 'value' => 'aweber', 'label' => 'Aweber' );
     $result[] = array( 'value' => 'getresponse', 'label' => 'Getresponse' );
     $result[] = array( 'value' => 'other', 'label' => 'Other' );
-    return $result;
-}
-
-function vp_get_formidable(){
-    $result = array();
-    
-    if( !class_exists( 'FrmAppController' ) ){
-        return $result;
-    }
-
-    /*$frm_form = new FrmForm();
-    $items = $frm_form->getAll();
-    var_dump($items);exit;*/
-
     return $result;
 }
 
@@ -90,6 +89,12 @@ function vp_get_content_type_list(){
         $result[] = array(
     		'value' => 'slider_revolution',
     		'label' => __( 'Slider Revolution', 'calibrefx' )
+    	);
+	}
+	if( class_exists( 'FrmForm' ) ){
+        $result[] = array(
+    		'value' => 'formidable',
+    		'label' => __( 'Formidable', 'calibrefx' )
     	);
 	}
     return apply_filters( 'vp_get_content_type_list', $result);
@@ -233,7 +238,7 @@ function vp_content_type_field_formidable(){
                     'data' => array(
                         array(
                             'source' => 'function',
-                            'value' => 'vp_get_formidable'
+                            'value' => 'vp_get_formidable_forms'
                         )
                     )
                 )
@@ -241,7 +246,6 @@ function vp_content_type_field_formidable(){
             array(
                 'type' => 'textbox',
                 'name' => 'css_class',
-                'validation' => 'required',
                 'label' => __( 'CSS Class', 'calibrefx'),
             ),
         )
