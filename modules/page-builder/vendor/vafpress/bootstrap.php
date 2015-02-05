@@ -76,12 +76,15 @@ if( !function_exists('vp_ajax_wrapper') )
 	{
 		$function = $_POST['func'];
 		$params   = $_POST['params'];
+		$target_field   = isset($_POST['target_field'])? $_POST['target_field'] : '';
 
 		if( VP_Security::instance()->is_function_whitelisted($function) )
 		{
 			if(!is_array($params))
 				$params = array($params);
 
+			$params[] = $target_field;
+			
 			try {
 				$result['data']    = call_user_func_array($function, $params);
 				$result['status']  = true;

@@ -277,7 +277,7 @@ class VP_Metabox extends WPAlchemy_MetaBox
 					{
 						$dependency = $field->get_dependency();
 						if(!empty($dependency))
-						{//die_dump($dependency);
+						{
 							$dependency = explode('|', $dependency);
 							$func       = $dependency[0];
 							$params     = $dependency[1];
@@ -492,7 +492,11 @@ class VP_Metabox extends WPAlchemy_MetaBox
 		$name       = $group['name'];
 		$uid        = $group['indexed_name'];
 		$oddity     = ($group['level'] % 2 === 0) ? 'even' : 'odd';
-		$dependency = isset($group['dependency']) ? $group['dependency']['function'] . '|' . $group['dependency']['field'] : '';
+
+		preg_match_all("/\[([^\]]*)\]/", $uid, $matches);
+		$target_field = $matches[1][count($matches[1])-1];
+
+		$dependency = isset($group['dependency']) ? $group['dependency']['function'] . '|' . $group['dependency']['field'] . '|' . $target_field : '';
 
 		$html  = '';
 		$html .= '<div id="wpa_loop-' . $uid
@@ -540,7 +544,11 @@ class VP_Metabox extends WPAlchemy_MetaBox
 		$name       = $group['name'];
 		$uid        = $group['indexed_name'];
 		$oddity     = ($group['level'] % 2 === 0) ? 'even' : 'odd';
-		$dependency = isset($group['dependency']) ? $group['dependency']['function'] . '|' . $group['dependency']['field'] : '';
+		
+		preg_match_all("/\[([^\]]*)\]/", $uid, $matches);
+		$target_field = $matches[1][count($matches[1])-1];
+
+		$dependency = isset($group['dependency']) ? $group['dependency']['function'] . '|' . $group['dependency']['field'] . '|' . $target_field : '';
 
 		$html  = '';
 		$html .= '<div id="wpa_loop-' . $uid

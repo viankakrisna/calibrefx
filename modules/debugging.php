@@ -69,7 +69,7 @@ if ( !function_exists( 'fire_debug' ) ) {
 
     function fire_debug( $var ) {
         global $calibrefx;
-        $calibrefx->load->file( CALIBREFX_LIBRARY_URI . '/third-party/firephp/FirePHP.class.php' );
+        include( CALIBREFX_LIBRARY_URI . '/third-party/firephp/FirePHP.class.php' );
         $firephp = FirePHP::getInstance( true );
         $firephp->log( $var );
     }

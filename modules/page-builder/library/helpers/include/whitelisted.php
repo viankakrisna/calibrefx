@@ -1,7 +1,7 @@
 <?php
 
 $whitelisted_func = array(
-	'vp_dep_is_autoresponder',
+	// 'vp_dep_is_autoresponder',
 	'vp_dep_is_image',
 	'vp_dep_is_mailventure',
     'vp_dep_is_not_mailventure',
@@ -12,6 +12,7 @@ $whitelisted_func = array(
     'vp_dep_is_raw_html',
     'vp_dep_is_slider',
     'vp_dep_is_slider_revolution',
+    'vp_dep_custom',
 );
 
 foreach( $whitelisted_func as $include ){
@@ -19,6 +20,56 @@ foreach( $whitelisted_func as $include ){
 }
 
 // Whitelist Functions
+
+function vp_dep_custom($value, $target_field = ''){
+   
+    switch ( $target_field ) {
+        //Mailventure
+        case 'autoresponder':
+            if( $value === 'autoresponder' ) return true;
+            break;
+        case 'api_url':
+            if( $value === 'mailventure' ) return true;
+            break;
+        case 'api_key':
+            if( $value === 'mailventure' ) return true;
+            break;
+        case 'campaign_name':
+            if( $value === 'mailventure' ) return true;
+            break;
+        case 'form_id':
+            if( $value === 'mailventure' ) return true;
+            break;
+        case 'form_code':
+            if( $value !== 'mailventure' ) return true;
+            break;
+
+        //Formidable
+        case 'formidable':
+            if( $value === 'formidable' ) return true;
+            break;
+
+        //Google Map
+        case 'google_map':
+            if( $value === 'google_map' ) return true;
+            break;
+
+        //Heading
+        case 'heading':
+            if( $value === 'heading' ) return true;
+            break;
+        case 'heading_icon':
+            if( $value === 'left' ) return true;
+            break;
+
+        //Image
+        case 'image':
+            if( $value === 'image' ) return true;
+            break;
+    }
+
+    return false;
+}
 
 function vp_dep_is_autoresponder( $value ){
     if( $value === 'autoresponder' ) return true;

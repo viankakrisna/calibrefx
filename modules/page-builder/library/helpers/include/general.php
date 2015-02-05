@@ -133,7 +133,7 @@ function vp_content_type_field_autoresponder(){
         'title'     => __( 'Autoresponder Settings', 'calibrefx'),
         'dependency' => array(
             'field' => 'content_type',
-            'function' => 'vp_dep_is_autoresponder',
+            'function' => 'vp_dep_custom',
         ),
         'fields'    => array(
             array(
@@ -157,17 +157,17 @@ function vp_content_type_field_autoresponder(){
                 'label' => __( 'Api Url', 'calibrefx'),
                 'dependency' => array(
                     'field' => 'provider',
-                    'function' => 'vp_dep_is_mailventure',
+                    'function' => 'vp_dep_custom',
                 ),
             ),
             array(
                 'type' => 'textbox',
                 'name' => 'api_key',
                 'validation' => 'required',
-                'label' => __( 'Api Url', 'calibrefx'),
+                'label' => __( 'Api Key', 'calibrefx'),
                 'dependency' => array(
                     'field' => 'provider',
-                    'function' => 'vp_dep_is_mailventure',
+                    'function' => 'vp_dep_custom',
                 ),
             ),
             array(
@@ -177,7 +177,7 @@ function vp_content_type_field_autoresponder(){
                 'label' => __( 'Campaign Name', 'calibrefx'),
                 'dependency' => array(
                     'field' => 'provider',
-                    'function' => 'vp_dep_is_mailventure',
+                    'function' => 'vp_dep_custom',
                 ),
             ),
             array(
@@ -187,7 +187,7 @@ function vp_content_type_field_autoresponder(){
                 'label' => __( 'Form ID', 'calibrefx'),
                 'dependency' => array(
                     'field' => 'provider',
-                    'function' => 'vp_dep_is_mailventure',
+                    'function' => 'vp_dep_custom',
                 ),
             ),
             array(
@@ -197,7 +197,7 @@ function vp_content_type_field_autoresponder(){
                 'label' => __( 'Autoresponder Form Code', 'calibrefx'),
                 'dependency' => array(
                     'field' => 'provider',
-                    'function' => 'vp_dep_is_not_mailventure',
+                    'function' => 'vp_dep_custom',
                 ),
             ),
             array(
@@ -221,7 +221,7 @@ function vp_content_type_field_formidable(){
         'title'     => __( 'Formidable Settings', 'calibrefx'),
         'dependency' => array(
             'field' => 'content_type',
-            'function' => 'vp_dep_is_formidable',
+            'function' => 'vp_dep_custom',
         ),
         'fields'    => array(
             array(
@@ -259,7 +259,7 @@ function vp_content_type_field_google_map(){
         'title'     => __( 'Google Map Settings', 'calibrefx'),
         'dependency' => array(
             'field' => 'content_type',
-            'function' => 'vp_dep_is_google_map',
+            'function' => 'vp_dep_custom',
         ),
         'fields'    => array(
             array(
@@ -271,7 +271,6 @@ function vp_content_type_field_google_map(){
             array(
                 'type' => 'textbox',
                 'name' => 'latitude',
-                'validation' => 'required',
                 'label' => __( 'Latitude', 'calibrefx'),
             ),
             array(
@@ -319,7 +318,7 @@ function vp_content_type_field_heading(){
         'title'     => __( 'Heading Settings', 'calibrefx'),
         'dependency' => array(
             'field' => 'content_type',
-            'function' => 'vp_dep_is_heading',
+            'function' => 'vp_dep_custom',
         ),
         'fields'    => array(
             array(
@@ -361,7 +360,7 @@ function vp_content_type_field_heading(){
                 'label' => __( 'Icon', 'calibrefx'),
                 'dependency' => array(
                     'field' => 'heading_alignment',
-                    'function' => 'vp_dep_is_left',
+                    'function' => 'vp_dep_custom',
                 )
             ),
         )
@@ -379,7 +378,7 @@ function vp_content_type_field_image(){
         'title'     => __( 'Image Settings', 'calibrefx'),
         'dependency' => array(
             'field' => 'content_type',
-            'function' => 'vp_dep_is_image',
+            'function' => 'vp_dep_custom',
         ),
         'fields'    => array(
             array(
@@ -458,7 +457,7 @@ function vp_content_type_field_image(){
                 'validation' => 'required',
                 'label' => __( 'Delay', 'calibrefx'),
                 'dependency' => array(
-                    'field' => 'delay',
+                    'field' => 'image_animation',
                     'function' => 'vp_dep_boolean',
                 ),
             ),
