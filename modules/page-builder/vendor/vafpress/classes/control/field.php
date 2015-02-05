@@ -139,7 +139,10 @@ abstract class VP_Control_Field implements iFactory
 		{
 			$func  = $arr['dependency']['function'];
 			$field = $arr['dependency']['field'];
-			$this->set_dependency($func . '|' . $field);
+
+			$target_field = 'section_bg_parallax';//$this->get_name();
+
+			$this->set_dependency($func . '|' . $field.'|'.$target_field);
 		}
 
 		if(isset($arr['binding']))

@@ -15,7 +15,7 @@ if( $includes ){
 	}
 }
 
-$includes = glob( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'whitelisted' . DIRECTORY_SEPARATOR . '*.php' );
+/*$includes = glob( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'whitelisted' . DIRECTORY_SEPARATOR . '*.php' );
 if( $includes ){
 	foreach( $includes as $include ){
 	    $file_name = basename( $include );
@@ -25,4 +25,4 @@ if( $includes ){
 			VP_Security::instance()->whitelist_function( basename( $include, '.php' ) );
 		}
 	}
-}
+}*/

@@ -297,8 +297,13 @@
 			var temp   = field.dep.split('|');
 			var func   = temp[0];
 			var dest   = temp[1];
+			var target_field = '';
 			var ids    = [];
 			var prefix = '';
+
+			if(temp[2] != undefined){
+				target_field = temp[2];
+			}
 
 			if(field.type === 'field')
 			{
@@ -332,7 +337,7 @@
 
 			for (j = 0; j < ids.length; j++)
 			{
-				vp.dependency_event(ids, j, field, func, '.vp-metabox');
+				vp.dependency_event(ids, j, field, func, '.vp-metabox', target_field);
 			}
 		}
 	}

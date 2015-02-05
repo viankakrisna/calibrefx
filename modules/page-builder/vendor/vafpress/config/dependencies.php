@@ -97,7 +97,8 @@ return array(
 				'override' => true,
 			),
 			'shared' => array(
-				'path'     => VP_PUBLIC_URL . '/js/shared.min.js',
+				'path'     => VP_PUBLIC_URL . '/js/shared.js',
+				// 'path'     => VP_PUBLIC_URL . '/js/shared.min.js',
 				'deps'     => array(),
 				'ver'      => '1.1',
 				'localize' => array(
@@ -121,7 +122,8 @@ return array(
 				)
 			),
 			'vp-metabox' => array(
-				'path'     => VP_PUBLIC_URL . '/js/metabox.min.js',
+				'path'     => VP_PUBLIC_URL . '/js/metabox.js',
+				// 'path'     => VP_PUBLIC_URL . '/js/metabox.min.js',
 				'deps'     => array(),
 				'ver'      => '2.0',
 				'localize' => array(

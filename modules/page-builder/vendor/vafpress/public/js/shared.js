@@ -767,7 +767,7 @@ vp.items_binding_event = function(ids, idx, field, func, parent, thecase)
  */
 
 // vafpress dependencies related functions
-vp.dependency_action =	function(ids, field, func) {
+vp.dependency_action =	function(ids, field, func, target_field) {
 
 	var $source_tr = jQuery(vp.jqid(field.source)),
 	    $source    = jQuery('[name="' + field.source + '"]'),
@@ -783,7 +783,8 @@ vp.dependency_action =	function(ids, field, func) {
 	var data = {
 		action   : 'vp_ajax_wrapper',
 		func     : func,
-		params   : values
+		params   : values,
+		target_field : target_field
 	};
 
 	// get loader
@@ -814,7 +815,7 @@ vp.dependency_action =	function(ids, field, func) {
 	}, 'JSON');
 };
 
-vp.dependency_event = function(ids, idx, field, func, parent){
+vp.dependency_event = function(ids, idx, field, func, parent, target_field){
 
 	var change    = ['vp-select', 'vp-checkbox', 'vp-checkimage', 'vp-radiobutton', 'vp-radioimage', 'vp-multiselect', 'vp-toggle', 'vp-upload'],
 	    typing    = ['vp-textbox', 'vp-slider', 'vp-color', 'vp-date'],
@@ -823,13 +824,13 @@ vp.dependency_event = function(ids, idx, field, func, parent){
 
 	if(jQuery.inArray(dest_type, change) !== -1 )
 	{
-		jQuery(parent).delegate(name, 'change', function(){vp.dependency_action(ids, field, func);});
+		jQuery(parent).delegate(name, 'change', function(){vp.dependency_action(ids, field, func, target_field);});
 	}
 	else if(jQuery.inArray(dest_type, typing) !== -1 )
 	{
 		jQuery(name).typing({
 			stop: function(event, $elem){
-				vp.dependency_action(ids, field, func);
+				vp.dependency_action(ids, field, func, target_field);
 			},
 			delay: 400
 		});

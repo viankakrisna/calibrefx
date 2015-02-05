@@ -277,7 +277,7 @@ class VP_Metabox extends WPAlchemy_MetaBox
 					{
 						$dependency = $field->get_dependency();
 						if(!empty($dependency))
-						{
+						{//die_dump($dependency);
 							$dependency = explode('|', $dependency);
 							$func       = $dependency[0];
 							$params     = $dependency[1];
