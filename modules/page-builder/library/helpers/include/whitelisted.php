@@ -66,6 +66,24 @@ function vp_dep_custom($value, $target_field = ''){
         case 'image':
             if( $value === 'image' ) return true;
             break;
+
+        //Html Editor
+        case 'html_editor':
+            if( $value === 'html_editor' ) return true;
+            break;
+
+        //Html Editor
+        case 'menu':
+            if( $value === 'menu' ) return true;
+            break;
+
+        //Post Archive
+        case 'archive':
+            if( $value === 'archive' ) return true;
+            break;
+        case 'read_more':
+            if( $value === 'list' ) return true;
+            break;
     }
 
     return false;

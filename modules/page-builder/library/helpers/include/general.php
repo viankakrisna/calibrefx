@@ -13,6 +13,28 @@ function vp_get_formidable_forms() {
     return $result;
 }
 
+function vp_get_menu(){
+    $result = array();
+
+    $menus = wp_get_nav_menus( );
+    foreach ($menus as $menu) {
+        $result[] = array('value' => $menu->slug, 'label' => $menu->name);   
+    }
+
+    return $result;
+}
+
+function vp_get_post_type(){
+    $result = array();
+
+    $post_types = get_post_types( array( 'public' => true ), 'objects' );
+    foreach ($post_types as $post_type) {
+        $result[] = array('value' => $post_type->name, 'label' => $post_type->labels->singular_name);   
+    }
+
+    return $result;   
+}
+
 function vp_get_revolution_sliders() {    
     $result = array();
     if( !class_exists( 'RevSlider' ) ){
@@ -41,7 +63,7 @@ function vp_get_content_type_list(){
         'value' => 'autoresponder',
         'label' => __( 'Autoresponder Form', 'calibrefx' )
     );
-    if( class_exists( 'FrmAppController' ) ){
+    if( class_exists( 'FrmForm' ) ){
         $result[] = array(
             'value' => 'formidable',
             'label' => __( 'Formidable', 'calibrefx' )
@@ -91,12 +113,7 @@ function vp_get_content_type_list(){
     		'label' => __( 'Slider Revolution', 'calibrefx' )
     	);
 	}
-	if( class_exists( 'FrmForm' ) ){
-        $result[] = array(
-    		'value' => 'formidable',
-    		'label' => __( 'Formidable', 'calibrefx' )
-    	);
-	}
+	
     return apply_filters( 'vp_get_content_type_list', $result);
 }
 
@@ -477,6 +494,125 @@ function vp_content_type_field_image(){
     return apply_filters( 'vp_content_type_field_image', $fields );
 }
 
+function vp_content_type_field_html_editor(){
+    return apply_filters( 'vp_content_type_field_html_editor', array(
+            'type'       => 'wpeditor',
+            'name'       => 'html_editor',
+            'label'      => __( 'HTML Editor', 'calibrefx'),
+            'dependency' => array(
+                'field'  => 'content_type',
+                'function' => 'vp_dep_custom',
+            )
+        )
+    );
+}
+
+function vp_content_type_field_menu(){
+    $fields = array(
+        'type'      => 'group',
+        'repeating' => false,
+        'sortable'  => false,
+        'name'      => 'menu',
+        'title'     => __( 'Menu', 'calibrefx'),
+        'dependency' => array(
+            'field' => 'content_type',
+            'function' => 'vp_dep_custom',
+        ),
+        'fields'    => array(
+            array(
+                'type' => 'select',
+                'name' => 'menu_id',
+                'validation' => 'required',
+                'label' => __( 'Choose Menu', 'calibrefx'),
+                'items' => array(
+                    'data' => array(
+                        array(
+                            'source' => 'function',
+                            'value' => 'vp_get_menu'
+                        )
+                    )
+                )
+            ),
+            array(
+                'type' => 'textbox',
+                'name' => 'css_class',
+                'validation' => 'required',
+                'label' => __( 'CSS Class', 'calibrefx'),
+            ),
+        )
+    );
+
+    return apply_filters( 'vp_content_type_field_menu', $fields );
+}
+
+function vp_content_type_field_archive(){
+    $fields = array(
+        'type'      => 'group',
+        'repeating' => false,
+        'sortable'  => false,
+        'name'      => 'archive',
+        'title'     => __( 'Archive', 'calibrefx'),
+        'dependency' => array(
+            'field' => 'content_type',
+            'function' => 'vp_dep_custom',
+        ),
+        'fields'    => array(
+            array(
+                'type' => 'select',
+                'name' => 'post_type',
+                'validation' => 'required',
+                'label' => __( 'Post Type', 'calibrefx'),
+                'items' => array(
+                    'data' => array(
+                        array(
+                            'source' => 'function',
+                            'value' => 'vp_get_post_type'
+                        )
+                    )
+                )
+            ),
+            array(
+                'type' => 'textbox',
+                'name' => 'posts_per_page',
+                'label' => __( 'Posts per page', 'calibrefx'),
+            ),
+            array(
+                'type' => 'toggle',
+                'name' => 'show_pagination',
+                'label' => __( 'Show Pagination', 'calibrefx'),
+            ),
+            array(
+                'type' => 'select',
+                'name' => 'layout',
+                'validation' => 'required',
+                'label' => __( 'Layout', 'calibrefx'),
+                'items' => array(
+                    array(
+                        'value' => 'grid',
+                        'label' => __('Grid', 'calibrefx'),
+                    ),
+                    array(
+                        'value' => 'list',
+                        'label' => __('List', 'calibrefx'),
+                    ),
+                )
+            ),
+            array(
+                'type' => 'textbox',
+                'name' => 'read_more',
+                'label' => __( 'Read more text', 'calibrefx'),
+                'dependency' => array(
+                    'field' => 'layout',
+                    'function' => 'vp_dep_custom',
+                ),
+            ),
+
+        )
+    );
+
+    return apply_filters( 'vp_content_type_field_menu', $fields );
+}
+
 function vp_content_type_field_raw_html(){
 
     $fields = array(
@@ -490,32 +626,6 @@ function vp_content_type_field_raw_html(){
     );
 
     return apply_filters( 'vp_content_type_field_raw_html', $fields );
-}
-
-/*function vp_content_type_field_breadcrumb(){
-    return apply_filters( 'vp_content_type_field_breadcrumb', array(
-        'type' => 'upload',
-        'name' => 'breadcrumb',
-        'label' => __( 'Breadcrumb Image', 'calibrefx'),
-        'validation' => 'required',
-        'dependency' => array(
-            'field' => 'content_type',
-            'function' => 'vp_dep_is_breadcrumb',
-        )
-    ) );
-}*/
-
-function vp_content_type_field_html_editor(){
-    return apply_filters( 'vp_content_type_field_html_editor', array(
-			'type'       => 'wpeditor',
-			'name'       => 'html_editor',
-			'label'      => __( 'HTML Editor', 'calibrefx'),
-            'dependency' => array(
-                'field'  => 'content_type',
-                'function' => 'vp_dep_is_html_editor',
-            )
-		)
-    );
 }
 
 function vp_content_type_field_slider(){
