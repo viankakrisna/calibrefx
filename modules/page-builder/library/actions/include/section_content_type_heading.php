@@ -1,7 +1,6 @@
 <?php
-function section_ct_heading( $section, $section_key, $column, $column_key ){
+function section_ct_heading( $element ){
     
-	
-    return 'this is heading';
+    return $element[0]['header_text'];
 }
-add_filter( 'section_content_type_heading', 'section_ct_heading', 10, 4 );
+add_filter( 'section_content_type_heading', 'section_ct_heading', 10 );

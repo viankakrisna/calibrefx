@@ -143,12 +143,9 @@ class Calibrefx_Builder{
 
                         if($column['content']){
                             foreach ($column['content'] as $element_key => $element) {
-                                 $return = apply_filters( 
+                                $return = apply_filters( 
                                             'section_content_type_' . $element['content_type'], 
-                                            $column, 
-                                            $column_key, 
-                                            $element, 
-                                            $element_key );
+                                            $element[$element['content_type']]);
 
                                 if( is_string( $return ) ){
                                     $column_output .= $return;
