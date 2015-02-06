@@ -100,6 +100,16 @@ function vp_dep_custom($value, $target_field = ''){
         case 'simple_text':
             if( $value === 'simple_text' ) return true;
             break;
+
+        //Simple Text
+        case 'slider':
+            if( $value === 'slider' ) return true;
+            break;
+
+        //Simple Text
+        case 'slider_revolution':
+            if( $value === 'slider_revolution' ) return true;
+            break;
     }
 
     return false;

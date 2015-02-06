@@ -5,7 +5,8 @@ function vp_get_formidable_forms() {
         return $result;
     }
     $where = apply_filters('frm_forms_dropdown', " (status is NULL OR status = '' OR status = 'published' ) AND default_template=0", '' );
-	$frm_form = new FrmForm();
+	//@TODO: This cause error in Formidable create template
+    $frm_form = new FrmForm();
 	$forms = $frm_form->getAll($where, ' ORDER BY name' );
 	foreach($forms as $form){
 		$result[] = array('value' => $form->id, 'label' => $form->name);
@@ -745,52 +746,65 @@ function vp_content_type_field_simple_text(){
 }
 
 function vp_content_type_field_slider(){
-    return apply_filters( 'vp_content_type_field_slider', array(
-			'type'      => 'group',
-			'repeating' => true,
-			'sortable'  => true,
-			'name'      => 'slider',
-			'title'     => __( 'slider', 'calibrefx' ),
-            'dependency' => array(
-                'field' => 'content_type',
-                'function' => 'vp_dep_is_slider',
+
+    $fields = array(
+        'type'      => 'group',
+        'repeating' => true,
+        'sortable'  => true,
+        'name'      => 'slider',
+        'title'     => __( 'Slider Item', 'calibrefx' ),
+        'dependency' => array(
+            'field' => 'content_type',
+            'function' => 'vp_dep_custom',
+        ),
+        'fields'    => array(
+            array(
+                'type' => 'upload',
+                'name' => 'image',
+                'validation' => 'required',
+                'label' => __( 'Image', 'calibrefx' )
             ),
-			'fields'    => array(
-                array(
-                    'type' => 'upload',
-                    'name' => 'image',
-                    'validation' => 'required',
-                    'label' => __( 'Image', 'calibrefx' )
-                ),
-                array(
-                    'type' => 'textbox',
-                    'name' => 'css_class',
-                    'validation' => 'required',
-                    'label' => __( 'CSS Class', 'calibrefx' ),
-                ),
-			),
-		)
+            array(
+                'type' => 'textbox',
+                'name' => 'css_class',
+                'validation' => 'required',
+                'label' => __( 'CSS Class', 'calibrefx' ),
+            ),
+        ),
     );
+
+    return apply_filters( 'vp_content_type_field_slider', $fields );
 }
 
 function vp_content_type_field_slider_revolution(){
-    return apply_filters( 'vp_content_type_field_slider_revolution', array(
-            'type' => 'select',
-            'name' => 'slider_revolution',
-            'label' => __( 'Slider Revolution', 'jg_textdomain' ),
-            'validation' => 'required',
-            'dependency' => array(
-                'field' => 'content_type',
-                'function' => 'vp_dep_is_slider_revolution',
+
+    $fields = array(
+        'type'      => 'group',
+        'repeating' => false,
+        'sortable'  => false,
+        'name'      => 'slider_revolution',
+        'title'     => __( 'Slider Revolution', 'calibrefx' ),
+        'dependency' => array(
+            'field' => 'content_type',
+            'function' => 'vp_dep_custom',
+        ),
+        'fields'    => array(
+            array(
+                'type' => 'select',
+                'name' => 'slider_revolution_item',
+                'validation' => 'required',
+                'label' => __( 'Choose Slider', 'calibrefx' ),
+                'items' => array(
+                'data' => array(
+                        array(
+                            'source' => 'function',
+                            'value' => 'vp_get_revolution_sliders'
+                        )
+                    )
+                )
             ),
-            'items' => array(
-	            'data' => array(
-	                array(
-	                    'source' => 'function',
-	                    'value' => 'vp_get_revolution_sliders'
-	                )
-	            )
-	        )
-        )
+        ),
     );
+
+    return apply_filters( 'vp_content_type_field_slider_revolution', $fields );
 }
