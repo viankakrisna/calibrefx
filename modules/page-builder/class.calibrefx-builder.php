@@ -94,9 +94,9 @@ class Calibrefx_Builder{
     	$output = '';
 
         $include_templates = SELF::template_pages();
-        $current_template = basename( get_page_template() );
-        
-        if( !in_array( $current_template, $include_templates ) ) return $content;
+        $current_template = basename( get_page_template_slug( ) );
+
+        if( !array_key_exists( $current_template, $include_templates ) ) return $content;
     	
     	// Remove filter to avoid infinite looping
     	remove_filter( 'the_content', array( $this, 'build_the_content' ) );
@@ -186,8 +186,9 @@ class Calibrefx_Builder{
     public function get_page_template( $template ) {
         global $post;
 
+
         if ( !isset( $this->templates[get_post_meta( $post->ID, '_wp_page_template', true )] ) ) {
-        	return $template;
+            return $template;
         } 
 		
 		if( file_exists( get_stylesheet_directory() . DIRECTORY_SEPARATOR . 'page-builder' . DIRECTORY_SEPARATOR . get_post_meta( $post->ID, '_wp_page_template', true ) ) ){
@@ -195,7 +196,6 @@ class Calibrefx_Builder{
 		}else{
 			$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'page-template' . DIRECTORY_SEPARATOR . get_post_meta( $post->ID, '_wp_page_template', true );
 		}
-        
 		
         // Just to be safe, we check if the file exist first
         if( file_exists( $file ) ) {

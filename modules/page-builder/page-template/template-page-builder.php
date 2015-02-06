@@ -42,7 +42,7 @@ function builder_page_body_class( $classes ){
 
     if ( have_posts() ) : 
         while ( have_posts() ) : the_post(); ?>
-		   <?php do_action( 'calibrefx_post_content' ); ?>
+		   <?php the_content( ); ?>
     	<?php
         endwhile;
     else : 
