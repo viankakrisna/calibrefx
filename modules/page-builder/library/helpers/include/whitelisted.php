@@ -84,6 +84,22 @@ function vp_dep_custom($value, $target_field = ''){
         case 'read_more':
             if( $value === 'list' ) return true;
             break;
+        case 'excerpt_length':
+            if( $value === 'list' ) return true;
+            break;
+        case 'columns_per_row':
+            if( $value === 'grid' ) return true;
+            break;
+
+        //Html Editor
+        case 'raw_html_group':
+            if( $value === 'raw_html' ) return true;
+            break;
+
+        //Simple Text
+        case 'simple_text':
+            if( $value === 'simple_text' ) return true;
+            break;
     }
 
     return false;
