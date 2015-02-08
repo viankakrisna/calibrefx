@@ -273,6 +273,7 @@ class VP_Metabox extends WPAlchemy_MetaBox
 					}
 
 					$dependency = '';
+					$target_field = '';
 					if($field instanceof VP_Control_Field)
 					{
 						$dependency = $field->get_dependency();
@@ -281,6 +282,7 @@ class VP_Metabox extends WPAlchemy_MetaBox
 							$dependency = explode('|', $dependency);
 							$func       = $dependency[0];
 							$params     = $dependency[1];
+							$target_field = isset($dependency[2])? $dependency[1] : '';
 						}
 					}
 					else
@@ -292,12 +294,15 @@ class VP_Metabox extends WPAlchemy_MetaBox
 								$dependency = $field['dependency'];
 								$func       = $dependency['function'];
 								$params     = $dependency['field'];
+								
+								preg_match_all("/\[([^\]]*)\]/", $field['indexed_name'], $matches);
+								$target_field = $matches[1][count($matches[1])-1];
 							}
 						}
 					}
 
 					if(!empty($dependency))
-					{
+					{	
 						$params     = preg_split('/[\s,]+/', $params);
 						$values     = array();
 						foreach ($params as $param)
@@ -306,6 +311,9 @@ class VP_Metabox extends WPAlchemy_MetaBox
 							{
 								$values[] = $fields[$param]->get_value();
 							}
+						}
+						if( $target_field ){
+							$values[] = $target_field;
 						}
 						$result  = call_user_func_array($func, $values);
 						if(!$result)
@@ -580,11 +588,11 @@ class VP_Metabox extends WPAlchemy_MetaBox
 			}
 			foreach ($g['childs'] as $f)
 			{
-
 				if( is_array($f) and $f['repeating'] )
 					$html .= $this->_render_repeating_group($f);
-				else if( is_array($f) and !$f['repeating'] )
+				else if( is_array($f) and !$f['repeating'] ){
 					$html .= $this->_render_group($f);
+				}
 				else
 					$html .= $this->_render_field($f);
 			}

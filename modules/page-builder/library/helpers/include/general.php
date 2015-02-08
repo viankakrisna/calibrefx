@@ -121,6 +121,11 @@ function vp_get_content_type_list(){
 function vp_get_content_type_fields(){
     $result = array();
     $result[] = array(
+        'type' => 'toggle',
+        'name' => 'show_it',
+        'label' => __('Show', 'calibrefx')
+    );
+    $result[] = array(
 		'type' => 'select',
 		'name' => 'content_type',
 		'label' => __( 'Content Type', 'calibrefx' ),
@@ -342,6 +347,10 @@ function vp_content_type_field_heading(){
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
         ),
+        /*'dependency' => array(
+            'field' => 'show_it',
+            'function' => 'vp_dep_boolean',
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'textbox',
