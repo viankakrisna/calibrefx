@@ -51,6 +51,10 @@ class Calibrefx_Builder{
 		
 		// Add your templates to this array
 		$this->templates = self::template_pages();
+
+        add_action( 'calibrefx_meta', array( $this, 'builder_styles' ) );
+        add_action( 'calibrefx_meta', array( $this, 'builder_scripts' ) );
+
 	}
 	
 	public static function template_pages(){
@@ -250,6 +254,14 @@ class Calibrefx_Builder{
 			}
 		}
 	}
+
+    public function builder_styles(){
+        wp_enqueue_style( 'calibrefx-builder', CALIBREFX_MODULE_URL . '/page-builder/assets/css/builder.css' );
+    }
+
+    public function builder_scripts(){
+        wp_enqueue_script( 'calibrefx-shortcodes', CALIBREFX_MODULE_URL . '/page-builder/assets/js/builder.js' );
+    }
 }
 
 $calibrefx_builder = Calibrefx_Builder::getInstance();
