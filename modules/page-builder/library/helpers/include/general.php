@@ -342,10 +342,6 @@ function vp_content_type_field_heading(){
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
         ),
-        /*'dependency' => array(
-            'field' => 'show_it',
-            'function' => 'vp_dep_boolean',
-        ),*/
         'fields'    => array(
             array(
                 'type' => 'textbox',
