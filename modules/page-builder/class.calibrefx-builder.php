@@ -109,7 +109,7 @@ class Calibrefx_Builder{
                 $class = !empty( $section['section_class'] )? $section['section_class'] : '';
                 $style = !empty( $section['section_style'] )? $section['section_style'] : '';
                 if ( $section['section_bg_image'] ) {
-                    $style .= 'background-image: url(' . $section['section_bg_image'] . ')';
+                    $style .= 'background-image: url(' . $section['section_bg_image'] . ');';
                 }
 
                 if ( $section['section_bg_color'] ) {
@@ -144,8 +144,12 @@ class Calibrefx_Builder{
                         if($column['content']){
                             foreach ($column['content'] as $element_key => $element) {
                                 $return = apply_filters( 
-                                            'section_content_type_' . $element['content_type'], 
-                                            $element[$element['content_type']]);
+                                    'section_content_type_' . $element['content_type'], 
+                                    $element[$element['content_type']],
+                                    $element_key,
+                                    $column_key,
+                                    $section_key
+                                );
 
                                 if( is_string( $return ) ){
                                     $column_output .= $return;

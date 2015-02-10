@@ -647,7 +647,7 @@ function vp_content_type_field_raw_html(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
-        'name'      => 'raw_html_group',
+        'name'      => 'raw_html',
         'title'     => __( 'Raw HTML', 'calibrefx' ),
         'dependency' => array(
             'field' => 'content_type',
@@ -656,15 +656,9 @@ function vp_content_type_field_raw_html(){
         'fields'    => array(
             array(
                 'type'      => 'textarea',
-                'name'      => 'raw_html',
+                'name'      => 'raw_html_code',
                 'label'     => __( 'Raw HTML Code', 'calibrefx' ),
-            ),
-            array(
-                'type' => 'textbox',
-                'name' => 'css_class',
-                'validation' => 'required',
-                'label' => __( 'CSS Class', 'calibrefx' ),
-            ),
+            )
         ),
     );
 

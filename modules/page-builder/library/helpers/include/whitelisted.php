@@ -91,8 +91,8 @@ function vp_dep_custom($value, $target_field = ''){
             if( $value === 'grid' ) return true;
             break;
 
-        //Html Editor
-        case 'raw_html_group':
+        //Raw HTML
+        case 'raw_html':
             if( $value === 'raw_html' ) return true;
             break;
 
@@ -101,12 +101,12 @@ function vp_dep_custom($value, $target_field = ''){
             if( $value === 'simple_text' ) return true;
             break;
 
-        //Simple Text
+        //Slider
         case 'slider':
             if( $value === 'slider' ) return true;
             break;
 
-        //Simple Text
+        //Slider Revolution
         case 'slider_revolution':
             if( $value === 'slider_revolution' ) return true;
             break;
