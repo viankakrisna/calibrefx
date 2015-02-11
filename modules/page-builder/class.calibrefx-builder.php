@@ -256,11 +256,11 @@ class Calibrefx_Builder{
 	}
 
     public function builder_styles(){
-        wp_enqueue_style( 'calibrefx-builder', CALIBREFX_MODULE_URL . '/page-builder/assets/css/builder.css' );
+        wp_enqueue_style( 'calibrefx-builder', CALIBREFX_MODULE_URL . '/page-builder/assets/css/builderfx.css' );
     }
 
     public function builder_scripts(){
-        wp_enqueue_script( 'calibrefx-shortcodes', CALIBREFX_MODULE_URL . '/page-builder/assets/js/builder.js' );
+        wp_enqueue_script( 'calibrefx-shortcodes', CALIBREFX_MODULE_URL . '/page-builder/assets/js/builderfx.js' );
     }
 }
 

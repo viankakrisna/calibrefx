@@ -22,7 +22,7 @@
 !defined( 'CALIBREFX_JS_URL' ) && define( 'CALIBREFX_JS_URL', CALIBREFX_URL . '/assets/js' );
 !defined( 'CALIBREFX_CSS_URL' ) && define( 'CALIBREFX_CSS_URL', CALIBREFX_URL . '/assets/css' );
 !defined( 'CALIBREFX_SHORTCODE_URL' ) && define( 'CALIBREFX_SHORTCODE_URL', CALIBREFX_URL . '/system/shortcodes' );
-!defined( 'CALIBREFX_MODULE_URL' ) && define( 'CALIBREFX_MODULE_URL', CALIBREFX_URL . '/system/modules' );
+!defined( 'CALIBREFX_MODULE_URL' ) && define( 'CALIBREFX_MODULE_URL', CALIBREFX_URL . '/modules' );
 
 /** Define CALIBREFX Child Directory Constant */
 define( 'CHILD_URI', get_stylesheet_directory() );

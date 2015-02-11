@@ -1,0 +1,12 @@
+/* Heading
+------------------------------------------------------------ */
+
+.element-heading.has-icon{
+	position: relative;
+	padding-left: 40px;
+}
+
+.element-img-icon{
+	position: absolute;
+	left:0;
+}
