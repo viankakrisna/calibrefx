@@ -686,19 +686,16 @@ function vp_content_type_field_simple_text(){
             array(
                 'type' => 'color',
                 'name' => 'text_color',
-                'validation' => 'required',
                 'label' => __( 'Text Color', 'calibrefx' ),
             ),
             array(
                 'type' => 'textbox',
                 'name' => 'font_size',
-                'validation' => 'required',
                 'label' => __( 'Font Size', 'calibrefx' ),
             ),
             array(
                 'type' => 'select',
                 'name' => 'font_weight',
-                'validation' => 'required',
                 'label' => __( 'Font Weight', 'calibrefx' ),
                 'items' => array(
                     array(
@@ -718,19 +715,16 @@ function vp_content_type_field_simple_text(){
             array(
                 'type' => 'color',
                 'name' => 'background_color',
-                'validation' => 'required',
                 'label' => __( 'Background Color', 'calibrefx' ),
             ),
             array(
                 'type' => 'upload',
                 'name' => 'image_url',
-                'validation' => 'required',
                 'label' => __( 'Image URL', 'calibrefx' ),
             ),
             array(
                 'type' => 'textbox',
                 'name' => 'css_class',
-                'validation' => 'required',
                 'label' => __( 'CSS Class', 'calibrefx' ),
             ),
         ),
@@ -761,7 +755,6 @@ function vp_content_type_field_slider(){
             array(
                 'type' => 'textbox',
                 'name' => 'css_class',
-                'validation' => 'required',
                 'label' => __( 'CSS Class', 'calibrefx' ),
             ),
         ),

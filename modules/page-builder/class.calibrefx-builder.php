@@ -112,20 +112,20 @@ class Calibrefx_Builder{
 	    	foreach( $sections as $section_key => $section ){
                 $class = !empty( $section['section_class'] )? $section['section_class'] : '';
                 $style = !empty( $section['section_style'] )? $section['section_style'] : '';
-                if ( $section['section_bg_image'] ) {
+                if ( isset( $section['section_bg_image'] ) ) {
                     $style .= 'background-image: url(' . $section['section_bg_image'] . ');';
                 }
 
-                if ( $section['section_bg_color'] ) {
+                if ( isset( $section['section_bg_color'] ) ) {
                     $style .= 'background-color: ' . $section['section_bg_color'];
                 }
 
-                if ( $section['section_bg_parallax'] ) {
+                if ( isset( $section['section_bg_parallax'] ) ) {
                     $class .= 'parallax-bg';
                 }
 
                 $section_output = "<div id=\"section-$section_key\" class=\"section $class\" style=\"$style\">";
-                if( $section['section_container'] ){
+                if( isset( $section['section_container'] ) ){
                     $section_output .= '<div class="container">';
                 }
 
@@ -169,7 +169,7 @@ class Calibrefx_Builder{
                     $section_output .= "</div>";
 	    		}
 
-                if( $section['section_container'] ){
+                if( isset( $section['section_container'] ) ){
                     $section_output .= '</div>';
                 }
                 $section_output .= '</div>';

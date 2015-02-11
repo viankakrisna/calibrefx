@@ -181,7 +181,8 @@
 
 		var submitter = $("input[type=submit][clicked=true]"),
 		    action    = submitter.val(),
-		    errors    = 0;
+		    errors    = 0,
+		    notif	  = '';
 
 		// update tinyMCE textarea content
 		vp.tinyMCE_save();
@@ -194,26 +195,26 @@
 
 		if(errors > 0)
 		{
-			$notif = $('<span class="vp-metabox-error vp-js-tipsy" original-title="' + errors + ' error(s) found in metabox"></span>');
+			notif = $('<span class="vp-metabox-error vp-js-tipsy" original-title="' + errors + ' error(s) found in metabox"></span>');
 
 			if(action === 'Save Draft')
 			{
 				$('#minor-publishing-actions .spinner, #minor-publishing-actions .ajax-loading').hide();
-				$notif.tipsy();
-				$notif.insertAfter('#minor-publishing-actions .spinner, #minor-publishing-actions .ajax-loading');
+				notif.tipsy();
+				notif.insertAfter('#minor-publishing-actions .spinner, #minor-publishing-actions .ajax-loading');
 				$('#save-post').prop('disabled', false).removeClass('button-disabled');
 			}
 			else if(action === 'Publish' || action === 'Update')
 			{
 				$('#publishing-action .spinner, #publishing-action .ajax-loading').hide();
-				$notif.tipsy();
-				$notif.insertAfter('#publishing-action .spinner, #publishing-action .ajax-loading');
+				notif.tipsy();
+				notif.insertAfter('#publishing-action .spinner, #publishing-action .ajax-loading');
 				$('#publish').prop('disabled', false).removeClass('button-primary-disabled');
 			}
 
-			var margin_top = Math.ceil((submitter.outerHeight() - $notif.height()) / 2);
+			var margin_top = Math.ceil((submitter.outerHeight() - notif.height()) / 2);
 			if(margin_top > 0)
-				$notif.css('margin-top', margin_top);
+				notif.css('margin-top', margin_top);
 			e.preventDefault();
 			return;
 		}
