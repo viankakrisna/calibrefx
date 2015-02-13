@@ -160,7 +160,7 @@ class Calibrefx_Generator{
     	$keysearch = -1;
     	foreach ( $this->$old_tag as $key => $haystack ) {
     		if( $haystack['function'] == $function ) {
-    			$keysearch=$key;
+    			$keysearch = $key;
     			break;
     		}
     	}
@@ -168,7 +168,7 @@ class Calibrefx_Generator{
     	if( $keysearch == -1 ) return false;
     	$func_array = $this->_hooks[$old_tag][$keysearch];
     	unset( $this->_hooks[$old_tag][$keysearch] );
-    	$this->add( $new_tag, $func_array['function'], $func_array['priority'], $func_array['args'] );
+    	$this->add( $new_tag, $func_array['function'], $new_priority, $func_array['args'] );
     	
         //For late call, then we need to change the action
         if( has_action( $old_tag, $function) ) {
