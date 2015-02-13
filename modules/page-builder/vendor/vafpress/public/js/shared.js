@@ -811,6 +811,8 @@ vp.dependency_action =	function(ids, field, func, target_field) {
 				$source_tr.addClass('vp-dep-inactive');
 				$source_tr.vp_fadeOut();
 			}
+			jQuery('.vp-meta-group :input').prop("disabled",false);
+			jQuery('.vp-dep-inactive :input').prop("disabled",true);
 		}
 	}, 'JSON');
 };

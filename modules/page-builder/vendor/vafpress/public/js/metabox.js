@@ -160,6 +160,7 @@
 		process_binding(bindings);
 		process_items_binding(items_binding);
 		process_dependency(dependencies);
+		jQuery('.vp-dep-inactive :input').prop("disabled",true);
 		vp_mb_sortable();
 	});
 
@@ -341,6 +342,9 @@
 				vp.dependency_event(ids, j, field, func, '.vp-metabox', target_field);
 			}
 		}
+
+		jQuery('.vp-meta-group :input').prop("disabled",false);
+		jQuery('.vp-dep-inactive :input').prop("disabled",true);
 	}
 
 	$.wpalchemy.on('wpa_copy', function(event, clone){
