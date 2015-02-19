@@ -54,6 +54,8 @@ class Calibrefx_Builder{
 
         add_action( 'calibrefx_meta', array( $this, 'builder_styles' ) );
         add_action( 'calibrefx_meta', array( $this, 'builder_scripts' ) );
+        
+        add_action( 'admin_print_styles', array( $this, 'builder_admin_script' ) );
 
 	}
 	
@@ -143,10 +145,10 @@ class Calibrefx_Builder{
                             $column_class[] = 'col-md-push-'.$column['push'];
                         }
 
-                        $column_output = '<div class="'.implode(" ", $column_class).'">';
+                        $column_output = '<div class="' . implode( " ", $column_class ) . '">';
 
-                        if($column['content']){
-                            foreach ($column['content'] as $element_key => $element) {
+                        if( isset( $column['content'] ) ){
+                            foreach ( $column['content'] as $element_key => $element ) {
                                 $return = apply_filters( 
                                     'section_content_type_' . $element['content_type'], 
                                     $element[$element['content_type']],
@@ -260,7 +262,11 @@ class Calibrefx_Builder{
     }
 
     public function builder_scripts(){
-        wp_enqueue_script( 'calibrefx-shortcodes', CALIBREFX_MODULE_URL . '/page-builder/assets/js/builderfx.js' );
+        wp_enqueue_script( 'calibrefx-builder', CALIBREFX_MODULE_URL . '/page-builder/assets/js/builderfx.js' );
+    }
+
+    public function builder_admin_script(){
+        wp_enqueue_script( 'calibrefx-builder-admin', CALIBREFX_MODULE_URL . '/page-builder/assets/js/page-builder-admin.js' );
     }
 }
 

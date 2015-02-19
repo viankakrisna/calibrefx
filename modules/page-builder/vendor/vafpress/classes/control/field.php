@@ -78,6 +78,11 @@ abstract class VP_Control_Field implements iFactory
 	protected $_is_hidden;
 
 	/**
+	 * Whether to hide this control in first rendering
+	 */
+	protected $_cssclass;
+
+	/**
 	 * Class Constructor
 	 */
 	public function __construct()
@@ -98,6 +103,7 @@ abstract class VP_Control_Field implements iFactory
 		$this->add_data('name', $this->get_name());
 		$this->add_data('default', $this->get_default());
 		$this->add_data('value', $this->get_value());
+		$this->add_data('cssclass', $this->get_cssclass());
 
 		// Determine Type
 		$type = 'vp-' . strtolower(substr(get_class($this), strrpos(get_class($this), '_') + 1));
@@ -118,6 +124,7 @@ abstract class VP_Control_Field implements iFactory
 			'dependency'              => $this->get_dependency(),
 			'binding'                 => $this->get_binding(),
 			'label'                   => $this->get_label(),
+			'cssclass'                => $this->get_cssclass(),
 			'description'             => VP_Util_Text::parse_md($this->get_description())
 		));
 	}
@@ -131,6 +138,7 @@ abstract class VP_Control_Field implements iFactory
 	{
 		$this->set_name(isset($arr['name']) ? $arr['name'] : '')
 			 ->set_label(isset($arr['label']) ? $arr['label'] : '')
+			 ->set_cssclass(isset($arr['cssclass']) ? $arr['cssclass'] : '')
 			 ->set_default(isset($arr['default']) ? $arr['default'] : null)
 			 ->set_description(isset($arr['description']) ? $arr['description'] : '')
 			 ->set_validation(isset($arr['validation']) ? $arr['validation'] : '');
@@ -228,6 +236,25 @@ abstract class VP_Control_Field implements iFactory
 	 */
 	public function set_name($_name) {
 		$this->_name = $_name;
+		return $this;
+	}
+
+	/**
+	 * Getter for $_label
+	 *
+	 * @return String label of the field
+	 */
+	public function get_cssclass() {
+		return $this->_cssclass;
+	}
+
+	/**
+	 * Setter for $_label
+	 *
+	 * @param String $_label label of the field
+	 */
+	public function set_cssclass($_cssclass) {
+		$this->_cssclass = $_cssclass;
 		return $this;
 	}
 

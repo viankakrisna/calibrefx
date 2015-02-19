@@ -29,10 +29,10 @@ return array(
 				array(
 					'type' => 'textbox',
 					'name' => 'section_style',
-					'label' => __('Custom CSS Style', 'calibrefx')
+					'label' => __('Custom CSS Style', 'calibrefx'),
 				),
 				array(
-                    'type' => 'color',
+                    'type' => 'wpcolor',
                     'name' => 'section_bg_color',
                     'label' => __('Background Color', 'calibrefx'),
                     'format' => 'rgba',
@@ -93,7 +93,7 @@ return array(
                         array(
 							'type'      => 'group',
 							'repeating' => true,
-							'sortable' => true,
+							'sortable'  => true,
 							'name'      => 'content',
 							'title'     => __('Content', 'vp_textdomain'),
 							'fields'    => vp_get_content_type_fields()

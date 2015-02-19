@@ -62,11 +62,12 @@ class VP_Control_Field_NoteBox extends VP_Control_Field
 		parent::_setup_data();
 	}
 
-	public function render($is_compact = false)
+	public function render($is_compact = false, $template = false)
 	{
 		// Setup Data
 		$this->_setup_data();
 		$this->add_data('is_compact', $is_compact);
+		$this->add_data('is_template', $template);
 		return VP_View::instance()->load('control/notebox', $this->get_data());
 	}
 

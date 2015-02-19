@@ -21,6 +21,8 @@ class VP_Metabox extends WPAlchemy_MetaBox
 
 	public $is_dev_mode = false;
 
+	public $lazyload = array();
+
 	function __construct($arr)
 	{
 		if( !is_array($arr) and file_exists($arr) )
@@ -126,6 +128,7 @@ class VP_Metabox extends WPAlchemy_MetaBox
 	 
 		// create a nonce for verification
 		echo '<input type="hidden" name="'. $this->id .'_nonce" value="' . wp_create_nonce($this->id) . '" />';
+		$this->_render_lazy_load();
 
 		$this->in_template = FALSE;
 	}
@@ -490,16 +493,46 @@ class VP_Metabox extends WPAlchemy_MetaBox
 		}
 	}
 
-	function _render_field($field)
-	{
-		return $field->render();
+	function _group_has_value( $groups ){
+		if( !is_array( $groups ) ) return false;
+		foreach ($groups as $group) {
+			if( !is_array( $group ) ) return false;
+			foreach ( $group[0]['childs'] as $field ) {
+				if( !empty( $field->get_value() ) ) return true;
+			}
+		}
+
 	}
 
-	function _render_group($group)
+	function _render_field($field, $template = false)
+	{
+		return $field->render(false, $template);
+	}
+
+	function _render_lazy_load(){
+		foreach ($this->lazyload as $key => $value) { ?>
+			<script type="text/html" id="tmpl-<?php echo $key; ?>">
+				<?php 
+					unset($value['lazyload']);
+					echo $this->_render_group($value, true); 
+				?>
+			</script>
+		<?php
+		}
+	}
+
+	function _render_group($group, $template=false)
 	{
 		$name       = $group['name'];
 		$uid        = $group['indexed_name'];
 		$oddity     = ($group['level'] % 2 === 0) ? 'even' : 'odd';
+		
+		if( isset( $group['lazyload'] ) AND $group['lazyload'] ) {
+			$this->lazyload[$name] = $group;
+			if( !$this->_group_has_value( $group ) ){
+				return;
+			}
+		}
 
 		preg_match_all("/\[([^\]]*)\]/", $uid, $matches);
 		$target_field = $matches[1][count($matches[1])-1];
@@ -526,6 +559,7 @@ class VP_Metabox extends WPAlchemy_MetaBox
 			$html .= '<div id="'. $g['name'] .'" class="vp-wpa-group wpa_group wpa_group-' . $name . '">';
 			$html .= '<div class="vp-wpa-group-heading"><a href="#" class="vp-wpa-group-title">' . $icon . $group['title'] . '</a></div>';
 			$html .= '<div class="vp-controls' . ((!$is_first) ? ' vp-hide' : '') . '">';
+			$html .= '<input type="hidden" name="'.$g['name'].'[has_value]" value="1" id="'. $g['name'] .'">';
 
 			foreach ($g['childs'] as $f)
 			{
@@ -533,9 +567,9 @@ class VP_Metabox extends WPAlchemy_MetaBox
 				if( is_array($f) and $f['repeating'] )
 					$html .= $this->_render_repeating_group($f);
 				else if( is_array($f) and !$f['repeating'] )
-					$html .= $this->_render_group($f);
+					$html .= $this->_render_group($f, $template);
 				else
-					$html .= $this->_render_field($f);
+					$html .= $this->_render_field($f, $template);
 			}
 
 			$html .= '</div>';
@@ -588,9 +622,9 @@ class VP_Metabox extends WPAlchemy_MetaBox
 			}
 			foreach ($g['childs'] as $f)
 			{
-				if( is_array($f) and $f['repeating'] )
+				if( is_array($f) and $f['repeating'] ){
 					$html .= $this->_render_repeating_group($f);
-				else if( is_array($f) and !$f['repeating'] ){
+				} else if( is_array($f) and !$f['repeating'] ){
 					$html .= $this->_render_group($f);
 				}
 				else
@@ -636,7 +670,7 @@ class VP_Metabox extends WPAlchemy_MetaBox
 	 
 		// authentication passed, save data
 		$new_data = isset( $_POST[$this->id] ) ? $_POST[$this->id] : NULL ;
-
+		
 		// clean to copy and reset array indexes
 		$this->_clean_tocopy($new_data);
 

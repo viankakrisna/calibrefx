@@ -393,7 +393,7 @@ jQuery(document).ready(function($){
     }
 
     function initUpload(){
-        console.log("redux-opts-upload");
+        
         jQuery(".redux-opts-upload").on('click',function( event ) {
             
             var activeFileUploadContext = jQuery(this).parent();

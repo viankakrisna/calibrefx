@@ -20,10 +20,11 @@ class VP_Control_Field_RadioImage extends VP_Control_FieldMultiImage
 		return $instance;
 	}
 
-	public function render($is_compact = false)
+	public function render($is_compact = false, $template = false)
 	{
 		$this->_setup_data();
 		$this->add_data('is_compact', $is_compact);
+		$this->add_data('is_template', $template);
 		return VP_View::instance()->load('control/radioimage', $this->get_data());
 	}
 

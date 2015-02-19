@@ -1,6 +1,6 @@
 <?php
 
-class VP_Control_Field_Color extends VP_Control_Field
+class VP_Control_Field_Wpcolor extends VP_Control_Field
 {
 
 	private $_format;
@@ -41,7 +41,7 @@ class VP_Control_Field_Color extends VP_Control_Field
 		$this->_setup_data();
 		$this->add_data('is_compact', $is_compact);
 		$this->add_data('is_template', $template);
-		return VP_View::instance()->load('control/color', $this->get_data());
+		return VP_View::instance()->load('control/wpcolor', $this->get_data());
 	}
 
 	/**

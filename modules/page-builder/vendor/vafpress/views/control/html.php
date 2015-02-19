@@ -9,7 +9,14 @@
 		<div class="input" id="<?php echo $name . '_dom'; ?>">
 			<?php echo VP_WP_Util::kses_html($value); ?>
 		</div>
-		<textarea name="<?php echo $name; ?>" class="vp-hide"><?php echo VP_WP_Util::kses_html($value); ?></textarea>
+		<?php if( !$is_template ) { ?>
+		<textarea name="<?php echo $name; ?>" class="vp-hide <?php echo $cssclass ?>"><?php echo VP_WP_Util::kses_html($value); ?></textarea>
+		<?php }else{ 
+		preg_match_all("/\[([^\]]*)\]/", $name, $matches);
+		$target_field = $matches[1][count($matches[1])-1];
+		?>
+		<textarea name="%template%[<?php echo $target_field; ?>]" class="vp-hide <?php echo $cssclass ?>"><?php echo VP_WP_Util::kses_html($value); ?></textarea>
+		<?php } ?>
 		<div class="vp-js-bind-loader vp-field-loader vp-hide"><img src="<?php VP_Util_Res::img_out('ajax-loader.gif', ''); ?>" /></div>
 	</div>
 </div>

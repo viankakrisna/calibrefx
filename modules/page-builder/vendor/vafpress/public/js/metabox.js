@@ -342,9 +342,10 @@
 				vp.dependency_event(ids, j, field, func, '.vp-metabox', target_field);
 			}
 		}
-
+		// console.log("Count");
 		jQuery('.vp-meta-group :input').prop("disabled",false);
 		jQuery('.vp-dep-inactive :input').prop("disabled",true);
+		// jQuery('.tocopy :input:hidden').prop("disabled",true);
 	}
 
 	$.wpalchemy.on('wpa_copy', function(event, clone){
@@ -364,6 +365,9 @@
 		process_binding(bindings);
 		process_items_binding(items_binding);
 		process_dependency(dependencies);
+
+		console.log("Binging Ulang");
+		new CFX_Builder.ContentTypeView({el:$('.content_type_fields')});
 	});
 
 }(jQuery));

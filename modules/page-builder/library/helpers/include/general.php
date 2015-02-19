@@ -103,10 +103,10 @@ function vp_get_content_type_list(){
         'label' => __( 'Simple Text', 'calibrefx' )
     );
 
-    $result[] = array(
-		'value' => 'slider',
+    /*$result[] = array(
+		'value' => 'jslider',
 		'label' => __( 'Slider', 'calibrefx' )
-	);
+	);*/
         
 	if( class_exists( 'RevSlider' ) ){
         $result[] = array(
@@ -124,6 +124,7 @@ function vp_get_content_type_fields(){
 		'type' => 'select',
 		'name' => 'content_type',
 		'label' => __( 'Content Type', 'calibrefx' ),
+        'cssclass' => 'content_type_fields',
 		'items' => array(
 			'data' => array(
 				array(
@@ -152,12 +153,13 @@ function vp_content_type_field_autoresponder(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'autoresponder',
         'title'     => __( 'Autoresponder Settings', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'select',
@@ -240,12 +242,13 @@ function vp_content_type_field_formidable(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'formidable',
         'title'     => __( 'Formidable Settings', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'select',
@@ -277,12 +280,13 @@ function vp_content_type_field_google_map(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'google_map',
         'title'     => __( 'Google Map Settings', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'upload',
@@ -336,12 +340,13 @@ function vp_content_type_field_heading(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'heading',
         'title'     => __( 'Heading Settings', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'textbox',
@@ -396,12 +401,13 @@ function vp_content_type_field_image(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'image',
         'title'     => __( 'Image Settings', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'upload',
@@ -500,12 +506,13 @@ function vp_content_type_field_html_editor(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'html_editor',
         'title'     => __( 'Content Settings', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'wpeditor',
@@ -524,12 +531,13 @@ function vp_content_type_field_menu(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'menu',
         'title'     => __( 'Menu', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'select',
@@ -562,12 +570,13 @@ function vp_content_type_field_archive(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'archive',
         'title'     => __( 'Archive', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'select',
@@ -647,18 +656,19 @@ function vp_content_type_field_raw_html(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'raw_html',
         'title'     => __( 'Raw HTML', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type'      => 'textarea',
                 'name'      => 'raw_html_code',
                 'label'     => __( 'Raw HTML Code', 'calibrefx' ),
-            )
+            ),
         ),
     );
 
@@ -670,12 +680,13 @@ function vp_content_type_field_simple_text(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'simple_text',
         'title'     => __( 'Text Settings', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'textbox',
@@ -684,7 +695,7 @@ function vp_content_type_field_simple_text(){
                 'label' => __( 'Text', 'calibrefx' ),
             ),
             array(
-                'type' => 'color',
+                'type' => 'wpcolor',
                 'name' => 'text_color',
                 'label' => __( 'Text Color', 'calibrefx' ),
             ),
@@ -713,7 +724,7 @@ function vp_content_type_field_simple_text(){
                 )
             ),
             array(
-                'type' => 'color',
+                'type' => 'wpcolor',
                 'name' => 'background_color',
                 'label' => __( 'Background Color', 'calibrefx' ),
             ),
@@ -733,18 +744,19 @@ function vp_content_type_field_simple_text(){
     return apply_filters( 'vp_content_type_field_raw_html', $fields );
 }
 
-function vp_content_type_field_slider(){
+function vp_content_type_field_jslider(){
 
     $fields = array(
         'type'      => 'group',
-        'repeating' => true,
-        'sortable'  => true,
-        'name'      => 'slider',
+        'repeating' => false,
+        'sortable'  => false,
+        'lazyload'  => true,
+        'name'      => 'jslider',
         'title'     => __( 'Slider Item', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'upload',
@@ -769,12 +781,13 @@ function vp_content_type_field_slider_revolution(){
         'type'      => 'group',
         'repeating' => false,
         'sortable'  => false,
+        'lazyload'  => true,
         'name'      => 'slider_revolution',
         'title'     => __( 'Slider Revolution', 'calibrefx' ),
-        'dependency' => array(
+        /*'dependency' => array(
             'field' => 'content_type',
             'function' => 'vp_dep_custom',
-        ),
+        ),*/
         'fields'    => array(
             array(
                 'type' => 'select',
