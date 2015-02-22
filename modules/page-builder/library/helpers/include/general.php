@@ -513,10 +513,6 @@ function vp_content_type_field_archive(){
         'lazyload'  => true,
         'name'      => 'archive',
         'title'     => __( 'Archive', 'calibrefx' ),
-        /*'dependency' => array(
-            'field' => 'content_type',
-            'function' => 'vp_dep_custom',
-        ),*/
         'fields'    => array(
             array(
                 'type' => 'select',
@@ -562,28 +558,28 @@ function vp_content_type_field_archive(){
                 'type' => 'textbox',
                 'name' => 'read_more',
                 'label' => __( 'Read more text', 'calibrefx' ),
-                'dependency' => array(
+                /*'dependency' => array(
                     'field' => 'layout',
                     'function' => 'vp_dep_custom',
-                ),
+                ),*/
             ),
             array(
                 'type' => 'textbox',
                 'name' => 'excerpt_length',
                 'label' => __( 'Post excerpt length', 'calibrefx' ),
-                'dependency' => array(
+                /*'dependency' => array(
                     'field' => 'layout',
                     'function' => 'vp_dep_custom',
-                ),
+                ),*/
             ),
             array(
                 'type' => 'textbox',
                 'name' => 'columns_per_row',
                 'label' => __( 'Columns per row', 'calibrefx' ),
-                'dependency' => array(
+                /*'dependency' => array(
                     'field' => 'layout',
                     'function' => 'vp_dep_custom',
-                ),
+                ),*/
             ),
         )
     );
