@@ -522,10 +522,6 @@ function vp_content_type_field_menu(){
         'lazyload'  => true,
         'name'      => 'menu',
         'title'     => __( 'Menu', 'calibrefx' ),
-        /*'dependency' => array(
-            'field' => 'content_type',
-            'function' => 'vp_dep_custom',
-        ),*/
         'fields'    => array(
             array(
                 'type' => 'select',

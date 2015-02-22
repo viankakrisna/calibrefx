@@ -55,7 +55,7 @@ class Calibrefx_Builder{
         add_action( 'calibrefx_meta', array( $this, 'builder_styles' ) );
         add_action( 'calibrefx_meta', array( $this, 'builder_scripts' ) );
         
-        add_action( 'admin_print_styles', array( $this, 'builder_admin_script' ) );
+        add_action( 'admin_print_styles', array( $this, 'builder_admin_script' ), 10, 1 );
 
 	}
 	
@@ -265,8 +265,15 @@ class Calibrefx_Builder{
         wp_enqueue_script( 'calibrefx-builder', CALIBREFX_MODULE_URL . '/page-builder/assets/js/builderfx.js' );
     }
 
-    public function builder_admin_script(){
-        wp_enqueue_script( 'calibrefx-builder-admin', CALIBREFX_MODULE_URL . '/page-builder/assets/js/page-builder-admin.js' );
+    public function builder_admin_script( $hook ){
+        global $post;
+
+        //Only load on page
+        if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+            if ( 'pages' === $post->post_type ) {     
+                wp_enqueue_script( 'calibrefx-builder-admin', CALIBREFX_MODULE_URL . '/page-builder/assets/js/page-builder-admin.js' );
+            }
+        }
     }
 }
 
