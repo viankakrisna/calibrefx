@@ -130,9 +130,9 @@ label{
 .calibrefx-tab ul.calibrefx-tab-option li a{
     text-decoration: none;
     display: block;
-    color: #7e7e7e;
-    font-size: 16px;
-    font-weight: 600;
+    color: #4F5F6F;
+    font-size: 14px;
+    font-weight: bold;
     line-height: 20px;
     position: relative;
     outline: none;
@@ -144,19 +144,19 @@ label{
 .calibrefx-tab ul.calibrefx-tab-option li:hover a,
 .calibrefx-tab ul.calibrefx-tab-option li.current a{
     color: #ffffff;
-    background: #00aeef;
+    background: #428BCA;
     border: 1px solid #e3e3e3;
     border-left: none;
 }
 
-.calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
+/* .calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
     position: absolute;
     left: -10px;
     top: 0px;
     bottom: 0px;
     width: 10px;
     background: #414042;
-}
+} */
 
 .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-container{
     position: absolute;
@@ -175,7 +175,7 @@ label{
 
 .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
     width: 174px;
-    padding: 12px 0px 12px 15px;
+    padding: 12px 0px 12px 30px;
 
 }
 
@@ -409,26 +409,30 @@ ul.twitter-tweets li span a{
     padding-bottom: 10px;
 }
 
+.calibrefx-submit-button .calibrefx-h2-button i{
+    margin-right: 10px;
+}
+
 .calibrefx-submit-button .calibrefx-h2-button {
     cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
+    font-weight: normal;
+    font-size: 14px;
     height: 40px;
     width: 140px;
     border-radius: 0px;
     float: right;
     border: none;
-    background: #00aeef;
+    background: #D7654C;
 }
 
 .calibrefx-submit-button .calibrefx-settings-reset-button{
-    margin-right: 7px;
+    margin-right: 10px;
     color: #fff;
 }
 
 .calibrefx-submit-button .calibrefx-settings-submit-button{
     color: #fff;
-    background: #008bbf;
+    background: #0074A3;
 }
 
 span.calibrefx-info{
@@ -490,12 +494,17 @@ span.calibrefx-info{
     background: #f0f0f0;
 }
 
+.calibrefx-option .calibrefx-settings-checkbox{
+    margin-right: 10px;
+}
+
 .calibrefx-option .meta-box-sortables{
     min-height: 55px;
 }
 .calibrefx-option label{
     display: block;
     font-weight: 600;
+    color: #707883;
 }
 
 .calibrefx-option .postbox{
@@ -512,16 +521,17 @@ span.calibrefx-info{
     border-radius: 0px;
     border: none;
     padding: 13px 30px;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: normal;
     color: #fff;
-    background: #ffffff;
+    background: #4F5F6F;
     text-shadow: none;
     margin-bottom: 0px;
+    margin-top: 0;
 }
 
 .calibrefx-option .postbox h3.hndle span{
-    color: #414042;
+    color: #ffffff;
     font-size: inherit;
 }
 
@@ -569,10 +579,10 @@ span.calibrefx-info{
 .calibrefx-option .postbox h4,
 .calibrefx-option .postbox h5,
 .calibrefx-option .postbox h6{
-    margin-top: 0px;
+    margin-top: 5px;
     margin-bottom: 10px;
-    color: #414042;
-    font-weight: 600;
+    color: #0074A3;
+    font-weight: bold;
     font-size: 20px;
 }
 
@@ -629,7 +639,7 @@ span.calibrefx-info{
 .postbox h3.section-title{
     padding-left: 0px;
     border-bottom: 1px solid #d7d7d7;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .section-row:before,
