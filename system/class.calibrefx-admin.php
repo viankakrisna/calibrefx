@@ -233,8 +233,8 @@ abstract class Calibrefx_Admin {
                     <?php if( $this->_form_method == 'post' ) : ?>
                     <div class="calibrefx-submit-button">
                         <div class="clear"></div>
-                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><?php _e( 'Save Settings', 'calibrefx' ) ?></button>
-                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" value="1" onclick="return calibrefx_confirm( '<?php echo esc_js(__( 'Are you sure you want to reset?', 'calibrefx' ) ); ?>' );"><?php _e( 'Reset Settings', 'calibrefx' ); ?></button>
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="fa fa-save fa-2"></i> <?php _e( 'Save Settings', 'calibrefx' ) ?></button>
+                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" value="1" onclick="return calibrefx_confirm( '<?php echo esc_js(__( 'Are you sure you want to reset?', 'calibrefx' ) ); ?>' );"><i class="fa fa-refresh fa-2"></i><?php _e( 'Reset Settings', 'calibrefx' ); ?></button>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -259,7 +259,7 @@ abstract class Calibrefx_Admin {
                                     echo "<li$current_class>
                                             <a href='$section_link'>
                                                 <span class='calibrefx-section-link'>" . $section['title'] . "</span>
-                                                <span class='calibrefx-section-link-additional'></span>
+                                                <!--span class='calibrefx-section-link-additional'></span-->
                                             </a>
                                         </li>";
                                 }
@@ -278,12 +278,12 @@ abstract class Calibrefx_Admin {
                             <div class="clear"></div>
                         </div>
                     </div>
-                    <?php if( $this->_form_method == 'post' ) : ?>
+                    <?php /*if( $this->_form_method == 'post' ) : ?>
                     <div class="calibrefx-submit-button calibrefx-bottom">
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="icon-save"></i><?php _e( 'Save Settings', 'calibrefx' ) ?></button>
                         <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" onclick="return calibrefx_confirm( '<?php echo esc_js(__( 'Are you sure you want to reset?', 'calibrefx' ) ); ?>' );"><i class="icon-reset"></i><?php _e( 'Reset Settings', 'calibrefx' ); ?></button>
                     </div>
-                    <?php endif; ?>
+                    <?php endif;*/ ?>
                 </div>
             </form>
         </div>
