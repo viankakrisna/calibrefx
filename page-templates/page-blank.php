@@ -28,7 +28,7 @@ function blank_page_body_class( $classes ){
         echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . "\n";
     }
 	if ( current_theme_supports( 'calibrefx-responsive-style' ) ){ 
-		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';
+		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />' . "\n";
     }
 	do_action( 'calibrefx_meta' );
 	wp_head();
