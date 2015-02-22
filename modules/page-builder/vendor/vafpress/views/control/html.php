@@ -17,6 +17,7 @@
 		?>
 		<textarea name="%template%[<?php echo $target_field; ?>]" class="vp-hide <?php echo $cssclass ?>"><?php echo VP_WP_Util::kses_html($value); ?></textarea>
 		<?php } ?>
+		<?php VP_Util_Text::print_if_exists($description, '<div class="description">%s</div>'); ?>
 		<div class="vp-js-bind-loader vp-field-loader vp-hide"><img src="<?php VP_Util_Res::img_out('ajax-loader.gif', ''); ?>" /></div>
 	</div>
 </div>

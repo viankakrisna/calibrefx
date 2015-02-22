@@ -173,54 +173,10 @@ function vp_content_type_field_autoresponder(){
                 )
             ),
             array(
-                'type' => 'textbox',
-                'name' => 'api_url',
-                'validation' => 'required',
-                'label' => __( 'Api Url', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'provider',
-                    'function' => 'vp_dep_custom',
-                ),
-            ),
-            array(
-                'type' => 'textbox',
-                'name' => 'api_key',
-                'validation' => 'required',
-                'label' => __( 'Api Key', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'provider',
-                    'function' => 'vp_dep_custom',
-                ),
-            ),
-            array(
-                'type' => 'textbox',
-                'name' => 'campaign_name',
-                'validation' => 'required',
-                'label' => __( 'Campaign Name', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'provider',
-                    'function' => 'vp_dep_custom',
-                ),
-            ),
-            array(
-                'type' => 'textbox',
-                'name' => 'form_id',
-                'validation' => 'required',
-                'label' => __( 'Form ID', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'provider',
-                    'function' => 'vp_dep_custom',
-                ),
-            ),
-            array(
                 'type' => 'textarea',
                 'name' => 'form_code',
                 'validation' => 'required',
                 'label' => __( 'Autoresponder Form Code', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'provider',
-                    'function' => 'vp_dep_custom',
-                ),
             ),
             array(
                 'type' => 'textbox',

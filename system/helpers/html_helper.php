@@ -83,3 +83,24 @@ function calibrefx_admin_body_class( $classes ) {
 
   return $classes;
 }
+
+/**
+ *  Parse autoresponder form from form_code into array
+ */
+function calibrefx_parse_autoresponder_form( $form ) {
+    $url = '';
+    $doc = new DOMDocument;
+    $data = array();
+    if (@$doc->loadhtml( $form ) ) {
+        $xpath = new DOMXpath( $doc);
+        foreach ( $xpath->query( '//form//input' ) as $eInput ) {
+            $data[$eInput->getAttribute( 'name' )] = $eInput->getAttribute( 'value' );
+        }
+        
+        $result = $xpath->query( '//form//@action' );
+        $url = $result->item( 0 )->nodeValue;
+    }
+    
+    $data['url'] = $url;
+    return $data;
+}

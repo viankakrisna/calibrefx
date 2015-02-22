@@ -11,4 +11,4 @@ $target_field = $matches[1][count($matches[1])-1];
 <input id="%template%[<?php echo $target_field; ?>]" class="vp-input vp-js-colorpicker <?php echo $cssclass ?>"
 	type="text" name="%template%[<?php echo $target_field; ?>]" value="<?php echo $value; ?>" data-vp-opt="<?php echo $opt; ?>" />
 <?php } ?>
-<?php if(!$is_compact) echo VP_View::instance()->load('control/template_control_foot'); ?>
+<?php if(!$is_compact) echo VP_View::instance()->load('control/template_control_foot', $head_info); ?>
