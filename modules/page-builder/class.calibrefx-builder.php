@@ -55,7 +55,7 @@ class Calibrefx_Builder{
         add_action( 'calibrefx_meta', array( $this, 'builder_styles' ) );
         add_action( 'calibrefx_meta', array( $this, 'builder_scripts' ) );
         
-        add_action( 'admin_print_styles', array( $this, 'builder_admin_script' ), 10, 1 );
+        add_action( 'admin_enqueue_scripts', array( $this, 'builder_admin_script' ), 10, 1 );
 
 	}
 	
@@ -267,10 +267,10 @@ class Calibrefx_Builder{
 
     public function builder_admin_script( $hook ){
         global $post;
-
+        
         //Only load on page
         if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-            if ( 'pages' === $post->post_type ) {     
+            if ( 'page' === $post->post_type ) {     
                 wp_enqueue_script( 'calibrefx-builder-admin', CALIBREFX_MODULE_URL . '/page-builder/assets/js/page-builder-admin.js' );
             }
         }
