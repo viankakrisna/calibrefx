@@ -10,7 +10,7 @@ function section_ct_heading( $element, $element_key, $column_key, $section_key )
 
     if( $data['heading_icon'] ) $element_class .= ' has-icon';
 
-    $output = '<div id="element-' . $section_key . '-' . $column_key . '-' . $element_key . '" class="element element-heading element-heading-' . $section_key . '-'.$column_key . '-'.$element_key . $element_class . '" style="text-align: ' . $align . '">';
+    $output = '<div id="element-' . $section_key . '-' . $column_key . '-' . $element_key . '" class="element element-heading ' . $element_class . '" style="text-align: ' . $align . '">';
     
     if( $data['heading_icon'] ){
     	$output .= '<img class="element-img-icon" src="' . $data['heading_icon'] . '" />';

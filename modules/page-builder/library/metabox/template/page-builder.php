@@ -17,6 +17,12 @@ return array(
 			'title'     => __('Section', 'calibrefx'),
 			'fields'    => array(
 				array(
+                    'type' => 'textbox',
+                    'name' => 'section_name',
+                    'label' => __('Section Name', 'calibrefx'),
+                    'description' => __('Only shown in admin area', 'calibrefx'),
+                ),
+				array(
                     'type' => 'toggle',
                     'name' => 'section_container',
                     'label' => __('Container', 'calibrefx')
@@ -58,6 +64,12 @@ return array(
 					'name'      => 'column',
 					'title'     => __('Column', 'calibrefx'),
 					'fields'    => array(
+						array(
+		                    'type' => 'textbox',
+		                    'name' => 'column_name',
+		                    'label' => __('Column Name', 'calibrefx'),
+		                    'description' => __('Only shown in admin area', 'calibrefx'),
+		                ),
                         array(
                             'type' => 'slider',
                             'name' => 'grid',

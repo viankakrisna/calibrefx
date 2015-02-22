@@ -18,7 +18,7 @@ var CFX_Builder = CFX_Builder || {};
 
 			render_type : function( event ) {
 				event.preventDefault();
-				console.log($(event.target).attr("name"));
+				// console.log($(event.target).attr("name"));
 				var parent = $(event.target).closest('.vp-controls');
 				
 				$(parent).find('.wpa_loop').remove();
@@ -30,7 +30,7 @@ var CFX_Builder = CFX_Builder || {};
 				//remove last element
 				res.pop();
 				var template_name = "page_builder" + res.join("") + "[" + $(event.target).val() + "][0]";
-				console.log(template_name);
+				// console.log(template_name);
 
 				var html_to_copy = $('#tmpl-'+$(event.target).val()).html();
 				html_to_copy = html_to_copy.replace(/%template%/g, template_name);
@@ -38,6 +38,8 @@ var CFX_Builder = CFX_Builder || {};
 				$(parent).append( html_to_copy );
 				$(parent).find('.wpa_loop-'+$(event.target).val()).removeClass('vp-hide').removeClass('vp-dep-inactive');
 
+				$('input.wp-color-picker-field').wpColorPicker();
+				
 				return this;
 			},
 
