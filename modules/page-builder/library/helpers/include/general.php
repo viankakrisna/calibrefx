@@ -225,7 +225,6 @@ function vp_content_type_field_autoresponder(){
             array(
                 'type' => 'textbox',
                 'name' => 'css_class',
-                'validation' => 'required',
                 'label' => __( 'CSS Class', 'calibrefx' ),
             ),
         ),
@@ -507,6 +506,7 @@ function vp_content_type_field_html_editor(){
                 'name' => 'html_content',
                 'validation' => 'required',
                 'label' => __( 'Content', 'calibrefx' ),
+                'description' => __('Put your content inside the box', 'calibrefx'),
             ),
         )
     );
@@ -528,6 +528,7 @@ function vp_content_type_field_menu(){
                 'name' => 'menu_id',
                 'validation' => 'required',
                 'label' => __( 'Choose Menu', 'calibrefx' ),
+                'description' => __('Choose the menu you want to show. To add the menu go to <code>Appearances > Menus</code>', 'calibrefx'),
                 'items' => array(
                     'data' => array(
                         array(
@@ -540,7 +541,6 @@ function vp_content_type_field_menu(){
             array(
                 'type' => 'textbox',
                 'name' => 'css_class',
-                'validation' => 'required',
                 'label' => __( 'CSS Class', 'calibrefx' ),
             ),
         )
