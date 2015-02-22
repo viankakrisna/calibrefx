@@ -501,7 +501,16 @@ class VP_Metabox extends WPAlchemy_MetaBox
 				if( !empty( $field->get_value() ) ) return true;
 			}
 		}
+	}
 
+	function _group_get_name( $groups ){
+		if( !is_array( $groups ) ) return;
+		
+		foreach ($groups['childs'] as $field) {
+			if( !is_a( $field, 'VP_Control_Field' ) ) continue;
+			if( strrpos($field->get_name(), '_name')  !== FALSE ) return $field->get_value();
+		}
+		return;
 	}
 
 	function _render_field($field, $template = false)
@@ -613,7 +622,7 @@ class VP_Metabox extends WPAlchemy_MetaBox
 			if ($g === reset($group['groups'])){ $is_first = true; $class = ' first';}
 
 			$html .= '<div id="'. $g['name'] .'" class="vp-wpa-group wpa_group wpa_group-' . $name . $class . '">';
-			$html .= '<div class="vp-wpa-group-heading"><a href="#" class="vp-wpa-group-title">' . $icon . $group['title'] . '</a><a href="#" class="dodelete vp-wpa-group-remove" title="'. __('Remove', 'vp_textdomain') .'"><i class="fa fa-times"></i> '. __('Remove', 'vp_textdomain') .'</a></div>';
+			$html .= '<div class="vp-wpa-group-heading"><a href="#" class="vp-wpa-group-title">' . $icon . $group['title'] . ' ' . $this->_group_get_name($g) . '</a><a href="#" class="dodelete vp-wpa-group-remove" title="'. __('Remove', 'vp_textdomain') .'"><i class="fa fa-times"></i> '. __('Remove', 'vp_textdomain') .'</a></div>';
 			$html .= '<div class="vp-controls' . ((!$is_first) ? ' vp-hide' : '') . '">';
 			if ($g === end($group['groups']))
 			{

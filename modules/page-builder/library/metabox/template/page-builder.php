@@ -18,7 +18,7 @@ return array(
 			'fields'    => array(
 				array(
                     'type' => 'textbox',
-                    'name' => 'section_name',
+                    'name' => '_name',
                     'label' => __('Section Name', 'calibrefx'),
                     'description' => __('Only shown in admin area', 'calibrefx'),
                 ),
@@ -66,7 +66,7 @@ return array(
 					'fields'    => array(
 						array(
 		                    'type' => 'textbox',
-		                    'name' => 'column_name',
+		                    'name' => '_name',
 		                    'label' => __('Column Name', 'calibrefx'),
 		                    'description' => __('Only shown in admin area', 'calibrefx'),
 		                ),

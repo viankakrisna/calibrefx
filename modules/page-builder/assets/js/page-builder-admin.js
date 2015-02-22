@@ -39,6 +39,7 @@ var CFX_Builder = CFX_Builder || {};
 				$(parent).find('.wpa_loop-'+$(event.target).val()).removeClass('vp-hide').removeClass('vp-dep-inactive');
 
 				$('input.wp-color-picker-field').wpColorPicker();
+				vp.init_select2($(parent).find('.vp-js-select2'));
 				
 				return this;
 			},
