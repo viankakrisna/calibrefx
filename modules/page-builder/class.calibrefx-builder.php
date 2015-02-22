@@ -272,6 +272,7 @@ class Calibrefx_Builder{
         if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
             if ( 'page' === $post->post_type ) {     
                 wp_enqueue_script( 'calibrefx-builder-admin', CALIBREFX_MODULE_URL . '/page-builder/assets/js/page-builder-admin.js' );
+                wp_enqueue_style( 'calibrefx-builder-admin', CALIBREFX_MODULE_URL . '/page-builder/assets/css/page-builder-admin.css' );
             }
         }
     }

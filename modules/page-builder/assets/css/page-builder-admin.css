@@ -1,0 +1,44 @@
+#page_builder_metabox{
+
+}
+
+#page_builder_metabox h3{
+	background-color: #4F5F6F;
+	color: #ffffff;
+	padding: 15px 10px 15px 20px;
+}
+
+#page_builder_metabox .wpa_group-section .vp-wpa-group-heading{
+	background-color: #44B7DF;
+	color: #ffffff;
+	padding: 7px 10px 7px 20px;
+}
+
+#page_builder_metabox .wpa_group-section .vp-wpa-group-heading a{
+	color: #ffffff;
+}
+
+.vp-metabox .vp-textbox .field input[type="text"], 
+.vp-metabox .vp-upload .field input[type="text"], 
+.vp-metabox .vp-textarea .field textarea,
+.vp-metabox .field input[type="button"]{
+	box-shadow: none;
+}
+
+#page_builder_metabox .wpa_group-column .vp-wpa-group-heading{
+	background-color: #428BCA;
+	color: #ffffff;
+	padding: 7px 10px 7px 20px;
+}
+
+#page_builder_metabox .wpa_group-content .vp-wpa-group-heading{
+	background-color: #0074A3;
+	color: #ffffff;
+	padding: 7px 10px 7px 20px;
+}
+
+#page_builder_metabox .wpa_group-content .wpa_group .vp-wpa-group-heading{
+	background-color: #657E9C;
+	color: #ffffff;
+	padding: 5px 10px 5px 20px;
+}
