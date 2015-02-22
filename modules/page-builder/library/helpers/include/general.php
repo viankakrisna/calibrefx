@@ -519,6 +519,7 @@ function vp_content_type_field_archive(){
                 'name' => 'post_type',
                 'validation' => 'required',
                 'label' => __( 'Post Type', 'calibrefx' ),
+                'description' => __('Choose which post type you want to show', 'calibrefx'),
                 'items' => array(
                     'data' => array(
                         array(
@@ -532,17 +533,20 @@ function vp_content_type_field_archive(){
                 'type' => 'textbox',
                 'name' => 'posts_per_page',
                 'label' => __( 'Posts per page', 'calibrefx' ),
+                'description' => __('Total post per page', 'calibrefx'),
             ),
             array(
                 'type' => 'toggle',
                 'name' => 'show_pagination',
                 'label' => __( 'Show Pagination', 'calibrefx' ),
+                'description' => __('Tick this if you want to show pagination', 'calibrefx'),
             ),
             array(
                 'type' => 'select',
                 'name' => 'layout',
                 'validation' => 'required',
                 'label' => __( 'Layout', 'calibrefx' ),
+                'description' => __('Choose your layout', 'calibrefx'),
                 'items' => array(
                     array(
                         'value' => 'grid',
@@ -556,17 +560,9 @@ function vp_content_type_field_archive(){
             ),
             array(
                 'type' => 'textbox',
-                'name' => 'read_more',
-                'label' => __( 'Read more text', 'calibrefx' ),
-                /*'dependency' => array(
-                    'field' => 'layout',
-                    'function' => 'vp_dep_custom',
-                ),*/
-            ),
-            array(
-                'type' => 'textbox',
                 'name' => 'excerpt_length',
                 'label' => __( 'Post excerpt length', 'calibrefx' ),
+                'description' => __('Put 0 if you want to show all content', 'calibrefx'),
                 /*'dependency' => array(
                     'field' => 'layout',
                     'function' => 'vp_dep_custom',
@@ -574,8 +570,9 @@ function vp_content_type_field_archive(){
             ),
             array(
                 'type' => 'textbox',
-                'name' => 'columns_per_row',
-                'label' => __( 'Columns per row', 'calibrefx' ),
+                'name' => 'read_more',
+                'label' => __( 'Read more text', 'calibrefx' ),
+                'description' => __('If you choose to show the content excerpt, put the read more text here. default is "Read more"', 'calibrefx'),
                 /*'dependency' => array(
                     'field' => 'layout',
                     'function' => 'vp_dep_custom',
