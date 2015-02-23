@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'cfxicons';
-	src:url('../fonts/cfxicons.eot?6lzngw');
-	src:url('../fonts/cfxicons.eot?#iefix6lzngw') format('embedded-opentype'),
-		url('../fonts/cfxicons.woff?6lzngw') format('woff'),
-		url('../fonts/cfxicons.ttf?6lzngw') format('truetype'),
-		url('../fonts/cfxicons.svg?6lzngw#cfxicons') format('svg');
+	src:url('../fonts/cfxicons.eot?-bi6gff');
+	src:url('../fonts/cfxicons.eot?#iefix-bi6gff') format('embedded-opentype'),
+		url('../fonts/cfxicons.woff?-bi6gff') format('woff'),
+		url('../fonts/cfxicons.ttf?-bi6gff') format('truetype'),
+		url('../fonts/cfxicons.svg?-bi6gff#cfxicons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,12 +23,52 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-calibreworks:before {
+.icon-socialsetting:before {
 	content: "\e600";
 }
 
-.icon-calibrefx:before {
-	content: "\cf";
+.icon-layoutsetting:before {
+	content: "\e601";
+}
+
+.icon-generalsetting:before {
+	content: "\e602";
+}
+
+.icon-pagebuilder:before {
+	content: "\e603";
+}
+
+.icon-home2:before {
+	content: "\e001";
+}
+
+.icon-image2:before {
+	content: "\e02c";
+}
+
+.icon-bookmark2:before {
+	content: "\e2e3";
+}
+
+.icon-bookmarks2:before {
+	content: "\e2e5";
+}
+
+.icon-heart2:before {
+	content: "\e307";
+}
+
+.icon-github2:before {
+	content: "\e4ba";
+}
+
+.icon-wordpress:before {
+	content: "\e4be";
+}
+
+.icon-linkedin2:before {
+	content: "\e4cf";
 }
 
 .icon-home:before {
@@ -161,5 +201,17 @@
 
 .icon-paypal2:before {
 	content: "\ead7";
+}
+
+.icon-calibreworks:before {
+	content: "\e605";
+}
+
+.icon-calibrefx2:before {
+	content: "\e604";
+}
+
+.icon-calibrefx:before {
+	content: "\cf";
 }
 
