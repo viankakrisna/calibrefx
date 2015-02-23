@@ -11,4 +11,4 @@ $target_field = $matches[1][count($matches[1])-1];
 	type="text" class="vp-input wp-color-picker-field <?php echo $cssclass ?>" 
 	value="<?php echo $value; ?>" />
 <?php } ?>
-<?php if(!$is_compact) echo VP_View::instance()->load('control/template_control_foot'); ?>
+<?php if(!$is_compact) echo VP_View::instance()->load('control/template_control_foot', $head_info); ?>

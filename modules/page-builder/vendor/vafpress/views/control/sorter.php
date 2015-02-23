@@ -21,4 +21,4 @@ $target_field = $matches[1][count($matches[1])-1];
 	<?php endforeach; ?>
 </select>
 
-<?php if(!$is_compact) echo VP_View::instance()->load('control/template_control_foot'); ?>
+<?php if(!$is_compact) echo VP_View::instance()->load('control/template_control_foot', $head_info); ?>

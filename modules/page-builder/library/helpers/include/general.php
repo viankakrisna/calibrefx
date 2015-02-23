@@ -5,7 +5,7 @@ function vp_get_formidable_forms() {
         return $result;
     }
     $where = apply_filters('frm_forms_dropdown', " (status is NULL OR status = '' OR status = 'published' ) AND default_template=0", '' );
-	//@TODO: This cause error in Formidable create template
+	
     $frm_form = new FrmForm();
 	$forms = $frm_form->getAll($where, ' ORDER BY name' );
 	foreach($forms as $form){
@@ -103,7 +103,8 @@ function vp_get_content_type_list(){
         'label' => __( 'Simple Text', 'calibrefx' )
     );
 
-    /*$result[] = array(
+    /* @TODO: This is not Ready
+    $result[] = array(
 		'value' => 'jslider',
 		'label' => __( 'Slider', 'calibrefx' )
 	);*/
@@ -156,10 +157,6 @@ function vp_content_type_field_autoresponder(){
         'lazyload'  => true,
         'name'      => 'autoresponder',
         'title'     => __( 'Autoresponder Settings', 'calibrefx' ),
-        /*'dependency' => array(
-            'field' => 'content_type',
-            'function' => 'vp_dep_custom',
-        ),*/
         'fields'    => array(
             array(
                 'type' => 'select',
@@ -176,59 +173,14 @@ function vp_content_type_field_autoresponder(){
                 )
             ),
             array(
-                'type' => 'textbox',
-                'name' => 'api_url',
-                'validation' => 'required',
-                'label' => __( 'Api Url', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'provider',
-                    'function' => 'vp_dep_custom',
-                ),
-            ),
-            array(
-                'type' => 'textbox',
-                'name' => 'api_key',
-                'validation' => 'required',
-                'label' => __( 'Api Key', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'provider',
-                    'function' => 'vp_dep_custom',
-                ),
-            ),
-            array(
-                'type' => 'textbox',
-                'name' => 'campaign_name',
-                'validation' => 'required',
-                'label' => __( 'Campaign Name', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'provider',
-                    'function' => 'vp_dep_custom',
-                ),
-            ),
-            array(
-                'type' => 'textbox',
-                'name' => 'form_id',
-                'validation' => 'required',
-                'label' => __( 'Form ID', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'provider',
-                    'function' => 'vp_dep_custom',
-                ),
-            ),
-            array(
                 'type' => 'textarea',
                 'name' => 'form_code',
                 'validation' => 'required',
                 'label' => __( 'Autoresponder Form Code', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'provider',
-                    'function' => 'vp_dep_custom',
-                ),
             ),
             array(
                 'type' => 'textbox',
                 'name' => 'css_class',
-                'validation' => 'required',
                 'label' => __( 'CSS Class', 'calibrefx' ),
             ),
         ),
@@ -357,7 +309,6 @@ function vp_content_type_field_heading(){
             array(
                 'type' => 'textbox',
                 'name' => 'sub_header_text',
-                'validation' => 'required',
                 'label' => __( 'Sub Header Text', 'calibrefx' ),
             ),
             array(
@@ -404,33 +355,31 @@ function vp_content_type_field_image(){
         'lazyload'  => true,
         'name'      => 'image',
         'title'     => __( 'Image Settings', 'calibrefx' ),
-        /*'dependency' => array(
-            'field' => 'content_type',
-            'function' => 'vp_dep_custom',
-        ),*/
         'fields'    => array(
             array(
                 'type' => 'upload',
                 'name' => 'image_url',
                 'validation' => 'required',
                 'label' => __( 'Image URL', 'calibrefx' ),
+                'description' => __('Upload your image', 'calibrefx'),
             ),
             array(
                 'type' => 'textbox',
                 'name' => 'alt_text',
-                'validation' => 'required',
                 'label' => __( 'Alternative Text', 'calibrefx' ),
+                'description' => __('Image alt tag', 'calibrefx'),
             ),
             array(
                 'type' => 'textbox',
                 'name' => 'link',
-                'validation' => 'required',
                 'label' => __( 'URL', 'calibrefx' ),
+                'description' => __('Put your target URL. Leave blank if none', 'calibrefx'),
             ),
             array(
                 'type' => 'toggle',
                 'name' => 'link_target',
                 'label' => __( 'Open in New Tab', 'calibrefx' ),
+                'description' => __('Check this if you want your URL open in new tab.', 'calibrefx'),
                 'dependency' => array(
                     'field' => 'link',
                     'function' => 'vp_dep_boolean',
@@ -439,7 +388,6 @@ function vp_content_type_field_image(){
             array(
                 'type' => 'select',
                 'name' => 'image_alignment',
-                'validation' => 'required',
                 'label' => __( 'Alignment', 'calibrefx' ),
                 'items' => array(
                     array(
@@ -462,19 +410,19 @@ function vp_content_type_field_image(){
                 'label' => __( 'Animation', 'calibrefx' ),
                 'items' => array(
                     array(
-                        'value' => 'fade_in',
+                        'value' => 'fade-in',
                         'label' => __('Fade In', 'calibrefx' ),
                     ),
                     array(
-                        'value' => 'fade_in_left',
+                        'value' => 'fade-in-left',
                         'label' => __('Fade in From Left', 'calibrefx' ),
                     ),
                     array(
-                        'value' => 'fade_in_right',
+                        'value' => 'fade-in-right',
                         'label' => __('Fade In From Right', 'calibrefx' ),
                     ),
                     array(
-                        'value' => 'grow_in',
+                        'value' => 'grow-in',
                         'label' => __('Grow In', 'calibrefx' ),
                     ),
                 )
@@ -482,8 +430,8 @@ function vp_content_type_field_image(){
             array(
                 'type' => 'textbox',
                 'name' => 'delay',
-                'validation' => 'required',
                 'label' => __( 'Delay', 'calibrefx' ),
+                'description' => __('Delay show in milliseconds', 'calibrefx'),
                 'dependency' => array(
                     'field' => 'image_animation',
                     'function' => 'vp_dep_boolean',
@@ -492,7 +440,6 @@ function vp_content_type_field_image(){
             array(
                 'type' => 'textbox',
                 'name' => 'css_class',
-                'validation' => 'required',
                 'label' => __( 'CSS Class', 'calibrefx' ),
             ),
         )
@@ -509,16 +456,13 @@ function vp_content_type_field_html_editor(){
         'lazyload'  => true,
         'name'      => 'html_editor',
         'title'     => __( 'Content Settings', 'calibrefx' ),
-        /*'dependency' => array(
-            'field' => 'content_type',
-            'function' => 'vp_dep_custom',
-        ),*/
         'fields'    => array(
             array(
                 'type' => 'wpeditor',
                 'name' => 'html_content',
                 'validation' => 'required',
                 'label' => __( 'Content', 'calibrefx' ),
+                'description' => __('Put your content inside the box', 'calibrefx'),
             ),
         )
     );
@@ -534,16 +478,13 @@ function vp_content_type_field_menu(){
         'lazyload'  => true,
         'name'      => 'menu',
         'title'     => __( 'Menu', 'calibrefx' ),
-        /*'dependency' => array(
-            'field' => 'content_type',
-            'function' => 'vp_dep_custom',
-        ),*/
         'fields'    => array(
             array(
                 'type' => 'select',
                 'name' => 'menu_id',
                 'validation' => 'required',
                 'label' => __( 'Choose Menu', 'calibrefx' ),
+                'description' => __('Choose the menu you want to show. To add the menu go to <code>Appearances > Menus</code>', 'calibrefx'),
                 'items' => array(
                     'data' => array(
                         array(
@@ -556,7 +497,6 @@ function vp_content_type_field_menu(){
             array(
                 'type' => 'textbox',
                 'name' => 'css_class',
-                'validation' => 'required',
                 'label' => __( 'CSS Class', 'calibrefx' ),
             ),
         )
@@ -573,16 +513,13 @@ function vp_content_type_field_archive(){
         'lazyload'  => true,
         'name'      => 'archive',
         'title'     => __( 'Archive', 'calibrefx' ),
-        /*'dependency' => array(
-            'field' => 'content_type',
-            'function' => 'vp_dep_custom',
-        ),*/
         'fields'    => array(
             array(
                 'type' => 'select',
                 'name' => 'post_type',
                 'validation' => 'required',
                 'label' => __( 'Post Type', 'calibrefx' ),
+                'description' => __('Choose which post type you want to show', 'calibrefx'),
                 'items' => array(
                     'data' => array(
                         array(
@@ -596,17 +533,20 @@ function vp_content_type_field_archive(){
                 'type' => 'textbox',
                 'name' => 'posts_per_page',
                 'label' => __( 'Posts per page', 'calibrefx' ),
+                'description' => __('Total post per page', 'calibrefx'),
             ),
             array(
                 'type' => 'toggle',
                 'name' => 'show_pagination',
                 'label' => __( 'Show Pagination', 'calibrefx' ),
+                'description' => __('Tick this if you want to show pagination', 'calibrefx'),
             ),
             array(
                 'type' => 'select',
                 'name' => 'layout',
                 'validation' => 'required',
                 'label' => __( 'Layout', 'calibrefx' ),
+                'description' => __('Choose your layout', 'calibrefx'),
                 'items' => array(
                     array(
                         'value' => 'grid',
@@ -620,30 +560,23 @@ function vp_content_type_field_archive(){
             ),
             array(
                 'type' => 'textbox',
-                'name' => 'read_more',
-                'label' => __( 'Read more text', 'calibrefx' ),
-                'dependency' => array(
-                    'field' => 'layout',
-                    'function' => 'vp_dep_custom',
-                ),
-            ),
-            array(
-                'type' => 'textbox',
                 'name' => 'excerpt_length',
                 'label' => __( 'Post excerpt length', 'calibrefx' ),
-                'dependency' => array(
+                'description' => __('Put 0 if you want to show all content', 'calibrefx'),
+                /*'dependency' => array(
                     'field' => 'layout',
                     'function' => 'vp_dep_custom',
-                ),
+                ),*/
             ),
             array(
                 'type' => 'textbox',
-                'name' => 'columns_per_row',
-                'label' => __( 'Columns per row', 'calibrefx' ),
-                'dependency' => array(
+                'name' => 'read_more',
+                'label' => __( 'Read more text', 'calibrefx' ),
+                'description' => __('If you choose to show the content excerpt, put the read more text here. default is "Read more"', 'calibrefx'),
+                /*'dependency' => array(
                     'field' => 'layout',
                     'function' => 'vp_dep_custom',
-                ),
+                ),*/
             ),
         )
     );
@@ -659,10 +592,6 @@ function vp_content_type_field_raw_html(){
         'lazyload'  => true,
         'name'      => 'raw_html',
         'title'     => __( 'Raw HTML', 'calibrefx' ),
-        /*'dependency' => array(
-            'field' => 'content_type',
-            'function' => 'vp_dep_custom',
-        ),*/
         'fields'    => array(
             array(
                 'type'      => 'textarea',
@@ -683,16 +612,13 @@ function vp_content_type_field_simple_text(){
         'lazyload'  => true,
         'name'      => 'simple_text',
         'title'     => __( 'Text Settings', 'calibrefx' ),
-        /*'dependency' => array(
-            'field' => 'content_type',
-            'function' => 'vp_dep_custom',
-        ),*/
         'fields'    => array(
             array(
                 'type' => 'textbox',
-                'name' => 'Text',
+                'name' => 'text',
                 'validation' => 'required',
                 'label' => __( 'Text', 'calibrefx' ),
+                'description' => __('Text you want to show', 'calibrefx'),
             ),
             array(
                 'type' => 'wpcolor',
@@ -703,6 +629,7 @@ function vp_content_type_field_simple_text(){
                 'type' => 'textbox',
                 'name' => 'font_size',
                 'label' => __( 'Font Size', 'calibrefx' ),
+                'description' => __('Font size in px, number only', 'calibrefx'),
             ),
             array(
                 'type' => 'select',
@@ -727,11 +654,6 @@ function vp_content_type_field_simple_text(){
                 'type' => 'wpcolor',
                 'name' => 'background_color',
                 'label' => __( 'Background Color', 'calibrefx' ),
-            ),
-            array(
-                'type' => 'upload',
-                'name' => 'image_url',
-                'label' => __( 'Image URL', 'calibrefx' ),
             ),
             array(
                 'type' => 'textbox',

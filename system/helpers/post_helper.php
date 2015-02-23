@@ -140,20 +140,26 @@ function calibrefx_prev_next_posts_nav() {
  *   last page,
  *   next page arrow.
  */
-function calibrefx_numeric_posts_nav() {
-    global $wp_query;
+function calibrefx_numeric_posts_nav($max = NULL, $echo = TRUE) {
 
-    if ( is_singular() ) {
+    if ( is_singular() && !$max ) {
         return;
     }
 
+    if(!$max){
+        global $wp_query;
+        $max = intval( $wp_query->max_num_pages );
+    }else{
+        $max = intval($max);
+    }
+
     /** Stop execution if there's only 1 page */
-    if ( $wp_query->max_num_pages <= 1 ) {
+    if ( $max <= 1 ) {
         return;
     }
 
     $paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
-    $max = intval( $wp_query->max_num_pages );
+    
 
     /** Add current page to the array */
     if ( $paged >= 1 ) {
@@ -174,21 +180,22 @@ function calibrefx_numeric_posts_nav() {
     $pagination_class = apply_filters( 'calibrefx_numeric_pagination_class', 'pagination-right' );
     $pagination_container_class = apply_filters( 'calibrefx_numeric_pagination_container_class', '' );
 
-    echo '<div class="pagination-container paginantion-numeric '.$pagination_container_class.'"><ul class="pagination '.$pagination_class.'">' . "\n";
+    $output = '';
+    $output .= '<div class="pagination-container paginantion-numeric '.$pagination_container_class.'"><ul class="pagination '.$pagination_class.'">' . "\n";
 
     /** Previous Post Link */
     if ( get_previous_posts_link() ) {
-        printf( '<li class="previous">%s</li>' . "\n", get_previous_posts_link( apply_filters( 'calibrefx_prev_link_text', '&laquo; ' . __( 'Previous Page', 'calibrefx' ) ) ) );
+        $output .= sprintf( '<li class="previous">%s</li>' . "\n", get_previous_posts_link( apply_filters( 'calibrefx_prev_link_text', '&laquo; ' . __( 'Previous Page', 'calibrefx' ) ) ) );
     }
 
     /** Link to first page, plus ellipses if necessary */
     if ( !in_array( 1, $links ) ) {
         $class = 1 == $paged ? ' class="active"' : '';
 
-        printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, get_pagenum_link( 1 ), '1' );
+        $output .= sprintf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, get_pagenum_link( 1 ), '1' );
 
         if ( !in_array( 2, $links ) ) {
-            echo '<li class="disabled"><span class="hellip">&hellip;</span></li>';
+            $output .= '<li class="disabled"><span class="hellip">&hellip;</span></li>';
         }
     }
 
@@ -197,26 +204,32 @@ function calibrefx_numeric_posts_nav() {
     
     foreach ( (array) $links as $link ) {
         $class = $paged == $link ? ' class="active"' : '';
-        printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, get_pagenum_link( $link ), $link );
+        $output .= sprintf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, get_pagenum_link( $link ), $link );
     }
 
     /** Link to last page, plus ellipses if necessary */
     if ( !in_array( $max, $links ) ) {
         if ( !in_array( $max - 1, $links ) ) {
-            echo '<li class="disabled"><span class="hellip">&hellip;</span></li>' . "\n";
+            $output .= '<li class="disabled"><span class="hellip">&hellip;</span></li>' . "\n";
         }
 
         $class = $paged == $max ? ' class="active"' : '';
 
-        printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, get_pagenum_link( $max ), $max );
+        $output .= sprintf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, get_pagenum_link( $max ), $max );
     }
 
     /** Next Post Link */
     if ( get_next_posts_link() ) {
-        printf( '<li class="next">%s</li>' . "\n", get_next_posts_link(apply_filters( 'calibrefx_next_link_text', __( 'Next Page', 'calibrefx' ) . ' &raquo;' ) ));
+        $output .= sprintf( '<li class="next">%s</li>' . "\n", get_next_posts_link(apply_filters( 'calibrefx_next_link_text', __( 'Next Page', 'calibrefx' ) . ' &raquo;' ) ));
     }
 
-    echo '</ul></div>' . "\n";
+    $output .= '</ul></div>' . "\n";
+
+    if($echo){
+        echo $output;
+    }else{
+        return $output;
+    }
 }
 
 /**
