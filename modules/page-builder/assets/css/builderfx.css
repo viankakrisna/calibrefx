@@ -10,3 +10,11 @@
 	position: absolute;
 	left:0;
 }
+.section > .row{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.section > .row > div[class^="col-"]{
+	padding-left: 0px;
+	padding-right: 0px;
+}
