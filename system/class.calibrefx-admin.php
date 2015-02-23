@@ -258,7 +258,7 @@ abstract class Calibrefx_Admin {
 
                                     echo "<li$current_class>
                                             <a href='$section_link'>
-                                                <span class='calibrefx-section-link'>" . $section['title'] . "</span>
+                                                <span class='calibrefx-section-link " . sanitize_title($section['title']) . "'>" . $section['title'] . "</span>
                                                 <!--span class='calibrefx-section-link-additional'></span-->
                                             </a>
                                         </li>";

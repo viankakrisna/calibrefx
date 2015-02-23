@@ -1,4 +1,4 @@
-
+@import "fontello.css";
 /*------------------------------------------------------------------
 [. Global Styles]
 ------------------------------------------------------------------*/
@@ -141,6 +141,46 @@ label{
     border-left: none;
 }
 
+/*tab icon*/
+
+
+
+.calibrefx-tab ul.calibrefx-tab-option li.current a span:before,
+.calibrefx-tab ul.calibrefx-tab-option li a span:before{
+    background:url(../img/icon-setting.png) no-repeat;
+    width: 28px;
+    height: 28px;
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left:10px;
+    top:5px;
+    z-index:100;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li.current a span.general-settings:before,
+.calibrefx-tab ul.calibrefx-tab-option li a:hover span.general-settings:before{
+    background-position: -31px 0px;
+}
+.calibrefx-tab ul.calibrefx-tab-option li a span.general-settings:before{
+    background-position: 0px 0px;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li.current a span.layout-settings:before,
+.calibrefx-tab ul.calibrefx-tab-option li a:hover span.layout-settings:before{
+    background-position: -31px -50px;
+}
+.calibrefx-tab ul.calibrefx-tab-option li a span.layout-settings:before{
+    background-position: 0px -50px;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li.current a span.social-settings:before,
+.calibrefx-tab ul.calibrefx-tab-option li a:hover span.social-settings:before{
+    background-position: -31px -95px;
+}
+.calibrefx-tab ul.calibrefx-tab-option li a span.social-settings:before{
+    background-position: 0px -95px;
+}
 .calibrefx-tab ul.calibrefx-tab-option li:hover a,
 .calibrefx-tab ul.calibrefx-tab-option li.current a{
     color: #ffffff;
@@ -175,9 +215,11 @@ label{
 
 .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
     width: 174px;
-    padding: 12px 0px 12px 30px;
-
+    padding: 12px 0px 12px 48px;
+  min-height: 22px;
 }
+
+
 
 /*------------------------------------------------------------------
 [. content]
@@ -544,7 +586,7 @@ span.calibrefx-info{
 .calibrefx-option .postbox .handlediv{
     height: 39px;
     width: 39px;
-    margin-top: 8px;
+    margin-top: 4px;
     margin-right: 8px;
 }
 
