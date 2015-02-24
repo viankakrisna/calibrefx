@@ -161,11 +161,11 @@ label{
 }
 
 .calibrefx-tab ul.calibrefx-tab-option li a span i{
-  font-size: 20px;
-  color:#428BCA;
-  position: relative;
-  left: -10px;
-  top: 2px;
+   font-size: 20px;
+  color: #428BCA;
+  position: absolute;
+  left: 10px;
+  top: 15px;
 }
 
 /* .calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
@@ -193,9 +193,8 @@ label{
 
 
 .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
-    width: 174px;
-    padding: 12px 0px 12px 20px;
-  min-height: 22px;
+    padding: 12px 10px 12px 40px;
+    min-height: 22px;
 }
 
 
@@ -432,6 +431,7 @@ ul.twitter-tweets li span a{
 
 .calibrefx-submit-button .calibrefx-h2-button i{
     margin-right: 10px;
+    font-size: 18px;
 }
 
 .calibrefx-submit-button .calibrefx-h2-button {
@@ -557,7 +557,7 @@ span.calibrefx-info{
 }
 
 .calibrefx-option .postbox .inside{
-    padding: 0px 30px 20px;
+    padding: 20px 30px 20px;
     margin: 0px;
     background: #ffffff;
 }
