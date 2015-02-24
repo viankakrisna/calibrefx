@@ -36,9 +36,9 @@ class CFX_Other_Settings extends Calibrefx_Admin {
 
         calibrefx_clear_meta_section();
 
-        calibrefx_add_meta_section( 'system', __( 'System Information', 'calibrefx' ), 'options.php', 1);
-        calibrefx_add_meta_section( 'tosgen', __( 'TOS Generator', 'calibrefx' ), '' );
-        calibrefx_add_meta_section( 'importexport', __( 'Import / Export Settings', 'calibrefx' ), '' );
+        calibrefx_add_meta_section( 'system', __( 'System Information', 'calibrefx' ), 'options.php', 1, "fa fa-cogs");
+        calibrefx_add_meta_section( 'tosgen', __( 'TOS Generator', 'calibrefx' ), '', 5, "fa fa-rocket" );
+        calibrefx_add_meta_section( 'importexport', __( 'Import / Export Settings', 'calibrefx' ), '', 10, "fa fa-share-square-o" );
 
         do_action( 'calibrefx_other_settings_meta_section' );
 

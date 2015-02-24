@@ -131,9 +131,9 @@ function calibrefx_custom_header() {
     );
 
     /** Activate Custom Header */
-    add_theme_support( 'custom-header', $custom_header_args );
+    add_theme_support( 'custom-header', $custom_header_args );    
 }
-add_action( 'init', 'calibrefx_custom_header' );
+// add_action( 'init', 'calibrefx_custom_header' );
 
 /**
  * Register all the available layout

@@ -40,7 +40,7 @@ function calibrefx_is_meta_section_exist( $slug ) {
  * @param string $title Title of the section.
  * @param string $ability Optional. The ability that can see the settings ( 'general', 'professor' ).
  */
-function calibrefx_add_meta_section( $slug, $title, $target='options.php', $priority = 10, $icon = 'icon-calibrefx' ) {
+function calibrefx_add_meta_section( $slug, $title, $target='options.php', $priority = 10, $icon = 'cfxicon-calibrefx' ) {
     global $calibrefx_sections;
 
     if ( !isset( $calibrefx_sections ) )

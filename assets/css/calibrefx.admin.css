@@ -127,13 +127,19 @@ label{
     overflow: visible;
 }
 
+.calibrefx-tab ul.calibrefx-tab-option li a:focus,
+.calibrefx-tab ul.calibrefx-tab-option li a:active{
+    border:none;
+    box-shadow:none;
+    
+}
 .calibrefx-tab ul.calibrefx-tab-option li a{
     text-decoration: none;
     display: block;
     color: #4F5F6F;
     font-size: 14px;
     font-weight: bold;
-    line-height: 20px;
+    line-height: 24px;
     position: relative;
     outline: none;
     background: #fff;
@@ -147,6 +153,19 @@ label{
     background: #428BCA;
     border: 1px solid #e3e3e3;
     border-left: none;
+    
+}
+.calibrefx-tab ul.calibrefx-tab-option li:hover a span i,
+.calibrefx-tab ul.calibrefx-tab-option li.current a span i{
+    color:#ffffff;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li a span i{
+   font-size: 20px;
+  color: #428BCA;
+  position: absolute;
+  left: 10px;
+  top: 15px;
 }
 
 /* .calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
@@ -174,10 +193,11 @@ label{
 
 
 .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
-    width: 174px;
-    padding: 12px 0px 12px 30px;
-
+    padding: 12px 10px 12px 40px;
+    min-height: 22px;
 }
+
+
 
 /*------------------------------------------------------------------
 [. content]
@@ -411,6 +431,7 @@ ul.twitter-tweets li span a{
 
 .calibrefx-submit-button .calibrefx-h2-button i{
     margin-right: 10px;
+    font-size: 18px;
 }
 
 .calibrefx-submit-button .calibrefx-h2-button {
@@ -536,7 +557,7 @@ span.calibrefx-info{
 }
 
 .calibrefx-option .postbox .inside{
-    padding: 0px 30px 20px;
+    padding: 20px 30px 20px;
     margin: 0px;
     background: #ffffff;
 }
@@ -544,7 +565,7 @@ span.calibrefx-info{
 .calibrefx-option .postbox .handlediv{
     height: 39px;
     width: 39px;
-    margin-top: 8px;
+    margin-top: 4px;
     margin-right: 8px;
 }
 
