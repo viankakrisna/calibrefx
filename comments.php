@@ -3,12 +3,13 @@
  * Default comment template
  */
 
-if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) AND 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) ){
-	die ( 'Please do not load this page directly. Thanks!' );
+if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) AND 'comments.php' == basename( sanitize_text_field( $_SERVER['SCRIPT_FILENAME'] ) ) ){
+	echo 'Please do not load this page directly. Thanks!';
+	exit;
 }
 
 if ( post_password_required() ) {
-	printf( '<p class="alert">%s</p>', __( 'This post is password protected. Enter the password to view comments.', 'calibrefx' ) );
+	echo '<p class="alert">This post is password protected. Enter the password to view comments.</p>';
 	return;
 }
 
