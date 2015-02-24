@@ -245,6 +245,7 @@ jQuery(document).ready(function($){
     $('input.popup-colorpicker-bg').wpColorPicker();
     $('input.popup-colorpicker-text').wpColorPicker();
     $('input.popup-colorpicker-shadow').wpColorPicker();
+    $('input.wp-colorpicker').wpColorPicker();
 
     $('#add-shortcode').click(function(){
         //column animation check (don't add the attrs when unnecessary)
