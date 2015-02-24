@@ -38,20 +38,14 @@ return array(
 					'label' => __('Custom CSS Style', 'calibrefx'),
 				),
 				array(
-                    'type' => 'wpcolor',
-                    'name' => 'section_bg_color',
-                    'label' => __('Background Color', 'calibrefx'),
-                    'format' => 'rgba',
-                ),
-				array(
 					'type'      => 'group',
 					'repeating' => false,
 					'sortable'  => false,
 					'name'      => 'section_bg',
-					'title'     => __('Section Background', 'calibrefx'),
+					'title'     => __('Section Background Settings', 'calibrefx'),
 					'fields'    => array(
 						array(
-		                    'type' => 'color',
+		                    'type' => 'wpcolor',
 		                    'name' => 'section_bg_color',
 		                    'label' => __('Color', 'calibrefx'),
 		                    'format' => 'rgba',
