@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * Template Name: Blank Page
  */
 
@@ -20,12 +20,12 @@ function blank_page_body_class( $classes ){
 <html <?php language_attributes(); ?>>
 <!--<![endif]-->
 <head>
-	<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo('charset'); ?>" />
+	<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-	<?php 
-	if ('open' == get_option( 'default_ping_status' ) ) {
-        echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . "\n";
+	<?php
+	if ( 'open' == get_option( 'default_ping_status' ) ) {
+		echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . "\n";
     }
 	if ( current_theme_supports( 'calibrefx-responsive-style' ) ){ 
 		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />' . "\n";
@@ -35,9 +35,9 @@ function blank_page_body_class( $classes ){
 	?>
 </head>
 <body <?php body_onload(); ?> <?php body_class(); ?>>
-	<?php 
-	do_action( 'calibrefx_before_wrapper' ); 
-	do_action( 'calibrefx_wrapper' ); 
+	<?php
+	do_action( 'calibrefx_before_wrapper' );
+	do_action( 'calibrefx_wrapper' );
     
     if ( have_posts() ) : 
         while ( have_posts() ) : the_post(); ?>
@@ -55,9 +55,8 @@ function blank_page_body_class( $classes ){
         /** if no posts exist * */
         do_action( 'calibrefx_no_post' );
     endif;
-	
 	do_action( 'calibrefx_after_wrapper' );
-	wp_footer(); 
+	wp_footer();
 	?>
 </body>
 </html>
