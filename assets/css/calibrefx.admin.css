@@ -127,13 +127,19 @@ label{
     overflow: visible;
 }
 
+.calibrefx-tab ul.calibrefx-tab-option li a:focus,
+.calibrefx-tab ul.calibrefx-tab-option li a:active{
+    border:none;
+    box-shadow:none;
+    
+}
 .calibrefx-tab ul.calibrefx-tab-option li a{
     text-decoration: none;
     display: block;
     color: #4F5F6F;
     font-size: 14px;
     font-weight: bold;
-    line-height: 20px;
+    line-height: 24px;
     position: relative;
     outline: none;
     background: #fff;
@@ -141,52 +147,25 @@ label{
     border-left: none;
 }
 
-/*tab icon*/
-
-
-
-.calibrefx-tab ul.calibrefx-tab-option li.current a span:before,
-.calibrefx-tab ul.calibrefx-tab-option li a span:before{
-    background:url(../img/icon-setting.png) no-repeat;
-    width: 28px;
-    height: 28px;
-    content: '';
-    display: inline-block;
-    position: absolute;
-    left:10px;
-    top:5px;
-    z-index:100;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li.current a span.general-settings:before,
-.calibrefx-tab ul.calibrefx-tab-option li a:hover span.general-settings:before{
-    background-position: -31px 0px;
-}
-.calibrefx-tab ul.calibrefx-tab-option li a span.general-settings:before{
-    background-position: 0px 0px;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li.current a span.layout-settings:before,
-.calibrefx-tab ul.calibrefx-tab-option li a:hover span.layout-settings:before{
-    background-position: -31px -50px;
-}
-.calibrefx-tab ul.calibrefx-tab-option li a span.layout-settings:before{
-    background-position: 0px -50px;
-}
-
-.calibrefx-tab ul.calibrefx-tab-option li.current a span.social-settings:before,
-.calibrefx-tab ul.calibrefx-tab-option li a:hover span.social-settings:before{
-    background-position: -31px -95px;
-}
-.calibrefx-tab ul.calibrefx-tab-option li a span.social-settings:before{
-    background-position: 0px -95px;
-}
 .calibrefx-tab ul.calibrefx-tab-option li:hover a,
 .calibrefx-tab ul.calibrefx-tab-option li.current a{
     color: #ffffff;
     background: #428BCA;
     border: 1px solid #e3e3e3;
     border-left: none;
+    
+}
+.calibrefx-tab ul.calibrefx-tab-option li:hover a span i,
+.calibrefx-tab ul.calibrefx-tab-option li.current a span i{
+    color:#ffffff;
+}
+
+.calibrefx-tab ul.calibrefx-tab-option li a span i{
+  font-size: 20px;
+  color:#428BCA;
+  position: relative;
+  left: -10px;
+  top: 2px;
 }
 
 /* .calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
@@ -215,7 +194,7 @@ label{
 
 .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-link{
     width: 174px;
-    padding: 12px 0px 12px 48px;
+    padding: 12px 0px 12px 20px;
   min-height: 22px;
 }
 
