@@ -101,9 +101,9 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 
         calibrefx_clear_meta_section();
 
-        calibrefx_add_meta_section( 'general', __( 'General Settings', 'calibrefx' ), $calibrefx_target_form, 1);
-        calibrefx_add_meta_section( 'layout', __( 'Layout Settings', 'calibrefx' ), $calibrefx_target_form, 2);
-        calibrefx_add_meta_section( 'social', __( 'Social Settings', 'calibrefx' ), $calibrefx_target_form, 10);    
+        calibrefx_add_meta_section( 'general', __( 'General Settings', 'calibrefx' ), $calibrefx_target_form, 1, "cfxicon-generalsetting");
+        calibrefx_add_meta_section( 'layout', __( 'Layout Settings', 'calibrefx' ), $calibrefx_target_form, 2, "cfxicon-layoutsetting");
+        calibrefx_add_meta_section( 'social', __( 'Social Settings', 'calibrefx' ), $calibrefx_target_form, 10, "cfxicon-share2");    
 
         do_action( 'calibrefx_theme_settings_meta_section' );
 
