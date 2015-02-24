@@ -21,7 +21,7 @@ class WP_Test_Calibrefx extends WP_UnitTestCase {
 		$calibrefx = Calibrefx::get_instance();
 
 		$this->assertTrue( current_theme_supports( 'calibrefx-admin-menu' ) );
-		$this->assertTrue( current_theme_supports( 'calibrefx-custom-header' ) );
+		$this->assertTrue( current_theme_supports( 'custom-header' ) );
 		$this->assertTrue( current_theme_supports( 'calibrefx-custom-background' ) );
 		$this->assertTrue( current_theme_supports( 'calibrefx-default-styles' ) );
 		$this->assertTrue( current_theme_supports( 'calibrefx-inpost-layouts' ) );
