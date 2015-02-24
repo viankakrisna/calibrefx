@@ -251,14 +251,10 @@ abstract class Calibrefx_Admin {
                                     $section_link = admin_url( 'admin.php?page=' . $this->page_id . '&section=' . $section['slug'] );
                                     
                                     $icon = $section['icon'];
-                                    $active_icon = $section['active_icon'];
-
-                                    $icon = ( !empty( $icon ) ? $icon : CALIBREFX_IMAGES_URL.'/icon-sections/icon-general-settings.png' );
-                                    $active_icon = ( !empty( $active_icon ) ? $active_icon : CALIBREFX_IMAGES_URL.'/icon-sections/icon-general-settings-active.png' );
 
                                     echo "<li$current_class>
                                             <a href='$section_link'>
-                                                <span class='calibrefx-section-link'>" . $section['title'] . "</span>
+                                                <span class='calibrefx-section-link'><i class='$icon'></i>" . $section['title'] . "</span>
                                                 <!--span class='calibrefx-section-link-additional'></span-->
                                             </a>
                                         </li>";
