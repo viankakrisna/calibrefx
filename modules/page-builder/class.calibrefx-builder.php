@@ -113,14 +113,9 @@ class Calibrefx_Builder{
     	if( $sections ){
 	    	foreach( $sections as $section_key => $section ){
 	    	    $class = array('section');
-	    	    if(!empty( $section['section_class'] )) $class[] = $section['section_class'];
-                
-                if ( isset( $section['section_bg'][0]['section_bg_parallax'] ) && !empty( $section['section_bg'][0]['section_bg_parallax'] ) ) {
-                    $class[] = 'paraxify';
-                }
-                
 	    	    $style = array();
-	    	    if(!empty( $section['section_style'] )) $style[] = $section['section_style'];
+	    	    if(!empty( $section['section_class'] )) $class[] = $section['section_class'];
+                if(!empty( $section['section_style'] )) $style[] = $section['section_style'];
                 
                 if ( isset( $section['section_bg'][0]['section_bg_color'] ) && !empty( $section['section_bg'][0]['section_bg_color'] ) ) {
                    $style[] = 'background-color: ' . $section['section_bg'][0]['section_bg_color'];
@@ -129,19 +124,23 @@ class Calibrefx_Builder{
                 if ( isset( $section['section_bg'][0]['section_bg_image'] ) && !empty( $section['section_bg'][0]['section_bg_image'] ) ) {
                     $style[] = 'background-image: url(' . $section['section_bg'][0]['section_bg_image'] . ')';
                 }
-
-                if ( isset( $section['section_bg'][0]['section_bg_size'] ) && !empty( $section['section_bg'][0]['section_bg_size'] ) ) {
-                    $style[] = 'background-size: ' . $section['section_bg'][0]['section_bg_size'];
+                
+                if ( isset( $section['section_bg'][0]['section_bg_parallax'] ) && !empty( $section['section_bg'][0]['section_bg_parallax'] ) ) {
+                    $class[] = 'paraxify';
+                }else{
+                    if ( isset( $section['section_bg'][0]['section_bg_size'] ) && !empty( $section['section_bg'][0]['section_bg_size'] ) ) {
+                        $style[] = 'background-size: ' . $section['section_bg'][0]['section_bg_size'];
+                    }
+    
+                    if ( isset( $section['section_bg'][0]['section_bg_position'] ) && !empty( $section['section_bg'][0]['section_bg_position'] ) ) {
+                        $style[] = 'background-position: ' . $section['section_bg'][0]['section_bg_position'];
+                    }
+    
+                    if ( isset( $section['section_bg'][0]['section_bg_repeat'] ) && !empty( $section['section_bg'][0]['section_bg_repeat'] ) ) {
+                        $style[] = 'background-repeat: ' . $section['section_bg'][0]['section_bg_repeat'];
+                    }
                 }
-
-                if ( isset( $section['section_bg'][0]['section_bg_position'] ) && !empty( $section['section_bg'][0]['section_bg_position'] ) ) {
-                    $style[] = 'background-position: ' . $section['section_bg'][0]['section_bg_position'];
-                }
-
-                if ( isset( $section['section_bg'][0]['section_bg_repeat'] ) && !empty( $section['section_bg'][0]['section_bg_repeat'] ) ) {
-                    $style[] = 'background-repeat: ' . $section['section_bg'][0]['section_bg_repeat'];
-                }
-
+                
                 $section_output = "<div id=\"section-$section_key\" class=\"".implode(" ", $class)."\" style=\"".implode(";", $style)."\">";
                 if( isset( $section['section_container'] ) && !empty( $section['section_container'] ) ){
                     $section_output .= '<div class="container">';
