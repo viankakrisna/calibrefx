@@ -53,13 +53,20 @@ class Calibrefx {
 	public function theme_support() {
 		
 		add_theme_support( 'calibrefx-admin-menu' );
-		add_theme_support( 'calibrefx-custom-header' );
 		add_theme_support( 'calibrefx-custom-background' );
 		add_theme_support( 'calibrefx-default-styles' );
 		add_theme_support( 'calibrefx-inpost-layouts' );
 		add_theme_support( 'calibrefx-responsive-style' );
 		add_theme_support( 'calibrefx-footer-widgets' );
 		add_theme_support( 'calibrefx-header-right-widgets' );
+
+		add_theme_support( 'custom-header', apply_filters( 'calibrefx_custom_header_args', array(
+	        'default-text-color'	=> '000000',
+	        'width'					=> 260,
+	        'height'				=> 100,
+	        'header-text'			=> get_bloginfo( 'site_title' ),
+	        'wp-head-callback'		=> 'calibrefx_custom_header_style',
+	    ) ) );
 
 		if ( ! current_theme_supports( 'calibrefx-menus' ) ) {
 			add_theme_support( 'calibrefx-menus', array(
