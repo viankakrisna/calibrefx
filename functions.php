@@ -161,11 +161,6 @@ function calibrefx_gzip_compression() {
 		return false;
 	}
 
-	// don't use on TinyMCE
-	if ( false !== stripos( sanitize_text_field( $_SERVER['REQUEST_URI'] ), 'wp-includes/js/tinymce' ) ) {
-		return false;
-	}
-
 	// can't use zlib.output_compression and ob_gzhandler at the same time
 	if ( ( 'On' == ini_get( 'zlib.output_compression' ) || ini_get( 'zlib.output_compression_level' ) > 0 ) OR 'ob_gzhandler' == ini_get( 'output_handler' ) ) {
 		return false;
