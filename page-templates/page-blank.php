@@ -24,12 +24,12 @@ function blank_page_body_class( $classes ){
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<?php
-	if ( 'open' == get_option( 'default_ping_status' ) ) {
-		echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . "\n";
-    }
-	if ( current_theme_supports( 'calibrefx-responsive-style' ) ){ 
+	if ( 'open' == get_option( 'default_ping_status' ) ) { ?>
+		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ) ?>" />
+	<?php }
+	if ( current_theme_supports( 'calibrefx-responsive-style' ) ){
 		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />' . "\n";
-    }
+	}
 	do_action( 'calibrefx_meta' );
 	wp_head();
 	?>
@@ -38,23 +38,21 @@ function blank_page_body_class( $classes ){
 	<?php
 	do_action( 'calibrefx_before_wrapper' );
 	do_action( 'calibrefx_wrapper' );
-    
-    if ( have_posts() ) : 
-        while ( have_posts() ) : the_post(); ?>
-    		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			    <?php do_action( 'calibrefx_before_post_content' ); ?>
-			    <div class="entry-content">
-			        <?php do_action( 'calibrefx_post_content' ); ?>
-			    </div><!-- end .entry-content -->
-			    <?php do_action( 'calibrefx_after_post_content' ); ?>
+	if ( have_posts() ) :
+		while ( have_posts() ) : the_post(); ?>
+			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<?php do_action( 'calibrefx_before_post_content' ); ?>
+				<div class="entry-content">
+					<?php do_action( 'calibrefx_post_content' ); ?>
+				</div><!-- end .entry-content -->
+			<?php do_action( 'calibrefx_after_post_content' ); ?>
 
 			</div><!-- end .postclass -->
-    	<?php
-        endwhile;
-    else : 
-        /** if no posts exist * */
-        do_action( 'calibrefx_no_post' );
-    endif;
+		<?php
+		endwhile;
+	else :
+		do_action( 'calibrefx_no_post' );
+	endif;
 	do_action( 'calibrefx_after_wrapper' );
 	wp_footer();
 	?>

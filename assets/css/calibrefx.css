@@ -201,7 +201,7 @@ img.wp-smiley,
 #header-right ul.menu > li{
 	border: none;
     float: left;
-	padding: 10px 10px;
+	padding: 10px 16px;
 }
 
 #header-right .widget_search{
@@ -269,6 +269,8 @@ img.wp-smiley,
     height: 20px;
 }
 
+
+
 /* Secondary Navigation
 ------------------------------------------------------------ */
 #subnav {
@@ -313,6 +315,56 @@ img.wp-smiley,
     left: 100%;
     top: -4px;
 }
+
+/*------------------------------------------------------------------
+[. header right Styles]
+------------------------------------------------------------------*/
+#header-right .widget_nav_menu  .widget-wrap ul li a{
+    color:#333333;
+    
+}
+#header-right .widget_nav_menu  .widget-wrap ul li{
+    position: relative;
+}
+ .sub-menu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #fff;
+}
+
+#header-right .sub-menu li.active a,
+#header-right .sub-menu li a:hover{
+    background: #F8F8F8;
+}
+#header-right .sub-menu li{
+    padding-left: 0px; 
+ }
+ .sub-menu li> .sub-menu {
+    margin-left: 100%;
+    top: 2px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    background-clip: padding-box;
+ }
+
+ .sub-menu li a{
+    display: block;
+    padding: 10px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 20px;
+    white-space: nowrap 
+ }
 
 /* Content
 ------------------------------------------------------------ */

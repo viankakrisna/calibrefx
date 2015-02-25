@@ -13,7 +13,9 @@ function calibrefx_404() { ?>
 
 		<h1 class="entry-title"><?php _e( 'Not Found, Error 404', 'calibrefx' ); ?></h1>
 		<div class="entry-content">
-			<p><?php printf( __( 'The page you are looking for no longer exists. Perhaps you can return back to the site\'s <a href="%s">homepage</a> and see if you can find what you are looking for. Or, you can try finding it with the information below.', 'calibrefx' ), home_url() ); ?></p>
+			<p>
+				The page you are looking for no longer exists. Perhaps you can return back to the site's <a href="<?php bloginfo( 'home_url' ); ?>">homepage</a> and see if you can find what you are looking for. Or, you can try finding it with the information below.
+			</p>
 
 			<div>
 				<div class="archive-page">

@@ -133,6 +133,7 @@ function calibrefx_custom_header() {
     /** Activate Custom Header */
     add_theme_support( 'custom-header', $custom_header_args );    
 }
+// I remove this because it is obsolete and not working anymore
 // add_action( 'init', 'calibrefx_custom_header' );
 
 /**
