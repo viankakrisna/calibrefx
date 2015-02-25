@@ -55,15 +55,18 @@ select{
 
 /* Images
 ------------------------------------------------------------ */
-.alignleft {
+.alignleft,
+.align-left {
     float: left;
 }
 
-.alignright {
+.alignright,
+.align-right {
     float: right;
 }
 
-.aligncenter {
+.aligncenter,
+.align-center {
     display: block;
     margin-left: auto;
     margin-right: auto;

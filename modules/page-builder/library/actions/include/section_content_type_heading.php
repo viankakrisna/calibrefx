@@ -8,7 +8,7 @@ function section_ct_heading( $element, $element_key, $column_key, $section_key )
 
     $align = isset( $data['heading_alignment'] )? $data['heading_alignment'] : 'left';
     
-    $element_class[] = 'align-'.$align;
+    $element_class[] = 'text-align-'.$align;
     
     if( $data['heading_icon'] ) $element_class[] = 'has-icon';
 
