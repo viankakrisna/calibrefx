@@ -1,15 +1,5 @@
 /* Heading
 ------------------------------------------------------------ */
-
-.element-heading.has-icon{
-	position: relative;
-	padding-left: 40px;
-}
-
-.element-img-icon{
-	position: absolute;
-	left:0;
-}
 .section > .row{
 	margin-left: 0px;
 	margin-right: 0px;
@@ -17,4 +7,27 @@
 .section > .row > div[class^="col-"]{
 	padding-left: 0px;
 	padding-right: 0px;
+}
+
+.element-heading{
+	
+}
+
+.element-heading.has-icon::after{
+	float: none;
+	content: '';
+}
+
+.element-heading.has-icon .heading-icon, 
+.element-heading.has-icon .heading-text{
+	float: left;
+}
+
+.element-heading.has-icon .heading-icon + .heading-text{
+	margin-left: 15px;
+}
+
+.element-heading.has-icon .heading-text h1,
+.element-heading.has-icon .heading-text p{
+	margin: 0;
 }

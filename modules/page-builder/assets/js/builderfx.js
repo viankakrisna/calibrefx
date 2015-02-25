@@ -1,0 +1,1 @@
+var myParaxify = paraxify('.paraxify');
