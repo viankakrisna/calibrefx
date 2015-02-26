@@ -120,7 +120,7 @@ abstract class Calibrefx_Admin {
         }
         
         //Get the value from post settings
-        $_newvalue = $_POST[$this->settings_field]; 
+        $_newvalue = $_POST[ $this->settings_field ]; 
         
         //merge value from old settings
         if( !is_array( $_oldvalue ) ) $_oldvalue = array();

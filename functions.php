@@ -20,7 +20,7 @@
 /** Define Theme Info Constants */
 define( 'FRAMEWORK_NAME', 'Calibrefx' );
 define( 'FRAMEWORK_CODENAME', 'Blue Koala' );
-define( 'FRAMEWORK_VERSION', '2.0 RC' );
+define( 'FRAMEWORK_VERSION', '2.0.0-rc' );
 define( 'FRAMEWORK__MINIMUM_WP_VERSION', '4.1' );
 define( 'FRAMEWORK_DB_VERSION', '1000' );
 define( 'FRAMEWORK_URL', 'http://www.calibrefx.com' );
