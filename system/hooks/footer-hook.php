@@ -21,7 +21,7 @@ $calibrefx->hooks->calibrefx_footer_content = array(
 $calibrefx->hooks->wp_footer = array(
     array( 'function' => 'calibrefx_footer_scripts', 'priority' => 10 ),
     array( 'function' => 'calibrefx_add_socials_script', 'priority' => 10 ),
-    array( 'function' => 'calibrefx_show_tracking_scrips', 'priority' => 10 )
+    array( 'function' => 'calibrefx_show_tracking_scripts', 'priority' => 10 )
 );
 
 /**
@@ -168,7 +168,7 @@ function calibrefx_add_socials_script() {
 /**
  * Show Tracking Scripts
  */
-function calibrefx_show_tracking_scrips() {
+function calibrefx_show_tracking_scripts() {
 
     $analytic_id = calibrefx_get_option( 'analytic_id' );
     $google_tagmanager_code = calibrefx_get_option( 'google_tagmanager_code' );

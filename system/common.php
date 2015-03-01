@@ -27,7 +27,7 @@ function calibrefx() {
     get_header();
 
     do_action( 'calibrefx_inner' ); 
-    do_action('calibrefx_before_content_wrapper');
+    do_action( 'calibrefx_before_content_wrapper' );
 
     $content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_wrapper_class', '' );
     ?>
