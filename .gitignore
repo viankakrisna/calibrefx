@@ -10,3 +10,5 @@ debug.txt
 cfx
 error.log
 unused/
+terminal.glue
+*.swp

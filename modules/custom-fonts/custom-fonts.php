@@ -145,6 +145,16 @@ $fonts = apply_filters( 'calibrefx_webfont', array(
                 'google-font' => true,
                 'google-font-style' => '400,700',
             ),
+    'Noto Sans' => array(
+                'font-family' => '"Noto Sans", sans-serif',
+                'google-font' => true,
+                'google-font-style' => '400,700',
+            ),
+    'Noto Serif' => array(
+                'font-family' => '"Noto Serif", serif',
+                'google-font' => true,
+                'google-font-style' => '400,700',
+            ),
 ));
 
 add_action( 'calibrefx_meta',  'webfont_load_fonts', 80);
@@ -301,7 +311,7 @@ function webfont_typography(){
             array(
                 'option_type' => 'select',
                 'option_items' => $font_values,
-                'option_default' => '',
+                'option_default' => 'Titillium Web',
                 'option_filter' => 'safe_text',
                 'option_description' => __( 'This setting is for all the header (h1, h2, etc.) text. Sizes will vary according to the css file', 'calibrefx' ),
             ), // Settings config
@@ -339,7 +349,7 @@ function webfont_typography(){
                     '23' => '23px',
                     '24' => '24px'
                 ),
-                'option_default' => '',
+                'option_default' => '16',
                 'option_filter' => 'safe_text',
                 'option_description' => '',
             ), // Settings config
@@ -360,7 +370,7 @@ function webfont_typography(){
             array(
                 'option_type' => 'select',
                 'option_items' => $font_values,
-                'option_default' => '',
+                'option_default' => 'Titillium Web',
                 'option_filter' => 'safe_text',
                 'option_description' => '',
             ), // Settings config
@@ -373,7 +383,7 @@ function webfont_typography(){
             __( 'Font Color', 'calibrefx' ), // Label
             array(
                 'option_type' => 'colorpicker',
-                'option_default' => '',
+                'option_default' => '#414141',
                 'option_filter' => 'no_html',
                 'option_description' => __( 'Please set this option if you want to use your custom styling for body text paragraph', 'calibrefx' ),
             ), // Settings config
@@ -419,9 +429,9 @@ function webfont_typography(){
 
 function webfont_theme_settings_default($default_arr = array()){
     $webfont_default = array(
-        'custom_header_font_family' => 'Open Sans',
-        'custom_font_size' => '14',
-        'custom_font_family' => 'Open Sans',
+        'custom_header_font_family' => 'Titillium Web',
+        'custom_font_size' => '16',
+        'custom_font_family' => 'Titillium Web',
         'custom_font_color' => '#404040',
         'custom_permalink_color' => '#08c',
         'custom_permalink_hover_color' => '#005580'

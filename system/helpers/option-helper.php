@@ -30,6 +30,26 @@ function calibrefx_option( $key, $group = null ) {
 }
 
 /**
+ * Set option value based on option key
+ *
+ * @access public
+ * @param string option key
+ * @param object CFX_Model, default null
+ * @return mix
+ */
+function calibrefx_set_option( $key, $value, $group = 'calibrefx-settings' ) {
+    global $calibrefx;
+
+    $options = $calibrefx->model->get_all( $group );
+
+    if( empty( $options ) ) return false;
+
+    $options[ $key ] = $value;
+
+    return $calibrefx->model->save( $options, $group );
+}
+
+/**
  * These functions can be used to easily and efficiently pull data from a
  * post/page custom field. Returns FALSE if field is blank or not set.
  *

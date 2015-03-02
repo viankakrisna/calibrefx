@@ -1,24 +1,22 @@
 /**
- * CalibreFx Framework
- *
- * WordPress Themes Framework by CalibreFx Team
- *
- * @package     CalibreFx
- * @author      CalibreFx Team 
- * @copyright   Copyright (c) 2012-2013, Calibreworks. (http://www.calibreworks.com/)
- * @license     GNU GPL v2
- * @link        http://www.calibrefx.com
- * @filesource 
- *
- * WARNING: This file is part of the core CalibreFx framework. DO NOT edit
- * this file under any circumstances. 
- *
- * This define the framework constants
- *
- * @package CalibreFx
+ * CalibreFx Changelogs
  */
 
-version 1.2.0 <???> - 
+version 2.0.0  < March 01, 2015 > - 
+    * Major release
+    * Partially Rewrite all the codes
+    * Standardize the code based on WordPress Standard
+    * Convert core functions to Classes
+    * New Admin UI Style
+    * Update Bootstrap to v3.2.0
+    * Update Fontawesome to 4.2.0
+    * Add Calibrefx icons v1.2.0
+    * Add Shortcode editor wizard
+    * Fix many bugs on Widget Saved and Change layout in posts
+
+---
+
+version 1.2.0  < Oct 18, 2014 > - 
     * Flash notification handler
     * Better form submit handler
     * Allow developer to programatically remove wrapper and inner div
@@ -28,11 +26,11 @@ version 1.2.0 <???> -
     * Improve the way to add new themeoption and postmeta option
 
 
-version 1.1.1 <14 Mei 2014> - 
+version 1.1.1 < May,14 2014 > - 
     * Add new helper functions for easier mobile responsive layout
     * Fix for WP 3.9
 
-version 1.1.0 <6 February 2014> - 
+version 1.1.0 < February 6, 2014 > - 
     * Upgrade to bootstrap3
     * Create default style for calibrefx front end
     * Much better mobile responsive
@@ -44,21 +42,21 @@ version 1.1.0 <6 February 2014> -
 
 ---
 
-version 1.0.18 <23 December 2013> - 
+version 1.0.18 < December 23, 2013 > - 
     * Fix styling for WordPress 3.8
     * End of development cycle
 
-version 1.0.17 <13 December 2013> - 
+version 1.0.17 < December 13, 2013 > - 
     * Disable calibrefx admin bar because it will break WordPress 3.8 new admin design
     * Update logo hook
     * Fix image helper bugs
 
-version 1.0.16 <5 October 2013> - 
+version 1.0.16 < October 5, 2013 > - 
     * Fix all shortcodes helpers and buttons
     * Fix admin area styling
     * Add linkedin share shortcode 
 
-version 1.0.15 <11 August 2013> - 
+version 1.0.15 < August 11, 2013 > - 
     * New Admin Backend Design
     * Add Email Settings, SMTP and Sendmail
     * Add Font awesome
@@ -70,7 +68,7 @@ version 1.0.15 <11 August 2013> -
     * Add Default contact form to widget, shortcode and page template
     * Add Autoresponder feature for Aweber, GetResponse and Mailventure
 
-version 1.0.14 <7 May 2013> - 
+version 1.0.14 < May 7, 2013 > - 
     * Add more shortcode buttons to the tinymce editor
     * Fix styling for responsive layout
     * Fix many bugs and error suprresions when WP_DEBUG true
@@ -78,52 +76,52 @@ version 1.0.14 <7 May 2013> -
     * Add new twitter box widget
     * Fix style when responsive layout is disabled
 
-version 1.0.13 <3 April 2013> - 
+version 1.0.13 < April 3, 2013 > - 
     * Add mobile site function for child themes. This feature for showing different themes in mobile
     * Update shortcode function and styles to use bootstrap v2.3.1
     * Fix minor styling
 
-version 1.0.11 <25 March 2013> - 
+version 1.0.11 < March 25, 2013 > - 
     * Update to bootstrap v2.3.1
     * Add more apply_filters in post_hook, header_hook
     * Using bootstrap as standard for row-fluid and container-fluid
     * Update JQuery cycle to v2
     * Fix minor styling
 
-version 1.0.10 <7 March 2013> - 
+version 1.0.10 < March 7, 2013 > - 
     * Add some functions to helpers
     * Update icons
     * Add Form Builder Library
     * Add Email Library
     * Fix minor styling
 
-version 1.0.9 <24 February 2013> - 
+version 1.0.9 < February 24, 2013 > - 
     * Fix some minor bugs
     * Harden security
     * Fix SEO Bugs
     * Fix social scripts
 
-version 1.0.8 <15 Januari 2013> - 
+version 1.0.8 < January 15, 2013 > - 
     * Fix some minor bugs
 
-version 1.0.7 <5 December 2012> - 
+version 1.0.7 < December 5, 2012 > - 
     * Allow Cross Settings Other Theme Settings
 
-version 1.0.6 <4 December 2012> - 
+version 1.0.6 < December 4, 2012 > - 
     * Fix Bugs in SEO Settings
     * Add English PO translation
     * Add Indonesia PO Translation
     * Remove unnecessary css styles 
     * Fix many bugs in theme settings
 
-version 1.0.5 <12 November 2012> - 
+version 1.0.5 < November 12, 2012 > - 
     * Add Rich Snippet For Breadcrumb
     * Add Social Settings
     * Add Google Author Verfied URL
     * Add Google Publisher Verified URL
     * Fix many other bugs
 
-version 1.0.4 <22 October 2012> - 
+version 1.0.4 < October 22, 2012 > - 
     * Fix Many Bugs in SEO Features
     * Fix Many Default CSS Styles
     * Allow user to disable seo feature for compatibility with other SEO Plugins
@@ -132,16 +130,7 @@ version 1.0.4 <22 October 2012> -
     * get_content_limit now can do wrap_close
     * Fix many bugs in theme settings
 
-version 1.0.4 <22 October 2012> - 
-    * Fix Many Bugs in SEO Features
-    * Fix Many Default CSS Styles
-    * Allow user to disable seo feature for compatibility with other SEO Plugins
-    * Allow SEO For Custom Post Type and Custom Taxonomy
-    * Now Shortcode Helper load in autoload
-    * get_content_limit now can do wrap_close
-    * Fix many bugs in theme settings
-
-version 1.0.3 <11 September 2012> - 
+version 1.0.3 < September 11, 2012 > - 
     * Use Bootloader
     * No more complicated init.php
     * Using Loader to include helpers, library, widgets, config, etc
@@ -152,12 +141,12 @@ version 1.0.3 <11 September 2012> -
 	* Patch for *nix environment
 	* Compatible With WP List Table
 
-version 1.0.2 <10 August 2012> -
+version 1.0.2 < August 10, 2012 > -
     * update bootstrap to version 2.0
     * simplified settings
     * fix many bugs
 
-version 1.0.0 <15 June 2012> -
+version 1.0.0 < June 15, 2012 > -
     * tinymce/plugin.js - Fixed shortcode image URL
     * tinymce/config.php - Fixed shortcode bug
     * template-contact.php - Fixed bug
