@@ -11,7 +11,7 @@
  * Submit name and email to form given from getresponse
  *
  * @param	string
- * @param	string 
+ * @param	string
  * @param	string
  * @return	bool
  */
@@ -23,33 +23,33 @@ function calibrefx_submit_getresponse( $form, $name, $email, $args = array() ) {
 
 	$doc = new DOMDocument;
 
-	if (!@$doc->loadhtml( $form) ) {
+	if ( ! $doc->loadhtml( $form ) ) {
 		return null;
 	} else {
-		$xpath = new DOMXpath( $doc);
+		$xpath = new DOMXpath( $doc );
 
 		foreach ( $xpath->query( '//form//input' ) as $eInput ) {
-			$data[$eInput->getAttribute( 'name' )] = $eInput->getAttribute( 'value' );
+			$data[ $eInput->getAttribute( 'name' ) ] = $eInput->getAttribute( 'value' );
 		}
-		
+
 		$result = $xpath->query( '//form//@action' );
 		$url = $result->item( 0 )->nodeValue;
 	}
 
 	$data['name'] = $name;
 	$data['email'] = $email;
-	
-	foreach( $args as $key => $value ) {
-		$data[$key] = $value;
+
+	foreach ( $args as $key => $value ) {
+		$data[ $key ] = $value;
 	}
 
 	$new_array = array_map( create_function( '$key, $value', 'return $key."=".$value;' ), array_keys( $data ), array_values( $data ) );
 
-	$post_data = implode("&", $new_array );
+	$post_data = implode( '&', $new_array );
 	$post_data = str_replace( '\"', '', $post_data );
-	
+
 	$url = str_replace( '\"', '', $url );
-	
+
 	$curl_handle = curl_init();
 	curl_setopt( $curl_handle, CURLOPT_URL, $url );
 	curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 5 );
@@ -74,9 +74,9 @@ function calibrefx_getresponse_api_testing( $api_key, $list_name ) {
 	$api = new GetResponse( $api_key );
 	$ping = $api->ping();
 
-	echo 'Ping: '.$ping.' <br/>';
+	echo 'Ping: ' . esc_attr( $ping ) . ' <br/>';
 
-	$campaigns 	 = (array)$api->getCampaigns( 'CONTAINS', $list_name );
+	$campaigns 	 = (array) $api->getCampaigns( 'CONTAINS', $list_name );
 	$campaignIDs = array_keys( $campaigns );
 	$campaign_id = $campaignIDs[0];
 
@@ -85,22 +85,22 @@ function calibrefx_getresponse_api_testing( $api_key, $list_name ) {
 
 function calibrefx_submit_getresponse_api( $name, $email, $api_key, $list_name, $customs = array() ) {
 	$api = new GetResponse( $api_key );
-	
+
 	$ping = $api->ping();
-	
-	if( $ping ) {
-		$campaigns 	 = (array)$api->getCampaigns( 'CONTAINS', $list_name );
-		
-		if ( count( $campaigns ) == 1) {
+
+	if ( $ping ) {
+		$campaigns 	 = (array) $api->getCampaigns( 'CONTAINS', $list_name );
+
+		if ( 1 == count( $campaigns ) ) {
 			$campaignIDs = array_keys( $campaigns );
 			$campaign_id = $campaignIDs[0];
-			
+
 			$return = $api->addContact( $campaign_id, $name, $email, 'standard', 0, $customs );
-			
+
 			return $return;
-		} 
+		}
 	}
-	return FALSE;
+	return false;
 }
 
 function calibrefx_submit_aweber( $form, $name, $email ) {
@@ -108,7 +108,7 @@ function calibrefx_submit_aweber( $form, $name, $email ) {
 
 	$doc = new DOMDocument;
 
-	if ( !@$doc->loadhtml( $form ) ) {
+	if ( ! $doc->loadhtml( $form ) ) {
 		return null;
 	} else {
 		$xpath = new DOMXpath( $doc );
@@ -123,7 +123,7 @@ function calibrefx_submit_aweber( $form, $name, $email ) {
 
 	$new_array = array_map( create_function( '$key, $value', 'return $key."=".$value;' ), array_keys( $data ), array_values( $data ) );
 
-	$post_data = implode( "&", $new_array );
+	$post_data = implode( '&', $new_array );
 
 	$curl_handle = curl_init();
 	curl_setopt( $curl_handle, CURLOPT_URL, $url );
@@ -132,7 +132,7 @@ function calibrefx_submit_aweber( $form, $name, $email ) {
 	curl_setopt( $curl_handle, CURLOPT_POST, 1 );
 	curl_setopt( $curl_handle, CURLOPT_POSTFIELDS, $post_data );
 	$buffer = curl_exec( $curl_handle );
-	curl_close( $curl_handle);
+	curl_close( $curl_handle );
 
 	// check for success or failure
 	if ( $buffer ) {

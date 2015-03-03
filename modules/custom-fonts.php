@@ -10,4 +10,4 @@
  * Module Tags: Appearance
  */
 
-include dirname( __FILE__ ) . "/custom-fonts/custom-fonts.php";
+include dirname( __FILE__ ) . '/custom-fonts/custom-fonts.php';

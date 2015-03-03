@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Reverseable Encryptor
@@ -13,13 +13,13 @@
 function calibrefx_rev_encrypt( $message, $key = '09cfb0c36eaa081', $chiper = MCRYPT_RIJNDAEL_256 ) {
 	global $calibrefx;
 	$calibrefx->load->library( 'encrypt' );
-	
+
 	if ( empty( $message ) || empty( $key ) ) {
 		return null;
 	}
 
-	if ( is_object( $message ) )
-		$message = (array) $message;
+	if ( is_object( $message ) ) {
+		$message = (array) $message; }
 
 	$calibrefx->encrypt->set_cipher( $chiper );
 
@@ -58,7 +58,7 @@ function calibrefx_rev_decrypt( $message, $key = '09cfb0c36eaa081', $chiper = MC
 		$temp_stack = array();
 		foreach ( $decrypted_message as $item ) {
 			$temp = explode( ':', $item );
-			if (count( $temp ) > 1) {
+			if ( count( $temp ) > 1 ) {
 				$temp_stack[$temp[0]] = $temp[1];
 			}
 		}

@@ -1,7 +1,7 @@
-<?php 
+<?php
 /**
  * Calibrefx OpenGraph Helper
- * 
+ *
  */
 
 /**
@@ -50,7 +50,7 @@ function calibrefx_og_locale() {
 	);
 
 	// check to see if the locale is a valid FB one, if not, use en_US as a fallback
-	if ( !in_array( $locale, $fb_valid_fb_locales ) ) {
+	if ( ! in_array( $locale, $fb_valid_fb_locales ) ) {
 		$locale = 'en_US';
 	}
 
@@ -72,7 +72,7 @@ function calibrefx_og_title() {
 	} elseif ( is_singular() ) {
 		$title = stripslashes( esc_attr( $post->post_title ) ) . ' - ' .get_bloginfo( 'name' );
 	} elseif ( is_archive() ) {
-		if( is_category() ) {
+		if ( is_category() ) {
 			$category = get_term( get_query_var( 'cat' ), 'category' );
 			$title = __( 'Archive for ', 'calibrefx' ) . $category->name . ' - ' .get_bloginfo( 'name' );
 		} elseif ( is_tax() ) {
@@ -88,7 +88,7 @@ function calibrefx_og_title() {
 		} elseif ( is_author() ) {
 			$title = __( 'Archive for ', 'calibrefx' ) . $wp_query->queried_object->display_name . ' - ' .get_bloginfo( 'name' );
 		} elseif ( is_post_type_archive() ) {
-			$title = __( 'Archive for ', 'calibrefx' ) . post_type_archive_title( '', false) . ' - ' .get_bloginfo( 'name' );
+			$title = __( 'Archive for ', 'calibrefx' ) . post_type_archive_title( '', false ) . ' - ' .get_bloginfo( 'name' );
 		}
 	} elseif ( is_404() ) {
 		$title = __( 'Not Found', 'calibrefx' ) . ' - ' .get_bloginfo( 'name' );
@@ -112,7 +112,7 @@ function calibrefx_og_url() {
 	} elseif ( is_singular() ) {
 		$url = get_permalink( $post->ID );
 	} elseif ( is_archive() ) {
-		if( is_category() ) {
+		if ( is_category() ) {
 			$url = get_category_link( get_query_var( 'cat' ) );
 		} elseif ( is_tax() ) {
 			$term = $wp_query->get_queried_object();
@@ -127,7 +127,7 @@ function calibrefx_og_url() {
 			$url = get_author_posts_url( $wp_query->queried_object->ID, '' );
 		} elseif ( is_post_type_archive() ) {
 			$post_type = $wp_query->get_queried_object();
-			$url = get_post_type_archive_link( $post_type->name ); 
+			$url = get_post_type_archive_link( $post_type->name );
 		}
 	} elseif ( is_404() ) {
 		return false;
@@ -151,7 +151,7 @@ function calibrefx_og_description() {
 	} elseif ( is_singular() ) {
 		$desc = calibrefx_truncate_phrase( $post->post_content, calibrefx_get_option( 'content_archive_limit' ) );
 	} elseif ( is_archive() ) {
-		if( is_category() ) {
+		if ( is_category() ) {
 			$desc = category_description( get_query_var( 'cat' ) );
 		} elseif ( is_tax() ) {
 			$term = $wp_query->get_queried_object();
@@ -160,7 +160,7 @@ function calibrefx_og_description() {
 			$desc = __( 'All posts in ', 'calibrefx' ) . get_query_var( 'year' );
 		} elseif ( is_month() ) {
 			$desc = __( 'All Posts in ', 'calibrefx' ) . $wp_locale->get_month( get_query_var( 'monthnum' ) ) . ' ' . get_query_var( 'year' );
-		} elseif ( is_day() ) { 
+		} elseif ( is_day() ) {
 			$desc = __( 'All Posts in ', 'calibrefx' ) . get_query_var( 'day' ) . ' ' . $wp_locale->get_month( get_query_var( 'monthnum' ) ) . ' ' . get_query_var( 'year' );
 		} elseif ( is_author() ) {
 			$desc = get_user_meta( $wp_query->queried_object->ID, 'intro_text', true );
@@ -172,14 +172,14 @@ function calibrefx_og_description() {
 		return;
 	}
 
-	$desc = str_replace(array( '<p>','</p>' ), array( '','' ), $desc);
-	$desc = htmlentities( $desc);
+	$desc = str_replace( array( '<p>','</p>' ), array( '','' ), $desc );
+	$desc = htmlentities( $desc );
 
 	return apply_filters( 'calibrefx_og_description', $desc );
 }
 
 function calibrefx_og_image() {
-	$image = calibrefx_get_image(array( 'format' => 'url' ) );
-    
+	$image = calibrefx_get_image( array( 'format' => 'url' ) );
+
 	return apply_filters( 'calibrefx_og_image', $image );
 }

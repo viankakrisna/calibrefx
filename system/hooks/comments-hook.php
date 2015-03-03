@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Calibrefx Comments Hooks
  *
@@ -7,27 +7,27 @@
 global $calibrefx;
 
 $calibrefx->hooks->calibrefx_after_post_content = array(
-    array( 'function' => 'calibrefx_get_comments_template', 'priority' => 30 )
+	array( 'function' => 'calibrefx_get_comments_template', 'priority' => 30 )
 );
 
 $calibrefx->hooks->calibrefx_comments = array(
-    array( 'function' => 'calibrefx_do_comments', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_comments', 'priority' => 10 )
 );
 
 $calibrefx->hooks->calibrefx_pings = array(
-    array( 'function' => 'calibrefx_do_pings', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_pings', 'priority' => 10 )
 );
 
 $calibrefx->hooks->calibrefx_list_comments = array(
-    array( 'function' => 'calibrefx_default_list_comments', 'priority' => 10 )
+	array( 'function' => 'calibrefx_default_list_comments', 'priority' => 10 )
 );
 
 $calibrefx->hooks->calibrefx_list_pings = array(
-    array( 'function' => 'calibrefx_default_list_pings', 'priority' => 10 )
+	array( 'function' => 'calibrefx_default_list_pings', 'priority' => 10 )
 );
 
 $calibrefx->hooks->calibrefx_comment_form = array(
-    array( 'function' => 'calibrefx_do_comment_form', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_comment_form', 'priority' => 10 )
 );
 
 /**
@@ -38,26 +38,26 @@ $calibrefx->hooks->calibrefx_comment_form = array(
  *
  */
 function calibrefx_get_comments_template() {
-    $is_facebook_comment_enabled = calibrefx_get_option( 'facebook_comments' );
+	$is_facebook_comment_enabled = calibrefx_get_option( 'facebook_comments' );
 
-    $comment_box_title = apply_filters( 'calibrefx_comment_box_title',  __( 'Leave us your thought', 'calibrefx' ) );
+	$comment_box_title = apply_filters( 'calibrefx_comment_box_title',  __( 'Leave us your thought', 'calibrefx' ) );
 
-    if ( !$is_facebook_comment_enabled ) {
-        if ( is_single() && ( calibrefx_get_option( 'trackbacks_posts' ) || calibrefx_get_option( 'comments_posts' ) ) ) {
-            comments_template( '', true );
-        } elseif ( is_page() && ( calibrefx_get_option( 'trackbacks_pages' ) || calibrefx_get_option( 'comments_pages' ) ) ) {
-            comments_template( '', true );
-        }
-    } else {
-        if ( ( is_page() && calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && calibrefx_get_option( 'comments_posts' ) ) ) {
-            echo '<div id="comments">';
-            echo '<h3 id="reply-title">' . $comment_box_title . '</h3>';
+	if ( ! $is_facebook_comment_enabled ) {
+		if ( is_single() && ( calibrefx_get_option( 'trackbacks_posts' ) || calibrefx_get_option( 'comments_posts' ) ) ) {
+			comments_template( '', true );
+		} elseif ( is_page() && ( calibrefx_get_option( 'trackbacks_pages' ) || calibrefx_get_option( 'comments_pages' ) ) ) {
+			comments_template( '', true );
+		}
+	} else {
+		if ( ( is_page() && calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && calibrefx_get_option( 'comments_posts' ) ) ) {
+			echo '<div id="comments">';
+			echo '<h3 id="reply-title">' . $comment_box_title . '</h3>';
 
-            echo do_shortcode( '[facebook_comment]' );
+			echo do_shortcode( '[facebook_comment]' );
 
-            echo '</div>';
-        }
-    }
+			echo '</div>';
+		}
+	}
 }
 
 /**
@@ -67,14 +67,14 @@ function calibrefx_get_comments_template() {
  *
  */
 function calibrefx_do_comments() {
-    global $post, $wp_query;
+	global $post, $wp_query;
 
-    /** Bail if comments are off for this post type */
-    if ( ( is_page() && !calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'comments_posts' ) ) ) {
-        return;
-    }
+	/** Bail if comments are off for this post type */
+	if ( ( is_page() && ! calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'comments_posts' ) ) ) {
+		return;
+	}
 
-    if ( have_comments() && !empty( $wp_query->comments_by_type['comment'] ) ) { ?>
+	if ( have_comments() && ! empty( $wp_query->comments_by_type['comment'] ) ) { ?>
         <div id="comments">
                 <?php echo apply_filters( 'calibrefx_title_comments', __( '<h3>Comments</h3>', 'calibrefx' ) ); ?>
                 <ol class="comment-list">
@@ -88,15 +88,15 @@ function calibrefx_do_comments() {
                 </div>
         </div><!--end #comments-->
         <?php
-    } else {
-        echo '<div id="comments" class="no-comments">';
-        if ( 'open' == $post->comment_status ) {
-            echo apply_filters( 'calibrefx_no_comments_text', '' );
-        } else {
-            echo apply_filters( 'calibrefx_comments_closed_text', '' );
-        }
-        echo '</div><!--end #comments-->';
-    }
+	} else {
+		echo '<div id="comments" class="no-comments">';
+		if ( 'open' == $post->comment_status ) {
+			echo apply_filters( 'calibrefx_no_comments_text', '' );
+		} else {
+			echo apply_filters( 'calibrefx_comments_closed_text', '' );
+		}
+		echo '</div><!--end #comments-->';
+	}
 }
 
 /**
@@ -106,14 +106,14 @@ function calibrefx_do_comments() {
  *
  */
 function calibrefx_do_pings() {
-    global $post, $wp_query;
+	global $post, $wp_query;
 
-    if ( ( is_page() && ! calibrefx_get_option( 'trackbacks_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'trackbacks_posts' ) ) ) {
-        return;
-    }
+	if ( ( is_page() && ! calibrefx_get_option( 'trackbacks_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'trackbacks_posts' ) ) ) {
+		return;
+	}
 
-    if ( have_comments() && !empty( $wp_query->comments_by_type['pings'] ) ) {
-    ?>
+	if ( have_comments() && ! empty( $wp_query->comments_by_type['pings'] ) ) {
+	?>
         <div id="pings">
                 <?php echo apply_filters( 'calibrefx_title_pings', __( '<h3>Trackbacks</h3>', 'calibrefx' ) ); ?>
                 <ol class="ping-list">
@@ -121,22 +121,22 @@ function calibrefx_do_pings() {
                 </ol>
         </div><!-- end #pings -->
         <?php
-    } else {
-        echo apply_filters( 'calibrefx_no_pings_text', '' );
-    }
+	} else {
+		echo apply_filters( 'calibrefx_no_pings_text', '' );
+	}
 }
 
 /**
  * Outputs the comment list to the <code>calibrefx_comment_list()</code> hook.
  */
 function calibrefx_default_list_comments() {
-    $args = array(
-            'type'          => 'comment',
-            'avatar_size'   => 48,
-            'callback'      => 'calibrefx_comment_callback',
-    );
-    $args = apply_filters( 'calibrefx_comment_list_args', $args );
-    wp_list_comments( $args );
+	$args = array(
+			'type'          => 'comment',
+			'avatar_size'   => 48,
+			'callback'      => 'calibrefx_comment_callback',
+	);
+	$args = apply_filters( 'calibrefx_comment_list_args', $args );
+	wp_list_comments( $args );
 }
 
 /**
@@ -144,9 +144,9 @@ function calibrefx_default_list_comments() {
  *
  */
 function calibrefx_default_list_pings() {
-    $args = array( 'type' => 'pings', );
-    $args = apply_filters( 'calibrefx_ping_list_args', $args );
-    wp_list_comments( $args );
+	$args = array( 'type' => 'pings', );
+	$args = apply_filters( 'calibrefx_ping_list_args', $args );
+	wp_list_comments( $args );
 }
 
 /**
@@ -155,11 +155,11 @@ function calibrefx_default_list_pings() {
  */
 function calibrefx_do_comment_form() {
 
-    /** Bail if comments are closed for this post type */
-    if ( ( is_page() && ! calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'comments_posts' ) ) )
-        return;
+	/** Bail if comments are closed for this post type */
+	if ( ( is_page() && ! calibrefx_get_option( 'comments_pages' ) ) || ( is_single() && ! calibrefx_get_option( 'comments_posts' ) ) ) {
+		return; }
 
-    comment_form();
+	comment_form();
 }
 
 /**
@@ -168,48 +168,48 @@ function calibrefx_do_comment_form() {
  */
 function calibrefx_comment_form_args( $defaults ) {
 
-    global $user_identity, $id;
+	global $user_identity, $id;
 
-    $commenter = wp_get_current_commenter();
-    $req       = get_option( 'require_name_email' );
-    $aria_req  = ( $req ? ' aria-required="true"' : '' );
+	$commenter = wp_get_current_commenter();
+	$req       = get_option( 'require_name_email' );
+	$aria_req  = ( $req ? ' aria-required="true"' : '' );
 
-    $author = '<div class="form-group comment-form-author">' .
-              '<label for="author" class="comment-form-label">'.__( 'Your Name (required)','calibrefx' ).'</label>' .
-              '<input id="author" name="author" type="text" class="form-control required" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" tabindex="1"' . $aria_req . ' />' .
-              '</div><!-- #form-section-author .form-section -->';
+	$author = '<div class="form-group comment-form-author">' .
+			  '<label for="author" class="comment-form-label">'.__( 'Your Name (required)','calibrefx' ).'</label>' .
+			  '<input id="author" name="author" type="text" class="form-control required" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" tabindex="1"' . $aria_req . ' />' .
+			  '</div><!-- #form-section-author .form-section -->';
 
-    $email = '<div class="form-group comment-form-email">' .
-             '<label for="email" class="comment-form-label">'.__( 'Your Email (required)','calibrefx' ).'</label>' .
-             '<input id="email" name="email" type="text" class="form-control required" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' />' .
-             '<span class="help-block">'.__( 'Your email will be keep safe and won\'t be shared with third party','calibrefx' ).'</span>'.
-             '</div><!-- #form-section-email .form-section -->';
+	$email = '<div class="form-group comment-form-email">' .
+			 '<label for="email" class="comment-form-label">'.__( 'Your Email (required)','calibrefx' ).'</label>' .
+			 '<input id="email" name="email" type="text" class="form-control required" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" tabindex="2"' . $aria_req . ' />' .
+			 '<span class="help-block">'.__( 'Your email will be keep safe and won\'t be shared with third party','calibrefx' ).'</span>'.
+			 '</div><!-- #form-section-email .form-section -->';
 
-    $url = '<div class="form-group comment-form-url">' .
-           '<label for="url" class="comment-form-label">'.__( 'Your Website Url','calibrefx' ).'</label>' .
-           '<input id="url" name="url" type="text" class="form-control url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" />' .
-           '<span class="help-block">'.__( '(start with http://)','calibrefx' ).'</span>'.
-           '</div><!-- #form-section-url .form-section -->';
+	$url = '<div class="form-group comment-form-url">' .
+		   '<label for="url" class="comment-form-label">'.__( 'Your Website Url','calibrefx' ).'</label>' .
+		   '<input id="url" name="url" type="text" class="form-control url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" tabindex="3" />' .
+		   '<span class="help-block">'.__( '(start with http://)','calibrefx' ).'</span>'.
+		   '</div><!-- #form-section-url .form-section -->';
 
-    $comment_field = '<div class="form-group comment-form-comment">' .
-                     '<textarea id="comment" name="comment" class="form-control required" cols="45" rows="8" tabindex="4" aria-required="true"></textarea>' .
-                     '</div><!-- #form-section-comment .form-section -->';
+	$comment_field = '<div class="form-group comment-form-comment">' .
+					 '<textarea id="comment" name="comment" class="form-control required" cols="45" rows="8" tabindex="4" aria-required="true"></textarea>' .
+					 '</div><!-- #form-section-comment .form-section -->';
 
-    $args = array(
-            'fields'               => array(
-                    'author' => $author,
-                    'email'  => $email,
-                    'url'    => $url,
-            ),
-            'comment_field'        => $comment_field,
-            'title_reply'          => __( 'Leave us your thought', 'calibrefx' ),
-            'comment_notes_before' => '',
-            'comment_notes_after'  => '',
-    );
+	$args = array(
+			'fields'               => array(
+					'author' => $author,
+					'email'  => $email,
+					'url'    => $url,
+			),
+			'comment_field'        => $comment_field,
+			'title_reply'          => __( 'Leave us your thought', 'calibrefx' ),
+			'comment_notes_before' => '',
+			'comment_notes_after'  => '',
+	);
 
-    $args = wp_parse_args( $args, $defaults );
+	$args = wp_parse_args( $args, $defaults );
 
-    return apply_filters( 'calibrefx_comment_form_args', $args, $user_identity, $id, $commenter, $req, $aria_req );
+	return apply_filters( 'calibrefx_comment_form_args', $args, $user_identity, $id, $commenter, $req, $aria_req );
 }
 add_filter( 'comment_form_defaults', 'calibrefx_comment_form_args' );
 
@@ -219,7 +219,7 @@ add_filter( 'comment_form_defaults', 'calibrefx_comment_form_args' );
  */
 function calibrefx_comment_callback( $comment, $args, $depth ) {
 
-    $GLOBALS['comment'] = $comment; ?>
+	$GLOBALS['comment'] = $comment; ?>
 
     <li <?php comment_class(); ?> id="comment-<?php comment_ID() ?>">
 

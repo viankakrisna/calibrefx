@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Calibrefx Module Setting Class
  *
@@ -6,47 +6,47 @@
 
 class CFX_Module_Settings extends Calibrefx_Admin {
 	/**
-     * Constructor - Initializes
-     */
-    function __construct() {
-        parent::__construct('calibrefx-modules');
+	 * Constructor - Initializes
+	 */
+	function __construct() {
+		parent::__construct( 'calibrefx-modules' );
 
-        global $calibrefx;
+		global $calibrefx;
 
-        $this->page_id = 'calibrefx-module';
-        $this->_form_method = 'get';
-        $this->settings_field = apply_filters( 'calibrefx_module_field', 'calibrefx-module' );
-        
-        $this->initialize();
+		$this->page_id = 'calibrefx-module';
+		$this->_form_method = 'get';
+		$this->settings_field = apply_filters( 'calibrefx_module_field', 'calibrefx-module' );
 
-        add_action( 'admin_init', array( $this, 'init' ) );
-    }
+		$this->initialize();
 
-    /**
-     * Initialize and add requirements
-     * @return void
-     */
-    public function init(){
-        add_action( 'load-' . $this->pagehook, array( $this, 'module_activation' ) );
-        
-    }
+		add_action( 'admin_init', array( $this, 'init' ) );
+	}
 
-    public function meta_sections() {
-        global $calibrefx_current_section, $calibrefx_sections;
+	/**
+	 * Initialize and add requirements
+	 * @return void
+	 */
+	public function init(){
+		add_action( 'load-' . $this->pagehook, array( $this, 'module_activation' ) );
 
-        calibrefx_add_meta_section( 'available', __( 'Available Modules', 'calibrefx' ), '', 1);
+	}
 
-        $calibrefx_current_section = 'available';
-    }
+	public function meta_sections() {
+		global $calibrefx_current_section, $calibrefx_sections;
 
-    public function meta_boxes() {
-        calibrefx_add_meta_box( 'available', 'basic', 'calibrefx-render-page', __( 'Modules Available', 'calibrefx' ), array( $this,'render_page' ), $this->pagehook, 'main', 'high' );
-    }
+		calibrefx_add_meta_section( 'available', __( 'Available Modules', 'calibrefx' ), '', 1 );
 
-    public function render_page() {
-        $list_table = Calibrefx_Modules_List_Table::get_instance(); 
+		$calibrefx_current_section = 'available';
+	}
 
-        ?>
+	public function meta_boxes() {
+		calibrefx_add_meta_box( 'available', 'basic', 'calibrefx-render-page', __( 'Modules Available', 'calibrefx' ), array( $this,'render_page' ), $this->pagehook, 'main', 'high' );
+	}
+
+	public function render_page() {
+		$list_table = Calibrefx_Modules_List_Table::get_instance();
+
+		?>
         <div class="page-content configure">
             <div class="frame top hide-if-no-js">
                 <div class="wrap">
@@ -93,30 +93,30 @@ class CFX_Module_Settings extends Calibrefx_Admin {
             }
         </style>
         <?php
-    }
+	}
 
-    public function module_activation(){
-        $list_table = Calibrefx_Modules_List_Table::get_instance(); 
+	public function module_activation(){
+		$list_table = Calibrefx_Modules_List_Table::get_instance();
 
-        $action = $list_table->current_action();
-        if ( $action ) {
-            switch ( $action ) {
-                case 'activate':  
-                    $module = stripslashes( $_GET['module'] );
-                    check_admin_referer( "calibrefx_activate-$module" );
-                    Calibrefx::activate_module( $module );
-                    
-                    wp_safe_redirect( Calibrefx::admin_url( 'page=calibrefx-modules' ) );
-                    exit;
-                case 'deactivate':  
-                    $modules = stripslashes( $_GET['module'] );
-                    check_admin_referer( "calibrefx_deactivate-$modules" );
-                    foreach ( explode( ',', $modules ) as $module ) {
-                        Calibrefx::deactivate_module( $module );
-                    }
-                    wp_safe_redirect( Calibrefx::admin_url( 'page=calibrefx-modules' ) );
-                    exit;
-            }
-        }
-    }
+		$action = $list_table->current_action();
+		if ( $action ) {
+			switch ( $action ) {
+				case 'activate':
+					$module = stripslashes( $_GET['module'] );
+					check_admin_referer( "calibrefx_activate-$module" );
+					Calibrefx::activate_module( $module );
+
+					wp_safe_redirect( Calibrefx::admin_url( 'page=calibrefx-modules' ) );
+					exit;
+				case 'deactivate':
+					$modules = stripslashes( $_GET['module'] );
+					check_admin_referer( "calibrefx_deactivate-$modules" );
+					foreach ( explode( ',', $modules ) as $module ) {
+						Calibrefx::deactivate_module( $module );
+					}
+					wp_safe_redirect( Calibrefx::admin_url( 'page=calibrefx-modules' ) );
+					exit;
+			}
+		}
+	}
 }

@@ -1,29 +1,29 @@
-<?php 
- 
+<?php
+
 /**
  * Register the widget for use in Appearance -> Widgets
  */
 function calibrefx_latest_post_init() {
-    register_widget( 'CFX_Latest_Post_Widget' );
+	register_widget( 'CFX_Latest_Post_Widget' );
 }
 add_action( 'widgets_init', 'calibrefx_latest_post_init' );
 
 class CFX_Latest_Post_Widget extends WP_Widget {
-	
+
 	protected $defaults;
-	
+
 	/**
 	 * Constructor
 	 */
 	function __construct() {
 		parent::__construct(
-            'recent-posts-widget',
-            apply_filters( 'calibrefx_widget_name', __( 'Recent Posts', 'calibrefx' ) ),
-            array(
-                'classname' => 'widget_recent_posts',
-                'description' => __( 'Display recent posts with thumbnail on your sidebar', 'calibrefx' )
-            )
-        );
+			'recent-posts-widget',
+			apply_filters( 'calibrefx_widget_name', __( 'Recent Posts', 'calibrefx' ) ),
+			array(
+				'classname' => 'widget_recent_posts',
+				'description' => __( 'Display recent posts with thumbnail on your sidebar', 'calibrefx' )
+			)
+		);
 
 		$this->defaults = array(
 			'title'       	=> '',
@@ -35,7 +35,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 		);
 
 	}
-	
+
 	/**
 	 * Display widget content.
 	 *
@@ -47,12 +47,12 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 
 		extract( $args );
 		$instance = wp_parse_args( (array) $instance, $this->defaults );
-		
+
 		echo $before_widget;
 
-		if ( ! empty( $instance['title'] ) )
-			echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
-					
+		if ( ! empty( $instance['title'] ) ) {
+			echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title; }
+
 		$query = new WP_Query(array(
 			'posts_per_page' => $instance['num_posts'],
 			'orderby' => 'date',
@@ -64,17 +64,17 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 
 		echo '<ul class="list-latest-posts">';
 
-		if( $query->have_posts() ) : 
-			while( $query->have_posts() ) : $query->the_post();
+		if ( $query->have_posts() ) :
+			while ( $query->have_posts() ) : $query->the_post();
 
-				$img = calibrefx_get_image(array( 'format' => 'html', 'size' => $instance['image_size']) );
-				$img = (!empty( $img) ? $img : '<img src="'.$no_post_thumbnail.'" />' );
+				$img = calibrefx_get_image( array( 'format' => 'html', 'size' => $instance['image_size']) );
+				$img = ( ! empty( $img) ? $img : '<img src="'.$no_post_thumbnail.'" />' );
 				$date_format = get_option( 'date_format' );
 				$item_class = apply_filters( 'calibrefx_latest_posts_item_class', calibrefx_row_class() );
-				$image_class = apply_filters( 'calibrefx_latest_posts_image_class', col_class(12,4,4) ); 
-				$content_class = apply_filters( 'calibrefx_latest_posts_content_class', col_class(12,8,8) );
+				$image_class = apply_filters( 'calibrefx_latest_posts_image_class', col_class( 12,4,4 ) );
+				$content_class = apply_filters( 'calibrefx_latest_posts_content_class', col_class( 12,8,8 ) );
 
-				if( $instance['show_thumbnail']) {
+				if ( $instance['show_thumbnail'] ) {
 					echo '
 						<li>
 							<div class="'.$item_class.' latest-post-item">
@@ -84,39 +84,38 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 								<div class="latest-post-detail '. $content_class .'">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-info">'.do_shortcode( '[post_date]' ).'</p>
-									'.(( $instance['show_detail']) ? get_the_content_limit( $instance['detail_length']) : '' ).'
+									'.(( $instance['show_detail']) ? get_the_content_limit( $instance['detail_length'] ) : '' ).'
 								</div>
 							</div>
 						</li>
 					';
-				}else{
+				}else {
 					echo '
 						<li>
 							<div class="'.calibrefx_row_class().' latest-post-item">
 								<div class="latest-post-detail col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-date">'.date( $date_format, get_the_time( 'U' ) ).'</p>
-									'.(( $instance['show_detail']) ? get_the_content_limit( $instance['detail_length']) : '' ).'
+									'.(( $instance['show_detail']) ? get_the_content_limit( $instance['detail_length'] ) : '' ).'
 								</div>
 							</div>
 						</li>
 					';
 				}
-				
 
 			endwhile;
-		else : 
+		else :
 			echo '<li>'.__( 'There is no post available yet', 'calibrefx' ).'</li>';
 		endif;
 
 		echo '</ul>';
 
 		echo $after_widget;
-		
+
 		wp_reset_query();
 		wp_reset_postdata();
 	}
-	 
+
 	 /**
 	  * Update a particular instance.
 	  */
@@ -126,7 +125,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 		return $new_instance;
 
 	}
-	
+
 	/**
 	 * Display the settings update form.
 	 */
@@ -166,8 +165,8 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 				<option value="thumbnail">thumbnail (<?php echo get_option( 'thumbnail_size_w' ); ?>x<?php echo get_option( 'thumbnail_size_h' ); ?>)</option>
 				<?php
 				$sizes = calibrefx_get_additional_image_sizes();
-				foreach ( (array) $sizes as $name => $size )
-					echo '<option value="' . $name . '" ' . selected( $name, $instance['image_size'], FALSE ) . '>' . $name . ' ( ' . $size['width'] . 'x' . $size['height'] . ' )</option>';
+				foreach ( (array) $sizes as $name => $size ) {
+					echo '<option value="' . $name . '" ' . selected( $name, $instance['image_size'], false ) . '>' . $name . ' ( ' . $size['width'] . 'x' . $size['height'] . ' )</option>'; }
 				?>
 			</select>
 		</p>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Calibrefx Ajax Handler
  *
@@ -9,9 +9,9 @@
  */
 function calibrefx_ajax() {
 	check_ajax_referer( 'calibrefx_ajax_nonce', '_ajax_nonce' );
-	header( "Content-Type: application/json" );
-    do_action( 'calibrefx_do_ajax' );
-    exit;
+	header( 'Content-Type: application/json' );
+	do_action( 'calibrefx_do_ajax' );
+	exit;
 }
 add_action( 'wp_ajax_cfx_ajax', 'calibrefx_ajax' );
 add_action( 'wp_ajax_nopriv_cfx_ajax', 'calibrefx_ajax' );
@@ -38,7 +38,7 @@ function my_action_javascript() {
 			url: cfx_ajax.ajaxurl,
 			data: { "action" : cfx_ajax.ajax_action, "do" : "test", "data" : "OK"},
 			dataType:  'json',
-			success: function(response) { 
+            success: function(response) {
 				console.log(response);
 				//alert( 'Got this from the server: ' + response.TEST);
 			},
