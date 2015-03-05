@@ -11,11 +11,11 @@ if ( ! function_exists( 'is_php' ) ) {
 		static $_is_php;
 		$version = (string) $version;
 
-		if ( ! isset( $_is_php[$version] ) ) {
-			$_is_php[$version] = ( version_compare( PHP_VERSION, $version ) >= 0 );
+		if ( ! isset( $_is_php[ $version ] ) ) {
+			$_is_php[ $version ] = ( version_compare( PHP_VERSION, $version ) >= 0 );
 		}
 
-		return $_is_php[$version];
+		return $_is_php[ $version ];
 	}
 }
 
@@ -31,9 +31,9 @@ function calibrefx() {
 
 	$content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_wrapper_class', '' );
 	?>
-    <div id="content-wrapper" class="<?php echo $content_wrapper_class; ?>" >
+    <div id="content-wrapper" class="<?php echo esc_attr( $content_wrapper_class ); ?>" >
         <?php do_action( 'calibrefx_before_content' ); ?>
-        <div id="content" class="<?php echo calibrefx_content_span(); ?>">
+        <div id="content" class="<?php echo esc_attr( calibrefx_content_span() ); ?>">
             <?php
 			do_action( 'calibrefx_before_loop' );
 			do_action( 'calibrefx_loop' );
