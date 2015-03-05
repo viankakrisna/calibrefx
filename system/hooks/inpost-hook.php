@@ -15,7 +15,7 @@ function calibrefx_add_inpost_layout_box() {
     //Add Post Meta Box
     calibrefx_add_post_meta_boxes(
         'calibrefx_inpost_layout_box', //slug
-        __( 'Calibrefx Custom Layout', 'calibrefx' ), //title
+        __( 'Calibrefx Custom Settings', 'calibrefx' ), //title
         function() {
             calibrefx_do_post_meta_options( 'calibrefx_inpost_layout_box' );
         }, //callback
