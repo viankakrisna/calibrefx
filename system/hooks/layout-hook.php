@@ -177,7 +177,7 @@ function calibrefx_setup_custom_layout() {
 
     $site_layout = calibrefx_site_layout();
 
-    if( $site_layout == 'sidebar-content-sidebar' ) {
+    if( 'sidebar-content-sidebar' == $site_layout ) {
         $calibrefx->hooks->move( 'calibrefx_before_content', 'calibrefx_after_content', 'calibrefx_get_sidebar_alt', 15);
         
         add_action( 'calibrefx_before_content','calibrefx_sidebar_content_sidebar_wrapper_open' );
