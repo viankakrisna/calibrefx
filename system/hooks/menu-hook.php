@@ -8,7 +8,7 @@ global $calibrefx;
 
 $calibrefx->hooks->calibrefx_after_header = array(
 	array( 'function' => 'calibrefx_do_nav', 'priority' => 10 ),
-	array( 'function' => 'calibrefx_do_subnav', 'priority' => 15 )
+	array( 'function' => 'calibrefx_do_subnav', 'priority' => 15 ),
 );
 
 /**
@@ -153,13 +153,13 @@ add_filter( 'wp_setup_nav_menu_item','calibrefx_custom_nav_icon' );
 function calibrefx_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
 	// Check if element is properly sent
 	if ( isset( $_REQUEST['menu-item-icon'] ) && is_array( $_REQUEST['menu-item-icon'] ) ) {
-		$icon_menu = $_REQUEST['menu-item-icon'][$menu_item_db_id];
+		$icon_menu = $_REQUEST['menu-item-icon'][ $menu_item_db_id ];
 		update_post_meta( $menu_item_db_id, '_menu_item_custom_icon', $icon_menu );
 	}
 }
 add_action( 'wp_update_nav_menu_item', 'calibrefx_update_custom_nav_fields', 10, 3 );
 
-function calibrefx_edit_walker( $walker,$menu_id ) {
+function calibrefx_edit_walker( $walker, $menu_id ) {
 	return 'CFX_Walker_Nav_Menu_Edit';
 }
 add_filter( 'wp_edit_nav_menu_walker', 'calibrefx_edit_walker', 10, 2 );
