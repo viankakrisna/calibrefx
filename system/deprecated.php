@@ -42,7 +42,7 @@ function get_footer_widget_class( $class = '' ) {
  * @deprecated 2.0
  */
 function footer_widget_class( $class = '' ) {
-	echo get_footer_widget_class( $class );
+	echo esc_attr( get_footer_widget_class( $class ) );
 }
 
 /**
