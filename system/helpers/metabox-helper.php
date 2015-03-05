@@ -436,20 +436,26 @@ function calibrefx_do_post_meta_options( $slug ) {
                             echo $calibrefx->form->{$option['option_type']}( $option_name, calibrefx_get_custom_field( $option_name ), $classes, $option['option_attr']);
                             break;
                         
-                        /*case 'checkbox':
+                        case 'checkbox':
                             $classes = "calibrefx-settings-checkbox";
                             if(isset( $option['option_attr']['class']) ) {
                                 $classes .= ' '.$option['option_attr']['class'];
                                 unset( $option['option_attr']['class']);
                             }
-                            $attr = array_merge(array("target" => $settings_field."-".$option_name, "class" => $classes), $option['option_attr']);
-                            echo $calibrefx->form->{$option['option_type']}( $settings_field."-checkbox-".$option_name, $option['option_items'],
-                                calibrefx_get_custom_field( $option_name), $option['option_label'], false, 
+
+                            $value = calibrefx_get_custom_field( $option_name );
+                            if( empty( calibrefx_get_custom_field( $option_name ) ) ){
+                                $value = $option['option_default'];
+                            }
+
+                            $attr = array_merge(array("target" => "cpm-".$option_name, "class" => $classes), $option['option_attr']);
+                            echo $calibrefx->form->{$option['option_type']}( "cpm-checkbox-".$option_name, $option['option_items'],
+                                $value, $option['option_label'], false, 
                                 $attr);
                             echo $calibrefx->form->hidden( $option_name, calibrefx_get_custom_field( $option_name), 
-                                array("id" => $settings_field."-".$option_name) );
+                                array("id" => "cpm-".$option_name) );
                             break;
-                        case 'radio':
+                        /*case 'radio':
                         case 'select':
                             echo '<label for="'.$option_name . '">'.$option["option_label"].'</label>';
                             echo $calibrefx->form->{$option['option_type']}( $option_name, $option['option_items'],calibrefx_get_custom_field( $option_name), '', $option['option_attr']);

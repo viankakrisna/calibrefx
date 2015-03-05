@@ -73,15 +73,18 @@ $calibrefx->hooks->pre_ping = array(
  */
 function calibrefx_do_breadcrumbs() {
 	// Conditional Checks
-	if ( ( is_front_page() || is_home() ) && !calibrefx_get_option( 'breadcrumb_home' ) )
+	if ( ( is_front_page() OR is_home() ) AND !calibrefx_get_option( 'breadcrumb_home' ) )
 		return;
-	if ( is_single() && !calibrefx_get_option( 'breadcrumb_single' ) )
+	if ( is_single() AND !calibrefx_get_option( 'breadcrumb_single' ) )
 		return;
-	if ( is_page() && !calibrefx_get_option( 'breadcrumb_page' ) )
+	if ( is_page() AND !calibrefx_get_option( 'breadcrumb_page' ) )
 		return;
-	if ( ( is_archive() || is_search() ) && !calibrefx_get_option( 'breadcrumb_archive' ) )
+	if ( ( is_archive() OR is_search() ) AND !calibrefx_get_option( 'breadcrumb_archive' ) )
 		return;
-	if ( is_404() && !calibrefx_get_option( 'breadcrumb_404' ) )
+	if ( is_404() AND !calibrefx_get_option( 'breadcrumb_404' ) )
+		return;
+
+	if( is_singular() AND calibrefx_get_custom_field( '_calibrefx_custom_hide_breadcrumb' ) )
 		return;
 
 	calibrefx_breadcrumb();
@@ -138,6 +141,9 @@ function calibrefx_do_post_title() {
 		$title = sprintf( '<h2 class="entry-title"><a href="%s" title="%s" rel="bookmark">%s</a></h2>', get_permalink(), the_title_attribute( 'echo=0' ), apply_filters( 'calibrefx_post_title_text', $title) );
 	}
 
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_title' ) )
+		return;
+
 	echo apply_filters( 'calibrefx_post_title_output', $title ) . "\n";
 }
 
@@ -155,14 +161,26 @@ function calibrefx_post_info() {
 		$post_date = '[post_date]';
 	}
 
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_date' ) ){
+		$post_date = '';
+	}
+
 	$post_author = '';
 	if( calibrefx_get_option( 'post_author' ) ){
 		$post_author = __( 'By', 'calibrefx' ) . ' [post_author_posts_link]';
 	}
 
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_author' ) ){
+		$post_author = '';
+	}
+
 	$post_comment = '';
 	if( calibrefx_get_option( 'post_comment' ) ){
 		$post_comment = ' [post_comments]';
+	}
+
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_comment_count' ) ){
+		$post_comment = '';
 	}
 
 	$post_info = "$post_date $post_author $post_comment [post_edit]";
@@ -187,9 +205,17 @@ function calibrefx_post_meta() {
 		$post_category = '[post_categories]';
 	}
 
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_category' ) ){
+		$post_category = '';
+	}
+
 	$post_tags = '';
 	if( calibrefx_get_option( 'post_tags' ) ){
 		$post_tags = '[post_tags]';
+	}
+
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_tags' ) ){
+		$post_tags = '';
 	}	
 
 	$post_meta = "$post_category $post_tags";

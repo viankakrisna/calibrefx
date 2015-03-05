@@ -26,7 +26,7 @@ function calibrefx_add_inpost_layout_box() {
     calibrefx_add_post_meta_options(
         'calibrefx_inpost_layout_box', //slug
         '_calibrefx_layout', //option name
-        __( 'Pick your custom layout column','calibrefx' ), // Label
+        __( 'Custom Layout','calibrefx' ), // Label
         array(
             'option_type' => 'custom',
             'option_custom' => calibrefx_layout_selector( array(
@@ -36,7 +36,7 @@ function calibrefx_add_inpost_layout_box() {
             'option_default' => '',
             'option_filter' => '',
             'option_description' => '',
-            'option_attr' => array( "class" => "calibrefx-layout-selector"),
+            'option_attr' => array( "class" => "calibrefx-layout-selector calibrefx-post-meta-heading"),
         ), // Settings config
         1 //Priority
     );
@@ -44,16 +44,17 @@ function calibrefx_add_inpost_layout_box() {
     calibrefx_add_post_meta_options(
         'calibrefx_inpost_layout_box', //slug
         '_calibrefx_advance_label', //option name
-        '', //option label
+        'Style Settings', //option label
         array(
             'option_type' => 'custom',
-            'option_custom' => '<h4>Advance Settings</h4>',
+            'option_custom' => '',
             'option_default' => '',
             'option_filter' => '',
             'option_description' => '',
+            'option_attr' => array( "class" => "calibrefx-post-meta-heading"),
         ), // Settings config
         20 //Priority
-    );    
+    ); 
 
     calibrefx_add_post_meta_options(
         'calibrefx_inpost_layout_box', //slug
@@ -78,8 +79,114 @@ function calibrefx_add_inpost_layout_box() {
             'option_filter' => 'safe_text',
             'option_description' => '',
         ), // Settings config
+        21 //Priority
+    );
+
+    calibrefx_add_post_meta_options(
+        'calibrefx_inpost_layout_box', //slug
+        '_calibrefx_post_settings', //option name
+        'Post Settings', //option label
+        array(
+            'option_type' => 'custom',
+            'option_custom' => '',
+            'option_default' => '',
+            'option_filter' => '',
+            'option_description' => '',
+            'option_attr' => array( "class" => "calibrefx-post-meta-heading"),
+        ), // Settings config
         25 //Priority
-    );    
+    );
+
+    calibrefx_add_post_meta_options(
+        'calibrefx_inpost_layout_box',  // group id
+        '_calibrefx_custom_hide_breadcrumb', // field id and option name
+        __( 'Hide Breadcrumb', 'calibrefx' ), // Label
+        array(
+            'option_type' => 'checkbox',
+            'option_items' => '1',
+            'option_default' => '0',
+            'option_filter' => 'one_zero',
+        ), // Settings config
+        30 //Priority
+    );
+
+    calibrefx_add_post_meta_options(
+        'calibrefx_inpost_layout_box',  // group id
+        '_calibrefx_custom_hide_title', // field id and option name
+        __( 'Hide Post Title', 'calibrefx' ), // Label
+        array(
+            'option_type' => 'checkbox',
+            'option_items' => '1',
+            'option_default' => '0',
+            'option_filter' => 'one_zero',
+        ), // Settings config
+        30 //Priority
+    );
+
+    calibrefx_add_post_meta_options(
+        'calibrefx_inpost_layout_box',  // group id
+        '_calibrefx_custom_hide_date', // field id and option name
+        __( 'Hide Post Published Date', 'calibrefx' ), // Label
+        array(
+            'option_type' => 'checkbox',
+            'option_items' => '1',
+            'option_default' => '0',
+            'option_filter' => 'one_zero',
+        ), // Settings config
+        30 //Priority
+    );
+
+    calibrefx_add_post_meta_options(
+        'calibrefx_inpost_layout_box',  // group id
+        '_calibrefx_custom_hide_author', // field id and option name
+        __( 'Hide Post Author', 'calibrefx' ), // Label
+        array(
+            'option_type' => 'checkbox',
+            'option_items' => '1',
+            'option_default' => '0',
+            'option_filter' => 'one_zero',
+        ), // Settings config
+        30 //Priority
+    );
+
+    calibrefx_add_post_meta_options(
+        'calibrefx_inpost_layout_box',  // group id
+        '_calibrefx_custom_hide_comment_count', // field id and option name
+        __( 'Hide Post Comment Count', 'calibrefx' ), // Label
+        array(
+            'option_type' => 'checkbox',
+            'option_items' => '1',
+            'option_default' => '0',
+            'option_filter' => 'one_zero',
+        ), // Settings config
+        30 //Priority
+    );
+
+    calibrefx_add_post_meta_options(
+        'calibrefx_inpost_layout_box',  // group id
+        '_calibrefx_custom_hide_category', // field id and option name
+        __( 'Hide Post Category', 'calibrefx' ), // Label
+        array(
+            'option_type' => 'checkbox',
+            'option_items' => '1',
+            'option_default' => '0',
+            'option_filter' => 'one_zero',
+        ), // Settings config
+        30 //Priority
+    );
+
+    calibrefx_add_post_meta_options(
+        'calibrefx_inpost_layout_box',  // group id
+        '_calibrefx_custom_hide_tags', // field id and option name
+        __( 'Hide Post Tags', 'calibrefx' ), // Label
+        array(
+            'option_type' => 'checkbox',
+            'option_items' => '1',
+            'option_default' => '0',
+            'option_filter' => 'one_zero',
+        ), // Settings config
+        30 //Priority
+    );
 
 
 }
@@ -172,7 +279,7 @@ function calibrefx_inpost_save( $post_id, $post ) {
         foreach ( $sections as $options ) {
             foreach ( $options as $option_priority ) {
                 foreach ( $option_priority as $option_name => $option ) {
-                    if ( !empty( $_POST[$option_name] ) ) {
+                    if ( isset( $_POST[$option_name] ) ) {
                         //sanitize first
                         $sanitized_value = $calibrefx->security->do_sanitize_filter( $option['option_filter'], $_POST[$option_name] );
                         //update post meta
