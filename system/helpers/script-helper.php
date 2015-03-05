@@ -7,9 +7,12 @@
  * Get current script run by the server
  */
 function calibrefx_get_script() {
-	$file = $_SERVER['SCRIPT_NAME'];
-	$break = explode( '/', $file );
-	$pfile = $break[count( $break ) - 1];
+	$file = '';
+	if ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
+		$file = esc_attr( $_SERVER['SCRIPT_NAME'] );
+	}
+	$break	= explode( '/', $file );
+	$pfile	= $break[ count( $break ) - 1 ];
 	return $pfile;
 }
 

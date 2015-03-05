@@ -7,7 +7,6 @@
  */
 
 class Calibrefx_Generator{
-
 	/**
 	 * Reference to the global Plugin instance
 	 *
@@ -49,19 +48,19 @@ class Calibrefx_Generator{
 	/**
 	 * Set hook
 	 */
-	public function setHook( $tags ) {
+	public function set_hook( $tags ) {
 		$this->_hooks = $tags;
 	}
 
 	/**
 	 * Get Hook
 	 */
-	public function getHook( $tag = null ) {
+	public function get_hook( $tag = null ) {
 		if ( is_null( $tag ) ){
 			return $this->_hooks;
 		}
 
-		return $this->_hooks[$tag];
+		return $this->_hooks[ $tag ];
 	}
 
 	/**
@@ -70,10 +69,10 @@ class Calibrefx_Generator{
 	 * @return array
 	 */
 	public function __get( $tag ) {
-		if ( empty( $this->_hooks[$tag] ) ) {
+		if ( empty( $this->_hooks[ $tag ] ) ) {
 			return array(); }
 
-		return $this->_hooks[$tag];
+		return $this->_hooks[ $tag ];
 	}
 
 	/**
@@ -84,8 +83,8 @@ class Calibrefx_Generator{
 	public function __set( $tag, $functions ) {
 		if ( ! array( $functions ) ) { return; }
 
-		if ( empty( $this->_hooks[$tag]) ){
-			$this->_hooks[$tag] = array();
+		if ( empty( $this->_hooks[ $tag ]) ){
+			$this->_hooks[ $tag ] = array();
 		}
 
 		foreach ( $functions as $function ) {
@@ -105,17 +104,17 @@ class Calibrefx_Generator{
 	 * Check if the hook isset
 	 */
 	public function __isset( $tag ) {
-		return isset( $this->_hooks[$tag] );
+		return isset( $this->_hooks[ $tag ] );
 	}
 
 	/**
 	 * Add a hook
 	 */
 	public function add( $tag, $function, $priority = 10, $args = 0 ) {
-		$this->_hooks[$tag][] = array(
+		$this->_hooks[ $tag ][] = array(
 			'function'	=> $function,
 			'priority'	=> $priority,
-			'args'		=> $args
+			'args'		=> $args,
 		);
 
 		//For late call, then we need to add the action
@@ -130,7 +129,7 @@ class Calibrefx_Generator{
 	 * Remove a function from a hook
 	 */
 	public function remove( $tag, $function, $priority = 10 ) {
-		if ( ! isset( $this->_hooks[$tag] ) ) { return; }
+		if ( ! isset( $this->_hooks[ $tag ] ) ) { return; }
 
 		$keysearch = -1;
 		foreach ( $this->$tag as $key => $haystack ) {
@@ -141,7 +140,7 @@ class Calibrefx_Generator{
 		}
 
 		if ( $keysearch == -1 ) { return false; }
-		unset( $this->_hooks[$tag][$keysearch] );
+		unset( $this->_hooks[ $tag ][ $keysearch ] );
 
 		//For late call, then we need to change the action
 		if ( has_action( $tag, $function ) ) {
@@ -155,7 +154,7 @@ class Calibrefx_Generator{
 	 * Move a function to another hook
 	 */
 	public function move( $old_tag, $new_tag, $function, $old_priority = 10, $new_priority = 10 ) {
-		if ( ! isset( $this->_hooks[$old_tag] ) ) { return; }
+		if ( ! isset( $this->_hooks[ $old_tag ] ) ) { return; }
 
 		$keysearch = -1;
 		foreach ( $this->$old_tag as $key => $haystack ) {
@@ -165,9 +164,11 @@ class Calibrefx_Generator{
 			}
 		}
 
-		if ( $keysearch == -1 ) { return false; }
-		$func_array = $this->_hooks[$old_tag][$keysearch];
-		unset( $this->_hooks[$old_tag][$keysearch] );
+		if ( -1 == $keysearch ) {
+			return false;
+		}
+		$func_array = $this->_hooks[ $old_tag ][ $keysearch ];
+		unset( $this->_hooks[ $old_tag ][ $keysearch ] );
 		$this->add( $new_tag, $func_array['function'], $new_priority, $func_array['args'] );
 
 		//For late call, then we need to change the action
@@ -183,7 +184,7 @@ class Calibrefx_Generator{
 	 * Remove a function from a hook
 	 */
 	public function replace( $tag, $function_old, $function_new, $old_priority = 10, $new_priority = 10 ) {
-		if ( ! isset( $this->_hooks[$tag]) ) { return; }
+		if ( ! isset( $this->_hooks[ $tag ]) ) { return; }
 
 		$keysearch = -1;
 		foreach ( $this->$tag as $key => $haystack ) {
@@ -194,7 +195,7 @@ class Calibrefx_Generator{
 		}
 
 		if ( $keysearch == -1 ) { return false; }
-		$this->_hooks[$tag][$keysearch]['function'] = $function_new;
+		$this->_hooks[ $tag ][ $keysearch ]['function'] = $function_new;
 
 		//For late call, then we need to change the action
 		if ( has_action( $tag, $function_old ) ) {

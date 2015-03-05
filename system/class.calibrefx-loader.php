@@ -1,7 +1,6 @@
 <?php
 /**
  * Calibrefx Loader Class
- *
  */
 
 class Calibrefx_Loader {
@@ -81,7 +80,7 @@ class Calibrefx_Loader {
 	 * @return 	mixed	class object name on the CI SuperObject or FALSE
 	 */
 	public function is_loaded( $class ) {
-		return isset( $this->_classes[$class] ) ? $this->_classes[$class] : false;
+		return isset( $this->_classes[ $class ] ) ? $this->_classes[ $class ] : false;
 	}
 
 	/**
@@ -189,7 +188,7 @@ class Calibrefx_Loader {
 
 		// We look for a slash to determine subfolder
 		$subdir = '';
-		if ( ( $last_slash = strrpos( $class, '/' ) ) !== false ) {
+		if ( false !== ( $last_slash = strrpos( $class, '/' ) ) ) {
 			// Extract the path
 			$subdir = substr( $class, 0, ++$last_slash );
 
@@ -212,7 +211,7 @@ class Calibrefx_Loader {
 					continue;
 				}
 
-				if ( isset( $this->_loaded_files[$filepath] ) ) {
+				if ( isset( $this->_loaded_files[ $filepath ] ) ) {
 					return;
 				}
 
@@ -239,7 +238,7 @@ class Calibrefx_Loader {
 		$classvar = strtolower( $class );
 
 		// Save the class name and object name
-		$this->_classes[$class] = $classvar;
+		$this->_classes[ $class ] = $classvar;
 
 		if ( $config !== null ) {
 			$calibrefx->$classvar = new $name( $config );
@@ -263,7 +262,7 @@ class Calibrefx_Loader {
 			return array( strtolower( str_replace( array( $extension, '.php' ), '', $filename ) . $extension ) );
 		} else {
 			foreach ( $filename as $key => $val ) {
-				$filename[$key] = strtolower( str_replace( array( $extension, '.php' ), '', $val ) . $extension );
+				$filename[ $key ] = strtolower( str_replace( array( $extension, '.php' ), '', $val ) . $extension );
 			}
 
 			return $filename;

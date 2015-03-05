@@ -25,14 +25,14 @@ function calibrefx_meta_locale(){
 		'sq' => 'sq_AL',
 		'uk' => 'uk_UA',
 		'vi' => 'vi_VN',
-		'zh' => 'zh_CN'
+		'zh' => 'zh_CN',
 	);
 
-	if ( isset( $fix_locales[$locale] ) ) {
-		$locale = $fix_locales[$locale]; }
+	if ( isset( $fix_locales[ $locale ] ) ) {
+		$locale = $fix_locales[ $locale ]; }
 
 	// convert locales like "es" to "es_ES", in case that works for the given locale (sometimes it does)
-	if ( strlen( $locale ) == 2 ) {
+	if ( 2 == strlen( $locale ) ) {
 		$locale = strtolower( $locale ) . '_' . strtoupper( $locale ); }
 
 	// These are the locales FB supports

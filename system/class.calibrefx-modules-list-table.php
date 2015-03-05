@@ -44,7 +44,7 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 		foreach ( $views as $class => $view ) {
 			$views[ $class ] = "\t<li class='$class'>$view</li>";
 		}
-		echo implode( "\n", $views ) . "\n";
+		echo esc_attr( implode( "\n", $views ) ) . "\n";
 		echo '</ul>';
 	}
 
@@ -90,8 +90,7 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 	}
 
 	function column_name( $item ) {
-		$actions = array(
-		);
+		$actions = array();
 
 		if ( ! empty( $item['configurable'] ) ) {
 			$actions['configure'] = $item['configurable'];
@@ -139,7 +138,7 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 			case 'description':
 				break;
 			default:
-				return print_r( $item, true );
+				break;
 		}
 	}
 

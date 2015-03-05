@@ -53,13 +53,13 @@ function calibrefx_rev_decrypt( $message, $key = '09cfb0c36eaa081', $chiper = MC
 
 	$decrypted_message = $calibrefx->encrypt->decode( $message, $key );
 
-	if ( strpos( $decrypted_message, '|' ) !== false ) {
+	if ( false !== strpos( $decrypted_message, '|' ) ) {
 		$decrypted_message = explode( '|', $decrypted_message );
 		$temp_stack = array();
 		foreach ( $decrypted_message as $item ) {
 			$temp = explode( ':', $item );
 			if ( count( $temp ) > 1 ) {
-				$temp_stack[$temp[0]] = $temp[1];
+				$temp_stack[ $temp[0] ] = $temp[1];
 			}
 		}
 		$decrypted_message = $temp_stack;

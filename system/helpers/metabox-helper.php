@@ -21,12 +21,12 @@ function calibrefx_is_meta_section_exist( $slug ) {
 		return false;
 	}
 
-	if ( ! isset( $calibrefx_sections[$slug] ) ) {
+	if ( ! isset( $calibrefx_sections[ $slug ] ) ) {
 		return false;
 	}
 
 	//if the section already exist then we do nothing
-	if ( ! empty( $calibrefx_sections[$slug] ) ) {
+	if ( ! empty( $calibrefx_sections[ $slug ] ) ) {
 		return true;
 	}
 }
@@ -40,22 +40,22 @@ function calibrefx_is_meta_section_exist( $slug ) {
  * @param string $title Title of the section.
  * @param string $ability Optional. The ability that can see the settings ( 'general', 'professor' ).
  */
-function calibrefx_add_meta_section( $slug, $title, $target='options.php', $priority = 10, $icon = 'cfxicon-calibrefx' ) {
+function calibrefx_add_meta_section( $slug, $title, $target = 'options.php', $priority = 10, $icon = 'cfxicon-calibrefx' ) {
 	global $calibrefx_sections;
 
 	if ( ! isset( $calibrefx_sections ) ) {
 		$calibrefx_sections = array(); }
 
-	if ( ! isset( $calibrefx_sections[$slug] ) ) {
-		$calibrefx_sections[$slug] = array();
+	if ( ! isset( $calibrefx_sections[ $slug ] ) ) {
+		$calibrefx_sections[ $slug ] = array();
 	}
 
 	//if the section already exist then we do nothing
-	if ( ! empty( $calibrefx_sections[$slug] ) ) {
+	if ( ! empty( $calibrefx_sections[ $slug ] ) ) {
 		return;
 	}
 
-	$calibrefx_sections[$slug] = array(
+	$calibrefx_sections[ $slug ] = array(
 		'slug'        => $slug,
 		'title'       => $title,
 		'basic'       => array(),
@@ -94,15 +94,15 @@ function calibrefx_do_meta_sections( $section, $screen, $context, $object ) {
 	$page = $screen2->id;
 	$sorted = get_user_option( "meta-box-order_$page" );
 
-	if ( empty( $wp_meta_boxes[$page][$context]['sorted'] ) ) {
-		if ( ! empty( $calibrefx_sections[$section]['basic'] ) ) {
-			foreach ( $calibrefx_sections[$section]['basic'] as $metas ) {
+	if ( empty( $wp_meta_boxes[ $page ][ $context ]['sorted'] ) ) {
+		if ( ! empty( $calibrefx_sections[ $section ]['basic'] ) ) {
+			foreach ( $calibrefx_sections[ $section ]['basic'] as $metas ) {
 				add_meta_box( $metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback'] );
 			}
 		}
 
-		if ( ! empty( $calibrefx_sections[$section]['professor']) && $calibrefx_user_ability === 'professor' ) {
-			foreach ( $calibrefx_sections[$section]['professor'] as $metas ) {
+		if ( ! empty( $calibrefx_sections[ $section ]['professor']) AND ( 'professor' === $calibrefx_user_ability ) ) {
+			foreach ( $calibrefx_sections[ $section ]['professor'] as $metas ) {
 				add_meta_box( $metas['id'], $metas['title'], $metas['callback'], $metas['screen'], $metas['context'], $metas['priority'], $metas['callback'] );
 			}
 		}
@@ -133,11 +133,11 @@ function calibrefx_add_meta_box( $section, $ability, $id, $title, $callback, $sc
 		return;
 	}
 
-	if ( ! isset( $calibrefx_sections[$section] ) ) {
+	if ( ! isset( $calibrefx_sections[ $section ] ) ) {
 		return;
 	}
 
-	$calibrefx_sections[$section][$ability][] = array(
+	$calibrefx_sections[ $section ][ $ability ][] = array(
 		'id'            => $id,
 		'title'         => $title,
 		'callback'      => $callback,
@@ -160,9 +160,9 @@ function calibrefx_add_meta_group( $metabox_id, $group_id, $group_title ) {
 
 	if ( ! is_array( $calibrefx_meta_options ) ) { $calibrefx_meta_options = array(); }
 
-	$calibrefx_meta_options[$group_id] = array(
+	$calibrefx_meta_options[ $group_id ] = array(
 		'title'   => $group_title,
-		'metabox' => $metabox_id
+		'metabox' => $metabox_id,
 	);
 }
 
@@ -191,7 +191,7 @@ function calibrefx_add_meta_option( $group_id, $option_name, $option_label, $opt
 		$option_name );
 	}
 
-	$calibrefx_meta_options[$group_id]['options'][$priority][$option_name] = $options;
+	$calibrefx_meta_options[  $group_id  ]['options'][ $priority ][ $option_name ] = $options;
 }
 
 /**
@@ -223,8 +223,8 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
 		ksort( $options );
 	?>
         
-        <?php if ( ! empty( $option_group['title'] ) ){ ?><h3 class="section-title"><?php echo $option_group['title']; ?></h3><?php } ?>
-        <div id="<?php echo $option_group_id; ?>">
+        <?php if ( ! empty( $option_group['title'] ) ){ ?><h3 class="section-title"><?php echo sanitize_title( $option_group['title'] ); ?></h3><?php } ?>
+        <div id="<?php echo esc_attr( $option_group_id ); ?>">
             <?php
 			foreach ( $options as $option_priority ) {
 				foreach ( $option_priority as $option_name => $option ) {
@@ -355,16 +355,16 @@ function calibrefx_add_post_meta_boxes( $slug, $title, $callback, $post_types = 
 		$calibrefx_post_sections = array();
 	}
 
-	if ( ! isset( $calibrefx_post_sections[$slug] ) ) {
-		$calibrefx_post_sections[$slug] = array();
+	if ( ! isset( $calibrefx_post_sections[ $slug ] ) ) {
+		$calibrefx_post_sections[ $slug ] = array();
 	}
 
 	//if the section already exist then we do nothing
-	if ( ! empty( $calibrefx_post_sections[$slug] ) ) {
+	if ( ! empty( $calibrefx_post_sections[ $slug ] ) ) {
 		return;
 	}
 
-	$calibrefx_post_sections[$slug] = array(
+	$calibrefx_post_sections[ $slug ] = array(
 		'title'      => $title,
 		'post_types' => $post_types,
 		'priority'   => $priority,
@@ -381,7 +381,7 @@ function calibrefx_add_post_meta_options( $slug, $option_name, $option_label, $o
 
 	$options = array_merge( array( 'option_label' => $option_label ), $options );
 
-	$calibrefx_post_meta_options[$slug]['options'][$priority][$option_name] = $options;
+	$calibrefx_post_meta_options[ $slug ]['options'][ $priority ][ $option_name ] = $options;
 }
 
 /**
@@ -393,13 +393,13 @@ function calibrefx_add_post_meta_options( $slug, $option_name, $option_label, $o
  */
 function calibrefx_do_post_meta_options( $slug ) {
 	global $calibrefx_post_meta_options, $calibrefx;
-	if ( empty( $calibrefx_post_meta_options[$slug] ) ) { return; }
+	if ( empty( $calibrefx_post_meta_options[ $slug ] ) ) { return; }
 
 	do_action( $slug.'_options' );
 
 	$calibrefx->load->library( 'form' );
 
-	foreach ( $calibrefx_post_meta_options[$slug] as $options ) {
+	foreach ( $calibrefx_post_meta_options[ $slug ] as $options ) {
 		if ( empty( $options ) ) { continue; }
 		ksort( $options );
 
@@ -415,58 +415,58 @@ function calibrefx_do_post_meta_options( $slug ) {
 				}
 			?>
             <p <?php echo $attr; ?> >
-                <?php 
-                    switch ( $option['option_type'] ) {
-                        case 'hidden':
-                            echo $calibrefx->form->hidden( $option_name, calibrefx_get_custom_field( $option_name ), $option['option_attr'] );
-                            break;
+                <?php
+				switch ( $option['option_type'] ) {
+					case 'hidden':
+						echo $calibrefx->form->hidden( $option_name, calibrefx_get_custom_field( $option_name ), $option['option_attr'] );
+						break;
 
-                        case 'text':
-                        case 'textinput':
-                        case 'textarea':
-                        case 'password':
-                            //we need to extract the class from the array
-                            $classes = "";
-                            if ( isset( $option['option_attr']['class'] ) ) {
-                                $classes = $option['option_attr']['class'];
-                                unset( $option['option_attr']['class'] );
-                            }
-                            echo '<label for="'.$option_name.'">'.$option["option_label"].'</label> ';
-                            echo $calibrefx->form->{$option['option_type']}( $option_name, calibrefx_get_custom_field( $option_name ), $classes, $option['option_attr']);
-                            break;
-                        
-                        case 'checkbox':
-                            $classes = "calibrefx-settings-checkbox";
-                            if(isset( $option['option_attr']['class']) ) {
-                                $classes .= ' '.$option['option_attr']['class'];
-                                unset( $option['option_attr']['class']);
-                            }
+					case 'text':
+					case 'textinput':
+					case 'textarea':
+					case 'password':
+						//we need to extract the class from the array
+						$classes = '';
+						if ( isset( $option['option_attr']['class'] ) ) {
+							$classes = $option['option_attr']['class'];
+							unset( $option['option_attr']['class'] );
+						}
+						echo '<label for="'.$option_name.'">'.$option['option_label'].'</label> ';
+						echo $calibrefx->form->{$option['option_type']}( $option_name, calibrefx_get_custom_field( $option_name ), $classes, $option['option_attr']);
+						break;
 
-                            $value = calibrefx_get_custom_field( $option_name );
-                            if( empty( calibrefx_get_custom_field( $option_name ) ) ){
-                                $value = $option['option_default'];
-                            }
+					case 'checkbox':
+						$classes = 'calibrefx-settings-checkbox';
+						if ( isset( $option['option_attr']['class']) ) {
+							$classes .= ' '.$option['option_attr']['class'];
+							unset( $option['option_attr']['class']);
+						}
 
-                            $attr = array_merge(array("target" => "cpm-".$option_name, "class" => $classes), $option['option_attr']);
-                            echo $calibrefx->form->{$option['option_type']}( "cpm-checkbox-".$option_name, $option['option_items'],
-                                $value, $option['option_label'], false, 
-                                $attr);
-                            echo $calibrefx->form->hidden( $option_name, calibrefx_get_custom_field( $option_name), 
-                                array("id" => "cpm-".$option_name) );
-                            break;
-                        /*case 'radio':
-                        case 'select':
-                            echo '<label for="'.$option_name . '">'.$option["option_label"].'</label>';
-                            echo $calibrefx->form->{$option['option_type']}( $option_name, $option['option_items'],calibrefx_get_custom_field( $option_name), '', $option['option_attr']);
-                            break;*/
-                        case 'custom':
-                            if( isset( $option['option_custom'] ) ) {
-                                echo '<label for="'.$option_name . '">'.$option["option_label"].'</label>';
-                                echo $option['option_custom'];
-                            }
-                            break;
-                    }
-                ?>
+						$value = calibrefx_get_custom_field( $option_name );
+						if ( empty( calibrefx_get_custom_field( $option_name ) ) ){
+							$value = $option['option_default'];
+						}
+
+						$attr = array_merge( array('target' => 'cpm-'.$option_name, 'class' => $classes), $option['option_attr'] );
+						echo $calibrefx->form->{$option['option_type']}( 'cpm-checkbox-'.$option_name, $option['option_items'],
+							$value, $option['option_label'], false,
+							$attr);
+						echo $calibrefx->form->hidden( $option_name, calibrefx_get_custom_field( $option_name ),
+						array( 'id' => 'cpm-'.$option_name ) );
+						break;
+					/*case 'radio':
+					case 'select':
+						echo '<label for="'.$option_name . '">'.$option["option_label"].'</label>';
+						echo $calibrefx->form->{$option['option_type']}( $option_name, $option['option_items'],calibrefx_get_custom_field( $option_name), '', $option['option_attr']);
+						break;*/
+					case 'custom':
+						if ( isset( $option['option_custom'] ) ) {
+							echo '<label for="'.$option_name . '">'.$option['option_label'].'</label>';
+							echo $option['option_custom'];
+						}
+						break;
+				}
+				?>
             </p>
             <?php
 			if ( ! empty( $option['option_description'] ) ) :

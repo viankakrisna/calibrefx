@@ -137,7 +137,7 @@ class Calibrefx {
 	public static function glob_php( $absolute_path ) {
 		$absolute_path = untrailingslashit( $absolute_path );
 		$files = array();
-		if ( ! $dir = @opendir( $absolute_path ) ) {
+		if ( ! is_dir( $absolute_path ) OR ! $dir = opendir( $absolute_path ) ) {
 			return $files;
 		}
 

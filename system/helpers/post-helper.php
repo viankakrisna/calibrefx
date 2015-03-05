@@ -11,11 +11,16 @@
 function calibrefx_is_menu_page( $pagehook = '' ) {
 	global $page_hook;
 
-	if ( isset( $page_hook ) && $page_hook == $pagehook ){
+	if ( isset( $page_hook ) AND $page_hook == $pagehook ){
 		return true;
 	}
 
-	if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == $pagehook ) {
+	$requested_page = '';
+	if ( isset( $_REQUEST['page'] ) ){
+		$requested_page = esc_attr( $_REQUEST['page'] );
+	}
+
+	if ( $requested_page == $pagehook ) {
 		return true;
 	}
 
@@ -28,15 +33,19 @@ function calibrefx_is_menu_page( $pagehook = '' ) {
 function calibrefx_get_post_meta_all( $post_id ) {
 	global $wpdb;
 	$data = array();
-	$wpdb->query("
-        SELECT `meta_key`, `meta_value`
-        FROM $wpdb->postmeta
-        WHERE `post_id` = $post_id"
-	);
+	$data = wp_cache_get( 'post_meta_' . $post_id, 'calibrefx_post_meta' );
+	if ( ! $data ){
+		$wpdb->query("
+	        SELECT `meta_key`, `meta_value`
+	        FROM $wpdb->postmeta
+	        WHERE `post_id` = $post_id"
+		);
 
-	foreach ( $wpdb->last_result as $k => $v ) {
-		$data[$v->meta_key] = $v->meta_value;
-	};
+		foreach ( $wpdb->last_result as $k => $v ) {
+			$data[ $v->meta_key ] = $v->meta_value;
+		};
+		wp_cache_set( 'post_meta_' . $post_id, $data, 'calibrefx_post_meta' );
+	}
 
 	return $data;
 }
@@ -324,22 +333,22 @@ function calibrefx_url_to_postid( $url) {
 	foreach ( (array)$rewrite as $match => $query ) {
 		// If the requesting file is the anchor of the match, prepend it
 		// to the path info.
-		if ( ! empty( $url) && ( $url != $request ) && (strpos( $match, $url ) === 0 ) ) {
+		if ( ! empty( $url) AND ( $url != $request ) AND ( 0 === strpos( $match, $url ) ) ) {
 			$request_match = $url . '/' . $request;
 		}
 
 		if ( preg_match( "!^$match!", $request_match, $matches ) ) {
-				// Got a match.
-				// Trim the query of everything up to the '?'.
-				$query = preg_replace( '!^.+\?!', '', $query );
+			// Got a match.
+			// Trim the query of everything up to the '?'.
+			$query = preg_replace( '!^.+\?!', '', $query );
 
-				// Substitute the substring matches into the query.
-				$query = addslashes( WP_MatchesMapRegex::apply( $query, $matches ) );
+			// Substitute the substring matches into the query.
+			$query = addslashes( WP_MatchesMapRegex::apply( $query, $matches ) );
 
-				// Filter out non-public query vars
-				global $wp;
-				parse_str( $query, $query_vars );
-				$query = array();
+			// Filter out non-public query vars
+			global $wp;
+			parse_str( $query, $query_vars );
+			$query = array();
 			foreach ( (array) $query_vars as $key => $value ) {
 				if ( in_array( $key, $wp->public_query_vars ) ) {
 					$query[$key] = $value;
@@ -349,35 +358,35 @@ function calibrefx_url_to_postid( $url) {
 			// Taken from class-wp.php
 			foreach ( $GLOBALS['wp_post_types'] as $post_type => $t ) {
 				if ( $t->query_var ) {
-					$post_type_query_vars[$t->query_var] = $post_type;
+					$post_type_query_vars[ $t->query_var ] = $post_type;
 				}
 			}
 
 			foreach ( $wp->public_query_vars as $wpvar ) {
-				if ( isset( $wp->extra_query_vars[$wpvar] ) ) {
-					$query[$wpvar] = $wp->extra_query_vars[$wpvar];
-				} elseif ( isset( $_POST[$wpvar] ) ) {
-					$query[$wpvar] = $_POST[$wpvar];
-				} elseif ( isset( $_GET[$wpvar] ) ) {
-					$query[$wpvar] = $_GET[$wpvar];
-				} elseif ( isset( $query_vars[$wpvar] ) ) {
-					$query[$wpvar] = $query_vars[$wpvar];
+				if ( isset( $wp->extra_query_vars[ $wpvar ] ) ) {
+					$query[ $wpvar ] = $wp->extra_query_vars[ $wpvar ];
+				} elseif ( isset( $_POST[ $wpvar ] ) ) {
+					$query[ $wpvar ] = $_POST[ $wpvar ];
+				} elseif ( isset( $_GET[ $wpvar ] ) ) {
+					$query[ $wpvar ] = $_GET[ $wpvar ];
+				} elseif ( isset( $query_vars[ $wpvar ] ) ) {
+					$query[ $wpvar ] = $query_vars[ $wpvar ];
 				}
 
-				if ( ! empty( $query[$wpvar] ) ) {
-					if ( ! is_array( $query[$wpvar] ) ) {
-						$query[$wpvar] = (string) $query[$wpvar];
+				if ( ! empty( $query[ $wpvar ] ) ) {
+					if ( ! is_array( $query[ $wpvar ] ) ) {
+						$query[ $wpvar ] = (string) $query[ $wpvar ];
 					} else {
-						foreach ( $query[$wpvar] as $vkey => $v ) {
+						foreach ( $query[ $wpvar ] as $vkey => $v ) {
 							if ( ! is_object( $v ) ) {
-								$query[$wpvar][$vkey] = (string) $v;
+								$query[ $wpvar ][ $vkey ] = (string) $v;
 							}
 						}
 					}
 
-					if ( isset( $post_type_query_vars[$wpvar] ) ) {
-						$query['post_type'] = $post_type_query_vars[$wpvar];
-						$query['name'] = $query[$wpvar];
+					if ( isset( $post_type_query_vars[ $wpvar ] ) ) {
+						$query['post_type'] = $post_type_query_vars[ $wpvar ];
+						$query['name'] = $query[ $wpvar ];
 					}
 				}
 			}
@@ -385,7 +394,7 @@ function calibrefx_url_to_postid( $url) {
 			// Do the query
 			$query = new WP_Query( $query );
 
-			if ( ! empty( $query->posts) && $query->is_singular ) {
+			if ( ! empty( $query->posts ) && $query->is_singular ) {
 				return $query->post->ID;
 			} else {
 				return 0;
@@ -398,11 +407,11 @@ function calibrefx_url_to_postid( $url) {
 function calibrefx_get_post_types() {
 	$args = array(
 	  'public'   => true,
-	  '_builtin' => false
+	  '_builtin' => false,
 	);
 	$output = 'names'; // names or objects, note names is the default
 	$operator = 'and'; // 'and' or 'or'
-	$post_types = get_post_types( $args,$output,$operator );
+	$post_types = get_post_types( $args, $output, $operator );
 	return $post_types;
 }
 

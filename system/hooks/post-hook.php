@@ -286,6 +286,7 @@ function calibrefx_do_author_box_single() {
 		return;
 	}
 
+	//@TODO: There is a bug here
 	if ( get_the_author_meta( 'calibrefx_author_box_single', get_the_author_meta( 'ID' ) ) ) {
 		calibrefx_author_box( 'single' );
 	}

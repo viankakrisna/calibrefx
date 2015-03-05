@@ -42,7 +42,7 @@ function calibrefx_truncate_phrase( $phrase, $max_characters ) {
  * limits the output to $max_char characters,
  * and appends an ellipses and more link to the end.
  */
-function get_the_content_limit( $max_char, $more_link_text = '(more...)', $stripteaser = 0, $wrap_open='<p>', $wrap_close='</p>' ) {
+function get_the_content_limit( $max_char, $more_link_text = '(more...)', $stripteaser = 0, $wrap_open = '<p>', $wrap_close = '</p>' ) {
 
 	$content = get_the_content( '', $stripteaser );
 
@@ -146,27 +146,27 @@ function calibrefx_human_time_diff( $older_date, $newer_date = false ) {
 
 	/** Step one: the first unit */
 	for ( $i = 0, $j = count( $units ); $i < $j; $i++ ) {
-		$seconds = $units[$i][0];
+		$seconds = $units[ $i ][0];
 
 		/** Finding the biggest chunk (if the chunk fits, break) */
-		if ( ( $count = floor( $since / $seconds ) ) != 0 ){
+		if ( 0 != ( $count = floor( $since / $seconds ) ) ){
 			break;
 		}
 	}
 
 	/** Translate unit string, and add to the output */
-	$output = sprintf( translate_nooped_plural( $units[$i][1], $count, 'calibrefx' ), $count );
+	$output = sprintf( translate_nooped_plural( $units[ $i ][1], $count, 'calibrefx' ), $count );
 
 	/** Note the next unit */
 	$ii = $i + 1;
 
 	/** Step two: the second unit */
 	if ( $ii <= $j ) {
-		$seconds2 = $units[$ii][0];
+		$seconds2 = $units[ $ii ][0];
 
 		/** Check if this second unit has a value > 0 */
-		if ( ( $count2 = floor( ( $since - ( $seconds * $count ) ) / $seconds2 ) ) != 0 ) {
-			$output .= sprintf( ' %s ' . translate_nooped_plural( $units[$ii][1], $count2, 'calibrefx' ), _x( 'and', 'separator in time difference', 'calibrefx' ), $count2 );
+		if ( 0 != ( $count2 = floor( ( $since - ( $seconds * $count ) ) / $seconds2 ) ) ) {
+			$output .= sprintf( ' %s ' . translate_nooped_plural( $units[ $ii ][1], $count2, 'calibrefx' ), _x( 'and', 'separator in time difference', 'calibrefx' ), $count2 );
 		}
 	}
 
@@ -206,14 +206,14 @@ function calibrefx_time_ago( $date ) {
 		$tense = 'from now';
 	}
 
-	for ( $j = 0; $difference >= $lengths[$j] && $j < count( $lengths ) -1; $j++ ) {
-		$difference /= $lengths[$j];
+	for ( $j = 0; $difference >= $lengths[ $j ] && $j < count( $lengths ) -1; $j++ ) {
+		$difference /= $lengths[ $j ];
 	}
 
 	$difference = round( $difference );
 
-	if ( $difference != 1 ) {
-		$periods[$j] .= 's';
+	if ( 1 != $difference ) {
+		$periods[ $j ] .= 's';
 	}
 
 	return "$difference $periods[$j] {$tense}";
@@ -227,21 +227,21 @@ function calibrefx_formatting_allowedtags() {
 	return apply_filters(
 		'calibrefx_formatting_allowedtags',
 		array(
-					'a'          => array( 'href' => array(), 'title' => array(),),
-					'b'          => array(),
-					'blockquote' => array(),
-					'br'         => array(),
-					'div'        => array(
-										'align' => array(),
-										'class' => array(),
-										'style' => array(),
-									),
-					'em'         => array(),
-					'i'          => array(),
-					'p'          => array( 'align' => array(), 'class' => array(), 'style' => array(),),
-					'span'       => array( 'align' => array(), 'class' => array(), 'style' => array(),),
-					'strong'     => array(),
-				)
+			'a'          => array( 'href' => array(), 'title' => array() ),
+			'b'          => array(),
+			'blockquote' => array(),
+			'br'         => array(),
+			'div'        => array(
+								'align' => array(),
+								'class' => array(),
+								'style' => array(),
+							),
+			'em'         => array(),
+			'i'          => array(),
+			'p'          => array( 'align' => array(), 'class' => array(), 'style' => array() ),
+			'span'       => array( 'align' => array(), 'class' => array(), 'style' => array() ),
+			'strong'     => array(),
+		)
 	);
 }
 
@@ -268,17 +268,17 @@ function calibrefx_tweet_linkify( $text ) {
 /**
  * Search value in array recursively
  */
-function array_r( $needle, $haystack, $strict=true, $path=array() )
+function array_r( $needle, $haystack, $strict = true, $path = array() )
 {
 	if ( ! is_array( $haystack ) ) {
 		return false;
 	}
 
 	foreach ( $haystack as $key => $val ) {
-		if ( is_array( $val ) && $subPath = array_r( $needle, $val, $strict, $path ) ) {
-			$path = array_merge( $path, array( $key), $subPath );
+		if ( is_array( $val ) AND $subPath = array_r( $needle, $val, $strict, $path ) ) {
+			$path = array_merge( $path, array( $key ), $subPath );
 			return $path;
-		} elseif ( ( ! $strict && $val == $needle ) || ( $strict && $val === $needle ) ) {
+		} elseif ( ( ! $strict AND $val == $needle ) OR ( $strict AND $val === $needle ) ) {
 			$path[] = $key;
 			return $path;
 		}

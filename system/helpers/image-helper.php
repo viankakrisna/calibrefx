@@ -11,17 +11,17 @@ function calibrefx_get_image_id( $num = 0 ) {
 	$image_ids = array_keys(
 		get_children(
 			array(
-						'post_parent'    => $post->ID,
-						'post_type'      => 'attachment',
-						'post_mime_type' => 'image',
-						'orderby'        => 'menu_order',
-						'order'          => 'ASC'
-					)
+				'post_parent'    => $post->ID,
+				'post_type'      => 'attachment',
+				'post_mime_type' => 'image',
+				'orderby'        => 'menu_order',
+				'order'          => 'ASC',
+			)
 		)
 	);
 
-	if (  isset( $image_ids[$num] ) ) {
-		return $image_ids[$num];
+	if (  isset( $image_ids[ $num ] ) ) {
+		return $image_ids[ $num ];
 	}
 
 	return false;
@@ -44,7 +44,7 @@ function calibrefx_get_image( $args = array() ) {
 		'size'   => 'full',
 		'num'    => 0,
 		'attr'   => '',
-		'id'     => ''
+		'id'     => '',
 	);
 
 	$defaults = apply_filters( 'calibrefx_get_image_default_args', $defaults );
@@ -57,14 +57,15 @@ function calibrefx_get_image( $args = array() ) {
 		return $pre;
 	}
 
-	$url = ''; $html = '';
+	$url = '';
+	$html = '';
 
 	// check for feature image
 	if ( ! empty( $args['id'] ) ) {
 		$id = ( ! empty( $args['id'] ) ? $args['id'] : calibrefx_get_image_id( $args['num'] ) );
 		$html = wp_get_attachment_image( $id, $args['size'], false, $args['attr'] );
 		list( $url) = wp_get_attachment_image_src( $id, $args['size'], false, $args['attr'] );
-	} elseif ( has_post_thumbnail() && ( $args['num'] === 0 ) ) {
+	} elseif ( has_post_thumbnail() AND ( 0 === $args['num'] ) ) {
 		$id = ( ! empty( $args['id'] ) ? $args['id'] : get_post_thumbnail_id() );
 		$html = get_the_post_thumbnail( $post->ID, $args['size'], $args['attr'] );
 		list( $url ) = wp_get_attachment_image_src( $id, $args['size'], false, $args['attr'] );
@@ -74,9 +75,9 @@ function calibrefx_get_image( $args = array() ) {
 	$src = str_replace( home_url(), '', $url );
 
 	// determine output
-	if ( strtolower( $args['format'] ) == 'html' ) {
+	if ( 'html' == strtolower( $args['format'] ) ) {
 		$output = $html;
-	} elseif ( strtolower( $args['format'] ) == 'url' ) {
+	} elseif ( 'url' == strtolower( $args['format'] ) ) {
 		$output = $url;
 	} else {
 		$output = $src;
