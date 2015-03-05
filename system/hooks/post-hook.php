@@ -71,23 +71,26 @@ $calibrefx->hooks->calibrefx_loop = array(
 	/**
  * Display Breadcrumbs before the Loop
  */
-	function calibrefx_do_breadcrumbs() {
-		// Conditional Checks
-		if ( ( is_front_page() || is_home() ) && ! calibrefx_get_option( 'breadcrumb_home' ) ) {
-			return; }
-		if ( is_single() && ! calibrefx_get_option( 'breadcrumb_single' ) ) {
-			return; }
-		if ( is_page() && ! calibrefx_get_option( 'breadcrumb_page' ) ) {
-			return; }
-		if ( ( is_archive() || is_search() ) && ! calibrefx_get_option( 'breadcrumb_archive' ) ) {
-			return; }
-		if ( is_404() && ! calibrefx_get_option( 'breadcrumb_404' ) ) {
-			return; }
+function calibrefx_do_breadcrumbs() {
+	// Conditional Checks
+	if ( ( is_front_page() OR is_home() ) AND !calibrefx_get_option( 'breadcrumb_home' ) )
+		return;
+	if ( is_single() AND !calibrefx_get_option( 'breadcrumb_single' ) )
+		return;
+	if ( is_page() AND !calibrefx_get_option( 'breadcrumb_page' ) )
+		return;
+	if ( ( is_archive() OR is_search() ) AND !calibrefx_get_option( 'breadcrumb_archive' ) )
+		return;
+	if ( is_404() AND !calibrefx_get_option( 'breadcrumb_404' ) )
+		return;
 
-		calibrefx_breadcrumb();
-	}
+	if( is_singular() AND calibrefx_get_custom_field( '_calibrefx_custom_hide_breadcrumb' ) )
+		return;
 
-	/**
+	calibrefx_breadcrumb();
+}
+
+/**
  * Display Flash notification when user do submit form
  */
 	function calibrefx_do_notification() {
@@ -125,68 +128,93 @@ $calibrefx->hooks->calibrefx_loop = array(
  * It outputs the post title
  *
  */
-	function calibrefx_do_post_title() {
-		$title = get_the_title();
+function calibrefx_do_post_title() {
+	$title = get_the_title();
 
-		if ( strlen( $title ) == 0 ) {
-			return;
-		}
-
-		if ( is_singular() ) {
-			$title = sprintf( '<h1 class="entry-title">%s</h1>', apply_filters( 'calibrefx_post_title_text', $title ) );
-		} else {
-			$title = sprintf( '<h2 class="entry-title"><a href="%s" title="%s" rel="bookmark">%s</a></h2>', get_permalink(), the_title_attribute( 'echo=0' ), apply_filters( 'calibrefx_post_title_text', $title ) );
-		}
-
-		echo apply_filters( 'calibrefx_post_title_output', $title ) . "\n";
+	if ( strlen( $title ) == 0 ) {
+		return;
 	}
 
-	/**
+	if ( is_singular() ) {
+		$title = sprintf( '<h1 class="entry-title">%s</h1>', apply_filters( 'calibrefx_post_title_text', $title) );
+	} else {
+		$title = sprintf( '<h2 class="entry-title"><a href="%s" title="%s" rel="bookmark">%s</a></h2>', get_permalink(), the_title_attribute( 'echo=0' ), apply_filters( 'calibrefx_post_title_text', $title) );
+	}
+
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_title' ) )
+		return;
+
+	echo apply_filters( 'calibrefx_post_title_output', $title ) . "\n";
+}
+
+/**
  * Echo the post info before the post content.
  *
  * Use several content shortcode, refered to shortcodes/content.php
  *
  */
-	function calibrefx_post_info() {
-		global $post;
+function calibrefx_post_info() {
+	global $post;
 
-		$post_date = '';
-		if ( calibrefx_get_option( 'post_date' ) ){
-			$post_date = '[post_date]';
-		}
-
-		$post_author = '';
-		if ( calibrefx_get_option( 'post_author' ) ){
-			$post_author = __( 'By', 'calibrefx' ) . ' [post_author_posts_link]';
-		}
-
-		$post_comment = '';
-		if ( calibrefx_get_option( 'post_comment' ) ){
-			$post_comment = ' [post_comments]';
-		}
-
-		$post_info = "$post_date $post_author $post_comment [post_edit]";
-		printf( '<div class="post-info">%s</div>', apply_filters( 'calibrefx_post_info', $post_info ) );
+	$post_date = '';
+	if( calibrefx_get_option( 'post_date' ) ){
+		$post_date = '[post_date]';
 	}
-	add_filter( 'calibrefx_post_info', 'do_shortcode', 20 );
 
-	/**
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_date' ) ){
+		$post_date = '';
+	}
+
+	$post_author = '';
+	if( calibrefx_get_option( 'post_author' ) ){
+		$post_author = __( 'By', 'calibrefx' ) . ' [post_author_posts_link]';
+	}
+
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_author' ) ){
+		$post_author = '';
+	}
+
+	$post_comment = '';
+	if( calibrefx_get_option( 'post_comment' ) ){
+		$post_comment = ' [post_comments]';
+	}
+
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_comment_count' ) ){
+		$post_comment = '';
+	}
+
+	$post_info = "$post_date $post_author $post_comment [post_edit]";
+	printf( '<div class="post-info">%s</div>', apply_filters( 'calibrefx_post_info', $post_info ) );
+}
+add_filter( 'calibrefx_post_info', 'do_shortcode', 20 );
+
+/**
  * Echo the post meta after the post content. Will not show in page.
  *
  * Use several content shortcode, refered to shortcodes/content.php
  */
-	function calibrefx_post_meta() {
-		global $post;
+function calibrefx_post_meta() {
+	global $post;
 
-		if ( is_page( $post->ID ) ) {
-			return;
-		}
+	if ( is_page( $post->ID) ) {
+		return;
+	}
 
+	$post_category = '';
+	if( calibrefx_get_option( 'post_category' ) ){
+		$post_category = '[post_categories]';
+	}
+
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_category' ) ){
 		$post_category = '';
-		if ( calibrefx_get_option( 'post_category' ) ){
-			$post_category = '[post_categories]';
-		}
+	}
 
+	$post_tags = '';
+	if( calibrefx_get_option( 'post_tags' ) ){
+		$post_tags = '[post_tags]';
+	}
+
+	if( is_singular( ) AND calibrefx_get_custom_field( '_calibrefx_custom_hide_tags' ) ){
 		$post_tags = '';
 		if ( calibrefx_get_option( 'post_tags' ) ){
 			$post_tags = '[post_tags]';

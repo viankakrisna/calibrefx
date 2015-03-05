@@ -410,12 +410,12 @@ function calibrefx_header_body_classes_filter() {
  *
  */
 function calibrefx_custom_header_style() {
-	$header = '';
-	$text = '';
+    $header = '';
+    $text = '';
 
-	/** If no options set, don't waste the output. Do nothing. */
-	if ( ( HEADER_IMAGE == '' AND get_header_image() == '' ) OR ( HEADER_TEXTCOLOR != 'blank' && get_header_textcolor() != 'blank' ) || ( HEADER_TEXT && display_header_text() ) ) {
-		$text = sprintf( '
+    /** If no options set, don't waste the output. Do nothing. */
+    if( ( HEADER_IMAGE == '' AND get_header_image() == '' ) OR ( HEADER_TEXTCOLOR != 'blank' && get_header_textcolor() != 'blank' ) || ( display_header_text() ) ) {
+       $text = sprintf( '
 #title, #title a{ 
 	color: %s
 }'."\n", get_header_textcolor() );
@@ -426,16 +426,16 @@ function calibrefx_custom_header_style() {
 	width: %2$spx; 
 	height: %3$dpx
 }', esc_url( get_header_image() ), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
-
-		$text = sprintf( '
-#title, #title a, #title a:hover{ 
-	display: block; 
-	margin: 0; 
-	overflow: hidden; 
-	padding: 0;
-	text-indent: -9999px; 
-	width: %dpx; 
-	height: %dpx 
+    
+        $text = sprintf( '
+#title, #title a, #title a:hover, #header-title #description{ 
+    display: block; 
+    margin: 0; 
+    overflow: hidden; 
+    padding: 0;
+    text-indent: -9999px; 
+    width: %dpx; 
+    height: %dpx 
 }'."\n", HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
 	}
 
