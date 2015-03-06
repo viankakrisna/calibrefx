@@ -223,7 +223,7 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
 		ksort( $options );
 	?>
         
-        <?php if ( ! empty( $option_group['title'] ) ){ ?><h3 class="section-title"><?php echo sanitize_title( $option_group['title'] ); ?></h3><?php } ?>
+        <?php if ( ! empty( $option_group['title'] ) ){ ?><h3 class="section-title"><?php echo esc_attr( $option_group['title'] ); ?></h3><?php } ?>
         <div id="<?php echo esc_attr( $option_group_id ); ?>">
             <?php
 			foreach ( $options as $option_priority ) {
