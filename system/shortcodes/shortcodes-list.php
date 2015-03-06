@@ -4,70 +4,70 @@ function calibrefx_init_shortcodes(){
 	global $cfx_shortcodes;
 
 	#-----------------------------------------------------------------
-	# Elements 
+	# Elements
 	#-----------------------------------------------------------------
 
-	$cfx_shortcodes['header_6'] = array( 
-		'type' => 'heading', 
+	$cfx_shortcodes['header_6'] = array(
+		'type' => 'heading',
 		'title' => __( 'Element', 'calibrefx' )
 	);
 
 	//Image with Animation
-	$cfx_shortcodes['image_with_animation'] = array( 
-		'type' => 'custom', 
-		'title'=>__( 'Image With Animation', 'calibrefx' ), 
-		'attr' => array( 
-			'image' => array( 'type' =>'custom', 'title'  => __( 'Image', 'calibrefx' ) ),
-			'animation'=>array(
-				'type'=>'select', 
-				'title'  => __( 'Image Animation', 'calibrefx'),
+	$cfx_shortcodes['image_with_animation'] = array(
+		'type' => 'custom',
+		'title' => __( 'Image With Animation', 'calibrefx' ),
+		'attr' => array(
+			'image' => array( 'type' => 'custom', 'title'  => __( 'Image', 'calibrefx' ) ),
+			'animation' => array(
+				'type' => 'select',
+				'title'  => __( 'Image Animation', 'calibrefx' ),
 				'values' => array(
-				     "fade-in" => "Fade In",
-			  		 "fade-in-from-left" => "Fade In From Left",
-			  		 "fade-in-right" => "Fade In From Right",
-			  		 "fade-in-from-bottom" => "Fade In From Bottom",
-			  		 "grow-in" => "Grow In"
+				     'fade-in' => 'Fade In',
+			  		 'fade-in-from-left' => 'Fade In From Left',
+			  		 'fade-in-right' => 'Fade In From Right',
+			  		 'fade-in-from-bottom' => 'Fade In From Bottom',
+			  		 'grow-in' => 'Grow In'
 				)
 			),
-			'delay'=>array(
-				'type' => 'text', 
-				'title'=> __( 'Delay', 'calibrefx' ),
+			'delay' => array(
+				'type' => 'text',
+				'title' => __( 'Delay', 'calibrefx' ),
 				'desc' => __( 'Enter delay (in milliseconds) if needed e.g. 150. This parameter comes in handy when creating the animate in "one by one" effect in horizontal columns. ', 'calibrefx' ),
 			),
-			'lightbox'=>array( 'type'=>'checkbox', 'title'=>__( 'Enable Lightbox', 'calibrefx' ) ),
+			'lightbox' => array( 'type' => 'checkbox', 'title' => __( 'Enable Lightbox', 'calibrefx' ) ),
 		)
 	);
 
 	//Divider
-	$cfx_shortcodes['divider'] = array( 
-		'type'  => 'regular', 
-		'title' => __( 'Divider', 'calibrefx' ), 
-		'attr'  => array( 
+	$cfx_shortcodes['divider'] = array(
+		'type'  => 'regular',
+		'title' => __( 'Divider', 'calibrefx' ),
+		'attr'  => array(
 			'line_type' => array(
-				'type' => 'select', 
+				'type' => 'select',
 				'title' => __( 'Display Line', 'calibrefx' ),
 				'values' => array(
-				     "no-line" => "No Line",
-			  		 "full-width" => "Full Width Line",
-			  		 "small" => "Small Line"
+				     'no-line' => 'No Line',
+			  		 'full-width' => 'Full Width Line',
+			  		 'small' => 'Small Line'
 				)
 			),
 			'custom_height' => array(
-				'type'  => 'text', 
-				'desc'  => 'If you would like to control the specifc number of pixels your divider is, enter it here. <b>Don\'t enter "px", just the numnber e.g. "30".</b>', 
+				'type'  => 'text',
+				'desc'  => 'If you would like to control the specifc number of pixels your divider is, enter it here. <b>Don\'t enter "px", just the numnber e.g. "30".</b>',
 				'title' => __( 'Custom Dividing Height', 'calibrefx' )
 			)
 		)
 	);
 
 	//Icon
-	$cfx_shortcodes['icon'] = array( 
-		'type'  => 'regular', 
-		'title' => __( 'Icon', 'calibrefx' ), 
+	$cfx_shortcodes['icon'] = array(
+		'type'  => 'regular',
+		'title' => __( 'Icon', 'calibrefx' ),
 		'attr'  => array(
 			'size' => array(
-				'type'  => 'radio', 
-				'title' => __( 'Icon Style', 'calibrefx' ), 
+				'type'  => 'radio',
+				'title' => __( 'Icon Style', 'calibrefx' ),
 				'desc'  => __( 'Tiny is recommended to be used inline with regular text. <br/> Small is recommended to be used inline right before heading text. <br> Regular can be used in a variety of places. <br> Large and Alternative are recommended to be used at the top of columns.', 'calibrefx' ),
 				'opt' => array(
 					'tiny' => 'Tiny',
@@ -78,10 +78,10 @@ function calibrefx_init_shortcodes(){
 				)
 			),
 			'color' => array( 'type' => 'custom', 'title'  => __( 'Background Color', 'calibrefx' ) ),
-			'text_color' => array( 'type'=>'custom', 'title'  => __( 'Text Color', 'calibrefx' ) ),
+			'text_color' => array( 'type' => 'custom', 'title'  => __( 'Text Color', 'calibrefx' ) ),
 			'icons' => array(
-				'type' => 'icons', 
-				'title' => 'Icon', 
+				'type' => 'icons',
+				'title' => 'Icon',
 				'values' => array(
 			      	'fa-adjust' => 'fa fa-adjust',
 					'fa-adn' => 'fa fa-adn',
@@ -634,9 +634,9 @@ function calibrefx_init_shortcodes(){
 				)
 			),
 			'calibrefx-icons' => array(
-				'type' => 'icons', 
-				'title' => 'Calibrefx Icons', 
-				'values'=> array(
+				'type' => 'icons',
+				'title' => 'Calibrefx Icons',
+				'values' => array(
 					'cfxicon-calibreworks' => 'cfxicon-calibreworks',
 					'cfxicon-calibrefx' => 'cfxicon-calibrefx',
 					'cfxicon-home' => 'cfxicon-home',
@@ -674,88 +674,88 @@ function calibrefx_init_shortcodes(){
 					'cfxicon-paypal2' => 'cfxicon-paypal2',
 				)
 			),
-		) 
+		)
 	);
 
 	//Google Map
-	$cfx_shortcodes['google_map'] = array( 
-		'type'  => 'regular', 
-		'title' => __( 'Google Map', 'calibrefx' ), 
-		'attr'  => array( 
-			'image' => array( 'type' =>'custom', 'title'  => __( 'Icon Marker', 'calibrefx' ) ),
+	$cfx_shortcodes['google_map'] = array(
+		'type'  => 'regular',
+		'title' => __( 'Google Map', 'calibrefx' ),
+		'attr'  => array(
+			'image' => array( 'type' => 'custom', 'title'  => __( 'Icon Marker', 'calibrefx' ) ),
 			'latitude' => array(
-				'type'  => 'text', 
-				'desc'  => 'Latitude of your coordinate. Only number e.g. <b>"-6.286902".</b>', 
+				'type'  => 'text',
+				'desc'  => 'Latitude of your coordinate. Only number e.g. <b>"-6.286902".</b>',
 				'title' => __( 'Latitude', 'calibrefx' )
 			),
 			'longitude' => array(
-				'type'  => 'text', 
-				'desc'  => 'Longitude of your coordinate. Only number e.g. <b>"-6.286902".</b>', 
+				'type'  => 'text',
+				'desc'  => 'Longitude of your coordinate. Only number e.g. <b>"-6.286902".</b>',
 				'title' => __( 'Longitude', 'calibrefx' )
 			),
 			'zoom' => array(
-				'type'  => 'text', 
-				'desc'  => 'Map zoom. Only number 1 - 16', 
+				'type'  => 'text',
+				'desc'  => 'Map zoom. Only number 1 - 16',
 				'title' => __( 'Zoom', 'calibrefx' )
 			),
 			'height' => array(
-				'type'  => 'text', 
-				'desc'  => 'If you would like to control the specifc height of your map in pixels, enter it here. <b>Don\'t enter "px", just the numnber e.g. "320".</b>. Default "320"', 
+				'type'  => 'text',
+				'desc'  => 'If you would like to control the specifc height of your map in pixels, enter it here. <b>Don\'t enter "px", just the numnber e.g. "320".</b>. Default "320"',
 				'title' => __( 'Height', 'calibrefx' )
 			),
 			'title' => array(
-				'type'  => 'text', 
+				'type'  => 'text',
 				'title' => __( 'Title', 'calibrefx' )
 			),
 			'address' => array(
-				'type'  => 'textarea', 
+				'type'  => 'textarea',
 				'title' => __( 'Address Line', 'calibrefx' )
 			),
 		)
 	);
 
 	//Google Map
-	$cfx_shortcodes['button'] = array( 
-		'type'  => 'regular', 
-		'title' => __( 'Button', 'calibrefx' ), 
-		'attr'  => array( 
+	$cfx_shortcodes['button'] = array(
+		'type'  => 'regular',
+		'title' => __( 'Button', 'calibrefx' ),
+		'attr'  => array(
 			'text' => array(
-				'type'  => 'text', 
+				'type'  => 'text',
 				'title' => __( 'Text', 'calibrefx' )
 			),
 			'url' => array(
-				'type'  => 'text', 
+				'type'  => 'text',
 				'title' => __( 'URL', 'calibrefx' )
 			),
 			'target' => array(
-				'type'  => 'select', 
+				'type'  => 'select',
 				'title' => __( 'Link Target', 'calibrefx' ),
 				'values' => array(
-				     "_blank" => "_blank",
-			  		 "_self" => "_self",
-			  		 "_parent" => "_parent",
-			  		 "_top" => "_top",
+				     '_blank' => '_blank',
+			  		 '_self' => '_self',
+			  		 '_parent' => '_parent',
+			  		 '_top' => '_top',
 				)
 			),
 			'class' => array(
-				'type'  => 'text', 
+				'type'  => 'text',
 				'title' => __( 'CSS Class', 'calibrefx' )
 			),
-			'text_color' => array( 
-				'type' => 'custom', 
-				'title'  => __( 'Text Color', 'calibrefx' ) 
+			'text_color' => array(
+				'type' => 'custom',
+				'title'  => __( 'Text Color', 'calibrefx' )
 			),
-			'color' => array( 
-				'type' => 'custom', 
-				'title'  => __( 'Background Color', 'calibrefx' ) 
+			'color' => array(
+				'type' => 'custom',
+				'title'  => __( 'Background Color', 'calibrefx' )
 			),
-			'shadow_color' => array( 
-				'type' => 'custom', 
-				'title'  => __( 'Shadow Color', 'calibrefx' ) 
+			'shadow_color' => array(
+				'type' => 'custom',
+				'title'  => __( 'Shadow Color', 'calibrefx' )
 			),
 		)
 	);
-	
+
 	do_action( 'calibrefx_shortcodes' );
 }
 

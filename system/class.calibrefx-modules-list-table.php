@@ -1,17 +1,17 @@
 <?php
 
-if ( ! class_exists( 'WP_List_Table' ) )
-	require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
+if ( ! class_exists( 'WP_List_Table' ) ) {
+	require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php'; }
 
 class Calibrefx_Modules_List_Table extends WP_List_Table {
 
 	/**
-     * Singleton
-     *
-     * @var	object
-     */
-    protected static $instance;
-    
+	 * Singleton
+	 *
+	 * @var	object
+	 */
+	protected static $instance;
+
 	function __construct() {
 		parent::__construct();
 
@@ -22,17 +22,17 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 	}
 
 	/**
-     * Return the Calibrefx object
-     *
-     * @return  object
-     */
-    public static function get_instance() {
-        if( ! self::$instance ){
-            self::$instance = new Calibrefx_Modules_List_Table();
-        }
-        
-        return self::$instance;
-    }
+	 * Return the Calibrefx object
+	 *
+	 * @return  object
+	 */
+	public static function get_instance() {
+		if ( ! self::$instance ){
+			self::$instance = new Calibrefx_Modules_List_Table();
+		}
+
+		return self::$instance;
+	}
 
 	function get_views() {
 		return array();
@@ -44,8 +44,8 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 		foreach ( $views as $class => $view ) {
 			$views[ $class ] = "\t<li class='$class'>$view</li>";
 		}
-		echo implode( "\n", $views ) . "\n";
-		echo "</ul>";
+		echo esc_attr( implode( "\n", $views ) ) . "\n";
+		echo '</ul>';
 	}
 
 	function get_columns() {
@@ -67,11 +67,11 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 		static $i = 0;
 		$row_class = ( ++$i % 2 ) ? ' alternate' : '';
 
-		if ( ! empty( $item['activated'] )  )
-			$row_class .= ' active';
+		if ( ! empty( $item['activated'] )  ) {
+			$row_class .= ' active'; }
 
-		if ( ! $this->is_module_available( $item ) )
-			$row_class .= ' unavailable';
+		if ( ! $this->is_module_available( $item ) ) {
+			$row_class .= ' unavailable'; }
 
 		echo '<tr class="calibrefx-module' . esc_attr( $row_class ) . '" id="' . esc_attr( $item['module'] ) . '">';
 		$this->single_row_columns( $item );
@@ -83,15 +83,14 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 	}
 
 	function column_cb( $item ) {
-		if ( ! $this->is_module_available( $item ) )
-			return '';
+		if ( ! $this->is_module_available( $item ) ) {
+			return ''; }
 
 		return sprintf( '<input type="checkbox" name="modules[]" value="%s" />', $item['module'] );
 	}
 
 	function column_name( $item ) {
-		$actions = array(
-		);
+		$actions = array();
 
 		if ( ! empty( $item['configurable'] ) ) {
 			$actions['configure'] = $item['configurable'];
@@ -126,7 +125,7 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 
 	function column_module_tags( $item ) {
 		$module_tags = array();
-		foreach( $item['module_tags'] as $module_tag ) {
+		foreach ( $item['module_tags'] as $module_tag ) {
 			$module_tags[] = sprintf( '<a href="%3$s" data-title="%2$s">%1$s</a>', esc_html( $module_tag ), esc_attr( $module_tag ), add_query_arg( 'module_tag', urlencode( $module_tag ) ) );
 		}
 		return implode( ', ', $module_tags );
@@ -139,45 +138,45 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 			case 'description':
 				break;
 			default:
-				return print_r( $item, true );
+				break;
 		}
 	}
 
 	function get_modules(){
-        $available_modules = Calibrefx::get_available_modules();
+		$available_modules = Calibrefx::get_available_modules();
 		$active_modules    = Calibrefx::get_active_modules();
 
-        $modules           = array();
-        foreach ( $available_modules as $module ) { 
-        	if ( $module_array = Calibrefx::get_module( $module ) ) {
-        		
-        		$module_array['module']            = $module;
-        		$module_array['activated']         = in_array( $module, $active_modules );
+		$modules           = array();
+		foreach ( $available_modules as $module ) {
+			if ( $module_array = Calibrefx::get_module( $module ) ) {
+
+				$module_array['module']            = $module;
+				$module_array['activated']         = in_array( $module, $active_modules );
 				$module_array['deactivate_nonce']  = wp_create_nonce( 'calibrefx_deactivate-' . $module );
 				$module_array['activate_nonce']    = wp_create_nonce( 'calibrefx_activate-' . $module );
 				$module_array['available']         = $this->is_module_available( $module_array );
 				// $module_array['short_description'] = $short_desc_trunc;
 				// $module_array['configure_url']     = Calibrefx::module_configuration_url( $module );
 
-        		$modules[ $module ] = $module_array;
-        	}
-        }
-        uasort( $modules, array( $this, 'sort_modules' ) );
+				$modules[ $module ] = $module_array;
+			}
+		}
+		uasort( $modules, array( $this, 'sort_modules' ) );
 
-        return $modules;
-    }
+		return $modules;
+	}
 
-    function is_module_available( $module ) {
-		if ( ! is_array( $module ) || empty( $module ) )
-			return false;
+	function is_module_available( $module ) {
+		if ( ! is_array( $module ) || empty( $module ) ) {
+			return false; }
 
 		return ! ( $module['requires_connection'] );
 	}
 
 	public function sort_modules( $a, $b ) {
-        if ( $a['sort'] == $b['sort'] )
-            return 0;
+		if ( $a['sort'] == $b['sort'] ) {
+			return 0; }
 
-        return ( $a['sort'] < $b['sort'] ) ? -1 : 1;
-    }
+		return ( $a['sort'] < $b['sort'] ) ? -1 : 1;
+	}
 }

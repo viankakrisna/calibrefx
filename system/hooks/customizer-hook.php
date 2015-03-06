@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 add_action( 'customize_register', 'calibrefx_customize_register' );
 function calibrefx_customize_register( $wp_customize ) {
@@ -22,7 +22,7 @@ function calibrefx_customize_register( $wp_customize ) {
 								'fluid'   => __( 'Fluid Layout', 'calibrefx' ),
 								'static'  => __( 'Static Layout', 'calibrefx' ),
 							),
-		'priority'      => 1,
+							'priority'      => 1,
 	) );
 
 	$wp_customize->add_setting( 'calibrefx-settings[calibrefx_layout_width]', array(
@@ -69,16 +69,16 @@ add_action( 'customize_save_after', 'calibrefx_save_back_customize_setting' );
 
 /**
  * Used by hook: 'customize_preview_init'
- * 
+ *
  * @see add_action( 'customize_preview_init',$func)
  */
-function calibrefx_customizer_live_preview() {   
-    wp_enqueue_script( 
-          'calibrefx_themecustomizer_js',            //Give the script an ID
-          get_template_directory_uri() . '/assets/js/theme-customize.js',//Point to file
-          array( 'customize-preview' ),    //Define dependencies
-          '',                       //Define a version (optional) 
-          true                      //Put script in footer?
-    );
+function calibrefx_customizer_live_preview() {
+	wp_enqueue_script(
+		'calibrefx_themecustomizer_js',            //Give the script an ID
+		get_template_directory_uri() . '/assets/js/theme-customize.js',//Point to file
+		array( 'customize-preview' ),    //Define dependencies
+		'',                       //Define a version (optional)
+		true                      //Put script in footer?
+	);
 }
 add_action( 'customize_preview_init', 'calibrefx_customizer_live_preview' );

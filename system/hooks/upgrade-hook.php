@@ -23,7 +23,7 @@ function calibrefx_update_check() {
 					'theme_version' => FRAMEWORK_VERSION,
 					'url' => home_url( ),
 					'wp_version' => $wp_version,
-					'php_version' => phpversion(),					
+					'php_version' => phpversion(),
 					'user-agent' => "WordPress/$wp_version;",
 				),
 			)
@@ -56,9 +56,9 @@ function calibrefx_update_check() {
  * Iteratively update calibreFx to the latest version
  */
 function calibrefx_upgrade() {
-	
+
 	//Avoid infinited loop
-	if( empty( calibrefx_get_option( 'calibrefx_db_version' ) ) ){
+	if ( empty( calibrefx_get_option( 'calibrefx_db_version' ) ) ){
 		calibrefx_set_option( 'calibrefx_db_version', FRAMEWORK_DB_VERSION );
 	}
 

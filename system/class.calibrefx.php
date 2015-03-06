@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Calibrefx Core Class
  */
@@ -18,7 +18,7 @@ class Calibrefx {
 	 */
 
 	public static function get_instance() {
-		if( ! self::$instance ){
+		if ( ! self::$instance ){
 			self::$instance = new Calibrefx;
 		}
 
@@ -51,7 +51,7 @@ class Calibrefx {
 	 * Add our calibrefx theme support
 	 */
 	public function theme_support() {
-		
+
 		add_theme_support( 'calibrefx-admin-menu' );
 		add_theme_support( 'calibrefx-custom-background' );
 		add_theme_support( 'calibrefx-default-styles' );
@@ -83,7 +83,7 @@ class Calibrefx {
 
 		if ( ! current_theme_supports( 'calibrefx-wraps' ) ){
 			add_theme_support( 'calibrefx-wraps',
-				array( 'header', 'nav', 'subnav', 'inner', 'footer', 'footer-widget' ) );
+			array( 'header', 'nav', 'subnav', 'inner', 'footer', 'footer-widget' ) );
 		}
 
 		add_post_type_support( 'post', array( 'calibrefx-layouts' ) );
@@ -93,19 +93,19 @@ class Calibrefx {
 	public function run_autoload(){
 		// Load required library
 		$this->load->library( 'form' );
-		
-		if( is_admin() ){
+
+		if ( is_admin() ){
 			//Only load this on admin area
 			$this->load->library( 'replacer' );
 			$this->load->library( 'security' );
 			$this->load->library( 'walker_nav_menu_edit' );
 			$this->load->library( 'shortcode' );
-		} else{
+		} else {
 			//Only load this on frontend
 			$this->load->library( 'breadcrumb' );
 			$this->load->library( 'notification' );
 		}
-		
+
 		$this->hooks->run_hook();
 	}
 
@@ -137,7 +137,7 @@ class Calibrefx {
 	public static function glob_php( $absolute_path ) {
 		$absolute_path = untrailingslashit( $absolute_path );
 		$files = array();
-		if ( ! $dir = @opendir( $absolute_path ) ) {
+		if ( ! is_dir( $absolute_path ) OR ! $dir = opendir( $absolute_path ) ) {
 			return $files;
 		}
 
@@ -181,7 +181,7 @@ class Calibrefx {
 
 				$modules = array();
 
-				foreach ( $files as $file ) { 
+				foreach ( $files as $file ) {
 					if ( ! $headers = self::get_module( $file ) ) {
 						continue;
 					}
@@ -216,7 +216,7 @@ class Calibrefx {
 	public static function get_module_path( $slug ) {
 		$child_module_files = self::glob_php( CHILD_MODULE_URI );
 
-		if( in_array( CHILD_MODULE_URI . "/$slug.php", $child_module_files ) ){
+		if ( in_array( CHILD_MODULE_URI . "/$slug.php", $child_module_files ) ){
 			return CHILD_MODULE_URI . "/$slug.php";
 		}
 
@@ -340,18 +340,18 @@ class Calibrefx {
 
 	public static function activate_module( $module, $exit = true, $redirect = true ) {
 		do_action( 'calibrefx_pre_activate_module', $module, $exit );
-		
-		if ( ! strlen( $module ) )
-			return false;
 
-		if ( ! Calibrefx::is_module( $module ) )
-			return false;
+		if ( ! strlen( $module ) ) {
+			return false; }
+
+		if ( ! Calibrefx::is_module( $module ) ) {
+			return false; }
 
 		// If it's already active, then don't do it again
 		$active = self::get_active_modules();
 		foreach ( $active as $act ) {
-			if ( $act == $module )
-				return true;
+			if ( $act == $module ) {
+				return true; }
 		}
 
 		$module_data = self::get_module( $module );
@@ -360,7 +360,7 @@ class Calibrefx {
 		do_action( 'calibrefx_activate_module', $module );
 		$active[] = $module;
 		update_option( 'calibrefx_active_modules', array_unique( $active ) );
-		
+
 		if ( $redirect ) {
 			wp_safe_redirect( Calibrefx::admin_url( 'page=calibrefx-modules' ) );
 		}

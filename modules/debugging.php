@@ -13,22 +13,22 @@
 /**
  * debug_var function
  * Dump a variable with human readable format
- * 
+ *
  */
-if (!function_exists( 'debug_var' ) ) {
+if ( ! function_exists( 'debug_var' ) ) {
 
-    function debug_var( $var ) {
-        $before = '<div style="padding:10px 20px 10px 20px; background-color:#fbe6f2; border:1px solid #d893a1; color: #000; font-size: 12px;>' . "\n";
-        $before .= '<h5 style="font-family:verdana,sans-serif; font-weight:bold; font-size:18px;">Debug Helper Output</h5>' . "\n";
-        $before .= '<pre>' . "\n";
+	function debug_var( $var ) {
+		$before = '<div style="padding:10px 20px 10px 20px; background-color:#fbe6f2; border:1px solid #d893a1; color: #000; font-size: 12px;>' . "\n";
+		$before .= '<h5 style="font-family:verdana,sans-serif; font-weight:bold; font-size:18px;">Debug Helper Output</h5>' . "\n";
+		$before .= '<pre>' . "\n";
 
-        echo $before;
-        var_dump( $var );
-        $after = '</pre>' . "\n";
-        $after .= '</div>' . "\n";
+		echo $before;
+		var_dump( $var );
+		$after = '</pre>' . "\n";
+		$after .= '</div>' . "\n";
 
-        echo $after;
-    }
+		echo $after;
+	}
 
 }
 
@@ -41,16 +41,16 @@ if (!function_exists( 'debug_var' ) ) {
  * @category        Helpers
  * @author          CalibreFx Team
  * @link            http://www.calibrefx.com
- * 
+ *
  */
-if ( !function_exists( 'debug_var_log' ) ) {
+if ( ! function_exists( 'debug_var_log' ) ) {
 
-    function debug_var_log( $var ) {
-        ob_start(); //Start buffering
-        var_dump( $var ); //print the result
-        $output = ob_get_contents(); //get the result from buffer
-        ob_end_clean(); //close buffer
-    }
+	function debug_var_log( $var ) {
+		ob_start(); //Start buffering
+		var_dump( $var ); //print the result
+		$output = ob_get_contents(); //get the result from buffer
+		ob_end_clean(); //close buffer
+	}
 
 }
 
@@ -63,16 +63,16 @@ if ( !function_exists( 'debug_var_log' ) ) {
  * @category        Helpers
  * @author          CalibreFx Team
  * @link            http://www.calibrefx.com
- * 
+ *
  */
-if ( !function_exists( 'fire_debug' ) ) {
+if ( ! function_exists( 'fire_debug' ) ) {
 
-    function fire_debug( $var ) {
-        global $calibrefx;
-        include( CALIBREFX_LIBRARY_URI . '/third-party/firephp/FirePHP.class.php' );
-        $firephp = FirePHP::getInstance( true );
-        $firephp->log( $var );
-    }
+	function fire_debug( $var ) {
+		global $calibrefx;
+		$calibrefx->load->file( CALIBREFX_LIBRARY_URI . '/third-party/firephp/FirePHP.class.php' );
+		$firephp = FirePHP::getInstance( true );
+		$firephp->log( $var );
+	}
 
 }
 
@@ -85,27 +85,27 @@ if ( !function_exists( 'fire_debug' ) ) {
  * @category        Helpers
  * @author          CalibreFx Team
  * @link            http://www.calibrefx.com
- * 
+ *
  */
-if ( !function_exists( 'die_dump' ) ) {
+if ( ! function_exists( 'die_dump' ) ) {
 
-    function die_dump() {
-        list( $callee ) = debug_backtrace();
-        $arguments = func_get_args();
-        $total_arguments = count( $arguments );
-        echo '<fieldset style="background: #fefefe !important; border:2px red solid; padding:5px">';
-        echo '<legend style="background:lightgrey; padding:5px;">' . $callee['file'] . ' @ line: ' . $callee['line'] . '</legend><pre>';
+	function die_dump() {
+		list( $callee ) = debug_backtrace();
+		$arguments = func_get_args();
+		$total_arguments = count( $arguments );
+		echo '<fieldset style="background: #fefefe !important; border:2px red solid; padding:5px">';
+		echo '<legend style="background:lightgrey; padding:5px;">' . $callee['file'] . ' @ line: ' . $callee['line'] . '</legend><pre>';
 
-        $i = 0;
-        foreach ( $arguments as $argument ) {
-            echo '<br/><strong>Debug #' . (++$i) . ' of ' . $total_arguments . '</strong>: ';
-            var_dump( $argument );
-        }
+		$i = 0;
+		foreach ( $arguments as $argument ) {
+			echo '<br/><strong>Debug #' . (++$i) . ' of ' . $total_arguments . '</strong>: ';
+			var_dump( $argument );
+		}
 
-        echo "</pre>";
-        echo "</fieldset>";
-        die();
-    }
+		echo '</pre>';
+		echo '</fieldset>';
+		die();
+	}
 
 }
 
@@ -118,102 +118,103 @@ if ( !function_exists( 'die_dump' ) ) {
  * @category        Helpers
  * @author          CalibreFx Team
  * @link            http://www.calibrefx.com
- * 
+ *
  */
-if ( !function_exists( 'debug_file' ) ) {
+if ( ! function_exists( 'debug_file' ) ) {
 
-    function debug_file( $var = '', $filename = 'debug.txt' ) {
+	function debug_file( $var = '', $filename = 'debug.txt' ) {
 
-        $output = "";
+		$output = '';
 
-        if ( is_array( $var ) ) {
-            $output = print_r( $var, TRUE );
-        } elseif ( is_object( $var ) ) {
-            ob_start(); //Start buffering
-            var_dump( $var); //print the result
-            $output = ob_get_contents(); //get the result from buffer
-            ob_end_clean(); //close buffer
-        } else {
-            ob_start(); //Start buffering
-            var_dump( $var ); //print the result
-            $output = ob_get_contents(); //get the result from buffer
-            ob_end_clean(); //close buffer
-        }
+		if ( is_array( $var ) ) {
+			$output = print_r( $var, true );
+		} elseif ( is_object( $var ) ) {
+			ob_start(); //Start buffering
+			var_dump( $var ); //print the result
+			$output = ob_get_contents(); //get the result from buffer
+			ob_end_clean(); //close buffer
+		} else {
+			ob_start(); //Start buffering
+			var_dump( $var ); //print the result
+			$output = ob_get_contents(); //get the result from buffer
+			ob_end_clean(); //close buffer
+		}
 
-        global $wp_filesystem;
-        $filepath = CALIBREFX_LOG_URI . '/' . $filename;
-        $wp_filesystem->put_contents(
-            $filepath,
-            $output,
-            FOPEN_READ_WRITE_CREATE // predefined mode settings for WP files
-        );
-    }
+		global $wp_filesystem;
+		$filepath = CALIBREFX_LOG_URI . '/' . $filename;
+		$wp_filesystem->put_contents(
+			$filepath,
+			$output,
+			FOPEN_READ_WRITE_CREATE // predefined mode settings for WP files
+		);
+	}
 
 }
 
-if ( !function_exists( 'list_hooks' ) ) {
-    function list_hooks( $filter = false ) {
-        global $wp_filter;
-        
-        $hooks = $wp_filter;
-        ksort( $hooks );
+if ( ! function_exists( 'list_hooks' ) ) {
+	function list_hooks( $filter = false ) {
+		global $wp_filter;
 
-        foreach( $hooks as $tag => $hook ){
-            if ( false === $filter || false !== strpos( $tag, $filter ) ){
-                dump_hook( $tag, $hook);
-            }
-        }
-    }
+		$hooks = $wp_filter;
+		ksort( $hooks );
+
+		foreach ( $hooks as $tag => $hook ){
+			if ( false === $filter || false !== strpos( $tag, $filter ) ){
+				dump_hook( $tag, $hook );
+			}
+		}
+	}
 }
 
-if ( !function_exists( 'list_live_hooks' ) ) {
-    function list_live_hooks( $hook = false ) {
-        if ( false === $hook ){
-            $hook = 'all';
-        }
+if ( ! function_exists( 'list_live_hooks' ) ) {
+	function list_live_hooks( $hook = false ) {
+		if ( false === $hook ){
+			$hook = 'all';
+		}
 
-        add_action( $hook, 'list_hook_details', -1 );
-    }
+		add_action( $hook, 'list_hook_details', -1 );
+	}
 }
 
-if ( !function_exists( 'list_hook_details' ) ) {
-    function list_hook_details( $input = NULL ) {
-        global $wp_filter;
-        
-        $tag = current_filter();
-        if( isset( $wp_filter[$tag] ) ) {
-            dump_hook( $tag, $wp_filter[$tag] );
-        }
+if ( ! function_exists( 'list_hook_details' ) ) {
+	function list_hook_details( $input = null ) {
+		global $wp_filter;
 
-        return $input;
-    }
+		$tag = current_filter();
+		if ( isset( $wp_filter[$tag] ) ) {
+			dump_hook( $tag, $wp_filter[$tag] );
+		}
+
+		return $input;
+	}
 }
 
-if ( !function_exists( 'dump_hook' ) ) {
-    function dump_hook( $tag, $hook ) {
-        ksort( $hook);
+if ( ! function_exists( 'dump_hook' ) ) {
+	function dump_hook( $tag, $hook ) {
+		ksort( $hook );
 
-        echo "<pre>&gt;&gt;&gt;&gt;&gt;\t<strong>$tag</strong><br />";
-        
-        foreach( $hook as $priority => $functions ) {
+		echo "<pre>&gt;&gt;&gt;&gt;&gt;\t<strong>$tag</strong><br />";
 
-        echo $priority;
+		foreach ( $hook as $priority => $functions ) {
 
-        foreach( $functions as $function )
-            if( $function['function'] != 'list_hook_details' ) {
-            
-                echo "\t";
+			echo $priority;
 
-                if( is_string( $function['function'] ) ) {
-                    echo $function['function'];
-                } else {
-                    print_r( $function);
-                }
+			foreach ( $functions as $function ) {
+				if ( $function['function'] != 'list_hook_details' ) {
 
-                echo ' ( ' . $function['accepted_args'] . ' ) <br />';
-            }
-        }
+					echo "\t";
 
-        echo '</pre>';
-    }
+					if ( is_string( $function['function'] ) ) {
+						echo $function['function'];
+					} else {
+						print_r( $function );
+					}
+
+					echo ' ( ' . $function['accepted_args'] . ' ) <br />';
+				}
+			}
+		}
+
+		echo '</pre>';
+	}
 }

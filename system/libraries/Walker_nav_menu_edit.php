@@ -1,7 +1,7 @@
 <?php
 /**
  *  /!\ This is a copy of Walker_Nav_Menu_Edit class in core
- * 
+ *
  * Create HTML list of nav menu input items.
  *
  * @package WordPress
@@ -15,9 +15,9 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	 *
 	 * @param string $output Passed by reference.
 	 */
-	function start_lvl(&$output, $depth = 0, $args = array() ) {	
+	function start_lvl(&$output, $depth = 0, $args = array() ) {
 	}
-	
+
 	/**
 	 * @see Walker_Nav_Menu::end_lvl()
 	 * @since 3.0.0
@@ -26,7 +26,7 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	 */
 	function end_lvl(&$output, $depth = 0, $args = array() ) {
 	}
-	
+
 	/**
 	 * @see Walker::start_el()
 	 * @since 3.0.0
@@ -38,11 +38,11 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	 */
 	function start_el(&$output, $item, $depth = 0, $args = array(),  $current_object_id = 0) {
 	    global $_wp_nav_menu_max_depth;
-	   
+
 	    $_wp_nav_menu_max_depth = $depth > $_wp_nav_menu_max_depth ? $depth : $_wp_nav_menu_max_depth;
-	
+
 	    $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
-	
+
 	    ob_start();
 	    $item_id = esc_attr( $item->ID );
 	    $removed_args = array(
@@ -53,25 +53,25 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	        'page-tab',
 	        '_wpnonce',
 	    );
-	
+
 	    $original_title = '';
 	    if ( 'taxonomy' == $item->type ) {
 	        $original_title = get_term_field( 'name', $item->object_id, $item->object, 'raw' );
-	        if ( is_wp_error( $original_title ) )
-	            $original_title = false;
+	        if ( is_wp_error( $original_title ) ) {
+	            $original_title = false; }
 	    } elseif ( 'post_type' == $item->type ) {
 	        $original_object = get_post( $item->object_id );
 	        $original_title = $original_object->post_title;
 	    }
-	
+
 	    $classes = array(
 	        'menu-item menu-item-depth-' . $depth,
 	        'menu-item-' . esc_attr( $item->object ),
 	        'menu-item-edit-' . ( ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? 'active' : 'inactive' ),
 	    );
-	
+
 	    $title = $item->title;
-	
+
 	    if ( ! empty( $item->_invalid ) ) {
 	        $classes[] = 'menu-item-invalid';
 	        /* translators: %s: title of menu item which is invalid */
@@ -81,9 +81,9 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	        /* translators: %s: title of menu item in draft status */
 	        $title = sprintf( __( '%s (Pending)', 'calibrefx' ), $item->title );
 	    }
-	
+
 	    $title = empty( $item->label ) ? $title : $item->label;
-	
+
 	    ?>
 	    <li id="menu-item-<?php echo $item_id; ?>" class="<?php echo implode( ' ', $classes ); ?>">
 	        <dl class="menu-item-bar">
@@ -126,7 +126,7 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	        </dl>
 	
 	        <div class="menu-item-settings" id="menu-item-settings-<?php echo $item_id; ?>">
-	            <?php if( 'custom' == $item->type ) : ?>
+	            <?php if ( 'custom' == $item->type ) : ?>
 	                <p class="field-url description description-wide">
 	                    <label for="edit-menu-item-url-<?php echo $item_id; ?>">
 	                        <?php _e( 'URL', 'calibrefx' ); ?><br />
@@ -182,10 +182,10 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	            </p>
 	            <?php
 	            /* New fields insertion ends here */
-					do_action('wp_nav_menu_item_custom_fields', $item_id, $item, $depth, $args);
+					do_action( 'wp_nav_menu_item_custom_fields', $item_id, $item, $depth, $args );
 	            ?>
 	            <div class="menu-item-actions description-wide submitbox">
-	                <?php if( 'custom' != $item->type && $original_title !== false ) : ?>
+	                <?php if ( 'custom' != $item->type && $original_title !== false ) : ?>
 	                    <p class="link-to-original">
 	                        <?php printf( __( 'Original: %s', 'calibrefx' ), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
 	                    </p>
@@ -213,8 +213,8 @@ class CFX_Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 	        </div><!-- .menu-item-settings-->
 	        <ul class="menu-item-transport"></ul>
 	    <?php
-	    
+
 	    $output .= ob_get_clean();
 
-	    }
+	}
 }

@@ -1,7 +1,7 @@
-<?php 
+<?php
 /**
  * Calibrefx Meta Helper
- * 
+ *
  */
 
 /**
@@ -25,15 +25,15 @@ function calibrefx_meta_locale(){
 		'sq' => 'sq_AL',
 		'uk' => 'uk_UA',
 		'vi' => 'vi_VN',
-		'zh' => 'zh_CN'
+		'zh' => 'zh_CN',
 	);
 
-	if ( isset( $fix_locales[$locale] ) )
-		$locale = $fix_locales[$locale];
+	if ( isset( $fix_locales[ $locale ] ) ) {
+		$locale = $fix_locales[ $locale ]; }
 
 	// convert locales like "es" to "es_ES", in case that works for the given locale (sometimes it does)
-	if ( strlen( $locale ) == 2 )
-		$locale = strtolower( $locale ) . '_' . strtoupper( $locale );
+	if ( 2 == strlen( $locale ) ) {
+		$locale = strtolower( $locale ) . '_' . strtoupper( $locale ); }
 
 	// These are the locales FB supports
 	$fb_valid_fb_locales = array(
@@ -48,8 +48,8 @@ function calibrefx_meta_locale(){
 	);
 
 	// check to see if the locale is a valid FB one, if not, use en_US as a fallback
-	if ( !in_array( $locale, $fb_valid_fb_locales ) )
-		$locale = 'en_US';
+	if ( ! in_array( $locale, $fb_valid_fb_locales ) ) {
+		$locale = 'en_US'; }
 
 	return apply_filters( 'calibrefx_meta_locale', $locale );
 }
@@ -85,11 +85,11 @@ function calibrefx_meta_description(){
 	$desc = '';
 
 	if ( is_home() || is_front_page() ){
-		$desc = get_bloginfo('description');
+		$desc = get_bloginfo( 'description' );
 	} elseif ( is_singular() ){
-		$desc = calibrefx_truncate_phrase( $post->post_content, calibrefx_get_option('content_archive_limit') );
+		$desc = calibrefx_truncate_phrase( $post->post_content, calibrefx_get_option( 'content_archive_limit' ) );
 	} elseif ( is_archive() ){
-		if( is_category() ){
+		if ( is_category() ){
 			$desc = category_description( get_query_var( 'cat' ) );
 		} elseif ( is_tax() ){
 			$term = $wp_query->get_queried_object();
@@ -98,7 +98,7 @@ function calibrefx_meta_description(){
 			$desc = __( 'All posts in ', 'calibrefx' ) . get_query_var( 'year' );
 		} elseif ( is_month() ){
 			$desc = __( 'All Posts in ', 'calibrefx' ) . $wp_locale->get_month( get_query_var( 'monthnum' ) ) . ' ' . get_query_var( 'year' );
-		} elseif ( is_day() ){ 
+		} elseif ( is_day() ){
 			$desc = __( 'All Posts in ', 'calibrefx' ) . get_query_var( 'day' ) . ' ' . $wp_locale->get_month( get_query_var( 'monthnum' ) ) . ' ' . get_query_var( 'year' );
 		} elseif ( is_author() ){
 			$desc = get_user_meta( $wp_query->queried_object->ID, 'intro_text', true );
@@ -118,11 +118,11 @@ function calibrefx_meta_description(){
 
 /**
  * Get feature image to show on meta tag
- * 
+ *
  * @return string image url
  */
 function calibrefx_meta_image(){
 	$image = calibrefx_get_image( array( 'format' => 'url' ) );
-    
+
 	return apply_filters( 'calibrefx_meta_image', $image );
 }

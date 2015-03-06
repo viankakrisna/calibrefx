@@ -23,7 +23,7 @@ function cfx_is_ajax_request() {
  * @return array
  */
 function calibrefx_get_layouts() {
-   _deprecated_function( __FUNCTION__, '2.0', 'is_ajax()' );
+	_deprecated_function( __FUNCTION__, '2.0', 'is_ajax()' );
 
 	return calibrefx_get_all_layouts();
 }
@@ -33,8 +33,8 @@ function calibrefx_get_layouts() {
  * @deprecated 2.0
  */
 function get_footer_widget_class( $class = '' ) {
-    // Separates classes with a single space, collates classes for body element
-    return 'class="' . join( ' ', get_footer_widget_classes( $class ) ) . '"';
+	// Separates classes with a single space, collates classes for body element
+	return 'class="' . join( ' ', get_footer_widget_classes( $class ) ) . '"';
 }
 
 /**
@@ -42,7 +42,7 @@ function get_footer_widget_class( $class = '' ) {
  * @deprecated 2.0
  */
 function footer_widget_class( $class = '' ) {
-    echo get_footer_widget_class( $class );
+	echo esc_attr( get_footer_widget_class( $class ) );
 }
 
 /**
@@ -50,22 +50,22 @@ function footer_widget_class( $class = '' ) {
  * @deprecated 2.0
  */
 function get_footer_widget_classes( $class = '' ) {
-    $classes = array();
+	$classes = array();
 
-    //always use row class as the base
-    $classes[] = calibrefx_row_class(); 
+	//always use row class as the base
+	$classes[] = calibrefx_row_class();
 
-    if ( !empty( $class ) ) {
-        if ( !is_array( $class ) )
-            $class = preg_split( '#\s+#', $class );
-        $classes = array_merge( $classes, $class );
-    } else {
-        $class = array();
-    }
+	if ( ! empty( $class ) ) {
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class ); }
+		$classes = array_merge( $classes, $class );
+	} else {
+		$class = array();
+	}
 
-    $classes = array_map( 'esc_attr', $classes );
+	$classes = array_map( 'esc_attr', $classes );
 
-    return apply_filters( 'footer_widget_class', $classes, $class );
+	return apply_filters( 'footer_widget_class', $classes, $class );
 }
 
 /**
@@ -73,6 +73,6 @@ function get_footer_widget_classes( $class = '' ) {
  * @deprecated 2.0
  */
 function calibrefx_get_site_url() {
-    $url = str_replace( '.', '-', str_replace( 'http://', '', home_url() ) );
-    return $url;
+	$url = str_replace( '.', '-', str_replace( 'http://', '', home_url() ) );
+	return $url;
 }

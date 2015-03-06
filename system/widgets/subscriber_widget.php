@@ -1,28 +1,28 @@
-<?php 
+<?php
 /**
  * Register the widget for use in Appearance -> Widgets
  */
 function calibrefx_feedburner_init() {
-    register_widget( 'CFX_Feedburner_Widget' );
+	register_widget( 'CFX_Feedburner_Widget' );
 }
 add_action( 'widgets_init', 'calibrefx_feedburner_init' );
 
 class CFX_Feedburner_Widget extends WP_Widget {
-	
+
 	protected $defaults;
-	
+
 	/**
 	 * Constructor
 	 */
 	function __construct() {
 		parent::__construct(
-            'feedburner-widget',
-            apply_filters( 'calibrefx_widget_name', __( 'Feedburner Subscribe', 'calibrefx' ) ),
-            array(
-                'classname' => 'widget_feedburner',
-                'description' => __( 'Display email subscriber form for Feedburner', 'calibrefx' )
-            )
-        );
+			'feedburner-widget',
+			apply_filters( 'calibrefx_widget_name', __( 'Feedburner Subscribe', 'calibrefx' ) ),
+			array(
+				'classname' => 'widget_feedburner',
+				'description' => __( 'Display email subscriber form for Feedburner', 'calibrefx' )
+			)
+		);
 
 		$this->defaults = array(
 			'title'       => '',
@@ -32,7 +32,7 @@ class CFX_Feedburner_Widget extends WP_Widget {
 			'button_text' => '',
 		);
 	}
-	
+
 	/**
 	 * Display widget content.
 	 *
@@ -42,19 +42,19 @@ class CFX_Feedburner_Widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		extract( $args );
 		$instance = wp_parse_args( (array) $instance, $this->defaults );
-		
+
 		echo $before_widget . '<div class="subscriber">';
 
-			if ( ! empty( $instance['title'] ) )
-				echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title;
-			
-			if( $instance['text']) {
-				echo '<div class="subscriber-text">';
-				echo wpautop( $instance['text'] ); // We run KSES on update
-				echo '</div>';
-			}
-			
-			if ( ! empty( $instance['id'] ) ) : ?>
+		if ( ! empty( $instance['title'] ) ) {
+			echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title; }
+
+		if ( $instance['text'] ) {
+			echo '<div class="subscriber-text">';
+			echo wpautop( $instance['text'] ); // We run KSES on update
+			echo '</div>';
+		}
+
+		if ( ! empty( $instance['id'] ) ) : ?>
 			<form id="subscribe" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open( 'http://feedburner.google.com/fb/a/mailverify?uri=<?php echo esc_js( $instance['id'] ); ?>', 'popupwindow', 'scrollbars=yes,width=550,height=520' );return true">
 				<div class="input-group">
 					<input type="text" value="<?php echo esc_attr( $instance['input_text'] ); ?>" id="subbox" onfocus="if ( this.value == '<?php echo esc_js( $instance['input_text'] ); ?>' ) { this.value = ''; }" onblur="if ( this.value == '' ) { this.value = '<?php echo esc_js( $instance['input_text'] ); ?>'; }" name="email" class="form-control" />
@@ -68,9 +68,9 @@ class CFX_Feedburner_Widget extends WP_Widget {
 			<?php endif;
 
 		echo '</div>' . $after_widget;
-		
+
 	}
-	 
+
 	 /**
 	  * Update a particular instance.
 	  */
@@ -81,7 +81,7 @@ class CFX_Feedburner_Widget extends WP_Widget {
 		return $new_instance;
 
 	}
-	
+
 	/**
 	 * Display the settings update form.
 	 */

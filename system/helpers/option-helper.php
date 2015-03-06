@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Calibrefx Option Helper
  */
@@ -12,9 +12,9 @@
  * @return mix
  */
 function calibrefx_get_option( $key, $group = 'calibrefx-settings' ) {
-    global $calibrefx;
+	global $calibrefx;
 
-    return $calibrefx->model->get( $key, $group );
+	return $calibrefx->model->get( $key, $group );
 }
 
 /**
@@ -26,7 +26,7 @@ function calibrefx_get_option( $key, $group = 'calibrefx-settings' ) {
  * @return void
  */
 function calibrefx_option( $key, $group = null ) {
-    echo calibrefx_get_option( $key, $group );
+	echo calibrefx_get_option( $key, $group );
 }
 
 /**
@@ -38,15 +38,15 @@ function calibrefx_option( $key, $group = null ) {
  * @return mix
  */
 function calibrefx_set_option( $key, $value, $group = 'calibrefx-settings' ) {
-    global $calibrefx;
+	global $calibrefx;
 
-    $options = $calibrefx->model->get_all( $group );
+	$options = $calibrefx->model->get_all( $group );
 
-    if( empty( $options ) ) return false;
+	if ( empty( $options ) ) { return false; }
 
-    $options[ $key ] = $value;
+	$options[ $key ] = $value;
 
-    return $calibrefx->model->save( $options, $group );
+	return $calibrefx->model->save( $options, $group );
 }
 
 /**
@@ -56,35 +56,35 @@ function calibrefx_set_option( $key, $value, $group = 'calibrefx-settings' ) {
  * @param string $field used to indicate the custom field key
  */
 function calibrefx_custom_field( $field ) {
-    echo calibrefx_get_custom_field( $field );
+	echo calibrefx_get_custom_field( $field );
 }
 
 function calibrefx_get_custom_field( $field ) {
-    global $post;
+	global $post;
 
-    if ( null === $post ) {
-        return false;
-    }
+	if ( null === $post ) {
+		return false;
+	}
 
-    $custom_field = get_post_meta( $post->ID, $field, true);
+	$custom_field = get_post_meta( $post->ID, $field, true );
 
-    if ( $custom_field ) {
-        if( !is_array( $custom_field ) ) {
-            /** sanitize and return the value of the custom field */
-            return stripslashes( wp_kses_decode_entities( $custom_field ) );
-        }
-        return $custom_field;
-    } else {
-        /** return false if custom field is empty */
-        return false;
-    }
+	if ( $custom_field ) {
+		if ( ! is_array( $custom_field ) ) {
+			/** sanitize and return the value of the custom field */
+			return stripslashes( wp_kses_decode_entities( $custom_field ) );
+		}
+		return $custom_field;
+	} else {
+		/** return false if custom field is empty */
+		return false;
+	}
 }
 
 function calibrefx_get_usermeta( $user_id, $key, $single = true ) {
-    $options = apply_filters( 'calibrefx_usermeta', get_user_meta( $user_id, $key, $single ) );
-    return $options;
+	$options = apply_filters( 'calibrefx_usermeta', get_user_meta( $user_id, $key, $single ) );
+	return $options;
 }
 
 function calibrefx_usermeta( $user_id, $key ) {
-    return calibrefx_get_usermeta( $user_id, $key );
+	return calibrefx_get_usermeta( $user_id, $key );
 }

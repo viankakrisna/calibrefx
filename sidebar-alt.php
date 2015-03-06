@@ -4,7 +4,7 @@
  */
 ?>
 
-<div id="sidebar-alt" class="<?php echo calibrefx_sidebar_alt_span(); ?> sidebar widget-area">
+<div id="sidebar-alt" class="<?php echo sanitize_text_field( calibrefx_sidebar_alt_span() ); ?> sidebar widget-area">
 <?php
 	do_action( 'calibrefx_before_sidebar_alt_widget_area' );
 	do_action( 'calibrefx_sidebar_alt' );

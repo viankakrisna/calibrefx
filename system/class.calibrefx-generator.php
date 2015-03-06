@@ -1,222 +1,223 @@
-<?php 
+<?php
 /**
  * Generator Class
  *
  * Generator Class to generate all hooks
- * 
+ *
  */
 
 class Calibrefx_Generator{
-
-    /**
-     * Reference to the global Plugin instance
-     *
-     * @var object
-     */
-    protected static $instance;
+	/**
+	 * Reference to the global Plugin instance
+	 *
+	 * @var object
+	 */
+	protected static $instance;
 
 	/**
-     * Store all hooks
-     *
-     * @var	object
-     */
-    private $_hooks = array();
+	 * Store all hooks
+	 *
+	 * @var	object
+	 */
+	private $_hooks = array();
 
-    /**
-     * Constructor
-     *
-     * Initialize
-     *
-     * @return	void
-     */
-    public function __construct() {
-    	$this->_hooks = array();
-    }
+	/**
+	 * Constructor
+	 *
+	 * Initialize
+	 *
+	 * @return	void
+	 */
+	public function __construct() {
+		$this->_hooks = array();
+	}
 
-    /**
-     * Return the Calibrefx object
-     *
-     * @return  object
-     */
-    public static function get_instance() {
-        if( ! self::$instance ){
-            self::$instance = new Calibrefx_Generator();
-        }
-        
-        return self::$instance;
-    }
+	/**
+	 * Return the Calibrefx object
+	 *
+	 * @return  object
+	 */
+	public static function get_instance() {
+		if ( ! self::$instance ){
+			self::$instance = new Calibrefx_Generator();
+		}
 
-    /**
-     * Set hook
-     */
-    public function setHook( $tags ) {
-    	$this->_hooks = $tags;
-    }
+		return self::$instance;
+	}
 
-    /**
-     * Get Hook
-     */
-    public function getHook( $tag = NULL ) {
-        if( is_null( $tag ) ){
-	       return $this->_hooks;
-        }
+	/**
+	 * Set hook
+	 */
+	public function set_hook( $tags ) {
+		$this->_hooks = $tags;
+	}
 
-       return $this->_hooks[$tag];
-    }
+	/**
+	 * Get Hook
+	 */
+	public function get_hook( $tag = null ) {
+		if ( is_null( $tag ) ){
+			return $this->_hooks;
+		}
 
-    /**
-     * Get the hook list
-     *
-     * @return array
-     */
-    public function __get( $tag ) {
-    	if( empty( $this->_hooks[$tag] ) )
-    		return array();
+		return $this->_hooks[ $tag ];
+	}
 
-    	return $this->_hooks[$tag];
-    }
+	/**
+	 * Get the hook list
+	 *
+	 * @return array
+	 */
+	public function __get( $tag ) {
+		if ( empty( $this->_hooks[ $tag ] ) ) {
+			return array(); }
 
-    /**
-     * Set the hook list
-     *
-     * @return array
-     */
-    public function __set( $tag, $functions ) {
-    	if( !array( $functions ) ) return;
+		return $this->_hooks[ $tag ];
+	}
 
-    	if( empty( $this->_hooks[$tag]) ){
-    		$this->_hooks[$tag] = array();
-        }
+	/**
+	 * Set the hook list
+	 *
+	 * @return array
+	 */
+	public function __set( $tag, $functions ) {
+		if ( ! array( $functions ) ) { return; }
 
-    	foreach ( $functions as $function ) {
-    		if( is_string( $function ) ) {
-    			$this->add( $tag, $function );
-	    	} elseif( is_array( $function ) ) {
+		if ( empty( $this->_hooks[ $tag ]) ){
+			$this->_hooks[ $tag ] = array();
+		}
+
+		foreach ( $functions as $function ) {
+			if ( is_string( $function ) ) {
+				$this->add( $tag, $function );
+	    	} elseif ( is_array( $function ) ) {
 	    		$this->add(
-	    			$tag, 
-	    			$function['function'], 
-	    			isset( $function['priority'] )? $function['priority'] : 10, 
-	    			isset( $function['args'] )? $function['args'] : 0 );
+	    			$tag,
+	    			$function['function'],
+	    			isset( $function['priority'] )? $function['priority'] : 10,
+				isset( $function['args'] )? $function['args'] : 0 );
 	    	}
-    	}
-    }
+		}
+	}
 
-    /**
-     * Check if the hook isset
-     */
-    public function __isset( $tag ) {
-    	return isset( $this->_hooks[$tag] );
-    }
+	/**
+	 * Check if the hook isset
+	 */
+	public function __isset( $tag ) {
+		return isset( $this->_hooks[ $tag ] );
+	}
 
-    /**
-     * Add a hook
-     */
-    public function add( $tag, $function, $priority = 10, $args = 0 ) {
-    	$this->_hooks[$tag][] = array(
-    		'function'	=> $function,
-    		'priority'	=> $priority,
-    		'args'		=> $args
-    	);
+	/**
+	 * Add a hook
+	 */
+	public function add( $tag, $function, $priority = 10, $args = 0 ) {
+		$this->_hooks[ $tag ][] = array(
+			'function'	=> $function,
+			'priority'	=> $priority,
+			'args'		=> $args,
+		);
 
-        //For late call, then we need to add the action
-        if( !has_action( $tag, $function) ) {
-            add_action( $tag, $function, $priority );
-        }
+		//For late call, then we need to add the action
+		if ( ! has_action( $tag, $function ) ) {
+			add_action( $tag, $function, $priority );
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    /**
-     * Remove a function from a hook
-     */
-    public function remove( $tag, $function, $priority = 10 ) {
-    	if( !isset( $this->_hooks[$tag] ) ) return;
-    	
-    	$keysearch = -1;
-    	foreach ( $this->$tag as $key => $haystack ) {
-    		if( $haystack['function'] == $function ) {
-    			$keysearch = $key;
-    			break;
-    		}
-    	}
+	/**
+	 * Remove a function from a hook
+	 */
+	public function remove( $tag, $function, $priority = 10 ) {
+		if ( ! isset( $this->_hooks[ $tag ] ) ) { return; }
 
-    	if( $keysearch == -1 ) return false;
-    	unset( $this->_hooks[$tag][$keysearch] );
+		$keysearch = -1;
+		foreach ( $this->$tag as $key => $haystack ) {
+			if ( $haystack['function'] == $function ) {
+				$keysearch = $key;
+				break;
+			}
+		}
 
-        //For late call, then we need to change the action
-        if( has_action( $tag, $function) ) {
-            remove_action( $tag, $function, $priority );
-        }
+		if ( $keysearch == -1 ) { return false; }
+		unset( $this->_hooks[ $tag ][ $keysearch ] );
 
-    	return true;
-    }
+		//For late call, then we need to change the action
+		if ( has_action( $tag, $function ) ) {
+			remove_action( $tag, $function, $priority );
+		}
 
-    /**
-     * Move a function to another hook
-     */
-    public function move( $old_tag, $new_tag, $function, $old_priority = 10, $new_priority = 10 ) {
-    	if( !isset( $this->_hooks[$old_tag] ) ) return;
-    	
-    	$keysearch = -1;
-    	foreach ( $this->$old_tag as $key => $haystack ) {
-    		if( $haystack['function'] == $function ) {
-    			$keysearch = $key;
-    			break;
-    		}
-    	}
+		return true;
+	}
 
-    	if( $keysearch == -1 ) return false;
-    	$func_array = $this->_hooks[$old_tag][$keysearch];
-    	unset( $this->_hooks[$old_tag][$keysearch] );
-    	$this->add( $new_tag, $func_array['function'], $new_priority, $func_array['args'] );
-    	
-        //For late call, then we need to change the action
-        if( has_action( $old_tag, $function) ) {
-            remove_action( $old_tag, $function, $old_priority );
-            add_action( $new_tag, $function, $new_priority );
-        }
-        
-    	return true;
-    }
+	/**
+	 * Move a function to another hook
+	 */
+	public function move( $old_tag, $new_tag, $function, $old_priority = 10, $new_priority = 10 ) {
+		if ( ! isset( $this->_hooks[ $old_tag ] ) ) { return; }
 
-    /**
-     * Remove a function from a hook
-     */
-    public function replace( $tag, $function_old, $function_new, $old_priority = 10, $new_priority = 10 ) {
-        if( !isset( $this->_hooks[$tag]) ) return;
-        
-        $keysearch = -1;
-        foreach ( $this->$tag as $key => $haystack ) {
-            if( $haystack['function'] == $function_old ) {
-                $keysearch=$key;
-                break;
-            }
-        }
+		$keysearch = -1;
+		foreach ( $this->$old_tag as $key => $haystack ) {
+			if ( $haystack['function'] == $function ) {
+				$keysearch = $key;
+				break;
+			}
+		}
 
-        if( $keysearch == -1 ) return false;
-        $this->_hooks[$tag][$keysearch]['function'] = $function_new;
-        
-        //For late call, then we need to change the action
-        if( has_action( $tag, $function_old ) ) {
-            remove_action( $tag, $function_old, $old_priority );
-            add_action( $tag, $function_new, $new_priority );
-        }
-        
-        return true;
-    }
+		if ( -1 == $keysearch ) {
+			return false;
+		}
+		$func_array = $this->_hooks[ $old_tag ][ $keysearch ];
+		unset( $this->_hooks[ $old_tag ][ $keysearch ] );
+		$this->add( $new_tag, $func_array['function'], $new_priority, $func_array['args'] );
 
-    /**
-     * Run all the stored hooks
-     */
-    public function run_hook() {
-    	if( empty( $this->_hooks ) ) {
-    		return;
-    	}
+		//For late call, then we need to change the action
+		if ( has_action( $old_tag, $function ) ) {
+			remove_action( $old_tag, $function, $old_priority );
+			add_action( $new_tag, $function, $new_priority );
+		}
 
-    	foreach ( $this->_hooks as $hook => $list ) {
-    		foreach ( $list as $value ) {
-    			add_action( $hook, $value['function'], $value['priority'], $value['args'] );
-    		}
-    	}
-    }
+		return true;
+	}
+
+	/**
+	 * Remove a function from a hook
+	 */
+	public function replace( $tag, $function_old, $function_new, $old_priority = 10, $new_priority = 10 ) {
+		if ( ! isset( $this->_hooks[ $tag ]) ) { return; }
+
+		$keysearch = -1;
+		foreach ( $this->$tag as $key => $haystack ) {
+			if ( $haystack['function'] == $function_old ) {
+				$keysearch = $key;
+				break;
+			}
+		}
+
+		if ( $keysearch == -1 ) { return false; }
+		$this->_hooks[ $tag ][ $keysearch ]['function'] = $function_new;
+
+		//For late call, then we need to change the action
+		if ( has_action( $tag, $function_old ) ) {
+			remove_action( $tag, $function_old, $old_priority );
+			add_action( $tag, $function_new, $new_priority );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Run all the stored hooks
+	 */
+	public function run_hook() {
+		if ( empty( $this->_hooks ) ) {
+			return;
+		}
+
+		foreach ( $this->_hooks as $hook => $list ) {
+			foreach ( $list as $value ) {
+				add_action( $hook, $value['function'], $value['priority'], $value['args'] );
+			}
+		}
+	}
 }

@@ -1,7 +1,7 @@
-<?php 
+<?php
 /**
  * Calibrefx URL Helper
- * 
+ *
  */
 
 /**
@@ -9,27 +9,27 @@
  * to the URL string for alerts, etc.
  */
 function calibrefx_admin_redirect( $page, $query_args = array() ) {
-    if (!$page) {
-        return;
-    }
+	if ( ! $page ) {
+		return;
+	}
 
-    $url = menu_page_url( $page, false );
-    foreach ( (array) $query_args as $key => $value ) {
-        if ( isset( $key ) && isset( $value ) ) {
-            $url = add_query_arg( $key, $value, $url );
-        }
-    }
+	$url = menu_page_url( $page, false );
+	foreach ( (array) $query_args as $key => $value ) {
+		if ( isset( $key ) && isset( $value ) ) {
+			$url = add_query_arg( $key, $value, $url );
+		}
+	}
 
-    wp_redirect( esc_url_raw( $url ) );
+	wp_redirect( esc_url_raw( $url ) );
 }
 
 /**
  * Get the current url
  */
-if ( !function_exists( 'get_current_url' ) ) :
-    function get_current_url() {
-        global $wp;
-        $current_url = home_url( $wp->request );
-        return $current_url;
-    }
+if ( ! function_exists( 'get_current_url' ) ) :
+	function get_current_url() {
+		global $wp;
+		$current_url = home_url( $wp->request );
+		return $current_url;
+	}
 endif;
