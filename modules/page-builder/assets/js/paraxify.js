@@ -48,7 +48,7 @@
         while (i < pho.length) {
           pho[i].style.backgroundPosition = "center center";
           pho[i].url = window.getComputedStyle(pho[i], false).backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
-          if (!pho[i].img) {
+          if (!pho[i].img || pho[i].img == 'undefined') {
             pho[i].img = new Image();
           }
           if (pho[i].url !== pho[i].img.src) {
@@ -70,11 +70,14 @@
       },
       _check: function(i) {
         var actualHeight, main;
+        if (!pho[i].img || pho[i].img == 'undefined') {
+          pho[i].img = new Image();
+        }
         main = pho[i];
         main.ok = true;
         main.bgSize = window.getComputedStyle(main, false).backgroundSize;
         actualHeight = screenY;
-        pho[i].img.onload = function() {
+        main.img.onload = function() {
           if (main.bgSize === '' || main.bgSize === 'auto') {
             if (this.height < main.offsetHeight) {
               main.ok = false;
