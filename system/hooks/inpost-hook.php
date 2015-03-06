@@ -8,10 +8,6 @@
  * Show layout choice per page or per post
  */
 function calibrefx_add_inpost_layout_box() {
-	if ( ! current_theme_supports( 'calibrefx-inpost-layouts' ) ) {
-		return;
-	}
-
 	//Add Post Meta Box
 	calibrefx_add_post_meta_boxes(
 		'calibrefx_inpost_layout_box', //slug
