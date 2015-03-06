@@ -112,15 +112,15 @@ abstract class Calibrefx_Admin {
 	 * $return array
 	 */
 	public function save( $_newvalue, $_oldvalue ) {
+		
 		//We merge newvalue and oldvalue
 		if ( isset( $_newvalue['reset'] ) ) {
 			return $_newvalue;
 		}
 
-		if ( empty( $_POST['calibrefx_do_import'] ) ) {
+		if ( ! empty( $_POST['calibrefx_do_import'] ) ) {
 			return $_newvalue;
 		}
-
 		//Get the value from post settings
 		$_newvalue = array_map( 'esc_attr', $_POST[ $this->settings_field ] );
 
@@ -132,6 +132,7 @@ abstract class Calibrefx_Admin {
 
 		//We merge with default value too
 		$_newvalue = array_merge( (array) $this->default_settings, $_newvalue );
+
 
 		if ( ! empty( $_newvalue ) ) {
 			//We sanitizing
