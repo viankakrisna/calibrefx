@@ -443,7 +443,7 @@ function calibrefx_do_post_meta_options( $slug ) {
 						}
 
 						$value = calibrefx_get_custom_field( $option_name );
-						if ( empty( calibrefx_get_custom_field( $option_name ) ) ){
+						if ( empty( $value ) ){
 							$value = $option['option_default'];
 						}
 
