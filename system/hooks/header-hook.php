@@ -7,36 +7,36 @@
 global $calibrefx;
 
 $calibrefx->hooks->template_redirect = array(
-	array( 'function' => 'calibrefx_submit_handler', 'priority' => 99 )
+	array( 'function' => 'calibrefx_submit_handler', 'priority' => 99 ),
 );
 
 $calibrefx->hooks->wp_head = array(
 	array( 'function' => 'calibrefx_print_wrap', 'priority' => 10 ),
 	array( 'function' => 'calibrefx_header_scripts', 'priority' => 30 ),
-	array( 'function' => 'calibrefx_header_custom_styles', 'priority' => 30 )
+	array( 'function' => 'calibrefx_header_custom_styles', 'priority' => 30 ),
 );
 
 $calibrefx->hooks->calibrefx_meta = array(
 	array( 'function' => 'calibrefx_do_meta', 'priority' => 10 ),
 	array( 'function' => 'calibrefx_do_link_author', 'priority' => 10 ),
 	array( 'function' => 'calibrefx_print_favicon', 'priority' => 10 ),
-	array( 'function' => 'calibrefx_do_fb_og', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_fb_og', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_site_title = array(
-	array( 'function' => 'calibrefx_do_site_title', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_site_title', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_site_description = array(
-	array( 'function' => 'calibrefx_do_site_description', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_site_description', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_header = array(
-	array( 'function' => 'calibrefx_header_area', 'priority' => 10 )
+	array( 'function' => 'calibrefx_header_area', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_header_right_widget = array(
-	array( 'function' => 'calibrefx_do_header_right_widget', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_header_right_widget', 'priority' => 10 ),
 );
 
 /**

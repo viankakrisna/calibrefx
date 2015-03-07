@@ -6,40 +6,40 @@
 global $calibrefx;
 
 $calibrefx->hooks->calibrefx_wrapper = array(
-	array( 'function' => 'calibrefx_do_open_wrapper', 'priority' => 0 )
+	array( 'function' => 'calibrefx_do_open_wrapper', 'priority' => 0 ),
 );
 
 $calibrefx->hooks->calibrefx_after_wrapper = array(
-	array( 'function' => 'calibrefx_do_close_wrapper','priority'  => 99 )
+	array( 'function' => 'calibrefx_do_close_wrapper', 'priority' => 99 ),
 );
 
 $calibrefx->hooks->calibrefx_inner = array(
-	array( 'function' => 'calibrefx_do_open_inner', 'priority' => 0 )
+	array( 'function' => 'calibrefx_do_open_inner', 'priority' => 0 ),
 );
 
 $calibrefx->hooks->calibrefx_after_inner = array(
-	array( 'function' => 'calibrefx_do_close_inner','priority'  => 99 )
+	array( 'function' => 'calibrefx_do_close_inner', 'priority' => 99 ),
 );
 
 $calibrefx->hooks->calibrefx_after_content = array(
-	array( 'function' => 'calibrefx_get_sidebar', 'priority' => 10 )
+	array( 'function' => 'calibrefx_get_sidebar', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_before_content = array(
-	array( 'function' => 'calibrefx_get_sidebar_alt', 'priority' => 10 )
+	array( 'function' => 'calibrefx_get_sidebar_alt', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_sidebar = array(
-	array( 'function' => 'calibrefx_do_sidebar', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_sidebar', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_sidebar_alt = array(
-	array( 'function' => 'calibrefx_do_sidebar_alt', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_sidebar_alt', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->get_header = array(
-	array( 'function' => 'calibrefx_setup_custom_layout','priority' => 0 ),
-	array( 'function' => 'calibrefx_header_body_classes_filter','priority' => 0 )
+	array( 'function' => 'calibrefx_setup_custom_layout', 'priority' => 0 ),
+	array( 'function' => 'calibrefx_header_body_classes_filter', 'priority' => 0 ),
 );
 
 /**
@@ -95,8 +95,8 @@ function calibrefx_custom_header() {
 		'default-image' => CALIBREFX_IMAGES_URL . '/header.png',
 		'header-text' => true,
 		'wp-head-callback' => 'calibrefx_custom_header_style',
-		'admin-head-callback' => 'calibrefx_custom_header_admin_style'
-			) );
+		'admin-head-callback' => 'calibrefx_custom_header_admin_style',
+	) );
 
 	/** Define all the constants */
 	//@TODO: Image and Width should not be dynamic
@@ -127,7 +127,7 @@ function calibrefx_custom_header() {
 		'default-image' => HEADER_IMAGE,
 		'header-text' => HEADER_TEXT,
 		'wp-head-callback' => 'calibrefx_custom_header_style',
-		'admin-head-callback' => 'calibrefx_custom_header_admin_style'
+		'admin-head-callback' => 'calibrefx_custom_header_admin_style',
 	);
 
 	/** Activate Custom Header */
@@ -148,25 +148,25 @@ function calibrefx_setup_layout() {
 		'content-sidebar', array(
 				'label' => __( 'Content Sidebar (default blog)', 'calibrefx' ),
 				'img' => CALIBREFX_IMAGES_URL . '/layouts/cs.gif',
-				'default' => true
+				'default' => true,
 			)
 	);
 	calibrefx_register_layout(
 		'full-width-content', array(
 				'label' => __( 'Full Width Content (minisite)', 'calibrefx' ),
-				'img' => CALIBREFX_IMAGES_URL . '/layouts/c.gif'
+				'img' => CALIBREFX_IMAGES_URL . '/layouts/c.gif',
 			)
 	);
 	calibrefx_register_layout(
 		'sidebar-content', array(
 				'label' => __( 'Sidebar Content', 'calibrefx' ),
-				'img' => CALIBREFX_IMAGES_URL . '/layouts/sc.gif'
+				'img' => CALIBREFX_IMAGES_URL . '/layouts/sc.gif',
 			)
 	);
 	calibrefx_register_layout(
 		'sidebar-content-sidebar', array(
 				'label' => __( 'Sidebar Content Sidebar', 'calibrefx' ),
-				'img' => CALIBREFX_IMAGES_URL . '/layouts/scs.gif'
+				'img' => CALIBREFX_IMAGES_URL . '/layouts/scs.gif',
 			)
 	);
 }
@@ -177,7 +177,7 @@ function calibrefx_setup_custom_layout() {
 
 	$site_layout = calibrefx_site_layout();
 
-	if ( $site_layout == 'sidebar-content-sidebar' ) {
+	if ( 'sidebar-content-sidebar' == $site_layout ) {
 		$calibrefx->hooks->move( 'calibrefx_before_content', 'calibrefx_after_content', 'calibrefx_get_sidebar_alt', 15 );
 
 		add_action( 'calibrefx_before_content','calibrefx_sidebar_content_sidebar_wrapper_open' );
@@ -260,7 +260,7 @@ function calibrefx_get_sidebar() {
 	$site_layout = calibrefx_site_layout();
 
 	// don't load sidebar on pages that don't need it
-	if ( $site_layout == 'full-width-content' ) {
+	if ( 'full-width-content' == $site_layout ) {
 		return; }
 
 	// output the primary sidebar
@@ -276,9 +276,9 @@ function calibrefx_get_sidebar_alt() {
 	$site_layout = calibrefx_site_layout();
 
 	// don't load sidebar on pages that don't need it
-	if ( $site_layout == 'full-width-content' ||
-			$site_layout == 'content-sidebar' ||
-			$site_layout == 'sidebar-content' ) {
+	if ( 'full-width-content' == $site_layout OR
+			'content-sidebar' == $site_layout OR
+			'sidebar-content' == $site_layout ) {
 		return; }
 
 	// output the primary sidebar
@@ -410,12 +410,12 @@ function calibrefx_header_body_classes_filter() {
  *
  */
 function calibrefx_custom_header_style() {
-    $header = '';
-    $text = '';
+	$header = '';
+	$text = '';
 
-    /** If no options set, don't waste the output. Do nothing. */
-    if( ( HEADER_IMAGE == '' AND get_header_image() == '' ) OR ( HEADER_TEXTCOLOR != 'blank' && get_header_textcolor() != 'blank' ) || ( display_header_text() ) ) {
-       $text = sprintf( '
+	/** If no options set, don't waste the output. Do nothing. */
+	if ( ( empty( HEADER_IMAGE ) AND empty( get_header_image() ) ) OR ( 'blank' != HEADER_TEXTCOLOR AND 'blank' != get_header_textcolor() ) OR ( display_header_text() ) ) {
+		$text = sprintf( '
 #title, #title a{ 
 	color: %s
 }'."\n", get_header_textcolor() );
@@ -426,16 +426,16 @@ function calibrefx_custom_header_style() {
 	width: %2$spx; 
 	height: %3$dpx
 }', esc_url( get_header_image() ), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
-    
-        $text = sprintf( '
+
+		$text = sprintf( '
 #title, #title a, #title a:hover, #header-title #description{ 
-    display: block; 
-    margin: 0; 
-    overflow: hidden; 
-    padding: 0;
-    text-indent: -9999px; 
-    width: %dpx; 
-    height: %dpx 
+	display: block; 
+	margin: 0; 
+	overflow: hidden; 
+	padding: 0;
+	text-indent: -9999px; 
+	width: %dpx; 
+	height: %dpx 
 }'."\n", HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
 	}
 

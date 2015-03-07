@@ -12,13 +12,13 @@ $calibrefx->hooks->calibrefx_meta = array(
 
 function calibrefx_shortcode_scripts(){
 	wp_enqueue_script( 'calibrefx-shortcodes' );
-    wp_enqueue_script( 'jquery-appear' );
-    wp_enqueue_script( 'jquery-easing' );
-    wp_enqueue_script( 'jquery-transition' );
-    wp_enqueue_script( 'jquery-lightbox' );
-    wp_enqueue_script( 'googlemap', '//maps.google.com/maps/api/js?sensor=false&ver=4.1');
-    wp_enqueue_script( 'infobox');
-    wp_enqueue_script( 'jquery-googlemap' );
+	wp_enqueue_script( 'jquery-appear' );
+	wp_enqueue_script( 'jquery-easing' );
+	wp_enqueue_script( 'jquery-transition' );
+	wp_enqueue_script( 'jquery-lightbox' );
+	wp_enqueue_script( 'googlemap', '//maps.google.com/maps/api/js?sensor=false&ver=4.1' );
+	wp_enqueue_script( 'infobox' );
+	wp_enqueue_script( 'jquery-googlemap' );
 }
 
 function calibrefx_shortcode_styles(){

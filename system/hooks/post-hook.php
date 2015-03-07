@@ -7,7 +7,7 @@
 global $calibrefx;
 
 $calibrefx->hooks->calibrefx_before_content_wrapper = array(
-	array( 'function' => 'calibrefx_do_inner_wrap_open', 'priority' => 5 )
+	array( 'function' => 'calibrefx_do_inner_wrap_open', 'priority' => 5 ),
 );
 
 $calibrefx->hooks->calibrefx_before_loop = array(
@@ -16,52 +16,52 @@ $calibrefx->hooks->calibrefx_before_loop = array(
 );
 
 $calibrefx->hooks->calibrefx_loop = array(
-		array( 'function' => 'calibrefx_do_loop', 'priority' => 10 )
+		array( 'function' => 'calibrefx_do_loop', 'priority' => 10 ),
 );
 
-	//This is inside the loop: calibrefx_do_loop
+//This is inside the loop: calibrefx_do_loop
 
-	//This is inside content.php
-	$calibrefx->hooks->calibrefx_before_post_title = array();
-	$calibrefx->hooks->calibrefx_post_title = array(
-			array( 'function' => 'calibrefx_do_post_title', 'priority' => 10 )
-	);
-	$calibrefx->hooks->calibrefx_after_post_title = array();
+//This is inside content.php
+$calibrefx->hooks->calibrefx_before_post_title = array();
+$calibrefx->hooks->calibrefx_post_title = array(
+		array( 'function' => 'calibrefx_do_post_title', 'priority' => 10 ),
+);
+$calibrefx->hooks->calibrefx_after_post_title = array();
 
-	$calibrefx->hooks->calibrefx_before_post_content = array(
-			array( 'function' => 'calibrefx_post_info', 'priority' => 10 )
-	);
+$calibrefx->hooks->calibrefx_before_post_content = array(
+		array( 'function' => 'calibrefx_post_info', 'priority' => 10 ),
+);
 
-	$calibrefx->hooks->calibrefx_post_content = array(
-		array( 'function' => 'calibrefx_do_post_image', 'priority' => 10 ),
-		array( 'function' => 'calibrefx_do_post_content', 'priority' => 15 )
-	);
+$calibrefx->hooks->calibrefx_post_content = array(
+	array( 'function' => 'calibrefx_do_post_image', 'priority' => 10 ),
+	array( 'function' => 'calibrefx_do_post_content', 'priority' => 15 ),
+);
 
-	$calibrefx->hooks->calibrefx_after_post_content = array(
-		array( 'function' => 'calibrefx_post_meta', 'priority' => 10 )
-	);
+$calibrefx->hooks->calibrefx_after_post_content = array(
+	array( 'function' => 'calibrefx_post_meta', 'priority' => 10 ),
+);
 
-	//End of content.php
+//End of content.php
 
-	$calibrefx->hooks->calibrefx_after_post_content = array(
-		array( 'function' => 'calibrefx_do_author_box_single', 'priority' => 20 )
-	);
+$calibrefx->hooks->calibrefx_after_post_content = array(
+	array( 'function' => 'calibrefx_do_author_box_single', 'priority' => 20 ),
+);
 
-	$calibrefx->hooks->calibrefx_no_post = array(
-		array( 'function' => 'calibrefx_do_no_post', 'priority' => 10 )
-	);
-	//Loop End here
+$calibrefx->hooks->calibrefx_no_post = array(
+	array( 'function' => 'calibrefx_do_no_post', 'priority' => 10 ),
+);
+//Loop End here
 
 $calibrefx->hooks->calibrefx_after_loop = array(
-array( 'function' => 'calibrefx_posts_nav', 'priority' => 20 )
+	array( 'function' => 'calibrefx_posts_nav', 'priority' => 20 ),
 );
 
 $calibrefx->hooks->calibrefx_after_content_wrapper = array(
-array( 'function' => 'calibrefx_do_inner_wrap_close', 'priority' => 15 )
+	array( 'function' => 'calibrefx_do_inner_wrap_close', 'priority' => 15 ),
 );
 
 $calibrefx->hooks->pre_ping = array(
-array( 'function' => 'calibrefx_no_self_ping', 'priority' => 10 )
+	array( 'function' => 'calibrefx_no_self_ping', 'priority' => 10 ),
 );
 
 /********************
@@ -93,11 +93,11 @@ function calibrefx_do_breadcrumbs() {
 /**
  * Display Flash notification when user do submit form
  */
-	function calibrefx_do_notification() {
-		global $calibrefx;
+function calibrefx_do_notification() {
+	global $calibrefx;
 
-		$calibrefx->notification->show_flashmessage();
-	}
+	$calibrefx->notification->show_flashmessage();
+}
 
 /**
  * Add wrapper after .inner
@@ -131,7 +131,7 @@ function calibrefx_do_loop() {
 function calibrefx_do_post_title() {
 	$title = get_the_title();
 
-	if ( strlen( $title ) == 0 ) {
+	if ( 0 == strlen( $title ) ) {
 		return;
 	}
 
@@ -254,7 +254,7 @@ function calibrefx_do_post_content() {
 	if ( is_singular() ) {
 		the_content(); // display content on posts/pages
 
-		if ( is_single() && get_option( 'default_ping_status' ) == 'open' ) {
+		if ( is_single() AND 'open' == get_option( 'default_ping_status' ) ) {
 			echo '<!--';
 			trackback_rdf();
 			echo '-->' . "\n";
@@ -333,7 +333,7 @@ function calibrefx_no_self_ping ( $links ) {
 		//( $a === $b) Identical operator. TRUE if $a is equal to $b, and they are of the same type.
 		if ( 0 === strpos( $link, $home ) ) :
 			//Unset the variable
-			unset( $links[$l]);
+			unset( $links[ $l ]);
 		endif;
 	endforeach;
 }
@@ -376,11 +376,11 @@ function advance_shortcode_unautop( $content ) {
 	return $content;
 }
 
-/**
+	/**
  * make text widget to be able to run shortcode
  *
  * @access public
  * @author Hilaladdiyar Muhammad Nur
  *
  */
-add_filter( 'widget_text', 'do_shortcode' );
+	add_filter( 'widget_text', 'do_shortcode' );

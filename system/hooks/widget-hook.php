@@ -20,13 +20,13 @@ function calibrefx_register_widget() {
 	calibrefx_register_sidebar(array(
 		'name' => __( 'Primary Sidebar', 'calibrefx' ),
 		'description' => __( 'This is the primary sidebar if you are using a 2 or 3 column site layout option', 'calibrefx' ),
-		'id' => 'sidebar'
+		'id' => 'sidebar',
 	) );
 
 	calibrefx_register_sidebar(array(
 		'name' => __( 'Secondary Sidebar', 'calibrefx' ),
 		'description' => __( 'This is the secondary sidebar if you are using a 3 column site layout option', 'calibrefx' ),
-		'id' => 'sidebar-alt'
+		'id' => 'sidebar-alt',
 	) );
 
 	do_action( 'calibrefx_sidebar_registered' );
@@ -43,7 +43,7 @@ function calibrefx_register_additional_widget() {
 		calibrefx_register_sidebar( array(
 			'name' => __( 'Header Right', 'calibrefx' ),
 			'description' => __( 'This is the right side of the header', 'calibrefx' ),
-			'id' => 'header-right'
+			'id' => 'header-right',
 		) );
 	}
 

@@ -7,21 +7,21 @@
 global $calibrefx;
 
 $calibrefx->hooks->calibrefx_before_footer = array(
-	array( 'function' => 'calibrefx_do_footer_widgets', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_footer_widgets', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_footer = array(
-	array( 'function' => 'calibrefx_footer_area', 'priority' => 10 )
+	array( 'function' => 'calibrefx_footer_area', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_footer_content = array(
-	array( 'function' => 'calibrefx_do_footer', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_footer', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->wp_footer = array(
 	array( 'function' => 'calibrefx_footer_scripts', 'priority' => 10 ),
 	array( 'function' => 'calibrefx_add_socials_script', 'priority' => 10 ),
-	array( 'function' => 'calibrefx_show_tracking_scripts', 'priority' => 10 )
+	array( 'function' => 'calibrefx_show_tracking_scripts', 'priority' => 10 ),
 );
 
 /**

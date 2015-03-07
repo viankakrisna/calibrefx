@@ -7,27 +7,27 @@
 global $calibrefx;
 
 $calibrefx->hooks->calibrefx_after_post_content = array(
-	array( 'function' => 'calibrefx_get_comments_template', 'priority' => 30 )
+	array( 'function' => 'calibrefx_get_comments_template', 'priority' => 30 ),
 );
 
 $calibrefx->hooks->calibrefx_comments = array(
-	array( 'function' => 'calibrefx_do_comments', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_comments', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_pings = array(
-	array( 'function' => 'calibrefx_do_pings', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_pings', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_list_comments = array(
-	array( 'function' => 'calibrefx_default_list_comments', 'priority' => 10 )
+	array( 'function' => 'calibrefx_default_list_comments', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_list_pings = array(
-	array( 'function' => 'calibrefx_default_list_pings', 'priority' => 10 )
+	array( 'function' => 'calibrefx_default_list_pings', 'priority' => 10 ),
 );
 
 $calibrefx->hooks->calibrefx_comment_form = array(
-	array( 'function' => 'calibrefx_do_comment_form', 'priority' => 10 )
+	array( 'function' => 'calibrefx_do_comment_form', 'priority' => 10 ),
 );
 
 /**
@@ -236,7 +236,7 @@ function calibrefx_comment_callback( $comment, $args, $depth ) {
     </div><!-- end .comment-meta -->
 
     <div class="comment-content">
-            <?php if ( $comment->comment_approved == '0' ) : ?>
+            <?php if ( '0' == $comment->comment_approved ) : ?>
                     <p class="alert"><?php echo apply_filters( 'calibrefx_comment_awaiting_moderation', __( 'Your comment is awaiting moderation.', 'calibrefx' ) ); ?></p>
             <?php endif; ?>
 

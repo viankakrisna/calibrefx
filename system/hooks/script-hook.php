@@ -112,7 +112,7 @@ function calibrefx_load_admin_scripts() {
 	global $pagenow;
 
 	// Include media upload script in calibrefx settings page to make upload field in meta options working
-	if ( $pagenow == 'admin.php' && ( isset( $_GET['page'] ) && $_GET['page'] == 'calibrefx' ) && ! did_action( 'wp_enqueue_media' ) ) {
+	if ( 'admin.php' == $pagenow AND ( isset( $_GET['page'] ) AND 'calibrefx' == esc_attr( $_GET['page'] ) ) AND ! did_action( 'wp_enqueue_media' ) ) {
 		wp_enqueue_media(); }
 
 	add_thickbox();
@@ -122,7 +122,7 @@ function calibrefx_load_admin_scripts() {
 	$params = array(
 		'category_checklist_toggle' => __( 'Select / Deselect All', 'calibrefx' ),
 		'shortcode_url' => CALIBREFX_SHORTCODE_URL,
-		'assets_img_url' => CALIBREFX_IMAGES_URL
+		'assets_img_url' => CALIBREFX_IMAGES_URL,
 	);
 	wp_localize_script( 'calibrefx_admin_js', 'calibrefx_local', $params );
 
@@ -151,7 +151,7 @@ add_action( 'admin_init', 'calibrefx_load_admin_styles' );
 
 function calibrefx_remove_script_version( $src ) {
 	$parts = explode( '?', $src );
-	if ( strpos( $src, $_SERVER['HTTP_HOST'] ) !== false ) {
+	if ( false !== strpos( $src, $_SERVER['HTTP_HOST'] ) ) {
 		return $parts[0];
 	}
 
