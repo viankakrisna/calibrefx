@@ -138,8 +138,11 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 	}
 
 	public function hidden_fields() {
-		$_version = empty( calibrefx_get_option( 'calibrefx_version' ) )? FRAMEWORK_VERSION : calibrefx_get_option( 'calibrefx_version' );
-		$_db_version = empty( calibrefx_get_option( 'calibrefx_db_version' ) )? FRAMEWORK_DB_VERSION : calibrefx_get_option( 'calibrefx_db_version' );
+		$calibrefx_version = calibrefx_get_option( 'calibrefx_version' );
+		$calibrefx_db_version = calibrefx_get_option( 'calibrefx_db_version' );
+
+		$_version = empty( $calibrefx_version ) ? FRAMEWORK_VERSION : $calibrefx_version;
+		$_db_version = empty( $calibrefx_db_version ) ? FRAMEWORK_DB_VERSION : $calibrefx_db_version;
 		?>
         <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_version]>" value="<?php echo esc_attr( $_version ); ?>" />
         <input type="hidden" name="<?php echo $this->settings_field; ?>[calibrefx_db_version]>" value="<?php echo esc_attr( $_db_version ); ?>" />

@@ -413,19 +413,23 @@ function calibrefx_custom_header_style() {
 	$header = '';
 	$text = '';
 
+	$header_image = get_header_image();
+	$header_text_color = get_header_textcolor();
+	$display_header_text = display_header_text();
+
 	/** If no options set, don't waste the output. Do nothing. */
-	if ( ( empty( HEADER_IMAGE ) AND empty( get_header_image() ) ) OR ( 'blank' != HEADER_TEXTCOLOR AND 'blank' != get_header_textcolor() ) OR ( display_header_text() ) ) {
+	if ( ( ( !defined( HEADER_IMAGE ) OR '' == HEADER_IMAGE ) AND empty( $header_image ) ) OR ( 'blank' != HEADER_TEXTCOLOR AND 'blank' != $header_text_color ) OR ( $display_header_text ) ) {
 		$text = sprintf( '
 #title, #title a{ 
 	color: %s
-}'."\n", get_header_textcolor() );
-	}else {
+}' . "\n", $header_text_color );
+	} else {
 		$header = sprintf( '
 #header-title { 
 	background: url(%1$s) no-repeat left center; 
 	width: %2$spx; 
 	height: %3$dpx
-}', esc_url( get_header_image() ), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
+}', esc_url( $header_image ), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
 
 		$text = sprintf( '
 #title, #title a, #title a:hover, #header-title #description{ 
@@ -436,10 +440,10 @@ function calibrefx_custom_header_style() {
 	text-indent: -9999px; 
 	width: %dpx; 
 	height: %dpx 
-}'."\n", HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
+}' . "\n", HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
 	}
 
-	printf( '<style type="text/css">%1$s %2$s</style>'."\n", $header, $text );
+	printf( '<style type="text/css">%1$s %2$s</style>' . "\n", $header, $text );
 }
 
 /**
