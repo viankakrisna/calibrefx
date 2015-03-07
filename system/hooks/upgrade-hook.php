@@ -57,12 +57,14 @@ function calibrefx_update_check() {
  */
 function calibrefx_upgrade() {
 
+	$calibrefx_db_version = calibrefx_get_option( 'calibrefx_db_version' );
+
 	//Avoid infinited loop
-	if ( empty( calibrefx_get_option( 'calibrefx_db_version' ) ) ){
+	if ( empty( $calibrefx_db_version ) ){
 		calibrefx_set_option( 'calibrefx_db_version', FRAMEWORK_DB_VERSION );
 	}
 
-	if ( calibrefx_get_option( 'calibrefx_db_version' ) >= FRAMEWORK_DB_VERSION ) {
+	if ( $calibrefx_db_version >= FRAMEWORK_DB_VERSION ) {
 		return;
 	}
 
