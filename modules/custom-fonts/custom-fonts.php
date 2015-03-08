@@ -140,6 +140,11 @@ $fonts = apply_filters( 'calibrefx_webfont', array(
 				'google-font' => true,
 				'google-font-style' => '400,700',
 			),
+	'Roboto Slab' => array(
+				'font-family' => '"Roboto Slab", sans-serif',
+				'google-font' => true,
+				'google-font-style' => '400,700',
+			),
 	'Source Sans Pro' => array(
 				'font-family' => '"Source Sans Pro", sans-serif',
 				'google-font' => true,
