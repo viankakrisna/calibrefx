@@ -150,7 +150,7 @@ class CFX_Shortcode {
 
 			case 'icons':
 				if ( $attr_option['title'] == 'Icon' ) {
-					$first_select = '<div class="label"><label><strong>Font Set: </strong></label></div> <div class="content"><select name="icon-set-select" class="skip-processing"> <option value="icon">Font Awesome</option> <option value="calibrefx-icons">Calibrefx Icons</option>  </select></div> <div class="clear no-line"></div>';
+					$first_select = '<div class="label"><label><strong>Font Set: </strong></label></div> <div class="content"><select name="icon-set-select" class="skip-processing"> <option value="icon">Font Awesome</option> <option value="calibrefx-icons">Calibrefx Icons</option> <option value="genericons">Genericons</option> </select></div> <div class="clear no-line"></div>';
 				} else {
 					$first_select = null;
 				}

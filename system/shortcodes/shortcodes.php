@@ -251,7 +251,7 @@ function cfx_icon( $atts, $content = null ) {
 				'size' => 'large',
 				'background_color' => '',
 				'text_color' => '',
-				'image' => 'icon-circle'
+				'image' => 'cfxicon-calibrefx'
 			), $atts ) );
 
 			$style = null;
@@ -268,16 +268,24 @@ function cfx_icon( $atts, $content = null ) {
 			}
 
 			if ( $size == 'large' ) {
-				$size_class = 'fa fa-3x';
+				$size_class = 'fa-3x';
 			}
 			else if ( $size == 'regular' ) {
-				$size_class = 'fa fa-2x';
-			}
-			else if ( $size == 'tiny' ) {
-				$size_class = 'fa';
+				$size_class = 'fa-2x';
 			}
 			else {
-				$size_class = 'fa fa-2x';
+				$size_class = 'fa-2x';
+			}
+
+			//Genericons
+			if( false !== strrpos( $image, 'genericon' ) ){
+				$image = 'genericon ' . $image;
+				// $size_class = '';
+			}
+
+			//Fontawesome
+			if( false !== strrpos( $image, 'fa-' ) ){
+				$size_class = 'fa ' . $size_class;
 			}
 
 			return '<i class="' . $size_class . ' ' . $image . '" style="' . $style . '"></i>';
