@@ -404,6 +404,10 @@ function calibrefx_url_to_postid( $url) {
 	return 0;
 }
 
+/**
+ * Get all custom post type
+ * @return array
+ */
 function calibrefx_get_post_types() {
 	$args = array(
 	  'public'   => true,
@@ -415,6 +419,11 @@ function calibrefx_get_post_types() {
 	return $post_types;
 }
 
+/**
+ * Check if the post is custom post type
+ * @param WP_Post $post Post object.
+ * @return boolean true if $post is custom post type
+ */
 function is_custom_post_type( $post ) {
 	$all_custom_post_types = calibrefx_get_post_types();
 

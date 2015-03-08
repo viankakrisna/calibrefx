@@ -59,6 +59,11 @@ function calibrefx_custom_field( $field ) {
 	echo calibrefx_get_custom_field( $field );
 }
 
+/**
+ * Get custom post meta option value
+ * @param  string $field post meta key
+ * @return mixed post meta value
+ */
 function calibrefx_get_custom_field( $field ) {
 	global $post;
 
@@ -80,6 +85,13 @@ function calibrefx_get_custom_field( $field ) {
 	}
 }
 
+/**
+ * Get user meta
+ * @param  integer  $user_id
+ * @param  string  $key option key
+ * @param  boolean $single  if false then return array
+ * @return mixed
+ */
 function calibrefx_get_usermeta( $user_id, $key, $single = true ) {
 	$options = apply_filters( 'calibrefx_usermeta', get_user_meta( $user_id, $key, $single ) );
 	return $options;

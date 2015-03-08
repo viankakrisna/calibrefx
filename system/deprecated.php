@@ -23,7 +23,7 @@ function cfx_is_ajax_request() {
  * @return array
  */
 function calibrefx_get_layouts() {
-	_deprecated_function( __FUNCTION__, '2.0', 'is_ajax()' );
+	_deprecated_function( __FUNCTION__, '2.0' );
 
 	return calibrefx_get_all_layouts();
 }
@@ -33,6 +33,8 @@ function calibrefx_get_layouts() {
  * @deprecated 2.0
  */
 function get_footer_widget_class( $class = '' ) {
+	_deprecated_function( __FUNCTION__, '2.0' );
+
 	// Separates classes with a single space, collates classes for body element
 	return 'class="' . join( ' ', get_footer_widget_classes( $class ) ) . '"';
 }
@@ -42,6 +44,7 @@ function get_footer_widget_class( $class = '' ) {
  * @deprecated 2.0
  */
 function footer_widget_class( $class = '' ) {
+	_deprecated_function( __FUNCTION__, '2.0' );
 	echo esc_attr( get_footer_widget_class( $class ) );
 }
 
@@ -50,6 +53,7 @@ function footer_widget_class( $class = '' ) {
  * @deprecated 2.0
  */
 function get_footer_widget_classes( $class = '' ) {
+	_deprecated_function( __FUNCTION__, '2.0' );
 	$classes = array();
 
 	//always use row class as the base
@@ -73,6 +77,7 @@ function get_footer_widget_classes( $class = '' ) {
  * @deprecated 2.0
  */
 function calibrefx_get_site_url() {
+	_deprecated_function( __FUNCTION__, '2.0', 'get_site_url()' );
 	$url = str_replace( '.', '-', str_replace( 'http://', '', home_url() ) );
 	return $url;
 }
