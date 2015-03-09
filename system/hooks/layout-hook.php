@@ -426,7 +426,9 @@ function calibrefx_custom_header_style() {
 	} else {
 		$header = sprintf( '
 #header-title { 
-	background: url(%1$s) no-repeat left center; 
+	background-image: url(%1$s);
+	background-repeat: no-repeat;
+	background-position: left center; 
 	width: %2$spx; 
 	height: %3$dpx
 }', esc_url( $header_image ), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
