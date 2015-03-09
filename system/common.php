@@ -22,9 +22,20 @@ if ( ! function_exists( 'is_php' ) ) {
 // ------------------------------------------------------------------------
 /**
  * Fire everything and display it.
+ * 
+ * @param  array  $args allow to custom template
+ * @return void
  */
-function calibrefx() {
-	get_header();
+function calibrefx( $args = array() ) {
+	$default_args = array(
+			'header'	=>	'',
+			'footer'	=>	'',
+		);
+
+	$args = array_merge( $default_args, $args );
+	extract( $args );
+	
+	get_header( $header );
 
 	do_action( 'calibrefx_inner' );
 	do_action( 'calibrefx_before_content_wrapper' );
@@ -46,5 +57,5 @@ function calibrefx() {
 	do_action( 'calibrefx_after_content_wrapper' );
 	do_action( 'calibrefx_after_inner' );
 
-	get_footer();
+	get_footer( $footer );
 }
