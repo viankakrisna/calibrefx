@@ -70,6 +70,9 @@ function calibrefx_initializing(){
 		'aside', 'image', 'video', 'audio', 'quote', 'link', 'gallery',
 	) );
 
+	// Support for Woocoomerce
+	add_theme_support( 'woocommerce' );
+
 	//remove unneccesary headers
 	remove_action( 'wp_head', 'wp_generator' );
 
