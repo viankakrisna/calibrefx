@@ -93,6 +93,8 @@ function calibrefx_initialize_other() {
 	if( is_woocommerce_activated() ) {
 		// Support for Woocoomerce
 		add_theme_support( 'woocommerce' );
+
+		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
 
 	//remove unneccesary headers
