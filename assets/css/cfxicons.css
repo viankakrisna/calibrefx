@@ -1,15 +1,16 @@
 /*!
- *  Cfxicons 1.2.0 by @ivankristianto - https://github.com/ivankristianto
+ *  Cfxicons 1.6.0 by @ivankristianto - https://github.com/ivankristianto
  *  License - GNU GPL v2 (Font: SIL OFL 1.1, CSS: MIT License)
  */
 
+
 @font-face {
 	font-family: 'cfxicons';
-	src:url('../fonts/cfxicons.eot?-bi6gff');
-	src:url('../fonts/cfxicons.eot?#iefix-bi6gff') format('embedded-opentype'),
-		url('../fonts/cfxicons.woff?-bi6gff') format('woff'),
-		url('../fonts/cfxicons.ttf?-bi6gff') format('truetype'),
-		url('../fonts/cfxicons.svg?-bi6gff#cfxicons') format('svg');
+	src:url('fonts/cfxicons.eot');
+	src:url('fonts/cfxicons.eot') format('embedded-opentype'),
+		url('fonts/cfxicons.woff') format('woff'),
+		url('fonts/cfxicons.ttf') format('truetype'),
+		url('fonts/cfxicons.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -28,6 +29,14 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.cfxicon-calibrefx:before {
+	content: "\cf";
+}
+
+.cfxicon-calibreworks:before {
+	content: "\ca";
+}
+
 .cfxicon-layoutsetting:before {
 	content: "\e601";
 }
@@ -36,16 +45,48 @@
 	content: "\e602";
 }
 
-.cfxicon-pagebuilder:before {
-	content: "\e603";
-}
-
 .cfxicon-home2:before {
 	content: "\e001";
 }
 
+.cfxicon-instagram:before {
+	content: "\e600";
+}
+
+.cfxicon-path-circle:before {
+	content: "\e604";
+}
+
+.cfxicon-instagram-circle:before {
+	content: "\e605";
+}
+
+.cfxicon-path:before {
+	content: "\e606";
+}
+
+.cfxicon-pagebuilder:before {
+	content: "\e603";
+}
+
+.cfxicon-facebook52:before {
+	content: "\e607";
+}
+
+.cfxicon-facebook31:before {
+	content: "\e608";
+}
+
+.cfxicon-pinterest:before {
+	content: "\e609";
+}
+
 .cfxicon-image2:before {
 	content: "\e02c";
+}
+
+.cfxicon-camera:before {
+	content: "\e036";
 }
 
 .cfxicon-bookmark2:before {
@@ -76,16 +117,96 @@
 	content: "\e900";
 }
 
+.cfxicon-home3:before {
+	content: "\e902";
+}
+
+.cfxicon-newspaper:before {
+	content: "\e904";
+}
+
+.cfxicon-pencil:before {
+	content: "\e905";
+}
+
 .cfxicon-image:before {
 	content: "\e90d";
 }
 
-.cfxicon-camera:before {
+.cfxicon-camera2:before {
 	content: "\e90f";
 }
 
 .cfxicon-play:before {
 	content: "\e912";
+}
+
+.cfxicon-price-tag:before {
+	content: "\e935";
+}
+
+.cfxicon-price-tags:before {
+	content: "\e936";
+}
+
+.cfxicon-cart:before {
+	content: "\e93a";
+}
+
+.cfxicon-phone:before {
+	content: "\e942";
+}
+
+.cfxicon-address-book:before {
+	content: "\e944";
+}
+
+.cfxicon-location:before {
+	content: "\e947";
+}
+
+.cfxicon-display:before {
+	content: "\e956";
+}
+
+.cfxicon-laptop:before {
+	content: "\e957";
+}
+
+.cfxicon-mobile:before {
+	content: "\e958";
+}
+
+.cfxicon-mobile2:before {
+	content: "\e959";
+}
+
+.cfxicon-tablet:before {
+	content: "\e95a";
+}
+
+.cfxicon-bubbles2:before {
+	content: "\e96d";
+}
+
+.cfxicon-bubble2:before {
+	content: "\e96e";
+}
+
+.cfxicon-quotes-left:before {
+	content: "\e977";
+}
+
+.cfxicon-quotes-right:before {
+	content: "\e978";
+}
+
+.cfxicon-spinner3:before {
+	content: "\e97c";
+}
+
+.cfxicon-spinner6:before {
+	content: "\e97f";
 }
 
 .cfxicon-enlarge:before {
@@ -106,6 +227,10 @@
 
 .cfxicon-cog:before {
 	content: "\e994";
+}
+
+.cfxicon-switch:before {
+	content: "\e9b6";
 }
 
 .cfxicon-bookmark:before {
@@ -144,12 +269,40 @@
 	content: "\ea82";
 }
 
-.cfxicon-facebook2:before {
+.cfxicon-google:before {
+	content: "\ea87";
+}
+
+.cfxicon-google-plus:before {
+	content: "\ea88";
+}
+
+.cfxicon-google-plus-rounded:before {
+	content: "\ea89";
+}
+
+.cfxicon-google-plus-circle:before {
+	content: "\ea8a";
+}
+
+.cfxicon-facebook:before {
+	content: "\ea8c";
+}
+
+.cfxicon-facebook-rounded:before {
 	content: "\ea8d";
+}
+
+.cfxicon-twitter:before {
+	content: "\ea91";
 }
 
 .cfxicon-twitter2:before {
 	content: "\ea92";
+}
+
+.cfxicon-feed2:before {
+	content: "\ea94";
 }
 
 .cfxicon-feed3:before {
@@ -158,6 +311,10 @@
 
 .cfxicon-youtube:before {
 	content: "\ea97";
+}
+
+.cfxicon-youtube2:before {
+	content: "\ea98";
 }
 
 .cfxicon-youtube3:before {
@@ -189,7 +346,15 @@
 }
 
 .cfxicon-wordpress2:before {
+	content: "\eab6";
+}
+
+.cfxicon-wordpress-rounded:before {
 	content: "\eab7";
+}
+
+.cfxicon-tumblr:before {
+	content: "\eabb";
 }
 
 .cfxicon-tumblr2:before {
@@ -198,6 +363,10 @@
 
 .cfxicon-android:before {
 	content: "\eac1";
+}
+
+.cfxicon-soundcloud:before {
+	content: "\eac4";
 }
 
 .cfxicon-linkedin:before {
@@ -210,13 +379,5 @@
 
 .cfxicon-paypal2:before {
 	content: "\ead7";
-}
-
-.cfxicon-calibreworks:before {
-	content: "\ca";
-}
-
-.cfxicon-calibrefx:before {
-	content: "\cf";
 }
 
