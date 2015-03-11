@@ -6,11 +6,11 @@
 
 @font-face {
 	font-family: 'cfxicons';
-	src:url('fonts/cfxicons.eot');
-	src:url('fonts/cfxicons.eot') format('embedded-opentype'),
-		url('fonts/cfxicons.woff') format('woff'),
-		url('fonts/cfxicons.ttf') format('truetype'),
-		url('fonts/cfxicons.svg') format('svg');
+	src:url('../fonts/cfxicons.eot');
+	src:url('../fonts/cfxicons.eot') format('embedded-opentype'),
+		url('../fonts/cfxicons.woff') format('woff'),
+		url('../fonts/cfxicons.ttf') format('truetype'),
+		url('../fonts/cfxicons.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
