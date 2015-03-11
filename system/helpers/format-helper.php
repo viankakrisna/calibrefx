@@ -312,3 +312,8 @@ if ( ! function_exists( 'csv_to_array' ) ) {
 		return $data;
 	}
 }
+
+function cap_attr( $text ) {
+	$safe_text = wp_specialchars_decode( $text, ENT_QUOTES );
+	return apply_filters( 'attribute_capture', $safe_text, $text );
+}

@@ -109,7 +109,7 @@ add_filter( 'calibrefx_footer_output', 'do_shortcode', 20 );
  * Display the footer scripts, defined in Theme Settings.
  */
 function calibrefx_footer_scripts() {
-	$footer_scripts = stripslashes( calibrefx_get_option( 'footer_scripts' ) );
+	$footer_scripts = cap_attr( calibrefx_get_option( 'footer_scripts' ) );
 
 	echo apply_filters( 'calibrefx_footer_scripts', $footer_scripts );
 

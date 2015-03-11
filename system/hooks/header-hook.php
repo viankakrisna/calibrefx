@@ -242,7 +242,7 @@ max-width: %dpx;
  * Echo the header scripts, defined in Theme Settings.
  */
 function calibrefx_header_scripts() {
-	echo apply_filters( 'calibrefx_header_scripts', stripslashes( calibrefx_get_option( 'header_scripts' ) ) );
+	echo apply_filters( 'calibrefx_header_scripts', cap_attr( calibrefx_get_option( 'header_scripts' ) ) );
 }
 
 /**
