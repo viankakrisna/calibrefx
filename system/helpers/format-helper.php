@@ -2,7 +2,6 @@
 
 /**
  * Calibrefx Format Helper
- *
  */
 
 /**

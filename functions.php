@@ -57,7 +57,7 @@ if ( ! isset( $content_width ) ) {
 /**
  * Run the Engine
  */
-function calibrefx_initializing(){
+function calibrefx_initializing() {
 	global $calibrefx;
 	$calibrefx = Calibrefx::get_instance();
 
@@ -69,12 +69,6 @@ function calibrefx_initializing(){
 	add_theme_support( 'post-formats', array(
 		'aside', 'image', 'video', 'audio', 'quote', 'link', 'gallery',
 	) );
-
-	// Support for Woocoomerce
-	add_theme_support( 'woocommerce' );
-
-	//remove unneccesary headers
-	remove_action( 'wp_head', 'wp_generator' );
 
 	if ( is_child_theme() ) {
 		add_filter( 'calibrefx_helpers_to_include', 'childfx_load_helpers' );
@@ -94,6 +88,17 @@ function calibrefx_initializing(){
 
 }
 add_action( 'after_setup_theme', 'calibrefx_initializing', 0 );
+
+function calibrefx_initialize_other() {
+	if( is_woocommerce_activated() ) {
+		// Support for Woocoomerce
+		add_theme_support( 'woocommerce' );
+	}
+
+	//remove unneccesary headers
+	remove_action( 'wp_head', 'wp_generator' );
+}
+add_action( 'after_setup_theme', 'calibrefx_initialize_other', 99 );
 
 /**
  * Load helpers from child themes
