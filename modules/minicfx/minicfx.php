@@ -23,18 +23,18 @@ function calibrefx_get_mobile_template( $template ) {
 	}
 }
 
-
+function calibrefx_mobile_scripts(){
+	wp_enqueue_style( 'jquery.mobile', CALIBREFX_CSS_URL . '/jquery-mobile.min.css' );
+	
+	wp_enqueue_script( 'jquery.mobile', CALIBREFX_JS_URL . '/jquery-mobile.js', array( 'jquery' )  );
+	wp_enqueue_script( 'function.mobile', CALIBREFX_JS_URL . '/function-mobile.js', array( 'jquery', 'jquery.mobile' )  );
+}
+add_action( 'wp_enqueue_scripts', 'calibrefx_mobile_scripts' );
 
 /**
  * If mobile site is enable and there is a mobile template, then display mobile layout on mobile
  */
 function calibrefx_init_mobile_site() {
-
-	wp_enqueue_style( 'jquery.mobile', CALIBREFX_CSS_URL . '/jquery-mobile.min.css' );
-	
-	wp_enqueue_script( 'jquery.mobile', CALIBREFX_JS_URL . '/jquery-mobile.js', array( 'jquery' )  );
-	wp_enqueue_script( 'function.mobile', CALIBREFX_JS_URL . '/function-mobile.js', array( 'jquery', 'jquery.mobile' )  );
-
 	global $calibrefx; 
 
 	if( is_admin() || !wp_is_mobile() ) {
