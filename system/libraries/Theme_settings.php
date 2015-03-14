@@ -20,6 +20,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 			'calibrefx_layout_width' => 1160,
 			'calibrefx_layout_wrapper_fixed' => 0,
 			'site_layout' => calibrefx_get_default_layout(),
+			'feature_image_layout' => 'full',
 			'nav' => 1,
 			'subnav' => 0,
 			'post_date' => 1,
@@ -93,14 +94,17 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 					'posts_nav',
 					'content_archive',
 					'layout_type',
-					'site_layout' )
+					'site_layout',
+					'feature_image_layout', 
+				)
 		);
 
 		$calibrefx->security->add_sanitize_filter(
 			'integer', $this->settings_field, array(
 					'calibrefx_layout_width',
 					'content_archive_limit',
-					'calibrefx_db_version' )
+					'calibrefx_db_version',
+				)
 		);
 	}
 
@@ -580,6 +584,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 
 		calibrefx_add_meta_group( 'layout-settings', 'layout-general-settings', __( 'Layout Settings', 'calibrefx' ) );
 		calibrefx_add_meta_group( 'layout-settings', 'layout-type-settings', __( 'General Layout Settings', 'calibrefx' ) );
+		calibrefx_add_meta_group( 'layout-settings', 'feature-image-settings', __( 'Feature Image Settings', 'calibrefx' ) );
 
 		 //For Layout Settings
 		add_action( 'layout-settings_options', function() {
@@ -655,22 +660,35 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 					'option_custom' => calibrefx_layout_selector(array(
 							'name' => 'calibrefx-settings[site_layout]',
 							'selected' => calibrefx_get_option( 'site_layout' ),
-							'echo' => false) ),
+							'echo' => false ) ),
 					'option_default' => '',
 					'option_filter' => '',
 					'option_attr' => array('class' => 'calibrefx-layout-selector'),
+					'option_description' => __( 'You can choose your Website layout. You can override per post / page later.', 'calibrefx' ),
 				), // Settings config
 				1 //Priority
 			);
+		});
 
+		//For Feature Image Layout Settings
+		add_action( 'layout-settings_options', function() {
 			calibrefx_add_meta_option(
-				'layout-type-settings',  // group id
-				'layout_description', // field id and option name
-				__( 'You can choose your Website layout. You can override per post / page later.', 'calibrefx' ), // Label
+				'feature-image-settings',  // group id
+				'feature_image_layout', // field id and option name
+				__( 'How do you want to show the feature image?','calibrefx' ), // Label
 				array(
-					'option_type' => 'description',
+					'option_type' => 'select',
+					'option_items' => apply_filters(
+						'calibrefx_layout_type_options', array(
+								'thumbnail' => __( 'Square Thumbnail', 'calibrefx' ),
+								'full' => __( 'Full Width', 'calibrefx' ),
+								'none' => __( 'None', 'calibrefx' ),
+							)
+					),
+					'option_default' => 'full',
+					'option_filter' => 'safe_text',
 				), // Settings config
-				5 //Priority
+				1 //Priority
 			);
 		});
 

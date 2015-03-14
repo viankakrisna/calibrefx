@@ -227,20 +227,28 @@ add_filter( 'calibrefx_post_meta', 'do_shortcode', 20 );
  * Post Image
  */
 function calibrefx_do_post_image() {
+	
+	$feature_image_layout = calibrefx_get_option( 'feature_image_layout' );
+
+	switch ( $feature_image_layout ) {
+		case 'none':
+			return;
+		case 'thumbnail':
+			$img = calibrefx_get_image( array( 'format' => 'html', 'size' => 'thumbnail', 'attr' => array( 'class' => 'alignleft post-image' ) ) );
+			break;
+		
+		case 'full':
+		default:
+			$img = calibrefx_get_image( array( 'format' => 'html', 'size' => 'full', 'attr' => array( 'class' => 'alignnone post-image img-responsive' ) ) );
+			break;
+	}
+
+	$img = apply_filters( 'post_feature_image', $img );
+
 	if ( ! is_singular() ) { // This is an archive page
-		$default_post_archive_image_size = apply_filters( 'post_archive_image_size', 'thumbnail' );
-		$img = calibrefx_get_image( array( 'format' => 'html', 'size' => $default_post_archive_image_size, 'attr' => array( 'class' => 'alignleft post-image' ) ) );
-
-		if ( $img ) {
-			printf( '<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), apply_filters( 'post_archive_image', $img, $img ) );
-		}
+		printf( '<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), $img );
 	} else {
-		$default_post_single_image_size = apply_filters( 'post_single_image_size', 'full' );
-		$img = calibrefx_get_image( array( 'format' => 'html', 'size' => $default_post_single_image_size, 'attr' => array( 'class' => 'alignnone post-image' ) ) );
-
-		if ( $img ) {
-			printf( '<p class="post-featured-image">%s</p>', apply_filters( 'post_single_image', $img, $img ) );
-		}
+		printf( '<p class="post-featured-image">%s</p>', $img );
 	}
 }
 

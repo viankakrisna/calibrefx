@@ -62,12 +62,12 @@ function calibrefx_upgrade() {
 	//Avoid infinited loop
 	if ( empty( $calibrefx_db_version ) ){
 		calibrefx_set_option( 'calibrefx_db_version', FRAMEWORK_DB_VERSION );
+		calibrefx_set_option( 'calibrefx_version', FRAMEWORK_VERSION );
 	}
-
 	if ( $calibrefx_db_version >= FRAMEWORK_DB_VERSION ) {
 		return;
 	}
-
+	calibrefx_set_option( 'calibrefx_version', FRAMEWORK_VERSION );
 	do_action( 'calibrefx_upgrade' );
 }
 add_action( 'admin_init', 'calibrefx_upgrade', 25 );
@@ -81,10 +81,10 @@ function calibrefx_upgrade_redirect() {
 		return;
 	}
 
-	calibrefx_admin_redirect( 'calibrefx-about', array( 'upgraded' => 'true' ) );
+	calibrefx_admin_redirect( 'calibrefx-other', array( 'upgraded' => 'true' ) );
 	exit;
 }
-add_action( 'calibrefx_upgrade', 'calibrefx_upgrade_redirect' );
+add_action( 'calibrefx_upgrade', 'calibrefx_upgrade_redirect', 99 );
 
 
 /**
@@ -93,11 +93,11 @@ add_action( 'calibrefx_upgrade', 'calibrefx_upgrade_redirect' );
  */
 function calibrefx_upgraded_notice() {
 
-	if ( ! calibrefx_is_menu_page( 'calibrefx-about' ) ) {
+	if ( ! calibrefx_is_menu_page( 'calibrefx-other' ) ) {
 		return;
 	}
 
-	if ( isset( $_REQUEST['upgraded'] ) && 'true' == $_REQUEST['upgraded'] ) {
+	if ( isset( $_REQUEST['upgraded'] ) AND 'true' == $_REQUEST['upgraded'] ) {
 		echo '<div id="message" class="updated highlight" id="message"><p>' . sprintf( __( 'Congratulations! You are now using the latest version of Calibrefx v%s', 'calibrefx' ), calibrefx_get_option( 'calibrefx_version' ) ) . '</p></div>';
 	}
 }
@@ -167,3 +167,10 @@ function calibrefx_clear_update_transient() {
 }
 add_action( 'load-update-core.php', 'calibrefx_clear_update_transient' );
 add_action( 'load-themes.php', 'calibrefx_clear_update_transient' );
+
+
+function calibrefx_db_upgrade_1001(){
+	calibrefx_set_option( 'feature_image_layout', 'full' );
+	calibrefx_set_option( 'calibrefx_db_version', '1001' );
+}
+add_action( 'calibrefx_upgrade', 'calibrefx_db_upgrade_1001' );

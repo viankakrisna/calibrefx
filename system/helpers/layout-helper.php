@@ -240,7 +240,8 @@ function calibrefx_layout_selector( $args = array() ) {
 			esc_url( $data['img'] ),
 			esc_attr( $args['name'] ),
 			esc_attr( $id ),
-		checked( $id, $args['selected'], false ) );
+			checked( $id, $args['selected'], 
+			false ) );
 	}
 
 	$output .= "<div style='clear:both;'></div>";

@@ -224,9 +224,10 @@ function calibrefx_inpost_layout_box() {
 	$layout = calibrefx_get_custom_field( 'site_layout' );
 	?>
     <div class="calibrefx-layout-selector">
-        <p><input type="radio" name="_calibrefx_layout" id="default-layout" value="" <?php checked( $layout, '' ); ?> /> <label class="default" for="default-layout"><?php printf( __( 'Default Layout set in <a href="%s">Theme Settings</a>', 'calibrefx' ), menu_page_url( 'calibrefx', 0 ) ); ?></label></p>
-
-        <p><?php calibrefx_layout_selector( array( 'name' => '_calibrefx_layout', 'selected' => $layout, 'type' => 'site' ) ); ?></p>
+        <p>
+        	<input type="radio" name="_calibrefx_layout" id="default-layout" value="" <?php checked( $layout, '' ); ?> /> <label class="default" for="default-layout"><?php printf( __( 'Default Layout set in <a href="%s">Theme Settings</a>', 'calibrefx' ), menu_page_url( 'calibrefx', 0 ) ); ?></label>
+        </p>
+        <?php calibrefx_layout_selector( array( 'name' => '_calibrefx_layout', 'selected' => $layout, 'type' => 'site' ) ); ?>
     </div>
 
     <br class="clear" />
