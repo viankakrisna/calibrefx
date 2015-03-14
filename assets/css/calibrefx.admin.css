@@ -6,6 +6,12 @@ body{
     word-wrap: break-word;
 }
 
+*{ 
+    margin: 0; 
+    padding: 0; 
+    outline: none; 
+}
+
 /*-----------------------------------------------------------------
 General public
 ------------------------------------------------------------------*/
@@ -25,13 +31,33 @@ hr.div {
     top: -3px;
 }
 
-p.btn { margin: 0 20px 0 0; padding: 0; display: inline-block;}
-p.btn a{ float: left; line-height:32px; *line-height:28px; margin: 0 -20px 0 0!important; padding: 0 20px; height:100%; border: none; cursor: pointer; color: #3f4950; font-size: 12px; font-family: "Oswald"; text-shadow: 0 1px 0 #fff; text-decoration:none }
-p.btn a:hover{text-decoration: none;}
+p.btn { 
+    display: inline-block;
+    margin: 0 20px 0 0; 
+    padding: 0; 
+}
+
+p.btn a{ 
+    float: left; 
+    line-height:32px; 
+    *line-height:28px; 
+    margin: 0 -20px 0 0!important; 
+    padding: 0 20px; 
+    height:100%; 
+    border: none; 
+    cursor: pointer; 
+    color: #3f4950; 
+    font-size: 12px; 
+    font-family: inherit; 
+    text-shadow: 0 1px 0 #fff; 
+    text-decoration:none 
+}
+
+p.btn a:hover{
+    text-decoration: none;
+}
 
 /* Text elements */
-*{ margin: 0; padding: 0; outline: none; }
-
 .description{
     margin-top: 8px !important;
 }
@@ -39,15 +65,19 @@ p.btn a:hover{text-decoration: none;}
 .widefat{
     width: 98%;
 }
+
 .widefat:focus{
     background-color: #fff;
 }
+
 input[readonly].widefat:focus{
     background: #eee;
 }
+
 .row-options{
     margin-bottom: 0px;
 }
+
 label{
     display: inline-block;
     margin: 0px 0px 5px;
@@ -57,25 +87,26 @@ label{
 .upload_button_div{
     margin-top: 8px;
 }
+
 .upload_button_div .button{
     float: left;
     margin-right: 5px;
 }
+
 .preview_image{
     margin-top: 15px;
     margin-bottom: 10px;
 }
+
 .preview_image img{
     max-width: 100%;
     height: auto;
     float: none !important;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"], [class*="icon-"] {
     margin-right: 5px;
 }
-
-
 
 /*------------------------------------------------------------------
 [. Header Styles]
@@ -83,16 +114,16 @@ label{
 
 .calibrefx-header{
     background: #f0f0f0;
-    width: auto;
     height: 65px;
     margin: 30px 0 0 0px;
     position: relative;
+    width: auto;
 }
 
 .calibrefx-option-logo{
-    float: left;
     background: url(../img/calibrefx-logo.png) no-repeat;
     background-size: 210px;
+    float: left;
 }
 
 .calibrefx-option-logo a {
@@ -158,6 +189,7 @@ label{
     border-left: none;
     
 }
+
 .calibrefx-tab ul.calibrefx-tab-option li:hover a span i,
 .calibrefx-tab ul.calibrefx-tab-option li.current a span i{
     color:#ffffff;
@@ -170,15 +202,6 @@ label{
   left: 10px;
   top: 15px;
 }
-
-/* .calibrefx-tab ul.calibrefx-tab-option li span.calibrefx-section-link-additional {
-    position: absolute;
-    left: -10px;
-    top: 0px;
-    bottom: 0px;
-    width: 10px;
-    background: #414042;
-} */
 
 .calibrefx-tab ul.calibrefx-tab-option li .calibrefx-section-icon-container{
     position: absolute;
@@ -200,75 +223,19 @@ label{
     min-height: 22px;
 }
 
-
-
 /*------------------------------------------------------------------
 [. content]
 ------------------------------------------------------------------*/
 /* About Page Style*/
 #calibrefx-about-page #icon-options-general.icon32{
-    width: 36px;
-    height: 39px;
     background: url(../img/icon-36.png) no-repeat;
+    height: 39px;
     margin-top: 5px;
+    width: 36px;
 }
 
 .clear{
     float: clear;
-}
-
-.the-team-container{
-    margin-left: -2%;
-}
-
-.the-team{
-    width: 31%;
-    margin-left: 2%;
-    margin-bottom: 2%;
-    float: left;
-}
-
-.the-team h4{
-    font-size: 12px !important;
-    line-height: 20px;
-    margin: 0;
-    text-align: center;
-}
-
-.the-team h4 a{
-    text-decoration: none;
-    color: #404040;
-}
-
-.the-team .image{
-    float: left;
-}
-
-.the-team .frame{  
-    box-shadow: none;  
-    
-    border: none;
-    border-radius: 0px;
-}
-
-.the-team .frame .inset{
-    line-height: 0;
-}
-
-.the-team .frame .inset img{
-    box-shadow:inset 0px 2px 3px #333;  
-    border-radius: 3px;
-    width: 75px;
-    height: 75px
-}       
-
-.the-team .description{
-    line-height: 20px;
-    margin-left: 95px;
-}
-
-.the-team .description p{
-    margin: 0 0 10px;
 }
 
 /** Metabox Styles **/
@@ -310,13 +277,13 @@ label{
 }
 
 .calibrefx-metaboxes select{
-    padding: 5px;
-    height: 30px;
     border: 1px solid #e9e9e9;
+    border-radius: 0px;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
-    border-radius: 0px;
     color: #6b6b6b;
+    height: 30px;
+    padding: 5px;
 }
 
 .calibrefx-submit-button{
@@ -356,14 +323,17 @@ label{
     margin: 10px 0 10px 0;
     text-align: center;
 }
+
 .calibrefx-layout-selector label.box img {
-    max-width: 83px;
     border: 3px solid transparent;
+    max-width: 83px;
     margin-bottom: 5px;
 }
+
 .calibrefx-layout-selector label.box img:hover {
     border: 3px solid #ddd;
 }
+
 .calibrefx-layout-selector label.box.selected img {
     border: 3px solid #ccc;
 }
@@ -373,14 +343,17 @@ ul.twitter-tweets li {
      margin-bottom: 5px;
     font-size: 13px
 }
+
 ul.twitter-tweets li a{
     font-family: Georgia, arial;
-text-decoration: none;
+    text-decoration: none;
 }
+
 ul.twitter-tweets li span a{
     font-family: arial;
 
 }
+
 .twitter-logo{
     background: url(../img/icon-twitter.png) no-repeat;
     width: 24px;
@@ -414,7 +387,6 @@ ul.twitter-tweets li span a{
     padding: 0px;
     margin: 0px;
 }
-
 
 .calibrefx-content{
     border-top: none;
@@ -1322,17 +1294,26 @@ input[type=radio] {
    position: relative;
 }
 
-.shortcode-dynamic-item input[type=text], .shortcode-dynamic-item textarea {
+.shortcode-dynamic-item input[type=text], 
+.shortcode-dynamic-item textarea {
     margin-bottom: 3px;
 }
 
-#calibrefx-sc-generator input[type="text"], textarea, select, #insert-shortcode{ 
+.calibrefx-sc-generator span{
+    margin-right: 5px;
+}
+
+#calibrefx-sc-generator input[type="text"], 
+#calibrefx-sc-generator textarea, 
+#calibrefx-sc-generator select, 
+#insert-shortcode{ 
     padding: 4px; 
     font-family: Arial, Helvetica, sans-serif;
     color: #555;
 }
 
-#calibrefx-sc-generator input[type="text"], textarea {
+#calibrefx-sc-generator input[type="text"], 
+#calibrefx-sc-generator textarea {
     width:100%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -1374,17 +1355,25 @@ div.clear.no-border {
     min-width: 0px!important;
 }
 
-div[data-type="radios"] label, div[data-type="direct_to_editor"] label {
+div[data-type="radios"] label, 
+div[data-type="direct_to_editor"] label {
     display: inline;
 }
 
-div[data-type="radios"] .content, div[data-type="checkbox"] .content {
+div[data-type="radios"] .content, 
+div[data-type="checkbox"] .content {
     margin: 7px 0px;
 }
 
-.description{margin-top:-.5em; }
-.description{ margin: 3px 0 0 0; color: #666; font-style: italic; }
+.description{
+    margin-top:-.5em; 
+}
 
+.description{ 
+    color: #666; 
+    font-style: italic; 
+    margin: 3px 0 0 0; 
+}
 
 div.hr {
     width: 100%;
@@ -1392,22 +1381,21 @@ div.hr {
     border-bottom: 1px solid #e5e5e5;
 }
 
-
 .btn {
-    cursor: pointer;
     background-color: #0074A2;
-    padding: 8px 14px 8px !important;
-    color: #fff!important;
-    font-size: 11px;
-    line-height: normal;
+    border-radius: 2px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
-    border-radius: 2px;
+    transition: 0.1s linear all;
     -webkit-transition: 0.1s linear all;
     -moz-transition: 0.1s linear all;
     -ms-transition: 0.1s linear all;
     -o-transition: 0.1s linear all;
-    transition: 0.1s linear all;
+    cursor: pointer;
+    color: #fff!important;
+    padding: 8px 14px 8px !important;
+    font-size: 11px;
+    line-height: normal;
     margin-top:10px;
     margin-right:5px;
     text-decoration: none;

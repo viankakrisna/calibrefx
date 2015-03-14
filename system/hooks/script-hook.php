@@ -115,9 +115,10 @@ function calibrefx_load_admin_scripts() {
 
 	// Include media upload script in calibrefx settings page to make upload field in meta options working
 	if ( 'admin.php' == $pagenow AND ( isset( $_GET['page'] ) AND 'calibrefx' == esc_attr( $_GET['page'] ) ) AND ! did_action( 'wp_enqueue_media' ) ) {
-		wp_enqueue_media(); }
+		wp_enqueue_media(); 
+	}
 
-	add_thickbox();
+	// add_thickbox();
 	wp_enqueue_script( 'theme-preview' );
 	wp_enqueue_script( 'calibrefx_admin_js', CALIBREFX_JS_URL . '/admin.js', array( 'jquery', 'jquery-sticky', 'wp-color-picker' ), '' );
 	wp_enqueue_script( 'jquery-chosen', CALIBREFX_JS_URL . '/jquery.chosen.min.js', array( 'jquery' ), '' );
@@ -130,7 +131,7 @@ function calibrefx_load_admin_scripts() {
 
 	wp_enqueue_script( 'magnific', CALIBREFX_JS_URL . '/magnific-popup.js', 'jquery', false, true );
 }
-add_action( 'admin_init', 'calibrefx_load_admin_scripts' );
+add_action( 'admin_enqueue_scripts', 'calibrefx_load_admin_scripts' );
 
 /**
  * This function loads the admin CSS files

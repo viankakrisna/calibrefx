@@ -68,7 +68,7 @@ function calibrefx_login_logo() {
 
 	echo '<style type="text/css">
 			html, body { border: 0 !important; background: none !important; }
-			body .login { background: #F5F5F5 !important; }
+			body.login { background: #F5F5F5 !important; }
 
 			div#login { width: 400px !important; }
 			div#login h1 a { width:298px !important; background-size: 298px 66px; padding-bottom: 0; height: 70px !important; background-image: url( '.$background_image.' ) !important; background-repeat:no-repeat; }
