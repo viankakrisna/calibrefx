@@ -11,6 +11,8 @@ function minicfx_setup(){
 
 }
 
+
+
 function calibrefx_mobile(){
 	get_header();
 
