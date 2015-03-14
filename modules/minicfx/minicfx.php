@@ -23,13 +23,21 @@ function calibrefx_get_mobile_template( $template ) {
 	}
 }
 
+
+
 /**
  * If mobile site is enable and there is a mobile template, then display mobile layout on mobile
  */
 function calibrefx_init_mobile_site() {
-	global $calibrefx;
 
-	if ( is_admin() || ! wp_is_mobile() ) {
+	wp_enqueue_style( 'jquery.mobile', CALIBREFX_CSS_URL . '/jquery-mobile.min.css' );
+	
+	wp_enqueue_script( 'jquery.mobile', CALIBREFX_JS_URL . '/jquery-mobile.js', array( 'jquery' )  );
+	wp_enqueue_script( 'function.mobile', CALIBREFX_JS_URL . '/function-mobile.js', array( 'jquery', 'jquery.mobile' )  );
+
+	global $calibrefx; 
+
+	if( is_admin() || !wp_is_mobile() ) {
 		return;
 	}
 
@@ -61,11 +69,12 @@ function calibrefx_mobile_body_class( $body_classes ) {
 
 function calibrefx_do_top_mobile_nav() {
 	?>
+
 	<div id="top-mobile-nav" class="navbar navbar-default">
-        <div class="mobile-header-top">
-        	<a href="#m" class="mobile-main-menu"> <i class="icon-mobile-planning"></i> Menu</a>
-        </div>
-    </div>
+		<div class="mobile-header-top">
+			<a href="#m" class="mobile-main-menu"> <i class="icon-mobile-planning"></i> Menu</a>
+		</div>
+	</div>
 	<?php
 }
 
