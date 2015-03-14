@@ -151,7 +151,7 @@ function calibrefx_load_admin_styles() {
 		wp_enqueue_style( 'calibrefx-admin-bar-css', CALIBREFX_CSS_URL . '/calibrefx.admin.bar.css', array() );
 	}
 }
-add_action( 'admin_init', 'calibrefx_load_admin_styles' );
+add_action( 'admin_enqueue_scripts', 'calibrefx_load_admin_styles' );
 
 function calibrefx_remove_script_version( $src ) {
 	$parts = explode( '?', $src );
