@@ -17,8 +17,6 @@
 body{
 	background-color: #FFF;
 	color: #404040;
-	font-size: 14px;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 input, select, textarea{
@@ -45,7 +43,7 @@ body:not(.custom-background) #wrapper {
 ------------------------------------------------------------ */
 
 #title {
-margin-top: 20px;
+    margin-top: 20px;
 }
 
 /* Primary Navigation
@@ -548,7 +546,7 @@ input[type="submit"].searchsubmit:hover{
 }
 
 .credits, .scrolltop {
-    padding: 14px 0px;
+    padding: 10px 0px;
 }
 
 .scrolltop{
@@ -556,15 +554,15 @@ input[type="submit"].searchsubmit:hover{
     
     top: 0px;
     right: 0px;
-    width: 48px;
-    height: 48px;
+    width: 45px;
+    height: 45px;
     background: #585858 url(assets/img/scroll-top-arrow.png) center center no-repeat;
     padding: 0;
 }
 
 .scrolltop a{
-	height: 48px;
-	width: 48px;
+	height: 45px;
+	width: 45px;
 	display: inline-block;
 	text-indent: -999em;
 }
