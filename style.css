@@ -8,7 +8,7 @@
     License URI: http://www.calibrefx.com/calibrefx/#license
     Tags: black, white, light, dark, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready, accessibility-ready
 	Text Domain: calibrefx
-    Version: 2.0 Beta 1
+    Version: 2.0.2
 */
 
 
@@ -189,17 +189,13 @@ top: 0;
 /* Widgets
 ------------------------------------------------------------ */
 
-#inner .widget{
+#sidebar .widget{
     background: #fff;
-    padding: 0px 25px 5px;
-	margin-bottom: 20px;
 }
 
-#inner .widgettitle{
+#sidebar .widgettitle{
     background: #2a2a2a;
-    padding: 10px 25px;
     color: #fff;
-    margin: 0 -25px 5px;
 }
 
 /* Footer Widget
@@ -224,20 +220,20 @@ top: 0;
 /* {List Base} Widget
 ------------------------------------------------------------ */
 
-.widget-wrap ul li + li{	
+.widget ul li + li{	
     border-top: 1px solid #e5e5e5;
 }
 
-.widget-wrap ul ul li + li{	
+.widget ul ul li + li{	
     border-top: 0;
 }
 
-#footer-widget .widget-wrap ul li{   
+#footer-widget .widget ul li{   
     padding: 0 0;
     margin-bottom: 10px;
 }
 
-#footer-widget .widget-wrap ul li + li{	
+#footer-widget .widget ul li + li{	
     border-top: none;
 }
  

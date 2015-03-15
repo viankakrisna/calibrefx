@@ -98,14 +98,14 @@ function calibrefx_widget_update_callback( $instance, $new_instance ) {
 add_filter( 'widget_update_callback', 'calibrefx_widget_update_callback', 20, 2 );
 
 function calibrefx_custom_class_widget( $instance, $widget, $args ) {
-	if ( isset( $instance['custom_widget_class'] ) ) {
+	if ( isset( $instance['custom_widget_class'] ) AND $instance['custom_widget_class'] ) {
 		$widget_classname = $widget->widget_options['classname'];
 		$custom_classname = $instance['custom_widget_class'];
 
 		$args['before_widget'] = str_replace( $widget_classname, "{$widget_classname} {$custom_classname}", $args['before_widget'] );
 	}
 
-	if ( isset( $instance['custom_icon_class'] ) ) {
+	if ( isset( $instance['custom_icon_class'] ) AND $instance['custom_icon_class'] ) {
 		$custom_icon_class = $instance['custom_icon_class'];
 
 		$args['before_title'] = str_replace( 'widgettitle">', 'widgettitle"><i class="fa ' . $custom_icon_class . '"></i> ', $args['before_title'] );

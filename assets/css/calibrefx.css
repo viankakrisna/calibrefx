@@ -469,14 +469,15 @@ big {
 /*------------------------------------------------------------------
 [. header right Styles]
 ------------------------------------------------------------------*/
-#header-right .widget_nav_menu .widget-wrap ul li a {
+#header-right .widget_nav_menu ul li a {
 	color:#333333;
 	
 }
-#header-right .widget_nav_menu .widget-wrap ul li {
+#header-right .widget_nav_menu ul li {
 	position: relative;
 }
- .sub-menu {
+
+.sub-menu {
 	position: absolute;
 	top: 100%;
 	left: 0;
@@ -496,25 +497,27 @@ big {
 #header-right .sub-menu li a:hover {
 	background: #F8F8F8;
 }
+
 #header-right .sub-menu li {
 	padding-left: 0px; 
- }
- .sub-menu li> .sub-menu {
+}
+ 
+.sub-menu li> .sub-menu {
 	margin-left: 100%;
 	top: 2px;
 	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
 	box-shadow: 0 6px 12px rgba(0,0,0,0.175);
 	background-clip: padding-box;
- }
+}
 
- .sub-menu li a {
+.sub-menu li a {
 	display: block;
 	padding: 10px 20px;
 	clear: both;
 	font-weight: normal;
 	line-height: 20px;
 	white-space: nowrap 
- }
+}
 
 /* Content
 ------------------------------------------------------------ */
@@ -561,6 +564,22 @@ big {
 	margin-right: 0;
 }
 
+#sidebar .widget{
+    background: #fff;
+}
+
+#sidebar .widget > *{
+    padding: 10px 25px;
+}
+
+#sidebar .widget > .searchform{
+    padding: 10px 0;
+}
+
+#sidebar .widgettitle{
+    padding: 10px 25px;
+}
+
 /* Sidebar Alt
 ------------------------------------------------------------ */
 #sidebar-alt {
@@ -586,25 +605,25 @@ big {
 	margin-top: 20px;
 }
 
-.widgettitle {
-	margin: 10px 0 10px;
+.widget  .widgettitle {
+	margin: 0;
 }
 
 .widget .textwidget {
 	padding: 0;
 }
 
-.widget-wrap ul {
+.widget ul {
 	list-style: none;
 	margin: 0px;	
 	padding: 0px;
 }
 
-.widget-wrap ul li {
+.widget ul li {
 	padding: 10px 0;
 }
 
-.widget-wrap ul ul li {
+.widget ul ul li {
 	padding: 0 0 0 10px;
 }
 
@@ -710,8 +729,8 @@ big {
 	
 }
 
-.latest-posts-widget .widget-wrap ul li:last-child,
-.popular-posts-widget .widget-wrap ul li:last-child {
+.latest-posts-widget ul li:last-child,
+.popular-posts-widget ul li:last-child {
 	padding-bottom: 0px;
 }
 

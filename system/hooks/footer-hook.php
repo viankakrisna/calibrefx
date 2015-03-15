@@ -55,8 +55,8 @@ function calibrefx_do_footer_widgets() {
 
 	$footer_widget_column = apply_filters( 'calibrefx_footer_widget_column_span', $span );
 
-	$sidebar['before_widget'] = '<div id="%1$s" class="widget ' . $footer_widget_column . ' %2$s"><div class="widget-wrap">';
-	$sidebar['after_widget'] = '</div></div>';
+	$sidebar['before_widget'] = '<div id="%1$s" class="widget ' . $footer_widget_column . ' %2$s">';
+	$sidebar['after_widget'] = '</div>';
 
 	unregister_sidebar( 'footer-widget' );
 	register_sidebar( $sidebar );

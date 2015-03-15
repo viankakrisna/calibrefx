@@ -292,14 +292,14 @@ function calibrefx_do_sidebar() {
 
 	if ( ! dynamic_sidebar( 'sidebar' ) ) {
 
-		$output = '<div class="widget widget_text"><div class="widget-wrap">';
+		$output = '<div class="widget widget_text">';
 		$output .= '<h4 class="widgettitle">';
 		$output .= __( 'Primary Sidebar Widget Area', 'calibrefx' );
 		$output .= '</h4>';
 		$output .= '<div class="textwidget"><p>';
 		$output .= sprintf( __( 'This is the Primary Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'calibrefx' ), admin_url( 'widgets.php' ) );
 		$output .= '</p></div>';
-		$output .= '</div></div>';
+		$output .= '</div>';
 
 		echo apply_filters( 'calibrefx_sidebar_default', $output );
 	}
@@ -312,14 +312,14 @@ function calibrefx_do_sidebar_alt() {
 
 	if ( ! dynamic_sidebar( 'sidebar-alt' ) ) {
 
-		$output = '<div class="widget widget_text"><div class="widget-wrap">';
+		$output = '<div class="widget widget_text">';
 		$output .= '<h4 class="widgettitle">';
 		$output .= __( 'Secondary Sidebar Widget Area', 'calibrefx' );
 		$output .= '</h4>';
 		$output .= '<div class="textwidget"><p>';
 		$output .= sprintf( __( 'This is the Secondary Sidebar Widget Area. You can add content to this area by visiting your <a href="%s">Widgets Panel</a> and adding new widgets to this area.', 'calibrefx' ), admin_url( 'widgets.php' ) );
 		$output .= '</p></div>';
-		$output .= '</div></div>';
+		$output .= '</div>';
 
 		echo apply_filters( 'calibrefx_sidebar_alt_default', $output );
 	}

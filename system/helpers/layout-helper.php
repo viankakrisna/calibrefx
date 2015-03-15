@@ -432,8 +432,8 @@ function calibrefx_content_sidebar_span() {
  */
 function calibrefx_register_sidebar( $args ) {
 	$defaults = (array) apply_filters( 'calibrefx_register_sidebar_defaults', array(
-				'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-wrap">',
-				'after_widget'  => "</div></div>\n",
+				'before_widget' => '<div id="%1$s" class="widget %2$s">',
+				'after_widget'  => "</div>\n",
 				'before_title'  => '<h4 class="widgettitle">',
 				'after_title'   => "</h4>\n",
 			) );
