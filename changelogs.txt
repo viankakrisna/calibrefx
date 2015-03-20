@@ -2,6 +2,10 @@
  * CalibreFx Changelogs
  */
 
+Next changelogs can be found at https://github.com/calibreworks/calibrefx/releases
+
+---
+
 version 2.0.0  < March 01, 2015 > - 
     * Major release
     * Partially Rewrite all the codes

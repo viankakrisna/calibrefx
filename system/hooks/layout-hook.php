@@ -468,7 +468,7 @@ function calibrefx_custom_header_admin_style() {
  */
 function calibrefx_search_form() {
 
-	$search_text = get_search_query() ? esc_attr( apply_filters( 'the_search_query', get_search_query() ) ) : apply_filters( 'calibrefx_search_text', sprintf( esc_attr__( 'Search this website %s', 'calibrefx' ), '&hellip;' ) );
+	$search_text = get_search_query() ? esc_attr( apply_filters( 'the_search_query', get_search_query() ) ) : apply_filters( 'calibrefx_search_text', sprintf( esc_attr__( 'Search%s', 'calibrefx' ), '&hellip;' ) );
 
 	$button_text = apply_filters( 'calibrefx_search_button_text', esc_attr__( 'Search', 'calibrefx' ) );
 

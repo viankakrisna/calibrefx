@@ -6,7 +6,7 @@
  *
  * @package		CalibreFx
  * @author		CalibreFx Team
- * @copyright   Copyright (c) 2012-2014, Calibreworks. (http://www.calibreworks.com/)
+ * @copyright   Copyright (c) 2012-2015, Calibreworks. (http://www.calibreworks.com/)
  * @license		GNU/GPL v2
  * @link		http://www.calibrefx.com
  *
