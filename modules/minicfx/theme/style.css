@@ -8,3 +8,17 @@ Version: 1.0
 License: GNU General Public License
 License URI: license.txt
 */
+
+.lightbox {
+	position: fixed;
+	background: #fff;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	z-index: 10000;
+	text-align: center;
+	line-height: 0;
+	font-weight: normal;
+}
