@@ -62,12 +62,13 @@ function calibrefx_upgrade() {
 	//Avoid infinited loop
 	if ( empty( $calibrefx_db_version ) ){
 		calibrefx_set_option( 'calibrefx_db_version', FRAMEWORK_DB_VERSION );
-		calibrefx_set_option( 'calibrefx_version', FRAMEWORK_VERSION );
 	}
+	
+	calibrefx_set_option( 'calibrefx_version', FRAMEWORK_VERSION );
+	
 	if ( $calibrefx_db_version >= FRAMEWORK_DB_VERSION ) {
 		return;
 	}
-	calibrefx_set_option( 'calibrefx_version', FRAMEWORK_VERSION );
 	do_action( 'calibrefx_upgrade' );
 }
 add_action( 'admin_init', 'calibrefx_upgrade', 25 );
