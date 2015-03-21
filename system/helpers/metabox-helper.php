@@ -149,11 +149,14 @@ function calibrefx_add_meta_box( $section, $ability, $id, $title, $callback, $sc
 }
 
 /**
- * [calibrefx_add_meta_group description]
- * @param  [type] $metabox_id  [description]
- * @param  [type] $group_id    [description]
- * @param  [type] $group_title [description]
- * @return [type]              [description]
+ * Grouping fields when edit form.
+ *
+ * @since 2.0.0
+ * 
+ * @param  string $metabox_id  [description]
+ * @param  string $group_id    [description]
+ * @param  string $group_title [description]
+ * @return void
  */
 function calibrefx_add_meta_group( $metabox_id, $group_id, $group_title ) {
 	global $calibrefx_meta_options;
