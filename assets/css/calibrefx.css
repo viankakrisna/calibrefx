@@ -1596,6 +1596,57 @@ input[type="submit"].searchsubmit {
 	padding: 10px;
 }
 
+/* Woocommerce Style
+------------------------------------------------------------ */
+.woocommerce #content{
+    background: #fff;
+    background-clip: content-box;
+    margin-bottom: 20px;
+}
+
+.woocommerce #content > *{
+    padding: 0 20px;
+}
+
+.woocommerce #content > .product{
+    padding: 20px;
+}
+
+.woocommerce #respond input#submit, 
+.woocommerce a.button, 
+.woocommerce button.button, 
+.woocommerce input.button{
+	border-radius: 0;
+}
+
+.woocommerce .woocommerce-product-search .screen-reader-text{
+	/*display: none;*/
+}
+
+.woocommerce input[type=search].search-field{
+	background-color: #fff;
+  	color: #20586d;
+  	font-weight: bold;
+  	border: 1px solid #e5e5e5;
+  	box-shadow: none;
+  	color: #2f2f2f;
+  	font-weight: normal;
+}
+
+.woocommerce input[type="submit"] {
+  border: none;
+  background: #00AEEF;
+  color: #fff;
+  border-radius: 0 !important;
+}
+
+.woocommerce-cart .cart-collaterals .cart_totals table{
+	border-left:1px solid #ddd;
+}
+
+/* Media Queries
+------------------------------------------------------------ */
+
 @media (min-width: 992px) {
 
 

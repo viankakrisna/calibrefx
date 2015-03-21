@@ -32,7 +32,6 @@ $content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_w
 		 */
 		do_action( 'woocommerce_before_main_content' );
 	?>
-
 		<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 
 			<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
@@ -79,7 +78,6 @@ $content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_w
 			<?php wc_get_template( 'loop/no-products-found.php' ); ?>
 
 		<?php endif; ?>
-
 	<?php
 		/**
 		 * woocommerce_after_main_content hook
