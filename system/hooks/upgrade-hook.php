@@ -132,7 +132,7 @@ function calibrefx_update_notification() {
 
 	echo '<div id="update-nag">';
 	printf(
-		__( 'Calibrefx %s is available. <a href="%s" class="thickbox thickbox-preview">Check out what\'s new</a> or <a href="%s" onclick="return calibrefx_confirm(\'%s\' );">update now</a>.', 'calibrefx' ), esc_html( $calibrefx_update['new_version'] ), esc_url( $calibrefx_update['changelog_url'] ), wp_nonce_url( 'update.php?action=upgrade-theme&amp;theme=calibrefx', 'upgrade-theme_calibrefx' ), esc_js( __( 'Upgrading CalibreFx will overwrite the current installed version of CalibreFx. Are you sure you want to upgrade?. "Cancel" to stop, "OK" to upgrade.', 'calibrefx' ) )
+		__( 'Calibrefx %s is available. <a href="%s" class="thickbox thickbox-preview">Check out what\'s new</a> or <a href="%s" onclick="return calibrefx_confirm(\'%s\' );">update now</a>.', 'calibrefx' ), esc_html( $calibrefx_update['new_version'] ), esc_url( $calibrefx_update['changelog_url'] ), wp_nonce_url( 'update.php?action=upgrade-theme&amp;theme=calibrefx', 'upgrade-theme_calibrefx' ), esc_js( __( 'Upgrading Calibrefx will overwrite the current installed version of Calibrefx. Are you sure you want to upgrade?. "Cancel" to stop, "OK" to upgrade.', 'calibrefx' ) )
 	);
 	echo '</div>';
 }

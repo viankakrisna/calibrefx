@@ -24,7 +24,7 @@ define( 'FRAMEWORK_VERSION', '2.0.3' );
 define( 'FRAMEWORK__MINIMUM_WP_VERSION', '4.1' );
 define( 'FRAMEWORK_DB_VERSION', '1001' );
 define( 'FRAMEWORK_URL', 'http://www.calibrefx.com' );
-define( 'FRAMEWORK_RELEASE_DATE', date_i18n( 'F j, Y', '1425699263' ) );
+define( 'FRAMEWORK_RELEASE_DATE', date_i18n( 'F j, Y', '1426925486' ) );
 
 /** Run the calibrefx_pre Hook */
 do_action( 'calibrefx_pre' );
