@@ -63,24 +63,24 @@ body:not(.custom-background) #wrapper {
 }
 
 #nav .navbar-inner{
-	min-height: 34px;
     background: none;
-    filter: none;
     border: none;
-	-webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
     border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
-    box-shadow: none;
+    filter: none;
+    min-height: 34px;
 }
 
 #nav .nav > li > a{
 	color: #FFFFFF;
-	text-shadow: none;
 	border-top: 3px solid transparent;
-	padding-top: 20px;
-	padding-bottom: 22px;
+    padding-top: 20px;
+    padding-bottom: 22px;
+    text-shadow: none;
 }
 
 #nav .nav > li > a:focus, 
@@ -88,13 +88,12 @@ body:not(.custom-background) #wrapper {
 #nav .nav > li:hover > a,
 #nav .nav > li.active > a,
 #nav .nav > li.current-menu-ancestor > a{
-   	color: #005B7D;
-	
    	background-color: #E9E9EA;
-	-webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+    color: #005B7D;
    	border-top-color: #005B7D;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
 }
 
 #nav .dropdown-menu { 
@@ -124,7 +123,7 @@ body:not(.custom-background) #wrapper {
 }
 
 #nav .nav > li > .dropdown-menu .dropdown-menu {
-top: 0;
+    top: 0;
 }
 
 /* Secondary Navigation
@@ -253,7 +252,6 @@ top: 0;
 
 #inner .subscriber-widget{
     background: #3C71A7;
-
     padding: 20px 20px;
     border-left: 5px solid #005B7D;
 }
@@ -266,7 +264,6 @@ top: 0;
 
 #inner .subscriber-widget .btn{
     background-color: #00AEEF;
-    
     border-color: transparent;
     color: #fff;
 } 
@@ -296,50 +293,46 @@ top: 0;
 
 /* Calendar Widget
 ------------------------------------------------------------ */
-.widget_calendar{
-    
-}
 
 .widget_calendar table{
-	border-bottom: 1px solid #ededed;
+	background: #DDDDDD;
+    border-bottom: 1px solid #ededed;
     border-collapse: collapse;
     border-spacing: 0;
     font-size: 14px;
     line-height: 2;
     margin: 0 0 20px;
     width: 100%;
-	
-	background: #DDDDDD;
 }
 
 .widget_calendar table, .widget_calendar td {
-border: 0;
-border-collapse: separate;
-border-spacing: 1px;
+    border: 0;
+    border-collapse: separate;
+    border-spacing: 1px;
 }
 
 .widget_calendar th, .widget_calendar td {
-padding: 0;
-text-align: center;
+    padding: 0;
+    text-align: center;
 }
 
 .widget_calendar #prev {
-text-align: left;
-padding-left: 10px;
+    padding-left: 10px;
+    text-align: left;
 }
 
 .widget_calendar #next {
-text-align: right;
-padding-right: 10px;
+    padding-right: 10px;
+    text-align: right;
 }
 
 .widget_calendar tbody td {
-background-color: #fff;
+    background-color: #fff;
 }
 
 .widget_calendar caption {
-font-size: 14px;
-margin: 0;
+    font-size: 14px;
+    margin: 0;
 } 
 
 /* Breadcrumb
@@ -357,8 +350,7 @@ margin: 0;
 .page h2.entry-title,
 .post h1.entry-title,
 .page h1.entry-title{
-    margin: 0 0 10px;
-	
+    margin: 0 0 10px;	
     padding: 0 10px 5px;
 }
 
@@ -383,11 +375,11 @@ margin: 0;
 /* Post Info
 ------------------------------------------------------------ */
 .post-info {
-    font-size: 0.8em;
-    color: #8A94A1;
     border-bottom: 1px solid #E9EEF1;
-    padding: 0 10px 7px;
+    color: #8A94A1;
+    font-size: 0.8em;
     margin: 0 0 17px;
+    padding: 0 10px 7px;
 }
 
 .vcard a{
@@ -412,11 +404,11 @@ margin: 0;
 /* Post Meta
 ------------------------------------------------------------ */
 .post-meta {
+    border-top: 1px solid #E9EEF1;
+    border-bottom: 1px solid #E9EEF1;
     clear: both;
     font-size: 0.85em;
     padding: 15px 10px;
-    border-top: 1px solid #E9EEF1;
-    border-bottom: 1px solid #E9EEF1;
 }
 
 /* Author Box
@@ -550,21 +542,20 @@ input[type="submit"].searchsubmit:hover{
 }
 
 .scrolltop{
-    position: absolute;
-    
-    top: 0px;
-    right: 0px;
-    width: 45px;
-    height: 45px;
     background: #585858 url(assets/img/scroll-top-arrow.png) center center no-repeat;
+    height: 45px;
     padding: 0;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 45px;
 }
 
 .scrolltop a{
-	height: 45px;
+    display: inline-block;
+    height: 45px;
+    text-indent: -999em;
 	width: 45px;
-	display: inline-block;
-	text-indent: -999em;
 }
 
 /* Form Style

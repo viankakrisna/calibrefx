@@ -1619,10 +1619,6 @@ input[type="submit"].searchsubmit {
 	border-radius: 0;
 }
 
-.woocommerce .woocommerce-product-search .screen-reader-text{
-	/*display: none;*/
-}
-
 .woocommerce input[type=search].search-field{
 	background-color: #fff;
   	color: #20586d;
@@ -1644,12 +1640,238 @@ input[type="submit"].searchsubmit {
 	border-left:1px solid #ddd;
 }
 
+/* Mobile Menu
+------------------------------------------------------------ */
+
+.mobile #super-wrapper {
+	position: relative;
+}
+
+.mobile .mobile-sidebar {
+	position: absolute;
+	height: 100%;
+}
+
+.mobile #mobile-nav {
+	background: #A8A8A8;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 250px;
+	height: 100%;
+	border: 0;
+	border-radius: 0;
+	margin: 0;
+}
+
+.mobile #wrapper {
+	webkit-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715); 
+	-moz-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715); 
+	-ms-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715);
+	-o-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715); 
+	transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715); 
+	-webkit-transition-timing-function: cubic-bezier(0.665, 0.165, 0.130, 0.715);
+	-moz-transition-timing-function: cubic-bezier(0.665, 0.165, 0.130, 0.715); 
+	-ms-transition-timing-function: cubic-bezier(0.665, 0.165, 0.130, 0.715); 
+	-o-transition-timing-function: cubic-bezier(0.665, 0.165, 0.130, 0.715); 
+	transition-timing-function: cubic-bezier(0.665, 0.165, 0.130, 0.715); 
+	position: relative; 
+	left: 0px; 
+}
+
+.mobile #wrapper {
+	background: #ffffff;
+	z-index: 10000;
+}
+
+.mobile #wrapper.m {
+	-webkit-transform: perspective(0) translate(250px, 0);
+	-moz-transform: translate(250px, 0);
+	-ms-transform: translate(250px, 0);
+	-o-transform: translate(250px, 0);
+	transform: translate(250px, 0);
+}
+
+.mobile #mobile-nav .navbar-nav {
+	float: none;
+	margin: 0;
+}
+
+.mobile #mobile-nav .navbar-nav > li.menu-donasi {
+	display: none;
+}
+
+.mobile #mobile-nav .navbar-nav > li {
+	float:none;
+}
+
+.mobile #mobile-nav .navbar-nav > li > a {
+	color: #333333;
+	background: #E7E7E7;
+	padding: 20px 15px 20px 20px;
+	border-bottom: 1px solid #CACACA;
+	font-size: 16px;
+	position: relative;
+}
+
+.mobile #mobile-nav .navbar-nav > li span.mobile-arrow {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	content: '';
+	width: 55px;
+	height: 55px;
+	border-left: 1px solid #CACACA;
+}
+
+.mobile #mobile-nav .navbar-nav > li span.mobile-arrow i.icon-mobile-arrow {  
+	background: url(../img/ig-menu-arrow.png) center center no-repeat;  
+	width: 55px;
+	height: 55px;
+	display: block;
+}
+
+.mobile #mobile-nav .navbar-nav > li.mobile-open span.mobile-arrow i.icon-mobile-arrow {
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+
+/*mobile nav*/
+.mobile #mobile-nav .navbar-nav > li > a i {
+	width: 34px;
+	height: 34px;
+	display: inline-block;
+	background: url(assets/img/mobile/icon-home.png) 0 0 no-repeat;
+	position: absolute;
+	top: 11px;
+	left: 15px;
+}
+
+.mobile #mobile-nav .navbar-nav > li > a span {
+	display: none;
+}
+
+.mobile #mobile-nav .dropdown-menu {
+	position: relative;
+	width: 100%;
+	box-shadow: none;
+	border-radius: 0;
+	border: 0;
+	padding: 0;
+	float: none;
+}
+
+.mobile #mobile-nav .dropdown-menu > li > a {
+	padding: 16px 20px 17px 20px;
+	background: #818181;
+	color: #fff;
+	border-bottom: 1px solid #eee;
+	font-size: 16px;
+	white-space:normal;
+}
+
+
+.mobile .mobile-header-top {
+	height: 55px;
+}
+
+.mobile .mobile-header-top a {
+	padding: 10px;
+	display: inline-block;
+	color: #ffffff;
+}
+.mobile .mobile-header-top a:hover {
+	color: #eeeeee;
+}
+.mobile .mobile-header-top a i {
+	background: url(../img/icon-menu-mobile.png) center center no-repeat;
+	height: 35px;
+	width: 35px;
+	display: inline-block;
+	padding-left: 35px;
+	vertical-align: middle;
+}
+
+
+/* nProgress
+------------------------------------------------------------ */
+#nprogress {
+	pointer-events: none;
+}
+
+#nprogress .bar {
+	background: #29d;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+	box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+	display: block;
+	height: 100%;
+	opacity: 1.0;
+	position: absolute;
+	right: 0px;
+	width: 100px;
+
+	-webkit-transform: rotate(3deg) translate(0px, -4px);
+		-ms-transform: rotate(3deg) translate(0px, -4px);
+			transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+	display: block;
+	position: fixed;
+	right: 15px;
+	top: 15px;
+	z-index: 1031;
+}
+
+#nprogress .spinner-icon {
+	border: solid 2px transparent;
+	border-top-color: #29d;
+	border-left-color: #29d;
+	border-radius: 50%;
+	box-sizing: border-box;
+	height: 18px;
+	width: 18px;
+
+	-webkit-animation: nprogress-spinner 400ms linear infinite;
+			animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+	overflow: hidden;
+	position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+	position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+	0%  { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes nprogress-spinner {
+	0%  { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+
+
 /* Media Queries
 ------------------------------------------------------------ */
 
 @media (min-width: 992px) {
-
-
 	#content-sidebar {
 		float: right;
 	}
@@ -1770,230 +1992,3 @@ input[type="submit"].searchsubmit {
 		margin-left: auto;
 	}
 }
-
-/*mobile menu*/
-
-.mobile #super-wrapper {
-	position: relative;
-}
-
-.mobile .mobile-sidebar {
-	position: absolute;
-	height: 100%;
-}
-
-.mobile #mobile-nav {
-	background: #A8A8A8;
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 250px;
-	height: 100%;
-	border: 0;
-	border-radius: 0;
-	margin: 0;
-}
-
-.mobile #wrapper {
-	webkit-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715); 
-	-moz-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715); 
-	-ms-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715);
-	-o-transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715); 
-	transition: all 350ms cubic-bezier(0.665, 0.165, 0.130, 0.715); 
-	-webkit-transition-timing-function: cubic-bezier(0.665, 0.165, 0.130, 0.715);
-	-moz-transition-timing-function: cubic-bezier(0.665, 0.165, 0.130, 0.715); 
-	-ms-transition-timing-function: cubic-bezier(0.665, 0.165, 0.130, 0.715); 
-	-o-transition-timing-function: cubic-bezier(0.665, 0.165, 0.130, 0.715); 
-	transition-timing-function: cubic-bezier(0.665, 0.165, 0.130, 0.715); 
-	position: relative; 
-	left: 0px; 
-}
-
-.mobile #wrapper {
-	background: #ffffff;
-	z-index: 10000;
-	 /*display: none; */
-}
-
-.mobile #wrapper.m {
-	-webkit-transform: perspective(0) translate(250px, 0);
-	-moz-transform: translate(250px, 0);
-	-ms-transform: translate(250px, 0);
-	-o-transform: translate(250px, 0);
-	transform: translate(250px, 0);
-}
-
-.mobile #mobile-nav .navbar-nav {
-	margin: 0;
-	float: none;
-}
-
-.mobile #mobile-nav .navbar-nav > li.menu-donasi {
-	display: none;
-}
-
-.mobile #mobile-nav .navbar-nav > li {
-	float:none;
-}
-
-.mobile #mobile-nav .navbar-nav > li > a {
-	color: #333333;
-	background: #E7E7E7;
-	padding: 20px 15px 20px 20px;
-	border-bottom: 1px solid #CACACA;
-	font-size: 16px;
-	position: relative;
-}
-
-.mobile #mobile-nav .navbar-nav > li span.mobile-arrow {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	content: '';
-	width: 55px;
-	height: 55px;
-	border-left: 1px solid #CACACA;
-}
-
-.mobile #mobile-nav .navbar-nav > li span.mobile-arrow i.icon-mobile-arrow {  
-	background: url(../img/ig-menu-arrow.png) center center no-repeat;  
-	width: 55px;
-	height: 55px;
-	display: block;
-}
-
-.mobile #mobile-nav .navbar-nav > li.mobile-open span.mobile-arrow i.icon-mobile-arrow {
-	-webkit-transform: rotate(90deg);
-	-moz-transform: rotate(90deg);
-	transform: rotate(90deg);
-}
-
-
-/*mobile nav*/
-.mobile #mobile-nav .navbar-nav > li > a i {
-	width: 34px;
-	height: 34px;
-	display: inline-block;
-	background: url(assets/img/mobile/icon-home.png) 0 0 no-repeat;
-	position: absolute;
-	top: 11px;
-	left: 15px;
-}
-
-.mobile #mobile-nav .navbar-nav > li > a span {
-	display: none;
-}
-
-.mobile #mobile-nav .dropdown-menu {
-	position: relative;
-	width: 100%;
-	box-shadow: none;
-	border-radius: 0;
-	border: 0;
-	padding: 0;
-	float: none;
-}
-
-.mobile #mobile-nav .dropdown-menu > li > a {
-	padding: 16px 20px 17px 20px;
-	background: #818181;
-	color: #fff;
-	border-bottom: 1px solid #eee;
-	font-size: 16px;
-	white-space:normal;
-}
-
-
-.mobile .mobile-header-top {
-	height: 55px;
-}
-
-.mobile .mobile-header-top a {
-	padding: 10px;
-	display: inline-block;
-	color: #ffffff;
-}
-.mobile .mobile-header-top a:hover {
-	color: #eeeeee;
-}
-.mobile .mobile-header-top a i {
-	background: url(../img/icon-menu-mobile.png) center center no-repeat;
-	height: 35px;
-	width: 35px;
-	display: inline-block;
-	padding-left: 35px;
-	vertical-align: middle;
-}
-
-
-/* NPROGRESS */
-/* Make clicks pass-through */
-#nprogress {
-	pointer-events: none;
-}
-
-#nprogress .bar {
-	background: #29d;
-	position: fixed;
-	z-index: 100000;
-	top: 0;
-	left: 0;
-	width: 100%;
-}
-
-/* Fancy blur effect */
-#nprogress .peg {
-	display: block;
-	position: absolute;
-	right: 0px;
-	width: 100px;
-	height: 100%;
-	box-shadow: 0 0 10px #29d, 0 0 5px #29d;
-	opacity: 1.0;
-
-	-webkit-transform: rotate(3deg) translate(0px, -4px);
-		-ms-transform: rotate(3deg) translate(0px, -4px);
-			transform: rotate(3deg) translate(0px, -4px);
-}
-
-/* Remove these to get rid of the spinner */
-#nprogress .spinner {
-	display: block;
-	position: fixed;
-	right: 15px;
-	top: 15px;
-	z-index: 1031;
-}
-
-#nprogress .spinner-icon {
-	border: solid 2px transparent;
-	border-top-color: #29d;
-	border-left-color: #29d;
-	border-radius: 50%;
-	box-sizing: border-box;
-	height: 18px;
-	width: 18px;
-
-	-webkit-animation: nprogress-spinner 400ms linear infinite;
-			animation: nprogress-spinner 400ms linear infinite;
-}
-
-.nprogress-custom-parent {
-	overflow: hidden;
-	position: relative;
-}
-
-.nprogress-custom-parent #nprogress .spinner,
-.nprogress-custom-parent #nprogress .bar {
-	position: absolute;
-}
-
-@-webkit-keyframes nprogress-spinner {
-	0%  { -webkit-transform: rotate(0deg); }
-	100% { -webkit-transform: rotate(360deg); }
-}
-@keyframes nprogress-spinner {
-	0%  { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
-}
-
