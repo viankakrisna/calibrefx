@@ -764,6 +764,73 @@ big {
 	display: inline-block;
 }
 
+.widget .social-media-list.horizontal li {
+  	border-radius: 50%;
+  	width: 35px;
+  	height: 35px;
+  	padding: 7px 0 0 10px;
+  	display: inline-block;
+  	margin-right: 5px;
+  	text-align: left;
+}
+
+.widget .social-media-list.vertical li a{
+	min-width: 120px;
+	padding: 10px;
+	text-align: left;
+	display: inline-block;
+}
+
+.widget .social-media-list li a{
+  	color: #fff;
+  	text-decoration: none;
+}
+
+.widget .social-media-list li a:hover{
+	color: #fff;
+	opacity: .85;
+}
+
+.widget .social-media-list.horizontal li.facebook,
+.widget .social-media-list.vertical li.facebook a{
+	 background: #3a569f; 
+}
+
+.widget .social-media-list.horizontal li.twitter,
+.widget .social-media-list.vertical li.twitter a{
+	background: #00aaf0;
+}
+
+.widget .social-media-list.horizontal li.gplus,
+.widget .social-media-list.vertical li.gplus a{
+	background: #dd4b39;
+}
+
+.widget .social-media-list.horizontal li.youtube,
+.widget .social-media-list.vertical li.youtube a{
+	background: #DD2014;
+}
+
+.widget .social-media-list.horizontal li.linkedin,
+.widget .social-media-list.vertical li.linkedin a{
+	background: #1A85BC;
+}
+
+.widget .social-media-list.horizontal li.pinterest,
+.widget .social-media-list.vertical li.pinterest a{
+	background: #CC2127;
+}
+
+.widget .social-media-list.horizontal li.instagram,
+.widget .social-media-list.vertical li.instagram a{
+	background: #205C82;
+}
+
+.widget .social-media-list.horizontal li.github,
+.widget .social-media-list.vertical li.github a{
+	background: #333333;
+}
+
 /* Post
 ------------------------------------------------------------ */
 .entry-content {

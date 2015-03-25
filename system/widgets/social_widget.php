@@ -71,8 +71,8 @@ class CFX_Social_Widget extends WP_Widget {
 
 		if ( ! empty( $fb_url) ) {
 			$output .= '<li class="facebook">
-					<a href="'.$fb_url.'" title="'.__( 'View us on facebook', 'calibrefx' ).'" target="_blank">
-						<i class="social-icon fa fa-facebook'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+					<a href="' . $fb_url . '" title="' . __( 'View us on facebook', 'calibrefx' ).'" target="_blank">
+						<i class="social-icon cfxicons cfxicon-facebook' . '"></i>
 						'.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_facebook'] ) : '' ).'</span>
 					</a>
 				</li>';
@@ -80,8 +80,8 @@ class CFX_Social_Widget extends WP_Widget {
 
 		if ( ! empty( $tw_url) ) {
 			$output .= '<li class="twitter">
-					<a href="'.$tw_url.'" title="'.__( 'View us on twitter', 'calibrefx' ).'" target="_blank">
-						<i class="social-icon fa fa-twitter'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+					<a href="' . $tw_url . '" title="' . __( 'View us on twitter', 'calibrefx' ).'" target="_blank">
+						<i class="social-icon cfxicons cfxicon-twitter' . '"></i>
 						'.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_twitter'] ) : '' ).'</span>
 					</a>
 				</li>';
@@ -89,8 +89,8 @@ class CFX_Social_Widget extends WP_Widget {
 
 		if ( ! empty( $gplus_url) ) {
 			$output .= '<li class="gplus">
-					<a href="'.$gplus_url.'" title="'.__( 'View us on google+', 'calibrefx' ).'" target="_blank">
-						<i class="social-icon fa fa-google-plus'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+					<a href="' . $gplus_url . '" title="' . __( 'View us on google+', 'calibrefx' ).'" target="_blank">
+						<i class="social-icon cfxicons cfxicon-google-plus' . '"></i>
 						'.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_gplus'] ) : '' ).'</span>
 					</a>
 				</li>';
@@ -98,8 +98,8 @@ class CFX_Social_Widget extends WP_Widget {
 
 		if ( ! empty( $youtube_url) ) {
 			$output .= '<li class="youtube">
-					<a href="'.$youtube_url.'" title="'.__( 'View our youtube channel', 'calibrefx' ).'" target="_blank">
-						<i class="social-icon fa fa-youtube'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+					<a href="' . $youtube_url . '" title="' . __( 'View our youtube channel', 'calibrefx' ).'" target="_blank">
+						<i class="social-icon cfxicons cfxicon-youtube' . '"></i>
 						'.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_youtube'] ) : '' ).'</span>
 					</a>
 				</li>';
@@ -107,8 +107,8 @@ class CFX_Social_Widget extends WP_Widget {
 
 		if ( ! empty( $linkedin_profile) ) {
 			$output .= '<li class="linkedin">
-					<a href="'.$linkedin_profile.'" title="'.__( 'View us on linkedin', 'calibrefx' ).'" target="_blank">
-						<i class="social-icon fa fa-linkedin'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+					<a href="' . $linkedin_profile . '" title="' . __( 'View us on linkedin', 'calibrefx' ).'" target="_blank">
+						<i class="social-icon cfxicons cfxicon-linkedin' . '"></i>
 						'.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_linkedin'] ) : '' ).'</span>
 					</a>
 				</li>';
@@ -116,8 +116,8 @@ class CFX_Social_Widget extends WP_Widget {
 
 		if ( ! empty( $pinterest_profile) ) {
 			$output .= '<li class="pinterest">
-					<a href="'.$pinterest_profile.'" title="'.__( 'View us on pinterest', 'calibrefx' ).'" target="_blank">
-						<i class="social-icon fa fa-pinterest'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+					<a href="' . $pinterest_profile . '" title="' . __( 'View us on pinterest', 'calibrefx' ).'" target="_blank">
+						<i class="social-icon cfxicons cfxicon-pinterest' . '"></i>
 						'.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_pinterest'] ) : '' ).'</span>
 					</a>
 				</li>';
@@ -125,8 +125,8 @@ class CFX_Social_Widget extends WP_Widget {
 
 		if ( ! empty( $instagram_profile) ) {
 			$output .= '<li class="instagram">
-					<a href="'.$instagram_profile.'" title="'.__( 'View us on instagram', 'calibrefx' ).'" target="_blank">
-						<i class="social-icon fa fa-instagram'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+					<a href="' . $instagram_profile . '" title="' . __( 'View us on instagram', 'calibrefx' ).'" target="_blank">
+						<i class="social-icon cfxicons cfxicon-instagram' . '"></i>
 						'.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_instagram'] ) : '' ).'</span>
 					</a>
 				</li>';
@@ -134,8 +134,8 @@ class CFX_Social_Widget extends WP_Widget {
 
 		if ( ! empty( $github_profile) ) {
 			$output .= '<li class="github">
-					<a href="'.$github_profile.'" title="'.__( 'View us on github', 'calibrefx' ).'" target="_blank">
-						<i class="social-icon fa fa-github'.$instance['icon_style'].' fa-fw '.$instance['icon_size'].'"></i>
+					<a href="' . $github_profile . '" title="' . __( 'View us on github', 'calibrefx' ).'" target="_blank">
+						<i class="social-icon cfxicons cfxicon-github' . '"></i>
 						'.(( $instance['layout'] == 'vertical' ) ? ' <span class="social-media-label">'.stripslashes( $instance['label_github'] ) : '' ).'</span>
 					</a>
 				</li>';
@@ -179,26 +179,6 @@ class CFX_Social_Widget extends WP_Widget {
             <select name="<?php echo $this->get_field_name( 'layout' ); ?>" id="<?php echo $this->get_field_id( 'layout' ); ?>">
                 <option value="horizontal"<?php selected( 'horizontal', $instance['layout'], true ); ?>><?php _e( 'Horizontal', 'calibrefx' ); ?></option>
                 <option value="vertical"<?php selected( 'vertical', $instance['layout'], true ); ?>><?php _e( 'Vertical', 'calibrefx' ); ?></option>
-            </select>
-        </p>
-
-        <p>
-            <label for="<?php echo $this->get_field_id( 'icon_size' ); ?>"><?php _e( 'Icon Size', 'calibrefx' ); ?>:</label><br />
-            <select name="<?php echo $this->get_field_name( 'icon_size' ); ?>" id="<?php echo $this->get_field_id( 'icon_size' ); ?>">
-                <option value=""><?php _e( 'Default', 'calibrefx' ); ?></option>
-                <option value="fa-lg"<?php selected( 'fa-lg', $instance['icon_size'], true ); ?>><?php _e( 'Large', 'calibrefx' ); ?></option>
-                <option value="fa-2x"<?php selected( 'fa-2x', $instance['icon_size'], true ); ?>><?php _e( '2x', 'calibrefx' ); ?></option>
-                <option value="fa-3x"<?php selected( 'fa-3x', $instance['icon_size'], true ); ?>><?php _e( '3x', 'calibrefx' ); ?></option>
-                <option value="fa-4x"<?php selected( 'fa-4x', $instance['icon_size'], true ); ?>><?php _e( '4x', 'calibrefx' ); ?></option>
-                <option value="fa-4x"<?php selected( 'fa-5x', $instance['icon_size'], true ); ?>><?php _e( '5x', 'calibrefx' ); ?></option>
-            </select>
-        </p>
-
-         <p>
-            <label for="<?php echo $this->get_field_id( 'icon_style' ); ?>"><?php _e( 'Icon Style', 'calibrefx' ); ?>:</label><br />
-            <select name="<?php echo $this->get_field_name( 'icon_style' ); ?>" id="<?php echo $this->get_field_id( 'icon_style' ); ?>">
-                <option value=""><?php _e( 'Default', 'calibrefx' ); ?></option>
-                <option value="-square"<?php selected( '-square', $instance['icon_style'], true ); ?>><?php _e( 'Boxed', 'calibrefx' ); ?></option>
             </select>
         </p>
 
