@@ -65,7 +65,8 @@ function calibrefx_upgrade() {
 	}
 	
 	calibrefx_set_option( 'calibrefx_version', FRAMEWORK_VERSION );
-	
+	wp_cache_flush(); //refresh option caches
+
 	if ( $calibrefx_db_version >= FRAMEWORK_DB_VERSION ) {
 		return;
 	}
@@ -99,7 +100,7 @@ function calibrefx_upgraded_notice() {
 	}
 
 	if ( isset( $_REQUEST['upgraded'] ) AND 'true' == $_REQUEST['upgraded'] ) {
-		echo '<div id="message" class="updated highlight" id="message"><p>' . sprintf( __( 'Congratulations! You are now using the latest version of Calibrefx v%s', 'calibrefx' ), calibrefx_get_option( 'calibrefx_version' ) ) . '</p></div>';
+		echo '<div id="message" class="updated highlight" id="message"><p>' . sprintf( __( 'Congratulations! You are now using the latest version of Calibrefx v%s', 'calibrefx' ), FRAMEWORK_VERSION ) . '</p></div>';
 	}
 }
 add_action( 'admin_notices', 'calibrefx_upgraded_notice' );

@@ -71,8 +71,8 @@ class CFX_Other_Settings extends Calibrefx_Admin {
             </span>
         </p>
         <p><strong><?php _e( 'Framework Name: ', 'calibrefx' ); ?></strong><?php echo FRAMEWORK_NAME; ?> (<?php _e( 'Codename: ', 'calibrefx' ); echo FRAMEWORK_CODENAME; ?>)</p>
-        <p><strong><?php _e( 'Version:', 'calibrefx' ); ?></strong> <?php echo calibrefx_get_option( 'calibrefx_version' ); ?> <?php echo '&middot;'; ?> <strong><?php _e( 'Released:', 'calibrefx' ); ?></strong> <?php echo FRAMEWORK_RELEASE_DATE; ?></p>
-        <p><strong><?php _e( 'DB Version: ', 'calibrefx' ); ?></strong><?php echo calibrefx_get_option( 'calibrefx_db_version' ); ?></p>
+        <p><strong><?php _e( 'Version:', 'calibrefx' ); ?></strong> <?php echo FRAMEWORK_VERSION; ?> <?php echo '&middot;'; ?> <strong><?php _e( 'Released:', 'calibrefx' ); ?></strong> <?php echo FRAMEWORK_RELEASE_DATE; ?></p>
+        <p><strong><?php _e( 'DB Version: ', 'calibrefx' ); ?></strong><?php echo FRAMEWORK_DB_VERSION; ?></p>
         <?php
 
 		if ( is_child_theme() ) { ?>
