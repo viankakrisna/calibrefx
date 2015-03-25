@@ -29,10 +29,10 @@ function calibrefx_register_scripts() {
 
 	wp_register_script( 'modernizr', CALIBREFX_JS_URL . '/modernizr.min.js', false );
 	wp_register_script( 'nProgress', CALIBREFX_JS_URL . '/nprogress.js', 'jquery', '', true );
-	wp_register_script( 'jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', array( 'jquery' ) );
-	wp_register_script( 'jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', array( 'jquery' ) );
-	wp_register_script( 'jquery.cycle2', CALIBREFX_JS_URL . '/jquery.cycle2.js', array( 'jquery' ) );
-	wp_register_script( 'jquery.cycle2.optional', CALIBREFX_JS_URL . '/jquery.cycle2.optional.js', array( 'jquery' ) );
+	wp_register_script( 'jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', 'jquery' );
+	wp_register_script( 'jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', 'jquery', '', true );
+	wp_register_script( 'jquery.cycle2', CALIBREFX_JS_URL . '/jquery.cycle2.js', 'jquery', '', true );
+	wp_register_script( 'jquery.cycle2.optional', CALIBREFX_JS_URL . '/jquery.cycle2.optional.js', 'jquery', '', true );
 	wp_register_script( 'jquery-appear', CALIBREFX_JS_URL . '/jquery.appear.js', 'jquery', '', true );
 	wp_register_script( 'jquery-easing', CALIBREFX_JS_URL . '/jquery.easing.js', 'jquery', '', true );
 	wp_register_script( 'jquery-transition', CALIBREFX_JS_URL . '/jquery.transit.min.js', 'jquery', '', true );
@@ -40,8 +40,8 @@ function calibrefx_register_scripts() {
 	wp_register_script( 'infobox', CALIBREFX_JS_URL . '/infobox.js', 'jquery', '', true );
 	wp_register_script( 'jquery-googlemap', CALIBREFX_JS_URL . '/jquery.googlemap.js', 'jquery', '', true );
 
-	wp_register_script( 'calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', array( 'jquery' ) );
-	wp_register_script( 'calibrefx-shortcodes', CALIBREFX_JS_URL . '/shortcodes.js', array( 'jquery' ), '', true );
+	wp_register_script( 'calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', 'jquery' );
+	wp_register_script( 'calibrefx-shortcodes', CALIBREFX_JS_URL . '/shortcodes.js', 'jquery', '', true );
 	wp_register_script( 'calibrefx-script', CALIBREFX_JS_URL . '/calibrefx.js', array( 'jquery', 'jquery-validate' ) );
 
 }
@@ -54,17 +54,16 @@ add_action( 'init', 'calibrefx_register_scripts' );
  */
 function calibrefx_load_scripts() {
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'jquery.cycle2' );
-	wp_enqueue_script( 'jquery.cycle2.optional' );
 	wp_enqueue_script( 'modernizr' );
 	wp_enqueue_script( 'nProgress' );
 	wp_enqueue_script( 'calibrefx-bootstrap' );
 	wp_enqueue_script( 'calibrefx-script' );
+	wp_enqueue_script( 'calibrefx-shortcodes' );
 
 	if ( is_singular() AND get_option( 'thread_comments' ) AND comments_open() ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-	wp_enqueue_script( 'superfish', CALIBREFX_JS_URL . '/superfish.js', array( 'jquery' ), '', true );
+	wp_enqueue_script( 'superfish', CALIBREFX_JS_URL . '/superfish.js', 'jquery', '', true );
 
 	wp_localize_script( 'calibrefx-script', 'cfx_ajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ), 'ajax_action' => 'cfx_ajax', '_ajax_nonce' => wp_create_nonce( 'calibrefx_ajax_nonce' ) ) );
 }
@@ -81,14 +80,15 @@ function calibrefx_load_styles() {
 	wp_enqueue_style( 'calibrefx-icons' );
 	wp_enqueue_style( 'genericons' );
 	wp_enqueue_style( 'jquery-superfish' );
-	wp_enqueue_style( 'jquery-lightbox' );
 	wp_enqueue_style( 'nProgress' );
+	wp_enqueue_style( 'calibrefx-shortcodes' );
 
 	$calibrefx_default_style = get_theme_support( 'calibrefx-default-styles' );
 
 	/** If not active, do nothing */
 	if ( ! $calibrefx_default_style ) {
-		return; }
+		return; 
+	}
 
 	wp_enqueue_style( 'calibrefx-bootstrap' );
 
@@ -121,7 +121,7 @@ function calibrefx_load_admin_scripts() {
 	// add_thickbox();
 	wp_enqueue_script( 'theme-preview' );
 	wp_enqueue_script( 'calibrefx_admin_js', CALIBREFX_JS_URL . '/admin.js', array( 'jquery', 'jquery-sticky', 'wp-color-picker' ), '' );
-	wp_enqueue_script( 'jquery-chosen', CALIBREFX_JS_URL . '/jquery.chosen.min.js', array( 'jquery' ), '' );
+	wp_enqueue_script( 'jquery-chosen', CALIBREFX_JS_URL . '/jquery.chosen.min.js', 'jquery', '' );
 	$params = array(
 		'category_checklist_toggle' => __( 'Select / Deselect All', 'calibrefx' ),
 		'shortcode_url' => CALIBREFX_SHORTCODE_URL,

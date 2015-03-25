@@ -843,7 +843,7 @@ function calibrefx_init_shortcodes(){
 			),
 			'longitude' => array(
 				'type'  => 'text',
-				'desc'  => 'Longitude of your coordinate. Only number e.g. <b>"-6.286902".</b>',
+				'desc'  => 'Longitude of your coordinate. Only number e.g. <b>"106.823506".</b>',
 				'title' => __( 'Longitude', 'calibrefx' )
 			),
 			'zoom' => array(

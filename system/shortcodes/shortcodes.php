@@ -200,22 +200,29 @@ function cfx_image_with_animation($atts, $content = null) {
 				'image_url' => '',
 				'alt' => '',
 				'lightbox' => 'false',
+			), $atts 
+		) 
+	);
 
-			), $atts ) );
+	wp_enqueue_script( 'jquery-appear' );
+	wp_enqueue_script( 'jquery-easing' );
+	wp_enqueue_script( 'jquery-transition' );
+	wp_enqueue_script( 'jquery-lightbox' );
+	wp_enqueue_style( 'jquery-lightbox' );
 
-			$parsed_animation = str_replace( ' ', '-', $animation );
-			( ! empty( $alt ) ) ? $alt_tag = $alt : $alt_tag = null;
+	$parsed_animation = str_replace( ' ', '-', $animation );
+	( ! empty( $alt ) ) ? $alt_tag = $alt : $alt_tag = null;
 
-			if ( preg_match( '/^\d+$/', $image_url ) ){
-				$image_src = wp_get_attachment_image_src( $image_url, 'full' );
-				$image_url = $image_src[0];
-			}
+	if ( preg_match( '/^\d+$/', $image_url ) ){
+		$image_src = wp_get_attachment_image_src( $image_url, 'full' );
+		$image_url = $image_src[0];
+	}
 
-			if ( $lightbox ){
-				return '<a href="' . $image_url . '" data-lightbox="lightbox"><img class="img-with-animation" data-delay="' . $delay . '" data-animation="' . strtolower( $parsed_animation ).'" src="' . $image_url . '" alt="' . $alt_tag . '" /></a>';
-			}
+	if ( $lightbox ){
+		return '<a href="' . $image_url . '" data-lightbox="lightbox"><img class="img-with-animation" data-delay="' . $delay . '" data-animation="' . strtolower( $parsed_animation ).'" src="' . $image_url . '" alt="' . $alt_tag . '" /></a>';
+	}
 
-			return '<img class="img-with-animation" data-delay="' . $delay . '" data-animation="' . strtolower( $parsed_animation ) . '" src="'.$image_url.'" alt="' . $alt_tag . '" />';
+	return '<img class="img-with-animation" data-delay="' . $delay . '" data-animation="' . strtolower( $parsed_animation ) . '" src="'.$image_url.'" alt="' . $alt_tag . '" />';
 }
 add_shortcode( 'image_with_animation', 'cfx_image_with_animation' );
 
@@ -226,20 +233,22 @@ function cfx_divider( $atts, $content = null ) {
 			array(
 				'custom_height' => '',
 				'line_type' => 'No Line',
-			), $atts));
+			), $atts
+		)
+	);
 
-			if ( $line_type == 'Small Thick Line' || $line_type == 'Small Line' ){
-				$height = ( ! empty( $custom_height ) ) ? 'style="margin-top: ' . intval( $custom_height / 2 ).'px; margin-bottom: ' . intval( $custom_height / 2 ) . 'px;"' : null;
-				$divider = '<div ' . $height . ' class="cfx-divider-small-border"></div>';
-			} else if ( $line_type == 'Full Width Line' ){
-				$height = ( ! empty( $custom_height ) ) ? 'style="margin-top: ' . intval( $custom_height / 2 ).'px; margin-bottom: ' . intval( $custom_height / 2 ).'px;"' : null;
-				$divider = '<div ' . $height . ' class="cfx-divider-border"></div>';
-			} else {
-				$height = ( ! empty( $custom_height ) ) ? 'style="height: ' . intval( $custom_height ) . 'px;"' : null;
-				$divider = '<div ' . $height . ' class="cfx-divider"></div>';
-			}
+	if ( $line_type == 'Small Thick Line' || $line_type == 'Small Line' ){
+		$height = ( ! empty( $custom_height ) ) ? 'style="margin-top: ' . intval( $custom_height / 2 ).'px; margin-bottom: ' . intval( $custom_height / 2 ) . 'px;"' : null;
+		$divider = '<div ' . $height . ' class="cfx-divider-small-border"></div>';
+	} else if ( $line_type == 'Full Width Line' ){
+		$height = ( ! empty( $custom_height ) ) ? 'style="margin-top: ' . intval( $custom_height / 2 ).'px; margin-bottom: ' . intval( $custom_height / 2 ).'px;"' : null;
+		$divider = '<div ' . $height . ' class="cfx-divider-border"></div>';
+	} else {
+		$height = ( ! empty( $custom_height ) ) ? 'style="height: ' . intval( $custom_height ) . 'px;"' : null;
+		$divider = '<div ' . $height . ' class="cfx-divider"></div>';
+	}
 
-			return $divider;
+	return $divider;
 }
 add_shortcode( 'divider', 'cfx_divider' );
 
@@ -252,43 +261,45 @@ function cfx_icon( $atts, $content = null ) {
 				'background_color' => '',
 				'text_color' => '',
 				'image' => 'cfxicon-calibrefx'
-			), $atts ) );
+			), $atts 
+		) 
+	);
 
-			$style = null;
+	$style = null;
 
-			if ( ! empty( $background_color ) AND $size != 'large-alt' ) {
-				$style .= 'background-color: ' . $background_color . '; ';
-			}
-			else if ( $size == 'large-alt' ) {
-				$style .= 'border: 2px solid ' . $background_color . ';';
-			}
+	if ( ! empty( $background_color ) AND $size != 'large-alt' ) {
+		$style .= 'background-color: ' . $background_color . '; ';
+	}
+	else if ( $size == 'large-alt' ) {
+		$style .= 'border: 2px solid ' . $background_color . ';';
+	}
 
-			if ( ! empty( $text_color ) ) {
-				$style .= 'color: ' . $text_color . '; ';
-			}
+	if ( ! empty( $text_color ) ) {
+		$style .= 'color: ' . $text_color . '; ';
+	}
 
-			if ( $size == 'large' ) {
-				$size_class = 'fa-3x';
-			}
-			else if ( $size == 'regular' ) {
-				$size_class = 'fa-2x';
-			}
-			else {
-				$size_class = 'fa-2x';
-			}
+	if ( $size == 'large' ) {
+		$size_class = 'fa-3x';
+	}
+	else if ( $size == 'regular' ) {
+		$size_class = 'fa-2x';
+	}
+	else {
+		$size_class = 'fa-2x';
+	}
 
-			//Genericons
-			if( false !== strrpos( $image, 'genericon' ) ){
-				$image = 'genericon ' . $image;
-				// $size_class = '';
-			}
+	//Genericons
+	if( false !== strrpos( $image, 'genericon' ) ){
+		$image = 'genericon ' . $image;
+		// $size_class = '';
+	}
 
-			//Fontawesome
-			if( false !== strrpos( $image, 'fa-' ) ){
-				$size_class = 'fa ' . $size_class;
-			}
+	//Fontawesome
+	if( false !== strrpos( $image, 'fa-' ) ){
+		$size_class = 'fa ' . $size_class;
+	}
 
-			return '<i class="' . $size_class . ' ' . $image . '" style="' . $style . '"></i>';
+	return '<i class="' . $size_class . ' ' . $image . '" style="' . $style . '"></i>';
 }
 add_shortcode( 'icon', 'cfx_icon' );
 
@@ -303,39 +314,45 @@ function cfx_google_map( $atts ) {
 				'title' => '',
 				'address' => '',
 				'image_url' => '',
-			), $atts ) );
-			$output = '';
+			), $atts 
+		) 
+	);
+	wp_enqueue_script( 'googlemap', '//maps.google.com/maps/api/js?sensor=false&ver=4.1' );
+	wp_enqueue_script( 'infobox' );
+	wp_enqueue_script( 'jquery-googlemap' );
+	
+	$output = '';
 
-			if ( $latitude AND $longitude ){
-				$map_canvas_id = 'map_canvas_' . sanitize_title( $latitude ) . '_' . sanitize_title( $longitude );
-				$output .= '<div id="' . $map_canvas_id . '" style="width: 100%; height: ' . $height . 'px;"></div>'."\n\r";
-				$output .= '<script type="text/javascript">' . "\n\r";
-				$output .= '(function($){'."\n\r";
-				$output .= '$( document ).ready(function() {' . "\n\r";
+	if ( $latitude AND $longitude ){
+		$map_canvas_id = 'map_canvas_' . sanitize_title( $latitude ) . '_' . sanitize_title( $longitude );
+		$output .= '<div id="' . $map_canvas_id . '" style="width: 100%; height: ' . $height . 'px;"></div>'."\n\r";
+		$output .= '<script type="text/javascript">' . "\n\r";
+		$output .= '(function($){'."\n\r";
+		$output .= '$( document ).ready(function() {' . "\n\r";
 
-				$output .= 'var map_lat = ' . $latitude . ';' . "\n\r";
-				$output .= 'var map_long = ' . $longitude . ';' . "\n\r";
-				$output .= 'var map_style = [{"featureType": "all","stylers": [{"saturation": -100},{"gamma": 0.5}]}];' . "\n\r";
-				$output .= 'var map_zoom = ' . $zoom . ';' . "\n\r";
+		$output .= 'var map_lat = ' . $latitude . ';' . "\n\r";
+		$output .= 'var map_long = ' . $longitude . ';' . "\n\r";
+		$output .= 'var map_style = [{"featureType": "all","stylers": [{"saturation": -100},{"gamma": 0.5}]}];' . "\n\r";
+		$output .= 'var map_zoom = ' . $zoom . ';' . "\n\r";
 
-				$output .= '$("#' . $map_canvas_id . '").googleMap({' . "\n\r";
-				$output .= 'coords: [map_lat, map_long],' . "\n\r";
-				$output .= 'styles: map_style,' . "\n\r";
-				$output .= 'zoom: map_zoom' . "\n\r";
-				$output .= '});' . "\n\r";
+		$output .= '$("#' . $map_canvas_id . '").googleMap({' . "\n\r";
+		$output .= 'coords: [map_lat, map_long],' . "\n\r";
+		$output .= 'styles: map_style,' . "\n\r";
+		$output .= 'zoom: map_zoom' . "\n\r";
+		$output .= '});' . "\n\r";
 
-				$output .= '$("#' . $map_canvas_id . '").addMarker({' . "\n\r";
-				$output .= 'coords: [map_lat, map_long],' . "\n\r";
-				$output .= 'icon: "' . $image_url . '",' . "\n\r";
-				$output .= 'title: "' . addslashes( $title ) . '",' . "\n\r";
-				$output .= 'text: "' . addslashes( $address ) . '"' . "\n\r";
-				$output .= '});' . "\n\r";
+		$output .= '$("#' . $map_canvas_id . '").addMarker({' . "\n\r";
+		$output .= 'coords: [map_lat, map_long],' . "\n\r";
+		$output .= 'icon: "' . $image_url . '",' . "\n\r";
+		$output .= 'title: "' . addslashes( $title ) . '",' . "\n\r";
+		$output .= 'text: "' . addslashes( $address ) . '"' . "\n\r";
+		$output .= '});' . "\n\r";
 
-				$output .= '});' . "\n\r";
-				$output .= '})(jQuery);' . "\n\r";
-				$output .= '</script>' . "\n\r";
-			}
-			return $output;
+		$output .= '});' . "\n\r";
+		$output .= '})(jQuery);' . "\n\r";
+		$output .= '</script>' . "\n\r";
+	}
+	return $output;
 }
 add_shortcode( 'google_map', 'cfx_google_map' );
 
@@ -352,9 +369,11 @@ function cfx_button( $atts, $content = null ) {
 				'background_color' => '',
 				'shadow_color' => '',
 				'class' => '',
-			), $atts));
+			), $atts
+		)
+	);
 
-			$outer_style = '<style type="text/css">
+	$outer_style = '<style type="text/css">
 		#'.$id.':focus,
 		#'.$id.":active{
             -moz-box-shadow: none !important;
@@ -368,10 +387,10 @@ function cfx_button( $atts, $content = null ) {
         }
     </style>";
 
-			$style = "color: $text_color; background-color: $background_color; box-shadow: 0 3px 0px $shadow_color;";
+	$style = "color: $text_color; background-color: $background_color; box-shadow: 0 3px 0px $shadow_color;";
 
-			$output = '<a id="' . $id . '" href="' . $url . '" class="btn btn-shadow ' . $class . '" style=" ' . $style . '" target="' . $target . '">' . $text . '</a>';
+	$output = '<a id="' . $id . '" href="' . $url . '" class="btn btn-shadow ' . $class . '" style=" ' . $style . '" target="' . $target . '">' . $text . '</a>';
 
-			return $outer_style . $output;
+	return $outer_style . $output;
 }
 add_shortcode( 'button', 'cfx_button' );

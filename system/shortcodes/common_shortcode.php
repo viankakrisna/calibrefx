@@ -1010,6 +1010,9 @@ function calibrefx_slider_item( $atts, $content = '' ) {
 		'desc' => ''
 	), $atts ) );
 
+	wp_enqueue_script( 'jquery.cycle2' );
+	wp_enqueue_script( 'jquery.cycle2.optional' );
+
 	if ( ! empty( $url ) && $url != '#' ) {
 		return '<div class="item ' . $class . '" data-cycle-title=\'<a href="' . $url . '">' . $title . '</a>\' data-cycle-desc="' . $desc . '">' . $before . '<a href="' . $url . '" title="' . $title . '"><img src="' . $src . '" alt="' . $title . '" /></a>'  . $after . '</div>';
 	} else {
