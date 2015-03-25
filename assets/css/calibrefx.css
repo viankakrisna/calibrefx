@@ -775,7 +775,7 @@ big {
 }
 
 .widget .social-media-list.vertical li a{
-	min-width: 120px;
+	min-width: 110px;
 	padding: 10px;
 	text-align: left;
 	display: inline-block;

@@ -348,6 +348,17 @@ function calibrefx_layout_body_class( $classes ) {
 }
 add_filter( 'body_class', 'calibrefx_layout_body_class' );
 
+function calibrefx_mobile_body_class( $body_classes ) {
+
+	if( !wp_is_mobile() ) return $body_classes;
+	
+	$body_classes[] = 'mobile';
+
+	return $body_classes;
+}
+
+add_filter( 'body_class', 'calibrefx_mobile_body_class' );
+
 /**
  * Add class row/row-fluid to post
  */

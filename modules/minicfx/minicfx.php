@@ -43,7 +43,7 @@ function calibrefx_init_mobile_site() {
 		return;
 	}
 
-	add_filter( 'body_class', 'calibrefx_mobile_body_class' );
+	add_filter( 'body_class', 'calibrefx_mobile_site_body_class' );
 
 	remove_action( 'calibrefx_after_header', 'calibrefx_do_nav' );
 	remove_action( 'calibrefx_after_header', 'calibrefx_do_subnav', 15 );
@@ -61,10 +61,9 @@ function calibrefx_init_mobile_site() {
 }
 add_action( 'calibrefx_post_init', 'calibrefx_init_mobile_site', 15 );
 
-function calibrefx_mobile_body_class( $body_classes ) {
-	global $post;
-
-	$body_classes[] = 'mobile mobile-site';
+function calibrefx_mobile_site_body_class( $body_classes ) {
+	
+	$body_classes[] = 'mobile-site';
 
 	return $body_classes;
 }
