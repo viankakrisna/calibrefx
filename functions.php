@@ -18,13 +18,14 @@
 ! defined( 'CALIBREFX_URL' ) && define( 'CALIBREFX_URL', get_template_directory_uri() );
 
 /** Define Theme Info Constants */
-define( 'FRAMEWORK_NAME', 'Calibrefx' );
+$cfx_theme_data = wp_get_theme( 'calibrefx' );
+define( 'FRAMEWORK_NAME', $cfx_theme_data->get( 'Name' ) );
 define( 'FRAMEWORK_CODENAME', 'Blue Koala' );
-define( 'FRAMEWORK_VERSION', '2.0.3' );
+define( 'FRAMEWORK_VERSION', $cfx_theme_data->get( 'Version' ) );
 define( 'FRAMEWORK__MINIMUM_WP_VERSION', '4.1' );
 define( 'FRAMEWORK_DB_VERSION', '1001' );
-define( 'FRAMEWORK_URL', 'http://www.calibrefx.com' );
-define( 'FRAMEWORK_RELEASE_DATE', date_i18n( 'F j, Y', '1426925486' ) );
+define( 'FRAMEWORK_URL', $cfx_theme_data->get( 'ThemeURI' ) );
+define( 'FRAMEWORK_RELEASE_DATE', date_i18n( 'F j, Y', '1427392553' ) );
 
 /** Run the calibrefx_pre Hook */
 do_action( 'calibrefx_pre' );

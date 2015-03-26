@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Module Name: Minicfx
+ * Module Name: Minicfx (Beta)
  * Module Description: Provide calibrefx mobile themes
  * First Introduced: 2.0
  * Requires Connection: No

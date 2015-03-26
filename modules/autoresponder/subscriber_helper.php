@@ -1,9 +1,4 @@
 <?php
-/**
- * Subscriber Helper
- */
-// ------------------------------------------------------------------------
-
 
 /**
  * Submit To GetResponse
@@ -16,7 +11,7 @@
  * @return	bool
  */
 
-include_once( CALIBREFX_LIBRARY_URI . '/third-party/GetResponseAPI.class.php' );
+// include_once( CALIBREFX_LIBRARY_URI . '/third-party/GetResponseAPI.class.php' );
 
 function calibrefx_submit_getresponse( $form, $name, $email, $args = array() ) {
 	$url = '';
@@ -69,7 +64,11 @@ function calibrefx_submit_getresponse( $form, $name, $email, $args = array() ) {
 	}
 }
 
-function calibrefx_getresponse_api_testing( $api_key, $list_name ) {
+/**
+ * Disable for now
+ */
+
+/*function calibrefx_getresponse_api_testing( $api_key, $list_name ) {
 	echo 'Testing Start <br/>';
 	$api = new GetResponse( $api_key );
 	$ping = $api->ping();
@@ -101,7 +100,7 @@ function calibrefx_submit_getresponse_api( $name, $email, $api_key, $list_name, 
 		}
 	}
 	return false;
-}
+}*/
 
 function calibrefx_submit_aweber( $form, $name, $email ) {
 	$url = 'http://www.aweber.com/scripts/addlead.pl';

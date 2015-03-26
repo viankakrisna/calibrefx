@@ -127,16 +127,16 @@ $fonts = apply_filters( 'calibrefx_webfont', array(
 	'Verdana' => array('font-family' => 'Verdana, Geneva, sans-serif;',
 			'google-font' => false,
 			),
-));
+) );
 
 add_action( 'calibrefx_meta',  'webfont_load_fonts', 80 );
 add_action( 'wp_enqueue_scripts',  'webfont_styles' );
 
-if ( is_admin() ){
+if ( is_admin() ) {
 	add_action( 'admin_init', 'webfont_load_colorpicker' );
 	add_action( 'calibrefx_theme_settings_meta_box', 'webfont_meta_boxes' );
 	add_filter( 'calibrefx_theme_settings_defaults', 'webfont_theme_settings_default', 10, 1 );
-	add_action( 'admin_init',  'webfont_admin_styles' );
+	add_action( 'admin_init', 'webfont_admin_styles' );
 }
 
 /********************
@@ -146,20 +146,20 @@ if ( is_admin() ){
 function webfont_load_fonts() {
 	global $fonts;
 
-	$body_font = calibrefx_get_option( 'custom_font_family' );
-	$header_font = calibrefx_get_option( 'custom_header_font_family' );
-	$font_loaded = array();
+	$body_font 		= calibrefx_get_option( 'custom_font_family' );
+	$header_font 	= calibrefx_get_option( 'custom_header_font_family' );
+	$font_loaded 	= array();
 
 	if ( isset( $fonts[ $body_font ]['google-font'] ) AND $fonts[ $body_font ]['google-font'] ){
-		$font_style = $fonts[ $body_font ]['google-font-style'];
-		$font_name = str_replace( ' ', '+', $body_font );
-		$font_loaded[] = $font_name . ':' . $font_style;
+		$font_style 	= $fonts[ $body_font ]['google-font-style'];
+		$font_name 		= str_replace( ' ', '+', $body_font );
+		$font_loaded[] 	= $font_name . ':' . $font_style;
 	}
 
 	if ( isset( $fonts[ $header_font ]['google-font'] ) AND $fonts[ $header_font ]['google-font'] ){
-		$font_style = $fonts[ $header_font ]['google-font-style'];
-		$font_name = str_replace( ' ', '+', $header_font );
-		$font_loaded[] = $font_name . ':' . $font_style;
+		$font_style 	= $fonts[ $header_font ]['google-font-style'];
+		$font_name 		= str_replace( ' ', '+', $header_font );
+		$font_loaded[] 	= $font_name . ':' . $font_style;
 	}
 
 	$font_loaded = implode( '|', $font_loaded );
@@ -281,11 +281,11 @@ function webfont_typography(){
 			'custom_header_font_family', // field id and option name
 			__( '', 'calibrefx' ), // Label
 			array(
-				'option_type' => 'select',
-				'option_items' => $font_values,
-				'option_default' => 'Titillium Web',
-				'option_filter' => 'safe_text',
-				'option_description' => __( 'This setting is for all the header (h1, h2, etc.) text. Sizes will vary according to the css file', 'calibrefx' ),
+				'option_type'			=> 'select',
+				'option_items'			=> $font_values,
+				'option_default'		=> 'Titillium Web',
+				'option_filter'			=> 'safe_text',
+				'option_description'	=> __( 'This setting is for all the header (h1, h2, etc.) text. Sizes will vary according to the css file', 'calibrefx' ),
 			), // Settings config
 			1 //Priority
 		);
@@ -304,7 +304,7 @@ function webfont_typography(){
 			array(
 				'option_type' => 'select',
 				'option_items' => array(
-					'9' => '9px',
+					'9'  => '9px',
 					'10' => '10px',
 					'11' => '11px',
 					'12' => '12px',
@@ -321,9 +321,9 @@ function webfont_typography(){
 					'23' => '23px',
 					'24' => '24px'
 				),
-				'option_default' => '16',
-				'option_filter' => 'safe_text',
-				'option_description' => '',
+				'option_default' 		=> '16',
+				'option_filter' 		=> 'safe_text',
+				'option_description' 	=> '',
 			), // Settings config
 			1 //Priority
 		);
@@ -340,11 +340,11 @@ function webfont_typography(){
 			'custom_font_family', // field id and option name
 			__( 'Font Family', 'calibrefx' ), // Label
 			array(
-				'option_type' => 'select',
-				'option_items' => $font_values,
-				'option_default' => 'Titillium Web',
-				'option_filter' => 'safe_text',
-				'option_description' => '',
+				'option_type' 			=> 'select',
+				'option_items' 			=> $font_values,
+				'option_default' 		=> 'Titillium Web',
+				'option_filter' 		=> 'safe_text',
+				'option_description' 	=> '',
 			), // Settings config
 			1 //Priority
 		);
@@ -354,10 +354,10 @@ function webfont_typography(){
 			'custom_font_color', // field id and option name
 			__( 'Font Color', 'calibrefx' ), // Label
 			array(
-				'option_type' => 'colorpicker',
-				'option_default' => '#414141',
-				'option_filter' => 'no_html',
-				'option_description' => __( 'Please set this option if you want to use your custom styling for body text paragraph', 'calibrefx' ),
+				'option_type' 			=> 'colorpicker',
+				'option_default' 		=> '#414141',
+				'option_filter' 		=> 'no_html',
+				'option_description' 	=> __( 'Please set this option if you want to use your custom styling for body text paragraph', 'calibrefx' ),
 			), // Settings config
 			1 //Priority
 		);
@@ -373,10 +373,10 @@ function webfont_typography(){
 			'custom_permalink_color', // field id and option name
 			__( 'Permalinks Color', 'calibrefx' ), // Label
 			array(
-				'option_type' => 'colorpicker',
-				'option_default' => '',
-				'option_filter' => 'no_html',
-				'option_description' => __( 'define your permalinks color here, please leave it blank by removing the color code, if you want to use pre-defined color.', 'calibrefx' ),
+				'option_type' 			=> 'colorpicker',
+				'option_default' 		=> '',
+				'option_filter' 		=> 'no_html',
+				'option_description' 	=> __( 'define your permalinks color here, please leave it blank by removing the color code, if you want to use pre-defined color.', 'calibrefx' ),
 			), // Settings config
 			1 //Priority
 		);
@@ -386,10 +386,10 @@ function webfont_typography(){
 			'custom_permalink_hover_color', // field id and option name
 			__( 'Permalinks Hover Color', 'calibrefx' ), // Label
 			array(
-				'option_type' => 'colorpicker',
-				'option_default' => '',
-				'option_filter' => 'no_html',
-				'option_description' => __( 'define your permalinks hover color here, please leave it blank by removing thecolor code, if you want to use pre-defined color.', 'calibrefx' ),
+				'option_type' 			=> 'colorpicker',
+				'option_default' 		=> '',
+				'option_filter' 		=> 'no_html',
+				'option_description' 	=> __( 'define your permalinks hover color here, please leave it blank by removing thecolor code, if you want to use pre-defined color.', 'calibrefx' ),
 			), // Settings config
 			1 //Priority
 		);
@@ -399,14 +399,14 @@ function webfont_typography(){
 	calibrefx_do_meta_options( $calibrefx->theme_settings, 'typography-permalinks-settings' );
 }
 
-function webfont_theme_settings_default($default_arr = array()){
+function webfont_theme_settings_default( $default_arr = array() ){
 	$webfont_default = array(
-		'custom_header_font_family' => 'Titillium Web',
-		'custom_font_size' => '16',
-		'custom_font_family' => 'Titillium Web',
-		'custom_font_color' => '#404040',
-		'custom_permalink_color' => '#08c',
-		'custom_permalink_hover_color' => '#005580'
+		'custom_header_font_family' 	=> 'Titillium Web',
+		'custom_font_size' 				=> '16',
+		'custom_font_family' 			=> 'Titillium Web',
+		'custom_font_color' 			=> '#404040',
+		'custom_permalink_color' 		=> '#08c',
+		'custom_permalink_hover_color' 	=> '#005580'
 	);
 
 	return array_merge( $default_arr, $webfont_default );

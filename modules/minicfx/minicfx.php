@@ -8,14 +8,11 @@
  * calibrefx_get_mobile_template
  * this function will return the mobile folder from the child themes folder
  * this will use in add_filter 'template_directory'
- *
- * @return string
- * @author Hilaladdiyar
  **/
 function calibrefx_get_mobile_template( $template ) {
 	//TODO: This code need review
 	$mobile_template = str_replace( CHILD_URI, CHILD_MOBILE_URI, $template );
-
+	
 	if ( file_exists( $mobile_template ) ) {
 		return $mobile_template;
 	} else {
@@ -39,7 +36,7 @@ add_action( 'wp_enqueue_scripts', 'calibrefx_mobile_scripts' );
 function calibrefx_init_mobile_site() {
 	global $calibrefx; 
 
-	if( is_admin() || !wp_is_mobile() ) {
+	if( is_admin() OR !wp_is_mobile() ) {
 		return;
 	}
 
@@ -53,21 +50,26 @@ function calibrefx_init_mobile_site() {
 	add_action( 'calibrefx_after_wrapper', 'calibrefx_mobile_close_nav' );
 
 	add_filter( 'template_include', 'calibrefx_get_mobile_template' );
-
-	//TODO: Change the concept of mobile site themes
-	/*if( file_exists( CHILD_MOBILE_URI . '/mobile.php' ) ) {
-		include_once CHILD_MOBILE_URI . '/mobile.php';
-	}*/
 }
 add_action( 'calibrefx_post_init', 'calibrefx_init_mobile_site', 15 );
 
+/**
+ * calibrefx_mobile_site_body_class
+ * Add special body class on mobile view
+ * 
+ * @param  array $body_classes 
+ * @return array
+ */
 function calibrefx_mobile_site_body_class( $body_classes ) {
 	
-	$body_classes[] = 'mobile-site';
+	$body_classes[] = apply_filters( 'calibrefx_mobile_body_class', 'mobile-site' );
 
 	return $body_classes;
 }
 
+/**
+ * Show mobile menu navigation
+ */
 function calibrefx_do_top_mobile_nav() {
 	?>
 
@@ -79,7 +81,9 @@ function calibrefx_do_top_mobile_nav() {
 	<?php
 }
 
-
+/**
+ * Fill the mobile menu
+ */
 function calibrefx_mobile_open_nav() {
 	?>
 	<div id="super-wrapper">
@@ -97,6 +101,9 @@ function calibrefx_mobile_close_nav() {
 	<?php
 }
 
+/**
+ * Show the mobile special menu 
+ */
 function calibrefx_do_mobile_nav() {
 	global $calibrefx;
 	/** Do nothing if menu not supported */
@@ -109,6 +116,7 @@ function calibrefx_do_mobile_nav() {
 	$nav = '';
 	$args = '';
 
+	//@TODO: This need to be a settings from the menu. Right now it is hardcoded
 	$args = array(
 		'menu' => 'mobile-menu',
 		'container' => '',
@@ -134,9 +142,6 @@ function calibrefx_do_mobile_nav() {
 /**
  * calibrefx_mobile_themes_exist
  * Check if the mobile theme exist in Child themes
- *
- * @return boolean
- * @author Ivan Kristianto
  **/
 function calibrefx_mobile_themes_exist() {
 	return file_exists( CHILD_MOBILE_URI );

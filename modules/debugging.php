@@ -36,12 +36,6 @@ if ( ! function_exists( 'debug_var' ) ) {
  * debug_var_log function
  * Dump a variable with human readable format into a log file
  *
- * @package         CalibreFx
- * @subpackage      Helpers
- * @category        Helpers
- * @author          CalibreFx Team
- * @link            http://www.calibrefx.com
- *
  */
 if ( ! function_exists( 'debug_var_log' ) ) {
 
@@ -55,36 +49,8 @@ if ( ! function_exists( 'debug_var_log' ) ) {
 }
 
 /**
- * fire_debug function
- * Dump a variable and send it to FirePHP console, suitable to debug ajax output.
- *
- * @package         CalibreFx
- * @subpackage      Helpers
- * @category        Helpers
- * @author          CalibreFx Team
- * @link            http://www.calibrefx.com
- *
- */
-if ( ! function_exists( 'fire_debug' ) ) {
-
-	function fire_debug( $var ) {
-		global $calibrefx;
-		$calibrefx->load->file( CALIBREFX_LIBRARY_URI . '/third-party/firephp/FirePHP.class.php' );
-		$firephp = FirePHP::getInstance( true );
-		$firephp->log( $var );
-	}
-
-}
-
-/**
  * die_dump function
  * Dump a variable and stop the process.
- *
- * @package         CalibreFx
- * @subpackage      Helpers
- * @category        Helpers
- * @author          CalibreFx Team
- * @link            http://www.calibrefx.com
  *
  */
 if ( ! function_exists( 'die_dump' ) ) {
@@ -112,12 +78,6 @@ if ( ! function_exists( 'die_dump' ) ) {
 /**
  * debug_file function
  * Dump a variable into a file. Suitable for rececive Post back by thirdparty such as PayPal IPN.
- *
- * @package         CalibreFx
- * @subpackage      Helpers
- * @category        Helpers
- * @author          CalibreFx Team
- * @link            http://www.calibrefx.com
  *
  */
 if ( ! function_exists( 'debug_file' ) ) {
@@ -151,6 +111,11 @@ if ( ! function_exists( 'debug_file' ) ) {
 
 }
 
+/**
+ * list_hooks function
+ * get all hooks
+ *
+ */
 if ( ! function_exists( 'list_hooks' ) ) {
 	function list_hooks( $filter = false ) {
 		global $wp_filter;
@@ -166,6 +131,11 @@ if ( ! function_exists( 'list_hooks' ) ) {
 	}
 }
 
+/**
+ * list_live_hooks function
+ * get all hooks that currently running
+ *
+ */
 if ( ! function_exists( 'list_live_hooks' ) ) {
 	function list_live_hooks( $hook = false ) {
 		if ( false === $hook ){
@@ -176,6 +146,11 @@ if ( ! function_exists( 'list_live_hooks' ) ) {
 	}
 }
 
+/**
+ * list_hook_details function
+ * get all hooks with the detail
+ *
+ */
 if ( ! function_exists( 'list_hook_details' ) ) {
 	function list_hook_details( $input = null ) {
 		global $wp_filter;
@@ -189,6 +164,11 @@ if ( ! function_exists( 'list_hook_details' ) ) {
 	}
 }
 
+/**
+ * dump_hook function
+ * dump all the hooks with nice presentation
+ *
+ */
 if ( ! function_exists( 'dump_hook' ) ) {
 	function dump_hook( $tag, $hook ) {
 		ksort( $hook );
@@ -200,17 +180,17 @@ if ( ! function_exists( 'dump_hook' ) ) {
 			echo $priority;
 
 			foreach ( $functions as $function ) {
-				if ( $function['function'] != 'list_hook_details' ) {
+				if ( 'list_hook_details' != $function[ 'function' ] ) {
 
 					echo "\t";
 
-					if ( is_string( $function['function'] ) ) {
-						echo $function['function'];
+					if ( is_string( $function[ 'function' ] ) ) {
+						echo $function[ 'function' ];
 					} else {
 						print_r( $function );
 					}
 
-					echo ' ( ' . $function['accepted_args'] . ' ) <br />';
+					echo ' ( ' . $function[ 'accepted_args' ] . ' ) <br />';
 				}
 			}
 		}
