@@ -31,6 +31,7 @@ define( 'CHILD_IMAGES_URI', CHILD_URI . '/assets/img' );
 define( 'CHILD_JS_URI', CHILD_URI . '/assets/js' );
 define( 'CHILD_CSS_URI', CHILD_URI . '/assets/css' );
 define( 'CHILD_MODULE_URI', CHILD_URI . '/app/modules' );
+define( 'CHILD_LIBRARY_URI', CHILD_URI . '/app/libraries' );
 
 /** Define CALIBREFX Child URL Location Constant */
 define( 'CHILD_URL', get_stylesheet_directory_uri() );

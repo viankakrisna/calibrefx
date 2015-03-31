@@ -76,6 +76,7 @@ function calibrefx_initializing() {
 		add_filter( 'calibrefx_shortcodes_to_include', 'childfx_load_shortcodes' );
 		add_filter( 'calibrefx_hooks_to_include', 'childfx_load_hooks' );
 		add_filter( 'calibrefx_widgets_to_include', 'childfx_load_widgets' );
+		add_filter( 'calibrefx_library_path', 'childfx_load_library' );
 	}
 
 	//Load every active module
@@ -162,6 +163,21 @@ function childfx_load_widgets( $widgets_include ){
 
 	return array_merge( $widgets_include, $childfx_widgets );
 }
+
+/**
+ * Load library from child themes
+ * @param  array $library_path
+ * @return array
+ */
+function childfx_load_library( $library_path ){
+	
+	if( file_exists( CHILD_LIBRARY_URI ) ){
+		$library_path[] = CHILD_LIBRARY_URI;
+	}
+
+	return $library_path;
+}
+
 
 
 /**

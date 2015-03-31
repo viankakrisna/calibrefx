@@ -3,6 +3,7 @@
  * Default content template part
  */
 ?>
+<?php do_action( 'calibrefx_before_post' ); ?>
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <?php do_action( 'calibrefx_before_post_title' ); ?>
     <?php do_action( 'calibrefx_post_title' ); ?>
@@ -15,3 +16,4 @@
     <?php do_action( 'calibrefx_after_post_content' ); ?>
 
 </div><!-- end .postclass -->
+<?php do_action( 'calibrefx_after_post' ); ?>

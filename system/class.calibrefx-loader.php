@@ -200,11 +200,15 @@ class Calibrefx_Loader {
 		foreach ( array( ucfirst( $class ), strtolower( $class ) ) as $class ) {
 			// Lets search for the requested library file and load it.
 			$is_duplicate = false;
+
+			$this->_library_paths = apply_filters( 'calibrefx_library_path', $this->_library_paths );
+
 			foreach ( $this->_library_paths as $path ) {
-				if ( $subdir === '' ) {
-					$filepath = $path . '/' . $class . '.php'; }
-				else {
-					$filepath = $path . '/' . $subdir . $class . '.php'; }
+				if ( '' === $subdir ) {
+					$filepath = $path . '/' . $class . '.php'; 
+				} else {
+					$filepath = $path . '/' . $subdir . $class . '.php'; 
+				}
 
 				// Does the file exist? No? Bummer...
 				if ( ! file_exists( $filepath ) ) {
