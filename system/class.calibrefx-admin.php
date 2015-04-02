@@ -121,6 +121,11 @@ abstract class Calibrefx_Admin {
 		if ( ! empty( $_POST['calibrefx_do_import'] ) ) {
 			return $_newvalue;
 		}
+
+		if( !isset( $_POST[ $this->settings_field ] ) ){
+			return $_newvalue;
+		}
+		
 		//Get the value from post settings
 		$_newvalue = array_map( 'esc_attr', $_POST[ $this->settings_field ] );
 
