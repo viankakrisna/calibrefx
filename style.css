@@ -330,20 +330,19 @@ body:not(.custom-background) #wrapper {
 /* Breadcrumb
 ------------------------------------------------------------ */
 
-.breadcrumb-container {
+/* .breadcrumb-container {
     background: #FFFFFF;
     border-radius: 0;
     margin-bottom: 20px;
-}
+} */
 
 /* Post
 ------------------------------------------------------------ */
-.post h2.entry-title,
+/* .post h2.entry-title,
 .page h2.entry-title,
 .post h1.entry-title,
 .page h1.entry-title{
-    /*margin: 0 0 10px;	
-    padding: 0 10px 5px;*/
+    
 }
 
 .post h2.entry-title a,
@@ -352,7 +351,7 @@ body:not(.custom-background) #wrapper {
     text-decoration: none;
     color: inherit;
 }
-
+ */
 
 /* Post Info
 ------------------------------------------------------------ */
@@ -364,16 +363,11 @@ body:not(.custom-background) #wrapper {
 
 /* Author Box
 ------------------------------------------------------------ */
-.avatar, .featuredpage img,
+.featuredpage img,
 .featuredpost img, .post-image {
     background-color: #F5F5F5;
     border: 1px solid #DDDDDD;
 }
-
-.author-box .avatar {
-    background-color: #FFFFFF;
-}
-
 
 /* Comment
 ------------------------------------------------------------ */
@@ -394,9 +388,6 @@ body:not(.custom-background) #wrapper {
 #respond{
     font-weight: normal;
     list-style-type: none;
-    margin: 15px 0 5px;
-    padding: 15px;
-    background-color: #fff;
 }
 
 #comments #respond{

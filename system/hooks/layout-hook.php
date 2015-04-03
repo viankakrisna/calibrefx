@@ -192,7 +192,7 @@ function calibrefx_do_open_wrapper() {
 	global $calibrefx;
 
 	$wrapper_class = apply_filters( 'wrapper_class', 'container' );
-	echo '<div id="wrapper" class="'.$wrapper_class.'">';
+	echo '<div id="wrapper" class="'.$wrapper_class.' site">';
 	$calibrefx->is_wrapper_open = true;
 }
 

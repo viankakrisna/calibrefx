@@ -65,7 +65,9 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		if ( ! empty( $instance['title'] ) ) {
 			echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title; }
 
-		if ( $featured_posts->have_posts() ) : while ( $featured_posts->have_posts() ) : $featured_posts->the_post();
+		if ( $featured_posts->have_posts() ) : 
+			while ( $featured_posts->have_posts() ) : 
+				$featured_posts->the_post();
 				echo '<div class="' . implode( ' ', get_post_class() ) . '">';
 
 				if ( ! empty( $instance['show_title'] ) ) {

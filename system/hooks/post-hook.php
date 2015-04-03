@@ -245,6 +245,8 @@ function calibrefx_do_post_image() {
 
 	$img = apply_filters( 'post_feature_image', $img );
 
+	if( !$img ) return;
+
 	if ( ! is_singular() ) { // This is an archive page
 		printf( '<a href="%s" title="%s" class="post-image-link">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), $img );
 	} else {

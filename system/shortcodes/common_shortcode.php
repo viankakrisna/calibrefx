@@ -1762,7 +1762,7 @@ add_shortcode( 'post_tags', 'calibrefx_post_tags_shortcode' );
 function calibrefx_post_categories_shortcode( $atts ) {
 	$defaults = array(
 			'sep'    => ', ',
-			'before' => __( 'Filed Under: ', 'calibrefx' ),
+			'before' => __( 'Categories: ', 'calibrefx' ),
 			'after'  => '',
 	);
 	$atts = shortcode_atts( $defaults, $atts );
