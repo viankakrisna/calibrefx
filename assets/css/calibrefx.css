@@ -33,7 +33,7 @@
 
 /* General
 ------------------------------------------------------------ */
-body {
+body{
 	padding: 0;
 	margin: 0;
 	word-wrap: break-word;
@@ -143,9 +143,10 @@ input,
 select,
 textarea {
 	color: #333;
-	font-family: inherit;
-	font-size: 15px;
-	font-size: 1.5rem;
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	font-size: 1.6rem;
 	line-height: 1.6;
 }
 
@@ -157,10 +158,12 @@ h5,
 h6 {
 	clear: both;
 	font-weight: 700;
+	margin: 0;
+	padding: 0;
 }
 
 p {
-	margin-bottom: 1.6em;
+	margin-bottom: 0.8em;
 }
 
 b,
@@ -320,24 +323,40 @@ big {
 	padding-right: 20px;
 }
 
-.header-image #description {
+.header-image .site-description {
 	display: block;
 	overflow: hidden;
 	text-indent: -9999px;
 }
 
-.header-image #title-area, .header-image #title {
+.header-image #title-area, 
+.header-image .site-title {
 	display: block;
 	overflow: hidden;
 	padding: 0;
 	text-indent: -9999px;
 }
 
-#title {
-	margin: 22px 0px 5px;
+.site-title{
+	font-family: "Titillium Web", sans-serif;
+	font-size: 29px;
+	font-size: 2.9rem;
+	font-weight: 700;
+	line-height: 1.3636;
+	margin: 0.5em 0 0;
 }
 
-#title a {
+.site-description{
+	font-family: "Titillium Web", sans-serif;
+	font-size: 16px;
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 1.5;
+	margin: 0;
+	opacity: 0.7;
+}
+
+.site-title a {
 	text-decoration: none;
 }
 
@@ -581,6 +600,9 @@ big {
 }
 
 #sidebar .widgettitle{
+    font-family: "Titillium Web", sans-serif;   
+    font-size: 20px;   
+    font-size: 2.0rem;   line-height: 1.1538;
     padding: 10px 25px;
 }
 
@@ -610,6 +632,9 @@ big {
 }
 
 .widget  .widgettitle {
+	font-family: "Titillium Web", sans-serif;   
+	font-size: 22px;   
+	font-size: 2.2rem;   line-height: 1.1538;   margin-bottom: 0.4em;
 	margin: 0;
 }
 
@@ -833,11 +858,34 @@ big {
 
 /* Post
 ------------------------------------------------------------ */
+.post-info {
+	border-bottom: 1px solid #E9EEF1;
+    font-size: 0.8em;
+    opacity: 0.8;
+    padding: 0 0 0.5em;
+	margin: 5px 0;
+}
+
+.post-meta {
+	border-top: 1px solid #E9EEF1;
+	clear: both;
+	font-size: 0.85em;
+	opacity: 0.8;
+	padding: 5px 0 0;
+}
+
+.post-image-link{
+	display: block;
+	margin: 0.8em 0;	
+}
+
 .entry-content {
 	margin: 15px 0;
 }
 
 .hentry {
+	background: #fff;
+	padding: 15px;
 	margin-bottom: 20px;	
 }
 
@@ -853,7 +901,11 @@ big {
 .page h2.entry-title,
 .post h1.entry-title,
 .page h1.entry-title {
-	padding-bottom: 5px;
+	font-family: "Titillium Web", sans-serif;
+	font-size: 29px;
+	font-size: 2.9rem;
+	line-height: 1.1538;
+	margin-bottom: 0.4em;
 	text-rendering: optimizespeed;
 }
 
@@ -876,19 +928,6 @@ blockquote cite {
 	background: none;
 	margin: 0;
 	padding: 0;
-}
-
-/* Post Info
------------------------------------------------------------- */
-.post-info {
-	margin: 5px 0;
-}
-
-/* Post Meta
------------------------------------------------------------- */
-.post-meta {
-	clear: both;
-	padding: 5px 0 0;
 }
 
 /* Author Box
@@ -955,6 +994,21 @@ blockquote cite {
  	position: relative;
  	top: 3px;
 }
+
+.vcard a{
+    color: #0D72C7;
+    font-weight: bold;
+    text-decoration: none;	
+}
+
+.vcard a:hover{
+    text-decoration: underline;
+}
+
+.vcard .fn{
+    font-weight: inherit;
+}
+
 
 /* Deprecated */
 .author-box {
@@ -1371,7 +1425,7 @@ input[type="submit"].searchsubmit {
 }
 
 .font-georgia {
-	font-family: Georgia, 'Times New Roman Times', Serif;
+	font-family: Georgia, 'Times New Roman', Serif;
 }
 
 

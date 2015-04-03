@@ -19,14 +19,6 @@ body{
 	color: #404040;
 }
 
-input, select, textarea{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6{
-    font-family: Verdana, sans-serif;
-}
-
 /* Wrapper Style 
 ------------------------------------------------------------ */
 .layout-wrapper-fixed #wrapper {    
@@ -350,8 +342,8 @@ body:not(.custom-background) #wrapper {
 .page h2.entry-title,
 .post h1.entry-title,
 .page h1.entry-title{
-    margin: 0 0 10px;	
-    padding: 0 10px 5px;
+    /*margin: 0 0 10px;	
+    padding: 0 10px 5px;*/
 }
 
 .post h2.entry-title a,
@@ -361,54 +353,13 @@ body:not(.custom-background) #wrapper {
     color: inherit;
 }
 
-.hentry{
-    background: #fff;
-    padding: 15px 12px 20px;
-    margin-bottom: 20px;
-}
-
-.entry-content {
-    margin: 0 0 20px;
-    padding: 0 10px;
-}
 
 /* Post Info
 ------------------------------------------------------------ */
-.post-info {
-    border-bottom: 1px solid #E9EEF1;
-    color: #8A94A1;
-    font-size: 0.8em;
-    margin: 0 0 17px;
-    padding: 0 10px 7px;
-}
-
-.vcard a{
-    color: #0D72C7;
-    font-weight: bold;
-    text-decoration: none;	
-}
-
-.vcard a:hover{
-    text-decoration: underline;
-}
-
-.vcard .fn{
-    font-weight: inherit;
-}
 
 .post-comments a{
     color: #EF3F35;
     text-decoration: none;	
-}
-
-/* Post Meta
------------------------------------------------------------- */
-.post-meta {
-    border-top: 1px solid #E9EEF1;
-    border-bottom: 1px solid #E9EEF1;
-    clear: both;
-    font-size: 0.85em;
-    padding: 15px 10px;
 }
 
 /* Author Box

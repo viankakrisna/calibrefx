@@ -83,6 +83,13 @@ function calibrefx_initializing() {
 	//Load every active module
 	Calibrefx::load_modules();
 
+	/*
+	 * This theme styles the visual editor to resemble the theme style,
+	 * specifically font, colors, icons, and column width.
+	 */
+	// add_editor_style( array( 'calibrefx-editor-style', 'calibrefx-icons', 'font-awesome', calibrefx_fonts_url() ) );
+	add_editor_style( array( 'assets/css/editor-style.css', 'assets/css/cfxicons.css', 'assets/css/font-awesome.css', 'assets/css/genericons.css', calibrefx_fonts_url() ) );
+
 	// Run the engine
 	$calibrefx->run();
 
@@ -200,3 +207,67 @@ function calibrefx_gzip_compression() {
 	}
 }
 add_action( 'init', 'calibrefx_gzip_compression' );
+
+if ( ! function_exists( 'calibrefx_fonts_url' ) ) :
+/**
+ * Register Google fonts for Twenty Fifteen.
+ *
+ * @since Twenty Fifteen 1.0
+ *
+ * @return string Google fonts URL for the theme.
+ */
+function calibrefx_fonts_url() {
+	$fonts_url = '';
+	$fonts     = array();
+	$subsets   = 'latin,latin-ext';
+
+	/*
+	 * Translators: If there are characters in your language that are not supported
+	 * by Noto Sans, translate this to 'off'. Do not translate into your own language.
+	 */
+	if ( 'off' !== _x( 'on', 'Titillium Web font: on or off', 'calibrefx' ) ) {
+		$fonts[] = 'Titillium Web:400italic,700italic,400,700';
+	}
+
+	/*
+	 * Translators: If there are characters in your language that are not supported
+	 * by Noto Serif, translate this to 'off'. Do not translate into your own language.
+	 */
+	if ( 'off' !== _x( 'on', 'Roboto font: on or off', 'calibrefx' ) ) {
+		$fonts[] = 'Roboto:400italic,700italic,400,700';
+	}
+
+	/*
+	 * Translators: If there are characters in your language that are not supported
+	 * by Inconsolata, translate this to 'off'. Do not translate into your own language.
+	 */
+	if ( 'off' !== _x( 'on', 'Inconsolata font: on or off', 'calibrefx' ) ) {
+		$fonts[] = 'Inconsolata:400,700';
+	}
+
+	/*
+	 * Translators: To add an additional character subset specific to your language,
+	 * translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language.
+	 */
+	$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'calibrefx' );
+
+	if ( 'cyrillic' == $subset ) {
+		$subsets .= ',cyrillic,cyrillic-ext';
+	} elseif ( 'greek' == $subset ) {
+		$subsets .= ',greek,greek-ext';
+	} elseif ( 'devanagari' == $subset ) {
+		$subsets .= ',devanagari';
+	} elseif ( 'vietnamese' == $subset ) {
+		$subsets .= ',vietnamese';
+	}
+
+	if ( $fonts ) {
+		$fonts_url = add_query_arg( array(
+			'family' => urlencode( implode( '|', $fonts ) ),
+			'subset' => urlencode( $subsets ),
+		), '//fonts.googleapis.com/css' );
+	}
+
+	return  apply_filters( 'calibrefx_fonts_url', $fonts_url );
+}
+endif;

@@ -14,7 +14,6 @@ $calibrefx->hooks->calibrefx_meta = array(
  * This function register our style and script files
  */
 function calibrefx_register_scripts() {
-	wp_register_style( 'font-awesome', CALIBREFX_CSS_URL . '/font-awesome.min.css' );
 	wp_register_style( 'jquery-superfish', CALIBREFX_CSS_URL . '/superfish.css' );
 	wp_register_style( 'jquery-lightbox', CALIBREFX_CSS_URL . '/lightbox.css' );
 	wp_register_style( 'nProgress', CALIBREFX_CSS_URL . '/nprogress.css' );
@@ -24,6 +23,8 @@ function calibrefx_register_scripts() {
 	wp_register_style( 'calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css' );
 	wp_register_style( 'calibrefx-template-style', CALIBREFX_URL . '/style.css' );
 	wp_register_style( 'calibrefx-shortcodes', CALIBREFX_CSS_URL . '/shortcodes.css' );
+	wp_register_style( 'calibrefx-editor-style', CALIBREFX_CSS_URL . '/editor-style.css' );
+	wp_register_style( 'font-awesome', CALIBREFX_CSS_URL . '/font-awesome.min.css' );
 	wp_register_style( 'calibrefx-icons', CALIBREFX_CSS_URL . '/cfxicons.css' );
 	wp_register_style( 'genericons', CALIBREFX_CSS_URL . '/genericons.css', array(), '3.3' );
 
@@ -75,6 +76,8 @@ function calibrefx_load_scripts() {
  */
 function calibrefx_load_styles() {
 	global $wp_styles;
+
+	wp_enqueue_style( 'calibrefx-fonts', calibrefx_fonts_url(), array(), null );
 
 	wp_enqueue_style( 'font-awesome' );
 	wp_enqueue_style( 'calibrefx-icons' );
