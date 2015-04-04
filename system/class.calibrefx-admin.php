@@ -271,7 +271,7 @@ abstract class Calibrefx_Admin {
                             </ul>
                             <div class="calibrefx-option">
                                 <h2><?php echo esc_attr( $calibrefx_sections[ $calibrefx_current_section ]['title'] ); ?></h2>
-                                <div class="postbox-container main-postbox">
+                                <div class="postbox-container main-postbox calibrefx-<?php echo $calibrefx_current_section; ?>">
                                     <?php
 									calibrefx_do_meta_sections( $calibrefx_current_section, $this->pagehook, 'main', null );
 									?>

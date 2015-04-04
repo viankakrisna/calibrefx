@@ -22,39 +22,13 @@ function calibrefx_register_admin_menu() {
 
 	$calibrefx->load->library( 'theme_settings' );
 
-	$calibrefx->theme_settings->pagehook = add_menu_page( __( 'Theme Settings', 'calibrefx' ), 'Theme Settings', 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ), apply_filters( 'admin-menu-icon', $admin_menu_icon ), '58.996' );
-	add_submenu_page( 'calibrefx', __( 'Settings', 'calibrefx' ), __( 'Settings', 'calibrefx' ), 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ) );
+	$calibrefx->theme_settings->pagehook = add_theme_page( __( 'Theme Settings', 'calibrefx' ), 'Theme Settings', 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ) );
+	// $calibrefx->theme_settings->pagehook = add_menu_page( __( 'Theme Settings', 'calibrefx' ), 'Theme Settings', 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ), apply_filters( 'admin-menu-icon', $admin_menu_icon ), '58.996' );
+	// add_submenu_page( 'calibrefx', __( 'Settings', 'calibrefx' ), __( 'Settings', 'calibrefx' ), 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ) );
 
-	do_action( 'calibrefx_add_submenu_page' );
+	// do_action( 'calibrefx_add_submenu_page' );
 }
 add_action( 'admin_menu', 'calibrefx_register_admin_menu' );
-
-function calibrefx_add_module_settings() {
-	global $menu, $calibrefx, $calibrefx_user_ability;
-
-	// Disable if programatically disabled
-	if ( ! current_theme_supports( 'calibrefx-admin-menu' ) ) {
-		return;
-	}
-
-	$calibrefx->load->library( 'module_settings' );
-	$calibrefx->module_settings->pagehook = add_submenu_page( 'calibrefx', __( 'Modules', 'calibrefx' ), __( 'Modules', 'calibrefx' ), 'edit_theme_options', 'calibrefx-modules', array( $calibrefx->module_settings, 'dashboard' ) );
-
-}
-add_action( 'calibrefx_add_submenu_page', 'calibrefx_add_module_settings', 20 );
-
-
-function calibrefx_add_extra_settings() {
-	global $menu, $calibrefx, $calibrefx_user_ability;
-
-	// Disable if programatically disabled
-	if ( ! current_theme_supports( 'calibrefx-admin-menu' ) ) {
-		return; }
-
-	$calibrefx->load->library( 'other_settings' );
-	$calibrefx->other_settings->pagehook = add_submenu_page( 'calibrefx', __( 'Extras', 'calibrefx' ), __( 'Extras', 'calibrefx' ), 'edit_theme_options', 'calibrefx-other', array( $calibrefx->other_settings, 'dashboard' ) );
-}
-add_action( 'calibrefx_add_submenu_page', 'calibrefx_add_extra_settings', 30 );
 
 /**
  *

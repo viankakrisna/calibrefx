@@ -99,9 +99,10 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 		if ( empty( $item['activated'] ) && $this->is_module_available( $item ) ) {
 			$url = wp_nonce_url(
 				Calibrefx::admin_url( array(
-					'page'   => 'calibrefx-modules',
-					'action' => 'activate',
-					'module' => $item['module'],
+					'page'   	=> 'calibrefx',
+					'section'   => 'modules',
+					'action' 	=> 'activate',
+					'module' 	=> $item['module'],
 				) ),
 				'calibrefx_activate-' . $item['module']
 			);
@@ -109,9 +110,10 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 		} elseif ( ! empty( $item['activated'] ) ) {
 			$url = wp_nonce_url(
 				Calibrefx::admin_url( array(
-					'page'   => 'calibrefx-modules',
-					'action' => 'deactivate',
-					'module' => $item['module'],
+					'page'   	=> 'calibrefx',
+					'section'   => 'modules',
+					'action' 	=> 'deactivate',
+					'module' 	=> $item['module'],
 				) ),
 				'calibrefx_deactivate-' . $item['module']
 			);

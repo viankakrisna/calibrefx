@@ -358,14 +358,7 @@ class Calibrefx {
 		require Calibrefx::get_module_path( $module );
 		do_action( 'calibrefx_activate_module', $module );
 		$active[] = $module;
-		update_option( 'calibrefx_active_modules', array_unique( $active ) );
-
-		if ( $redirect ) {
-			wp_safe_redirect( Calibrefx::admin_url( 'page=calibrefx-modules' ) );
-		}
-		if ( $exit ) {
-			exit;
-		}
+		return update_option( 'calibrefx_active_modules', array_unique( $active ) );
 	}
 
 	public static function deactivate_module( $module ) {

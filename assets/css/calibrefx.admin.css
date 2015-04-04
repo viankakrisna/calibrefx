@@ -395,7 +395,7 @@ ul.twitter-tweets li span a{
 }
 
 .calibrefx-submit-button {
-    margin: 0 12px 0 0;
+    margin: 10px 12px 0 0;
     height: 40px;
     float: right;
 }
@@ -481,6 +481,19 @@ span.calibrefx-info{
 .calibrefx-admin-page #wpbody-content .metabox-holder {
     padding-top: 0px;
     border-bottom: 0px;
+}
+
+.calibrefx-modules.main-postbox{
+    width: 96%;
+}
+
+.calibrefx-modules span {
+    display: inline;
+}
+
+.calibrefx-metaboxes span.paging-input .current-page {
+    display: inline;
+    width: auto;
 }
 
 .calibrefx-option{
