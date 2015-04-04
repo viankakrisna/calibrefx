@@ -14,8 +14,10 @@ class CFX_Other_Settings extends Calibrefx_Admin {
 		$this->page_id = 'calibrefx-other';
 		$this->default_settings = apply_filters( 'calibrefx_other_settings_defaults', array() );
 
-		add_action( 'calibrefx_before_save_core', array( $this,'do_export' ) );
-		add_action( 'calibrefx_before_save_core', array( $this,'do_import' ) );
+		if( current_user_can( 'edit_theme_options' ) ){
+			add_action( 'calibrefx_before_save_core', array( $this,'do_import' ) );
+			add_action( 'calibrefx_before_save_core', array( $this,'do_export' ) );
+		}
 		$this->initialize();
 	}
 
@@ -56,8 +58,10 @@ class CFX_Other_Settings extends Calibrefx_Admin {
 		calibrefx_add_meta_box( 'tosgen', 'basic', 'calibrefx-other-settings-tosgen', __( 'TOS Generator', 'calibrefx' ), array( $this, 'tos_generator' ), $this->pagehook, 'main', 'high' );
 
 		// Export - Import
-		calibrefx_add_meta_box( 'importexport', 'basic', 'calibrefx-import-settings', __( 'Import Settings', 'calibrefx' ), array( $this, 'import_settings' ), $this->pagehook, 'main', 'high' );
-		calibrefx_add_meta_box( 'importexport', 'basic', 'calibrefx-export-settings', __( 'Export Settings', 'calibrefx' ), array( $this, 'export_settings' ), $this->pagehook, 'main', 'high' );
+		if( current_user_can( 'edit_theme_options' ) ){
+			calibrefx_add_meta_box( 'importexport', 'basic', 'calibrefx-import-settings', __( 'Import Settings', 'calibrefx' ), array( $this, 'import_settings' ), $this->pagehook, 'main', 'high' );
+			calibrefx_add_meta_box( 'importexport', 'basic', 'calibrefx-export-settings', __( 'Export Settings', 'calibrefx' ), array( $this, 'export_settings' ), $this->pagehook, 'main', 'high' );
+		}
 
 		do_action( 'calibrefx_other_settings_meta_box' );
 	}
@@ -323,12 +327,35 @@ class CFX_Other_Settings extends Calibrefx_Admin {
 	}
 
 	public function do_import() {
-		if ( ! $_POST ) { return; }
 
-		if ( empty( $_POST['calibrefx_do_import']) ) { return; }
+		if ( ! $_POST OR empty( $_POST['calibrefx_do_import']) ) { 
+			return; 
+		}
+
+		$url       = wp_nonce_url( admin_url( 'admin.php?page=calibrefx-other&section=importexport' ), 'calibrefx-import' );
+		$tools_url = admin_url( 'admin.php?page=calibrefx-other&section=importexport' );
+
+		if ( ! isset( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'debug_action' ) ) {
+			wp_redirect( $tools_url );
+			exit;
+		}
+
+		if ( false === ( $creds = request_filesystem_credentials( $url, '', false, false, null ) ) ) {
+			wp_redirect( $tools_url );
+			exit;
+		}
+
+		if ( ! WP_Filesystem( $creds ) ) {
+			request_filesystem_credentials( $url, '', true, false, null );
+
+			wp_redirect( $tools_url );
+			exit;
+		}
+
+		global $wp_filesystem;
 
 		/** Extract file contents */
-		$upload = file_get_contents( $_FILES['calibrefx-import-upload']['tmp_name'] );
+		$upload = $wp_filesystem->get_contents( $_FILES['calibrefx-import-upload']['tmp_name'] );
 
 		/** Decode the JSON */
 		$options = json_decode( $upload, true );

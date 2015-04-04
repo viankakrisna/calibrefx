@@ -96,7 +96,6 @@ class Calibrefx {
 
 		if ( is_admin() ){
 			//Only load this on admin area
-			$this->load->library( 'replacer' );
 			$this->load->library( 'security' );
 			$this->load->library( 'walker_nav_menu_edit' );
 			$this->load->library( 'shortcode' );

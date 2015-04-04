@@ -295,21 +295,7 @@ if ( ! function_exists( 'csv_to_array' ) ) {
 			return false;
 		}
 
-		$handle = fopen( $csvfile, 'r' );
-
-		$header = null;
-		$data = array();
-		while ( ( $row = fgetcsv( $handle, 1000, ',' ) ) !== false ) {
-			if ( ! $header ){
-				$header = $row;
-			} else {
-				$data[] = array_combine( $header, $row );
-			}
-		}
-
-		fclose( $handle );
-
-		return $data;
+		return array_map('str_getcsv', file($csvfile));
 	}
 }
 
