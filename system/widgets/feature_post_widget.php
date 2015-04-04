@@ -18,7 +18,7 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'feature-post-widget',
-			apply_filters( 'calibrefx_widget_name', __( 'Feature Post', 'calibrefx' ) ),
+			apply_filters( 'calibrefx_widget_name', __( 'Feature Posts', 'calibrefx' ) ),
 			array(
 				'classname' => 'widget_feature_post',
 				'description' => __( 'Display feature post with thumbnail on your sidebar', 'calibrefx' )
@@ -50,11 +50,10 @@ class CFX_Feature_Post_Widget extends WP_Widget {
 		extract( $args );
 		$instance = wp_parse_args( (array) $instance, $this->defaults );
 
-		//$featured_page = new WP_Query( array( 'page_id' => $instance['page_id'] ) );
 		$query_args = array(
-			'post_type' => 'post',
-			'cat'       => $instance['posts_cat'],
-			'showposts' => $instance['post_num'],
+			'post_type' 		=> 'post',
+			'cat'       		=> $instance['posts_cat'],
+			'posts_per_page'	=> $instance['post_num'],
 		);
 		$featured_posts = new WP_Query( $query_args );
 

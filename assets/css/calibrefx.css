@@ -389,23 +389,23 @@ del {
 
 ::-webkit-input-placeholder {
 	color: rgba(51, 51, 51, 0.7);
-	font-family: "Raleway", sans-serif;
+	font-family: "Roboto", sans-serif;
 }
 
 :-moz-placeholder {
 	color: rgba(51, 51, 51, 0.7);
-	font-family: "Raleway", sans-serif;
+	font-family: "Roboto", sans-serif;
 }
 
 ::-moz-placeholder {
 	color: rgba(51, 51, 51, 0.7);
-	font-family: "Raleway", sans-serif;
+	font-family: "Roboto", sans-serif;
 	opacity: 1; /* Since FF19 lowers the opacity of the placeholder by default */
 }
 
 :-ms-input-placeholder {
 	color: rgba(51, 51, 51, 0.7);
-	font-family: "Raleway", sans-serif;
+	font-family: "Roboto", sans-serif;
 }
 
 
@@ -473,8 +473,7 @@ del {
 /* Header Right Widget
 ------------------------------------------------------------ */
 #header-right {
-	margin-top: 10px;
-	padding-top: 20px;
+	margin-top: 30px;
 }
 
 #header-right ul.menu > li {
@@ -2145,7 +2144,11 @@ input[type="submit"].searchsubmit {
 	#header-right {
 		float: none !important;
 		width: 100%;
-	}
+	
+		text-align: center;
+		margin-top: 20px;
+		margin-bottom: 20px;
+}
 	
 	.navbar {
 		min-height: initial;
