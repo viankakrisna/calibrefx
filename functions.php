@@ -192,10 +192,10 @@ function childfx_load_library( $library_path ){
  * Enable GZip Compression
  */
 function calibrefx_gzip_compression() {
-	if ( ! current_theme_supports( 'calibrefx-preformance' ) ){
+	if ( ! current_theme_supports( 'calibrefx-preformance' ) OR is_admin() ){
 		return false;
 	}
-
+	
 	// can't use zlib.output_compression and ob_gzhandler at the same time
 	if ( ( 'On' == ini_get( 'zlib.output_compression' ) || ini_get( 'zlib.output_compression_level' ) > 0 ) OR 'ob_gzhandler' == ini_get( 'output_handler' ) ) {
 		return false;

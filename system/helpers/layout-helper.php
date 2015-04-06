@@ -263,7 +263,7 @@ function calibrefx_row_class( $echo = false ) {
 	$rowClass = 'row';
 
 	if ( calibrefx_layout_is_fluid() ) {
-		return '';
+		return 'row';
 	}
 
 	if ( ! $echo ) {

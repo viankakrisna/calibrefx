@@ -2109,6 +2109,27 @@ input[type="submit"].searchsubmit {
 /* Media Queries
 ------------------------------------------------------------ */
 
+@media (min-width: 320px) { 
+	.fluid .row{
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+@media (max-width: 469px) { /* For 320px media */
+	.layout-wrapper-fluid .container {
+		width: 300px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.layout-wrapper-fixed #wrapper {
+		width: 300px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
 @media (min-width: 992px) {
 	#content-sidebar {
 		float: right;
@@ -2218,19 +2239,5 @@ input[type="submit"].searchsubmit {
 		border: 0;
 		background: transparent;
 		box-shadow: none;
-	}
-}
-
-@media (max-width: 469px) { /* For 320px media */
-	.layout-wrapper-fluid .container {
-		width: 300px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.layout-wrapper-fixed #wrapper {
-		width: 300px;
-		margin-right: auto;
-		margin-left: auto;
 	}
 }

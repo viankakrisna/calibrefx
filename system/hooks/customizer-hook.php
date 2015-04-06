@@ -3,21 +3,24 @@
 add_action( 'customize_register', 'calibrefx_customize_register' );
 function calibrefx_customize_register( $wp_customize ) {
 	global $calibrefx;
+	
+	$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
+	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+
 	$wp_customize->add_section( 'calibrefx_layout_settings', array(
 		'title'         => __( 'Layout Settings', 'calibrefx' ),
 		'priority'      => 35,
 	) );
 
 	$wp_customize->add_setting( 'calibrefx-settings[layout_type]', array(
-		'default'       => 'static',
-		'type'          => 'option',
-		'capability'    => 'manage_options',
+		'sanitize_callback' => 'calibrefx_sanitize_layout_type',
+		'capability'    	=> 'manage_options',
 	) );
 
 	$wp_customize->add_control( 'calibrefx-settings[layout_type]', array(
 		'label'         => __( 'Default Layout Type', 'calibrefx' ),
 		'section'       => 'calibrefx_layout_settings',
-		'type'    		=> 'radio',
+		'type'          => 'select',
 		'choices' 		=> array(
 								'fluid'   => __( 'Fluid Layout', 'calibrefx' ),
 								'static'  => __( 'Static Layout', 'calibrefx' ),
@@ -26,9 +29,10 @@ function calibrefx_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_setting( 'calibrefx-settings[calibrefx_layout_width]', array(
-		'default'       => 960,
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
+		'default'       	=> 960,
+		'type'          	=> 'theme_mod',
+		'sanitize_callback' => 'calibrefx_sanitize_layout_width',
+		'capability'    	=> 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'calibrefx-settings[calibrefx_layout_width]', array(
@@ -38,10 +42,11 @@ function calibrefx_customize_register( $wp_customize ) {
 		'priority'      => 2,
 	) );
 
-	$wp_customize->add_setting( 'calibrefx-settings[site_layout]', array(
-		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
+	/*$wp_customize->add_setting( 'calibrefx-settings[site_layout]', array(
+		'default'       	=> '',
+		'type'          	=> 'theme_mod',
+		'sanitize_callback' => 'calibrefx_sanitize_layout_width',
+		'capability'    	=> 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'site_layout', array(
@@ -50,7 +55,7 @@ function calibrefx_customize_register( $wp_customize ) {
 		'settings'      => 'calibrefx-settings[site_layout]',
 		'type'          => 'text',
 		'priority'      => 5,
-	) );
+	) );*/
 }
 
 /**
@@ -62,7 +67,7 @@ function calibrefx_customize_register( $wp_customize ) {
 function calibrefx_save_back_customize_setting( $wp_customize ) {
 	$custom_theme_mod = get_theme_mod( 'calibrefx-settings' );
 	$calibrefx_settings = get_option( 'calibrefx-settings' );
-	$merge_value = wp_parse_args( $custom_theme_mod, $calibrefx_settings );
+	$merge_value = array_merge( $calibrefx_settings, $custom_theme_mod );
 	update_option( 'calibrefx-settings', $merge_value );
 }
 add_action( 'customize_save_after', 'calibrefx_save_back_customize_setting' );
@@ -82,3 +87,24 @@ function calibrefx_customizer_live_preview() {
 	);
 }
 add_action( 'customize_preview_init', 'calibrefx_customizer_live_preview' );
+
+function calibrefx_sanitize_layout_type( $value ) {
+	$layout_types = array( 'fluid', 'static' );
+	
+	if ( ! in_array( $value, $layout_types ) ) {
+		$value = 'static';
+	}
+
+	return $value;
+}
+
+function calibrefx_sanitize_layout_width( $value ) {
+	
+	$value = absint( $value );
+
+	if( 0 >= $value ) {
+		$value = 960;
+	}
+
+	return $value;
+}
