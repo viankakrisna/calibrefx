@@ -97,14 +97,14 @@ class CFX_Security {
 
 	public function get_available_filters() {
 		$default_filters = array(
-			'one_zero' => array( &$this, 'one_zero' ),
-			'integer' => array( &$this, 'integer' ),
-			'no_html' => array( &$this, 'no_html' ),
-			'safe_html' => array( &$this, 'safe_html' ),
-			'safe_js' => array( &$this, 'safe_js' ),
-			'safe_text' => array( &$this, 'safe_text' ),
-			'safe_url' => array( &$this, 'safe_url' ),
-			'no_filter' => array( &$this, 'no_filter' ),
+			'one_zero' => array( $this, 'one_zero' ),
+			'integer' => array( $this, 'integer' ),
+			'no_html' => array( $this, 'no_html' ),
+			'safe_html' => array( $this, 'safe_html' ),
+			'safe_js' => array( $this, 'safe_js' ),
+			'safe_text' => array( $this, 'safe_text' ),
+			'safe_url' => array( $this, 'safe_url' ),
+			'no_filter' => array( $this, 'no_filter' ),
 		);
 
 		return apply_filters( 'calibrefx_available_sanitizer_filters', $default_filters );

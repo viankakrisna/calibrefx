@@ -16,7 +16,6 @@ class Calibrefx_Modules_List_Table extends WP_List_Table {
 		parent::__construct();
 
 		$this->items = $this->all_items = $this->get_modules();
-		$this->items = apply_filters( 'calibrefx_modules_list_table_items', $this->items );
 		$this->_column_headers = array( $this->get_columns(), array(), array() );
 
 	}

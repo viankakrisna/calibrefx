@@ -21,7 +21,6 @@ function blank_page_body_class( $classes ){
 <!--<![endif]-->
 <head>
 	<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
-	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<?php
 	if ( 'open' == get_option( 'default_ping_status' ) ) { ?>

@@ -116,34 +116,6 @@ function calibrefx_print_favicon() {
 }
 
 /**
- * Print html title, this will override by seo addon later
- */
-function calibrefx_do_title( $title, $sep ) {
-	global $paged, $page;
-
-	if ( is_feed() ) {
-		return $title;
-	}
-
-	// Add the site name.
-	$title .= get_bloginfo( 'name', 'display' );
-
-	// Add the site description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) ) {
-		$title = "$title $sep $site_description";
-	}
-
-	// Add a page number if necessary.
-	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'calibrefx' ), max( $paged, $page ) );
-	}
-
-	return apply_filters( 'calibrefx_page_title', $title, $sep );
-}
-add_filter( 'wp_title', 'calibrefx_do_title', 10, 2 );
-
-/**
  * This function adds dublin core meta in header
  */
 function calibrefx_do_fb_og() {
@@ -275,7 +247,7 @@ function calibrefx_do_site_title() {
 		$title = sprintf( '<h2 id="title" class="site-title">%s</h2>', $inside );
 	}
 
-	echo apply_filters( 'calibrefx_seo_title', $title, $inside, $wrap = '' );
+	echo apply_filters( 'calibrefx_title', $title, $inside, $wrap = '' );
 }
 
 
@@ -294,7 +266,7 @@ function calibrefx_do_site_description() {
 	$description = $inside ? sprintf( '<%s id="description" class="site-description">%s</%s>', $wrap, $inside, $wrap ) : '';
 
 	// Return (filtered)
-	echo apply_filters( 'calibrefx_seo_description', $description, $inside, $wrap );
+	echo apply_filters( 'calibrefx_description', $description, $inside, $wrap );
 }
 
 /**
@@ -318,7 +290,6 @@ function calibrefx_do_header() {
 	do_action( 'calibrefx_site_title' );
 	do_action( 'calibrefx_site_description' );
 	echo '</div><!-- end #header-title -->';
-
 	$header_right_widget = current_theme_supports( 'calibrefx-header-right-widgets' );
 	$header_right_class = apply_filters( 'header_right_class', 'pull-right', '' );
 
