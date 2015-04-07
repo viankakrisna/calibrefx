@@ -168,6 +168,7 @@ function calibrefx_numeric_posts_nav($max = null, $echo = true) {
 	}
 
 	$paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
+	$links = array();
 
 	/** Add current page to the array */
 	if ( $paged >= 1 ) {
@@ -329,6 +330,7 @@ function calibrefx_url_to_postid( $url) {
 
 	// Look for matches.
 	$request_match = $request;
+	$post_type_query_vars = array();
 
 	foreach ( (array)$rewrite as $match => $query ) {
 		// If the requesting file is the anchor of the match, prepend it

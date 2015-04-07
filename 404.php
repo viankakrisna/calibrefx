@@ -3,10 +3,6 @@
  * Default template for 404 page
  */
 
-/**
- * This function outputs a 404 "Not Found" error message
- *
- */
 function calibrefx_404() { ?>
 
 	<div class="post hentry">
