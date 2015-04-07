@@ -1226,7 +1226,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 	?>
         <p><span class="description"><?php _e( 'Press the download button below to export all the settings to file', 'calibrefx' ); ?></span></p>
         <p>
-            <!-- <input type="hidden" name="calibrefx_do_export" value="1" /> -->
             <input type="submit" name="calibrefx_do_export" class="button-primary calibrefx-h2-button" value="<?php _e( 'Export Settings', 'calibrefx' ) ?>" />
         </p>
         
@@ -1249,10 +1248,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 
 	public function do_export() {
 		
-		/*if ( ! $_POST OR empty( $_POST['calibrefx_do_export']) ) { 
-			return; 
-		}*/
-
 		$options = $this->get_export_options();
 
 		$settings = array();
@@ -1266,8 +1261,9 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 		}
 
 		/** Check there's something to export */
-		if ( ! $settings ) {
-			return; }
+		if ( empty( $settings ) ) {
+			return; 
+		}
 
 		$output = json_encode( (array) $settings );
 
@@ -1283,10 +1279,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 	}
 
 	public function do_import() {
-
-		/*if ( ! $_POST OR empty( $_POST['calibrefx_do_import']) ) { 
-			return; 
-		}*/
 
 		$url       = wp_nonce_url( admin_url( 'admin.php?page=calibrefx-other&section=importexport' ), 'calibrefx-import' );
 		$tools_url = admin_url( 'admin.php?page=calibrefx-other&section=importexport' );
