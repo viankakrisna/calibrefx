@@ -8,7 +8,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 	/**
 	 * Constructor - Initializes
 	 */
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'calibrefx-settings' );
 
 		$this->page_id = 'calibrefx';
@@ -57,8 +57,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 		if( current_user_can( 'edit_theme_options' ) ){
 			add_action( 'admin_init', array( $this, 'manage_modules' ) );
 			add_action( 'admin_init', array( $this, 'handle_export_import' ) );
-			// add_action( 'calibrefx_before_save_core', array( $this,'do_import' ) );
-			// add_action( 'calibrefx_before_save_core', array( $this,'do_export' ) );
 		}
 	}
 

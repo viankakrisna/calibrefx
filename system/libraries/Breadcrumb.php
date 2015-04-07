@@ -24,7 +24,7 @@ class CFX_Breadcrumb {
 	 *
 	 * @param array $args
 	 */
-	function __construct() {
+	public function __construct() {
 		$this->on_front = get_option( 'show_on_front' );
 
 		/** Default arguments * */

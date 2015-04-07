@@ -10,7 +10,7 @@ class CFX_Form {
 	private $form_close = '</form>';
 	private $form_fields = '';
 
-	function __construct() {}
+	public function __construct() {}
 
 	/**
 	 * Open form

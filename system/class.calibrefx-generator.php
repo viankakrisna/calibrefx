@@ -131,15 +131,11 @@ class Calibrefx_Generator{
 	public function remove( $tag, $function, $priority = 10 ) {
 		if ( ! isset( $this->_hooks[ $tag ] ) ) { return; }
 
-		$keysearch = -1;
-		foreach ( $this->$tag as $key => $haystack ) {
-			if ( $haystack['function'] == $function ) {
-				$keysearch = $key;
-				break;
-			}
-		}
+		$keysearch = $this->find_key( $tag, $function );
 
-		if ( $keysearch == -1 ) { return false; }
+		if ( -1 == $keysearch ) { 
+			return false; 
+		}
 		unset( $this->_hooks[ $tag ][ $keysearch ] );
 
 		//For late call, then we need to change the action
@@ -156,13 +152,7 @@ class Calibrefx_Generator{
 	public function move( $old_tag, $new_tag, $function, $old_priority = 10, $new_priority = 10 ) {
 		if ( ! isset( $this->_hooks[ $old_tag ] ) ) { return; }
 
-		$keysearch = -1;
-		foreach ( $this->$old_tag as $key => $haystack ) {
-			if ( $haystack['function'] == $function ) {
-				$keysearch = $key;
-				break;
-			}
-		}
+		$keysearch = $this->find_key( $old_tag, $function );
 
 		if ( -1 == $keysearch ) {
 			return false;
@@ -186,15 +176,11 @@ class Calibrefx_Generator{
 	public function replace( $tag, $function_old, $function_new, $old_priority = 10, $new_priority = 10 ) {
 		if ( ! isset( $this->_hooks[ $tag ]) ) { return; }
 
-		$keysearch = -1;
-		foreach ( $this->$tag as $key => $haystack ) {
-			if ( $haystack['function'] == $function_old ) {
-				$keysearch = $key;
-				break;
-			}
-		}
+		$keysearch = $this->find_key( $tag, $function );
 
-		if ( $keysearch == -1 ) { return false; }
+		if ( -1 == $keysearch ) {
+			return false;
+		}
 		$this->_hooks[ $tag ][ $keysearch ]['function'] = $function_new;
 
 		//For late call, then we need to change the action
@@ -219,5 +205,16 @@ class Calibrefx_Generator{
 				add_action( $hook, $value['function'], $value['priority'], $value['args'] );
 			}
 		}
+	}
+
+	private function find_key( $tag, $function ){
+		foreach ( $this->$tag as $key => $haystack ) {
+			if ( $haystack['function'] == $function ) {
+				return $key;
+			}
+		}
+
+		//function not found
+		return -1;
 	}
 }

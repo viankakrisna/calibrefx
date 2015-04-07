@@ -8,7 +8,7 @@ class CFX_Shortcode {
 	/**
 	 * Constructor - Initializes
 	 */
-	function __construct() {
+	public function __construct() {
 
 		add_action( 'media_buttons_context', array( __CLASS__, 'shortcode_button' ) );
 		add_action( 'admin_footer', array( __CLASS__, 'content_display' ) );

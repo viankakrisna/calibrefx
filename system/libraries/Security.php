@@ -34,7 +34,7 @@ class CFX_Security {
 	/**
 	 * Constructor
 	 */
-	function __construct() {
+	public function __construct() {
 
 	}
 

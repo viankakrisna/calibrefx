@@ -33,7 +33,7 @@ class CFX_List_Table extends WP_List_Table {
 	/**
 	 * Constructor
 	 */
-	function __construct( $columns = array(), $settings = array() ) {
+	public function __construct( $columns = array(), $settings = array() ) {
 		$this->_columns = $columns;
 
 		$this->_default = array(
