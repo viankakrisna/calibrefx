@@ -88,8 +88,8 @@ class Calibrefx_Loader {
 	 */
 	public function load_helpers(){
 
-		$helpers_include = apply_filters( 'calibrefx_helpers_to_include', Calibrefx::glob_php( CALIBREFX_HELPER_URI ) );
-
+		$helpers_include = apply_filters( 'calibrefx_helpers_to_include', Calibrefx::glob_php( CALIBREFX_HELPER_URI ), 'helpers' );
+		
 		foreach ( $helpers_include as $include ) {
 			include_once $include;
 		}
@@ -101,7 +101,7 @@ class Calibrefx_Loader {
 	 */
 	public function load_shortcodes(){
 
-		$shortcodes_include = apply_filters( 'calibrefx_shortcodes_to_include', Calibrefx::glob_php( CALIBREFX_SHORTCODE_URI ) );
+		$shortcodes_include = apply_filters( 'calibrefx_shortcodes_to_include', Calibrefx::glob_php( CALIBREFX_SHORTCODE_URI ), 'shortcodes' );
 
 		foreach ( $shortcodes_include as $include ) {
 			include_once $include;
@@ -114,7 +114,7 @@ class Calibrefx_Loader {
 	 */
 	public function load_hooks(){
 
-		$hooks_include = apply_filters( 'calibrefx_hooks_to_include', Calibrefx::glob_php( CALIBREFX_HOOK_URI ) );
+		$hooks_include = apply_filters( 'calibrefx_hooks_to_include', Calibrefx::glob_php( CALIBREFX_HOOK_URI ), 'hooks' );
 
 		foreach ( $hooks_include as $include ) {
 			include_once $include;
@@ -124,7 +124,7 @@ class Calibrefx_Loader {
 
 	function load_widgets() {
 
-		$widgets_include = apply_filters( 'calibrefx_widgets_to_include', Calibrefx::glob_php( CALIBREFX_WIDGET_URI ) );
+		$widgets_include = apply_filters( 'calibrefx_widgets_to_include', Calibrefx::glob_php( CALIBREFX_WIDGET_URI ), 'widgets' );
 
 		foreach ( $widgets_include as $include ) {
 			include $include;

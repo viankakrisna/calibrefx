@@ -73,10 +73,10 @@ function calibrefx_initializing() {
 	) );
 
 	if ( is_child_theme() ) {
-		add_filter( 'calibrefx_helpers_to_include', 'childfx_load_helpers' );
-		add_filter( 'calibrefx_shortcodes_to_include', 'childfx_load_shortcodes' );
-		add_filter( 'calibrefx_hooks_to_include', 'childfx_load_hooks' );
-		add_filter( 'calibrefx_widgets_to_include', 'childfx_load_widgets' );
+		add_filter( 'calibrefx_helpers_to_include', 'childfx_load_extension', 10, 2 );
+		add_filter( 'calibrefx_shortcodes_to_include', 'childfx_load_extension', 15, 2 );
+		add_filter( 'calibrefx_hooks_to_include', 'childfx_load_extension', 20, 2 );
+		add_filter( 'calibrefx_widgets_to_include', 'childfx_load_extension', 25, 2 );
 		add_filter( 'calibrefx_library_path', 'childfx_load_library' );
 	}
 
@@ -87,7 +87,6 @@ function calibrefx_initializing() {
 	 * This theme styles the visual editor to resemble the theme style,
 	 * specifically font, colors, icons, and column width.
 	 */
-	// add_editor_style( array( 'calibrefx-editor-style', 'calibrefx-icons', 'font-awesome', calibrefx_fonts_url() ) );
 	add_editor_style( array( 'assets/css/editor-style.css', 'assets/css/cfxicons.css', 'assets/css/font-awesome.css', 'assets/css/genericons.css', calibrefx_fonts_url() ) );
 
 	// Run the engine
@@ -113,63 +112,22 @@ function calibrefx_initialize_other() {
 add_action( 'after_setup_theme', 'calibrefx_initialize_other', 99 );
 
 /**
- * Load helpers from child themes
- * @param  array $helpers_include
- * @return array
- */
-function childfx_load_helpers( $helpers_include ){
-	$childfx_helpers = array();
-
-	foreach ( Calibrefx::glob_php( CHILD_URI . '/' . CHILD_APP_DIR . '/' . 'helpers' ) as $file ) {
-		$childfx_helpers[] = $file;
-	}
-
-	return array_merge( $helpers_include, $childfx_helpers );
-}
-
-/**
- * Load shortcodes from child themes
- * @param  array $shortcodes_include
- * @return array
- */
-function childfx_load_shortcodes( $shortcodes_include ){
-	$childfx_shortcodes = array();
-
-	foreach ( Calibrefx::glob_php( CHILD_URI . '/' . CHILD_APP_DIR . '/' . 'shortcodes' ) as $file ) {
-		$childfx_shortcodes[] = $file;
-	}
-
-	return array_merge( $shortcodes_include, $childfx_shortcodes );
-}
-
-/**
- * Load hooks from child themes
+ * Load extension: helpers, hooks, widgets, and shortcodes
+ * @param  string $type: helpers, hooks, widgets, and shortcodes
  * @param  array $hooks_include
  * @return array
  */
-function childfx_load_hooks( $hooks_include ){
-	$childfx_hooks = array();
+function childfx_load_extension( $files_included, $type ){
+	$allowed_types = array( 'helpers', 'hooks', 'widgets', 'shortcodes' );
 
-	foreach ( Calibrefx::glob_php( CHILD_URI . '/' . CHILD_APP_DIR . '/' . 'hooks' ) as $file ) {
-		$childfx_hooks[] = $file;
+	if( !in_array( $type, $allowed_types ) ) return false;
+	$local_files = array();
+
+	foreach ( Calibrefx::glob_php( CHILD_URI . '/' . CHILD_APP_DIR . '/' . $type ) as $file ) {
+		$local_files[] = $file;
 	}
 
-	return array_merge( $hooks_include, $childfx_hooks );
-}
-
-/**
- * Load widgets from child themes
- * @param  array $hooks_include
- * @return array
- */
-function childfx_load_widgets( $widgets_include ){
-	$childfx_widgets = array();
-
-	foreach ( Calibrefx::glob_php( CHILD_URI . '/' . CHILD_APP_DIR . '/' . 'widgets' ) as $file ) {
-		$childfx_widgets[] = $file;
-	}
-
-	return array_merge( $widgets_include, $childfx_widgets );
+	return array_merge( $files_included, $local_files );
 }
 
 /**

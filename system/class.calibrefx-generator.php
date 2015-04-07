@@ -176,7 +176,7 @@ class Calibrefx_Generator{
 	public function replace( $tag, $function_old, $function_new, $old_priority = 10, $new_priority = 10 ) {
 		if ( ! isset( $this->_hooks[ $tag ]) ) { return; }
 
-		$keysearch = $this->find_key( $tag, $function );
+		$keysearch = $this->find_key( $tag, $function_old );
 
 		if ( -1 == $keysearch ) {
 			return false;
