@@ -127,7 +127,11 @@ abstract class Calibrefx_Admin {
 		}
 		
 		//Get the value from post settings
-		$_newvalue = array_map( 'esc_attr', $_POST[ $this->settings_field ] );
+		if ( is_array( $_POST[ $this->settings_field ] ) ){
+			$_newvalue = array_map( 'esc_attr', $_POST[ $this->settings_field ] );
+		} else {
+			$_newvalue = esc_attr( $_POST[ $this->settings_field ] );
+		}
 
 		//merge value from old settings
 		if ( ! is_array( $_oldvalue ) ) { $_oldvalue = array(); }
@@ -282,12 +286,6 @@ abstract class Calibrefx_Admin {
                             <div class="clear"></div>
                         </div>
                     </div>
-                    <?php /*if( $this->_form_method == 'post' ) : ?>
-                    <div class="calibrefx-submit-button calibrefx-bottom">
-                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-submit-button"><i class="icon-save"></i><?php _e( 'Save Settings', 'calibrefx' ) ?></button>
-                        <button type="submit" class="calibrefx-h2-button calibrefx-settings-reset-button" name="<?php echo $this->settings_field; ?>[reset]" onclick="return calibrefx_confirm( '<?php echo esc_js(__( 'Are you sure you want to reset?', 'calibrefx' ) ); ?>' );"><i class="icon-reset"></i><?php _e( 'Reset Settings', 'calibrefx' ); ?></button>
-                    </div>
-                    <?php endif;*/ ?>
                 </div>
             </form>
         </div>
