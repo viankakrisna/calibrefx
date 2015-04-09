@@ -267,9 +267,13 @@ function calibrefx_layout_body_class( $classes ) {
 		$classes[] = $site_layout;
 	}
 
-	if ( calibrefx_layout_is_fixed_wrapper() && calibrefx_layout_is_static() ) {
+	if( ! calibrefx_layout_is_static() ) {
+		return $classes;
+	}
+
+	if( calibrefx_layout_is_fixed_wrapper() ){
 		$classes[] = 'layout-wrapper-fixed';
-	} elseif ( calibrefx_layout_is_static() && ! calibrefx_layout_is_fixed_wrapper() ) {
+	} else {
 		$classes[] = 'layout-wrapper-fluid';
 	}
 

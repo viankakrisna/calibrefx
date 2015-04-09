@@ -1466,6 +1466,7 @@ input[type="submit"].searchsubmit {
 /* Footer Widgets
 ------------------------------------------------------------ */
 #footer-widget {
+    background: #E9E9EA;
 	margin-top: 10px;
 	width: auto;
 }
@@ -1478,8 +1479,21 @@ input[type="submit"].searchsubmit {
 /* Footer
 ------------------------------------------------------------ */
 #footer {
+	background: #2a2a2a;
+	color: #FFFFFF;
 	min-height: 30px;
 	width: auto;
+}
+
+#footer a, 
+#footer a:hover{
+    text-decoration: none;
+    color: #919193;
+}
+
+
+#footer-wrapper{
+	position: relative;
 }
 
 .layout-wrapper-fixed #footer {
@@ -1487,17 +1501,32 @@ input[type="submit"].searchsubmit {
 	padding-right: 20px;
 }
 
-.credits {
-	padding: 5px 0px 0px;
-}
-
+.credits, 
 .scrolltop {
-	padding: 5px 0px 0px;
+    padding: 10px 0px;
 }
 
 .credits p, .scrolltop p {
 	margin-bottom: 0px;
 }
+
+.scrolltop{
+    background: #585858 url(assets/img/scroll-top-arrow.png) center center no-repeat;
+    height: 45px;
+    padding: 0;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 45px;
+}
+
+.scrolltop a{
+    display: inline-block;
+    height: 45px;
+    text-indent: -999em;
+	width: 45px;
+}
+
 
 /* Shortcode Style
 ------------------------------------------------------------ */
@@ -2147,7 +2176,7 @@ input[type="submit"].searchsubmit {
 
 @media (max-width: 767px) { /* For 480px media */
 	.layout-wrapper-fluid .container {
-		width: 440px;
+		/* width: 440px; */
 		margin-left: auto;
 		margin-right: auto;
 	}

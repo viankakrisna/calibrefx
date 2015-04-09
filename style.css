@@ -307,31 +307,6 @@ body:not(.custom-background) #wrapper {
     margin: 0;
 } 
 
-/* Breadcrumb
------------------------------------------------------------- */
-
-/* .breadcrumb-container {
-    background: #FFFFFF;
-    border-radius: 0;
-    margin-bottom: 20px;
-} */
-
-/* Post
------------------------------------------------------------- */
-/* .post h2.entry-title,
-.page h2.entry-title,
-.post h1.entry-title,
-.page h1.entry-title{
-    
-}
-
-.post h2.entry-title a,
-.page h2.entry-title a,
-.page h1.entry-title a{
-    text-decoration: none;
-    color: inherit;
-}
- */
 
 /* Post Info
 ------------------------------------------------------------ */
@@ -435,50 +410,6 @@ input[type="submit"].searchsubmit:hover{
     color: #000;
 }
 
-/* Footer Widget
------------------------------------------------------------- */
-
-#footer-widget {
-    background: #E9E9EA;
-
-}
-
-/* Footer
------------------------------------------------------------- */
-#footer{
-	background: #2a2a2a;
-	color: #FFFFFF;
-}
-
-#footer-wrapper{
-	position: relative;
-}
-
-#footer a, #footer a:hover{
-    text-decoration: none;
-    color: #919193;
-}
-
-.credits, .scrolltop {
-    padding: 10px 0px;
-}
-
-.scrolltop{
-    background: #585858 url(assets/img/scroll-top-arrow.png) center center no-repeat;
-    height: 45px;
-    padding: 0;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    width: 45px;
-}
-
-.scrolltop a{
-    display: inline-block;
-    height: 45px;
-    text-indent: -999em;
-	width: 45px;
-}
 
 /* Form Style
 ------------------------------------------------------------ */
