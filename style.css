@@ -175,18 +175,6 @@ body:not(.custom-background) #wrapper {
     padding: 20px 0;
 }
 
-/* Widgets
------------------------------------------------------------- */
-
-#sidebar .widget{
-    background: #fff;
-}
-
-#sidebar .widgettitle{
-    background: #2a2a2a;
-    color: #fff;
-}
-
 /* Footer Widget
 ------------------------------------------------------------ */
 
@@ -272,14 +260,6 @@ body:not(.custom-background) #wrapper {
 ------------------------------------------------------------ */
 #footer-widget .twitter-timeline-widget .widgettitle{
     margin-bottom: 25px;
-	
-}
-
-/* Archive & Category Widget
------------------------------------------------------------- */
-#inner .widget_archive select,
-#inner .widget_categories select{
-    margin: 15px 0;
 	
 }
 

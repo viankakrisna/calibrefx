@@ -219,7 +219,7 @@ function calibrefx_fonts_url() {
 		$subsets .= ',vietnamese';
 	}
 
-	if ( $fonts ) {
+	if ( ! empty( $fonts ) ) {
 		$fonts_url = add_query_arg( array(
 			'family' => urlencode( implode( '|', $fonts ) ),
 			'subset' => urlencode( $subsets ),
