@@ -14,10 +14,11 @@
 function calibrefx_get_option( $key, $group = 'calibrefx-settings', $default = '' ) {
 	global $calibrefx;
 
-	if( empty( $calibrefx->model->get( $key, $group ) ) )
+	$return_value = $calibrefx->model->get( $key, $group );
+	if( empty( $return_value ) )
 		return $default;
-	
-	return $calibrefx->model->get( $key, $group );
+
+	return $return_value;
 }
 
 /**
