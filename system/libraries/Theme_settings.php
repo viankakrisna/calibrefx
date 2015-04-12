@@ -639,8 +639,8 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 								'fluid' => __( 'Fluid Layout', 'calibrefx' ),
 							)
 					),
-					'option_default' => 'older-newer',
-					'option_filter' => 'integer',
+					'option_default' => 'static',
+					'option_filter' => 'safe_text',
 				), // Settings config
 				1 //Priority
 			);
@@ -704,6 +704,26 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 					'option_filter' => '',
 					'option_attr' => array('class' => 'calibrefx-layout-selector'),
 					'option_description' => __( 'You can choose your Website layout. You can override per post / page later.', 'calibrefx' ),
+				), // Settings config
+				1 //Priority
+			);
+
+			calibrefx_add_meta_option(
+				'layout-type-settings',  // group id
+				'sidebar_width', // field id and option name
+				__( 'Customize Your Sidebar Width','calibrefx' ), // Label
+				array(
+					'option_type' => 'select',
+					'option_items' => array(
+								'2' => __( '2/12 of total columns', 'calibrefx' ),
+								'3' => __( '3/12 of total columns', 'calibrefx' ),
+								'4' => __( '4/12 of total columns', 'calibrefx' ),
+								'5' => __( '5/12 of total columns', 'calibrefx' ),
+								'6' => __( '6/12 of total columns', 'calibrefx' ),
+							),
+					'option_default' => '4',
+					'option_attr' => array('class' => 'calibrefx-sidebar-width'),
+					'option_filter' => 'safe_text',
 				), // Settings config
 				1 //Priority
 			);

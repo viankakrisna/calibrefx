@@ -1511,7 +1511,7 @@ input[type="submit"].searchsubmit {
 }
 
 .scrolltop{
-    background: #585858 url(assets/img/scroll-top-arrow.png) center center no-repeat;
+    background: #585858 url(../img/scroll-top-arrow.png) center center no-repeat;
     height: 45px;
     padding: 0;
     position: absolute;

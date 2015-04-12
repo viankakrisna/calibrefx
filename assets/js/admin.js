@@ -1,7 +1,6 @@
 var calibrefx_toggles = {
 	"content_archive":["#calibrefx-settings\\[content_archive\\]",".calibrefx_content_limit_setting","full"],
 	"layout_type":["#calibrefx-settings\\[layout_type\\]",".calibrefx_layout_width","static"],
-	"email_protocol":["#calibrefx-settings\\[email_protocol\\]","#email_setting_box_content","smtp"]
 };
 
 window['calibrefx'] = {
@@ -60,23 +59,46 @@ window['calibrefx'] = {
 		jQuery(event.target).parent( 'label' ).addClass(selected_class);
 
 	},
+
+	show_sidebar_width_init: function (){
+		var site_layout = jQuery( '.calibrefx-layout-selector input[type="radio"]:checked' ).attr( 'value' );
+		
+		if( site_layout == 'content-sidebar' || site_layout == 'sidebar-content' ){
+			jQuery('.calibrefx-sidebar-width').slideDown('fast');
+		} else {
+			jQuery('.calibrefx-sidebar-width').slideUp('fast');
+		}
+	},
+
+	show_sidebar_width: function (event){
+		var site_layout = jQuery(event.target).attr( 'value' );
+
+		if( site_layout == 'content-sidebar' || site_layout == 'sidebar-content' ){
+			jQuery('.calibrefx-sidebar-width').slideDown('fast');
+		} else {
+			jQuery('.calibrefx-sidebar-width').slideUp('fast');
+		}
+	},
 	
 	ready: function () {
 		'use strict';
 		
 		// Initialise settings that can toggle the display of other settings
 		calibrefx.toggle_settings_init();
+		calibrefx.show_sidebar_width_init();
 
 		jQuery( '#calibrefx_title, #calibrefx_description' ).on( 'keyup.calibrefx.calibrefx_character_count', calibrefx.update_character_count);
 		
 		// Bind layout highlighter behaviour
 		jQuery( '.calibrefx-layout-selector' ).on( 'change.calibrefx.calibrefx_layout_selector', 'input[type="radio"]', calibrefx.layout_highlighter);
+		jQuery( '.calibrefx-layout-selector' ).on( 'change.calibrefx.calibrefx_layout_selector', 'input[type="radio"]', calibrefx.show_sidebar_width);
 	}
 };
 
 jQuery(calibrefx.ready);
 
-jQuery(document).ready(function( $) {
+jQuery(document).ready(function( $ ) {
+
 	$( 'input.calibrefx-settings-checkbox' ).click(function() {
 		var id = $(this).attr( 'target' );
 		

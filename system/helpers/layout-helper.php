@@ -349,6 +349,10 @@ function calibrefx_content_span() {
 	// get the layout
 	$site_layout = calibrefx_site_layout();
 
+	$sidebar_width = calibrefx_get_option( 'sidebar_width', 'calibrefx-settings', '4' );
+	$content_width = 12 - absint( $sidebar_width );
+
+
 	// don't load sidebar on pages that don't need it
 	if ( calibrefx_is_responsive_enabled() ) {
 
@@ -360,7 +364,7 @@ function calibrefx_content_span() {
 			return apply_filters( 'calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12' );
 		}
 
-		return apply_filters( 'calibrefx_content_span', 'col-lg-8 col-md-8 col-sm-12 col-xs-12' );
+		return apply_filters( 'calibrefx_content_span', "col-lg-$content_width col-md-$content_width col-sm-12 col-xs-12" );
 	} else {
 
 		if ( 'full-width-content' == $site_layout ) {
@@ -371,7 +375,7 @@ function calibrefx_content_span() {
 			return apply_filters( 'calibrefx_content_span', 'col-xs-8' );
 		}
 
-		return apply_filters( 'calibrefx_content_span', 'col-xs-8' );
+		return apply_filters( 'calibrefx_content_span', "col-xs-$content_width" );
 	}
 }
 
@@ -387,10 +391,12 @@ function calibrefx_sidebar_span() {
 		return;
 	}
 
+	$column_width = calibrefx_get_option( 'sidebar_width', 'calibrefx-settings', '4' );
+
 	if ( calibrefx_is_responsive_enabled() ) {
-		return apply_filters( 'calibrefx_sidebar_span', 'col-lg-4 col-md-4 col-sm-12 col-xs-12' );
+		return apply_filters( 'calibrefx_sidebar_span', "col-lg-$column_width col-md-$column_width col-sm-12 col-xs-12" );
 	} else {
-		return apply_filters( 'calibrefx_sidebar_span', 'col-xs-4' );
+		return apply_filters( 'calibrefx_sidebar_span', "col-xs-$column_width" );
 	}
 }
 

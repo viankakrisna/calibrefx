@@ -11,9 +11,12 @@
  * @param object CFX_Model, default null
  * @return mix
  */
-function calibrefx_get_option( $key, $group = 'calibrefx-settings' ) {
+function calibrefx_get_option( $key, $group = 'calibrefx-settings', $default = '' ) {
 	global $calibrefx;
 
+	if( empty( $calibrefx->model->get( $key, $group ) ) )
+		return $default;
+	
 	return $calibrefx->model->get( $key, $group );
 }
 
