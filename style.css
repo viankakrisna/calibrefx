@@ -21,27 +21,27 @@ body{
 
 /* Wrapper Style 
 ------------------------------------------------------------ */
-.layout-wrapper-fixed #wrapper {    
+/* .layout-wrapper-fixed #wrapper {    
     border-color: #DDDDDD #CCCCCC #999999;
     border-style: solid;
     border-width: 1px;
 }
 
 body:not(.custom-background) #wrapper {
-	background-color: #ededf0;
-}
+    background-color: #ededf0;
+} */
 
 /* Header
 ------------------------------------------------------------ */
 
-#title {
+/* #title {
     margin-top: 20px;
-}
+} */
 
 /* Primary Navigation
 ------------------------------------------------------------ */
 
-.layout-wrapper-fixed #nav{
+/* .layout-wrapper-fixed #nav{
     margin-left: 0;
     margin-right: 0;
 }
@@ -51,76 +51,14 @@ body:not(.custom-background) #wrapper {
 }
 
 .navbar-default {
-	background-color: #1a1a1a;
+    background-color: #1a1a1a;
 }
 
-#nav .navbar-inner{
-    background: none;
-    border: none;
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    filter: none;
-    min-height: 34px;
-}
 
-#nav .nav > li > a{
-	color: #FFFFFF;
-	border-top: 3px solid transparent;
-    padding-top: 20px;
-    padding-bottom: 22px;
-    text-shadow: none;
-}
-
-#nav .nav > li > a:focus, 
-#nav .nav > li > a:hover,
-#nav .nav > li:hover > a,
-#nav .nav > li.active > a,
-#nav .nav > li.current-menu-ancestor > a{
-   	background-color: #E9E9EA;
-    color: #005B7D;
-   	border-top-color: #005B7D;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-}
-
-#nav .dropdown-menu { 
-    background-color: #38404D;
-	border: none;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    padding: 0;
-}
-
-#nav .dropdown-menu > li > a {
-	color: #F2F5F7;
-	padding: 8px 20px;
-}
-
-#nav .dropdown-menu > li > a:focus,
-#nav .dropdown-menu > li > a:hover,
-#nav .dropdown-menu > li:hover > a,
-#nav .dropdown-menu > li.active > a,
-#nav .dropdown-menu > li.current-menu-ancestor > a{
-    background: #2C323C;
-    color: #fff;    
-}
-
-#nav .nav > li > .dropdown-menu .dropdown-menu {
-    top: 0;
-}
-
+ */
 /* Secondary Navigation
 ------------------------------------------------------------ */
-#subnav {
+/* #subnav {
     padding: 0px 0px;
     background: #2a2a2a;
 }
@@ -164,21 +102,21 @@ body:not(.custom-background) #wrapper {
 
 #subnav .nav > li > .dropdown-menu .dropdown-menu {
     top: 0;
-}
+} */
 
 
 /* Inner
 ------------------------------------------------------------ */
 
-#inner {
+/* #inner {
     margin-top: 0;
     padding: 20px 0;
-}
+} */
 
 /* Footer Widget
 ------------------------------------------------------------ */
 
-#footer-widget{
+/* #footer-widget{
     padding: 20px 0 15px;
 }
 
@@ -192,16 +130,16 @@ body:not(.custom-background) #wrapper {
     margin: 0 0 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #DCDCDD;
-}
+} */
 
 /* {List Base} Widget
 ------------------------------------------------------------ */
 
-.widget ul li + li{	
+/* .widget ul li + li{    
     border-top: 1px solid #e5e5e5;
 }
 
-.widget ul ul li + li{	
+.widget ul ul li + li{    
     border-top: 0;
 }
 
@@ -210,15 +148,15 @@ body:not(.custom-background) #wrapper {
     margin-bottom: 10px;
 }
 
-#footer-widget .widget ul li + li{	
+#footer-widget .widget ul li + li{    
     border-top: none;
-}
+} */
  
 
 /* Search Widget
 ------------------------------------------------------------ */
 
-#inner .widget.widget_search{
+/* #inner .widget.widget_search{
     background: transparent;
     padding: 0;
 }
@@ -226,11 +164,11 @@ body:not(.custom-background) #wrapper {
 #inner .widget.widget_search .widgettitle{
     margin:0 0 10px 0;
 }
-
+ */
 /* Subscriber Widget
 ------------------------------------------------------------ */
 
-#inner .subscriber-widget{
+/* #inner .subscriber-widget{
     background: #3C71A7;
     padding: 20px 20px;
     border-left: 5px solid #005B7D;
@@ -246,28 +184,28 @@ body:not(.custom-background) #wrapper {
     background-color: #00AEEF;
     border-color: transparent;
     color: #fff;
-} 
+}  */
 
 
 /* Facebook Widget
 ------------------------------------------------------------ */
-#footer-widget .facebook-like-widget .widgettitle{
+/* #footer-widget .facebook-like-widget .widgettitle{
     margin-bottom: 25px;
-	
+    
 }
-
+ */
 /* Twitter Timeline Widget
 ------------------------------------------------------------ */
-#footer-widget .twitter-timeline-widget .widgettitle{
+/* #footer-widget .twitter-timeline-widget .widgettitle{
     margin-bottom: 25px;
-	
-}
+    
+} */
 
 /* Calendar Widget
 ------------------------------------------------------------ */
-
+/* 
 .widget_calendar table{
-	background: #DDDDDD;
+    background: #DDDDDD;
     border-bottom: 1px solid #ededed;
     border-collapse: collapse;
     border-spacing: 0;
@@ -305,28 +243,28 @@ body:not(.custom-background) #wrapper {
 .widget_calendar caption {
     font-size: 14px;
     margin: 0;
-} 
+}  */
 
 
 /* Post Info
 ------------------------------------------------------------ */
 
-.post-comments a{
+/* .post-comments a{
     color: #EF3F35;
-    text-decoration: none;	
+    text-decoration: none;    
 }
-
+ */
 /* Author Box
 ------------------------------------------------------------ */
-.featuredpage img,
+/* .featuredpage img,
 .featuredpost img, .post-image {
     background-color: #F5F5F5;
     border: 1px solid #DDDDDD;
 }
-
+ */
 /* Comment
 ------------------------------------------------------------ */
-#comments {
+/* #comments {
     background: #fff;
     padding: 25px 22px;
     margin-bottom: 35px;
@@ -348,7 +286,7 @@ body:not(.custom-background) #wrapper {
 #comments #respond{
     border: 1px solid #ddd;
     background-color: #f5f5f5;
-}
+} */
 
 /* Pagination
 ------------------------------------------------------------ */
@@ -470,7 +408,7 @@ input[type="color"]:focus,
 
 /* Media Queries
 ------------------------------------------------------------ */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
    .navbar {
         border-radius: 0px;
     } 
@@ -479,7 +417,8 @@ input[type="color"]:focus,
 @media (max-width: 767px) {
     .navbar-default .navbar-brand {
         color: #FFF;
-    }
+    
+}
     
     .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
         color: #FFF;    
@@ -512,3 +451,4 @@ input[type="color"]:focus,
         top: -48px;
     }
 }
+ */
