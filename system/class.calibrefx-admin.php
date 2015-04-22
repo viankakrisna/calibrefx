@@ -127,7 +127,7 @@ abstract class Calibrefx_Admin {
 		$_newvalue = isset($_POST[ $this->settings_field ]) ? $_POST[ $this->settings_field ] : array();
 
 		if($_newvalue){
-			$_newvalue = (is_array($_newvalue)) ? array_map( 'esc_attr', $_POST[ $this->settings_field ] ) : esc_attr( $_POST[ $this->settings_field ] );
+			$_newvalue = (is_array($_newvalue)) ? array_map( 'esc_attr', $_newvalue ) : esc_attr( $_newvalue );
 		}
 
 
