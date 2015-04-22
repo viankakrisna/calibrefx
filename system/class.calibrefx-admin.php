@@ -172,6 +172,10 @@ abstract class Calibrefx_Admin {
 		}
 
 		if ( calibrefx_get_option( 'reset', $this->settings_field ) ) {
+			//prevent redirect loop
+			calibrefx_set_option( 'reset', 0 );
+			wp_cache_flush(); //refresh option caches
+			
 			if ( update_option( $this->settings_field, $this->default_settings ) ){
 				calibrefx_admin_redirect( $this->page_id, array( 'reset' => 'true' ) );
 			} else {
