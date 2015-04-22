@@ -5,24 +5,29 @@
 } )();
 
 jQuery( window ).load( function() {
-   NProgress.done();
+	if ( jQuery.isFunction(jQuery.fn.NProgress) ) {
+   		NProgress.done();
+	}
 });
 
 
 jQuery( document ).ready( function( $ ) {
 	
-	NProgress.configure( { 
-		ease: 'ease', speed: 1000,
-		trickle: false,
-		showSpinner: false,
-		parent: ':not(.mobile) > #wrapper'
-	} );
-
-	NProgress.start();
-
+	if ( typeof NProgress != "undefined" ) {
+		NProgress.configure( { 
+			ease: 'ease', speed: 1000,
+			trickle: false,
+			showSpinner: false,
+			parent: ':not(.mobile) > #wrapper'
+		} );
+		NProgress.start();
+	}
+	
 	// function to invoke for loaded image
 	function imageLoaded() {
-		NProgress.inc();
+		if ( typeof NProgress != "undefined" ) {
+			NProgress.inc();
+		}
 	}
 
 	$( 'img' ).each(function() {
