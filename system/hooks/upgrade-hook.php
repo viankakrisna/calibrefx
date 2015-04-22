@@ -84,7 +84,7 @@ function calibrefx_upgrade_redirect() {
 	}
 
 	//this will prevent redirect loop
-	if( !isset( esc_attr( $_GET[ 'upgraded' ] ) ) ){
+	if( empty( esc_attr( $_GET[ 'upgraded' ] ) ) ){
 		calibrefx_admin_redirect( 'themes.php', 
 			array( 	'page' 		=> 'calibrefx', 
 					'section' 	=> 'system', 
@@ -102,7 +102,7 @@ add_action( 'calibrefx_upgraded', 'calibrefx_upgrade_redirect', 99 );
  */
 function calibrefx_upgraded_notice() {
 
-	if ( ! calibrefx_is_menu_page( 'calibrefx-other' ) ) {
+	if ( ! calibrefx_is_menu_page( 'calibrefx' ) ) {
 		return;
 	}
 

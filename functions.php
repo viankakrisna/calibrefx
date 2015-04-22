@@ -25,7 +25,7 @@ define( 'FRAMEWORK_VERSION', $cfx_theme_data->get( 'Version' ) );
 define( 'FRAMEWORK__MINIMUM_WP_VERSION', '4.1' );
 define( 'FRAMEWORK_DB_VERSION', '1001' );
 define( 'FRAMEWORK_URL', $cfx_theme_data->get( 'ThemeURI' ) );
-define( 'FRAMEWORK_RELEASE_DATE', date_i18n( 'F j, Y', '1429665059' ) );
+define( 'FRAMEWORK_RELEASE_DATE', date_i18n( 'F j, Y', '1429493067' ) );
 
 /** Run the calibrefx_pre Hook */
 do_action( 'calibrefx_pre' );
@@ -229,3 +229,15 @@ function calibrefx_fonts_url() {
 	return  apply_filters( 'calibrefx_fonts_url', $fonts_url );
 }
 endif;
+
+add_action( 'admin_init', 'test_admin' );
+function test_admin(){
+	if( empty( esc_attr( $_GET[ 'upgraded' ] ) ) ){
+		calibrefx_admin_redirect( 'themes.php', 
+			array( 	'page' 		=> 'calibrefx', 
+					'section' 	=> 'system', 
+					'upgraded' 	=> 'true' 
+				) );
+		exit;
+	}
+}
