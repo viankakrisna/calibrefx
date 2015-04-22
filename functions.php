@@ -229,15 +229,3 @@ function calibrefx_fonts_url() {
 	return  apply_filters( 'calibrefx_fonts_url', $fonts_url );
 }
 endif;
-
-add_action( 'admin_init', 'test_admin' );
-function test_admin(){
-	if( empty( esc_attr( $_GET[ 'upgraded' ] ) ) ){
-		calibrefx_admin_redirect( 'themes.php', 
-			array( 	'page' 		=> 'calibrefx', 
-					'section' 	=> 'system', 
-					'upgraded' 	=> 'true' 
-				) );
-		exit;
-	}
-}
