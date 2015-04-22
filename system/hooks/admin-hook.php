@@ -23,10 +23,6 @@ function calibrefx_register_admin_menu() {
 	$calibrefx->load->library( 'theme_settings' );
 
 	$calibrefx->theme_settings->pagehook = add_theme_page( __( 'Theme Settings', 'calibrefx' ), 'Theme Settings', 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ) );
-	// $calibrefx->theme_settings->pagehook = add_menu_page( __( 'Theme Settings', 'calibrefx' ), 'Theme Settings', 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ), apply_filters( 'admin-menu-icon', $admin_menu_icon ), '58.996' );
-	// add_submenu_page( 'calibrefx', __( 'Settings', 'calibrefx' ), __( 'Settings', 'calibrefx' ), 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ) );
-
-	// do_action( 'calibrefx_add_submenu_page' );
 }
 add_action( 'admin_menu', 'calibrefx_register_admin_menu' );
 

@@ -75,7 +75,7 @@ add_action( 'customize_save_after', 'calibrefx_save_back_customize_setting' );
 /**
  * Used by hook: 'customize_preview_init'
  *
- * @see add_action( 'customize_preview_init',$func)
+ * @see add_action( 'customize_preview_init', $func )
  */
 function calibrefx_customizer_live_preview() {
 	wp_enqueue_script(

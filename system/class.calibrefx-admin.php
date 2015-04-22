@@ -260,7 +260,7 @@ abstract class Calibrefx_Admin {
                                 <?php
 								foreach ( $calibrefx_sections as $section ) {
 									$current_class = ( $calibrefx_current_section === $section['slug'] ) ? ' class="current"' : '';
-									$section_link = admin_url( 'admin.php?page=' . $this->page_id . '&section=' . $section['slug'] );
+									$section_link = admin_url( 'themes.php?page=' . $this->page_id . '&section=' . $section['slug'] );
 
 									$icon = $section['icon'];
 

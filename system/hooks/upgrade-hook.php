@@ -70,7 +70,7 @@ function calibrefx_upgrade() {
 	if ( $calibrefx_db_version >= FRAMEWORK_DB_VERSION ) {
 		return;
 	}
-	do_action( 'calibrefx_upgrade' );
+	do_action( 'calibrefx_upgraded' );
 }
 add_action( 'admin_init', 'calibrefx_upgrade', 25 );
 
@@ -83,10 +83,17 @@ function calibrefx_upgrade_redirect() {
 		return;
 	}
 
-	calibrefx_admin_redirect( 'calibrefx-other', array( 'upgraded' => 'true' ) );
-	exit;
+	//this will prevent redirect loop
+	if( !isset( esc_attr( $_GET[ 'upgraded' ] ) ) ){
+		calibrefx_admin_redirect( 'themes.php', 
+			array( 	'page' 		=> 'calibrefx', 
+					'section' 	=> 'system', 
+					'upgraded' 	=> 'true' 
+				) );
+		exit;
+	}
 }
-add_action( 'calibrefx_upgrade', 'calibrefx_upgrade_redirect', 99 );
+add_action( 'calibrefx_upgraded', 'calibrefx_upgrade_redirect', 99 );
 
 
 /**
