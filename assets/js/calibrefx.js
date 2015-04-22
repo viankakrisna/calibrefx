@@ -5,41 +5,38 @@
 } )();
 
 jQuery( window ).load( function() {
-   NProgress.done();
+	if ( jQuery.isFunction(jQuery.fn.NProgress) ) {
+   		NProgress.done();
+	}
 });
 
-jQuery( document ).ready( function() {
-	NProgress.configure( { 
-		ease: 'ease', speed: 1000,
-		trickle: false,
-		showSpinner: false,
-		parent: '#wrapper'
-	} );
-
-	NProgress.start();
-});
 
 jQuery( document ).ready( function( $ ) {
+	
+	if ( $.isFunction($.fn.NProgress) ) {
+		NProgress.configure( { 
+			ease: 'ease', speed: 1000,
+			trickle: false,
+			showSpinner: false,
+			parent: ':not(.mobile) > #wrapper'
+		} );
 
-	function imageLoaded() {
-       // function to invoke for loaded image
-       NProgress.inc();
+		NProgress.start();
+	}
+		// function to invoke for loaded image
+		function imageLoaded() {
+			if ( $.isFunction($.fn.NProgress) ) {
+				NProgress.inc();
+			}
+		}
+	$( 'img' ).each(function() {
+		if( this.complete ) {
+			imageLoaded.call( this );
+		} else {
+			$(this).one( 'load', imageLoaded);
+		}
 
-    }
-
-    $( 'img' ).each(function() {
-
-        if( this.complete ) {
-            imageLoaded.call( this );
-        } 
-
-        else {
-            $(this).one( 'load', imageLoaded);
-        }
-
-    });
-
-
+	});
 
 	$("#commentform, #calibrefx_contact_form").validate();
 	
@@ -54,12 +51,12 @@ jQuery( document ).ready( function( $ ) {
 	});
 	
 	$( 'body' ).tooltip({
-      	selector: "a[data-toggle=tooltip], label.form-tooltip, #wp-calendar a"
-    });
+		selector: "a[data-toggle=tooltip], label.form-tooltip, #wp-calendar a"
+	});
 
-    $( '#content .entry-content table:not(.no-table-style), #comments .comment-content table:not(.no-table-style)' ).addClass( 'table table-bordered' ).wrap( '<div class="table-responsive"></div>' );
+	$( '#content .entry-content table:not(.no-table-style), #comments .comment-content table:not(.no-table-style)' ).addClass( 'table table-bordered' ).wrap( '<div class="table-responsive"></div>' );
 
-    $( '#commentform #submit' ).addClass( 'btn btn-primary' );
+	$( '#commentform #submit' ).addClass( 'btn btn-primary' );
 
 
 	$( '.mobile-main-menu' ).bind( 'click touchstart', function() {
@@ -87,7 +84,7 @@ jQuery( document ).ready( function( $ ) {
 				$allLi.removeClass( 'mobile-open' );
 			}
 			else{
-			 	$allUl.slideUp();				
+				$allUl.slideUp();				
 				$allLi.removeClass( 'mobile-open' );
 
 				$ul.slideDown();
@@ -105,15 +102,15 @@ jQuery( document ).ready( function( $ ) {
 	});
 
 	function check_focus(elm,val){
-	    if(elm.value.toLowerCase() == val.toLowerCase()){
-	        elm.value = '';    
-	    }
+		if(elm.value.toLowerCase() == val.toLowerCase()){
+			elm.value = '';    
+		}
 	}
 
 	function check_blur(elm,val){
-	    if(elm.value.toLowerCase() == ''){
-	        elm.value = val;    
-	    }
+		if(elm.value.toLowerCase() == ''){
+			elm.value = val;    
+		}
 	}
 
 });
