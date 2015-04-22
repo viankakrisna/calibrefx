@@ -84,7 +84,7 @@ function calibrefx_upgrade_redirect() {
 	}
 
 	//this will prevent redirect loop
-	if( empty( esc_attr( $_GET[ 'upgraded' ] ) ) ){
+	if( isset( $_GET[ 'upgraded' ] ) ){
 		calibrefx_admin_redirect( 'themes.php', 
 			array( 	'page' 		=> 'calibrefx', 
 					'section' 	=> 'system', 

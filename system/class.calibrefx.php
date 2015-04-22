@@ -51,8 +51,6 @@ class Calibrefx {
 	 * Add our calibrefx theme support
 	 */
 	public function theme_support() {
-
-		add_theme_support( 'calibrefx-admin-menu' );
 		add_theme_support( 'calibrefx-custom-background' );
 		add_theme_support( 'calibrefx-default-styles' );
 		add_theme_support( 'calibrefx-inpost-layouts' );

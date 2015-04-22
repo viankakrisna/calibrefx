@@ -7,19 +7,6 @@
 function calibrefx_register_admin_menu() {
 	global $menu, $calibrefx;
 
-	// Disable if programatically disabled
-	if ( ! current_theme_supports( 'calibrefx-admin-menu' ) ) {
-		return;
-	}
-
-	// Create the new separator
-	$menu['58.995'] = array( '', 'edit_theme_options', '', '', 'wp-menu-separator' );
-
-	$admin_menu_icon = CALIBREFX_IMAGES_URL . '/calibrefx.gif';
-	if ( file_exists( CHILD_IMAGES_URI . '/calibrefx.gif' ) ) {
-		$admin_menu_icon = CHILD_IMAGES_URL . '/calibrefx.gif';
-	}
-
 	$calibrefx->load->library( 'theme_settings' );
 
 	$calibrefx->theme_settings->pagehook = add_theme_page( __( 'Theme Settings', 'calibrefx' ), 'Theme Settings', 'edit_theme_options', 'calibrefx', array( $calibrefx->theme_settings, 'dashboard' ) );
