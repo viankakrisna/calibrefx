@@ -56,10 +56,14 @@ add_action( 'init', 'calibrefx_register_scripts' );
 function calibrefx_load_scripts() {
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'modernizr' );
-	wp_enqueue_script( 'nProgress' );
 	wp_enqueue_script( 'calibrefx-bootstrap' );
 	wp_enqueue_script( 'calibrefx-script' );
 	wp_enqueue_script( 'calibrefx-shortcodes' );
+
+	//do not load on mobile
+	if( !wp_is_mobile() ){
+		wp_enqueue_script( 'nProgress' );
+	}
 
 	if ( is_singular() AND get_option( 'thread_comments' ) AND comments_open() ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -83,8 +87,12 @@ function calibrefx_load_styles() {
 	wp_enqueue_style( 'calibrefx-icons' );
 	wp_enqueue_style( 'genericons' );
 	wp_enqueue_style( 'jquery-superfish' );
-	wp_enqueue_style( 'nProgress' );
 	wp_enqueue_style( 'calibrefx-shortcodes' );
+
+	//do not load on mobile
+	if( !wp_is_mobile() ){
+		wp_enqueue_style( 'nProgress' );
+	}
 
 	$calibrefx_default_style = get_theme_support( 'calibrefx-default-styles' );
 

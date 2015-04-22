@@ -122,15 +122,12 @@ abstract class Calibrefx_Admin {
 			return $_newvalue;
 		}
 
-		if( !isset( $_POST[ $this->settings_field ] ) ){
-			return $_newvalue;
-		}
-		
 		//Get the value from post settings
-		if ( is_array( $_POST[ $this->settings_field ] ) ){
-			$_newvalue = array_map( 'esc_attr', $_POST[ $this->settings_field ] );
-		} else {
-			$_newvalue = esc_attr( $_POST[ $this->settings_field ] );
+
+		$_newvalue = isset( $_POST[ $this->settings_field ] ) ? $_POST[ $this->settings_field ] : array();
+
+		if($_newvalue){
+			$_newvalue = ( is_array( $_newvalue ) ) ? array_map( 'esc_attr', $_newvalue ) : esc_attr( $_newvalue );
 		}
 
 		//merge value from old settings
