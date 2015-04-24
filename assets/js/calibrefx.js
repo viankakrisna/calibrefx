@@ -41,10 +41,12 @@ jQuery( document ).ready( function( $ ) {
 
 	$("#commentform, #calibrefx_contact_form").validate();
 	
-	$( '#header .menu, .superfish' ).superfish({
-		cssArrows: false,
-		delay: 200
-	});
+	if ( $.isFunction($.fn.superfish) ) {
+		$( '#header .menu, .superfish' ).superfish({
+			cssArrows: false,
+			delay: 200
+		});
+	}
 	
 	$( '.scrolltop a' ).click(function(e) {
 		e.preventDefault()
