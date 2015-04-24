@@ -215,15 +215,16 @@ function tos_bind_events() {
 				'info': $( '#info' ).val,
 			})
 			.success( function( result ) {
-				if ( '1' === result ) {
+				if ( '1' == result ) {
 					$(button).unbind( 'click' ).prop( 'disabled', true);
+					$( button ).after( '<p class="calibrefx-action-result bg-success">Page successfully created</p>' );
 				} else {
 					alert( result );
-					$( button ).after( '<span class="a8c-developer-action-result error">' + result + '</span>' );
+					$( button ).after( '<p class="calibrefx-action-result bg-warning">' + result + '</p>' );
 				}
 			})
 			.error( function( response ) {
-				$( button ).after( '<span class="a8c-developer-action-result error">' + response.statusText + ': ' + response.responseText + '</span>' );
+				$( button ).after( '<p class="calibrefx-action-result bg-warning">' + response.statusText + ': ' + response.responseText + '</p>' );
 			});
 
 			return false;
@@ -392,7 +393,6 @@ jQuery(document).ready(function($){
 	}
 
 	function initUpload(){
-		console.log("redux-opts-upload");
 		jQuery(".redux-opts-upload").on('click',function( event ) {
 			
 			var activeFileUploadContext = jQuery(this).parent();
