@@ -5,7 +5,7 @@
 } )();
 
 jQuery( window ).load( function() {
-	if ( jQuery.isFunction(jQuery.fn.NProgress) ) {
+	if ( typeof NProgress != "undefined" ) {
    		NProgress.done();
 	}
 });
