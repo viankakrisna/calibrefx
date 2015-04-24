@@ -121,7 +121,7 @@ function calibrefx_update_action_links( $actions, $theme ) {
 		return $actions;
 	}
 
-	return sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=calibrefx-other' ), __( 'Click here to complete the upgrade', 'calibrefx' ) );
+	return sprintf( '<a href="%s">%s</a>', admin_url( 'themes.php?page=calibrefx&section=system&upgraded=true' ), __( 'Click here to complete the upgrade', 'calibrefx' ) );
 }
 add_filter( 'update_theme_complete_actions', 'calibrefx_update_action_links', 10, 2 );
 
