@@ -66,13 +66,11 @@ class Calibrefx {
 	        'wp-head-callback'		=> 'calibrefx_custom_header_style',
 	    ) ) );
 
-		if ( ! current_theme_supports( 'calibrefx-menus' ) ) {
-			add_theme_support( 'calibrefx-menus', array(
-				'primary' => __( 'Primary Navigation Menu', 'calibrefx' ),
-				'secondary' => __( 'Secondary Navigation Menu', 'calibrefx' )
-				)
-			);
-		}
+		add_theme_support( 'calibrefx-menus', array(
+			'primary' => apply_filters( 'primary_menu_text', __( 'Primary Navigation Menu', 'calibrefx' ) ),
+			'secondary' => apply_filters( 'secondary_menu_text', __( 'Secondary Navigation Menu', 'calibrefx' ) )
+			)
+		);
 
 		$menus = get_theme_support( 'calibrefx-menus' );
 		foreach ( $menus as $menu ) {

@@ -205,7 +205,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 			calibrefx_add_meta_option(
 				'navigation-settings',  // group id
 				'nav', // field id and option name
-				__( 'Primary Navigation', 'calibrefx' ), // Label
+				apply_filters( 'primary_menu_text', __( 'Primary Navigation Menu', 'calibrefx' ) ),
 				array(
 					'option_type' => 'checkbox',
 					'option_items' => '1',
@@ -219,7 +219,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 			calibrefx_add_meta_option(
 				'navigation-settings',  // group id
 				'subnav', // field id and option name
-				__( 'Secondary Navigation', 'calibrefx' ), // Label
+				apply_filters( 'secondary_menu_text', __( 'Secondary Navigation Menu', 'calibrefx' ) ),
 				array(
 					'option_type' => 'checkbox',
 					'option_items' => '1',
