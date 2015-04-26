@@ -1,6 +1,5 @@
 <?php
 
-add_action( 'customize_register', 'calibrefx_customize_register' );
 function calibrefx_customize_register( $wp_customize ) {
 	global $calibrefx;
 	
@@ -57,6 +56,7 @@ function calibrefx_customize_register( $wp_customize ) {
 		'priority'      => 5,
 	) );*/
 }
+add_action( 'customize_register', 'calibrefx_customize_register' );
 
 /**
  * Save back custom theme mod to calibrefx settings
@@ -66,6 +66,10 @@ function calibrefx_customize_register( $wp_customize ) {
  */
 function calibrefx_save_back_customize_setting( $wp_customize ) {
 	$custom_theme_mod = get_theme_mod( 'calibrefx-settings' );
+	//Somehow and sometimes this return False
+	if( !$custom_theme_mod ){
+		$custom_theme_mod = array();
+	}
 	$calibrefx_settings = get_option( 'calibrefx-settings' );
 	$merge_value = array_merge( $calibrefx_settings, $custom_theme_mod );
 	update_option( 'calibrefx-settings', $merge_value );

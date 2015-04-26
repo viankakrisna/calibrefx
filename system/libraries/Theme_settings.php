@@ -20,6 +20,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 			'calibrefx_layout_width' => 1160,
 			'calibrefx_layout_wrapper_fixed' => 0,
 			'site_layout' => calibrefx_get_default_layout(),
+			'sidebar_width' => 4,
 			'feature_image_layout' => 'full',
 			'nav' => 1,
 			'subnav' => 0,
@@ -109,6 +110,7 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 					'calibrefx_layout_width',
 					'content_archive_limit',
 					'calibrefx_db_version',
+					'sidebar_width'
 				)
 		);
 	}
