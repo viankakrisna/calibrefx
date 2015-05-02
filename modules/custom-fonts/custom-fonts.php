@@ -401,7 +401,7 @@ function webfont_typography(){
 
 function webfont_theme_settings_default( $default_arr = array() ){
 	$webfont_default = array(
-		'custom_header_font_family' 	=> 'Titillium Web',
+		'custom_header_font_family' 	=> 'Signika',
 		'custom_font_size' 				=> '16',
 		'custom_font_family' 			=> 'Raleway',
 		'custom_font_color' 			=> '#404040',

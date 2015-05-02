@@ -124,20 +124,17 @@ function calibrefx_footer_scripts() {
  */
 function calibrefx_add_socials_script() {
 
-	if ( is_active_widget( false, false, 'facebook-comment' ) OR
-		is_active_widget( false, false, 'facebook-like' ) ) {
-
+	if ( is_active_widget( false, false, 'facebook-comment-widget' ) OR
+		is_active_widget( false, false, 'facebook-likebox-widget' ) ) {
 		echo
 			'<div id="fb-root"></div>
-			<script>
-			(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id) ) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184690738325056";
-			fjs.parentNode.insertBefore(js, fjs);
-			}(document, \'script\', \'facebook-jssdk\' ) );
-			</script>'."\n";
+			<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=111504338957832";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, \'script\', \'facebook-jssdk\'));</script>'."\n";
 	}
 
 	if ( is_active_widget( false, false, 'twitter-timeline-widget' ) ) {

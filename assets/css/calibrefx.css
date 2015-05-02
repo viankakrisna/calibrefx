@@ -773,6 +773,11 @@ del {
     padding: 10px 25px;
 }
 
+.sidebar .widget .facebook-like{
+	padding: 0;
+	margin: 0;
+}
+
 /* Sidebar Alt
 ------------------------------------------------------------ */
 #sidebar-alt {
