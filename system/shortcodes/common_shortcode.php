@@ -185,20 +185,6 @@ add_shortcode( 'h6', 'calibrefx_h6' );
  * ==============================================================
  */
 
-/* Youtube */
-function calibrefx_youtube( $atts, $content = null ) {
-	extract( shortcode_atts( array(
-				'before' => '',
-				'after' => '',
-				'width' => '',
-				'height' => '',
-				'title' => '',
-					), $atts ) );
-
-	return '<div class="flexible-container youtube"><iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . $content . '" frameborder="0" allowfullscreen></iframe></div>';
-}
-add_shortcode( 'youtube', 'calibrefx_youtube' );
-
 /* Youtube Thumbnail */
 function calibrefx_youtube_thumbnail( $atts, $content = null ) {
 
@@ -261,20 +247,6 @@ function calibrefx_youtube_thumbnail( $atts, $content = null ) {
 		return '<img class="youtube-thumbnail ' . $class . '" id="' . $id . '" style="' . $style . '" src="' . $imageurl . '" alt="' . $title . '" />';
 }
 add_shortcode( 'youtube_thumbnail', 'calibrefx_youtube_thumbnail' );
-
-/* Vimeo */
-function calibrefx_vimeo( $atts, $content = null ) {
-	extract( shortcode_atts( array(
-				'before' => '',
-				'after' => '',
-				'width' => '',
-				'height' => '',
-				'title' => '',
-					), $atts ) );
-
-	return '<div class="flexible-container vimeo"><iframe title="' . $title . '" width="' . $width . '" height="' . $height . '" src="http://player.vimeo.com/video/' . $content . '" frameborder="0"></iframe></div>';
-}
-add_shortcode( 'vimeo', 'calibrefx_vimeo' );
 
 /**
  * ==============================================================
