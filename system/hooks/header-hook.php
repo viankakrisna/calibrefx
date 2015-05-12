@@ -23,6 +23,10 @@ $calibrefx->hooks->calibrefx_meta = array(
 	array( 'function' => 'calibrefx_do_fb_og', 'priority' => 10 ),
 );
 
+$calibrefx->hooks->calibrefx_do_header = array(
+	array( 'function' => 'calibrefx_do_header', 'priority' => 10 )
+);
+
 $calibrefx->hooks->calibrefx_site_title = array(
 	array( 'function' => 'calibrefx_do_site_title', 'priority' => 10 ),
 );
@@ -283,7 +287,6 @@ function calibrefx_header_area() {
 /**
  * Do Header Callback
  */
-add_action( 'calibrefx_do_header', 'calibrefx_do_header' );
 function calibrefx_do_header() {
 	$header_title_class = apply_filters( 'header_title_class', 'pull-left', '' );
 	echo '<div id="header-title" class="' . $header_title_class . '">';
