@@ -62,6 +62,8 @@ class Calibrefx {
 	        'default-text-color'	=> '000000',
 	        'width'					=> 260,
 	        'height'				=> 100,
+	        'flex-width'			=> true,
+	        'flex-height'			=> true,
 	        'header-text'			=> get_bloginfo( 'site_title' ),
 	        'wp-head-callback'		=> 'calibrefx_custom_header_style',
 	    ) ) );

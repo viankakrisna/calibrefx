@@ -375,7 +375,7 @@ function calibrefx_custom_header_style() {
 	background-position: left center; 
 	width: %2$spx; 
 	height: %3$dpx
-}', esc_url( $header_image ), HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
+}', esc_url( $header_image ), get_custom_header()->width, get_custom_header()->height );
 
 		$text = sprintf( '
 #title, #title a, #title a:hover, #header-title #description{ 
@@ -386,7 +386,7 @@ function calibrefx_custom_header_style() {
 	text-indent: -9999px; 
 	width: %dpx; 
 	height: %dpx 
-}' . "\n", HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT );
+}' . "\n", get_custom_header()->width, get_custom_header()->height );
 	}
 
 	printf( '<style type="text/css">%1$s %2$s</style>' . "\n", $header, $text );
