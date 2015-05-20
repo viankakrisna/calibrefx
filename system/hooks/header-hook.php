@@ -194,13 +194,15 @@ body{
 
 	if ( current_theme_supports( 'calibrefx-responsive-style' ) ) {
 		$wrap = sprintf('
-.container{
+.layout-wrapper-fluid .container, 
+.layout-wrapper-fixed #wrapper {
 max-width: %dpx;
 }', calibrefx_get_option( 'calibrefx_layout_width' ) );
 
 	} else {
 		$wrap = sprintf('
-.container{
+.layout-wrapper-fluid .container, 
+.layout-wrapper-fixed #wrapper {
 	max-width: none;
 	width: %dpx;
 }', calibrefx_get_option( 'calibrefx_layout_width' ) );
