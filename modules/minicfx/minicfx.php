@@ -36,7 +36,12 @@ add_action( 'wp_enqueue_scripts', 'calibrefx_mobile_scripts' );
 function calibrefx_init_mobile_site() {
 	global $calibrefx; 
 
-	if( is_admin() OR !wp_is_mobile() ) {
+	//Register mobile menu
+	register_nav_menus( 
+		array ( 'mobile' => apply_filters( 'mobile_menu_text', __( 'Mobile Navigation Menu', 'calibrefx' ) ) )
+	);
+
+	if( is_admin() OR ! wp_is_mobile() ) {
 		return;
 	}
 
@@ -106,10 +111,6 @@ function calibrefx_mobile_close_nav() {
  */
 function calibrefx_do_mobile_nav() {
 	global $calibrefx;
-	/** Do nothing if menu not supported */
-	if ( ! calibrefx_nav_menu_supported( 'primary' ) ) {
-		return;
-	}
 
 	$calibrefx->load->library( 'walker_nav_menu' );
 
@@ -118,7 +119,7 @@ function calibrefx_do_mobile_nav() {
 
 	//@TODO: This need to be a settings from the menu. Right now it is hardcoded
 	$args = array(
-		'menu' => 'mobile-menu',
+		'theme_location' => 'mobile',
 		'container' => '',
 		'menu_class' => calibrefx_get_option( 'nav_fixed_top' ) ? 'navbar navbar-default navbar-fixed-top menu-primary menu ' : 'nav navbar-nav menu-primary menu ',
 		'echo' => 0,
