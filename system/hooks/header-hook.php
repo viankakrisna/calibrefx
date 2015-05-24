@@ -23,6 +23,10 @@ $calibrefx->hooks->calibrefx_meta = array(
 	array( 'function' => 'calibrefx_do_fb_og', 'priority' => 10 ),
 );
 
+$calibrefx->hooks->calibrefx_do_header = array(
+	array( 'function' => 'calibrefx_do_header', 'priority' => 10 )
+);
+
 $calibrefx->hooks->calibrefx_site_title = array(
 	array( 'function' => 'calibrefx_do_site_title', 'priority' => 10 ),
 );
@@ -275,7 +279,6 @@ function calibrefx_do_site_description() {
 function calibrefx_header_area() {
 	echo '<div id="header">';
 	calibrefx_put_wrapper( 'header', 'open' );
-	calibrefx_do_header();
 	do_action( 'calibrefx_do_header' );
 	calibrefx_put_wrapper( 'header', 'close' );
 	echo '</div><!--end #header-->';
