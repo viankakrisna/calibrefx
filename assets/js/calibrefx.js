@@ -4,40 +4,8 @@
 	special.scrollstop = {latency: 300,setup: function() {var timer, handler = function(evt) {var _self = this, _args = arguments;if (timer) {clearTimeout(timer);}timer = setTimeout( function() {timer = null;evt.type = 'scrollstop';jQuery.event.handle.apply(_self, _args);}, special.scrollstop.latency);};jQuery(this).bind( 'scroll', handler).data(uid2, handler);},teardown: function() { jQuery(this).unbind( 'scroll', jQuery(this).data(uid2) );}};
 } )();
 
-jQuery( window ).load( function() {
-	if ( typeof NProgress != "undefined" ) {
-   		NProgress.done();
-	}
-});
-
 
 jQuery( document ).ready( function( $ ) {
-	
-	if ( typeof NProgress != "undefined" ) {
-		NProgress.configure( { 
-			ease: 'ease', speed: 1000,
-			trickle: false,
-			showSpinner: false,
-			parent: ':not(.mobile) > #wrapper'
-		} );
-		NProgress.start();
-	}
-	
-	// function to invoke for loaded image
-	function imageLoaded() {
-		if ( typeof NProgress != "undefined" ) {
-			NProgress.inc();
-		}
-	}
-
-	$( 'img' ).each(function() {
-		if( this.complete ) {
-			imageLoaded.call( this );
-		} else {
-			$(this).one( 'load', imageLoaded);
-		}
-
-	});
 
 	$("#commentform, #calibrefx_contact_form").validate();
 	

@@ -16,7 +16,6 @@ $calibrefx->hooks->calibrefx_meta = array(
 function calibrefx_register_scripts() {
 	wp_register_style( 'jquery-superfish', CALIBREFX_CSS_URL . '/superfish.css' );
 	wp_register_style( 'jquery-lightbox', CALIBREFX_CSS_URL . '/lightbox.css' );
-	wp_register_style( 'nProgress', CALIBREFX_CSS_URL . '/nprogress.css' );
 
 	wp_register_style( 'calibrefx-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css' );
 	wp_register_style( 'calibrefx-bootstrap-theme', CALIBREFX_CSS_URL . '/bootstrap-theme.min.css' );
@@ -28,7 +27,6 @@ function calibrefx_register_scripts() {
 	wp_register_style( 'genericons', CALIBREFX_CSS_URL . '/genericons.css', array(), '3.3' );
 
 	wp_register_script( 'modernizr', CALIBREFX_JS_URL . '/modernizr.min.js', false );
-	wp_register_script( 'nProgress', CALIBREFX_JS_URL . '/nprogress.js', 'jquery', '', true );
 	wp_register_script( 'jquery-validate', CALIBREFX_JS_URL . '/jquery.validate.js', 'jquery' );
 	wp_register_script( 'jquery-sticky', CALIBREFX_JS_URL . '/jquery.sticky.js', 'jquery', '', true );
 	wp_register_script( 'jquery.cycle2', CALIBREFX_JS_URL . '/jquery.cycle2.js', 'jquery', '', true );
@@ -59,11 +57,6 @@ function calibrefx_load_scripts() {
 	wp_enqueue_script( 'calibrefx-script' );
 	wp_enqueue_script( 'calibrefx-shortcodes' );
 
-	//do not load on mobile
-	if( !wp_is_mobile() ){
-		wp_enqueue_script( 'nProgress' );
-	}
-
 	if ( is_singular() AND get_option( 'thread_comments' ) AND comments_open() ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -86,17 +79,7 @@ function calibrefx_load_styles() {
 	wp_enqueue_style( 'jquery-superfish' );
 	wp_enqueue_style( 'calibrefx-shortcodes' );
 
-	//do not load on mobile
-	if( ! wp_is_mobile() ){
-		wp_enqueue_style( 'nProgress' );
-	}
-
 	$calibrefx_default_style = get_theme_support( 'calibrefx-default-styles' );
-
-	/** If not active, do nothing */
-	if ( ! $calibrefx_default_style ) {
-		return; 
-	}
 
 	if( ! is_child_theme() ){
 		wp_enqueue_style( 'calibrefx-fonts', calibrefx_fonts_url(), array(), null );
