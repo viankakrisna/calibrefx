@@ -226,6 +226,6 @@ function calibrefx_fonts_url() {
 		), '//fonts.googleapis.com/css' );
 	}
 
-	return  apply_filters( 'calibrefx_fonts_url', $fonts_url );
+	return  apply_filters( 'calibrefx_fonts_url', $fonts_url, $fonts );
 }
 endif;
