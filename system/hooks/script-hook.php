@@ -17,8 +17,7 @@ function calibrefx_register_scripts() {
 	wp_register_style( 'jquery-superfish', CALIBREFX_CSS_URL . '/superfish.css' );
 	wp_register_style( 'jquery-lightbox', CALIBREFX_CSS_URL . '/lightbox.css' );
 
-	wp_register_style( 'calibrefx-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css' );
-	wp_register_style( 'calibrefx-bootstrap-theme', CALIBREFX_CSS_URL . '/bootstrap-theme.min.css' );
+	wp_register_style( 'twitter-bootstrap', CALIBREFX_CSS_URL . '/bootstrap.min.css' );
 	wp_register_style( 'calibrefx-style', CALIBREFX_CSS_URL . '/calibrefx.css' );
 	wp_register_style( 'calibrefx-shortcodes', CALIBREFX_CSS_URL . '/shortcodes.css' );
 	wp_register_style( 'calibrefx-editor-style', CALIBREFX_CSS_URL . '/editor-style.css' );
@@ -38,7 +37,7 @@ function calibrefx_register_scripts() {
 	wp_register_script( 'infobox', CALIBREFX_JS_URL . '/infobox.js', 'jquery', '', true );
 	wp_register_script( 'jquery-googlemap', CALIBREFX_JS_URL . '/jquery.googlemap.js', 'jquery', '', true );
 
-	wp_register_script( 'calibrefx-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', 'jquery' );
+	wp_register_script( 'twitter-bootstrap', CALIBREFX_JS_URL . '/bootstrap.min.js', 'jquery' );
 	wp_register_script( 'calibrefx-shortcodes', CALIBREFX_JS_URL . '/shortcodes.js', 'jquery', '', true );
 	wp_register_script( 'calibrefx-script', CALIBREFX_JS_URL . '/calibrefx.js', array( 'jquery', 'jquery-validate' ) );
 
@@ -53,7 +52,7 @@ add_action( 'init', 'calibrefx_register_scripts' );
 function calibrefx_load_scripts() {
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'modernizr' );
-	wp_enqueue_script( 'calibrefx-bootstrap' );
+	wp_enqueue_script( 'twitter-bootstrap' );
 	wp_enqueue_script( 'calibrefx-script' );
 	wp_enqueue_script( 'calibrefx-shortcodes' );
 
@@ -85,7 +84,7 @@ function calibrefx_load_styles() {
 		wp_enqueue_style( 'calibrefx-fonts', calibrefx_fonts_url(), array(), null );
 	}
 
-	wp_enqueue_style( 'calibrefx-bootstrap' );
+	wp_enqueue_style( 'twitter-bootstrap' );
 	wp_enqueue_style( 'calibrefx-style' );
 	wp_enqueue_style( 'calibrefx-child-style', get_stylesheet_uri() );
 }
