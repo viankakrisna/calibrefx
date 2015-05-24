@@ -11,128 +11,69 @@
     Version: 2.1.5
 */
 
-
-/* General
+/* Typography
 ------------------------------------------------------------ */
-body{
-	background-color: #FFF;
-	color: #404040;
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
 }
 
-/* Pagination
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Titillium Web", sans-serif;
+    font-weight: 700;
+}
+
+.site-title{
+    font-family: "Titillium Web", sans-serif;
+}
+
+.site-description{
+    font-family: "Titillium Web", sans-serif;
+}
+
+.entry-title {
+    font-family: "Titillium Web", sans-serif;
+}
+
+.sidebar .widgettitle{
+    font-family: "Titillium Web", sans-serif;
+}
+
+.widget .widgettitle {
+    font-family: "Titillium Web", sans-serif;
+}
+
+/* Elements
 ------------------------------------------------------------ */
-.pagination ul{
-	border-radius: 0px;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
+
+/* Placeholder text color -- selectors need to be separate to work. */
+
+::-webkit-input-placeholder {
+    color: rgba(51, 51, 51, 0.7);
+    font-family: "Roboto", sans-serif;
 }
 
-.pagination ul > li > a,
-.pagination ul > li > span{
-    border: 1px solid #ababab;
-    background-color: #e5e5e5;
-    color: #838383;	
-    border-left-width: 0;
+:-moz-placeholder {
+    color: rgba(51, 51, 51, 0.7);
+    font-family: "Roboto", sans-serif;
 }
 
-.pagination ul > li > span.hellip{
-    background-color: transparent;  
-    border: 1px solid #ccc;
-    border-right: none;
+::-moz-placeholder {
+    color: rgba(51, 51, 51, 0.7);
+    font-family: "Roboto", sans-serif;
+    opacity: 1; /* Since FF19 lowers the opacity of the placeholder by default */
 }
 
-.pager a {
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;	
-    border: 1px solid #ababab;
-    background-color: #e5e5e5;
-    color: #838383;
-}
-
-
-
-/* Search Form
------------------------------------------------------------- */
-input[type=text].s{
-    background-color: #fff;
-    color: #20586d;
-    font-weight: bold;
-    border: 1px solid #e5e5e5;
-    box-shadow: none;
-    color: #2f2f2f;
-    font-weight: normal;
-}
-
-input[type="submit"].searchsubmit{	
-    border: none;
-    background: #00AEEF;	
-    color: #fff;
-    border-radius: 0 !important;
-}
-
-input[type="submit"].searchsubmit:hover{
-    background: #ccc;
-    color: #000;
-}
-
-
-/* Form Style
------------------------------------------------------------- */
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
-    background-color:#ffffff;
-    border:1px solid #cccccc;
-    -webkit-border-radius:0px;
-    -moz-border-radius:0px;
-    border-radius:0px;
-    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
-    -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
-    -webkit-transition:border linear 0.2s,box-shadow linear 0.2s;
-    -moz-transition:border linear 0.2s,box-shadow linear 0.2s;
-    -ms-transition:border linear 0.2s,box-shadow linear 0.2s;
-    -o-transition:border linear 0.2s,box-shadow linear 0.2s;
-    transition:border linear 0.2s,box-shadow linear 0.2s;
-}
-
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-.uneditable-input:focus {
-    border-color:rgba(82,168,236,0.8);
-    outline:0;
-    outline:thin dotted \9;
-    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
-    -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+:-ms-input-placeholder {
+    color: rgba(51, 51, 51, 0.7);
+    font-family: "Roboto", sans-serif;
 }
