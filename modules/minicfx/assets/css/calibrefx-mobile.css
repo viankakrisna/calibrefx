@@ -1,0 +1,173 @@
+
+/* Typography
+------------------------------------------------------------ */
+
+blockquote{
+	font-size: 1.4rem;
+	margin-bottom: 1.0em;
+  	padding-left: 0.4em;
+}
+
+h1{
+	font-size: 1.6rem;
+}
+
+h2{
+	font-size: 1.4rem;
+}
+
+h3{
+	font-size: 1.2rem;
+}
+
+h4{
+	font-size: 1.0rem;
+}
+
+h5{
+	font-size: 0.8rem;
+}
+
+h6{
+	font-size: 0.8rem;
+}
+
+.site-title{
+	font-size: 1.6rem;
+}
+
+.site-description{
+	display: none;
+}
+
+.entry-title{
+	font-size: 1.4rem;
+}
+
+.author-heading,
+.author-title{
+	font-size: 1.4rem;
+}
+
+.entry-content h1,
+.entry-summary h1,
+.page-content h1,
+.comment-content h1 {
+	font-size: 1.6rem;
+}
+
+.entry-content h2,
+.entry-summary h2,
+.page-content h2,
+.comment-content h2 {
+	font-size: 1.4rem;
+}
+
+.entry-content h3,
+.entry-summary h3,
+.page-content h3,
+.comment-content h3 {
+	font-size: 1.2rem;
+}
+
+.entry-content h4,
+.entry-content h5,
+.entry-content h6,
+.entry-summary h4,
+.entry-summary h5,
+.entry-summary h6,
+.page-content h4,
+.page-content h5,
+.page-content h6,
+.comment-content h4,
+.comment-content h5,
+.comment-content h6 {
+	font-size: 1.0rem;
+}
+
+.entry-content h5,
+.entry-content h6,
+.entry-summary h5,
+.entry-summary h6,
+.page-content h5,
+.page-content h6,
+.comment-content h5,
+.comment-content h6 {
+	font-size: 0.8rem;
+}
+
+.entry-content p,
+.entry-summary p,
+.page-content p,
+.comment-content p {
+	font-size: 1.2rem;
+}
+
+/* Header
+------------------------------------------------------------ */
+#header{
+	min-height: auto;
+}
+
+/* Primary Navigation
+------------------------------------------------------------ */
+.mobile #mobile-nav {
+	background: #2C2C2C;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 250px;
+	height: 100%;
+	border: 0;
+	border-radius: 0;
+	margin: 0;
+}
+
+.mobile #mobile-nav .navbar-nav > li > a {
+	color: #FFFFFF;
+	background: transparent;
+	padding: 20px 20px 0px 20px;
+	border-bottom: none;
+	font-size: 1.0rem;
+	position: relative;
+	text-shadow: none;
+}
+
+.mobile #mobile-nav .navbar-nav > li.active > a{
+	color: #00E2FF;
+}
+
+.mobile #mobile-nav .navbar-nav > li span.mobile-arrow {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	content: '';
+	width: 55px;
+	height: 55px;
+	border-left: none;
+}
+
+.mobile #mobile-nav .navbar-nav > li span.mobile-arrow i.icon-mobile-arrow{
+	background: url(images/ig-menu-arrow.png) center center no-repeat;
+	width: 52px;
+	height: 55px;
+	display: block;
+}
+
+.mobile #mobile-nav .dropdown-menu > li > a {
+	padding: 10px 0 0 20px;
+	background: rgb(44, 44, 44);
+	color: #fff;
+	border-bottom: none;
+	font-size: 16px;
+	white-space: normal;
+	text-shadow: none;
+}
+
+/* Content
+------------------------------------------------------------ */
+
+#content-wrapper{
+	padding-top: 0;
+	padding-bottom: 0;
+}

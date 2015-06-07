@@ -426,7 +426,7 @@ del {
 ------------------------------------------------------------ */
 #header {
 	background-color: transparent;
-	min-height: 100px;
+	 min-height: 100px; 
 	width: auto;
 }
 
@@ -2088,7 +2088,7 @@ input[type="color"]:focus,
 
 .mobile #wrapper {
 	background: #ffffff;
-	z-index: 10000;
+	/* z-index: 10000; */
 }
 
 .mobile #wrapper.m {

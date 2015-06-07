@@ -41,7 +41,7 @@ function calibrefx_get_comments_template() {
 	$is_facebook_comment_enabled = calibrefx_get_option( 'facebook_comments' );
 
 	$comment_box_title = apply_filters( 'calibrefx_comment_box_title',  __( 'Leave us your thought', 'calibrefx' ) );
-
+	
 	if ( ! $is_facebook_comment_enabled ) {
 		if ( is_single() && ( calibrefx_get_option( 'trackbacks_posts' ) || calibrefx_get_option( 'comments_posts' ) ) ) {
 			comments_template( '', true );
