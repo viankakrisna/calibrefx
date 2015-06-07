@@ -4,9 +4,9 @@ jQuery(document).ready(function($) {
 		$( document ).on( "swipeleft swiperight", ".ui-page-active", function( e ) {
 			if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
 				if ( e.type === "swipeleft"  ) {
-					$( ".mobile-sidebar" ).panel( "close" );
+					$( ".mobile-menu" ).panel( "close" );
 				} else if ( e.type === "swiperight" ) {
-					$( ".mobile-sidebar" ).panel( "open" );
+					$( ".mobile-menu" ).panel( "open" );
 				}
 			}
 		});
@@ -58,6 +58,10 @@ jQuery(document).ready(function($) {
 
 		bindMenuEvent();
 
+		$( document ).on( "panelopen", ".mobile-search", function() {
+			$( this ).find( "input" ).focus();
+		})
+
 	} );
 
 	bindMenuEvent();
@@ -65,9 +69,8 @@ jQuery(document).ready(function($) {
 
 // 	TODO : Need localized script and settings here.
 jQuery( document ).on( "mobileinit", function() {
-
 	jQuery.extend( jQuery.mobile , {
 		ajaxEnabled: true,
-		defaultPageTransition: 'pop',
+		defaultPageTransition: 'slide',
 	} );
 } );

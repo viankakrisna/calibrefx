@@ -10,7 +10,7 @@ $calibrefx->hooks->calibrefx_wrapper = array(
 );
 
 $calibrefx->hooks->calibrefx_after_wrapper = array(
-	array( 'function' => 'calibrefx_do_close_wrapper', 'priority' => 99 ),
+	array( 'function' => 'calibrefx_do_close_wrapper', 'priority' => 20 ),
 );
 
 $calibrefx->hooks->calibrefx_inner = array(
@@ -121,7 +121,9 @@ function calibrefx_do_open_wrapper() {
 	global $calibrefx;
 
 	$wrapper_class = apply_filters( 'wrapper_class', 'container' );
-	echo '<div id="wrapper" class="'.$wrapper_class.' site">';
+	$wrapper_attr = apply_filters( 'wrapper_attr', '' );
+
+	echo '<div id="wrapper" class="' . $wrapper_class . ' site"' . $wrapper_attr . '>';
 	$calibrefx->is_wrapper_open = true;
 }
 
@@ -155,7 +157,9 @@ function calibrefx_do_open_inner() {
 	global $calibrefx;
 
 	$inner_class = apply_filters( 'inner_class', '' );
-	echo '<div id="inner" class="'.$inner_class.'">';
+	$inner_attr = apply_filters( 'inner_attr', '' );
+
+	echo '<div id="inner" class="' . $inner_class . '"' . $inner_attr . ' >';
 	$calibrefx->is_inner_open = true;
 
 }

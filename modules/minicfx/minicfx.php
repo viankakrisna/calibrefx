@@ -28,8 +28,8 @@ function calibrefx_mobile_scripts(){
 		wp_enqueue_style( 'jquery.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/css/jquery-mobile.min.css' );
 		wp_enqueue_style( 'jquery.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/css/jquery.mobile.icons.css' );
 		wp_enqueue_style( 'calibrefx.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/css/calibrefx-mobile.css' );
+		wp_enqueue_script( 'function.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/js/function-mobile.js', array( 'jquery' )  );
 		wp_enqueue_script( 'jquery.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/js/jquery-mobile.js', array( 'jquery' )  );
-		wp_enqueue_script( 'function.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/js/function-mobile.js', array( 'jquery', 'jquery.mobile' )  );
 
 		wp_dequeue_style( 'jquery-superfish' );
 		wp_dequeue_script( 'superfish' );
@@ -63,11 +63,15 @@ function calibrefx_init_mobile_site() {
 	show_admin_bar(false);
 
 	add_filter( 'body_class', 'calibrefx_mobile_site_body_class' );
+	
+	add_filter( 'wrapper_class', 'calibrefx_mobile_wrapper_class' );
+	add_filter( 'wrapper_attr', 'calibrefx_mobile_wrapper_attr' );
 
 	remove_action( 'calibrefx_after_header', 'calibrefx_do_nav' );
 	remove_action( 'calibrefx_after_header', 'calibrefx_do_subnav', 15 );
 
-	add_action( 'calibrefx_before_header', 'calibrefx_do_top_mobile_nav' );
+	add_action( 'calibrefx_before_wrapper', 'calibrefx_do_top_mobile_nav' );
+	add_action( 'calibrefx_after_wrapper', 'calibrefx_do_mobile_footer', 100 );
 
 	add_filter( 'template_include', 'calibrefx_get_mobile_template' );
 
@@ -100,20 +104,42 @@ function calibrefx_mobile_site_body_class( $body_classes ) {
 	return $body_classes;
 }
 
+function calibrefx_mobile_wrapper_class( $wrapper_class ){
+	$wrapper_class .= 'ui-content ';
+
+	return $wrapper_class;
+}
+
+function calibrefx_mobile_wrapper_attr( $wrapper_attr ){
+	$wrapper_attr .= 'data-role="main" ';
+
+	return $wrapper_attr;
+}
+
 /**
  * Show mobile menu navigation
  */
 function calibrefx_do_top_mobile_nav() {
 	?>
-	<div id="top-mobile-nav" class="navbar navbar-default">
-		<div class="mobile-header-top">
-			<a href="#mobile-panel" class="mobile-main-menu"> <i class="icon-mobile-planning"></i> Menu</a>
-		</div>
-	</div>
-	<div class="mobile-sidebar" id="mobile-panel" data-role="panel" data-position-fixed="true" data-display="overlay">
+	<div data-role="header" data-position="fixed">
+		<h1><?php the_title( ); ?></h1>
+		<a href="#mobile-menu" data-icon="bullets" data-iconpos="notext" class="ui-btn-left"></a>
+		<a href="#mobile-search" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
+	</div><!-- /header -->
+
+	<div id="mobile-menu" class="mobile-menu" data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay">
 		<?php calibrefx_do_mobile_nav(); ?>
 	</div>
 	
+	<div id="mobile-search" class="mobile-search" data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay">
+		<form class="ui-filterable">
+			<input id="autocomplete-input" data-type="search" placeholder="Search...">
+		</form>
+		<ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-input="#autocomplete-input"></ul>		
+	</div>
+
+
+
 	<?php
 }
 
@@ -151,6 +177,13 @@ function calibrefx_do_mobile_nav() {
 
 }
 
+function calibrefx_do_mobile_footer(){ ?>
+	<div data-role="footer" data-position="fixed">
+		<h5>Copyright &copy; <?php echo date('Y'); ?> <?php echo get_bloginfo( 'site_title' ); ?></h5>
+	</div>
+<?php
+}
+
 /**
  * calibrefx_mobile_themes_exist
  * Check if the mobile theme exist in Child themes
@@ -158,29 +191,3 @@ function calibrefx_do_mobile_nav() {
 function calibrefx_mobile_themes_exist() {
 	return file_exists( CHILD_MOBILE_URI );
 }
-
-/*function calibrefx_mobile(){
-	get_header( 'mobile' );
-
-	do_action( 'calibrefx_inner' );
-	do_action( 'calibrefx_before_content_wrapper' );
-
-	$content_wrapper_class = calibrefx_row_class() . ' ' . apply_filters( 'content_wrapper_class', '' );
-	?>
-    <div id="content-wrapper" class="<?php echo esc_attr( $content_wrapper_class ); ?>" >
-        <?php do_action( 'calibrefx_before_content' ); ?>
-        <div id="content" class="<?php echo esc_attr( calibrefx_content_span() ); ?>">
-            <?php
-			do_action( 'calibrefx_before_loop' );
-			do_action( 'calibrefx_loop' );
-			do_action( 'calibrefx_after_loop' );
-			?>
-        </div><!-- end #content -->
-        <?php do_action( 'calibrefx_after_content' ); ?>
-    </div><!-- end #content-wrapper -->
-    <?php
-	do_action( 'calibrefx_after_content_wrapper' );
-	do_action( 'calibrefx_after_inner' );
-
-	get_footer( 'mobile' );
-}*/
