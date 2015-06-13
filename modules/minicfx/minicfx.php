@@ -3,7 +3,7 @@
  * Calibrefx Mobile Helper
  *
  */
-
+//miniCFX Develop
 /**
  * calibrefx_get_mobile_template
  * this function will return the mobile folder from the child themes folder
@@ -24,16 +24,40 @@ function calibrefx_get_mobile_template( $template ) {
 }
 
 function calibrefx_mobile_scripts(){
+
 	if( wp_is_mobile() ){
+
+		// 	Load Styles
 		wp_enqueue_style( 'jquery.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/css/jquery-mobile.min.css' );
 		wp_enqueue_style( 'jquery.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/css/jquery.mobile.icons.css' );
 		wp_enqueue_style( 'calibrefx.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/css/calibrefx-mobile.css' );
+
+
+		// 	Minicfx Settings
+		$minicfx_args = array();
+		$minicfx_args['ajaxEnabled'] 			= esc_attr( calibrefx_get_option( 'minicfx_ajaxenabled' ) ) == 'enable' ? true : false;
+		$minicfx_args['defaultPageTransition'] 	= esc_attr( calibrefx_get_option( 'minicfx_defaultPageTransition' ) );
+
+		$minicfx_loading_args = array();
+		$minicfx_loading_args['textVisible'] 	= esc_attr( calibrefx_get_option( 'minicfx_showloadingtext' ) ) == 'enable' ? true : false;
+		// $minicfx_loading_args['text'] 			= esc_attr( calibrefx_get_option( 'minicfx_loadingtext' ) );
+		$minicfx_loading_args['html'] 			= esc_attr( calibrefx_get_option( 'minicfx_showloadingtext' ) ) == 'enable' ? esc_attr( calibrefx_get_option( 'minicfx_loadinghtml' ) ) : '';
+		// $minicfx_loading_args['theme'] 			= esc_attr( calibrefx_get_option( 'minicfx_loadingtheme' ) );
+
+
+		// 	Load Scripts
 		wp_enqueue_script( 'function.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/js/function-mobile.js', array( 'jquery' )  );
 		wp_enqueue_script( 'jquery.mobile', CALIBREFX_MODULE_URL . '/minicfx/assets/js/jquery-mobile.js', array( 'jquery' )  );
-
 		wp_dequeue_style( 'jquery-superfish' );
 		wp_dequeue_script( 'superfish' );
 
+
+		// 	Localize Settings
+		wp_localize_script( 'function.mobile', 'minicfx_settings', $minicfx_args );
+		wp_localize_script( 'function.mobile', 'minicfx_loading', $minicfx_loading_args );
+
+
+		// 	Load child themes mobile css
 		if( file_exists( CHILD_MOBILE_URI . '/style.css' ) ){
 			wp_enqueue_style( 'child.mobile', CHILD_MOBILE_URL . '/style.css' );
 		}
@@ -91,6 +115,184 @@ function calibrefx_init_mobile_site() {
 }
 add_action( 'calibrefx_post_init', 'calibrefx_init_mobile_site', 15 );
 
+
+/**
+ * 	Mini CFX Settings
+ */
+function minicfx_meta_section() {
+	global $calibrefx_target_form;
+    calibrefx_add_meta_section( 'minicfx_settings', __('Mini CFX Settings', 'calibrefx'), $calibrefx_target_form, 13 );
+}
+add_action( 'calibrefx_theme_settings_meta_section', 'minicfx_meta_section' );
+
+/**
+ * 	Mini CFX MetaBox
+ */
+function minicfx_meta_boxes(){
+    global $calibrefx;
+    calibrefx_add_meta_box( 'minicfx_settings', 'basic', 'minicfx_metabox_func', __( 'Mini CFX Settings', 'calibrefx'), 'minicfx_metabox_func', $calibrefx->theme_settings->pagehook, 'main', 'low');
+}
+add_action( 'calibrefx_theme_settings_meta_box', 'minicfx_meta_boxes' );
+function minicfx_metabox_func () {
+
+	global $calibrefx;
+
+	calibrefx_add_meta_group( 'minicfx_settings', 'minicfx-mobile-settings', __( 'Default Behaviour', 'calibrefx' ) );
+	calibrefx_add_meta_group( 'minicfx_settings', 'minicfx-loading-settings', __( 'Loading Behaviour', 'calibrefx' ) );
+
+	add_action( 'minicfx_settings_options', function() {
+
+		/*	Default Behaviour Group
+		 */
+		// 	Enable or disable ajaxload
+		calibrefx_add_meta_option(
+			// 	Group id
+			'minicfx-mobile-settings',
+			// 	Field id and option name
+			'minicfx_ajaxenabled',
+			// 	Label
+			__( 'Enable ajax loading for page transitions', 'calibrefx' ), 
+			// 	Options
+			array(
+				'option_type'  	=> 'select',
+				'option_items' 	=> array(
+					'enable' 	=> __( 'Enable', 'calibrefx' ),
+					'disable' 	=> __( 'Disable', 'calibrefx' ),
+				),
+				'option_default'=> 'enable',
+				'option_filter' => 'safe_text',
+			),
+			// 	Priority
+			1
+		);
+
+
+		/*	Loading Behaviour
+		 */ 
+
+		// 	Ajax animation
+		calibrefx_add_meta_option(
+			// 	Group id
+			'minicfx-loading-settings',
+			// 	Field id and option name
+			'minicfx_defaultPageTransition',
+			// 	Label
+			__( 'Transition Effect', 'calibrefx' ),
+			// 	Options
+			array(
+				'option_type' 	=> 'select',
+				'option_items' 	=> array(
+					'fade' 		=> __( 'Fade', 'calibrefx' ),
+					'pop' 		=> __( 'Pop', 'calibrefx' ),
+					'flip' 		=> __( 'Flip', 'calibrefx' ),
+					'turn' 		=> __( 'Turn', 'calibrefx' ),
+					'flow' 		=> __( 'Flow', 'calibrefx' ),
+					'slidefade' => __( 'Slidefade', 'calibrefx' ),
+					'slide' 	=> __( 'Slide', 'calibrefx' ),
+					'slideup' 	=> __( 'Slideup', 'calibrefx' ),
+					'slidedown' => __( 'Slidedown', 'calibrefx' ),
+					'none' 		=> __( 'None', 'calibrefx' ),
+				),
+				'option_default'=> '',
+				'option_filter' => 'safe_text',
+			),
+			//	Priority
+			1
+		);
+
+
+		// 	Enable or disable text
+		calibrefx_add_meta_option(
+			// 	Group id
+			'minicfx-loading-settings',
+			// 	Field id and option name
+			'minicfx_showloadingtext',
+			// 	Label
+			__( 'Enable or disable loading custom HTML', 'calibrefx' ), 
+			// 	Options
+			array(
+				'option_type'  	=> 'select',
+				'option_items' 	=> array(
+					'enable' 	=> __( 'Enable', 'calibrefx' ),
+					'disable' 	=> __( 'Disable', 'calibrefx' ),
+				),
+				'option_default'=> 'enable',
+				'option_filter' => 'safe_text',
+			),
+			// 	Priority
+			5
+		);
+
+		/* 	Loading Text
+		calibrefx_add_meta_option(
+			// 	Group id
+			'minicfx-loading-settings',
+			// 	Field id and option name
+			'minicfx_loadingtext',
+			// 	Label
+			__( 'Loading Text', 'calibrefx' ),
+			// 	Options
+			array(
+				'option_type'			=> 'textinput',
+				'option_default'		=> '',
+				'option_filter'			=> 'safe_text',
+				'option_description'	=> __( 'The text that appears on page load.', 'calibrefx' ),
+			),
+			// 	Priority
+			10
+		);
+		*/
+
+
+		// 	Loading Text
+		calibrefx_add_meta_option(
+			// 	Group id
+			'minicfx-loading-settings',
+			// 	Field id and option name
+			'minicfx_loadinghtml',
+			// 	Label
+			__( 'Loading Custom HTML', 'calibrefx' ),
+			// 	Options
+			array(
+				'option_type'			=> 'textarea',
+				'option_default'		=> '',
+				'option_filter'			=> 'safe_html',
+				'option_attr' 			=> array('class' => 'minicfx_loadinghtml')
+			),
+			// 	Priority
+			10
+		);
+
+
+		/* 	Premade Theme ( Currently not working )
+		calibrefx_add_meta_option(
+			// 	Group id
+			'minicfx-loading-settings',
+			// 	Field id and option name
+			'minicfx_loadingtheme',
+			// 	Label
+			__( 'Choose premade theme', 'calibrefx' ), 
+			// 	Options
+			array(
+				'option_type'  	=> 'select',
+				'option_items' 	=> array(
+					'a' 	=> __( 'Dark Grey', 'calibrefx' ),
+					'b' 	=> __( 'Bootstrap Blue', 'calibrefx' ),
+					'c' 	=> __( 'Top Silver', 'calibrefx' ),
+					'd' 	=> __( 'Light Ember', 'calibrefx' ),
+				),
+				'option_default'=> 'a',
+				'option_filter' => 'safe_text',
+			),
+			// 	Priority
+			5
+		);*/
+
+	});
+
+	calibrefx_do_meta_options( $calibrefx->theme_settings, 'minicfx_settings' );
+}
+
 /**
  * calibrefx_mobile_site_body_class
  * Add special body class on mobile view
@@ -137,8 +339,6 @@ function calibrefx_do_top_mobile_nav() {
 		</form>
 		<ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-input="#autocomplete-input"></ul>		
 	</div>
-
-
 
 	<?php
 }

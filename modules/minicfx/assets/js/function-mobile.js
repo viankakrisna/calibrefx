@@ -69,8 +69,18 @@ jQuery(document).ready(function($) {
 
 // 	TODO : Need localized script and settings here.
 jQuery( document ).on( "mobileinit", function() {
-	jQuery.extend( jQuery.mobile , {
-		ajaxEnabled: true,
-		defaultPageTransition: 'slide',
+	
+	jQuery.extend( jQuery.mobile , minicfx_settings );
+
+	jQuery.each( minicfx_loading, function( index, val ) {
+		jQuery.mobile.loader.prototype.options[index] = minicfx_loading[index];
 	} );
+	// jQuery.mobile.loader.prototype.options.text = minicfx_loading.text;
+	// jQuery.mobile.loader.prototype.options.textVisible = true;
+	// jQuery.mobile.loader.prototype.options.theme = "a";
+
+	// jQuery.extend( jQuery.mobile , {
+	// 	ajaxEnabled: true,
+	// 	defaultPageTransition: 'slide',
+	// } );
 } );
