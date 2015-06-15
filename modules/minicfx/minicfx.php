@@ -122,7 +122,7 @@ function calibrefx_mobile_wrapper_attr( $wrapper_attr ){
 function calibrefx_do_top_mobile_nav() {
 	?>
 	<div data-role="header" data-position="fixed">
-		<h1><?php the_title( ); ?></h1>
+		<h1><?php wp_title(); ?></h1>
 		<a href="#mobile-menu" data-icon="bullets" data-iconpos="notext" class="ui-btn-left"></a>
 		<a href="#mobile-search" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
 	</div><!-- /header -->
