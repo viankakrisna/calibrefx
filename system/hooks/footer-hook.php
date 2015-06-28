@@ -149,7 +149,7 @@ function calibrefx_add_socials_script() {
 			</script>'."\n";
 	}
 
-	if ( has_shortcode( get_the_content( ), 'gplus' ) ){
+	if ( $post && has_shortcode( get_the_content( ), 'gplus' ) ){
 		echo
 			'<script type="text/javascript">
 			  (function() {
@@ -166,7 +166,8 @@ function calibrefx_add_socials_script() {
  * Show Tracking Scripts
  */
 function calibrefx_show_tracking_scripts() {
-
+	global $post;
+	
 	$analytic_id = calibrefx_get_option( 'analytic_id' );
 	$google_tagmanager_code = calibrefx_get_option( 'google_tagmanager_code' );
 	$facebook_tracking_code = calibrefx_get_option( 'facebook_tracking_code' );
