@@ -123,7 +123,7 @@ function calibrefx_footer_scripts() {
  * Add Social javascript in footer
  */
 function calibrefx_add_socials_script() {
-
+	global $post;
 	if ( is_active_widget( false, false, 'facebook-comment-widget' ) OR
 		is_active_widget( false, false, 'facebook-likebox-widget' ) ) {
 		echo
@@ -189,10 +189,10 @@ function calibrefx_show_tracking_scripts() {
 	}
 
 	if ( ! empty( $google_tagmanager_code ) ) {
-		echo stripslashes( $google_tagmanager_code );
+		echo stripslashes( cap_attr( $google_tagmanager_code ) );
 	}
 
 	if ( ! empty( $facebook_tracking_code ) ) {
-		echo stripslashes( $facebook_tracking_code );
+		echo stripslashes( cap_attr( $facebook_tracking_code ) );
 	}
 }
