@@ -120,23 +120,11 @@ function calibrefx_setup_custom_layout() {
 function calibrefx_do_open_wrapper() {
 	global $calibrefx;
 
-	$wrapper_class = apply_filters( 'wrapper_class', 'container' );
+	$wrapper_class = apply_filters( 'wrapper_class', '' );
 	$wrapper_attr = apply_filters( 'wrapper_attr', '' );
 
-	echo '<div id="wrapper" class="' . $wrapper_class . ' site"' . $wrapper_attr . '>';
+	echo '<div id="wrapper" class="site ' . $wrapper_class . '"' . $wrapper_attr . '>';
 	$calibrefx->is_wrapper_open = true;
-}
-
-add_filter( 'wrapper_class', 'calibrefx_wrapper_class' );
-function calibrefx_wrapper_class(){
-
-	if ( calibrefx_layout_is_fluid() ){
-		return 'container-fluid';
-	} elseif ( calibrefx_layout_is_fixed_wrapper() ) {
-		return 'container';
-	}
-
-	return '';
 }
 
 /**

@@ -35,10 +35,6 @@ function calibrefx_put_wrapper( $context = '', $output = '<div class="container"
 		return '';
 	}
 
-	if ( calibrefx_layout_is_fluid() ) {
-		return '';
-	}
-
 	switch ( $output ) {
 		case 'open':
 			// $output = '<div class="container">';
@@ -293,6 +289,10 @@ function row_class() {
  */
 function calibrefx_container_class() {
 	$containerClass = '';
+
+	if ( calibrefx_layout_is_fluid() ){
+		$containerClass = 'container-fluid';
+	}
 
 	if ( calibrefx_layout_is_static() && ! calibrefx_layout_is_fixed_wrapper() ){
 		$containerClass = 'container';
