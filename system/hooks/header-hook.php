@@ -113,6 +113,10 @@ function calibrefx_print_favicon() {
 		$favicon = CHILD_IMAGES_URL . '/favicon.ico';
 	}
 
+	if( calibrefx_get_option( 'favicon' ) ){
+		$favicon = calibrefx_get_option( 'favicon' );
+	}
+
 	$favicon = apply_filters( 'calibrefx_favicon_url', $favicon );
 
 	if ( $favicon ) {

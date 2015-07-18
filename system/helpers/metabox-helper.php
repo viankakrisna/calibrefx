@@ -250,6 +250,15 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
 									echo $calibrefx->form->hidden( $settings_field . '[' . $option_name . ']', calibrefx_get_option( $option_name ), $option['option_attr'] );
 									break;
 
+								case 'blank':
+									$classes = '';
+									if ( isset( $option['option_attr']['class']) ) {
+										$classes = $option['option_attr']['class'];
+										unset( $option['option_attr']['class'] );
+									}
+									echo '<label for="' . $settings_field . '[' . $option_name . ']">' . $option['option_label'] . '</label>';
+									break;
+
 								case 'textinput':
 								case 'textarea':
 								case 'password':
@@ -265,6 +274,7 @@ function calibrefx_do_meta_options( $settings_obj, $metabox_id ) {
 									break;
 
 								case 'upload':
+									wp_enqueue_media( );
 									//we need to extract the class from the array
 									$classes = '';
 									if ( isset( $option['option_attr']['class'] ) ) {
