@@ -142,7 +142,6 @@ add_filter( 'nav_menu_css_class', 'calibrefx_nav_menu_css_class', 10, 2 );
  * in order to be used in custom Walker to add an icon in nav menu
  *
  * @since       1.0.15
- * @author      Hilaladdiyar Muhammad Nur (hilal@calibrefx.com)
 */
 function calibrefx_custom_nav_icon( $menu_item ) {
 	$menu_item->custom_icon = get_post_meta( $menu_item->ID, '_menu_item_custom_icon', true );
@@ -152,7 +151,7 @@ add_filter( 'wp_setup_nav_menu_item','calibrefx_custom_nav_icon' );
 
 function calibrefx_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
 	// Check if element is properly sent
-	if ( isset( $_REQUEST['menu-item-icon'] ) && is_array( $_REQUEST['menu-item-icon'] ) ) {
+	if ( isset( $_REQUEST['menu-item-icon'] ) AND isset( $_REQUEST['menu-item-icon'][ $menu_item_db_id ] ) ) {
 		$icon_menu = $_REQUEST['menu-item-icon'][ $menu_item_db_id ];
 		update_post_meta( $menu_item_db_id, '_menu_item_custom_icon', $icon_menu );
 	}
