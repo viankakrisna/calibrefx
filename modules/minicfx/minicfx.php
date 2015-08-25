@@ -373,7 +373,7 @@ function calibrefx_do_mobile_nav() {
 		</div>
 		<!-- end #mobile-nav -->', $nav );
 
-	echo apply_filters( 'calibrefx_do_nav', $nav_output, $nav, $args );
+	echo apply_filters( 'calibrefx_do_mobile_nav', $nav_output, $nav, $args );
 
 }
 
