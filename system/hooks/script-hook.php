@@ -145,3 +145,28 @@ function calibrefx_remove_script_version( $src ) {
 }
 add_filter( 'script_loader_src', 'calibrefx_remove_script_version', 15, 1 );
 add_filter( 'style_loader_src', 'calibrefx_remove_script_version', 15, 1 );
+
+add_action( 'wp_head', 'disable_responsive', 99 );
+function disable_responsive(){
+	if ( calibrefx_is_responsive_enabled() ){
+		return;
+	}
+?>
+	<style type="text/css">
+	/* Non-responsive overrides
+	 *
+	 * Utilitze the following CSS to disable the responsive-ness of the container,
+	 * grid system, and navbar.
+	 */
+
+	/* Reset the container */
+	body.non-responsive,
+	body.non-responsive .container {
+	  width: <?php echo calibrefx_get_option( 'calibrefx_layout_width' ) ?>px !important;
+	  max-width: none !important;
+	}
+
+	
+	</style>
+<?php
+}

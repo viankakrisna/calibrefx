@@ -15,9 +15,13 @@
 	if ( 'open' == get_option( 'default_ping_status' ) ) {
 		echo '<link rel="pingback" href="' . esc_url( get_bloginfo( 'pingback_url' ) ) . '" />' . "\n";
 	}
-	if ( current_theme_supports( 'calibrefx-responsive-style' ) ){
-		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />' . "\n";
+	if ( calibrefx_is_responsive_enabled() ){
+		$width = "device-width";
+	} else {
+		$width = calibrefx_get_option( 'calibrefx_layout_width' );
 	}
+
+	echo '<meta name="viewport" content="width=' . $width . ', initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />' . "\n";
 	do_action( 'calibrefx_meta' );
 	wp_head();
 	?>
