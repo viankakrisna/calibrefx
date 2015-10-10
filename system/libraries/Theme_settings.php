@@ -161,7 +161,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
 	}
 
 	public function meta_boxes() {
-		calibrefx_add_meta_box( 'general', 'basic', 'calibrefx-theme-settings-brand', __( 'Brand Settings', 'calibrefx' ), array( $this, 'branding_box' ), $this->pagehook, 'main', 'high' );
 		calibrefx_add_meta_box( 'general', 'basic', 'calibrefx-theme-settings-navigation', __( 'Navigation Settings', 'calibrefx' ), array( $this, 'navigation_box' ), $this->pagehook, 'main', 'high' );
 		calibrefx_add_meta_box( 'general', 'basic', 'calibrefx-theme-settings-content', __( 'Content Setting', 'calibrefx' ), array( $this, 'content_setting' ), $this->pagehook, 'main' );
 		calibrefx_add_meta_box( 'general', 'basic', 'calibrefx-theme-settings-comment', __( 'Post Comment Setting', 'calibrefx' ), array( $this, 'comment_setting' ), $this->pagehook, 'main' );
@@ -195,40 +194,6 @@ class CFX_Theme_Settings extends Calibrefx_Admin {
         <?php
 	}
 
-	//Meta Boxes Sections
-	function branding_box(){
-		global $calibrefx;
-
-		calibrefx_add_meta_group( 'themebranding-settings', 'branding-settings', __( 'Brand Settings', 'calibrefx' ) );
-
-		add_action( 'themebranding-settings_options', function() {
-			calibrefx_add_meta_option(
-				'branding-settings',  // group id
-				'header_logo_desc', // field id and option name
-				__( 'Set logo', 'calibrefx' ),
-				array(
-					'option_type' => 'blank',
-					'option_description' => __( 'You can upload configure your logo using from the Appereance > Header.', 'calibrefx' ),
-				), // Settings config
-				1 //Priority
-			);
-
-			calibrefx_add_meta_option(
-				'branding-settings',  // group id
-				'favicon', // field id and option name
-				__( 'Set Favicon', 'calibrefx' ),
-				array(
-					'option_type' => 'upload',
-					'option_default' => '',
-					'option_filter' => 'safe_url',
-					'option_description' => __( 'You can upload your favicon. Best size 32x32px in .ico format', 'calibrefx' ),
-				), // Settings config
-				5 //Priority
-			);
-		});
-
-		calibrefx_do_meta_options( $calibrefx->theme_settings, 'themebranding-settings' );
-	}
 	/**
 	 * Show navigation setting box
 	 */
