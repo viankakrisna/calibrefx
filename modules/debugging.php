@@ -82,7 +82,7 @@ if ( ! function_exists( 'die_dump' ) ) {
  */
 if ( ! function_exists( 'debug_file' ) ) {
 
-	function debug_file( $var = '', $filename = 'debug.txt' ) {
+	function debug_file( $var = '', $filename = 'debug.txt', $path = CHILD_URI ) {
 
 		$output = '';
 
@@ -101,7 +101,12 @@ if ( ! function_exists( 'debug_file' ) ) {
 		}
 
 		global $wp_filesystem;
-		$filepath = CALIBREFX_LOG_URI . '/' . $filename;
+		$filepath = $path . '/' . $filename;
+		$creds = request_filesystem_credentials(site_url() . '/wp-admin/', '', false, false, array());
+		if ( ! WP_Filesystem($creds) ) {
+			/* any problems and we exit */
+			return false;
+		}	
 		$wp_filesystem->put_contents(
 			$filepath,
 			$output,

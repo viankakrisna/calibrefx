@@ -48,10 +48,10 @@ function calibrefx_print_favicon() {
 if( is_admin() ){
 	//Only run this if wp_version less then 4.3.0
 	if ( version_compare( $wp_version, "4.3.0", '<' ) ) {
-		add_action( 'calibrefx_theme_settings_meta_box', 'codename_meta_boxes' );
+		add_action( 'calibrefx_theme_settings_meta_box', 'calibrefx_meta_boxes' );
 	}
 }
-function codename_meta_boxes(){
+function calibrefx_meta_boxes(){
 	global $calibrefx;
 	
 	calibrefx_add_meta_box( 'general', 'basic', 'calibrefx-theme-settings-brand', __( 'Brand Settings', 'calibrefx' ), 'calibrefx_branding_box', $calibrefx->theme_settings->pagehook, 'main', 'high' );
