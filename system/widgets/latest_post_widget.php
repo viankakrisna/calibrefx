@@ -31,6 +31,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 			'show_thumbnail' => 0,
 			'image_size' => 'thumbnail',
 			'show_detail' => 0,
+			'show_category' => 0,
 			'detail_length' => 100
 		);
 
@@ -84,6 +85,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 								<div class="latest-post-detail '. $content_class .'">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-info">'.do_shortcode( '[post_date]' ).'</p>
+									'.(( $instance['show_category']) ? '<p class="latest-post-category">'.$this->print_category().'</p>' : '').'
 									'.(( $instance['show_detail']) ? get_the_content_limit( $instance['detail_length'] ) : '' ).'
 								</div>
 							</div>
@@ -96,6 +98,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 								<div class="latest-post-detail col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-date">'.date( $date_format, get_the_time( 'U' ) ).'</p>
+									'.(( $instance['show_category']) ? '<p class="latest-post-category">'.$this->print_category().'</p>' : '').'
 									'.(( $instance['show_detail']) ? get_the_content_limit( $instance['detail_length'] ) : '' ).'
 								</div>
 							</div>
@@ -146,6 +149,11 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 			<input id="<?php echo $this->get_field_id( 'show_detail' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_detail' ); ?>" value="1"<?php checked( $instance['show_detail'] ); ?> />
 			<label for="<?php echo $this->get_field_id( 'show_detail' ); ?>"><?php _e( 'Show Content', 'calibrefx' ); ?></label>
 		</p>
+
+		<p>
+			<input id="<?php echo $this->get_field_id( 'show_category' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_category' ); ?>" value="1"<?php checked( $instance['show_category'] ); ?> />
+			<label for="<?php echo $this->get_field_id( 'show_category' ); ?>"><?php _e( 'Show Category', 'calibrefx' ); ?></label>
+		</p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'detail_length' ); ?>"><?php _e( 'Content Length', 'calibrefx' ); ?>:</label>
@@ -172,5 +180,17 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 		</p>
 
 <?php
+	}
+
+	function print_category(){
+		$categories = get_the_category();
+		$separator = ', ';
+		$output = '';
+		if ( ! empty( $categories ) ) {
+		    foreach( $categories as $category ) {
+		        $output .= '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" alt="' . esc_attr( sprintf( __( 'View all posts in %s', 'textdomain' ), $category->name ) ) . '">' . esc_html( $category->name ) . '</a>' . $separator;
+		    }
+		    return trim( $output, $separator );
+		}
 	}
 }
