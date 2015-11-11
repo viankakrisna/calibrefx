@@ -27,10 +27,12 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 
 		$this->defaults = array(
 			'title'       	=> '',
+			'post_type'       	=> '',
 			'num_posts'  	=> '5',
 			'show_thumbnail' => 0,
 			'image_size' => 'thumbnail',
 			'show_detail' => 0,
+			'show_category' => 0,
 			'detail_length' => 100
 		);
 
@@ -53,12 +55,28 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 		if ( ! empty( $instance['title'] ) ) {
 			echo $before_title . apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base ) . $after_title; }
 
-		$query = new WP_Query(array(
+
+
+		$query_args = array(
 			'posts_per_page' => $instance['num_posts'],
 			'orderby' => 'date',
 			'order' => 'DESC',
 			'ignore_sticky_posts' => true
-		) );
+		);
+
+		if(empty($instance['post_type'])){
+			if ( is_post_type_archive() ) {
+				$query_args['post_type'] = get_queried_object()->query_var;
+			}else if( is_singular() ){
+				if( get_post_type() != 'page' ){
+					$query_args['post_type'] = get_post_type();
+				}
+			}
+		}else{
+			$query_args['post_type'] = $instance['post_type'];
+		}
+
+		$query = new WP_Query( $query_args );
 
 		$no_post_thumbnail = apply_filters( 'no_thumbnail_image_url', CALIBREFX_IMAGES_URL.'/no-image.jpg' );
 
@@ -84,7 +102,8 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 								<div class="latest-post-detail '. $content_class .'">
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-info">'.do_shortcode( '[post_date]' ).'</p>
-									'.(( $instance['show_detail']) ? get_the_content_limit( $instance['detail_length'] ) : '' ).'
+									'.(($instance['show_category']) ? '<p class="latest-post-category">'.$this->print_category(get_the_id()).'</p>' : '').'
+									'.($instance['show_detail'] ? get_the_content_limit( $instance['detail_length'] ) : '' ).'
 								</div>
 							</div>
 						</li>
@@ -97,6 +116,7 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 									<h5 class="latest-post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h5>
 									<p class="latest-post-date">'.date( $date_format, get_the_time( 'U' ) ).'</p>
 									'.(( $instance['show_detail']) ? get_the_content_limit( $instance['detail_length'] ) : '' ).'
+									'.(( $instance['show_category']) ? '<p class="latest-post-category">'.$this->print_category(get_the_id()).'</p>' : '').'
 								</div>
 							</div>
 						</li>
@@ -131,22 +151,46 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 	 */
 	function form( $instance ) {
 		$instance = wp_parse_args( (array) $instance, $this->defaults );
-?>
+		$args = array(
+		   'public'   => true,
+		   '_builtin' => false
+		);
+
+		$output = 'objects'; // names or objects, note names is the default
+		$operator = 'or'; // 'and' or 'or'
+
+		$post_types = get_post_types( $args, $output, $operator );
+		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'calibrefx' ); ?>:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" class="widefat" />
 		</p>
 
 		<p>
+			<label for="<?php echo $this->get_field_id( 'post_type' ); ?>"><?php _e( 'Post type', 'calibrefx' ); ?>:</label>
+			<select id="<?php echo $this->get_field_id( 'post_type' ); ?>" name="<?php echo $this->get_field_name( 'post_type' ); ?>">
+				<option value=""><?php _e( 'Dynamic', 'calibrefx' ); ?></option>
+				<?php foreach ($post_types as $key => $value): ?>
+					<option value="<?php echo $key; ?>" <?php selected( $instance['post_type'], $key, true); ?>><?php echo $value->labels->name; ?></option>
+				<?php endforeach ?>
+			</select>
+		</p>
+
+		<p>
 			<label for="<?php echo $this->get_field_id( 'num_posts' ); ?>"><?php _e( 'Number of posts to show', 'calibrefx' ); ?>:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'num_posts' ); ?>" name="<?php echo $this->get_field_name( 'num_posts' ); ?>" value="<?php echo absint( $instance['num_posts'] ); ?>" size="3" />
 		</p>
-		
+
 		<p>
 			<input id="<?php echo $this->get_field_id( 'show_detail' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_detail' ); ?>" value="1"<?php checked( $instance['show_detail'] ); ?> />
 			<label for="<?php echo $this->get_field_id( 'show_detail' ); ?>"><?php _e( 'Show Content', 'calibrefx' ); ?></label>
 		</p>
-		
+
+		<p>
+			<input id="<?php echo $this->get_field_id( 'show_category' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_category' ); ?>" value="1"<?php checked( $instance['show_category'] ); ?> />
+			<label for="<?php echo $this->get_field_id( 'show_category' ); ?>"><?php _e( 'Show Category', 'calibrefx' ); ?></label>
+		</p>
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'detail_length' ); ?>"><?php _e( 'Content Length', 'calibrefx' ); ?>:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'detail_length' ); ?>" name="<?php echo $this->get_field_name( 'detail_length' ); ?>" value="<?php echo absint( $instance['detail_length'] ); ?>" size="3" />
@@ -172,5 +216,16 @@ class CFX_Latest_Post_Widget extends WP_Widget {
 		</p>
 
 <?php
+	}
+	function print_category($id){
+		$categories = wp_get_post_terms( $id, get_post_taxonomies( $id ) );
+		$separator = ', ';
+		$output = '';
+		if ( ! empty( $categories ) ) {
+		    foreach( $categories as $category ) {
+		        $output .= '<a href="' . esc_url( get_term_link( $category ) ) . '" alt="' . esc_attr( sprintf( __( 'View all posts in %s', 'textdomain' ), $category->name ) ) . '">' . esc_html( $category->name ) . '</a>' . $separator;
+		    }
+		    return trim( $output, $separator );
+		}
 	}
 }
